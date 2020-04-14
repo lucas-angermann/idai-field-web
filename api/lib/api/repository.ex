@@ -6,8 +6,10 @@ defmodule Api.Repository do
     case HTTPoison.get("localhost:9200/idai-field/resource/_search") do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        %{ hits: %{ hits: hits }} = atomize(Poison.decode! body)
-        hits |> Enum.map(fn %{ _source: %{ resource: resource } } -> resource end)
+        Poison.decode!(body)
+        |> atomize
+        |> to_hits
+        |> Enum.map(&to_resource/1)
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         []
@@ -24,8 +26,9 @@ defmodule Api.Repository do
     case HTTPoison.get("localhost:9200/idai-field/resource/" <> id) do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        %{ _source: %{ resource: resource }} = atomize Poison.decode! body
-        resource
+        Poison.decode!(body)
+        |> atomize
+        |> to_resource
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         %{type: "null", identifier: "0"}
@@ -35,4 +38,10 @@ defmodule Api.Repository do
         %{type: "null", identifier: "0"}
     end
   end
+
+
+  def to_hits(%{ hits: %{ hits: hits }}), do: hits
+
+  def to_resource(%{ _source: %{ resource: resource } }), do: resource
+
 end
