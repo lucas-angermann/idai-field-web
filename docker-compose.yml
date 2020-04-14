@@ -15,4 +15,4 @@ services:
     expose:
       - "9200"
     volumes:
-      - "data/elasticsearch:/usr/share/elasticsearch/data"
+      - "./data/elasticsearch:/usr/share/elasticsearch/data"
