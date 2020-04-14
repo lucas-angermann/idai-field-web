@@ -1,0 +1,9 @@
+{
+    "resource": {
+      "id": "f1",
+      "type": "Find",
+      "identifier": "123",
+      "shortDescription": "A find",
+      "relations": {}
+    }
+}
