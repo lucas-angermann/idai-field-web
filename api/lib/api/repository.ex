@@ -31,4 +31,25 @@ defmodule Api.Repository do
 
     # [%{type: "abc", identifier: 123}]
   end
+
+
+  def get_resource(id) do
+
+    case HTTPoison.get("localhost:9200/idai-field/resource/" <> id) do
+
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        %{ "_source" => %{ "resource" => resource }} = Poison.decode! body
+        resource
+
+      {:ok, %HTTPoison.Response{status_code: 404}} ->
+        IO.puts "Not found :("
+        %{"type" => "null", "identifier" => "0"}
+
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        IO.inspect reason
+        %{"type" => "null", "identifier" => "0"}
+    end
+
+    # %{"type" => "null", "identifier" => "0"}
+  end
 end

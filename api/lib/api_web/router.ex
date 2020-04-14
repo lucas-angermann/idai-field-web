@@ -8,6 +8,7 @@ defmodule ApiWeb.Router do
   scope "/api", ApiWeb do
     pipe_through :api
 
-    get "/resources", ResourceController, :index
+    get "/resources",    ResourceController, :index
+    get "/resource/:id", ResourceController, :show
   end
 end
