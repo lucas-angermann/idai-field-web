@@ -1,4 +1,5 @@
 defmodule Api.Repository do
+  import Utils
 
   def list_resources do
 
@@ -9,7 +10,7 @@ defmodule Api.Repository do
         hits
              |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "_source"); result end)
              |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "resource"); result end)
-             |> Enum.map(fn hit -> for {key, val} <- hit, into: %{}, do: {String.to_atom(key), val} end)
+             |> Enum.map(&atomize/1)
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         []
@@ -27,7 +28,7 @@ defmodule Api.Repository do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         %{ "_source" => %{ "resource" => resource }} = Poison.decode! body
-        for {key, val} <- resource, into: %{}, do: {String.to_atom(key), val}
+        atomize resource
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         %{"type" => "null", "identifier" => "0"}
