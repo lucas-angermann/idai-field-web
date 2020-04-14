@@ -40,8 +40,8 @@ defmodule Api.Repository do
   end
 
 
-  def to_hits(%{ hits: %{ hits: hits }}), do: hits
+  defp to_hits(%{ hits: %{ hits: hits }}), do: hits
 
-  def to_resource(%{ _source: %{ resource: resource } }), do: resource
+  defp to_resource(%{ _source: %{ resource: resource } }), do: resource
 
 end
