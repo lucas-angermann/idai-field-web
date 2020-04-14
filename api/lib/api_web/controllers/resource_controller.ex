@@ -6,8 +6,6 @@ defmodule ApiWeb.ResourceController do
 
   def show(conn, %{"id" => id}) do
     resource = Repository.get_resource(id)
-    IO.puts "resource:"
-    IO.inspect resource
     render(conn, "resource.json", resource: resource)
   end
 

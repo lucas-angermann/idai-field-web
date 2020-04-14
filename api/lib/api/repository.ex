@@ -1,35 +1,23 @@
 defmodule Api.Repository do
-  @moduledoc """
-  The Repository context.
-  """
 
-  @doc """
-  Returns the list of users.
-  ## Examples
-      iex> list_resources()
-      [%Resource{}, ...]
-  """
   def list_resources do
 
     case HTTPoison.get("localhost:9200/idai-field/resource/_search") do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         %{ "hits" => %{ "hits" => hits }} = Poison.decode! body
-        # IO.inspect hits
         hits
-             |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "_source"); result  end)
-             |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "resource"); result  end)
+             |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "_source"); result end)
+             |> Enum.map(fn hit -> {:ok, result} = Map.fetch(hit, "resource"); result end)
+             |> Enum.map(fn hit -> for {key, val} <- hit, into: %{}, do: {String.to_atom(key), val} end)
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts "Not found :("
         []
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect reason
         []
     end
-
-    # [%{type: "abc", identifier: 123}]
   end
 
 
@@ -39,17 +27,14 @@ defmodule Api.Repository do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         %{ "_source" => %{ "resource" => resource }} = Poison.decode! body
-        resource
+        for {key, val} <- resource, into: %{}, do: {String.to_atom(key), val}
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts "Not found :("
         %{"type" => "null", "identifier" => "0"}
 
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect reason
         %{"type" => "null", "identifier" => "0"}
     end
-
-    # %{"type" => "null", "identifier" => "0"}
   end
 end
