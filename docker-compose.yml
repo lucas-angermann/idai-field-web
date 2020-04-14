@@ -8,6 +8,8 @@ services:
       - "bootstrap.memory_lock=true"
       - "xpack.security.enabled=false"
       - "ES_JAVA_OPTS=-Xms640m -Xmx640m"
+      - "discovery.type=single-node"
+      - "cluster.name=field.dainst.org"
     ulimits:
       memlock:
         soft: -1
@@ -15,4 +17,4 @@ services:
     expose:
       - "9200"
     volumes:
-      - "data/elasticsearch:/usr/share/elasticsearch/data"
+      - "./data/elasticsearch:/usr/share/elasticsearch/data"
