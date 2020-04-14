@@ -6,8 +6,13 @@ defmodule ApiWeb.ResourceView do
     %{data: render_many(resources, ResourceView, "resource.json")}
   end
 
-  def render("resource.json", %{resource: %{ "type" => type, "identifier" => identifier }}) do
-    %{type: type,
-      identifier: identifier}
+  def render("resource.json", %{resource: %{"id" => id, "type" => type, "identifier" => identifier,
+                                            "shortDescription" => shortDescription }}) do
+    %{
+      id: id,
+      type: type,
+      identifier: identifier,
+      shortDescription: shortDescription
+    }
   end
 end
