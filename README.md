@@ -10,6 +10,6 @@ $ mix deps.get
 $ mix phx.server 
 ```
 
-Now visit `localhost:4000/api/resources` or `localhost:4000/api/resource/f1`. It should display a list of sample resources,
+Now visit `localhost:4000/api/resources` or `localhost:4000/api/resources/f1`. It should display a list of sample resources,
 as read in by put-test-data.sh into the elasticsearch.
 
