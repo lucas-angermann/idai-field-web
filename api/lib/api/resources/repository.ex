@@ -7,41 +7,42 @@ defmodule Api.Resources.Repository do
   def search_resources(nil), do: search_resources("*")
 
   def search_resources(q) do
-
-    case HTTPoison.get("#{@get_base_url}/_search",
-           [], params: %{q: q}) do
-
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
-        |> to_atomized_result
-        |> to_hits
-        |> Enum.map(&to_resource/1)
-
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        []
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        IO.inspect reason
-        []
-    end
+    handle_search_resources HTTPoison.get("#{@get_base_url}/_search", [], params: %{q: q})
   end
 
   def get_resource(id) do
+    handle_get_resource HTTPoison.get("#{@get_base_url}/#{id}")
+  end
 
-    case HTTPoison.get("#{@get_base_url}/#{id}") do
+  defp handle_search_resources({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+    body
+    |> to_atomized_result
+    |> to_hits
+    |> Enum.map(&to_resource/1)
+  end
 
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
-        |> to_atomized_result
-        |> to_resource
+  defp handle_search_resources({:ok, %HTTPoison.Response{status_code: 404}}) do
+    []
+  end
 
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        %{type: "null", identifier: "0"}
+  defp handle_search_resources({:error, %HTTPoison.Error{reason: reason}}) do
+    IO.inspect reason
+    []
+  end
 
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        IO.inspect reason
-        %{type: "null", identifier: "0"}
-    end
+  defp handle_get_resource({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+     body
+     |> to_atomized_result
+     |> to_resource
+  end
+
+  defp handle_get_resource({:ok, %HTTPoison.Response{status_code: 404}}) do
+     %{type: "null", identifier: "0"}
+  end
+
+  defp handle_get_resource({:error, %HTTPoison.Error{reason: reason}}) do
+     IO.inspect reason
+     %{type: "null", identifier: "0"}
   end
 
   defp to_atomized_result(body), do: body |> Poison.decode! |> atomize
