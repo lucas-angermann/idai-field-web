@@ -6,7 +6,8 @@ defmodule Api.Repository do
     case HTTPoison.get("localhost:9200/idai-field/resource/_search") do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Poison.decode!(body)
+        body
+        |> Poison.decode!
         |> atomize
         |> to_hits
         |> Enum.map(&to_resource/1)
@@ -26,7 +27,8 @@ defmodule Api.Repository do
     case HTTPoison.get("localhost:9200/idai-field/resource/" <> id) do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        Poison.decode!(body)
+        body
+        |> Poison.decode!
         |> atomize
         |> to_resource
 
