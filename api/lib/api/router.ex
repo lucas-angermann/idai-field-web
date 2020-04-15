@@ -1,11 +1,29 @@
 defmodule Api.Router do
   use Plug.Router
-  alias Api.Repository
-  import Api.RouterUtils, only: [send_json: 2]
-
+  
   plug :match
+
+  plug(Plug.Parsers,
+    parsers: [:json],
+    pass: ["application/json"],
+    json_decoder: Poison
+  )
+
   plug :dispatch
 
-  get "/", do: send_json(conn, Repository.list_resources())
-  get "/:id", do: send_json(conn, Repository.get_resource(id))
+  forward("/resources", to: Api.Resources.Router)
+
+  match _ do
+    send_resp(conn, 404, "Requested page not found!")
+  end
+
+  def child_spec(opts) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, [opts]}
+    }
+  end
+
+  def start_link(_opts),
+    do: Plug.Adapters.Cowboy2.http(__MODULE__, [])
 end

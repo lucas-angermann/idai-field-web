@@ -1,4 +1,4 @@
-defmodule Api.Repository do
+defmodule Api.Resources.Repository do
   import Api.Utils
 
   def list_resources do
