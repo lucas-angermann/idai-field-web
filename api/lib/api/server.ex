@@ -10,8 +10,6 @@ defmodule Api.Server do
   )
 
   plug :dispatch
-  
-  plug :send_json
 
   forward("/resources", to: Api.Router)
 
@@ -28,11 +26,4 @@ defmodule Api.Server do
 
   def start_link(_opts),
     do: Plug.Adapters.Cowboy2.http(__MODULE__, [])
-
-  defp send_json(%Plug.Conn{ resp_body: resp_body, status: status } = conn, _opts) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(status, Poison.encode!(resp_body))
-  end
-
 end

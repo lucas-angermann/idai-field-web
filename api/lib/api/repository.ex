@@ -1,5 +1,5 @@
 defmodule Api.Repository do
-  import Utils
+  import Api.Utils
 
   def list_resources do
 
