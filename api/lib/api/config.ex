@@ -1,4 +1,9 @@
 defmodule Api.Config do
-  def elasticsearch_url, do: "localhost:9200"
-  def elasticsearch_index, do: "idai-field"
+
+  @config %{
+    elasticsearch_url: "localhost:9200",
+    elasticsearch_index: "idai-field"
+  }
+
+  def get, do: @config
 end

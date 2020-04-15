@@ -2,12 +2,14 @@ defmodule Api.Resources.Repository do
   import Api.Utils
   alias Api.Config
 
+  @get_base_url "#{Config.get.elasticsearch_url}/#{Config.get.elasticsearch_index}/resource"
+
   def search_resources(nil), do: search_resources("*")
 
   def search_resources(q) do
 
-    case HTTPoison.get("#{Config.elasticsearch_url}/#{Config.elasticsearch_index}/resource/_search", [],
-           params: %{q: q}) do
+    case HTTPoison.get("#{@get_base_url}/_search",
+           [], params: %{q: q}) do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
@@ -28,7 +30,7 @@ defmodule Api.Resources.Repository do
 
   def get_resource(id) do
 
-    case HTTPoison.get("#{Config.elasticsearch_url}/#{Config.elasticsearch_index}/resource/#{id}") do
+    case HTTPoison.get("#{@get_base_url}/#{id}") do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
