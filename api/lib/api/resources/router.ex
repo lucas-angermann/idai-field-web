@@ -6,6 +6,6 @@ defmodule Api.Resources.Router do
   plug :match
   plug :dispatch
 
-  get "/", do: send_json(conn, Repository.list_resources())
+  get "/", do: send_json(conn, Repository.search_resources(conn.params["q"]))
   get "/:id", do: send_json(conn, Repository.get_resource(id))
 end

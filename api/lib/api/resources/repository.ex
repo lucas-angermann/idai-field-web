@@ -1,9 +1,11 @@
 defmodule Api.Resources.Repository do
   import Api.Utils
 
-  def list_resources do
+  def search_resources(nil), do: search_resources("*")
 
-    case HTTPoison.get("localhost:9200/idai-field/resource/_search") do
+  def search_resources(q) do
+
+    case HTTPoison.get("localhost:9200/idai-field/resource/_search", [], params: %{q: q}) do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
