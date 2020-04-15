@@ -44,11 +44,7 @@ defmodule Api.Resources.Repository do
     end
   end
 
-  defp to_atomized_result(body) do
-    body
-    |> Poison.decode!
-    |> atomize
-  end
+  defp to_atomized_result(body), do: body |> Poison.decode! |> atomize
 
   defp to_hits(%{ hits: %{ hits: hits }}), do: hits
 
