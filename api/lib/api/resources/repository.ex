@@ -13,8 +13,7 @@ defmodule Api.Resources.Repository do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
-        |> Poison.decode!
-        |> atomize
+        |> to_atomized_result
         |> to_hits
         |> Enum.map(&to_resource/1)
 
@@ -27,15 +26,13 @@ defmodule Api.Resources.Repository do
     end
   end
 
-
   def get_resource(id) do
 
     case HTTPoison.get("#{@get_base_url}/#{id}") do
 
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
-        |> Poison.decode!
-        |> atomize
+        |> to_atomized_result
         |> to_resource
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
@@ -47,6 +44,11 @@ defmodule Api.Resources.Repository do
     end
   end
 
+  defp to_atomized_result(body) do
+    body
+    |> Poison.decode!
+    |> atomize
+  end
 
   defp to_hits(%{ hits: %{ hits: hits }}), do: hits
 
