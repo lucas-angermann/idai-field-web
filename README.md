@@ -7,7 +7,7 @@ $ docker-compose up
 $ ./put-test-data.sh
 $ cd api
 $ mix deps.get
-$ mix phx.server 
+$ mix run --no-halt
 ```
 
 Now visit `localhost:4000/resources` or `localhost:4000/resources/f1`. It should display a list of sample

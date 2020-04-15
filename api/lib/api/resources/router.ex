@@ -1,11 +1,12 @@
 defmodule Api.Resources.Router do
   use Plug.Router
-  alias Api.Resources.Repository
+  alias Api.Resources.Get
+  alias Api.Resources.Search
   import Api.RouterUtils, only: [send_json: 2]
 
   plug :match
   plug :dispatch
 
-  get "/", do: send_json(conn, Repository.search_resources(conn.params["q"]))
-  get "/:id", do: send_json(conn, Repository.get_resource(id))
+  get "/", do: send_json(conn, Search.by(conn.params["q"]))
+  get "/:id", do: send_json(conn, Get.by(id))
 end
