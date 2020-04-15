@@ -4,21 +4,21 @@ defmodule Api.Resources.Search do
   def by(nil), do: by("*")
 
   def by(q) do
-    handle_search_resources HTTPoison.get("#{get_base_url}/_search", [], params: %{q: q})
+    handle_result HTTPoison.get("#{get_base_url}/_search", [], params: %{q: q})
   end
 
-  defp handle_search_resources({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+  defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
     body
     |> to_atomized_result
     |> to_hits
     |> Enum.map(&to_resource/1)
   end
 
-  defp handle_search_resources({:ok, %HTTPoison.Response{status_code: 404}}) do
+  defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do
     []
   end
 
-  defp handle_search_resources({:error, %HTTPoison.Error{reason: reason}}) do
+  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
     IO.inspect reason
     []
   end
