@@ -4,7 +4,7 @@ defmodule Utils do
     for {key, val} <- map, into: %{}, do: {String.to_atom(key),
       case val do
         [] -> []
-        list = [head|tail] -> for item <- list, into: [], do: atomize item
+        list = [_|_] -> for item <- list, into: [], do: atomize item
         map = %{} -> atomize map
         value -> value
       end
