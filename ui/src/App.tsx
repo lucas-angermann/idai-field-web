@@ -1,37 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchBar from './SearchBar';
 import ResultList from './ResultList';
 import {search} from './search';
 
 
-type AppState = {
-    results: Array<any>
+export default () => {
+
+    const [results, setResults] = useState([]);
+
+    return <div> 
+        <SearchBar onSubmit={fetchResults(setResults)}></SearchBar>
+        <ResultList results={results}></ResultList>
+    </div>;
 }
 
-
-export default class App extends React.Component<{}, AppState> {
-
-    constructor(props: any) {
-
-        super(props);
-        this.state = {
-            results: []
-        };
-    }
-
-
-    public render() {
-
-        return <div> 
-            <SearchBar onSubmit={(query: string) => this.performSearch(query)}></SearchBar>
-            <ResultList results={this.state.results}></ResultList>
-        </div>;
-    }
-
-
-    async performSearch(query: string) {
-
-        const results = await search(query);
-        this.setState({ results });
-    }
-}
+const fetchResults = (setResults: any) => async (query: string) => setResults(await search(query))
