@@ -1,4 +1,4 @@
-defmodule Api.Resources.Resources do
+defmodule Api.Resources.Helper do
   import Api.Utils
   alias Api.Config
 

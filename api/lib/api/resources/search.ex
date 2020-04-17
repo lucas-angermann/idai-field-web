@@ -1,5 +1,5 @@
 defmodule Api.Resources.Search do
-  import Api.Resources.Resources
+  import Api.Resources.Helper
 
   def by(nil), do: by("*")
 

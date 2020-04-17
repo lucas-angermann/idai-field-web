@@ -1,5 +1,5 @@
 defmodule Api.Resources.Get do
-  import Api.Resources.Resources
+  import Api.Resources.Helper
 
   def by(id) do
     handle_result HTTPoison.get("#{get_base_url()}/#{id}")
