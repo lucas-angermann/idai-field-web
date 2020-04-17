@@ -1,4 +1,4 @@
-import React, { FormEvent, CSSProperties } from 'react';
+import React, { useState, FormEvent, CSSProperties } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
@@ -17,7 +17,7 @@ const inputGroupStyle: CSSProperties = {
 
 export default ({ onSubmit }: { onSubmit: (query: string) => void}) => {
 
-    let query = '';
+    const [query, setQuery] = useState('');
 
     const submit = (event: FormEvent) => {
         event.preventDefault();
@@ -31,7 +31,7 @@ export default ({ onSubmit }: { onSubmit: (query: string) => void}) => {
                     autoFocus
                     placeholder="Suchen ..."
                     aria-label="Suchbegriff"
-                    onChange={(event: any) => query = event.target.value}
+                    onChange={(event: any) => setQuery(event.target.value)}
                 />
                 <InputGroup.Append>
                     <Button variant="secondary" type="submit">
