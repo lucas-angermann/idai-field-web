@@ -13,14 +13,14 @@ type SearchBarProps = {
 
 export default (props: SearchBarProps) => {
 
-    const [query, setQuery] = useState('');
+    let query = '';
 
     return (
         <InputGroup>
             <FormControl
                 placeholder="Suchen ..."
                 aria-label="Suchbegriff"
-                onChange={(event: any) => setQuery(event.target.value)}
+                onChange={(event: any) => query = event.target.value}
             />
             <InputGroup.Append>
                 <Button variant="outline-secondary" onClick={() => props.onSubmit(query)}>

@@ -9,7 +9,7 @@ export default () => {
 
     const [results, setResults] = useState([]);
 
-    return <div> 
+    return <div>
         <SearchBar onSubmit={$(search, setResults)}></SearchBar>
         <ResultList results={results}></ResultList>
     </div>;
