@@ -16,14 +16,14 @@ export default (props: SearchBarProps) => {
     let query = '';
 
     return (
-        <InputGroup>
+        <InputGroup style={{zIndex: 1, position: 'absolute'}}>
             <FormControl
                 placeholder="Suchen ..."
                 aria-label="Suchbegriff"
                 onChange={(event: any) => query = event.target.value}
             />
             <InputGroup.Append>
-                <Button variant="outline-secondary" onClick={() => props.onSubmit(query)}>
+                <Button variant="secondary" onClick={() => props.onSubmit(query)}>
                     <Icon path={mdiMagnify} size={0.8}/>
                 </Button>
             </InputGroup.Append>
