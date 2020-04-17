@@ -20,6 +20,7 @@ export default (props: {onSubmit: (query: string) => void}) => {
         <Form onSubmit={submit}>
             <InputGroup style={{zIndex: 1, position: 'absolute'}}>
                 <FormControl
+                    autoFocus
                     placeholder="Suchen ..."
                     aria-label="Suchbegriff"
                     onChange={(event: any) => query = event.target.value}
