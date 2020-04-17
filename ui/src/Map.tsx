@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useReducer, CSSProperties } from 'react';
-import mapboxgl, { Map, Marker } from 'mapbox-gl';
+import mapboxgl, { Map, Marker, LngLatBounds } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
@@ -43,8 +43,14 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement) => new 
 const reduceMarkers = (markers: Array<Marker>, params: { map: Map, results: any[] }) => {
 
     markers.forEach(marker => marker.remove());
+    if (params.map && params.results.length)
+        params.map.fitBounds(getBounds(params.results), { padding: 100 });
     return params.results.map(result => new Marker()
         .setLngLat(result.geometry.coordinates)
         .addTo(params.map)
     );
 }
+
+const getBounds = (results: any[]) => 
+    results.reduce((bounds, result) =>
+        bounds.extend(result.geometry.coordinates), new LngLatBounds());
