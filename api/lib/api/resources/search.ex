@@ -4,7 +4,7 @@ defmodule Api.Resources.Search do
   def by(nil), do: by("*")
 
   def by(q) do
-    handle_result HTTPoison.get("#{get_base_url}/_search", [], params: %{q: q})
+    handle_result HTTPoison.get("#{get_base_url()}/_search", [], params: %{q: q})
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do

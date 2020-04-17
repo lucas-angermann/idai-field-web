@@ -2,7 +2,7 @@ defmodule Api.Resources.Get do
   import Api.Resources.Resources
 
   def by(id) do
-    handle_result HTTPoison.get("#{get_base_url}/#{id}")
+    handle_result HTTPoison.get("#{get_base_url()}/#{id}")
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
