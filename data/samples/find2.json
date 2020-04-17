@@ -4,6 +4,10 @@
       "type": "Find",
       "identifier": "124",
       "shortDescription": "Another find",
-      "relations": {}
+      "relations": {},
+      "geometry": {
+        "type": "Point",
+        "coordinates": [50,51]
+      }
     }
 }
