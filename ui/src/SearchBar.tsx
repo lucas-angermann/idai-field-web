@@ -1,10 +1,18 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, CSSProperties } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
+
+
+const inputGroupStyle: CSSProperties = {
+    zIndex: 1,
+    position: 'absolute',
+    width: '300px',
+    margin: '1em'
+}
 
 
 export default (props: {onSubmit: (query: string) => void}) => {
@@ -18,7 +26,7 @@ export default (props: {onSubmit: (query: string) => void}) => {
 
     return (
         <Form onSubmit={submit}>
-            <InputGroup style={{zIndex: 1, position: 'absolute'}}>
+            <InputGroup style={inputGroupStyle}>
                 <FormControl
                     autoFocus
                     placeholder="Suchen ..."
