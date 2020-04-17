@@ -15,13 +15,13 @@ const inputGroupStyle: CSSProperties = {
 }
 
 
-export default (props: {onSubmit: (query: string) => void}) => {
+export default ({ onSubmit }: { onSubmit: (query: string) => void}) => {
 
     let query = '';
 
     const submit = (event: FormEvent) => {
         event.preventDefault();
-        props.onSubmit(query);
+        onSubmit(query);
     }
 
     return (

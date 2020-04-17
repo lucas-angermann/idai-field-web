@@ -17,7 +17,7 @@ const mapContainerStyle: CSSProperties = {
 type MapOptions = { zoom: number, center: [number, number]};
 
 
-export default (props: { results: any[] }) => {
+export default ({ results }: { results: any[] }) => {
 
     const [map, setMap] = useState(null);
     const [, setMarkers] = useReducer(reduceMarkers, []);
@@ -26,7 +26,7 @@ export default (props: { results: any[] }) => {
 
     useEffect(() => { map ?? setMap(initializeMap(mapOptions, mapContainer.current)) }, [map, mapOptions]);
 
-    useEffect(() => setMarkers({ map, results: props.results }), [map, props.results]);
+    useEffect(() => setMarkers({ map, results: results }), [map, results]);
 
     return <div ref={mapContainer} style={mapContainerStyle}/>;
 }
@@ -40,14 +40,14 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement) => new 
 });
 
 
-const reduceMarkers = (markers: Array<Marker>, params: { map: Map, results: any[] }) => {
+const reduceMarkers = (markers: Array<Marker>, { map, results }: { map: Map, results: any[] }) => {
 
     markers.forEach(marker => marker.remove());
-    if (params.map && params.results.length)
-        params.map.fitBounds(getBounds(params.results), { padding: 100 });
-    return params.results.map(result => new Marker()
+    if (map && results.length)
+        map.fitBounds(getBounds(results), { padding: 100 });
+    return results.map(result => new Marker()
         .setLngLat(result.geometry.coordinates)
-        .addTo(params.map)
+        .addTo(map)
     );
 }
 
