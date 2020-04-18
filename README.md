@@ -2,10 +2,22 @@
 
 ## Getting started
 
-## API
+## Data
+
+To set up test data, and provide them via elasticsearch, do
+
 ```
 $ docker-compose up
 $ ./put-test-data.sh
+```
+
+Test via `http://localhost:9200/idai-field/_search`.
+
+## API
+
+Start elasticsearch and then do
+
+```
 $ cd api
 $ mix deps.get
 $ mix run --no-halt
@@ -19,7 +31,7 @@ the server are possible immediately after recompilation, while staying in the re
 
 ## UI
 
-For the frontend to start, first start the `API`, then do: 
+For the frontend to start, first start the `API`, then do
 
 ```
 $ cd ui
