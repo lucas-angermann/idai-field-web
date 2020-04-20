@@ -12,17 +12,17 @@ const inputGroupStyle: CSSProperties = {
     position: 'absolute',
     width: '300px',
     margin: '1em'
-}
+};
 
 
-export default ({ onSubmit }: { onSubmit: (query: string) => void}) => {
+export default ({ onSubmit }: { onSubmit: (query: string) => void }) => {
 
     const [query, setQuery] = useState('');
 
     const submit = (event: FormEvent) => {
         event.preventDefault();
         onSubmit(query);
-    }
+    };
 
     return (
         <Form onSubmit={submit}>
@@ -41,5 +41,4 @@ export default ({ onSubmit }: { onSubmit: (query: string) => void}) => {
             </InputGroup>
         </Form>
     );
-
 }

@@ -11,7 +11,7 @@ const mapContainerStyle: CSSProperties = {
     right: '0',
     left: '0',
     bottom: '0'
-}
+};
 
 
 type MapOptions = { zoom: number, center: [number, number]};
@@ -24,7 +24,7 @@ export default ({ results }: { results: any[] }) => {
     const mapOptions: MapOptions = { zoom: 2, center: [50, 50] };
     const mapContainer = useRef(null);
 
-    useEffect(() => { map ?? setMap(initializeMap(mapOptions, mapContainer.current)) }, [map, mapOptions]);
+    useEffect(() => { map ?? setMap(initializeMap(mapOptions, mapContainer.current)); }, [map, mapOptions]);
 
     useEffect(() => setMarkers({ map, results: results }), [map, results]);
 
@@ -49,7 +49,7 @@ const reduceMarkers = (markers: Array<Marker>, { map, results }: { map: Map, res
         .setLngLat(result.geometry.coordinates)
         .addTo(map)
     );
-}
+};
 
 const getBounds = (results: any[]) => 
     results.reduce((bounds, result) =>
