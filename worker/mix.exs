@@ -14,7 +14,8 @@ defmodule Worker.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      applications: [:timex_poison]
     ]
   end
 
@@ -22,7 +23,8 @@ defmodule Worker.MixProject do
   defp deps do
     [
       {:httpoison, "~> 1.6.2"},
-      {:poison, "~> 3.0"}
+      {:poison, "~> 3.0"},
+      {:timex_poison, "~> 0.2.0"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

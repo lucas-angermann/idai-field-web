@@ -4,22 +4,19 @@ defmodule Worker do
   """
 
   defmodule Action do
-    @derive [Poison.Encoder]
+    use TimexPoison, keys: [:date]
     defstruct [:date, :user]
   end
 
   defmodule Resource do
-    @derive [Poison.Encoder]
     defstruct [:id, :type, :relations]
   end
 
   defmodule Document do
-    @derive [Poison.Encoder]
     defstruct [resource: %Resource{}, created: %Action{}, modified: [%Action{}]]
   end
 
   defmodule Change do
-    @derive [Poison.Encoder]
     defstruct [:changes, :deleted, :id, :seq, doc: %Document{}]
   end
 
