@@ -1,6 +1,10 @@
 defmodule Indexer do
 
-  def index(documents) do
-    IO.inspect documents
+  def index(documents) when is_list(documents) do
+    for document <- documents, do: index document
+  end
+
+  def index(document) do
+    IO.inspect document
   end
 end
