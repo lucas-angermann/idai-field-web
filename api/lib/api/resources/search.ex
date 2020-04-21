@@ -1,11 +1,9 @@
 defmodule Api.Resources.Search do
   import Api.Resources.Helper
 
-  def by(nil, nil), do: by("*", 100)
-  def by(nil, size), do: by("*", size)
-  def by(q, nil), do: by(q, 100)
-
   def by(q, size) do
+    q = if !q do "*" else q end
+    size = if !size do 100 else size end
     handle_result HTTPoison.get("#{get_base_url()}/_search", [], params: %{q: q, size: size})
   end
 
