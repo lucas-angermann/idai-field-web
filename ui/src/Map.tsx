@@ -26,7 +26,7 @@ export default ({ results }: { results: any[] }) => {
 
     useEffect(() => { map ?? setMap(initializeMap(mapOptions, mapContainer.current)); }, [map, mapOptions]);
 
-    useEffect(() => setMarkers({ map, results: results }), [map, results]);
+    useEffect(() => setMarkers({ map, results: results.filter(hasPointGeometry) }), [map, results]);
 
     return <div ref={mapContainer} style={mapContainerStyle}/>;
 }
@@ -54,3 +54,5 @@ const reduceMarkers = (markers: Array<Marker>, { map, results }: { map: Map, res
 const getBounds = (results: any[]) => 
     results.reduce((bounds, result) =>
         bounds.extend(result.geometry.coordinates), new LngLatBounds());
+
+const hasPointGeometry = resource => resource.geometry && resource.geometry.type === 'Point';
