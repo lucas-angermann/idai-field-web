@@ -1,4 +1,5 @@
 defmodule Indexer do
+  alias Worker.Config
 
   def index(changes) when is_list(changes) do
     for change <- changes, do: index change
@@ -10,7 +11,11 @@ defmodule Indexer do
 
   def index(change) do
     IO.puts "Add to index: #{change.id}"
-    {:ok, result} = HTTPoison.put("localhost:9200/idai-field/_doc/#{change.id}", Poison.encode!(change.doc), [{"content-type", "application/json"}])
+    {:ok, result} = HTTPoison.put(
+      "#{Config.get(:elasticsearch_url)}/#{Config.get(:elasticsearch_index)}/_doc/#{change.id}",
+      Poison.encode!(change.doc),
+      [{"content-type", "application/json"}]
+    )
     result
   end
 end
