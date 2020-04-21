@@ -18,3 +18,9 @@ services:
       - "9200:9200"
     volumes:
       - "./data/elasticsearch:/usr/share/elasticsearch/data"
+
+  worker:
+    build: "./worker"
+    volumes:
+      - "./worker:/opt/src/worker"
+      - "./worker/.mix:/root/.mix/"
