@@ -1,10 +1,16 @@
 defmodule Indexer do
 
-  def index(documents) when is_list(documents) do
-    for document <- documents, do: index document
+  def index(changes) when is_list(changes) do
+    for change <- changes, do: index change
   end
 
-  def index(document) do
-    IO.inspect document
+  def index(change = %{deleted: true}) do
+    IO.puts "Deleted: #{change.id}"
+  end
+
+  def index(change) do
+    IO.puts "Add to index: #{change.id}"
+    {:ok, result} = HTTPoison.put("localhost:9200/idai-field/_doc/#{change.id}", Poison.encode!(change.doc), [{"content-type", "application/json"}])
+    result
   end
 end

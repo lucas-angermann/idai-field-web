@@ -4,6 +4,7 @@ defmodule Worker do
   """
 
   def process do
-    Indexer.index Harvester.fetch_all_documents()
+    %{"results" => results} = Harvester.fetch_all_documents()
+    Indexer.index results
   end
 end

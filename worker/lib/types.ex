@@ -5,12 +5,8 @@ defmodule Types do
     defstruct [:date, :user]
   end
 
-  defmodule Resource do
-    defstruct [:id, :type, :relations]
-  end
-
   defmodule Document do
-    defstruct [resource: %Resource{}, created: %Action{}, modified: [%Action{}]]
+    defstruct [resource: %{}, created: %Action{}, modified: [%Action{}]]
   end
 
   defmodule Change do
