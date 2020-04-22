@@ -4,7 +4,7 @@
 
 ## Data
 
-To set up test data, and provide them via elasticsearch, do
+To set up test data, and provide them via elasticsearch, do:
 
 ```
 $ docker-compose up
@@ -13,9 +13,20 @@ $ ./put-test-data.sh
 
 Test via `http://localhost:9200/idai-field/_search`.
 
+## Worker
+
+To index iDAI.field data from a CouchDB instance, do:
+
+```
+$ mv worker/config/config.exs.template worker/config/config.exs
+$ vi worker/config/config.exs # Edit configuration
+$ docker-compose run worker iex -S mix
+iex> Worker.process()
+```
+
 ## API
 
-Start elasticsearch and then do
+Start elasticsearch and then do:
 
 ```
 $ cd api
@@ -31,7 +42,7 @@ the server are possible immediately after recompilation, while staying in the re
 
 ## UI
 
-For the frontend to start, first start the `API`, then do
+For the frontend to start, first start the `API`, then do:
 
 ```
 $ cd ui
