@@ -7,20 +7,21 @@ defmodule GeoTransformer do
 
 
   defp transform_change(change = %{doc: %{resource: %{"geometry" => %{} = geometry}}}, crs) do
-    put_in(change.doc.resource["geometry"]["coordinates"], to_lat_lng(geometry["coordinates"], crs))
+    put_in(change.doc.resource["geometry"]["coordinates"], to_lng_lat(geometry["coordinates"], crs))
   end
 
   defp transform_change(change, _crs), do: change
 
 
-  defp to_lat_lng([], _crs), do: []
+  defp to_lng_lat([], _crs), do: []
 
-  defp to_lat_lng([x, y], crs) when is_number(x) and is_number(y) do
-    Tuple.to_list(Proj.to_lat_lng!({x, y}, crs))
+  defp to_lng_lat([x, y], crs) when is_number(x) and is_number(y) do
+    {lat, lng} = (Proj.to_lat_lng!({x, y}, crs))
+    [lng, lat]
   end
 
-  defp to_lat_lng([head|tail], crs) do
-    [to_lat_lng(head, crs)|to_lat_lng(tail, crs)]
+  defp to_lng_lat([head|tail], crs) do
+    [to_lng_lat(head, crs)|to_lng_lat(tail, crs)]
   end
 
 end
