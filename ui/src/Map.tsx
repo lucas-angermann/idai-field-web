@@ -1,8 +1,12 @@
-import React, { useRef, useState, useEffect, useReducer, CSSProperties } from 'react';
-import mapboxgl, { Map, Marker, LngLatBounds } from 'mapbox-gl';
+import React, { useRef, useState, useEffect, CSSProperties } from 'react';
+import mapboxgl, { Map, LngLatBounds, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { FeatureCollection } from 'geojson';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
+
+
+const SOURCE_ID = 'geojson-source';
 
 
 const mapContainerStyle: CSSProperties = {
@@ -14,45 +18,80 @@ const mapContainerStyle: CSSProperties = {
 };
 
 
+const polygonLayer: Layer = {
+    id: 'polygon-layer',
+    type: 'fill',
+    source: SOURCE_ID,
+    paint: {
+        'fill-color': '#888888',
+        'fill-opacity': 0.4
+    },
+    filter: ['==', '$type', 'Polygon']
+}
+
+
+const pointLayer: Layer = {
+    id: 'point-layer',
+    type: 'circle',
+    source: SOURCE_ID,
+    paint: {
+        'circle-radius': 6,
+        'circle-color': '#B42222'
+    },
+    filter: ['==', '$type', 'Point']
+}
+
+
 type MapOptions = { zoom: number, center: [number, number]};
 
 
-export default ({ results }: { results: any[] }) => {
+export default ({ resources }: { resources: any[] }) => {
 
     const [map, setMap] = useState(null);
-    const [, setMarkers] = useReducer(reduceMarkers, []);
     const mapOptions: MapOptions = { zoom: 2, center: [50, 50] };
     const mapContainer = useRef(null);
 
-    useEffect(() => { map ?? setMap(initializeMap(mapOptions, mapContainer.current)); }, [map, mapOptions]);
+    useEffect(() => {
+        if (!map) setMap(initializeMap(mapOptions, mapContainer.current));
+    }, [map, mapOptions]);
 
-    useEffect(() => setMarkers({ map, results: results.filter(hasPointGeometry) }), [map, results]);
+    useEffect(() => {
+        if (map && map.getSource(SOURCE_ID)) {
+            map.getSource(SOURCE_ID).setData(getFeatureCollection(resources));
+        } else if (map) {
+            map.on('sourcedata', () => {
+                map.getSource(SOURCE_ID).setData(getFeatureCollection(resources));
+            });
+        }
+    }, [map, resources]);
 
     return <div ref={mapContainer} style={mapContainerStyle}/>;
 }
 
 
-const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement) => new Map({
-    container: containerEl,
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: mapOptions.center,
-    zoom: mapOptions.zoom
+const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement) => {
+
+    const map = new Map({
+        container: containerEl,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: mapOptions.center,
+        zoom: mapOptions.zoom
+    });
+
+    return map.on('load', () => {
+        map.addLayer(polygonLayer)
+            .addLayer(pointLayer)
+            .addSource(SOURCE_ID, { type: 'geojson', data: getFeatureCollection([]) });
+    });
+}
+
+
+const getFeatureCollection = (resources: any[]): FeatureCollection => ({
+    type: 'FeatureCollection',
+    features: resources.map(resource => resource.geometry)
 });
 
 
-const reduceMarkers = (markers: Array<Marker>, { map, results }: { map: Map, results: any[] }) => {
-
-    markers.forEach(marker => marker.remove());
-    if (map && results.length)
-        map.fitBounds(getBounds(results), { padding: 100 });
-    return results.map(result => new Marker()
-        .setLngLat(result.geometry.coordinates)
-        .addTo(map)
-    );
-};
-
-const getBounds = (results: any[]) => 
-    results.reduce((bounds, result) =>
-        bounds.extend(result.geometry.coordinates), new LngLatBounds());
-
-const hasPointGeometry = resource => resource.geometry && resource.geometry.type === 'Point';
+const getBounds = (resources: any[]) => 
+    resources.reduce((bounds, resource) =>
+        bounds.extend(resource.geometry.coordinates), new LngLatBounds());

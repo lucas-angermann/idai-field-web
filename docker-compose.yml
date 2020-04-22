@@ -19,6 +19,12 @@ services:
     volumes:
       - "./data/elasticsearch:/usr/share/elasticsearch/data"
 
+  api:
+    build: "./api"
+    volumes:
+      - "./api:/opt/src/api"
+      - "./api/.mix:/root/.mix/"
+
   worker:
     build: "./worker"
     volumes:
