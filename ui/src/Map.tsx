@@ -30,13 +30,22 @@ const polygonLayer: Layer = {
 };
 
 
-const pointLayer: Layer = {
+const pointLayer: any = {
     id: 'point-layer',
-    type: 'circle',
+    type: 'symbol',
     source: SOURCE_ID,
+    layout: {
+        'text-field': ['get', 'identifier'],
+        'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        'text-radial-offset': 0.5,
+        'text-justify': 'auto',
+        'icon-image': 'marker-15',
+        'text-size': 14
+    },
     paint: {
-        'circle-radius': 6,
-        'circle-color': '#B42222'
+        'text-color': '#660004',
+        'text-halo-color': '#fff',
+        'text-halo-width': 2
     },
     filter: ['==', '$type', 'Point']
 };
@@ -75,7 +84,7 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement, setRead
     });
 
     return map.on('load', () => {
-        map.addSource(SOURCE_ID, getGeoJSONSource())
+        map.addSource(SOURCE_ID, getInitialGeoJSONSource())
             .addLayer(polygonLayer)
             .addLayer(pointLayer);
         setReady(true);
@@ -83,7 +92,7 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement, setRead
 };
 
 
-const getGeoJSONSource = (): GeoJSONSourceRaw => ({
+const getInitialGeoJSONSource = (): GeoJSONSourceRaw => ({
     type: 'geojson',
     data: getFeatureCollection([])
 });
@@ -91,7 +100,9 @@ const getGeoJSONSource = (): GeoJSONSourceRaw => ({
 
 const getFeatureCollection = (resources: any[]): FeatureCollection => ({
     type: 'FeatureCollection',
-    features: resources.map(getFeature)
+    features: resources
+        .filter(resource => resource.geometry)
+        .map(getFeature)
 });
 
 
@@ -99,7 +110,7 @@ const getFeature = (resource: any): Feature => ({
     type: 'Feature',
     geometry: resource.geometry,
     properties: {
-        resource: resource
+        identifier: resource.identifier
     }
 });
 
