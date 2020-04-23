@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, CSSProperties } from 'react';
-import mapboxgl, { Map, LngLatBounds, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
+import mapboxgl, { Map, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Feature, FeatureCollection} from 'geojson';
 import extent from 'turf-extent';
@@ -81,22 +81,18 @@ export default ({ resources }: { resources: any[] }) => {
     const mapContainer = useRef(null);
 
     useEffect(() => {
-        if (!map) setMap(initializeMap(mapOptions, mapContainer.current, setReady));
+        if (!map) setMap(initialize(mapOptions, mapContainer.current, setReady));
     }, [map, mapOptions]);
 
     useEffect(() => {
-        if (map && map.getSource(SOURCE_ID)) {
-            const featureCollection: FeatureCollection = getFeatureCollection(resources);
-            map.getSource(SOURCE_ID).setData(featureCollection);
-            fitBounds(map, featureCollection);
-        }
+        if (map && map.getSource(SOURCE_ID)) update(map, resources);
     }, [map, resources, ready]);
 
     return <div ref={mapContainer} style={mapContainerStyle}/>;
 }
 
 
-const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: Function) => {
+const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: Function) => {
 
     const map = new Map({
         container: containerEl,
@@ -112,6 +108,14 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement, setRead
             .addLayer(polygonLabelLayer);
         setReady(true);
     });
+};
+
+
+const update = (map: any, resources: Array<any>) => {
+
+    const featureCollection: FeatureCollection = getFeatureCollection(resources);
+    map.getSource(SOURCE_ID).setData(featureCollection);
+    fitBounds(map, featureCollection);
 };
 
 
