@@ -4,5 +4,6 @@ config :worker,
   couchdb_url: "field.dainst.org/sync",
   couchdb_user: "",
   couchdb_password: "",
+  couchdb_database: "",
   elasticsearch_url: "localhost:9200",
   elasticsearch_index: "idai-field"
