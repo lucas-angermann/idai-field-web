@@ -50,6 +50,25 @@ const pointLayer: any = {
     filter: ['==', '$type', 'Point']
 };
 
+
+const polygonLabelLayer: Layer = {
+    id: 'polygon-label-layer',
+    type: 'symbol',
+    source: SOURCE_ID,
+    layout: {
+        'text-field': ['get', 'identifier'],
+        'text-size': 12,
+        'symbol-placement': 'point'
+    },
+    paint: {
+        'text-color': '#660004',
+        'text-halo-color': '#fff',
+        'text-halo-width': 2
+    },
+    filter: ['==', '$type', 'Polygon']
+};
+
+
 type MapOptions = { zoom: number, center: [number, number]};
 
 
@@ -86,7 +105,8 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement, setRead
     return map.on('load', () => {
         map.addSource(SOURCE_ID, getInitialGeoJSONSource())
             .addLayer(polygonLayer)
-            .addLayer(pointLayer);
+            .addLayer(pointLayer)
+            .addLayer(polygonLabelLayer);
         setReady(true);
     });
 };
