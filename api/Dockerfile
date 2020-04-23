@@ -6,5 +6,6 @@ WORKDIR /opt/src/api
 
 RUN ["mix", "local.hex", "--force"]
 RUN ["mix", "deps.get"]
+RUN ["mix", "deps.compile"]
 
 ENTRYPOINT ["mix", "run", "--no-halt"]

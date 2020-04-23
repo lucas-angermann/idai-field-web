@@ -29,5 +29,5 @@ services:
   worker:
     build: "./worker"
     volumes:
-      - "./worker:/opt/src/worker"
-      - "./worker/.mix:/root/.mix/"
+      - "./worker/config:/opt/src/worker/config"
+      - "./worker/lib:/opt/src/worker/lib"
