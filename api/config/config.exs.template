@@ -1,0 +1,5 @@
+import Config
+
+config :api,
+  elasticsearch_url: "localhost:9200",
+  elasticsearch_index: "idai-field"
