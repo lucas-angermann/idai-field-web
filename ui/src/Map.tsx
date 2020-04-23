@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, CSSProperties } from 'react';
 import mapboxgl, { Map, LngLatBounds, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { FeatureCollection } from 'geojson';
+import { FeatureCollection, Feature } from 'geojson';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
@@ -88,7 +88,10 @@ const initializeMap = (mapOptions: MapOptions, containerEl: HTMLElement) => {
 
 const getFeatureCollection = (resources: any[]): FeatureCollection => ({
     type: 'FeatureCollection',
-    features: resources.map(resource => resource.geometry)
+    features: resources.map(resource => ({
+        type: 'Feature',
+        geometry: resource.geometry
+    } as Feature))
 });
 
 
