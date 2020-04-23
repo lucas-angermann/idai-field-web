@@ -21,12 +21,13 @@ services:
 
   api:
     build: "./api"
+    ports:
+      - "4000:4000"
     volumes:
-      - "./api:/opt/src/api"
-      - "./api/.mix:/root/.mix/"
+      - "./api/lib:/opt/src/api/lib"
 
   worker:
     build: "./worker"
     volumes:
-      - "./worker:/opt/src/worker"
-      - "./worker/.mix:/root/.mix/"
+      - "./worker/config:/opt/src/worker/config"
+      - "./worker/lib:/opt/src/worker/lib"
