@@ -20,7 +20,7 @@ To index iDAI.field data from a CouchDB instance, do:
 ```
 $ mv worker/config/config.exs.template worker/config/config.exs
 $ vi worker/config/config.exs # Edit configuration
-$ docker-compose run worker iex -S mix
+$ docker-compose run --entrypoint "iex -S mix" api
 iex> Worker.process()
 ```
 
