@@ -1,5 +1,10 @@
 FROM elixir:latest
 
-WORKDIR "/opt/src/api"
+COPY . /opt/src/api
 
-ENTRYPOINT [ "mix", "run", "--no-halt" ]
+WORKDIR /opt/src/api
+
+RUN ["mix", "local.hex", "--force"]
+RUN ["mix", "deps.get"]
+
+ENTRYPOINT ["mix", "run", "--no-halt"]
