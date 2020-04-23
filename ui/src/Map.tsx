@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, CSSProperties } from 'react';
 import mapboxgl, { Map, LngLatBounds, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {Feature, FeatureCollection} from 'geojson';
+import extent from 'turf-extent';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
@@ -85,7 +86,9 @@ export default ({ resources }: { resources: any[] }) => {
 
     useEffect(() => {
         if (map && map.getSource(SOURCE_ID)) {
-            map.getSource(SOURCE_ID).setData(getFeatureCollection(resources));
+            const featureCollection: FeatureCollection = getFeatureCollection(resources);
+            map.getSource(SOURCE_ID).setData(featureCollection);
+            fitBounds(map, featureCollection);
         }
     }, [map, resources, ready]);
 
@@ -135,6 +138,9 @@ const getFeature = (resource: any): Feature => ({
 });
 
 
-const getBounds = (resources: any[]) => 
-    resources.reduce((bounds, resource) =>
-        bounds.extend(resource.geometry.coordinates), new LngLatBounds());
+const fitBounds = (map: any, featureCollection: FeatureCollection) => {
+
+    if (featureCollection.features.length > 0) {
+        map.fitBounds(extent(featureCollection), { padding: 25 });
+    }
+};
