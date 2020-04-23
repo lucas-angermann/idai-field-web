@@ -7,7 +7,7 @@
 To set up test data, and provide them via elasticsearch, do:
 
 ```
-$ docker-compose up
+$ docker-compose up elasticsearch
 $ ./put-test-data.sh
 ```
 
@@ -29,9 +29,7 @@ iex> Worker.process()
 Start elasticsearch and then do:
 
 ```
-$ cd api
-$ mix deps.get
-$ mix run --no-halt
+$ docker-compose up api
 ```
 
 Now visit `localhost:4000/resources` or `localhost:4000/resources/f1`. It should display a list of sample
