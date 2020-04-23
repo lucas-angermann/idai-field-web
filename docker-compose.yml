@@ -26,9 +26,4 @@ services:
     volumes:
       - "./api/config:/opt/src/api/config"
       - "./api/lib:/opt/src/api/lib"
-
-  worker:
-    build: "./worker"
-    volumes:
-      - "./worker/config:/opt/src/worker/config"
-      - "./worker/lib:/opt/src/worker/lib"
+      - "./api/_build:/opt/src/api/_build"

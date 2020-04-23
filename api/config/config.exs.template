@@ -2,4 +2,8 @@ import Config
 
 config :api,
   elasticsearch_url: "elasticsearch:9200",
-  elasticsearch_index: "idai-field"
+  elasticsearch_index: "idai-field",
+  couchdb_url: "field.dainst.org/sync",
+  couchdb_user: "",
+  couchdb_password: "",
+  couchdb_database: ""
