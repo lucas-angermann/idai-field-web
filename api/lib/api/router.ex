@@ -1,5 +1,6 @@
 defmodule Api.Router do
   use Plug.Router
+  import Api.RouterUtils, only: [send_json: 2]
   
   plug :match
 
@@ -12,6 +13,11 @@ defmodule Api.Router do
   plug :dispatch
 
   forward("/resources", to: Api.Resources.Router)
+
+  post "/reindex" do
+    Task.async fn -> Worker.process() end
+    send_json(conn, %{ status: "ok", message: "indexing started"})
+  end
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")

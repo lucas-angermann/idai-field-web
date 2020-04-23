@@ -32,16 +32,14 @@ $ docker-compose up api
 $ docker-compose run --service-ports --entrypoint "iex -S mix run --no-halt" api
 ```
 
+Optionally, to index iDAI.field data from the CouchDB instance specified in api/config/config.exs, use: 
+
+```
+$ curl -XPOST localhost:4000/reindex
+```
+
 Now visit `localhost:4000/resources` or `localhost:4000/resources/f1`. It should display a list of sample
 resources, as read in by put-test-data.sh into the elasticsearch.
-
-### Worker
-
-To index iDAI.field data from a CouchDB instance, use:
-
-```
-iex> Worker.process()
-```
 
 ## UI
 
