@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect, CSSProperties } from 'react';
-import mapboxgl, { Map, Layer, GeoJSONSourceRaw } from 'mapbox-gl';
+import mapboxgl, { Map, Layer, GeoJSONSourceRaw, GeoJSONSource } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import {Feature, FeatureCollection} from 'geojson';
+import { Feature, FeatureCollection } from 'geojson';
 import extent from 'turf-extent';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
@@ -49,10 +49,10 @@ const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: 
 };
 
 
-const update = (map: any, resources: Array<any>) => {
+const update = (map: Map, resources: Array<any>) => {
 
     const featureCollection: FeatureCollection = getFeatureCollection(resources);
-    map.getSource(SOURCE_ID).setData(featureCollection);
+    (map.getSource(SOURCE_ID) as GeoJSONSource).setData(featureCollection);
     fitBounds(map, featureCollection);
 };
 
@@ -80,7 +80,7 @@ const getFeature = (resource: any): Feature => ({
 });
 
 
-const fitBounds = (map: any, featureCollection: FeatureCollection) => {
+const fitBounds = (map: Map, featureCollection: FeatureCollection) => {
 
     if (featureCollection.features.length > 0) {
         map.fitBounds(extent(featureCollection), { padding: 25 });
