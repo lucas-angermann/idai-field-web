@@ -11,11 +11,15 @@ defmodule Indexer do
 
   def index(change) do
     IO.puts "Add to index: #{change.id}"
-    {:ok, result} = HTTPoison.put(
+    handle_result HTTPoison.put(
       "#{Config.get(:elasticsearch_url)}/#{Config.get(:elasticsearch_index)}/_doc/#{change.id}",
       Poison.encode!(change.doc),
       [{"content-type", "application/json"}]
     )
-    result
   end
+
+  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}) when status_code in [200, 201]  do
+    Poison.decode!(body, as: %{"results" => [%Types.Change{}]})
+  end
+
 end

@@ -10,13 +10,5 @@ defmodule Harvester do
     %{"results" => results} = Poison.decode!(body, as: %{"results" => [%Types.Change{}]})
     results
   end
-
-  defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do
-    nil
-  end
-
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
-    IO.inspect reason
-    nil
-  end
+  
 end
