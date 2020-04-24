@@ -18,15 +18,8 @@ Test via `http://localhost:9200/idai-field/_search`.
 Prepare the configuration:
 
 ```
-<<<<<<< HEAD
 $ mv api/config/config.exs.template api/config/config.exs
 $ vi api/config/config.exs # Edit configuration
-=======
-$ mv worker/config/config.exs.template worker/config/config.exs
-$ vi worker/config/config.exs # Edit configuration
-$ docker-compose run --entrypoint "iex -S mix" worker
-iex> Worker.process()
->>>>>>> Fix README
 ```
 
 Then start elasticsearch and do:
