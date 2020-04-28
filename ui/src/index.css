@@ -11,20 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.carousel-indicators li {
-  background-color: black;
-}
-
-.carousel-caption h3 {
-  color: black;
-}
-
-.carousel-control-next,
-.carousel-control-prev {
-  filter: invert(100%);
-}
-
-.carousel-item img {
-  width: 100%;
-}

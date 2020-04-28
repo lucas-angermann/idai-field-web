@@ -1,5 +1,6 @@
-import React, {CSSProperties} from 'react';
+import React from 'react';
 import {Carousel, Jumbotron} from 'react-bootstrap';
+import './Download.css';
 
 
 type Slide = { imageUrl: string, description: string };
