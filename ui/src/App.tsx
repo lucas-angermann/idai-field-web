@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { compose as $ } from 'tsfun/async';
-import SearchBar from './SearchBar';
-import Map from './Map';
-import {search} from './search';
+import React from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import MapSearch from './MapSearch';
+import Download from './Download';
 
 
 export default () => {
 
-    const [results, setResults] = useState([]);
-
-    return <div>
-        <SearchBar onSubmit={$(search, setResults)}></SearchBar>
-        <Map resources={results}></Map>
-    </div>;
+    return <BrowserRouter>
+        <Switch>
+            <Route path="/download">
+                <Download />
+            </Route>
+            <Route path="/">
+                <MapSearch />
+            </Route>
+        </Switch>
+    </BrowserRouter>;
 }
