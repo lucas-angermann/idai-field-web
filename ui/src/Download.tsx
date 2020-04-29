@@ -36,10 +36,10 @@ const slides: Slide[] = [
 
 export default () => {
 
-    const [latestVersion, setlatestVersion] = useState('');
+    const [latestVersion, setLatestVersion] = useState('');
 
     useEffect (() => {
-        getLatestVersion().then(version => setlatestVersion(version));
+        getLatestVersion().then(version => setLatestVersion(version));
     }, []);
 
     return <div>
