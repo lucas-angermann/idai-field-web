@@ -3,6 +3,7 @@
     "rules": {
         "max-line-length": {
             "options": [120]
-        }
+        },
+        "array-type": [true, "array-simple"]
     }
 }

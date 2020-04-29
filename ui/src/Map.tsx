@@ -30,7 +30,7 @@ export default ({ resources }: { resources: any[] }) => {
 }
 
 
-const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: Function) => {
+const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: (ready: boolean) => void) => {
 
     const map = new Map({
         container: containerEl,
@@ -49,7 +49,7 @@ const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: 
 };
 
 
-const update = (map: Map, resources: Array<any>) => {
+const update = (map: Map, resources: any[]) => {
 
     const featureCollection: FeatureCollection = getFeatureCollection(resources);
     (map.getSource(SOURCE_ID) as GeoJSONSource).setData(featureCollection);
