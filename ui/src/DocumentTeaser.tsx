@@ -10,7 +10,7 @@ export default ({ document: document }) => {
                 <CategoryIcon size="40" category={ document.resource.type } />
                 { document.resource.identifier }
             </Card.Title>
-            <Card.Subtitle>{ document.resource.shortDescription }</Card.Subtitle>
+            <Card.Subtitle>{ document.resource.shortDescription } / { document.resource.type }</Card.Subtitle>
         </Card.Body>
     </Card>;
 
