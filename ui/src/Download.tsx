@@ -1,5 +1,5 @@
 import React from 'react';
-import {Carousel, Jumbotron} from 'react-bootstrap';
+import { Carousel, Jumbotron } from 'react-bootstrap';
 import './Download.css';
 
 
@@ -38,9 +38,9 @@ export default () => {
 
     return <div>
         <Jumbotron>
-            <div className='container'>
+            <div className="container">
                 <Carousel>
-                    {getCarouselItems()}
+                    { getCarouselItems() }
                 </Carousel>
             </div>
         </Jumbotron>
@@ -51,10 +51,10 @@ export default () => {
 const getCarouselItems = () => {
 
     return slides.map(slide => {
-       return <Carousel.Item key={slide.imageUrl}>
-           <img src={slide.imageUrl} />
+       return <Carousel.Item key={ slide.imageUrl }>
+           <img src={ slide.imageUrl } />
            <Carousel.Caption>
-               <h3>{slide.description}</h3>
+               <h3>{ slide.description }</h3>
            </Carousel.Caption>
        </Carousel.Item>;
     });

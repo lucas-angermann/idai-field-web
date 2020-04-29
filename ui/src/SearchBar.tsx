@@ -31,11 +31,11 @@ export default ({ onSubmit }: { onSubmit: (query: string) => void }) => {
                     autoFocus
                     placeholder="Suchen ..."
                     aria-label="Suchbegriff"
-                    onChange={(event: any) => setQuery(event.target.value)}
+                    onChange={ (event: any) => setQuery(event.target.value) }
                 />
                 <InputGroup.Append>
                     <Button variant="secondary" type="submit">
-                        <Icon path={mdiMagnify} size={0.8}/>
+                        <Icon path={ mdiMagnify } size={ 0.8 } />
                     </Button>
                 </InputGroup.Append>
             </InputGroup>
