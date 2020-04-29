@@ -6,7 +6,7 @@ defmodule Types do
   end
 
   defmodule Document do
-    defstruct [resource: %{}, created: %Action{}, modified: [%Action{}]]
+    defstruct [:project, resource: %{}, created: %Action{}, modified: [%Action{}]]
   end
 
   defmodule Change do
