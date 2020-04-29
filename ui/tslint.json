@@ -4,6 +4,11 @@
         "max-line-length": {
             "options": [120]
         },
-        "array-type": [true, "array-simple"]
+        "array-type": [true, "array-simple"],
+        "arrow-return-shorthand": true,
+        "file-name-casing": [true, {".tsx": "pascal-case", ".ts": "camel-case"}],
+        "no-consecutive-blank-lines": [true, 2],
+        "quotemark": [true, "single", "jsx-double"],
+        "semicolon": [true, "always"]
     }
 }
