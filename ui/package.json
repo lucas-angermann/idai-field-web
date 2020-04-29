@@ -22,6 +22,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "tsfun": "4.2.94",
+    "tslint": "^6.1.2",
     "turf-extent": "1.0.4",
     "typescript": "3.7.5"
   },
