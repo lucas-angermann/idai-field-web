@@ -6,7 +6,7 @@ import './Download.css';
 type Slide = { imageUrl: string, description: string };
 
 
-const slides: Array<Slide> = [
+const slides: Slide[] = [
     {
         imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-1.png',
         description: 'Metadata editor'

@@ -25,8 +25,8 @@ export default ({ onSubmit }: { onSubmit: (query: string) => void }) => {
     };
 
     return (
-        <Form onSubmit={submit}>
-            <InputGroup style={inputGroupStyle}>
+        <Form onSubmit={ submit }>
+            <InputGroup style={ inputGroupStyle }>
                 <FormControl
                     autoFocus
                     placeholder="Suchen ..."
@@ -41,4 +41,4 @@ export default ({ onSubmit }: { onSubmit: (query: string) => void }) => {
             </InputGroup>
         </Form>
     );
-}
+};
