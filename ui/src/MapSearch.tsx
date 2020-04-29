@@ -11,6 +11,6 @@ export default () => {
 
     return <div>
             <SearchBar onSubmit={ $(search, setResults) }></SearchBar>
-            <Map resources={ results }></Map>
+            <Map documents={ results }></Map>
         </div>;
 };

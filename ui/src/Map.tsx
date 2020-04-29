@@ -11,7 +11,7 @@ const SOURCE_ID = 'geojson-source';
 type MapOptions = { zoom: number, center: [number, number] };
 
 
-export default ({ resources }: { resources: any[] }) => {
+export default ({ documents }: { documents: any[] }) => {
 
     const [map, setMap] = useState(null);
     const [ready, setReady] = useState(false);
@@ -23,8 +23,8 @@ export default ({ resources }: { resources: any[] }) => {
     }, [map, mapOptions]);
 
     useEffect(() => {
-        if (map && map.getSource(SOURCE_ID)) update(map, resources);
-    }, [map, resources, ready]);
+        if (map && map.getSource(SOURCE_ID)) update(map, documents);
+    }, [map, documents, ready]);
 
     return <div ref={ mapContainer } style={ mapContainerStyle }/>;
 };
@@ -49,9 +49,9 @@ const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: 
 };
 
 
-const update = (map: Map, resources: any[]) => {
+const update = (map: Map, documents: any[]) => {
 
-    const featureCollection: FeatureCollection = getFeatureCollection(resources);
+    const featureCollection: FeatureCollection = getFeatureCollection(documents);
     (map.getSource(SOURCE_ID) as GeoJSONSource).setData(featureCollection);
     fitBounds(map, featureCollection);
 };
@@ -63,19 +63,19 @@ const getInitialGeoJSONSource = (): GeoJSONSourceRaw => ({
 });
 
 
-const getFeatureCollection = (resources: any[]): FeatureCollection => ({
+const getFeatureCollection = (documents: any[]): FeatureCollection => ({
     type: 'FeatureCollection',
-    features: resources
-        .filter(resource => resource.geometry)
+    features: documents
+        .filter(document => document.resource.geometry)
         .map(getFeature)
 });
 
 
-const getFeature = (resource: any): Feature => ({
+const getFeature = (document: any): Feature => ({
     type: 'Feature',
-    geometry: resource.geometry,
+    geometry: document.resource.geometry,
     properties: {
-        identifier: resource.identifier
+        identifier: document.resource.identifier
     }
 });
 
