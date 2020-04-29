@@ -1,5 +1,13 @@
-export const search = async (query: string): Promise<any> => {
+type Query = {
+    q: string,
+    skipTypes: string[]
+};
 
-    const response = await fetch(`/documents/?q=${query}&size=2000`);
+export const search = async (query: Query): Promise<any> => {
+
+    const response = await fetch(`/documents/?q=${getQueryString(query)}&size=2000`);
     return await response.json();
 };
+
+const getQueryString = (query: Query) =>
+    `${query.q} ${query.skipTypes.map(type => `-resource.type:${type}`).join(' ')}`;

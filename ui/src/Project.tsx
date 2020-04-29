@@ -8,7 +8,8 @@ export default () => {
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
-        search(`project:${id}`).then(setDocuments);
+        const query = { q: `project:${id}`, skipTypes: ['Project', 'Image', 'Photo', 'Drawing'] };
+        search(query).then(setDocuments);
     }, [id]);
 
     return documents.map(document => <h1>{ document.resource.identifier }</h1>);
