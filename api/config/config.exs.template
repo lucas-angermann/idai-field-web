@@ -6,4 +6,4 @@ config :api,
   couchdb_url: "field.dainst.org/sync",
   couchdb_user: "",
   couchdb_password: "",
-  couchdb_database: ""
+  couchdb_databases: ""
