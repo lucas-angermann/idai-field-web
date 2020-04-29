@@ -1,5 +1,5 @@
-import React, {CSSProperties, useEffect, useState} from 'react';
-import {Carousel} from 'react-bootstrap';
+import React, { CSSProperties, useEffect, useState } from 'react';
+import { Carousel } from 'react-bootstrap';
 import './Download.css';
 
 
@@ -43,17 +43,17 @@ export default () => {
     }, []);
 
     return <div>
-        {getCarousel()}
-        {getDownloadSection(latestVersion)}
+        { getCarousel() }
+        { getDownloadSection(latestVersion) }
     </div>;
 };
 
 
 const getCarousel = () => {
 
-    return <div style={carouselContainerStyle}>
+    return <div style={ carouselContainerStyle }>
         <Carousel>
-            {getCarouselItems()}
+            { getCarouselItems() }
         </Carousel>
     </div>;
 };
@@ -62,10 +62,10 @@ const getCarousel = () => {
 const getCarouselItems = () => {
 
     return slides.map(slide => {
-       return <Carousel.Item key={slide.imageUrl}>
-           <img src={slide.imageUrl} />
+       return <Carousel.Item key={ slide.imageUrl }>
+           <img src={ slide.imageUrl } />
            <Carousel.Caption>
-               <h3>{slide.description}</h3>
+               <h3>{ slide.description }</h3>
            </Carousel.Caption>
        </Carousel.Item>;
     });
@@ -76,20 +76,20 @@ const getDownloadSection = (latestVersion: string) => {
 
     if (latestVersion === '') return;
 
-    return <div style={downloadContainerStyle}>
+    return <div style={ downloadContainerStyle }>
         <h1>iDAI.field herunterladen</h1>
         <p className="lead text-muted">Hier können Sie die aktuelle Version von iDAI.field herunterladen.</p>
         <p>Es werden Pakete für macOS und Windows zur Verfügung gestellt.</p>
-        <p>Aktuelle Version: <strong>{latestVersion}</strong></p>
+        <p>Aktuelle Version: <strong>{ latestVersion }</strong></p>
         <p>
-            <a href={"https://github.com/dainst/idai-field/releases/download/v" + latestVersion + "/iDAI.field-"
-            + latestVersion + "-Windows.exe"} className="btn btn-primary my-2">
+            <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
+            + latestVersion + '-Windows.exe' } className="btn btn-primary my-2">
                 <span className="fa fa-windows"></span>
                 Download für Windows
                 <span className="fa fa-download"></span>
             </a>
-            <a href={"https://github.com/dainst/idai-field/releases/download/v" + latestVersion + "/iDAI.field-"
-            + latestVersion + "-MacOS.dmg"} className="btn btn-primary my-2">
+            <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
+            + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
                 <span className="fa fa-apple"></span>
                 Download für macOS
                 <span className="fa fa-download"></span>

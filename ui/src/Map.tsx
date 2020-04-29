@@ -26,8 +26,8 @@ export default ({ resources }: { resources: any[] }) => {
         if (map && map.getSource(SOURCE_ID)) update(map, resources);
     }, [map, resources, ready]);
 
-    return <div ref={mapContainer} style={mapContainerStyle}/>;
-}
+    return <div ref={ mapContainer } style={ mapContainerStyle }/>;
+};
 
 
 const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: (ready: boolean) => void) => {

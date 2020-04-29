@@ -4,6 +4,25 @@
         "max-line-length": {
             "options": [120]
         },
-        "array-type": [true, "array-simple"]
+        "array-type": [true, "array-simple"],
+        "arrow-return-shorthand": true,
+        "file-name-casing": [true, {".tsx": "pascal-case", ".ts": "camel-case"}],
+        "no-consecutive-blank-lines": [true, 2],
+        "quotemark": [true, "single", "jsx-double"],
+        "semicolon": [true, "always"],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-module",
+            "check-separator",
+            "check-rest-spread",
+            "check-type",
+            "check-typecast",
+            "check-type-operator",
+            "check-preblock",
+            "check-postbrace"
+        ]
     }
 }
