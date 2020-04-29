@@ -5,15 +5,12 @@ defmodule Indexer do
 
   defguard is_error(status_code) when status_code >= 400
 
-  def index(changes) when is_list(changes) do
-    for change <- changes, do: index change
-  end
-
-  def index(change = %{deleted: true}) do
+  def process(change = %{deleted: true}) do
+    # TODO: Handle deletions
     IO.puts "Deleted: #{change.id}"
   end
 
-  def index(change) do
+  def process(change) do
     handle_result HTTPoison.put(
       "#{Config.get(:elasticsearch_url)}/#{Config.get(:elasticsearch_index)}/_doc/#{change.id}",
       Poison.encode!(change.doc),
@@ -25,20 +22,20 @@ defmodule Indexer do
     when is_ok(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "Successfully indexed: #{result['_id']}"
+    IO.puts "Successfully indexed: #{result["_id"]}"
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_error(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "ERROR: Failed to index: #{result['id']}, result: #{inspect result}"
+    IO.puts "ERROR: Indexing failed, result: #{inspect result}"
     nil
   end
 
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}) do
+  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "ERROR: Failed to index: #{change.id}, reason: #{inspect reason}"
+    IO.puts "ERROR: Indexing failed, reason: #{inspect reason}"
     nil
   end
 end

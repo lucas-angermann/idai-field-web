@@ -5,12 +5,12 @@ defmodule Harvester do
 
   defguard is_error(status_code) when status_code >= 400
 
-  def fetch_changes do
+  def fetch_changes(db) do
     auth = [hackney: [basic_auth: {Config.get(:couchdb_user), Config.get(:couchdb_password)}]]
-    handle_result HTTPoison.get("#{Config.get(:couchdb_url)}/#{Config.get(:couchdb_database)}/_changes?include_docs=true", %{}, auth)
+    handle_result HTTPoison.get("#{Config.get(:couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
   end
 
-  defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}})
+  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_ok(status_code) do
 
     %{"results" => results} = Poison.decode!(body, as: %{"results" => [%Types.Change{}]})
@@ -20,13 +20,13 @@ defmodule Harvester do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_error(status_code) do
 
-    IO.puts "ERROR: Failed to retrieve changes: #{change.id}, result: #{inspect body}"
+    IO.puts "ERROR: Failed to retrieve changes, result: #{inspect body}"
     nil
   end
 
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}) do
+  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "ERROR: Failed to index: #{change.id}, reason: #{inspect reason}"
+    IO.puts "ERROR: Failed to retrieve changes, reason: #{inspect reason}"
     nil
   end
 end
