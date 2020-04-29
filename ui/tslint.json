@@ -1,7 +1,7 @@
 {
     "extends": "tslint:recommended",
     "rules": {
-        "array-type": [true, "array-simple"],
+        "array-type": [true, "array"],
         "arrow-return-shorthand": true,
         "file-name-casing": [true, {".tsx": "pascal-case", ".ts": "camel-case"}],
         "max-line-length": {
