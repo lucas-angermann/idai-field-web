@@ -27,7 +27,7 @@ export default ({ resources }: { resources: any[] }) => {
     }, [map, resources, ready]);
 
     return <div ref={mapContainer} style={mapContainerStyle}/>;
-}
+};
 
 
 const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: (ready: boolean) => void) => {
