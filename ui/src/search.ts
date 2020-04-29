@@ -5,7 +5,7 @@ type Query = {
 
 export const search = async (query: Query): Promise<any> => {
 
-    const response = await fetch(`/documents/?q=${getQueryString(query)}&size=2000`);
+    const response = await fetch(`/documents/?q=${getQueryString(query)}`);
     return await response.json();
 };
 

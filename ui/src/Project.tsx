@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { search } from './search';
+import DocumentTeaser from './DocumentTeaser';
 
 export default () => {
 
@@ -12,6 +13,6 @@ export default () => {
         search(query).then(setDocuments);
     }, [id]);
 
-    return documents.map(document => <h1>{ document.resource.identifier }</h1>);
+    return documents.map(document => <DocumentTeaser document={ document } key={ document.resource.id } />);
 
 };
