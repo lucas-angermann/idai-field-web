@@ -12,7 +12,7 @@ defmodule Api.Router do
 
   plug :dispatch
 
-  forward("/resources", to: Api.Resources.Router)
+  forward("/documents", to: Api.Documents.Router)
 
   post "/reindex" do
     Task.async fn -> Worker.process() end

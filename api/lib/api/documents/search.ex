@@ -1,5 +1,5 @@
-defmodule Api.Resources.Search do
-  import Api.Resources.Helper
+defmodule Api.Documents.Search do
+  import Api.Documents.Helper
 
   def by(q, size) do
     q = if !q do "*" else q end
@@ -11,7 +11,7 @@ defmodule Api.Resources.Search do
     body
     |> to_atomized_result
     |> to_hits
-    |> Enum.map(&to_resource/1)
+    |> Enum.map(&to_document/1)
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do

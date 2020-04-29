@@ -1,5 +1,5 @@
-defmodule Api.Resources.Get do
-  import Api.Resources.Helper
+defmodule Api.Documents.Get do
+  import Api.Documents.Helper
 
   def by(id) do
     handle_result HTTPoison.get("#{get_base_url()}/_doc/#{id}")
@@ -8,7 +8,7 @@ defmodule Api.Resources.Get do
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
     body
     |> to_atomized_result
-    |> to_resource
+    |> to_document
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do

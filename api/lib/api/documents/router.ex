@@ -1,7 +1,7 @@
-defmodule Api.Resources.Router do
+defmodule Api.Documents.Router do
   use Plug.Router
-  alias Api.Resources.Get
-  alias Api.Resources.Search
+  alias Api.Documents.Get
+  alias Api.Documents.Search
   import Api.RouterUtils, only: [send_json: 2]
 
   plug :match

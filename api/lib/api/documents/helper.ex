@@ -1,4 +1,4 @@
-defmodule Api.Resources.Helper do
+defmodule Api.Documents.Helper do
   import Api.Utils
   alias Api.Config
 
@@ -8,5 +8,5 @@ defmodule Api.Resources.Helper do
 
   def to_hits(%{ hits: %{ hits: hits }}), do: hits
 
-  def to_resource(%{ _source: %{ resource: resource } }), do: resource
+  def to_document(%{ _source: document }), do: document
 end
