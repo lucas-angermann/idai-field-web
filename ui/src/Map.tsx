@@ -139,11 +139,11 @@ const pointLayer: any = {
         'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
         'text-radial-offset': 0.5,
         'text-justify': 'auto',
-        'icon-image': 'marker-15',
+        'icon-image': 'ranger-station-15',
         'text-size': 14
     },
     paint: {
-        'text-color': '#660004',
+        'text-color': '#5b729d',
         'text-halo-color': '#fff',
         'text-halo-width': 2
     },
