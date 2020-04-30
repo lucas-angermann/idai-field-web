@@ -1,6 +1,6 @@
 type Query = {
     q: string,
-    skipTypes: string[]
+    skipTypes?: string[]
 };
 
 export const search = async (query: Query): Promise<any> => {
@@ -10,4 +10,6 @@ export const search = async (query: Query): Promise<any> => {
 };
 
 const getQueryString = (query: Query) =>
-    `${query.q} ${query.skipTypes.map(type => `-resource.type:${type}`).join(' ')}`;
+    `${query.q} ${query.skipTypes
+        ? query.skipTypes.map(type => `-resource.type:${type}`).join(' ')
+        : ''}`;

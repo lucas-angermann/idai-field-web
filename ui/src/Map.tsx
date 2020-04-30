@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, CSSProperties } from 'react';
+import { useHistory, History } from 'react-router-dom';
 import mapboxgl, { Map, Layer, GeoJSONSourceRaw, GeoJSONSource } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Feature, FeatureCollection } from 'geojson';
@@ -17,9 +18,10 @@ export default ({ documents }: { documents: any[] }) => {
     const [ready, setReady] = useState(false);
     const mapOptions: MapOptions = { zoom: 2, center: [0, 0] };
     const mapContainer = useRef(null);
+    const history = useHistory();
 
     useEffect(() => {
-        if (!map) setMap(initialize(mapOptions, mapContainer.current, setReady));
+        if (!map) setMap(initialize(mapOptions, mapContainer.current, history, setReady));
     }, [map, mapOptions]);
 
     useEffect(() => {
@@ -30,7 +32,10 @@ export default ({ documents }: { documents: any[] }) => {
 };
 
 
-const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: (ready: boolean) => void) => {
+const initialize = (mapOptions: MapOptions,
+                    containerEl: HTMLElement,
+                    history: History,
+                    setReady: (ready: boolean) => void) => {
 
     const map = new Map({
         container: containerEl,
@@ -43,7 +48,8 @@ const initialize = (mapOptions: MapOptions, containerEl: HTMLElement, setReady: 
         map.addSource(SOURCE_ID, getInitialGeoJSONSource())
             .addLayer(polygonLayer)
             .addLayer(pointLayer)
-            .addLayer(polygonLabelLayer);
+            .addLayer(polygonLabelLayer)
+            .on('click', 'point-layer', onClickMarker(history));
         setReady(true);
     });
 };
@@ -85,6 +91,12 @@ const fitBounds = (map: Map, featureCollection: FeatureCollection) => {
     if (featureCollection.features.length > 0) {
         map.fitBounds(extent(featureCollection), { padding: 25 });
     }
+};
+
+
+const onClickMarker = (history: History) => (event: any) => {
+    const identifier: string = event.features[0].properties.identifier;
+    history.push(`/projects/${identifier}`);
 };
 
 
@@ -135,7 +147,7 @@ const polygonLabelLayer: Layer = {
     type: 'symbol',
     source: SOURCE_ID,
     layout: {
-        'text-field': ['get', 'identifier'],
+        'text-field': ['get', 'shortDescription'],
         'text-size': 12,
         'symbol-placement': 'point'
     },

@@ -39,7 +39,7 @@ export default () => {
     const [latestVersion, setLatestVersion] = useState('');
 
     useEffect (() => {
-        getLatestVersion().then(version => setLatestVersion(version));
+        getLatestVersion().then(setLatestVersion);
     }, []);
 
     return <div>
