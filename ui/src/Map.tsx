@@ -49,7 +49,9 @@ const initialize = (mapOptions: MapOptions,
             .addLayer(polygonLayer)
             .addLayer(pointLayer)
             .addLayer(polygonLabelLayer)
-            .on('click', 'point-layer', onClickMarker(history));
+            .on('click', 'point-layer', onClickMarker(history))
+            .on('mouseenter', 'point-layer', () => setCursor(map, 'pointer'))
+            .on('mouseleave', 'point-layer', () => setCursor(map, ''));
         setReady(true);
     });
 };
@@ -95,8 +97,15 @@ const fitBounds = (map: Map, featureCollection: FeatureCollection) => {
 
 
 const onClickMarker = (history: History) => (event: any) => {
+
     const identifier: string = event.features[0].properties.identifier;
     history.push(`/projects/${identifier}`);
+};
+
+
+const setCursor = (map: Map, style: string) => {
+
+    map.getCanvas().style.cursor = style;
 };
 
 
