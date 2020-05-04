@@ -63,7 +63,7 @@ const getCarouselItems = () => {
 
     return slides.map(slide => {
        return <Carousel.Item key={ slide.imageUrl }>
-           <img src={ slide.imageUrl } />
+           <img src={ slide.imageUrl } alt="Screenshot" />
            <Carousel.Caption>
                <h3>{ slide.description }</h3>
            </Carousel.Caption>

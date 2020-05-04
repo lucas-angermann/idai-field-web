@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 
-export default ({ document: document }) => {
+export default ({ document }) => {
 
     return <Card>
         <Card.Body>

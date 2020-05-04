@@ -22,7 +22,7 @@ export default ({ documents }: { documents: any[] }) => {
 
     useEffect(() => {
         if (!map) setMap(initialize(mapOptions, mapContainer.current, history, setReady));
-    }, [map, mapOptions]);
+    }, [map, mapOptions, history]);
 
     useEffect(() => {
         if (map && map.getSource(SOURCE_ID)) update(map, documents);

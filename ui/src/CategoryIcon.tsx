@@ -26,7 +26,7 @@ const colors: { [category: string]: string } = {
 };
 
 
-export default ({ category: category, size: size}) => {
+export default ({ category, size }) => {
 
     const color = getColor(category);
 
