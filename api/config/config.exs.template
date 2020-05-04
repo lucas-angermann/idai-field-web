@@ -6,5 +6,5 @@ config :api,
   couchdb_url: "field.dainst.org/sync",
   couchdb_user: "",
   couchdb_password: "",
-  couchdb_databases: "",
+  couchdb_databases: ["db1", "db2", "db3"],
   gazetteer_url: "https://gazetteer.dainst.org"
