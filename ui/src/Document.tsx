@@ -18,7 +18,10 @@ export default () => {
 };
 
 
-const renderDocument = (document) => {
+const renderDocument = (document: any) => {
+
+    console.log(document);
+
     const resource = document.resource;
     const fieldList = renderFieldList(resource);
     return (
@@ -35,14 +38,38 @@ const renderDocument = (document) => {
 };
 
 
-const renderFieldList = (resource) => {
+const renderFieldList = (resource: any) => {
+
     const fields = Object.keys(resource)
-        .filter(key => !['relations', 'geometry'].includes(key))
+        .filter(key => !['relations', 'geometry', 'id'].includes(key))
         .map(key => [
-            <dt key={ `${resource.id}_${key}_dt`}>{ key }</dt>,
-            <dd key={ `${resource.id}_${key}_dd`}>{ resource[key] }</dd>
+            <dt key={ `${key}_dt`}>{ key }</dt>,
+            <dd key={ `${key}_dd`}>{ renderFieldValue(resource[key]) }</dd>
         ]);
     return <dl>{ fields }</dl>;
+};
+
+
+const renderFieldValue = (value: any) => {
+
+    if (Array.isArray(value)) return renderFieldValueArray(value);
+    if (typeof value === 'object') return renderFieldValueObject(value);
+    return value;
+};
+
+
+const renderFieldValueArray = (values: any[]) =>
+    values.length > 1
+        ? values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value) }</li>)
+        : renderFieldValue(values[0]);
+
+
+const renderFieldValueObject = (object: any) => {
+
+    if (object.label) return object.label;
+
+    const listItems = Object.keys(object).map(key => <li key={ key }><strong>{ key }:</strong> { object[key] }</li>);
+    return <ul>{ listItems }</ul>;
 };
 
 
