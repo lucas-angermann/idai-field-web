@@ -2,7 +2,29 @@
 
 ## Getting started
 
-## Data
+Start elasticsearch and the api web service with docker:
+
+    $ docker-compose up
+
+Prepare the configuration:
+
+    $ cp api/config/config.exs.template api/config/config.exs
+    $ vi api/config/config.exs # Edit configuration
+
+Trigger indexing:
+
+    $ curl -XPOST localhost:4000/reindex
+
+Start the web UI:
+
+    $ cd ui
+    $ npm i
+    $ npm start
+
+Visit `http://localhost:3000`.
+
+
+## Test Data
 
 To set up test data, and provide them via elasticsearch, do:
 
@@ -15,41 +37,40 @@ Test via `http://localhost:9200/idai-field/_search`.
 
 ## API
 
-Prepare the configuration:
+The api runs on port 4000. Indexed documents can be retrieved via `http://localhost:4000/documents`.
 
-```
-$ cp api/config/config.exs.template api/config/config.exs
-$ vi api/config/config.exs # Edit configuration
-```
+It can be run independently with the following command:
 
-Then start elasticsearch and do:
+    $ docker-compose up api
 
-```
-$ docker-compose up api
+or interactively with iex:
 
-# or with iex: 
+    $ docker-compose run --service-ports --entrypoint "iex -S mix run --no-halt" api
 
-$ docker-compose run --service-ports --entrypoint "iex -S mix run --no-halt" api
-```
-
-Optionally, to index iDAI.field data from the CouchDB instance specified in api/config/config.exs, use: 
-
-```
-$ curl -XPOST localhost:4000/reindex
-```
-
-Now visit `localhost:4000/resources` or `localhost:4000/resources/f1`. It should display a list of sample
-resources, as read in by put-test-data.sh into the elasticsearch.
 
 ## UI
 
-For the frontend to start, first start the `API`, then do:
+The frontend runs on port 3000. It autmatically picks the next available port if 3000 is already in use.
 
-```
-$ cd ui
-$ npm install
-$ npm run build
-$ npm start
-```
+Start the development server with:
 
-Now visit `localhost:3000`. You can search for example for `123` and get a hit.
+    $ cd ui
+    $ npm start
+
+To install dependencies use:
+
+    $ npm i
+
+To build for production use:
+
+    $ npm run build
+
+
+## Elasticsearch
+
+The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved via
+`http://localhost:9200/idai-field/_search`.
+
+It can be started independently with:
+
+    $ docker-compose up elasticsearch
