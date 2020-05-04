@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 
 export default ({ document: document }) => {
@@ -8,7 +9,7 @@ export default ({ document: document }) => {
         <Card.Body>
             <Card.Title>
                 <CategoryIcon size="40" category={ document.resource.type } />
-                { document.resource.identifier }
+                <Link to={ `/documents/${document.resource.id}` }>{ document.resource.identifier }</Link>
             </Card.Title>
             <Card.Subtitle>{ document.resource.shortDescription } / { document.resource.type }</Card.Subtitle>
         </Card.Body>
