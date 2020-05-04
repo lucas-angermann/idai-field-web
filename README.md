@@ -18,7 +18,7 @@ Test via `http://localhost:9200/idai-field/_search`.
 Prepare the configuration:
 
 ```
-$ mv api/config/config.exs.template api/config/config.exs
+$ cp api/config/config.exs.template api/config/config.exs
 $ vi api/config/config.exs # Edit configuration
 ```
 
