@@ -20,8 +20,6 @@ export default () => {
 
 const renderDocument = (document: any) => {
 
-    console.log(document);
-
     const resource = document.resource;
     const fieldList = renderFieldList(resource);
     return (
@@ -54,6 +52,7 @@ const renderFieldValue = (value: any) => {
 
     if (Array.isArray(value)) return renderFieldValueArray(value);
     if (typeof value === 'object') return renderFieldValueObject(value);
+    if (typeof value === 'boolean') return renderFieldValueBoolean(value);
     return value;
 };
 
@@ -71,6 +70,9 @@ const renderFieldValueObject = (object: any) => {
     const listItems = Object.keys(object).map(key => <li key={ key }><strong>{ key }:</strong> { object[key] }</li>);
     return <ul>{ listItems }</ul>;
 };
+
+
+const renderFieldValueBoolean = (value: boolean) => value ? 'yes' : 'no';
 
 
 const renderError = () => {
