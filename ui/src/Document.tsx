@@ -40,6 +40,7 @@ const renderFieldList = (resource: any) => {
 
     const fields = Object.keys(resource)
         .filter(key => !['relations', 'geometry', 'id'].includes(key))
+        .filter(key => resource[key])
         .map(key => [
             <dt key={ `${key}_dt`}>{ key }</dt>,
             <dd key={ `${key}_dd`}>{ renderFieldValue(resource[key]) }</dd>
