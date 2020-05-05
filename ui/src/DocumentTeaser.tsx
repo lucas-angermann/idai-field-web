@@ -6,7 +6,7 @@ import CategoryIcon from './CategoryIcon';
 export default ({ document }) => {
 
     return (
-        <Link to={ `/documents/${document.resource.id}` } style={ linkStyle }>
+        <Link to={ `/document/${document.resource.id}` } style={ linkStyle }>
             <Card>
                 <Card.Body>
                     <Row>

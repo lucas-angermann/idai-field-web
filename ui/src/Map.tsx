@@ -100,7 +100,7 @@ const fitBounds = (map: Map, featureCollection: FeatureCollection) => {
 const onClickMarker = (history: History) => (event: any) => {
 
     const identifier: string = event.features[0].properties.identifier;
-    history.push(`/projects/${identifier}`);
+    history.push(`/project/${identifier}`);
 };
 
 
