@@ -7,6 +7,6 @@ defmodule Api.Documents.Router do
   plug :match
   plug :dispatch
 
-  get "/", do: send_json(conn, Search.by(conn.params["q"], conn.params["size"]))
+  get "/", do: send_json(conn, Search.by(conn.params["q"], conn.params["size"], conn.params["from"]))
   get "/:id", do: send_json(conn, Get.by(id))
 end
