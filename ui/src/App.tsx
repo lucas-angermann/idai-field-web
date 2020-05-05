@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import ProjectOverview from './ProjectOverview';
 import Download from './Download';
 import Document from './Document';
@@ -13,10 +13,18 @@ export default () => {
         <Switch>
 
             <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
-            <Route path="/documents/:id" component={ Document } />
-            <Route path="/projects/:id" component={ Project } />
+            <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
+
+            <Route path="/document/:id" component={ Document } />
+            <Redirect from="/documents/:id" to="/document/:id" />
+
+            <Route path="/project/:id" component={ Project } />
+            <Redirect from="/projects/:id" to="/project/:id" />
+
             <Route path="/download" component={ Download } />
+
             <Route path="/" component={ ProjectOverview } />
+
         </Switch>
     </BrowserRouter>;
 };
