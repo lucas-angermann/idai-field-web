@@ -53,7 +53,7 @@ export default () => {
 
 const getCarousel = () => {
 
-    return <div style={ carouselContainerStyle }>
+    return <div style={ carouselContainerStyle } className="mt-5">
         <Carousel>
             { getCarouselItems() }
         </Carousel>
