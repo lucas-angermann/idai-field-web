@@ -10,6 +10,20 @@
     border-color: #748db5 !important;
 }
 
+.btn-secondary {
+    color: #292b2c;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus  {
+    color: #292b2c !important;
+    background-color: #e6e6e6 !important;
+    border-color: #adadad !important;
+}
+
 .btn {
     border-radius: 0;
 }
