@@ -10,24 +10,26 @@ import Manual from './Manual';
 
 export default () => {
 
-    return <BrowserRouter>
-        <Switch>
+    return (
+        <BrowserRouter>
+            <Switch>
 
-            <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
-            <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
+                <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
+                <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
-            <Route path="/document/:id" component={ Document } />
-            <Redirect from="/documents/:id" to="/document/:id" />
+                <Route path="/document/:id" component={ Document } />
+                <Redirect from="/documents/:id" to="/document/:id" />
 
-            <Route path="/project/:id" component={ Project } />
-            <Redirect from="/projects/:id" to="/project/:id" />
+                <Route path="/project/:id" component={ Project } />
+                <Redirect from="/projects/:id" to="/project/:id" />
 
-            <Route path="/download" component={ Download } />
+                <Route path="/download" component={ Download } />
 
-            <Route path="/manual" component={ Manual } />
+                <Route path="/manual" component={ Manual } />
 
-            <Route path="/" component={ ProjectOverview } />
+                <Route path="/" component={ ProjectOverview } />
 
-        </Switch>
-    </BrowserRouter>;
+            </Switch>
+        </BrowserRouter>
+    );
 };
