@@ -12,11 +12,11 @@ defmodule Api.Documents.Get do
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do
-    %{type: "null", identifier: "0"}
+    %{error: "not_found"}
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
     IO.inspect reason
-    %{type: "null", identifier: "0"}
+    %{error: "unknown"}
   end
 end
