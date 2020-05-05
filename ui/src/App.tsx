@@ -13,8 +13,8 @@ export default () => {
 
     return (
         <div>
-            <Navbar />
             <BrowserRouter>
+                <Navbar />
                 <Switch>
 
                     <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
