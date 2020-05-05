@@ -1,18 +1,37 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
+import React, { CSSProperties } from 'react';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 
 export default ({ document }) => {
 
-    return <Card>
-        <Card.Body>
-            <Card.Title>
-                <CategoryIcon size="40" category={ document.resource.type } />
-                <Link to={ `/documents/${document.resource.id}` }>{ document.resource.identifier }</Link>
-            </Card.Title>
-            <Card.Subtitle>{ document.resource.shortDescription } / { document.resource.type }</Card.Subtitle>
-        </Card.Body>
-    </Card>;
+    return (
+        <Link to={ `/documents/${document.resource.id}` } style={ linkStyle }>
+            <Card>
+                <Card.Body>
+                    <Container>
+                        <Row>
+                            <Col style={ { flex: '0 0 50px' } }>
+                                <CategoryIcon size="50" category={ document.resource.type } />
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col><strong>{ document.resource.identifier }</strong></Col>
+                                </Row>
+                                <Row>
+                                    <Col>{ document.resource.shortDescription }</Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card.Body>
+            </Card>
+        </Link>
+    );
 
+};
+
+const linkStyle: CSSProperties = {
+    textDecoration: 'none',
+    color: 'black'
 };

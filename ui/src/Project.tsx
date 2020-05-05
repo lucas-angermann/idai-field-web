@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { search } from './search';
 import DocumentTeaser from './DocumentTeaser';
+import { Container } from 'react-bootstrap';
 
 export default () => {
 
@@ -13,6 +14,10 @@ export default () => {
         search(query).then(setDocuments);
     }, [id]);
 
-    return documents.map(document => <DocumentTeaser document={ document } key={ document.resource.id } />);
+    return (
+        <Container>
+            { documents.map(document => <DocumentTeaser document={ document } key={ document.resource.id } />) }
+        </Container>
+    );
 
 };
