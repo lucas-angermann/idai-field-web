@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { search } from './search';
+import { search, get } from './documents';
 import DocumentTeaser from './DocumentTeaser';
 import { Container, Row, Col } from 'react-bootstrap';
 import DocumentList from './DocumentList';
@@ -28,7 +28,7 @@ export default () => {
 
     useEffect(() => {
         getDocuments(id, 0).then(setDocuments);
-        getProjectDocument(id).then(setProjectDocument);
+        get(id).then(setProjectDocument);
     }, [id]);
 
     return (
@@ -59,9 +59,3 @@ const getDocuments = (id: string, from: number) => {
 
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
-
-const getProjectDocument = async (id: string): Promise<any> => {
-
-    const response = await fetch(`/documents/${id}`);
-    return await response.json();
-};

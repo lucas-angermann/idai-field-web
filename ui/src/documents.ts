@@ -5,6 +5,14 @@ type Query = {
     skipTypes?: string[]
 };
 
+export const get = async (id: string): Promise<any> => {
+
+    const response = await fetch(`/documents/${id}`);
+    if (response.ok) return await response.json();
+    else throw(await response.json());
+};
+
+
 export const search = async (query: Query): Promise<any> => {
 
     let uri = `/documents/?q=${getQueryString(query)}`;
