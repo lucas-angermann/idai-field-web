@@ -17,7 +17,7 @@ export default () => {
 };
 
 
-const renderDocument = (document: any) => <DocumentDetails document={ document } />
+const renderDocument = (document: any) => <DocumentDetails document={ document } />;
 
 
 const renderError = () => <div>Error: No matching document found.</div>;
