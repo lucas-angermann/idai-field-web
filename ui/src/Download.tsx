@@ -44,32 +44,38 @@ export default () => {
         getLatestVersion().then(setLatestVersion);
     }, []);
 
-    return <div>
-        { getCarousel() }
-        { getDownloadSection(latestVersion) }
-    </div>;
+    return (
+        <div>
+            { getCarousel() }
+            { getDownloadSection(latestVersion) }
+        </div>
+    );
 };
 
 
 const getCarousel = () => {
 
-    return <div style={ carouselContainerStyle } className="mt-5">
-        <Carousel>
-            { getCarouselItems() }
-        </Carousel>
-    </div>;
+    return (
+        <div style={ carouselContainerStyle } className="mt-5">
+            <Carousel>
+                { getCarouselItems() }
+            </Carousel>
+        </div>
+    );
 };
 
 
 const getCarouselItems = () => {
 
     return slides.map(slide => {
-       return <Carousel.Item key={ slide.imageUrl }>
-           <img src={ slide.imageUrl } alt="Screenshot" />
-           <Carousel.Caption>
-               <h3>{ slide.description }</h3>
-           </Carousel.Caption>
-       </Carousel.Item>;
+       return (
+           <Carousel.Item key={ slide.imageUrl }>
+               <img src={ slide.imageUrl } alt="Screenshot" />
+               <Carousel.Caption>
+                   <h3>{ slide.description }</h3>
+               </Carousel.Caption>
+           </Carousel.Item>
+       );
     });
 };
 
