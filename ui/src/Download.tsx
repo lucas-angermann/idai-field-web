@@ -1,7 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
-import { mdiApple, mdiMicrosoftWindows, mdiDownload } from '@mdi/js';
+import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
 import './Download.css';
 
 
@@ -100,6 +100,12 @@ const getDownloadSection = (latestVersion: string) => {
         <p>
             <a href="https://github.com/dainst/idai-field/releases">
                 Alle Versionen...
+            </a>
+        </p>
+        <p>
+            <a className="btn btn-secondary" href="https://github.com/dainst/idai-field" target="_blank">
+                <Icon path={ mdiGithub } size={ 0.8 } className="github-icon"></Icon>
+                Quellcode auf GitHub
             </a>
         </p>
     </div>;
