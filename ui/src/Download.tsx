@@ -122,7 +122,7 @@ const getLatestVersion = (): Promise<string> => {
 
 
 const carouselContainerStyle: CSSProperties = {
-    width: 'calc(100vw - 200px)',
+    width: '1000px',
     paddingRight: '15px',
     paddingLeft: '15px',
     marginRight: 'auto',
