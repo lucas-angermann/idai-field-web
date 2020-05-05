@@ -1,5 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import Icon from '@mdi/react';
+import { mdiApple, mdiMicrosoftWindows, mdiDownload } from '@mdi/js';
 import './Download.css';
 
 
@@ -83,16 +85,16 @@ const getDownloadSection = (latestVersion: string) => {
         <p>Aktuelle Version: <strong>{ latestVersion }</strong></p>
         <p>
             <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
-            + latestVersion + '-Windows.exe' } className="btn btn-primary my-2">
-                <span className="fa fa-windows"></span>
+            + latestVersion + '-Windows.exe' } className="btn btn-primary my-2 mr-1">
+                <Icon path={ mdiMicrosoftWindows } size={ 0.8 } className="windows-icon"/>
                 Download für Windows
-                <span className="fa fa-download"></span>
+                <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
             </a>
             <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
             + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
-                <span className="fa fa-apple"></span>
+                <Icon path={ mdiApple } size={ 0.8 } className="apple-icon"/>
                 Download für macOS
-                <span className="fa fa-download"></span>
+                <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
             </a>
         </p>
         <p>

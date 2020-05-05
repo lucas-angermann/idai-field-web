@@ -15,3 +15,21 @@
     width: 1000px;
     height: 490px;
 }
+
+.apple-icon,
+.windows-icon {
+    position: relative;
+    margin-right: 4px;
+}
+
+.apple-icon {
+    bottom: 2px;
+}
+
+.windows-icon {
+    bottom: 1px;
+}
+
+.download-icon {
+    margin-left: 2px;
+}
