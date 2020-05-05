@@ -78,37 +78,41 @@ const getDownloadSection = (latestVersion: string) => {
 
     if (latestVersion === '') return;
 
-    return <div style={ downloadContainerStyle }>
-        <h1>iDAI.field herunterladen</h1>
-        <p className="lead text-muted">Hier können Sie die aktuelle Version von iDAI.field herunterladen.</p>
-        <p>Es werden Pakete für macOS und Windows zur Verfügung gestellt.</p>
-        <p>Aktuelle Version: <strong>{ latestVersion }</strong></p>
-        <p>
-            <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
-            + latestVersion + '-Windows.exe' } className="btn btn-primary my-2 mr-1">
-                <Icon path={ mdiMicrosoftWindows } size={ 0.8 } className="windows-icon"/>
-                Download für Windows
-                <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
-            </a>
-            <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
-            + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
-                <Icon path={ mdiApple } size={ 0.8 } className="apple-icon"/>
-                Download für macOS
-                <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
-            </a>
-        </p>
-        <p>
-            <a href="https://github.com/dainst/idai-field/releases">
-                Alle Versionen...
-            </a>
-        </p>
-        <p>
-            <a className="btn btn-secondary" href="https://github.com/dainst/idai-field" target="_blank">
-                <Icon path={ mdiGithub } size={ 0.8 } className="github-icon"></Icon>
-                Quellcode auf GitHub
-            </a>
-        </p>
-    </div>;
+    return (
+        <div style={ downloadContainerStyle }>
+            <hr className="m-5"/>
+            <h1>iDAI.field herunterladen</h1>
+            <p className="lead text-muted">Hier können Sie die aktuelle Version von iDAI.field herunterladen.</p>
+            <p>Es werden Pakete für macOS und Windows zur Verfügung gestellt.</p>
+            <p>Aktuelle Version: <strong>{ latestVersion }</strong></p>
+            <p>
+                <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
+                + latestVersion + '-Windows.exe' } className="btn btn-primary my-2 mr-1">
+                    <Icon path={ mdiMicrosoftWindows } size={ 0.8 } className="windows-icon"/>
+                    Download für Windows
+                    <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
+                </a>
+                <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
+                + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
+                    <Icon path={ mdiApple } size={ 0.8 } className="apple-icon"/>
+                    Download für macOS
+                    <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
+                </a>
+            </p>
+            <p>
+                <a href="https://github.com/dainst/idai-field/releases">
+                    Alle Versionen...
+                </a>
+            </p>
+            <hr className="m-5"/>
+            <p className="mb-5">
+                <a className="btn btn-secondary" href="https://github.com/dainst/idai-field" target="_blank">
+                    <Icon path={ mdiGithub } size={ 0.8 } className="github-icon"></Icon>
+                    Quellcode auf GitHub
+                </a>
+            </p>
+        </div>
+    );
 };
 
 
