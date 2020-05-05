@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 
@@ -11,7 +11,9 @@ export default () => {
     }, []);
 
     return (
-        <ReactMarkdown source={ markdown } escapeHtml={ false }/>
+        <div style={ markdownContainerStyle }>
+            <ReactMarkdown source={ markdown } escapeHtml={ false }/>
+        </div>
     );
 };
 
@@ -35,4 +37,9 @@ const fixImageLinks = (manualMarkdown: string) => {
         /img src="images/g,
         'img src="https://raw.githubusercontent.com/dainst/idai-field/master/manual/images'
     );
+};
+
+
+const markdownContainerStyle: CSSProperties = {
+    padding: '20px'
 };
