@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import './Manual.css';
 
 
 export default () => {
@@ -12,7 +13,7 @@ export default () => {
 
     return (
         <div style={ markdownContainerStyle }>
-            <ReactMarkdown source={ markdown } escapeHtml={ false }/>
+            <ReactMarkdown source={ markdown } escapeHtml={ false } />
         </div>
     );
 };
@@ -31,9 +32,9 @@ const getMarkdown = (): Promise<string> => {
 };
 
 
-const fixImageLinks = (manualMarkdown: string) => {
+const fixImageLinks = (markdown: string) => {
 
-    return manualMarkdown.replace(
+    return markdown.replace(
         /img src="images/g,
         'img src="https://raw.githubusercontent.com/dainst/idai-field/master/manual/images'
     );
