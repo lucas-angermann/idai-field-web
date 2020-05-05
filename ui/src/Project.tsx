@@ -20,8 +20,8 @@ export default () => {
     return (
         <Container fluid>
             <Row>
-                <Col sm={ 4 }>
-                    { renderProjectDocument(projectDocument) }
+                <Col sm={ 3 }>
+                    { renderProjectTeaser(projectDocument) }
                 </Col>
                 <Col>
                     { renderResultList(documents) }
@@ -32,8 +32,8 @@ export default () => {
 
 };
 
-const renderProjectDocument = (projectDocument: any) =>
-    projectDocument ? <DocumentDetails document={ projectDocument } /> : '';
+const renderProjectTeaser = (projectDocument: any) =>
+    projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
 
 const renderResultList = (documents: any) =>
     documents.map(document => <DocumentTeaser document={ document } key={ document.resource.id } />);
