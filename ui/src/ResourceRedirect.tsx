@@ -10,7 +10,9 @@ export default () => {
         getId(project, identifier).then(setId);
     }, []);
 
-    return id ? <Redirect to={ `/documents/${id}` } /> : 'Please wait while being redirected ...';
+    return id
+        ? <Redirect to={ `/documents/${id}` } />
+        : <div>Please wait while being redirected ...</div>;
 };
 
 const getId = async (project: string, identifier: string): Promise<string> => {
