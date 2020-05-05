@@ -9,7 +9,6 @@ export default ({ document }) => {
         <Link to={ `/documents/${document.resource.id}` } style={ linkStyle }>
             <Card>
                 <Card.Body>
-                    <Container>
                         <Row>
                             <Col style={ { flex: '0 0 50px' } }>
                                 <CategoryIcon size="50" category={ document.resource.type } />
@@ -23,7 +22,6 @@ export default ({ document }) => {
                                 </Row>
                             </Col>
                         </Row>
-                    </Container>
                 </Card.Body>
             </Card>
         </Link>
