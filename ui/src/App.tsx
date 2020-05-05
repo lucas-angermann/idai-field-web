@@ -6,30 +6,41 @@ import Document from './Document';
 import Project from './Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './Manual';
+import { Navbar, Nav } from 'react-bootstrap';
 
 
 export default () => {
 
     return (
-        <BrowserRouter>
-            <Switch>
+        <div>
+            <Navbar bg="light">
+                <Navbar.Brand href="/">iDAI.field</Navbar.Brand>
+                <Nav>
+                    <Nav.Link href="/">Projekte</Nav.Link>
+                    <Nav.Link href="/download">Download</Nav.Link>
+                    <Nav.Link href="/manual">Handbuch</Nav.Link>
+                </Nav>
+            </Navbar>
+            <BrowserRouter>
+                <Switch>
 
-                <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
-                <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
+                    <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
+                    <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
-                <Route path="/document/:id" component={ Document } />
-                <Redirect from="/documents/:id" to="/document/:id" />
+                    <Route path="/document/:id" component={ Document } />
+                    <Redirect from="/documents/:id" to="/document/:id" />
 
-                <Route path="/project/:id" component={ Project } />
-                <Redirect from="/projects/:id" to="/project/:id" />
+                    <Route path="/project/:id" component={ Project } />
+                    <Redirect from="/projects/:id" to="/project/:id" />
 
-                <Route path="/download" component={ Download } />
+                    <Route path="/download" component={ Download } />
 
-                <Route path="/manual" component={ Manual } />
+                    <Route path="/manual" component={ Manual } />
 
-                <Route path="/" component={ ProjectOverview } />
+                    <Route path="/" component={ ProjectOverview } />
 
-            </Switch>
-        </BrowserRouter>
+                </Switch>
+            </BrowserRouter>
+        </div>
     );
 };

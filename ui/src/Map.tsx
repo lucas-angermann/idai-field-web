@@ -112,7 +112,7 @@ const setCursor = (map: Map, style: string) => {
 
 const mapContainerStyle: CSSProperties = {
     position: 'absolute',
-    top: '0',
+    top: '56px',
     right: '0',
     left: '0',
     bottom: '0'
