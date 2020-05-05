@@ -100,7 +100,7 @@ const getDownloadSection = (latestVersion: string) => {
                 </a>
             </p>
             <p>
-                <a href="https://github.com/dainst/idai-field/releases">
+                <a href="https://github.com/dainst/idai-field/releases" target="_blank">
                     Alle Versionen...
                 </a>
             </p>
