@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Card, Container, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 
