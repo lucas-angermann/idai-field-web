@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, CSSProperties } from 'react';
-import { useHistory, History } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { History } from 'history';
 import mapboxgl, { Map, Layer, GeoJSONSourceRaw, GeoJSONSource } from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Feature, FeatureCollection } from 'geojson';
