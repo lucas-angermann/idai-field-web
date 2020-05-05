@@ -76,12 +76,11 @@ const renderFieldValueObject = (object: any) => {
 const renderFieldValueBoolean = (value: boolean) => value ? 'yes' : 'no';
 
 
-const renderError = () => {
-    return <div>Error: No matching document found.</div>;
-};
+const renderError = () => <div>Error: No matching document found.</div>;
 
 
 const getDocument = async (id: string) => {
+
     const response = await fetch(`/documents/${id}`);
     return await response.json();
 };
