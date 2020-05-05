@@ -14,12 +14,12 @@ defmodule Api.Documents.Search do
     |> Enum.map(&to_document/1)
   end
 
-  defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do
-    []
+  defp handle_result({:ok, %HTTPoison.Response{status_code: 400}}) do
+    %{error: "bad_request"}
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
     IO.inspect reason
-    []
+    %{error: "unknown"}
   end
 end
