@@ -5,6 +5,7 @@ import Download from './Download';
 import Document from './Document';
 import Project from './Project';
 import ResourceRedirect from './ResourceRedirect';
+import Manual from './Manual';
 
 
 export default () => {
@@ -22,6 +23,8 @@ export default () => {
             <Redirect from="/projects/:id" to="/project/:id" />
 
             <Route path="/download" component={ Download } />
+
+            <Route path="/manual" component={ Manual } />
 
             <Route path="/" component={ ProjectOverview } />
 
