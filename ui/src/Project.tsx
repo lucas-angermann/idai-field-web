@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { search } from './search';
 import DocumentTeaser from './DocumentTeaser';
 import { Container, Row, Col } from 'react-bootstrap';
+import DocumentList from './DocumentList';
 
 export default () => {
 
@@ -23,7 +24,7 @@ export default () => {
                     { renderProjectTeaser(projectDocument) }
                 </Col>
                 <Col>
-                    { renderResultList(documents) }
+                    <DocumentList documents={ documents } />
                 </Col>
             </Row>
         </Container>
@@ -33,9 +34,6 @@ export default () => {
 
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
-
-const renderResultList = (documents: any) =>
-    documents.map(document => <DocumentTeaser document={ document } key={ document.resource.id } />);
 
 const getProjectDocument = async (id: string): Promise<any> => {
 
