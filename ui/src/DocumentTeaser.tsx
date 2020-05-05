@@ -9,19 +9,19 @@ export default ({ document }) => {
         <Link to={ `/documents/${document.resource.id}` } style={ linkStyle }>
             <Card>
                 <Card.Body>
-                        <Row>
-                            <Col style={ { flex: '0 0 50px' } }>
-                                <CategoryIcon size="50" category={ document.resource.type } />
-                            </Col>
-                            <Col>
-                                <Row>
-                                    <Col><strong>{ document.resource.identifier }</strong></Col>
-                                </Row>
-                                <Row>
-                                    <Col>{ document.resource.shortDescription }</Col>
-                                </Row>
-                            </Col>
-                        </Row>
+                    <Row>
+                        <Col style={ { flex: '0 0 50px' } }>
+                            <CategoryIcon size="50" category={ document.resource.type } />
+                        </Col>
+                        <Col>
+                            <Row>
+                                <Col><strong>{ document.resource.identifier }</strong></Col>
+                            </Row>
+                            <Row>
+                                <Col>{ document.resource.shortDescription }</Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Card.Body>
             </Card>
         </Link>
