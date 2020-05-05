@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { search } from './search';
 import DocumentTeaser from './DocumentTeaser';
 import { Container, Row, Col } from 'react-bootstrap';
-import DocumentDetails from './DocumentDetails';
 
 export default () => {
 

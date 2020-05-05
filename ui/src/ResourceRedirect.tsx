@@ -8,7 +8,7 @@ export default () => {
 
     useEffect (() => {
         getId(project, identifier).then(setId);
-    }, []);
+    }, [project, identifier]);
 
     return id
         ? <Redirect to={ `/documents/${id}` } />
