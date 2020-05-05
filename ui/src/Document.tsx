@@ -23,15 +23,15 @@ const renderDocument = (document: any) => {
     const resource = document.resource;
     const fieldList = renderFieldList(resource);
     return (
-        <Jumbotron fluid>
-            <Container>
+        <Container>
+            <Jumbotron>
                 <h1>
                     <CategoryIcon category={ resource.type } size="40" />
                     &nbsp; { resource.identifier }
                 </h1>
                 { fieldList }
-            </Container>
-        </Jumbotron>
+            </Jumbotron>
+        </Container>
     );
 };
 
