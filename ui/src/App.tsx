@@ -6,21 +6,14 @@ import Document from './Document';
 import Project from './Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './Manual';
-import { Navbar, Nav } from 'react-bootstrap';
+import Navbar from './Navbar';
 
 
 export default () => {
 
     return (
         <div>
-            <Navbar bg="light">
-                <Navbar.Brand href="/">iDAI.field</Navbar.Brand>
-                <Nav>
-                    <Nav.Link href="/">Projekte</Nav.Link>
-                    <Nav.Link href="/download">Download</Nav.Link>
-                    <Nav.Link href="/manual">Handbuch</Nav.Link>
-                </Nav>
-            </Navbar>
+            <Navbar />
             <BrowserRouter>
                 <Switch>
 
