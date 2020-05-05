@@ -1,4 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
@@ -109,6 +110,9 @@ const getDownloadSection = (latestVersion: string) => {
                 <a href="https://github.com/dainst/idai-field/releases" target="_blank" rel="noopener noreferrer">
                     Alle Versionen...
                 </a>
+            </p>
+            <p>
+                <Link to="/manual">Handbuch</Link>
             </p>
             <hr className="m-5"/>
             <p className="mb-5">
