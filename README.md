@@ -2,14 +2,14 @@
 
 ## Getting started
 
-Start elasticsearch and the api web service with docker:
-
-    $ docker-compose up
-
 Prepare the configuration:
 
     $ cp api/config/config.exs.template api/config/config.exs
     $ vi api/config/config.exs # Edit configuration
+
+Start elasticsearch and the api web service with docker:
+
+    $ docker-compose up
 
 Trigger indexing:
 
