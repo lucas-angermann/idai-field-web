@@ -134,7 +134,7 @@ const getLatestVersion = (): Promise<string> => {
 
 
 const carouselContainerStyle: CSSProperties = {
-    width: '1000px',
+    width: '1030px',
     paddingRight: '15px',
     paddingLeft: '15px',
     marginRight: 'auto',
