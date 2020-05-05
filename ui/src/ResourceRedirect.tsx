@@ -8,7 +8,7 @@ export default () => {
 
     useEffect (() => {
         getId(project, identifier).then(setId);
-    }, [id]);
+    }, []);
 
     return id ? <Redirect to={ `/documents/${id}` } /> : 'Please wait while being redirected ...';
 };
