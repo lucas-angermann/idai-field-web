@@ -78,3 +78,9 @@ The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved
 It can be started independently with:
 
     $ docker-compose up elasticsearch
+
+## Unit testing
+
+```
+docker-compose run --service-ports --entrypoint "mix test" api
+```
