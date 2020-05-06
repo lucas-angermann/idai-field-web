@@ -111,9 +111,6 @@ const getDownloadSection = (latestVersion: string) => {
                     Alle Versionen...
                 </a>
             </p>
-            <p>
-                <Link to="/manual">Handbuch</Link>
-            </p>
             <hr className="m-5"/>
             <p className="mb-5">
                 <a className="btn btn-secondary" href="https://github.com/dainst/idai-field"
