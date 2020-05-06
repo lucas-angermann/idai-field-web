@@ -9,6 +9,11 @@ type Chapter = {
 };
 
 
+const NAVBAR_HEIGHT: number = 56;
+const PADDING: number = 20;
+const CHAPTER_NAVIGATION_WIDTH: number = 200;
+
+
 export default () => {
 
     const [markdown, setMarkdown] = useState('');
@@ -26,7 +31,7 @@ export default () => {
     return (
         <div>
             { getChaptersNavigationElement(chapters, activeChapter, setActiveChapter) }
-            { getManualElement(markdown) }
+            { getManualElement(markdown, chapters, setActiveChapter) }
         </div>
     );
 };
@@ -48,10 +53,10 @@ const getChaptersNavigationElement = (chapters: Chapter[],
 };
 
 
-const getManualElement = (markdown: string) => {
+const getManualElement = (markdown: string, chapters: Chapter[], setActiveChapter: (chapter: Chapter) => void) => {
 
     return (
-        <div style={ markdownContainerStyle }>
+        <div style={ markdownContainerStyle } onScroll={ () => updateActiveChapter(chapters, setActiveChapter) }>
             <ReactMarkdown source={ markdown } escapeHtml={ false } />
         </div>
     );
@@ -144,9 +149,34 @@ const scrollToChapter = (chapter: Chapter, setActiveChapter: (chapter: Chapter) 
 };
 
 
+const updateActiveChapter = (chapters: Chapter[], setActiveChapter: (chapter: Chapter) => void) => {
+
+    let activeElementTop: number = 1;
+
+    chapters.forEach(chapter => {
+        const top: number = getHeaderTop(chapter);
+        if (top <= 0 && (top > activeElementTop || activeElementTop === 1)) {
+            activeElementTop = top;
+            setActiveChapter(chapter);
+        }
+    });
+};
+
+
+const getHeaderTop = (chapter: Chapter): number => {
+
+    const element: HTMLElement | null = document.getElementById(chapter.id);
+    if (!element) return 1;
+
+    return element.getBoundingClientRect().top
+        - NAVBAR_HEIGHT
+        - PADDING;
+};
+
+
 const chaptersNavigationStyle: CSSProperties = {
     position: 'absolute',
-    width: '200px'
+    width: CHAPTER_NAVIGATION_WIDTH + 'px'
 };
 
 
@@ -158,9 +188,9 @@ const getChapterStyle = (isActiveChapter: boolean): CSSProperties => ({
 
 const markdownContainerStyle: CSSProperties = {
     position: 'relative',
-    left: '200px',
-    width: 'calc(100vw - 200px)',
-    height: 'calc(100vh - 56px)',
-    padding: '20px',
+    left: CHAPTER_NAVIGATION_WIDTH + 'px',
+    width: 'calc(100vw - ' + CHAPTER_NAVIGATION_WIDTH + 'px)',
+    height: 'calc(100vh - ' + NAVBAR_HEIGHT + 'px)',
+    padding: PADDING + 'px',
     overflowY: 'auto'
 };
