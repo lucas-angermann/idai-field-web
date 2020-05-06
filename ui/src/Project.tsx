@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { search, get } from './documents';
 import DocumentTeaser from './DocumentTeaser';
 import { Container, Row, Col, Card } from 'react-bootstrap';
@@ -12,6 +12,7 @@ const CHUNK_SIZE = 50;
 export default () => {
 
     const { id } = useParams();
+    const location = useLocation();
     const [documents, setDocuments] = useState([]);
     const [aggregations, setAggregations] = useState([]);
     const [offset, setOffset] = useState(0);
@@ -22,18 +23,19 @@ export default () => {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, newOffset).then(result => setDocuments(documents.concat(result.hits)));
+            searchDocuments(id, getQueryParam(location, 'types'), newOffset)
+                .then(result => setDocuments(documents.concat(result.hits)));
             setOffset(newOffset);
         }
     };
 
     useEffect(() => {
-        searchDocuments(id, 0).then(result => {
+        searchDocuments(id, getQueryParam(location, 'types'), 0).then(result => {
             setDocuments(result.hits);
             setAggregations(result.aggregations);
         });
         get(id).then(setProjectDocument);
-    }, [id]);
+    }, [id, location]);
 
     return (
         <Container fluid>
@@ -51,7 +53,7 @@ export default () => {
 
 };
 
-const searchDocuments = async (id: string, from: number) => {
+const searchDocuments = async (id: string, types: string, from: number) => {
 
     const query = {
         q: `project:${id}`,
@@ -59,6 +61,7 @@ const searchDocuments = async (id: string, from: number) => {
         from,
         skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
     };
+    if (types) query.q += ` resource.type:${types}`;
     return search(query);
 };
 
@@ -72,14 +75,23 @@ const renderAggregation = (key: string, aggregation: any) => (
     <Card key={ key }>
         <Card.Header>{ key }</Card.Header>
         <Card.Body>
-            { aggregation.buckets.map(renderBucket) }
+            { aggregation.buckets.map((bucket: any) => renderBucket(key, bucket)) }
         </Card.Body>
     </Card>
 );
 
-const renderBucket = (bucket: any) => (
+const renderBucket = (key: string, bucket: any) => (
     <Row key={ bucket.key }>
-        <Col>{ bucket.key }</Col>
+        <Col>
+            <Link to={ `?${key}=${bucket.key}` }>
+                { bucket.key }
+            </Link>
+        </Col>
         <Col><em>{ bucket.doc_count }</em></Col>
     </Row>
 );
+
+const getQueryParam = (location: any, key: string) => {
+
+    return new URLSearchParams(location.search).get(key);
+};
