@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
+import { search } from './documents';
 
 export default () => {
 
@@ -17,9 +18,8 @@ export default () => {
 
 const getId = async (project: string, identifier: string): Promise<string> => {
 
-    const response = await fetch(`/documents?q=${getQueryString(project, identifier)}`);
-    const result = await response.json();
-    return result[0].resource.id;
+    const result = await search({ q: getQueryString(project, identifier) });
+    return result.documents[0].resource.id;
 };
 
 const getQueryString = (project: string, identifier: string) =>
