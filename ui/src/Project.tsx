@@ -14,7 +14,7 @@ export default () => {
     const { id } = useParams();
     const location = useLocation();
     const [documents, setDocuments] = useState([]);
-    const [aggregations, setAggregations] = useState([]);
+    const [filters, setFilters] = useState([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
 
@@ -23,16 +23,16 @@ export default () => {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, getQueryParam(location, 'types'), newOffset)
-                .then(result => setDocuments(documents.concat(result.hits)));
+            searchDocuments(id, getQueryParam(location, 'type'), newOffset)
+                .then(result => setDocuments(documents.concat(result.documents)));
             setOffset(newOffset);
         }
     };
 
     useEffect(() => {
-        searchDocuments(id, getQueryParam(location, 'types'), 0).then(result => {
-            setDocuments(result.hits);
-            setAggregations(result.aggregations);
+        searchDocuments(id, getQueryParam(location, 'type'), 0).then(result => {
+            setDocuments(result.documents);
+            setFilters(result.filters);
         });
         get(id).then(setProjectDocument);
     }, [id, location]);
@@ -42,7 +42,7 @@ export default () => {
             <Row>
                 <Col sm={ 3 }>
                     { renderProjectTeaser(projectDocument) }
-                    { renderAggregations(aggregations) }
+                    { renderFilters(filters) }
                 </Col>
                 <Col onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
                     <DocumentList documents={ documents } />
@@ -53,7 +53,7 @@ export default () => {
 
 };
 
-const searchDocuments = async (id: string, types: string, from: number) => {
+const searchDocuments = async (id: string, type: string, from: number) => {
 
     const query = {
         q: `project:${id}`,
@@ -61,33 +61,33 @@ const searchDocuments = async (id: string, types: string, from: number) => {
         from,
         skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
     };
-    if (types) query.q += ` AND resource.type:${types}`;
+    if (type) query.q += ` AND resource.type:${type}`;
     return search(query);
 };
 
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
 
-const renderAggregations = (aggregations: any) =>
-    Object.keys(aggregations).map((key: string) => renderAggregation(key, aggregations[key]));
+const renderFilters = (filters: any) =>
+    Object.keys(filters).map((key: string) => renderFilter(key, filters[key]));
 
-const renderAggregation = (key: string, aggregation: any) => (
+const renderFilter = (key: string, filter: any) => (
     <Card key={ key }>
         <Card.Header>{ key }</Card.Header>
         <Card.Body>
-            { aggregation.buckets.map((bucket: any) => renderBucket(key, bucket)) }
+            { filter.map((bucket: any) => renderFilterValue(key, bucket)) }
         </Card.Body>
     </Card>
 );
 
-const renderBucket = (key: string, bucket: any) => (
-    <Row key={ bucket.key }>
+const renderFilterValue = (key: string, bucket: any) => (
+    <Row key={ bucket.value }>
         <Col>
-            <Link to={ `?${key}=${bucket.key}` }>
-                { bucket.key }
+            <Link to={ `?${key}=${bucket.value}` }>
+                { bucket.value }
             </Link>
         </Col>
-        <Col><em>{ bucket.doc_count }</em></Col>
+        <Col><em>{ bucket.count }</em></Col>
     </Row>
 );
 
