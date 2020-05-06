@@ -37,8 +37,9 @@ defmodule Api.Documents.Search do
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    body
-    |> to_atomized_result
+    json_result = to_atomized_result(body)
+    json_result
+    |> put_in([:total], json_result.hits.total.value)
     |> update_in([:hits], fn(hits) -> Enum.map(hits.hits, &to_document/1) end)
   end
 
