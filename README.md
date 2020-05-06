@@ -82,5 +82,11 @@ It can be started independently with:
 ## Unit testing
 
 ```
-docker-compose run --service-ports --entrypoint "mix test" api
+$ docker-compose run --service-ports --entrypoint "mix test" api
+```
+
+## (Re-)building containers
+
+```
+$ docker-compose up --build api
 ```
