@@ -118,7 +118,7 @@ const getDownloadSection = (latestVersion: string) => {
             <p className="mb-5">
                 <a className="btn btn-secondary" href="https://github.com/dainst/idai-field"
                    target="_blank" rel="noopener noreferrer">
-                    <Icon path={ mdiGithub } size={ 0.8 } className="github-icon"></Icon>
+                    <Icon path={ mdiGithub } size={ 0.8 } className="github-icon" />
                     Quellcode auf GitHub
                 </a>
             </p>
