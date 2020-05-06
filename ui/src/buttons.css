@@ -24,6 +24,17 @@
     border-color: #adadad !important;
 }
 
+.btn-link {
+    color: rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.btn-link:hover,
+.btn-link:active,
+.btn-link:focus {
+    color: rgba(0, 0, 0, 0.9);
+}
+
 .btn {
     border-radius: 0;
 }
