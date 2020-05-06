@@ -1,5 +1,6 @@
 defmodule Api.Documents.Search do
   import Api.Documents.Helper
+  alias Api.Documents.Mapping
 
   def by(q, size, from) do
     q = if !q do "*" else q end
@@ -28,7 +29,7 @@ defmodule Api.Documents.Search do
 
   defp build_aggregations() do
     %{
-      types: %{
+      type: %{
         terms: %{
           field: "resource.type"
         }
@@ -37,10 +38,9 @@ defmodule Api.Documents.Search do
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    json_result = to_atomized_result(body)
-    json_result
-    |> put_in([:total], json_result.hits.total.value)
-    |> update_in([:hits], fn(hits) -> Enum.map(hits.hits, &to_document/1) end)
+    body
+    |> to_atomized_result
+    |> Mapping.map
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
