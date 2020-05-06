@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, ElementRef, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import './Manual.css';
 
@@ -10,7 +10,7 @@ type Chapter = {
 
 
 const NAVBAR_HEIGHT: number = 56;
-const PADDING: number = 20;
+const PADDING: number = 15;
 const CHAPTER_NAVIGATION_WIDTH: number = 200;
 
 
@@ -19,6 +19,8 @@ export default () => {
     const [markdown, setMarkdown] = useState('');
     const [chapters, setChapters] = useState([]);
     const [activeChapter, setActiveChapter] = useState(undefined);
+
+    const manualElementRef: ElementRef<any> = useRef(null);
 
     useEffect(() => {
         getManual().then(result => {
@@ -30,8 +32,8 @@ export default () => {
 
     return (
         <div>
-            { getChaptersNavigationElement(chapters, activeChapter, setActiveChapter) }
-            { getManualElement(markdown, chapters, setActiveChapter) }
+            { getChaptersNavigationElement(chapters, activeChapter, setActiveChapter, manualElementRef) }
+            { getManualElement(markdown, chapters, setActiveChapter, manualElementRef) }
         </div>
     );
 };
@@ -39,13 +41,16 @@ export default () => {
 
 const getChaptersNavigationElement = (chapters: Chapter[],
                                       activeChapter: Chapter,
-                                      setActiveChapter: (chapter: Chapter) => void) => {
+                                      setActiveChapter: (chapter: Chapter) => void,
+                                      manualElementRef: ElementRef<any>) => {
 
     return (
         <ul className="col-md-2 nav flex-column" style={ chaptersNavigationStyle }>
             {
                 chapters.map((chapter: Chapter) => {
-                    return getChapterElement(chapter, chapter === activeChapter, setActiveChapter);
+                    return getChapterElement(
+                        chapter, chapter === activeChapter, setActiveChapter, manualElementRef
+                    );
                 })
             }
         </ul>
@@ -53,10 +58,15 @@ const getChaptersNavigationElement = (chapters: Chapter[],
 };
 
 
-const getManualElement = (markdown: string, chapters: Chapter[], setActiveChapter: (chapter: Chapter) => void) => {
+const getManualElement = (markdown: string,
+                          chapters: Chapter[],
+                          setActiveChapter: (chapter: Chapter) => void,
+                          manualElementRef: ElementRef<any>) => {
 
     return (
-        <div style={ markdownContainerStyle } onScroll={ () => updateActiveChapter(chapters, setActiveChapter) }>
+        <div ref={ manualElementRef }
+             style={ markdownContainerStyle }
+             onScroll={ () => updateActiveChapter(chapters, setActiveChapter) }>
             <ReactMarkdown source={ markdown } escapeHtml={ false } />
         </div>
     );
@@ -65,12 +75,16 @@ const getManualElement = (markdown: string, chapters: Chapter[], setActiveChapte
 
 const getChapterElement = (chapter: Chapter,
                            isActiveChapter: boolean,
-                           setActiveChapter: (chapter: Chapter) => void) => {
+                           setActiveChapter: (chapter: Chapter) => void,
+                           manualElementRef: ElementRef<any>) => {
 
     return (
         <li key={ chapter.id } className="nav nav-pills flex-column">
-            <button className="btn btn-link nav-link" style={ getChapterStyle(isActiveChapter) }
-               onClick={ () => scrollToChapter(chapter, setActiveChapter) }>{ chapter.label }</button>
+            <button className="btn btn-link nav-link"
+                    style={ getChapterStyle(isActiveChapter) }
+                    onClick={ () => scrollToChapter(chapter, setActiveChapter, manualElementRef) }>
+                { chapter.label }
+            </button>
         </li>
     );
 };
@@ -138,7 +152,9 @@ const fixImageLinks = (markdown: string): string => {
 };
 
 
-const scrollToChapter = (chapter: Chapter, setActiveChapter: (chapter: Chapter) => void) => {
+const scrollToChapter = (chapter: Chapter,
+                         setActiveChapter: (chapter: Chapter) => void,
+                         manualElementRef: ElementRef<any>) => {
 
     setActiveChapter(chapter);
 
@@ -146,6 +162,7 @@ const scrollToChapter = (chapter: Chapter, setActiveChapter: (chapter: Chapter) 
     if (!element) return;
 
     element.scrollIntoView(true);
+    manualElementRef.current.scrollTop -= PADDING;
 };
 
 
