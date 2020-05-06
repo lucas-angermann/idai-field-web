@@ -11,6 +11,10 @@ Start elasticsearch and the api web service with docker:
 
     $ docker-compose up
 
+Setup elasticsearch mapping:
+
+    $ curl -XPUT -H "Content-Type: application/json" http://localhost:9200/idai-field -d "@api/config/elasticsearch-mapping.json"
+
 Trigger indexing:
 
     $ curl -XPOST localhost:4000/reindex
