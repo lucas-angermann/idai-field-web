@@ -61,7 +61,7 @@ const searchDocuments = async (id: string, types: string, from: number) => {
         from,
         skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
     };
-    if (types) query.q += ` resource.type:${types}`;
+    if (types) query.q += ` AND resource.type:${types}`;
     return search(query);
 };
 
