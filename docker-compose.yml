@@ -26,4 +26,5 @@ services:
     volumes:
       - "./api/config:/opt/src/api/config"
       - "./api/lib:/opt/src/api/lib"
+      - "./api/test:/opt/src/api/test"
       - "./api/_build:/opt/src/api/_build"
