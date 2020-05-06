@@ -46,7 +46,7 @@ export default () => {
 
 };
 
-const getDocuments = (id: string, from: number) => {
+const getDocuments = async (id: string, from: number) => {
 
     const query = {
         q: `project:${id}`,
@@ -54,7 +54,7 @@ const getDocuments = (id: string, from: number) => {
         from,
         skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
     };
-    return search(query);
+    return (await search(query)).hits;
 };
 
 const renderProjectTeaser = (projectDocument: any) =>
