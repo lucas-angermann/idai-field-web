@@ -13,28 +13,36 @@ export default () => {
 
     const [markdown, setMarkdown] = useState('');
     const [chapters, setChapters] = useState([]);
+    const [activeChapter, setActiveChapter] = useState(undefined);
 
     useEffect(() => {
         getManual().then(result => {
             setMarkdown(result.markdown);
             setChapters(result.chapters);
+            if (result.chapters.length > 0) setActiveChapter(result.chapters[0]);
         });
     }, []);
 
     return (
         <div>
-            { getChaptersNavigationElement(chapters) }
+            { getChaptersNavigationElement(chapters, activeChapter, setActiveChapter) }
             { getManualElement(markdown) }
         </div>
     );
 };
 
 
-const getChaptersNavigationElement = (chapters: Chapter[]) => {
+const getChaptersNavigationElement = (chapters: Chapter[],
+                                      activeChapter: Chapter,
+                                      setActiveChapter: (chapter: Chapter) => void) => {
 
     return (
         <ul className="col-md-2 nav flex-column" style={ chaptersNavigationStyle }>
-            { chapters.map(getChapterElement) }
+            {
+                chapters.map((chapter: Chapter) => {
+                    return getChapterElement(chapter, chapter === activeChapter, setActiveChapter);
+                })
+            }
         </ul>
     );
 };
@@ -50,12 +58,14 @@ const getManualElement = (markdown: string) => {
 };
 
 
-const getChapterElement = (chapter: Chapter) => {
+const getChapterElement = (chapter: Chapter,
+                           isActiveChapter: boolean,
+                           setActiveChapter: (chapter: Chapter) => void) => {
 
     return (
         <li key={ chapter.id } className="nav nav-pills flex-column">
-            <button className="btn btn-link nav-link" style={ chapterStyle }
-               onClick={ () => scrollToChapter(chapter.id) }>{ chapter.label }</button>
+            <button className="btn btn-link nav-link" style={ getChapterStyle(isActiveChapter) }
+               onClick={ () => scrollToChapter(chapter, setActiveChapter) }>{ chapter.label }</button>
         </li>
     );
 };
@@ -123,9 +133,11 @@ const fixImageLinks = (markdown: string): string => {
 };
 
 
-const scrollToChapter = (chapterId: string) => {
+const scrollToChapter = (chapter: Chapter, setActiveChapter: (chapter: Chapter) => void) => {
 
-    const element: HTMLElement | null = document.getElementById(chapterId);
+    setActiveChapter(chapter);
+
+    const element: HTMLElement | null = document.getElementById(chapter.id);
     if (!element) return;
 
     element.scrollIntoView(true);
@@ -138,9 +150,10 @@ const chaptersNavigationStyle: CSSProperties = {
 };
 
 
-const chapterStyle: CSSProperties = {
-    cursor: 'pointer'
-};
+const getChapterStyle = (isActiveChapter: boolean): CSSProperties => ({
+    cursor: 'pointer',
+    color: isActiveChapter ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.5)'
+});
 
 
 const markdownContainerStyle: CSSProperties = {

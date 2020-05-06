@@ -25,14 +25,17 @@
 }
 
 .btn-link {
-    color: rgba(0, 0, 0, 0.5);
     text-align: left;
 }
 
-.btn-link:hover,
+.btn-link,
 .btn-link:active,
 .btn-link:focus {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-link:hover {
+    color: rgba(0, 0, 0, 0.9) !important;
 }
 
 .btn {
