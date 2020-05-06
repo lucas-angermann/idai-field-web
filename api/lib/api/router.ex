@@ -19,6 +19,11 @@ defmodule Api.Router do
     send_json(conn, %{ status: "ok", message: "indexing started"})
   end
 
+  # can be removed after we have a first real endpoint test
+  get "/test" do
+    send_json(conn, %{ status: "ok!" })
+  end
+
   match _ do
     send_resp(conn, 404, "Requested page not found!")
   end
