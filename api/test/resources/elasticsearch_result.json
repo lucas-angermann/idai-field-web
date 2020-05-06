@@ -107,6 +107,20 @@
                     "doc_count": 1817
                 }
             ]
+        },
+        "project": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 2,
+            "buckets": [
+                {
+                    "key": "project1",
+                    "doc_count": 124234
+                },
+                {
+                    "key": "project2",
+                    "doc_count": 867
+                }
+            ]
         }
     }
 }

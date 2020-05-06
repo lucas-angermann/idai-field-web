@@ -12,11 +12,18 @@ defmodule Api.Documents.MappingTest do
 
     test "init", %{ result: result } do
         mapped = Mapping.map result
+
         assert mapped.size == result.hits.total.value
-        #assert length(mapped.filter.type) == length(result.aggregations.type.buckets)
-        #assert mapped.filter.type[0].value == result.aggregations.type.buckets[0].key
-        #assert length(mapped.documents) == length(result.hits.hits)
-        #assert mapped.documents[0].resource.identifer == result.hits.hits[0]._source.resource.identifier
+
+        assert length(mapped.filters.type) == length(result.aggregations.type.buckets)        
+        mapped_key = get_in(mapped.filters.type, [Access.at(0), :value])
+        original_key = get_in(result.aggregations.type.buckets, [Access.at(0), :key])
+        assert mapped_key == original_key
+
+        assert length(mapped.documents) == length(result.hits.hits)
+        mapped_identifier = get_in(mapped.documents, [Access.at(0), :resource, :identifier])
+        original_key = get_in(result.hits.hits, [Access.at(0), :_source, :resource, :identifier])
+        assert mapped_identifier == original_key
     end
 
 end
