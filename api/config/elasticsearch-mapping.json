@@ -1,0 +1,50 @@
+{
+    "mappings": {
+        "properties": {
+            "resource": {
+                "properties": {
+                    "id": {
+                        "type": "keyword"
+                    },
+                    "identifier": {
+                        "type": "keyword"
+                    },
+                    "type": {
+                        "type": "keyword"
+                    },
+                    "project": {
+                        "type": "keyword"
+                    },
+                    "geometry": {
+                        "type": "geo_shape",
+                        "coerce": true
+                    }
+                }
+            },
+            "created": {
+                "properties": {
+                    "date": {
+                        "type": "date"
+                    }
+                }
+            },
+            "modified": {
+                "properties": {
+                    "date": {
+                        "type": "date"
+                    }
+                }
+            }
+        },
+        "dynamic_templates": [
+            {
+                "relations": {
+                    "path_match": "relations.*",
+                    "mapping": {
+                        "type": "keyword"
+                    }
+                }
+            }
+        ]
+    }
+}
