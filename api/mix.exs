@@ -15,7 +15,8 @@ defmodule Api.MixProject do
     [
       extra_applications: [:logger],
       mod: {Api.Application, []},
-      remix: [:remix]
+      remix: [:remix],
+      applications: [:guardian]
     ]
   end
 
@@ -27,7 +28,8 @@ defmodule Api.MixProject do
       {:httpoison, "~> 1.6.2"},
       {:cowboy, "~> 2.4"},
       {:remix, "~> 0.0.1", only: :dev},
-      {:timex_poison, "~> 0.2.0"}
+      {:timex_poison, "~> 0.2.0"},
+      {:guardian, "~> 2.0"}
     ]
   end
 end
