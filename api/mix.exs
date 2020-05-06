@@ -27,8 +27,7 @@ defmodule Api.MixProject do
       {:httpoison, "~> 1.6.2"},
       {:cowboy, "~> 2.4"},
       {:remix, "~> 0.0.1", only: :dev},
-      {:timex_poison, "~> 0.2.0"},
-      {:proj, "~> 0.2.2"}
+      {:timex_poison, "~> 0.2.0"}
     ]
   end
 end
