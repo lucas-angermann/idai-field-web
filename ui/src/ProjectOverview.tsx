@@ -19,4 +19,4 @@ export default () => {
 };
 
 
-const getProjectDocuments = (): Promise<any[]> => search({ q: 'resource.type:Project' });
+const getProjectDocuments = async () => (await search({ q: 'resource.type:Project' })).hits;

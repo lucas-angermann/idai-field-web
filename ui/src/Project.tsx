@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { search, get } from './documents';
 import DocumentTeaser from './DocumentTeaser';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 
 
@@ -12,7 +12,9 @@ const CHUNK_SIZE = 50;
 export default () => {
 
     const { id } = useParams();
+    const location = useLocation();
     const [documents, setDocuments] = useState([]);
+    const [aggregations, setAggregations] = useState([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
 
@@ -21,21 +23,26 @@ export default () => {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            getDocuments(id, newOffset).then(newDocs => setDocuments(documents.concat(newDocs)));
+            searchDocuments(id, getQueryParam(location, 'types'), newOffset)
+                .then(result => setDocuments(documents.concat(result.hits)));
             setOffset(newOffset);
         }
     };
 
     useEffect(() => {
-        getDocuments(id, 0).then(setDocuments);
+        searchDocuments(id, getQueryParam(location, 'types'), 0).then(result => {
+            setDocuments(result.hits);
+            setAggregations(result.aggregations);
+        });
         get(id).then(setProjectDocument);
-    }, [id]);
+    }, [id, location]);
 
     return (
         <Container fluid>
             <Row>
                 <Col sm={ 3 }>
                     { renderProjectTeaser(projectDocument) }
+                    { renderAggregations(aggregations) }
                 </Col>
                 <Col onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
                     <DocumentList documents={ documents } />
@@ -46,7 +53,7 @@ export default () => {
 
 };
 
-const getDocuments = (id: string, from: number) => {
+const searchDocuments = async (id: string, types: string, from: number) => {
 
     const query = {
         q: `project:${id}`,
@@ -54,8 +61,37 @@ const getDocuments = (id: string, from: number) => {
         from,
         skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
     };
+    if (types) query.q += ` resource.type:${types}`;
     return search(query);
 };
 
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
+
+const renderAggregations = (aggregations: any) =>
+    Object.keys(aggregations).map((key: string) => renderAggregation(key, aggregations[key]));
+
+const renderAggregation = (key: string, aggregation: any) => (
+    <Card key={ key }>
+        <Card.Header>{ key }</Card.Header>
+        <Card.Body>
+            { aggregation.buckets.map((bucket: any) => renderBucket(key, bucket)) }
+        </Card.Body>
+    </Card>
+);
+
+const renderBucket = (key: string, bucket: any) => (
+    <Row key={ bucket.key }>
+        <Col>
+            <Link to={ `?${key}=${bucket.key}` }>
+                { bucket.key }
+            </Link>
+        </Col>
+        <Col><em>{ bucket.doc_count }</em></Col>
+    </Row>
+);
+
+const getQueryParam = (location: any, key: string) => {
+
+    return new URLSearchParams(location.search).get(key);
+};

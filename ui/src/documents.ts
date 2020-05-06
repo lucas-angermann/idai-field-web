@@ -20,7 +20,7 @@ export const search = async (query: Query): Promise<any> => {
     if (query.from) uri += `&from=${query.from}`;
 
     const response = await fetch(uri);
-    return (await response.json()).hits;
+    return response.json();
 };
 
 const getQueryString = (query: Query) =>

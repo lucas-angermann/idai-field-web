@@ -12,14 +12,14 @@
                     "type": {
                         "type": "keyword"
                     },
-                    "project": {
-                        "type": "keyword"
-                    },
                     "geometry": {
                         "type": "geo_shape",
                         "coerce": true
                     }
                 }
+            },
+            "project": {
+                "type": "keyword"
             },
             "created": {
                 "properties": {
