@@ -123,7 +123,7 @@ const setHeadingIds = (markdown: string): string => {
                 .replace('## ', '')
                 .replace(/\n/g, '');
             const id: string = heading.replace(' ', '-').toLowerCase();
-            return `<h2 id="${id}">${heading}</h2>`;
+            return `<h2 id="${id}">${heading}</h2>\n`;
         }
     );
 };
