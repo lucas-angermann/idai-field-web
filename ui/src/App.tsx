@@ -5,7 +5,7 @@ import Download from './Download';
 import Document from './Document';
 import Project from './Project';
 import ResourceRedirect from './ResourceRedirect';
-import Manual from './Manual';
+import Manual from './manual/Manual';
 import Navbar from './Navbar';
 
 
