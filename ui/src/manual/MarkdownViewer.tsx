@@ -1,8 +1,9 @@
 import React, { CSSProperties, ElementRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Chapter } from './Manual';
-import { CHAPTER_NAVIGATION_WIDTH, NAVBAR_HEIGHT, PADDING } from './constants';
+import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
 import './MarkdownViewer.css';
+import { NAVBAR_HEIGHT } from '../constants';
 
 
 export default ({ markdown, chapters, setActiveChapter, manualElementRef }

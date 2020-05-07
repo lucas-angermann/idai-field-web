@@ -4,6 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
 import './Download.css';
+import { NAVBAR_HEIGHT } from './constants';
 
 
 type Slide = { imageUrl: string, description: string };
@@ -46,7 +47,7 @@ export default () => {
     }, []);
 
     return (
-        <div>
+        <div style={ pageStyle }>
             { getCarousel() }
             { getDownloadSection(latestVersion) }
         </div>
@@ -138,6 +139,12 @@ const getLatestVersion = (): Promise<string> => {
         request.setRequestHeader('Accept', 'application/vnd.github.v3+json');
         request.send();
     });
+};
+
+
+const pageStyle: CSSProperties = {
+    height: 'calc(100vh - ' + NAVBAR_HEIGHT + 'px)',
+    overflowY: 'scroll'
 };
 
 
