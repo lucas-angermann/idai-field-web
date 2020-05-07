@@ -15,8 +15,7 @@ defmodule Api.MixProject do
     [
       extra_applications: [:logger],
       mod: {Api.Application, []},
-      remix: [:remix],
-      applications: [:guardian]
+      remix: [:remix]
     ]
   end
 
