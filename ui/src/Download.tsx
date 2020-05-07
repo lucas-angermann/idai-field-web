@@ -1,5 +1,4 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
