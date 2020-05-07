@@ -14,6 +14,14 @@ defmodule Api.Documents.Search do
   end
 
   defp build_query(q, size, from, filters, must_not) do
+    build_query_template(q, size, from)
+    |> add_aggregations
+    |> add_filters(filters)
+    |> add_must_not(must_not)
+    |> Poison.encode!
+  end
+
+  defp build_query_template(q, size, from) do
     %{
       query: %{
         bool: %{
@@ -28,10 +36,6 @@ defmodule Api.Documents.Search do
       from: from,
       track_total_hits: true
     }
-    |> add_aggregations
-    |> add_filters(filters)
-    |> add_must_not(must_not)
-    |> Poison.encode!
   end
 
   defp add_filters(query, nil), do: query
