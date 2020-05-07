@@ -4,7 +4,7 @@ import MarkdownViewer from './MarkdownViewer';
 import { loadManual } from './loadManual';
 
 
-const URL: string = 'https://raw.githubusercontent.com/dainst/idai-field/master/manual/manual.de.md';
+const URL: string = 'https://raw.githubusercontent.com/dainst/idai-field/master/manual';
 
 
 export type Chapter = {
