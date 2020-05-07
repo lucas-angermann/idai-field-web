@@ -58,12 +58,18 @@ export default () => {
 const searchDocuments = async (id: string, type: string, from: number) => {
 
     const query = {
-        q: `project:${id}`,
+        q: '*',
         size: CHUNK_SIZE,
         from,
-        skipTypes: ['Project', 'Image', 'Photo', 'Drawing']
+        filters: [
+            { field: 'project', value: id },
+            { field: 'resource.type', value: 'Project', not: true },
+            { field: 'resource.type', value: 'Image', not: true },
+            { field: 'resource.type', value: 'Photo', not: true },
+            { field: 'resource.type', value: 'Drawing', not: true }
+        ]
     };
-    if (type) query.q += ` AND resource.type:${type}`;
+    if (type) query.filters.push({ field: 'resource.type', value: type});
     return search(query);
 };
 

@@ -1,4 +1,4 @@
-import { Query } from './query';
+import { Query, getQueryString } from './query';
 
 export const get = async (id: string): Promise<any> => {
 
@@ -10,16 +10,7 @@ export const get = async (id: string): Promise<any> => {
 
 export const search = async (query: Query): Promise<any> => {
 
-    let uri = `/documents/?q=${getQueryString(query)}`;
-    if (query.size) uri += `&size=${query.size}`;
-    if (query.from) uri += `&from=${query.from}`;
-
+    const uri = `/documents/?${getQueryString(query)}`;
     const response = await fetch(uri);
     return response.json();
 };
-
-const getQueryString = (query: Query) =>
-    `${query.q} ${query.skipTypes
-        ? query.skipTypes.map(type => `-resource.type:${type}`).join(' ')
-        : ''
-    }`;
