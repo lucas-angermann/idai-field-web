@@ -61,15 +61,17 @@ const searchDocuments = async (id: string, type: string, from: number) => {
         q: '*',
         size: CHUNK_SIZE,
         from,
-        filters: [
-            { field: 'project', value: id },
+        must: [
+            { field: 'project', value: id }
+        ],
+        not: [
             { field: 'resource.type', value: 'Project', not: true },
             { field: 'resource.type', value: 'Image', not: true },
             { field: 'resource.type', value: 'Photo', not: true },
             { field: 'resource.type', value: 'Drawing', not: true }
         ]
     };
-    if (type) query.filters.push({ field: 'resource.type', value: type});
+    if (type) query.must.push({ field: 'resource.type', value: type});
     return search(query);
 };
 
