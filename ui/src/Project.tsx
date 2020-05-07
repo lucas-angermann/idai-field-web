@@ -4,6 +4,8 @@ import { search, get } from './documents';
 import DocumentTeaser from './DocumentTeaser';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import DocumentList from './DocumentList';
+import { mdiCloseCircle } from '@mdi/js';
+import Icon from '@mdi/react';
 
 
 const CHUNK_SIZE = 50;
@@ -42,7 +44,7 @@ export default () => {
             <Row>
                 <Col sm={ 3 }>
                     { renderProjectTeaser(projectDocument) }
-                    { renderFilters(filters) }
+                    { renderFilters(filters, getQueryParam(location, 'type')) }
                 </Col>
                 <Col onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
                     <DocumentList documents={ documents } />
@@ -68,30 +70,31 @@ const searchDocuments = async (id: string, type: string, from: number) => {
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
 
-const renderFilters = (filters: any) =>
-    Object.keys(filters).map((key: string) => renderFilter(key, filters[key]));
+const renderFilters = (filters: any, selectedType: string) =>
+    Object.keys(filters).map((key: string) => renderFilter(key, filters[key], selectedType));
 
-const renderFilter = (key: string, filter: any) => (
+const renderFilter = (key: string, filter: any, selectedType: string) => (
     <Card key={ key }>
         <Card.Header>{ key }</Card.Header>
         <Card.Body>
-            { filter.map((bucket: any) => renderFilterValue(key, bucket)) }
+            { filter.map((bucket: any) => renderFilterValue(key, bucket, selectedType)) }
         </Card.Body>
     </Card>
 );
 
-const renderFilterValue = (key: string, bucket: any) => (
+const renderFilterValue = (key: string, bucket: any, selectedType: string) => (
     <Row key={ bucket.value }>
         <Col>
             <Link to={ `?${key}=${bucket.value}` }>
                 { bucket.value }
             </Link>
+            { (selectedType === bucket.value) ? renderCloseButton(key) : '' }
         </Col>
-        <Col><em>{ bucket.count }</em></Col>
+        <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
     </Row>
 );
 
-const getQueryParam = (location: any, key: string) => {
+const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
 
-    return new URLSearchParams(location.search).get(key);
-};
+
+const getQueryParam = (location: any, key: string) => new URLSearchParams(location.search).get(key);
