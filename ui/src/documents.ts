@@ -1,9 +1,4 @@
-type Query = {
-    q: string,
-    size?: number,
-    from?: number,
-    skipTypes?: string[]
-};
+import { Query } from './query';
 
 export const get = async (id: string): Promise<any> => {
 
