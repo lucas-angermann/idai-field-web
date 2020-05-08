@@ -31,7 +31,7 @@ defmodule Api.Auth.Router do
   to claim to be that same user
   """
   post "/sign_in" do
-    {:ok, token, claims} = User.by(conn.body_params) |> Auth.Guardian.encode_and_sign
+    {:ok, token, claims} = Auth.Guardian.encode_and_sign(conn.body_params)
 
     conn
     |> put_resp_content_type("text/plain")

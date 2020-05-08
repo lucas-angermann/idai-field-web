@@ -1,7 +1,8 @@
 defmodule Api.Auth.Guardian do
   use Guardian, otp_app: :api
 
-  def subject_for_token(user, _claims) do
+  def subject_for_token(user_json, _claims) do
+    user = User.by(user_json)
     {:ok, user.name}
   end
 

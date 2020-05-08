@@ -3,9 +3,9 @@ defmodule User do
   @anonymous_user %{ name: "anonymous", pass: "anonymous" }
 
   @users [
-    %{ name: "user-1", pass: "pass1" },
-    %{ name: "user-2", pass: "pass2" },
-    %{ name: "user-3", pass: "pass3" },
+    %{ name: "user-1", pass: "pass-1" },
+    %{ name: "user-2", pass: "pass-2" },
+    %{ name: "user-3", pass: "pass-3" },
     @anonymous_user
   ]
 
