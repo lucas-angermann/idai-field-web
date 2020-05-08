@@ -15,6 +15,12 @@
                     "geometry": {
                         "type": "geo_shape",
                         "coerce": true
+                    },
+                    "material": {
+                        "type": "keyword"
+                    },
+                    "color": {
+                        "type": "keyword"
                     }
                 }
             },
