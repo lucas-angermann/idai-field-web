@@ -16,12 +16,13 @@ export default ({ documents }: { documents: any[] }) => {
     const history: History = useHistory();
 
     useEffect(() => {
-        setFeatureCollection(documents.length > 0 ? createFeatureCollection(documents) : undefined);
+        setFeatureCollection(createFeatureCollection(documents));
     }, [documents]);
 
     return (
         <Map style={ mapStyle }
-             bounds={ getBounds(featureCollection) } boundsOptions={ { padding: [10, 10] } }>
+             bounds={ getBounds(featureCollection) }
+             boundsOptions={ { padding: [10, 10] } }>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             { getGeoJSONElement(featureCollection, history) }
         </Map>
@@ -76,12 +77,17 @@ const onClick = (history: History) => (event: any) => {
 };
 
 
-const createFeatureCollection = (documents: any[]): FeatureCollection => ({
-    type: 'FeatureCollection',
-    features: documents
-    .filter(document => document.resource.geometry)
-    .map(createFeature)
-});
+const createFeatureCollection = (documents: any[]): FeatureCollection | undefined => {
+
+    if (documents.length === 0) return undefined;
+
+    return {
+        type: 'FeatureCollection',
+        features: documents
+            .filter(document => document.resource.geometry)
+            .map(createFeature)
+    };
+};
 
 
 const createFeature = (document: any): Feature => ({
