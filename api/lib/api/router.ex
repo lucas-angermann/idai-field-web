@@ -25,7 +25,7 @@ defmodule Api.Router do
   end
 
   # can be removed after we have proper authentication
-  forward("/private", to: Api.Private.PrivRouter)
+  forward("/private", to: Api.Auth.Router)
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")

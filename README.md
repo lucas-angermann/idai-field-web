@@ -49,7 +49,7 @@ It can be run independently with the following command:
 
 or interactively with iex:
 
-    $ docker-compose run --service-ports --entrypoint "iex -S mix run --no-halt" api
+    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
 
 
 ## UI
