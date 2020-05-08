@@ -6,6 +6,7 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
+import { Query } from './query';
 
 
 const CHUNK_SIZE = 50;
@@ -25,14 +26,14 @@ export default () => {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, getQueryParam(location, 'type'), newOffset)
+            searchDocuments(id, location, newOffset)
                 .then(result => setDocuments(documents.concat(result.documents)));
             setOffset(newOffset);
         }
     };
 
     useEffect(() => {
-        searchDocuments(id, getQueryParam(location, 'type'), 0).then(result => {
+        searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         });
@@ -44,7 +45,7 @@ export default () => {
             <Row>
                 <Col sm={ 3 }>
                     { renderProjectTeaser(projectDocument) }
-                    { renderFilters(filters, getQueryParam(location, 'type')) }
+                    { renderFilters(filters, location) }
                 </Col>
                 <Col onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
                     <DocumentList documents={ documents } />
@@ -55,54 +56,72 @@ export default () => {
 
 };
 
-const searchDocuments = async (id: string, type: string, from: number) => {
 
-    const query = {
-        q: '*',
-        size: CHUNK_SIZE,
-        from,
-        must: [
-            { field: 'project', value: id }
-        ],
-        not: [
-            { field: 'resource.type', value: 'Project', not: true },
-            { field: 'resource.type', value: 'Image', not: true },
-            { field: 'resource.type', value: 'Photo', not: true },
-            { field: 'resource.type', value: 'Drawing', not: true }
-        ]
-    };
-    if (type) query.must.push({ field: 'resource.type', value: type});
+const searchDocuments = async (id: string, location: any, from: number) => {
+
+    const query: Query = buildQueryTemplate(id, from);
+    addFilters(query, location);
     return search(query);
 };
+
+
+const buildQueryTemplate = (id: string, from: number): Query => ({
+    q: '*',
+    size: CHUNK_SIZE,
+    from,
+    filters: [
+        { field: 'project', value: id }
+    ],
+    not: [
+        { field: 'resource.type', value: 'Project' },
+        { field: 'resource.type', value: 'Image' },
+        { field: 'resource.type', value: 'Photo' },
+        { field: 'resource.type', value: 'Drawing' }
+    ]
+});
+
+
+const addFilters = (query: any, location: any) => {
+
+    const filters = Array.from(new URLSearchParams(location.search).entries())
+        .map(([field, value]) => ({ field, value }));
+    query.filters = query.filters.concat(filters);
+};
+
 
 const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
 
-const renderFilters = (filters: any, selectedType: string) =>
-    Object.keys(filters).map((key: string) => renderFilter(key, filters[key], selectedType));
 
-const renderFilter = (key: string, filter: any, selectedType: string) => (
+const renderFilters = (filters: any, location: any) =>
+    Object.keys(filters).map((key: string) => renderFilter(key, filters[key], location));
+
+
+const renderFilter = (key: string, filter: any, location: any) => (
     <Card key={ key }>
         <Card.Header>{ key }</Card.Header>
         <Card.Body>
-            { filter.map((bucket: any) => renderFilterValue(key, bucket, selectedType)) }
+            { filter.map((bucket: any) => renderFilterValue(key, bucket, location)) }
         </Card.Body>
     </Card>
 );
 
-const renderFilterValue = (key: string, bucket: any, selectedType: string) => (
-    <Row key={ bucket.value }>
-        <Col>
-            <Link to={ `?${key}=${bucket.value}` }>
-                { bucket.value }
-            </Link>
-            { (selectedType === bucket.value) ? renderCloseButton(key) : '' }
-        </Col>
-        <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
-    </Row>
-);
+
+const renderFilterValue = (key: string, bucket: any, location: any) => {
+
+    const urlParams = new URLSearchParams(location.search);
+    return (
+        <Row key={ bucket.value }>
+            <Col>
+                <Link to={ `?${key}=${bucket.value}` }>
+                    { bucket.value }
+                </Link>
+                { (urlParams.has(key) && urlParams.get(key) === bucket.value ) ? renderCloseButton(key) : '' }
+            </Col>
+            <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
+        </Row>
+    );
+};
+
 
 const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
-
-
-const getQueryParam = (location: any, key: string) => new URLSearchParams(location.search).get(key);

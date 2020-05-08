@@ -1,22 +1,24 @@
 export type Query = {
     q: string,
-    must?: Filter[],
+    filters?: Filter[],
     not?: Filter[],
     size?: number,
     from?: number
 };
+
 
 export type Filter = {
     field: string,
     value: string
 };
 
+
 export const getQueryString = (query: Query) => {
 
     let queryString = `q=${query.q}`;
 
-    if (query.must) {
-        queryString += ' AND ' + query.must.map((filter: Filter) => `${filter.field}:${filter.value}`).join(' AND ');
+    if (query.filters) {
+        queryString += ' AND ' + query.filters.map((filter: Filter) => `${filter.field}:${filter.value}`).join(' AND ');
     }
     if (query.not) {
         queryString += ' AND NOT ' + query.not.map((filter: Filter) => `${filter.field}:${filter.value}`).join(' AND NOT ');

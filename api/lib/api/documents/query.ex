@@ -42,13 +42,13 @@ defmodule Api.Documents.Query do
 
   defp add_aggregations(query) do
     Map.put(query, :aggs, %{
-      type: %{
+      "resource.type" => %{
         terms: %{ field: "resource.type" }
       },
-      material: %{
+      "resource.material" => %{
         terms: %{ field: "resource.material" }
       },
-      color: %{
+      "resource.color" => %{
         terms: %{ field: "resource.color" }
       }
     })
