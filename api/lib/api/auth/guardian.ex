@@ -6,6 +6,6 @@ defmodule Api.Auth.Guardian do
   end
 
   def resource_from_claims(claims) do
-    {:ok, %{a: 1}}
+    {:ok, User.by(claims["sub"])}
   end
 end
