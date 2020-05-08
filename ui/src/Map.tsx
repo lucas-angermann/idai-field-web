@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import extent from 'turf-extent';
@@ -40,14 +41,14 @@ const getGeoJSONElement = (featureCollection: FeatureCollection, history: Histor
 };
 
 
-const onEachFeature = (history: History) => (feature: Feature, layer: any) => {
+const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer) => {
 
     registerEventListeners(feature, layer, history);
     addTooltip(feature, layer);
 };
 
 
-const registerEventListeners = (feature: Feature, layer: any, history: History) => {
+const registerEventListeners = (feature: Feature, layer: L.Layer, history: History) => {
 
     layer.on({
         click: onClick(history)
@@ -55,7 +56,7 @@ const registerEventListeners = (feature: Feature, layer: any, history: History) 
 };
 
 
-const addTooltip = (feature: Feature, layer: any) => {
+const addTooltip = (feature: Feature, layer: L.Layer) => {
 
     layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -50] } );
 };
