@@ -9,6 +9,6 @@ config :api,
   couchdb_databases: ["db1", "db2", "db3"],
   gazetteer_url: "https://gazetteer.dainst.org"
 
-config :api, Api.Private.PrivGuardian,
+config :api, Api.Auth.Guardian,
        issuer: "api",
        secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
