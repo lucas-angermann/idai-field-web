@@ -1,170 +1,120 @@
-import React, { useRef, useState, useEffect, CSSProperties } from 'react';
-import { useHistory } from 'react-router-dom';
-import { History } from 'history';
-import mapboxgl, { Map, Layer, GeoJSONSourceRaw, GeoJSONSource } from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import React, { CSSProperties, useEffect, useState } from 'react';
+import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
+import { History } from 'history';
 import extent from 'turf-extent';
-
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
-
-const SOURCE_ID = 'geojson-source';
-
-type MapOptions = { zoom: number, center: [number, number] };
+import { NAVBAR_HEIGHT } from './constants';
+import hash from 'object-hash';
+import { useHistory } from 'react-router-dom';
 
 
 export default ({ documents }: { documents: any[] }) => {
 
-    const [map, setMap] = useState(null);
-    const [ready, setReady] = useState(false);
-    const mapOptions: MapOptions = { zoom: 2, center: [0, 0] };
-    const mapContainer = useRef(null);
-    const history = useHistory();
+    const [featureCollection, setFeatureCollection] = useState(undefined);
+
+    const history: History = useHistory();
 
     useEffect(() => {
-        if (!map) setMap(initialize(mapOptions, mapContainer.current, history, setReady));
-    }, [map, mapOptions, history]);
+        setFeatureCollection(createFeatureCollection(documents));
+    }, [documents]);
 
-    useEffect(() => {
-        if (map && map.getSource(SOURCE_ID)) update(map, documents);
-    }, [map, documents, ready]);
-
-    return <div ref={ mapContainer } style={ mapContainerStyle }/>;
+    return (
+        <Map style={ mapStyle }
+             bounds={ getBounds(featureCollection) }
+             boundsOptions={ { padding: [10, 10] } }>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            { getGeoJSONElement(featureCollection, history) }
+        </Map>
+    );
 };
 
 
-const initialize = (mapOptions: MapOptions,
-                    containerEl: HTMLElement,
-                    history: History,
-                    setReady: (ready: boolean) => void) => {
+const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
 
-    const map = new Map({
-        container: containerEl,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: mapOptions.center,
-        zoom: mapOptions.zoom
+    if (!featureCollection) return;
+
+    return (
+        <GeoJSON key={ hash(featureCollection) }
+                 data={ featureCollection }
+                 pointToLayer={ pointToLayer }
+                 onEachFeature={ onEachFeature(history) } />
+    );
+};
+
+
+const pointToLayer = (feature: Feature, latLng: L.LatLng): L.Marker => {
+
+    return L.marker(latLng, { icon: MarkerIcon });
+};
+
+
+const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer) => {
+
+    registerEventListeners(feature, layer, history);
+    addTooltip(feature, layer);
+};
+
+
+const registerEventListeners = (feature: Feature, layer: L.Layer, history: History) => {
+
+    layer.on({
+        click: onClick(history)
     });
-
-    return map.on('load', () => {
-        map.addSource(SOURCE_ID, getInitialGeoJSONSource())
-            .addLayer(polygonLayer)
-            .addLayer(pointLayer)
-            .addLayer(polygonLabelLayer)
-            .on('click', 'point-layer', onClickMarker(history))
-            .on('mouseenter', 'point-layer', () => setCursor(map, 'pointer'))
-            .on('mouseleave', 'point-layer', () => setCursor(map, ''));
-        setReady(true);
-    });
 };
 
 
-const update = (map: Map, documents: any[]) => {
+const addTooltip = (feature: Feature, layer: L.Layer) => {
 
-    const featureCollection: FeatureCollection = getFeatureCollection(documents);
-    (map.getSource(SOURCE_ID) as GeoJSONSource).setData(featureCollection);
-    fitBounds(map, featureCollection);
+    layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -30] } );
 };
 
 
-const getInitialGeoJSONSource = (): GeoJSONSourceRaw => ({
-    type: 'geojson',
-    data: getFeatureCollection([])
-});
+const onClick = (history: History) => (event: any) => {
 
-
-const getFeatureCollection = (documents: any[]): FeatureCollection => ({
-    type: 'FeatureCollection',
-    features: documents
-        .filter(document => document.resource.geometry)
-        .map(getFeature)
-});
-
-
-const getFeature = (document: any): Feature => ({
-    type: 'Feature',
-    geometry: document.resource.geometry,
-    properties: {
-        identifier: document.resource.identifier
-    }
-});
-
-
-const fitBounds = (map: Map, featureCollection: FeatureCollection) => {
-
-    if (featureCollection.features.length > 0) {
-        map.fitBounds(extent(featureCollection), { padding: 25 });
-    }
-};
-
-
-const onClickMarker = (history: History) => (event: any) => {
-
-    const identifier: string = event.features[0].properties.identifier;
+    const identifier: string = event.target.feature.properties.identifier;
     history.push(`/project/${identifier}`);
 };
 
 
-const setCursor = (map: Map, style: string) => {
+const createFeatureCollection = (documents: any[]): FeatureCollection | undefined => {
 
-    map.getCanvas().style.cursor = style;
+    if (documents.length === 0) return undefined;
+
+    return {
+        type: 'FeatureCollection',
+        features: documents
+            .filter(document => document.resource.geometry)
+            .map(createFeature)
+    };
 };
 
 
-const mapContainerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '56px',
-    right: '0',
-    left: '0',
-    bottom: '0'
+const createFeature = (document: any): Feature => ({
+    type: 'Feature',
+    geometry: document.resource.geometry,
+    properties: {
+       identifier: document.resource.identifier
+    }
+});
+
+
+const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
+
+    if (!featureCollection) return [[-90, 180], [90, 180]];
+
+    const extentResult: number[] = extent(featureCollection);
+    return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
 };
 
 
-const polygonLayer: Layer = {
-    id: 'polygon-layer',
-    type: 'fill',
-    source: SOURCE_ID,
-    paint: {
-        'fill-color': '#888888',
-        'fill-opacity': 0.4
-    },
-    filter: ['==', '$type', 'Polygon']
+const mapStyle: CSSProperties = {
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
 };
 
 
-const pointLayer: any = {
-    id: 'point-layer',
-    type: 'symbol',
-    source: SOURCE_ID,
-    layout: {
-        'text-field': ['get', 'identifier'],
-        'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-        'text-radial-offset': 0.5,
-        'text-justify': 'auto',
-        'icon-image': 'ranger-station-15',
-        'text-size': 14
-    },
-    paint: {
-        'text-color': '#5b729d',
-        'text-halo-color': '#fff',
-        'text-halo-width': 2
-    },
-    filter: ['==', '$type', 'Point']
-};
-
-
-const polygonLabelLayer: Layer = {
-    id: 'polygon-label-layer',
-    type: 'symbol',
-    source: SOURCE_ID,
-    layout: {
-        'text-field': ['get', 'shortDescription'],
-        'text-size': 12,
-        'symbol-placement': 'point'
-    },
-    paint: {
-        'text-color': '#660004',
-        'text-halo-color': '#fff',
-        'text-halo-width': 2
-    },
-    filter: ['==', '$type', 'Polygon']
-};
+const MarkerIcon = L.icon({
+    iconUrl: 'marker-icon.svg',
+    iconSize: [25, 25],
+    iconAnchor: [13, 13]
+});
