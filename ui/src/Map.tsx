@@ -36,8 +36,15 @@ const getGeoJSONElement = (featureCollection: FeatureCollection, history: Histor
     return (
         <GeoJSON key={ hash(featureCollection) }
                  data={ featureCollection }
+                 pointToLayer={ pointToLayer }
                  onEachFeature={ onEachFeature(history) } />
     );
+};
+
+
+const pointToLayer = (feature: Feature, latLng: L.LatLng): L.Marker => {
+
+    return L.marker(latLng, { icon: MarkerIcon });
 };
 
 
@@ -58,7 +65,7 @@ const registerEventListeners = (feature: Feature, layer: L.Layer, history: Histo
 
 const addTooltip = (feature: Feature, layer: L.Layer) => {
 
-    layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -50] } );
+    layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -30] } );
 };
 
 
@@ -98,3 +105,10 @@ const getBounds = (featureCollection?: FeatureCollection): [number, number][] =>
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
 };
+
+
+const MarkerIcon = L.icon({
+    iconUrl: 'marker-icon.svg',
+    iconSize: [24, 24],
+    iconAnchor: [12, 12]
+});
