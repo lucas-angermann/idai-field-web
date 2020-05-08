@@ -11,7 +11,7 @@ defmodule Api.Documents.Router do
     conn.params["q"],
     conn.params["size"],
     conn.params["from"],
-    conn.params["must"],
+    conn.params["filters"],
     conn.params["not"]
   ))
 
