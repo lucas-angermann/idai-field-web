@@ -35,16 +35,29 @@ const getGeoJSONElement = (featureCollection: FeatureCollection, history: Histor
     return (
         <GeoJSON key={ hash(featureCollection) }
                  data={ featureCollection }
-                 onEachFeature={ registerEventListeners(history) } />
+                 onEachFeature={ onEachFeature(history) } />
     );
 };
 
 
-const registerEventListeners = (history: History) => (feature: Feature, layer: any) => {
+const onEachFeature = (history: History) => (feature: Feature, layer: any) => {
+
+    registerEventListeners(feature, layer, history);
+    addTooltip(feature, layer);
+};
+
+
+const registerEventListeners = (feature: Feature, layer: any, history: History) => {
 
     layer.on({
         click: onClick(history)
     });
+};
+
+
+const addTooltip = (feature: Feature, layer: any) => {
+
+    layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -50] } );
 };
 
 
