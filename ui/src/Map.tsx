@@ -9,6 +9,10 @@ import hash from 'object-hash';
 import { useHistory } from 'react-router-dom';
 
 
+const TILES_URL: string = 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png';
+const API_KEY: string = 'b47a3cf895b94aedad41e5cfb5222b87';
+
+
 export default ({ documents }: { documents: any[] }) => {
 
     const [featureCollection, setFeatureCollection] = useState(undefined);
@@ -23,7 +27,7 @@ export default ({ documents }: { documents: any[] }) => {
         <Map style={ mapStyle }
              bounds={ getBounds(featureCollection) }
              boundsOptions={ { padding: [10, 10] } }>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <TileLayer url={ `${TILES_URL}?apikey=${API_KEY}` } />
             { getGeoJSONElement(featureCollection, history) }
         </Map>
     );
