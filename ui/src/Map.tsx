@@ -109,6 +109,6 @@ const mapStyle: CSSProperties = {
 
 const MarkerIcon = L.icon({
     iconUrl: 'marker-icon.svg',
-    iconSize: [24, 24],
-    iconAnchor: [12, 12]
+    iconSize: [25, 25],
+    iconAnchor: [13, 13]
 });
