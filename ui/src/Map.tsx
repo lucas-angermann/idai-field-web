@@ -101,7 +101,7 @@ const createFeature = (document: any): Feature => ({
 
 const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
 
-    if (!featureCollection) return [[0, 0], [10, 10]];
+    if (!featureCollection) return [[-90, 180], [90, 180]];
 
     const extentResult: number[] = extent(featureCollection);
     return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
