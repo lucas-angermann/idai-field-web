@@ -6,14 +6,15 @@ defmodule Api.Auth.Guardian do
 
     rights = Poison.encode!(%{
       user: user.name,
-      readable_projects: ["abc"] # TODO read from config, based on user
+      readable_projects: Application.get_env(:api, Api.Auth)[:rights][user.name]
     })
+
     {:ok, rights}
   end
 
   def resource_from_claims(claims) do
 
     rights = Poison.decode!(claims["sub"])
-    {:ok, %{ rights: rights }}
+    {:ok, rights}
   end
 end

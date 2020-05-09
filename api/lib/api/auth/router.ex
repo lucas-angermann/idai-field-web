@@ -42,7 +42,7 @@ defmodule Api.Auth.Router do
   end
 
 
-  defp get_user_for_bearer(nil), do: User.anonymous()
+  defp get_user_for_bearer(nil), do: Auth.Rights.empty()
 
   defp get_user_for_bearer(bearer) do
     token = String.replace bearer, "Bearer ", ""
