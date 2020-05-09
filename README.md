@@ -31,10 +31,9 @@ Visit `http://localhost:3000`.
 
 To set up test data, and provide them via elasticsearch, do:
 
-```
-$ docker-compose up elasticsearch
-$ ./put-test-data.sh
-```
+
+    $ docker-compose up elasticsearch
+    $ ./put-test-data.sh
 
 Test via `http://localhost:9200/idai-field/_search`.
 
@@ -80,12 +79,8 @@ It can be started independently with:
 
 ## Unit testing
 
-```
-$ docker-compose run --service-ports --entrypoint "mix test" api
-```
+    $ docker-compose run --service-ports --entrypoint "mix test" api
 
 ## (Re-)building containers
 
-```
-$ docker-compose up --build api
-```
+    $ docker-compose up --build api
