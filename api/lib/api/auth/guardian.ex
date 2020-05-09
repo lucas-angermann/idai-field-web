@@ -3,10 +3,17 @@ defmodule Api.Auth.Guardian do
 
   def subject_for_token(user_json, _claims) do
     user = User.by(user_json)
-    {:ok, user.name}
+
+    rights = Poison.encode!(%{
+      user: user.name,
+      readable_projects: ["abc"] # TODO read from config, based on user
+    })
+    {:ok, rights}
   end
 
   def resource_from_claims(claims) do
-    {:ok, User.by(claims["sub"])}
+
+    rights = Poison.decode!(claims["sub"])
+    {:ok, %{ rights: rights }}
   end
 end

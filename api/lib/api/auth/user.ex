@@ -16,9 +16,4 @@ defmodule User do
     [found_user|_] = Enum.filter(@users, fn u -> u.name == name and u.pass == pass end) # TODO replace with comprehension
     found_user
   end
-
-  def by(name) do
-    [found_user|_] = Enum.filter(@users, fn u -> u.name == name end)
-    found_user
-  end
 end

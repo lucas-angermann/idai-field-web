@@ -12,11 +12,14 @@ defmodule Api.Auth.Router do
   """
   get "/show" do
     bearer = List.first get_req_header(conn, "authorization")
-    user = get_user_for_bearer(bearer)
+    rights = get_user_for_bearer(bearer)
+
+    # TODO remove this function and eval rights in /documents route instead.
+    # There we can use the rights to build a query which excludes the documents for which there are no permissions
 
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(%{ status: "ok", user: user })
+    |> send_json(%{ status: "ok", rights: rights })
   end
 
 
@@ -44,6 +47,7 @@ defmodule Api.Auth.Router do
   defp get_user_for_bearer(bearer) do
     token = String.replace bearer, "Bearer ", ""
     {:ok, user, _} = Auth.Guardian.resource_from_token(token)
+    # TODO handle error
     user
    end
 end
