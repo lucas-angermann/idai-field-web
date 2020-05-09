@@ -27,7 +27,6 @@ Start the web UI:
 
 Visit `http://localhost:3000`.
 
-
 ## Test Data
 
 To set up test data, and provide them via elasticsearch, do:
