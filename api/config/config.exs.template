@@ -19,7 +19,7 @@ config :api, Api.Auth,
               %{ name: "user-2", pass: "pass-2" },
               %{ name: "user-3", pass: "pass-3" }
        ],
-       rights: %{
+       readable_projects: %{
               "user-1" => ["a", "b", "c", "d"],
               "user-2" => ["a", "b", "c"],
               "user-3" => ["a", "b"],

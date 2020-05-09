@@ -6,7 +6,7 @@ defmodule Api.Auth.Guardian do
 
     rights = Poison.encode!(%{
       user: user.name,
-      readable_projects: Application.get_env(:api, Api.Auth)[:rights][user.name]
+      readable_projects: Application.get_env(:api, Api.Auth)[:readable_projects][user.name]
     })
 
     {:ok, rights}
