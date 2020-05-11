@@ -1,9 +1,14 @@
+import { flow } from 'tsfun';
 import { Chapter } from './Manual';
 
 
 export const loadManual = async (url: string): Promise<{ markdown: string, chapters: Chapter[] }> => {
 
-    const markdownText: string = setHeadingIds(fixImageLinks(await loadMarkdown(url), url));
+    const markdownText: string = flow(
+        await loadMarkdown(url),
+        fixImageLinks(url),
+        setHeadingIds
+    );
 
     return {
         markdown: markdownText,
@@ -52,7 +57,7 @@ const getChapters = (markdown: string): Chapter[] => {
 };
 
 
-const fixImageLinks = (markdown: string, url: string): string => {
+const fixImageLinks = (url: string) => (markdown: string): string => {
 
     return markdown.replace(
         /img src="images/g,
