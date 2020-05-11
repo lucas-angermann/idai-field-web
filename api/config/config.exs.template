@@ -24,4 +24,4 @@ config :api, Api.Auth,
               "user-2" => ["a", "b", "c"],
               "user-3" => ["a", "b"],
               "anonymous" => ["a"]
-       }}
+       }
