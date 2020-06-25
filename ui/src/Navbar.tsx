@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ export default () => {
     const location = useLocation();
 
     return (
-        <Navbar bg="light">
+        <Navbar bg="light" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.field</Navbar.Brand>
             <Nav activeKey={ location.pathname }>
                 <Nav.Link href="/">Projekte</Nav.Link>
@@ -16,4 +16,8 @@ export default () => {
             </Nav>
         </Navbar>
     );
+};
+
+const navbarStyle: CSSProperties = {
+    backgroundImage: 'linear-gradient(to right, rgba(106,164,184,0.95) 0%, #557ebb 100%)'
 };
