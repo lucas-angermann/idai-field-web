@@ -99,7 +99,7 @@ const renderFilters = (filters: any, location: any) =>
 
 const renderFilter = (key: string, filter: any, location: any) => (
     <Card key={ key }>
-        <Card.Header>{ key }</Card.Header>
+        <Card.Header><h3>{ key }</h3></Card.Header>
         <Card.Body>
             { filter.map((bucket: any) => renderFilterValue(key, bucket, location)) }
         </Card.Body>
