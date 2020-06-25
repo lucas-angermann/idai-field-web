@@ -7,7 +7,7 @@ export default () => {
     const location = useLocation();
 
     return (
-        <Navbar bg="light" style={ navbarStyle }>
+        <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.field</Navbar.Brand>
             <Nav activeKey={ location.pathname }>
                 <Nav.Link href="/">Projekte</Nav.Link>
