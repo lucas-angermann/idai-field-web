@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { search, get } from './documents';
 import DocumentTeaser from './DocumentTeaser';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -20,6 +20,7 @@ export default () => {
     const [filters, setFilters] = useState([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
+    const [error, setError] = useState(false);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
@@ -27,7 +28,8 @@ export default () => {
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
             searchDocuments(id, location, newOffset)
-                .then(result => setDocuments(documents.concat(result.documents)));
+                .then(result => setDocuments(documents.concat(result.documents)))
+                .catch(err => setError(err));
             setOffset(newOffset);
         }
     };
@@ -36,20 +38,26 @@ export default () => {
         searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
-        });
+        }).catch(err => setError(err));
         get(id).then(setProjectDocument);
     }, [id, location]);
+
+    const renderResult = () => {
+        return [
+            <Col key="filters" sm={ 3 }>
+                { renderProjectTeaser(projectDocument) }
+                { renderFilters(filters, location) }
+            </Col>,
+            <Col onScroll={ onScroll } key="results" style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
+                <DocumentList documents={ documents } />
+            </Col>
+        ];
+    };
 
     return (
         <Container fluid>
             <Row>
-                <Col sm={ 3 }>
-                    { renderProjectTeaser(projectDocument) }
-                    { renderFilters(filters, location) }
-                </Col>
-                <Col onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
-                    <DocumentList documents={ documents } />
-                </Col>
+                { error ? renderError(error) : renderResult() }
             </Row>
         </Container>
     );
@@ -125,3 +133,5 @@ const renderFilterValue = (key: string, bucket: any, location: any) => {
 
 
 const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
+
+const renderError = (error: any) => <Col><Alert variant="danger">Backend not available!</Alert></Col>;
