@@ -49,3 +49,12 @@ a:hover {
   background-color: var(--secondary-bg-color);
   border-bottom: 4px dotted var(--main-bg-color);
 }
+
+.card-header h1,
+.card-header h2,
+.card-header h3,
+.card-header h4,
+.card-header h5,
+.card-header h6 {
+  margin: .5rem 0;
+}

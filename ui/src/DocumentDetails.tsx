@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Jumbotron } from 'react-bootstrap';
+import { Container, Jumbotron, Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 
 export default ({ document }: { document: any }) => {
@@ -8,13 +8,17 @@ export default ({ document }: { document: any }) => {
     const fieldList = renderFieldList(resource);
     return (
         <Container>
-            <Jumbotron>
-                <h1>
-                    <CategoryIcon category={ resource.type } size="40" />
-                    &nbsp; { resource.identifier }
-                </h1>
-                { fieldList }
-            </Jumbotron>
+            <Card>
+                <Card.Header>
+                    <h1>
+                        <CategoryIcon category={ resource.type } size="40" />
+                        &nbsp; { resource.identifier }
+                    </h1>
+                </Card.Header>
+                <Card.Body>
+                    { fieldList }
+                </Card.Body>
+            </Card>
         </Container>
     );
 };
