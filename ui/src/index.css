@@ -12,18 +12,20 @@
   --secondary-bg-color: white;
   --main-link-color: #5882c2;
   --main-link-color-hover: #375d97;
+  --font-body: 'Open Sans', sans-serif;
+  --font-headings: 'Cargan', serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--main-bg-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cargan', serif;
+  font-family: var(--font-headings);
 }
 
 code {
@@ -57,4 +59,8 @@ a:hover {
 .card-header h5,
 .card-header h6 {
   margin: .5rem 0;
+}
+
+.navbar-brand {
+  font-family: var(--font-headings);
 }

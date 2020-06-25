@@ -8,7 +8,7 @@ export default () => {
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
-            <Navbar.Brand href="/">iDAI.field</Navbar.Brand>
+            <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
             <Nav activeKey={ location.pathname }>
                 <Nav.Link href="/">Projekte</Nav.Link>
                 <Nav.Link href="/download">Download</Nav.Link>
