@@ -90,7 +90,7 @@ const iconStyle = (size: number, color: string): CSSProperties => ({
     lineHeight: `${size}px`,
     backgroundColor: color,
     display: 'inline-block',
-    fontFamily: 'Roboto, sans-serif !important',
+    fontFamily: `'Open Sans', sans-serif`,
     fontWeight: 'lighter',
     borderRadius: '50%',
     textAlign: 'center',
