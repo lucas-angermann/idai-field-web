@@ -7,11 +7,19 @@
   font-style: normal;
 }
 
+:root {
+  --main-bg-color: #d3d3cf;
+  --secondary-bg-color: white;
+  --main-link-color: #5882c2;
+  --main-link-color-hover: #375d97;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,5 +31,21 @@ code {
 }
 
 a {
-  color: #37588e;
+  color: var(--main-link-color);
+}
+
+a:hover {
+  color: var(--main-link-color-hover);
+  text-decoration: none;
+}
+
+.card {
+  border-radius: 0;
+  border: 0;
+  margin: 15px 0;
+}
+
+.card-header {
+  background-color: var(--secondary-bg-color);
+  border-bottom: 4px dotted var(--main-bg-color);
 }
