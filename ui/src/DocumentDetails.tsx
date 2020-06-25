@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Jumbotron, Card } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 
 export default ({ document }: { document: any }) => {
