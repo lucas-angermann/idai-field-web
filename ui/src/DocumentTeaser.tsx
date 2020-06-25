@@ -15,7 +15,7 @@ export default ({ document }) => {
                         </Col>
                         <Col>
                             <Row>
-                                <Col><strong>{ document.resource.identifier }</strong></Col>
+                                <Col><h3>{ document.resource.identifier }</h3></Col>
                             </Row>
                             <Row>
                                 <Col>{ document.resource.shortDescription }</Col>
