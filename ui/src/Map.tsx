@@ -83,7 +83,7 @@ const onClick = (history: History) => (event: any) => {
 
 const createFeatureCollection = (documents: any[]): FeatureCollection | undefined => {
 
-    if (documents.length === 0) return undefined;
+    if (!documents || documents.length === 0) return undefined;
 
     return {
         type: 'FeatureCollection',
