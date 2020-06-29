@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
-import ProjectOverview from './ProjectOverview';
-import Download from './Download';
-import Document from './Document';
-import Project from './Project';
+import ProjectOverview from './overview/ProjectOverview';
+import Download from './download/Download';
+import Document from './document/Document';
+import Project from './project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
 import Navbar from './Navbar';

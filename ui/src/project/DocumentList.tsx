@@ -1,5 +1,5 @@
 import React from 'react';
-import DocumentTeaser from './DocumentTeaser';
+import DocumentTeaser from '../document/DocumentTeaser';
 
 
 export default ({ documents } : { documents: any }) =>

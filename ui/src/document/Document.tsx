@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DocumentDetails from './DocumentDetails';
 import { Container } from 'react-bootstrap';
-import { get } from './documents';
+import { get } from '../documents';
 
 export default () => {
 

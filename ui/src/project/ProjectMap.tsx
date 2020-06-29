@@ -1,16 +1,13 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import { Map, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import extent from 'turf-extent';
-import { NAVBAR_HEIGHT } from './constants';
+import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
 import { useHistory } from 'react-router-dom';
-
-
-const TILES_URL: string = 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png';
-const API_KEY: string = 'b47a3cf895b94aedad41e5cfb5222b87';
+import { colors } from '../categoryColors';
 
 
 export default ({ documents }: { documents: any[] }) => {
@@ -25,9 +22,13 @@ export default ({ documents }: { documents: any[] }) => {
 
     return (
         <Map style={ mapStyle }
+             crs={ L.CRS.Simple }
+             minZoom="-20"
+             maxZoom="30"
              bounds={ getBounds(featureCollection) }
-             boundsOptions={ { padding: [10, 10] } }>
-            <TileLayer url={ `${TILES_URL}?apikey=${API_KEY}` } />
+             boundsOptions={ { padding: [10, 10] } }
+             renderer={ L.canvas({ padding: 0.5 }) }
+             attributionControl={ false }>
             { getGeoJSONElement(featureCollection, history) }
         </Map>
     );
@@ -42,15 +43,32 @@ const getGeoJSONElement = (featureCollection: FeatureCollection, history: Histor
         <GeoJSON key={ hash(featureCollection) }
                  data={ featureCollection }
                  pointToLayer={ pointToLayer }
+                 style={ getStyle }
                  onEachFeature={ onEachFeature(history) } />
     );
 };
 
 
-const pointToLayer = (feature: Feature, latLng: L.LatLng): L.Marker => {
+const pointToLayer = (feature: Feature, latLng: L.LatLng): L.CircleMarker => {
 
-    return L.marker(latLng, { icon: MarkerIcon });
+    return L.circleMarker(
+        latLng,
+        {
+            fillColor: colors[feature.properties.category],
+            fillOpacity: 1,
+            radius: 5,
+            stroke: false
+        }
+    );
 };
+
+
+const getStyle = (feature: Feature) => ({
+    color: colors[feature.properties.category],
+    weight: feature.geometry.type === 'LineString' ? 2 : 1,
+    opacity: 0.5,
+    fillOpacity: feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon' ? 0.2 : 1
+});
 
 
 const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer) => {
@@ -76,8 +94,8 @@ const addTooltip = (feature: Feature, layer: L.Layer) => {
 
 const onClick = (history: History) => (event: any) => {
 
-    const identifier: string = event.target.feature.properties.identifier;
-    history.push(`/project/${identifier}`);
+    const id: string = event.target.feature.properties.id;
+    history.push(`/document/${id}`);
 };
 
 
@@ -88,7 +106,7 @@ const createFeatureCollection = (documents: any[]): FeatureCollection | undefine
     return {
         type: 'FeatureCollection',
         features: documents
-            .filter(document => document.resource.geometry)
+            .filter(document => document?.resource.geometry)
             .map(createFeature)
     };
 };
@@ -98,14 +116,16 @@ const createFeature = (document: any): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry,
     properties: {
-       identifier: document.resource.identifier
+        id: document.resource.id,
+        identifier: document.resource.identifier,
+        category: document.resource.type
     }
 });
 
 
 const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
 
-    if (!featureCollection) return [[-90, 180], [90, 180]];
+    if (!featureCollection) return [[-10, -10], [10, 10]];
 
     const extentResult: number[] = extent(featureCollection);
     return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
@@ -115,10 +135,3 @@ const getBounds = (featureCollection?: FeatureCollection): [number, number][] =>
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
 };
-
-
-const MarkerIcon = L.icon({
-    iconUrl: 'marker-icon.svg',
-    iconSize: [25, 25],
-    iconAnchor: [13, 13]
-});

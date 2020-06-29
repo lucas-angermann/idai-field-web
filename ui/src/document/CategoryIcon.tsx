@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { colors } from './categoryColors';
+import { colors } from '../categoryColors';
 
 
 export default ({ category, size }) => {

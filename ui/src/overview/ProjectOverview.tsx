@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Map from './Map';
-import { search } from './documents';
+import { search } from '../documents';
 import { Alert } from 'react-bootstrap';
 
 

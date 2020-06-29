@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
 import './Download.css';
-import { NAVBAR_HEIGHT } from './constants';
+import { NAVBAR_HEIGHT } from '../constants';
 
 
 type Slide = { imageUrl: string, description: string };

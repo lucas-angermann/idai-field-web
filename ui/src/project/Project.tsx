@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { search, get } from './documents';
-import DocumentTeaser from './DocumentTeaser';
+import { search, get } from '../documents';
+import DocumentTeaser from '../document/DocumentTeaser';
 import { Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Query } from './query';
+import { Query } from '../query';
 import ProjectMap from './ProjectMap';
 import ProjectModeButtons from './ProjectModeButtons';
 
