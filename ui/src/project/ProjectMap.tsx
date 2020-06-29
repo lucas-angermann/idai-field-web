@@ -7,7 +7,7 @@ import extent from 'turf-extent';
 import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
 import { useHistory } from 'react-router-dom';
-import { colors } from '../categoryColors';
+import { getColor } from '../categoryColors';
 
 
 export default ({ documents }: { documents: any[] }) => {
@@ -54,7 +54,7 @@ const pointToLayer = (feature: Feature, latLng: L.LatLng): L.CircleMarker => {
     return L.circleMarker(
         latLng,
         {
-            fillColor: colors[feature.properties.category],
+            fillColor: getColor(feature.properties.category),
             fillOpacity: 1,
             radius: 5,
             stroke: false
@@ -64,7 +64,7 @@ const pointToLayer = (feature: Feature, latLng: L.LatLng): L.CircleMarker => {
 
 
 const getStyle = (feature: Feature) => ({
-    color: colors[feature.properties.category],
+    color: getColor(feature.properties.category),
     weight: feature.geometry.type === 'LineString' ? 2 : 1,
     opacity: 0.5,
     fillOpacity: feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon' ? 0.2 : 1
