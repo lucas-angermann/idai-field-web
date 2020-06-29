@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
+import { Link } from 'react-router-dom';
 
 export default ({ document }: { document: any }) => {
 
     const resource = document.resource;
     const fieldList = renderFieldList(resource);
+    const relationList = renderRelationList(resource);
     return (
         <Container>
             <Card>
@@ -17,6 +19,7 @@ export default ({ document }: { document: any }) => {
                 </Card.Header>
                 <Card.Body>
                     { fieldList }
+                    { relationList }
                 </Card.Body>
             </Card>
         </Container>
@@ -34,6 +37,24 @@ const renderFieldList = (resource: any) => {
             <dd key={ `${key}_dd`}>{ renderFieldValue(resource[key]) }</dd>
         ]);
     return <dl>{ fields }</dl>;
+};
+
+
+const renderRelationList = (resource: any) => {
+
+    if (!resource.relations) return null;
+
+    const relations = Object.keys(resource.relations)
+        .filter(key => resource.relations[key].length > 0)
+        .map(key => [
+            <dt key={ `${key}_dt`}>{ key }</dt>,
+            <dd key={ `${key}_dd`}>
+                <ul>
+                    { resource.relations[key].map(id => renderDocumentLink(id)) }
+                </ul>
+            </dd>
+        ]);
+    return <dl>{ relations }</dl>;
 };
 
 
@@ -62,3 +83,6 @@ const renderFieldValueObject = (object: any) => {
 
 
 const renderFieldValueBoolean = (value: boolean) => value ? 'yes' : 'no';
+
+
+const renderDocumentLink = (id: string) => <li key={ id }><Link to={ `/document/${id}` }>{ id }</Link></li>;
