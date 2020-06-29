@@ -1,29 +1,5 @@
 import React, { CSSProperties } from 'react';
-
-
-const colors: { [category: string]: string } = {
-    Trench: 'blue',
-    Glass: '#99CC33',
-    Mollusk: '#ff99ff',
-    Brick: '#CC0000',
-    Wood: '#660000',
-    Architecture: '#707070',
-    Place: '#5572A1',
-    Layer: '#663300',
-    Feature: 'black',
-    Floor: '#6600cc',
-    Grave: '#339900',
-    Bone: '#CCFFFF',
-    Terracotta: '#FF6600',
-    Stone: '#5c5c8a',
-    Coin: '#cc9900',
-    Find: 'black',
-    PlasterFragment: '#737373',
-    Metal: '#995f25',
-    BuildingPart: '#707070',
-    SurveyUnit: '#6baed6',
-    Sample: '#9ecae1'
-};
+import { colors } from './categoryColors';
 
 
 export default ({ category, size }) => {

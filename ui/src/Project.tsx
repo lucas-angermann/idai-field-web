@@ -7,9 +7,12 @@ import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from './query';
+import ProjectMap from './ProjectMap';
+import ProjectModeButtons from './ProjectModeButtons';
 
 
 const CHUNK_SIZE = 50;
+const MAX_SIZE = 10000;
 
 
 export default () => {
@@ -21,13 +24,14 @@ export default () => {
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
     const [error, setError] = useState(false);
+    const [mapMode, setMapMode] = useState(false);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, location, newOffset)
+            searchDocuments(id, location, newOffset, mapMode)
                 .then(result => setDocuments(documents.concat(result.documents)))
                 .catch(err => setError(err));
             setOffset(newOffset);
@@ -35,21 +39,28 @@ export default () => {
     };
 
     useEffect(() => {
-        searchDocuments(id, location, 0).then(result => {
+        searchDocuments(id, location, 0, mapMode).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
         get(id).then(setProjectDocument);
-    }, [id, location]);
+    }, [id, location, mapMode]);
 
     const renderResult = () => {
         return [
             <Col key="filters" sm={ 3 }>
                 { renderProjectTeaser(projectDocument) }
+                <ProjectModeButtons onModeSelected={ (newMapMode: boolean) => {
+                    updateMapMode(mapMode, newMapMode, setMapMode, setOffset);
+                } } />
                 { renderFilters(filters, location) }
             </Col>,
             <Col onScroll={ onScroll } key="results" style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
-                <DocumentList documents={ documents } />
+                {
+                    mapMode
+                        ? <ProjectMap documents={ documents } />
+                        : <DocumentList documents={ documents } />
+                }
             </Col>
         ];
     };
@@ -65,17 +76,25 @@ export default () => {
 };
 
 
-const searchDocuments = async (id: string, location: any, from: number) => {
+const updateMapMode = (mapMode: boolean, newMapMode: boolean, setMapMode, setOffset) => {
 
-    const query: Query = buildQueryTemplate(id, from);
+    if (mapMode === newMapMode) return;
+    setMapMode(newMapMode);
+    if (!mapMode && newMapMode) setOffset(0);
+};
+
+
+const searchDocuments = async (id: string, location: any, from: number, mapMode: boolean) => {
+
+    const query: Query = buildQueryTemplate(id, from, mapMode);
     addFilters(query, location);
     return search(query);
 };
 
 
-const buildQueryTemplate = (id: string, from: number): Query => ({
-    q: '*',
-    size: CHUNK_SIZE,
+const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = false): Query => ({
+    q: allGeometries ? '_exists_:resource.geometry' : '*',
+    size: allGeometries ? MAX_SIZE : CHUNK_SIZE,
     from,
     filters: [
         { field: 'project', value: id }
