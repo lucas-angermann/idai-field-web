@@ -48,7 +48,7 @@ export default () => {
 
     const renderResult = () => {
         return [
-            <Col key="filters" sm={ 3 }>
+            <Col key="filters" sm={ 3 } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
                 { renderProjectTeaser(projectDocument) }
                 <ProjectModeButtons onModeSelected={ (newMapMode: boolean) => {
                     updateMapMode(mapMode, newMapMode, setMapMode, setOffset);
