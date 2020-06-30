@@ -92,20 +92,26 @@ const searchDocuments = async (id: string, location: any, from: number, mapMode:
 };
 
 
-const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = false): Query => ({
-    q: allGeometries ? '_exists_:resource.geometry' : '*',
-    size: allGeometries ? MAX_SIZE : CHUNK_SIZE,
-    from,
-    filters: [
-        { field: 'project', value: id }
-    ],
-    not: [
-        { field: 'resource.type', value: 'Project' },
-        { field: 'resource.type', value: 'Image' },
-        { field: 'resource.type', value: 'Photo' },
-        { field: 'resource.type', value: 'Drawing' }
-    ]
-});
+const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = false): Query => {
+    const query: Query = {
+        q: '*',
+        size: allGeometries ? MAX_SIZE : CHUNK_SIZE,
+        from,
+        filters: [
+            { field: 'project', value: id }
+        ],
+        not: [
+            { field: 'resource.type', value: 'Project' },
+            { field: 'resource.type', value: 'Image' },
+            { field: 'resource.type', value: 'Photo' },
+            { field: 'resource.type', value: 'Drawing' }
+        ]
+    };
+
+    if (allGeometries) query.exists = ['resource.geometry'];
+
+    return query;
+};
 
 
 const addFilters = (query: any, location: any) => {

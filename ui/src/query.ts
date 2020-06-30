@@ -2,6 +2,7 @@ export type Query = {
     q: string,
     filters?: Filter[],
     not?: Filter[],
+    exists?: string[],
     size?: number,
     from?: number
 };
@@ -22,6 +23,9 @@ export const getQueryString = (query: Query) => {
     }
     if (query.not) {
         queryParams.push(...query.not.map((filter: Filter) => ['not[]', `${filter.field}:${filter.value}`]));
+    }
+    if (query.exists) {
+        queryParams.push(...query.exists.map((fieldName: string) => ['exists[]', `${fieldName}`]));
     }
 
     if (query.size) queryParams.push(['size', query.size.toString()]);

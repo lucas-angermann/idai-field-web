@@ -3,13 +3,13 @@ defmodule Api.Documents.Search do
   alias Api.Documents.Mapping
   alias Api.Documents.Query
 
-  def by(q, size, from, filters, must_not) do
+  def by(q, size, from, filters, must_not, exists) do
     q = if !q do "*" else q end
     size = if !size do 100 else size end
     from = if !from do 0 else from end
     handle_result HTTPoison.post(
       "#{get_base_url()}/_search",
-      Query.build(q, size, from, filters, must_not),
+      Query.build(q, size, from, filters, must_not, exists),
       [{"Content-Type", "application/json"}]
     )
   end

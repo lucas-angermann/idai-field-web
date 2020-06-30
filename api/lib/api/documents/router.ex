@@ -12,7 +12,8 @@ defmodule Api.Documents.Router do
     conn.params["size"],
     conn.params["from"],
     conn.params["filters"],
-    conn.params["not"]
+    conn.params["not"],
+    conn.params["exists"]
   ))
 
   get "/:id", do: send_json(conn, Get.by(id))

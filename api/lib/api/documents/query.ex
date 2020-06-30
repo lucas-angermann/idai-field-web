@@ -1,10 +1,11 @@
 defmodule Api.Documents.Query do
 
-  def build(q, size, from, filters, must_not) do
+  def build(q, size, from, filters, must_not, exists) do
     build_query_template(q, size, from)
     |> add_aggregations
     |> add_filters(filters)
     |> add_must_not(must_not)
+    |> add_exists(exists)
     |> Poison.encode!
   end
 
@@ -16,7 +17,9 @@ defmodule Api.Documents.Query do
             query_string: %{
               query: q
             }
-          }
+          },
+          filter: [],
+          must_not: []
         }
       },
       size: size,
@@ -27,17 +30,26 @@ defmodule Api.Documents.Query do
 
   defp add_filters(query, nil), do: query
   defp add_filters(query, filters) do
-    put_in(query[:query][:bool][:filter], Enum.map(filters, &build_term_query/1))
+    put_in(query[:query][:bool][:filter], query[:query][:bool][:filter] ++ Enum.map(filters, &build_term_query/1))
   end
 
   defp add_must_not(query, nil), do: query
   defp add_must_not(query, must_not) do
-    put_in(query[:query][:bool][:must_not], Enum.map(must_not, &build_term_query/1))
+    put_in(query[:query][:bool][:must_not], query[:query][:bool][:must_not] ++ Enum.map(must_not, &build_term_query/1))
+  end
+
+  defp add_exists(query, nil), do: query
+  defp add_exists(query, exists) do
+    put_in(query[:query][:bool][:filter], query[:query][:bool][:filter] ++ Enum.map(exists, &build_exists_query/1))
   end
 
   defp build_term_query(fieldAndValue) do
     [field, value] = String.split(fieldAndValue, ":")
     %{ term: %{ field => value }}
+  end
+
+  defp build_exists_query(field) do
+    %{ exists: %{ field: field } }
   end
 
   defp add_aggregations(query) do
