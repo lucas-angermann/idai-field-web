@@ -30,17 +30,19 @@ defmodule Api.Documents.Query do
 
   defp add_filters(query, nil), do: query
   defp add_filters(query, filters) do
-    put_in(query[:query][:bool][:filter], query[:query][:bool][:filter] ++ Enum.map(filters, &build_term_query/1))
+    filter = Enum.map(filters, &build_term_query/1)
+    update_in(query[:query][:bool][:filter], &(&1 ++ filter))
   end
 
   defp add_must_not(query, nil), do: query
   defp add_must_not(query, must_not) do
-    put_in(query[:query][:bool][:must_not], query[:query][:bool][:must_not] ++ Enum.map(must_not, &build_term_query/1))
+    put_in(query[:query][:bool][:must_not], Enum.map(must_not, &build_term_query/1))
   end
 
   defp add_exists(query, nil), do: query
   defp add_exists(query, exists) do
-    put_in(query[:query][:bool][:filter], query[:query][:bool][:filter] ++ Enum.map(exists, &build_exists_query/1))
+    exists_filter = Enum.map(exists, &build_exists_query/1)
+    update_in(query[:query][:bool][:filter], &(&1 ++ exists_filter))
   end
 
   defp build_term_query(fieldAndValue) do
