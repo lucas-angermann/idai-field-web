@@ -6,16 +6,14 @@ import { Link } from 'react-router-dom';
 export default ({ document }: { document: any }) => {
 
     const resource = document.resource;
+    const header = renderHeader(resource);
     const fieldList = renderFieldList(resource);
     const relationList = renderRelationList(resource);
     return (
         <Container>
             <Card>
                 <Card.Header>
-                    <h1>
-                        <CategoryIcon category={ resource.type } size="40" />
-                        &nbsp; { resource.identifier }
-                    </h1>
+                    { header }
                 </Card.Header>
                 <Card.Body>
                     { fieldList }
@@ -25,6 +23,21 @@ export default ({ document }: { document: any }) => {
         </Container>
     );
 };
+
+
+const renderHeader = (resource: any) => (
+    <div>
+        <h1>
+            <CategoryIcon category={ resource.type } size="40" />
+            &nbsp; { resource.identifier }
+        </h1>
+        <code>
+            <Link to={ `/document/${resource.id}` }>
+                { `https://field.dainst.org/document/${resource.id}` }
+            </Link>
+        </code>
+    </div>
+);
 
 
 const renderFieldList = (resource: any) => {
