@@ -81,6 +81,11 @@ It can be started independently with:
 
     $ docker-compose run --service-ports --entrypoint "mix test" api
 
+or
+ 
+    $ docker-compose run --entrypoint "/bin/bash" api
+    $ mix test
+
 ## (Re-)building containers
 
     $ docker-compose up --build api
