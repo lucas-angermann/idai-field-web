@@ -1,0 +1,54 @@
+[
+  {
+    "item": {
+      "name": "Operation",
+      "label": "Maßnahme",
+      "description": {},
+      "isAbstract": true,
+      "color": "#8cf547",
+      "libraryId": "Operation:default",
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            }
+          ],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
+          "label": "Stammdaten"
+        }
+      ]
+    }
+  }
+]
