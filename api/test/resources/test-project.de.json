@@ -47,6 +47,31 @@
             }
           ],
           "label": "Stammdaten"
+        },
+        {
+          "name": "dimensions",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "dimensions",
+              "source": "builtin",
+              "label": "Höhe",
+              "name": "height",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "dimensions",
+              "source": "builtin",
+              "label": "Breite",
+              "name": "width",
+              "inputType": "input"
+            }
+          ],
+          "relations": [],
+          "label": "Maße"
         }
       ]
     }

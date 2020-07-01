@@ -47,6 +47,31 @@
               }
             ],
             "label": "Core"
+          },
+          {
+            "name": "dimensions",
+            "fields": [
+              {
+              "visible": false,
+              "editable": false,
+              "group": "dimensions",
+              "source": "builtin",
+              "label": "Height",
+              "name": "height",
+              "inputType": "input"
+              },
+              {
+              "editable": false,
+              "visible": false,
+              "group": "dimensions",
+              "source": "builtin",
+              "label": "Width",
+              "name": "width",
+              "inputType": "input"
+              }
+            ],
+            "relations": [],
+            "label": "Dimensions"
           }
         ]
       }
