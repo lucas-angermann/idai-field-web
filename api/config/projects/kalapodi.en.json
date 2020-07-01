@@ -100,7 +100,23 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -180,61 +196,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         }
       ],
@@ -357,7 +319,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -571,61 +549,7 @@
                   "name": "orientation"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             }
           ],
@@ -736,7 +660,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -1165,61 +1105,7 @@
                   "name": "spatialLocation"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -1391,7 +1277,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -1508,61 +1410,7 @@
                   "name": "spatialLocation"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             }
           ],
@@ -1619,7 +1467,23 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -1786,61 +1650,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -1966,7 +1776,49 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -2347,21 +2199,21 @@
               "inverse": "isEquivalentTo",
               "label": "Equivalent to",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2371,21 +2223,21 @@
               "inverse": "isBelow",
               "label": "Above",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2395,21 +2247,21 @@
               "inverse": "isAbove",
               "label": "Below",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2419,21 +2271,21 @@
               "inverse": "isCutBy",
               "label": "Cuts",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2443,21 +2295,21 @@
               "inverse": "cuts",
               "label": "Cut by",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2467,51 +2319,22 @@
               "inverse": "borders",
               "label": "Borders",
               "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
                 "Burial",
-                "Building",
-                "Wood",
                 "Architecture",
-                "Place",
                 "Layer",
                 "Floor",
-                "Inscription",
-                "Pottery",
                 "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
+                "Planum",
+                "Feature"
               ],
               "range": [
-                "BuildingPart",
-                "BuildingFloor"
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature"
               ],
               "sameMainCategoryResource": true
             }
@@ -2582,21 +2405,21 @@
               "inverse": "isBefore",
               "label": "After",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2606,21 +2429,21 @@
               "inverse": "isAfter",
               "label": "Before",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2630,21 +2453,21 @@
               "inverse": "isContemporaryWith",
               "label": "Contemporary with",
               "domain": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "range": [
-                "Other",
                 "Burial",
                 "Architecture",
                 "Layer",
                 "Floor",
                 "Grave",
+                "Planum",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -2758,7 +2581,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -3355,21 +3220,21 @@
                   "inverse": "isEquivalentTo",
                   "label": "Equivalent to",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3379,21 +3244,21 @@
                   "inverse": "isBelow",
                   "label": "Above",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3403,21 +3268,21 @@
                   "inverse": "isAbove",
                   "label": "Below",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3427,21 +3292,21 @@
                   "inverse": "isCutBy",
                   "label": "Cuts",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3451,21 +3316,21 @@
                   "inverse": "cuts",
                   "label": "Cut by",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3475,51 +3340,22 @@
                   "inverse": "borders",
                   "label": "Borders",
                   "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
                     "Burial",
-                    "Building",
-                    "Wood",
                     "Architecture",
-                    "Place",
                     "Layer",
                     "Floor",
-                    "Inscription",
-                    "Pottery",
                     "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
+                    "Planum",
+                    "Feature"
                   ],
                   "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
                   ],
                   "sameMainCategoryResource": true
                 }
@@ -3590,21 +3426,21 @@
                   "inverse": "isBefore",
                   "label": "After",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3614,21 +3450,21 @@
                   "inverse": "isAfter",
                   "label": "Before",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3638,21 +3474,21 @@
                   "inverse": "isContemporaryWith",
                   "label": "Contemporary with",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -3767,7 +3603,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -4437,21 +4315,21 @@
                   "inverse": "isEquivalentTo",
                   "label": "Equivalent to",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4461,21 +4339,21 @@
                   "inverse": "isBelow",
                   "label": "Above",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4485,21 +4363,21 @@
                   "inverse": "isAbove",
                   "label": "Below",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4509,21 +4387,21 @@
                   "inverse": "isCutBy",
                   "label": "Cuts",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4533,21 +4411,21 @@
                   "inverse": "cuts",
                   "label": "Cut by",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4557,51 +4435,22 @@
                   "inverse": "borders",
                   "label": "Borders",
                   "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
                     "Burial",
-                    "Building",
-                    "Wood",
                     "Architecture",
-                    "Place",
                     "Layer",
                     "Floor",
-                    "Inscription",
-                    "Pottery",
                     "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
+                    "Planum",
+                    "Feature"
                   ],
                   "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
                   ],
                   "sameMainCategoryResource": true
                 }
@@ -4672,21 +4521,21 @@
                   "inverse": "isBefore",
                   "label": "After",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4696,21 +4545,21 @@
                   "inverse": "isAfter",
                   "label": "Before",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4720,21 +4569,21 @@
                   "inverse": "isContemporaryWith",
                   "label": "Contemporary with",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -4849,7 +4698,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -5499,21 +5390,21 @@
                   "inverse": "isEquivalentTo",
                   "label": "Equivalent to",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5523,21 +5414,21 @@
                   "inverse": "isBelow",
                   "label": "Above",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5547,21 +5438,21 @@
                   "inverse": "isAbove",
                   "label": "Below",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5571,21 +5462,21 @@
                   "inverse": "isCutBy",
                   "label": "Cuts",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5595,21 +5486,21 @@
                   "inverse": "cuts",
                   "label": "Cut by",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5619,51 +5510,22 @@
                   "inverse": "borders",
                   "label": "Borders",
                   "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
                     "Burial",
-                    "Building",
-                    "Wood",
                     "Architecture",
-                    "Place",
                     "Layer",
                     "Floor",
-                    "Inscription",
-                    "Pottery",
                     "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
+                    "Planum",
+                    "Feature"
                   ],
                   "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
                   ],
                   "sameMainCategoryResource": true
                 }
@@ -5734,21 +5596,21 @@
                   "inverse": "isBefore",
                   "label": "After",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5758,21 +5620,21 @@
                   "inverse": "isAfter",
                   "label": "Before",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5782,21 +5644,21 @@
                   "inverse": "isContemporaryWith",
                   "label": "Contemporary with",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -5911,7 +5773,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -6727,21 +6631,21 @@
                   "inverse": "isEquivalentTo",
                   "label": "Equivalent to",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6751,21 +6655,21 @@
                   "inverse": "isBelow",
                   "label": "Above",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6775,21 +6679,21 @@
                   "inverse": "isAbove",
                   "label": "Below",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6799,21 +6703,21 @@
                   "inverse": "isCutBy",
                   "label": "Cuts",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6823,21 +6727,21 @@
                   "inverse": "cuts",
                   "label": "Cut by",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6847,51 +6751,22 @@
                   "inverse": "borders",
                   "label": "Borders",
                   "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
                     "Burial",
-                    "Building",
-                    "Wood",
                     "Architecture",
-                    "Place",
                     "Layer",
                     "Floor",
-                    "Inscription",
-                    "Pottery",
                     "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
+                    "Planum",
+                    "Feature"
                   ],
                   "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
                   ],
                   "sameMainCategoryResource": true
                 }
@@ -6962,21 +6837,21 @@
                   "inverse": "isBefore",
                   "label": "After",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -6986,21 +6861,21 @@
                   "inverse": "isAfter",
                   "label": "Before",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7010,21 +6885,21 @@
                   "inverse": "isContemporaryWith",
                   "label": "Contemporary with",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7139,7 +7014,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -7732,21 +7649,21 @@
                   "inverse": "isEquivalentTo",
                   "label": "Equivalent to",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7756,21 +7673,21 @@
                   "inverse": "isBelow",
                   "label": "Above",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7780,21 +7697,21 @@
                   "inverse": "isAbove",
                   "label": "Below",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7804,21 +7721,21 @@
                   "inverse": "isCutBy",
                   "label": "Cuts",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7828,21 +7745,21 @@
                   "inverse": "cuts",
                   "label": "Cut by",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7852,51 +7769,22 @@
                   "inverse": "borders",
                   "label": "Borders",
                   "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
                     "Burial",
-                    "Building",
-                    "Wood",
                     "Architecture",
-                    "Place",
                     "Layer",
                     "Floor",
-                    "Inscription",
-                    "Pottery",
                     "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
+                    "Planum",
+                    "Feature"
                   ],
                   "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
                   ],
                   "sameMainCategoryResource": true
                 }
@@ -7967,21 +7855,21 @@
                   "inverse": "isBefore",
                   "label": "After",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -7991,21 +7879,21 @@
                   "inverse": "isAfter",
                   "label": "Before",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -8015,21 +7903,21 @@
                   "inverse": "isContemporaryWith",
                   "label": "Contemporary with",
                   "domain": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "range": [
-                    "Other",
                     "Burial",
                     "Architecture",
                     "Layer",
                     "Floor",
                     "Grave",
+                    "Planum",
                     "Feature"
                   ],
                   "sameMainCategoryResource": true
@@ -8143,7 +8031,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -8553,7 +8483,152 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isEquivalentTo",
+                  "inverse": "isEquivalentTo",
+                  "label": "Equivalent to",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "isAbove",
+                  "inverse": "isBelow",
+                  "label": "Above",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "isBelow",
+                  "inverse": "isAbove",
+                  "label": "Below",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "cuts",
+                  "inverse": "isCutBy",
+                  "label": "Cuts",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "isCutBy",
+                  "inverse": "cuts",
+                  "label": "Cut by",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "borders",
+                  "inverse": "borders",
+                  "label": "Borders",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                }
+              ],
               "label": "Position / Context"
             },
             {
@@ -8614,7 +8689,80 @@
                   "name": "dating"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isAfter",
+                  "inverse": "isBefore",
+                  "label": "After",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "isBefore",
+                  "inverse": "isAfter",
+                  "label": "Before",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                },
+                {
+                  "name": "isContemporaryWith",
+                  "inverse": "isContemporaryWith",
+                  "label": "Contemporary with",
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true
+                }
+              ],
               "label": "Time"
             }
           ],
@@ -8682,7 +8830,37 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -8805,61 +8983,7 @@
               "label": "Geometry"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         }
       ],
@@ -8925,7 +9049,37 @@
                   "name": "campaign"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -9048,61 +9202,7 @@
                   "label": "Geometry"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             }
           ],
@@ -9169,7 +9269,37 @@
                   "name": "campaign"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -9309,61 +9439,7 @@
                   "label": "Geometry"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             }
           ],
@@ -9444,7 +9520,35 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "Building",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -9481,8 +9585,7 @@
                 "BuildingPart"
               ],
               "range": [
-                "BuildingPart",
-                "BuildingFloor"
+                "BuildingPart"
               ],
               "sameMainCategoryResource": true
             }
@@ -9565,7 +9668,19 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Room"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -9789,61 +9904,7 @@
               "name": "dimensionVerticalExtent"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -9992,7 +10053,67 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BrickCluster",
+                "PotteryCluster",
+                "Find"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BrickCluster",
+                "PotteryCluster",
+                "Find"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -10025,6 +10146,8 @@
                 "Coin",
                 "PlasterFragment",
                 "Metal",
+                "BrickCluster",
+                "PotteryCluster",
                 "Find"
               ],
               "range": [
@@ -10546,61 +10669,7 @@
               "name": "dimensionVerticalExtent"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -10749,7 +10818,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -10782,6 +10911,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -12344,61 +12475,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -12548,7 +12625,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -12581,6 +12718,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -13670,61 +13809,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -13874,7 +13959,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -13907,6 +14052,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -14881,61 +15028,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -15085,7 +15178,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -15118,6 +15271,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -15854,61 +16009,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -16060,7 +16161,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -16093,6 +16254,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -16977,61 +17140,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -17181,7 +17290,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -17214,6 +17383,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -18122,61 +18293,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -18326,7 +18443,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -18359,6 +18536,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -19238,61 +19417,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -19442,7 +19567,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -19475,6 +19660,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -20339,61 +20526,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -20543,7 +20676,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -20576,6 +20769,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -21674,61 +21869,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -21878,7 +22019,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -21911,6 +22112,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -22538,61 +22741,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -22742,7 +22891,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -22775,6 +22984,8 @@
                     "Coin",
                     "PlasterFragment",
                     "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
                     "Find"
                   ],
                   "range": [
@@ -23326,61 +23537,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -23529,7 +23686,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -23545,7 +23762,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -24208,7 +24450,67 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Planum",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -24224,7 +24526,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BrickCluster",
+                    "PotteryCluster",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -24882,7 +25209,44 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BrickCluster",
+                "PotteryCluster",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -25089,66 +25453,6 @@
           "label": "Dimensions"
         },
         {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
-        },
-        {
           "name": "time",
           "fields": [
             {
@@ -25283,7 +25587,52 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Sample"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Sample"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Planum",
+                "Feature",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BrickCluster",
+                "PotteryCluster",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -25444,61 +25793,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         }
       ],
@@ -25665,66 +25960,6 @@
           ],
           "relations": [],
           "label": "Image"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -26053,66 +26288,6 @@
               ],
               "relations": [],
               "label": "Drawing"
-            },
-            {
-              "name": "position",
-              "fields": [],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
-              "label": "Position / Context"
             }
           ],
           "isAbstract": false,
@@ -26357,66 +26532,6 @@
               ],
               "relations": [],
               "label": "Photo"
-            },
-            {
-              "name": "position",
-              "fields": [],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
-              "label": "Position / Context"
             }
           ],
           "isAbstract": false,
@@ -26508,7 +26623,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -26627,61 +26766,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -26798,7 +26883,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -26917,61 +27026,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -27088,7 +27143,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -27197,61 +27276,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -27489,66 +27514,6 @@
           ],
           "relations": [],
           "label": "Project"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -27678,66 +27643,6 @@
           ],
           "relations": [],
           "label": "Type catalog"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -27792,7 +27697,20 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -27818,6 +27736,8 @@
                 "Coin",
                 "PlasterFragment",
                 "Metal",
+                "BrickCluster",
+                "PotteryCluster",
                 "Find"
               ]
             }
@@ -27846,66 +27766,6 @@
           ],
           "relations": [],
           "label": "Type"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,

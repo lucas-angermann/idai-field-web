@@ -44,7 +44,20 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -326,61 +339,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -555,66 +514,6 @@
           ],
           "relations": [],
           "label": "Image"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -825,66 +724,6 @@
           ],
           "relations": [],
           "label": "Project"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -1014,66 +853,6 @@
           ],
           "relations": [],
           "label": "Type catalog"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -1128,7 +907,20 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -1143,17 +935,6 @@
                 "Type"
               ],
               "range": [
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Wood",
-                "Pottery",
-                "Bone",
-                "Terracotta",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Metal",
                 "Find"
               ]
             }
@@ -1182,66 +963,6 @@
           ],
           "relations": [],
           "label": "Type"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
