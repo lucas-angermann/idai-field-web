@@ -100,7 +100,23 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -299,7 +315,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -632,7 +664,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -1224,7 +1272,23 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -1411,7 +1475,23 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -1712,7 +1792,49 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Other",
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Feature"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Other",
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Feature"
+              ],
+              "range": [
+                "Other",
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Feature"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -2036,7 +2158,7 @@
             {
               "name": "isEquivalentTo",
               "inverse": "isEquivalentTo",
-              "label": "Equivalent to",
+              "label": "Gleich wie",
               "domain": [
                 "Other",
                 "Burial",
@@ -2060,7 +2182,7 @@
             {
               "name": "isAbove",
               "inverse": "isBelow",
-              "label": "Above",
+              "label": "Liegt über",
               "domain": [
                 "Other",
                 "Burial",
@@ -2084,7 +2206,7 @@
             {
               "name": "isBelow",
               "inverse": "isAbove",
-              "label": "Below",
+              "label": "Liegt unter",
               "domain": [
                 "Other",
                 "Burial",
@@ -2108,7 +2230,7 @@
             {
               "name": "cuts",
               "inverse": "isCutBy",
-              "label": "Cuts",
+              "label": "Schneidet",
               "domain": [
                 "Other",
                 "Burial",
@@ -2132,7 +2254,7 @@
             {
               "name": "isCutBy",
               "inverse": "cuts",
-              "label": "Cut by",
+              "label": "Wird geschnitten von",
               "domain": [
                 "Other",
                 "Burial",
@@ -2156,9 +2278,15 @@
             {
               "name": "borders",
               "inverse": "borders",
-              "label": "Borders",
+              "label": "Grenzt an",
               "domain": [
-                "Other"
+                "Other",
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Feature"
               ],
               "range": [
                 "Other",
@@ -2224,7 +2352,7 @@
             {
               "name": "isAfter",
               "inverse": "isBefore",
-              "label": "After",
+              "label": "Zeitlich nach",
               "domain": [
                 "Other",
                 "Burial",
@@ -2248,7 +2376,7 @@
             {
               "name": "isBefore",
               "inverse": "isAfter",
-              "label": "Before",
+              "label": "Zeitlich vor",
               "domain": [
                 "Other",
                 "Burial",
@@ -2272,7 +2400,7 @@
             {
               "name": "isContemporaryWith",
               "inverse": "isContemporaryWith",
-              "label": "Contemporary with",
+              "label": "Zeitgleich mit",
               "domain": [
                 "Other",
                 "Burial",
@@ -2402,7 +2530,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -2909,7 +3079,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -2933,7 +3103,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -2957,7 +3127,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -2981,7 +3151,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3005,7 +3175,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3029,9 +3199,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -3097,7 +3273,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3121,7 +3297,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3145,7 +3321,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3276,7 +3452,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -3897,7 +4115,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3921,7 +4139,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3945,7 +4163,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3969,7 +4187,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -3993,7 +4211,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4017,9 +4235,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -4085,7 +4309,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4109,7 +4333,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4133,7 +4357,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4264,7 +4488,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -4858,7 +5124,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4882,7 +5148,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4906,7 +5172,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4930,7 +5196,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4954,7 +5220,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -4978,9 +5244,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -5046,7 +5318,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -5070,7 +5342,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -5094,7 +5366,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -5225,7 +5497,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -5999,7 +6313,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6023,7 +6337,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6047,7 +6361,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6071,7 +6385,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6095,7 +6409,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6119,9 +6433,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -6187,7 +6507,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6211,7 +6531,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6235,7 +6555,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6366,7 +6686,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -6905,7 +7267,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6929,7 +7291,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6953,7 +7315,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -6977,7 +7339,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7001,7 +7363,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7025,9 +7387,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -7093,7 +7461,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7117,7 +7485,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7141,7 +7509,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7271,7 +7639,49 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -7760,7 +8170,7 @@
                 {
                   "name": "isEquivalentTo",
                   "inverse": "isEquivalentTo",
-                  "label": "Equivalent to",
+                  "label": "Gleich wie",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7784,7 +8194,7 @@
                 {
                   "name": "isAbove",
                   "inverse": "isBelow",
-                  "label": "Above",
+                  "label": "Liegt über",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7808,7 +8218,7 @@
                 {
                   "name": "isBelow",
                   "inverse": "isAbove",
-                  "label": "Below",
+                  "label": "Liegt unter",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7832,7 +8242,7 @@
                 {
                   "name": "cuts",
                   "inverse": "isCutBy",
-                  "label": "Cuts",
+                  "label": "Schneidet",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7856,7 +8266,7 @@
                 {
                   "name": "isCutBy",
                   "inverse": "cuts",
-                  "label": "Cut by",
+                  "label": "Wird geschnitten von",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7880,9 +8290,15 @@
                 {
                   "name": "borders",
                   "inverse": "borders",
-                  "label": "Borders",
+                  "label": "Grenzt an",
                   "domain": [
-                    "Other"
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature"
                   ],
                   "range": [
                     "Other",
@@ -7948,7 +8364,7 @@
                 {
                   "name": "isAfter",
                   "inverse": "isBefore",
-                  "label": "After",
+                  "label": "Zeitlich nach",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7972,7 +8388,7 @@
                 {
                   "name": "isBefore",
                   "inverse": "isAfter",
-                  "label": "Before",
+                  "label": "Zeitlich vor",
                   "domain": [
                     "Other",
                     "Burial",
@@ -7996,7 +8412,7 @@
                 {
                   "name": "isContemporaryWith",
                   "inverse": "isContemporaryWith",
-                  "label": "Contemporary with",
+                  "label": "Zeitgleich mit",
                   "domain": [
                     "Other",
                     "Burial",
@@ -8084,7 +8500,19 @@
               "name": "processor"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Wall_surface"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -8766,7 +9194,37 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -8960,7 +9418,37 @@
                   "name": "campaign"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -9155,7 +9643,37 @@
                   "name": "campaign"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -9381,7 +9899,35 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "Building",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -9413,13 +9959,12 @@
             {
               "name": "borders",
               "inverse": "borders",
-              "label": "Borders",
+              "label": "Grenzt an",
               "domain": [
                 "BuildingPart"
               ],
               "range": [
-                "BuildingPart",
-                "BuildingFloor"
+                "BuildingPart"
               ],
               "sameMainCategoryResource": true
             }
@@ -9502,7 +10047,19 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Room"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -9871,7 +10428,63 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "range": [
+                "Other",
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Feature",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -9891,7 +10504,7 @@
             {
               "name": "isInstanceOf",
               "inverse": "hasInstance",
-              "label": "Typological classification",
+              "label": "Typologische Einordnung",
               "domain": [
                 "Glass",
                 "Mollusk",
@@ -10505,7 +11118,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -10525,7 +11194,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -12288,7 +12957,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -12308,7 +13033,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -13498,7 +14223,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -13518,7 +14299,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -14580,7 +15361,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -14600,7 +15437,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -15493,7 +16330,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -15513,7 +16406,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -16500,7 +17393,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -16520,7 +17469,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -17480,7 +18429,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -17500,7 +18505,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -18480,7 +19485,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -18500,7 +19561,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -19461,7 +20522,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -19481,7 +20598,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -20676,7 +21793,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -20696,7 +21869,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -21421,7 +22594,63 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Aufgenommen in Maßnahme",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Liegt in",
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Other",
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Stammdaten"
             },
             {
@@ -21441,7 +22670,7 @@
                 {
                   "name": "isInstanceOf",
                   "inverse": "hasInstance",
-                  "label": "Typological classification",
+                  "label": "Typologische Einordnung",
                   "domain": [
                     "Glass",
                     "Mollusk",
@@ -22079,7 +23308,42 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -22390,7 +23654,19 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "Drilling"
+              ],
+              "range": [
+                "Survey"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -23202,7 +24478,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -23443,7 +24743,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -23684,7 +25008,31 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Aufgenommen in Maßnahme",
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Building"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -24224,7 +25572,20 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Liegt in",
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Stammdaten"
         },
         {
@@ -24234,7 +25595,7 @@
             {
               "name": "hasInstance",
               "inverse": "isInstanceOf",
-              "label": "Associated finds",
+              "label": "Zugeordnete Funde",
               "domain": [
                 "Type"
               ],

@@ -100,7 +100,21 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Trench",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -172,61 +186,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         }
       ],
@@ -349,7 +309,21 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Trench",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -546,61 +520,7 @@
                   "name": "orientation"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             }
           ],
@@ -657,7 +577,21 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Trench",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -824,61 +758,7 @@
               "name": "spatialLocation"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -1004,7 +884,31 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Feature"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Feature"
+              ],
+              "range": [
+                "Feature"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -1281,21 +1185,9 @@
               "inverse": "isEquivalentTo",
               "label": "Equivalent to",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1305,21 +1197,9 @@
               "inverse": "isBelow",
               "label": "Above",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1329,21 +1209,9 @@
               "inverse": "isAbove",
               "label": "Below",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1353,21 +1221,9 @@
               "inverse": "isCutBy",
               "label": "Cuts",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1377,21 +1233,9 @@
               "inverse": "cuts",
               "label": "Cut by",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1401,51 +1245,10 @@
               "inverse": "borders",
               "label": "Borders",
               "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
+                "Feature"
               ],
               "range": [
-                "BuildingPart",
-                "BuildingFloor"
+                "Feature"
               ],
               "sameMainCategoryResource": true
             }
@@ -1516,21 +1319,9 @@
               "inverse": "isBefore",
               "label": "After",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1540,21 +1331,9 @@
               "inverse": "isAfter",
               "label": "Before",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1564,21 +1343,9 @@
               "inverse": "isContemporaryWith",
               "label": "Contemporary with",
               "domain": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "range": [
-                "Other",
-                "Burial",
-                "Architecture",
-                "Layer",
-                "Floor",
-                "Grave",
                 "Feature"
               ],
               "sameMainCategoryResource": true
@@ -1671,7 +1438,59 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "range": [
+                "Feature",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -1693,17 +1512,19 @@
               "inverse": "hasInstance",
               "label": "Typological classification",
               "domain": [
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Wood",
                 "Pottery",
-                "Bone",
                 "Terracotta",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Metal",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
                 "Find"
               ],
               "range": [
@@ -2150,61 +1971,7 @@
               "name": "dimensionVerticalExtent"
             }
           ],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
+          "relations": [],
           "label": "Position / Context"
         },
         {
@@ -2352,7 +2119,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -2374,17 +2193,19 @@
                   "inverse": "hasInstance",
                   "label": "Typological classification",
                   "domain": [
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Wood",
                     "Pottery",
-                    "Bone",
                     "Terracotta",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Metal",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
                     "Find"
                   ],
                   "range": [
@@ -4082,61 +3903,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -4285,7 +4052,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -4307,17 +4126,19 @@
                   "inverse": "hasInstance",
                   "label": "Typological classification",
                   "domain": [
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Wood",
                     "Pottery",
-                    "Bone",
                     "Terracotta",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Metal",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
                     "Find"
                   ],
                   "range": [
@@ -5456,61 +5277,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -5658,7 +5425,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -5680,17 +5499,19 @@
                   "inverse": "hasInstance",
                   "label": "Typological classification",
                   "domain": [
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Wood",
                     "Pottery",
-                    "Bone",
                     "Terracotta",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Metal",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
                     "Find"
                   ],
                   "range": [
@@ -6169,61 +5990,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -6370,7 +6137,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -6386,7 +6205,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -7013,29 +6857,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -7182,7 +7004,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -7198,7 +7072,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -7909,29 +7808,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -8078,7 +7955,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -8094,7 +8023,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -8739,29 +8693,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -8908,7 +8840,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -8924,7 +8908,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -9540,29 +9549,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -9709,7 +9696,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -9725,7 +9764,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -10315,29 +10379,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -10484,7 +10526,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -10500,7 +10594,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -11092,29 +11211,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -11261,7 +11358,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -11277,7 +11426,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -11869,29 +12043,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -12038,7 +12190,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -12054,7 +12258,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -12593,29 +12822,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -12762,7 +12969,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -12778,7 +13037,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -13624,29 +13908,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -13793,7 +14055,59 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isRecordedIn",
+                  "label": "Recorded in operation",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "editable": false
+                },
+                {
+                  "name": "liesWithin",
+                  "label": "Lies within",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "editable": false
+                }
+              ],
               "label": "Core"
             },
             {
@@ -13809,7 +14123,32 @@
                   "name": "instanceOf"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isInstanceOf",
+                  "inverse": "hasInstance",
+                  "label": "Typological classification",
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Type"
+                  ]
+                }
+              ],
               "label": "Identification"
             },
             {
@@ -14484,29 +14823,7 @@
                   "name": "dimensionVerticalExtent"
                 }
               ],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "KnappingWasteProduct",
-                    "KnappedCore",
-                    "FragmentOfDrill",
-                    "FragmentOfCuttingtool",
-                    "FragmentOfHammertool",
-                    "FragmentOfChopper",
-                    "FragmentofCoating",
-                    "RawMaterial",
-                    "FragmentofStonevessel",
-                    "FragmentOfBead"
-                  ],
-                  "range": [
-                    "BuildingPart"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
+              "relations": [],
               "label": "Position / Context"
             },
             {
@@ -14648,7 +14965,44 @@
               "name": "campaign"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isRecordedIn",
+              "label": "Recorded in operation",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "editable": false
+            },
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -14853,66 +15207,6 @@
           ],
           "relations": [],
           "label": "Dimensions"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         },
         {
           "name": "time",
@@ -15131,66 +15425,6 @@
           ],
           "relations": [],
           "label": "Image"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -15461,66 +15695,6 @@
               ],
               "relations": [],
               "label": "Drawing"
-            },
-            {
-              "name": "position",
-              "fields": [],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
-              "label": "Position / Context"
             }
           ],
           "isAbstract": false,
@@ -15678,66 +15852,6 @@
               ],
               "relations": [],
               "label": "Image"
-            },
-            {
-              "name": "position",
-              "fields": [],
-              "relations": [
-                {
-                  "name": "borders",
-                  "inverse": "borders",
-                  "label": "Borders",
-                  "domain": [
-                    "Operation",
-                    "Area",
-                    "Feature",
-                    "Find",
-                    "Image",
-                    "ProcessUnit",
-                    "Profile",
-                    "SurveyBurial",
-                    "RoomCeiling",
-                    "RoomFloor",
-                    "RoomWall",
-                    "Trench",
-                    "Glass",
-                    "Mollusk",
-                    "Brick",
-                    "Project",
-                    "Burial",
-                    "Building",
-                    "Wood",
-                    "Architecture",
-                    "Place",
-                    "Layer",
-                    "Floor",
-                    "Inscription",
-                    "Pottery",
-                    "Grave",
-                    "Bone",
-                    "Room",
-                    "Terracotta",
-                    "Drawing",
-                    "Survey",
-                    "Stone",
-                    "Coin",
-                    "PlasterFragment",
-                    "Photo",
-                    "Metal",
-                    "SurveyUnit",
-                    "Excavation",
-                    "Sample",
-                    "TypeCatalog",
-                    "Type"
-                  ],
-                  "range": [
-                    "BuildingPart",
-                    "BuildingFloor"
-                  ],
-                  "sameMainCategoryResource": true
-                }
-              ],
-              "label": "Position / Context"
             }
           ],
           "isAbstract": false,
@@ -15950,66 +16064,6 @@
           ],
           "relations": [],
           "label": "Project"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -16139,66 +16193,6 @@
           ],
           "relations": [],
           "label": "Type catalog"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
@@ -16253,7 +16247,20 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "liesWithin",
+              "label": "Lies within",
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "editable": false
+            }
+          ],
           "label": "Core"
         },
         {
@@ -16268,17 +16275,19 @@
                 "Type"
               ],
               "range": [
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Wood",
                 "Pottery",
-                "Bone",
                 "Terracotta",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Metal",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
                 "Find"
               ]
             }
@@ -16307,66 +16316,6 @@
           ],
           "relations": [],
           "label": "Type"
-        },
-        {
-          "name": "position",
-          "fields": [],
-          "relations": [
-            {
-              "name": "borders",
-              "inverse": "borders",
-              "label": "Borders",
-              "domain": [
-                "Operation",
-                "Area",
-                "Feature",
-                "Find",
-                "Image",
-                "ProcessUnit",
-                "Profile",
-                "SurveyBurial",
-                "RoomCeiling",
-                "RoomFloor",
-                "RoomWall",
-                "Trench",
-                "Glass",
-                "Mollusk",
-                "Brick",
-                "Project",
-                "Burial",
-                "Building",
-                "Wood",
-                "Architecture",
-                "Place",
-                "Layer",
-                "Floor",
-                "Inscription",
-                "Pottery",
-                "Grave",
-                "Bone",
-                "Room",
-                "Terracotta",
-                "Drawing",
-                "Survey",
-                "Stone",
-                "Coin",
-                "PlasterFragment",
-                "Photo",
-                "Metal",
-                "SurveyUnit",
-                "Excavation",
-                "Sample",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "BuildingPart",
-                "BuildingFloor"
-              ],
-              "sameMainCategoryResource": true
-            }
-          ],
-          "label": "Position / Context"
         }
       ],
       "isAbstract": false,
