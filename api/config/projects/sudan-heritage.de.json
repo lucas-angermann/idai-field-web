@@ -1,0 +1,1260 @@
+[
+  {
+    "item": {
+      "name": "Place",
+      "label": "Ort",
+      "description": {},
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "mandatory": true,
+              "group": "stem",
+              "label": "Bezeichner",
+              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "name": "identifier",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "group": "stem",
+              "label": "Kurzbeschreibung",
+              "name": "shortDescription",
+              "inputType": "input"
+            }
+          ],
+          "relations": [],
+          "label": "Stammdaten"
+        },
+        {
+          "name": "parent",
+          "fields": [
+            {
+              "inputType": "unsignedInt",
+              "source": "builtin",
+              "visible": true,
+              "editable": true,
+              "label": "Gazetteer-ID",
+              "description": "ID-Nummer des Ortslexikons",
+              "constraintIndexed": true,
+              "name": "gazId",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Ortsname",
+              "description": "Name der Ortschaft bzw. Gemarkung",
+              "constraintIndexed": true,
+              "name": "placeName",
+              "group": "parent"
+            },
+            {
+              "inputType": "checkboxes",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "valuelist": {
+                "creationDate": "",
+                "createdBy": "",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "settlement": {},
+                  "cemetery": {},
+                  "tumuli grave": {},
+                  "mound grave": {},
+                  "rock grave": {},
+                  "box grave": {},
+                  "other grave": {},
+                  "Pyramid (Sandstone)": {},
+                  "Pyramid (Mud Brick)": {},
+                  "Rock Art": {},
+                  "Fortress": {},
+                  "Castle": {},
+                  "Hafir": {},
+                  "Quarry": {},
+                  "Granary": {},
+                  "Old mining site": {},
+                  "Workshop": {},
+                  "Church": {},
+                  "Monastery": {},
+                  "Cathedral": {},
+                  "Mosque": {},
+                  "Landscape feature": {},
+                  "Historical building": {}
+                }
+              },
+              "label": "Klassifikation Fundplatz",
+              "constraintIndexed": true,
+              "name": "siteClassification",
+              "group": "parent"
+            },
+            {
+              "inputType": "dropdown",
+              "source": "library",
+              "visible": false,
+              "editable": false,
+              "valuelist": {
+                "creationDate": "",
+                "createdBy": "",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Einzelmauer": {},
+                  "Felsabarbeitung": {},
+                  "Funderfassung": {},
+                  "Fundsammlung": {},
+                  "Grab": {},
+                  "Nekropole": {},
+                  "Spolie in rezenter Mauer": {},
+                  "Steinbruch": {},
+                  "Straße/Platz": {},
+                  "Wein- bzw. Ölpresse": {},
+                  "einzelnes Steindenkmal": {},
+                  "ländliches Gebäude": {},
+                  "urbanes Gebäude": {}
+                }
+              },
+              "label": "Klassifikation Fundstelle",
+              "constraintIndexed": true,
+              "name": "findspotClassification",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Moderne Eingriffe",
+              "description": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)",
+              "name": "modernIntervention",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "library",
+              "visible": false,
+              "editable": false,
+              "label": "Ausgrabungsgeschichte",
+              "description": "Abhandlung über die Grabungsprojekte auf der Fundstelle",
+              "name": "excavationHistory",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "library",
+              "visible": false,
+              "editable": false,
+              "label": "Forschungsgeschichte",
+              "description": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen",
+              "name": "buildingResearchHistory",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "library",
+              "visible": false,
+              "editable": false,
+              "label": "Baugeschichte",
+              "description": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle",
+              "name": "buildingHistory",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "library",
+              "visible": false,
+              "editable": false,
+              "label": "Fundumstände",
+              "description": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
+              "name": "findSituation",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "placeNameOriginalLanguage",
+              "group": "parent"
+            },
+            {
+              "inputType": "checkboxes",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "valuelist": {
+                "creationDate": "14-11-2019",
+                "createdBy": "Sami Elamin",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Paleolithic": {},
+                  "Mesolithic": {},
+                  "Neolithic": {},
+                  "Pre-Kerma": {},
+                  "Kerma": {},
+                  "New Egyptian Kingdom": {},
+                  "Napata": {},
+                  "Meroe": {},
+                  "Post-Meroitic": {},
+                  "Christian": {},
+                  "Islamic": {},
+                  "Modern History": {}
+                }
+              },
+              "name": "periodSudanHeritage",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "researchHistory",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "stateOfPreservation",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "conservationMeasures",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "objectCirculation",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "staffInCharge",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "custom",
+              "visible": true,
+              "editable": true,
+              "name": "securityMeasures",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Beschreibung",
+              "description": "Freies Beschreibungsfeld",
+              "name": "description",
+              "group": "parent"
+            },
+            {
+              "visible": false,
+              "editable": false,
+              "name": "geometry",
+              "inputType": "input",
+              "group": "parent"
+            }
+          ],
+          "relations": [],
+          "label": "Ort"
+        },
+        {
+          "name": "position",
+          "fields": [
+            {
+              "name": "geometry",
+              "group": "position",
+              "inputType": "geometry",
+              "editable": true,
+              "label": "Geometrie"
+            },
+            {
+              "inputType": "input",
+              "group": "position",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Beschreibung der räumlichen Lage",
+              "description": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes",
+              "name": "spatialLocation"
+            }
+          ],
+          "relations": [
+            {
+              "name": "borders",
+              "inverse": "borders",
+              "label": "Borders",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "Image",
+                "ProcessUnit",
+                "Profile",
+                "SurveyBurial",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Drawing",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Photo",
+                "Metal",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type"
+              ],
+              "range": [
+                "BuildingPart",
+                "BuildingFloor"
+              ],
+              "sameMainCategoryResource": true
+            }
+          ],
+          "label": "Lage / Kontext"
+        },
+        {
+          "name": "time",
+          "fields": [
+            {
+              "inputType": "dating",
+              "group": "time",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Datierung",
+              "name": "dating"
+            }
+          ],
+          "relations": [],
+          "label": "Zeit"
+        }
+      ],
+      "isAbstract": false,
+      "color": "#5572A1",
+      "libraryId": "Place:default"
+    },
+    "trees": []
+  },
+  {
+    "item": {
+      "name": "Image",
+      "label": "Abbildung",
+      "description": {},
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "mandatory": true,
+              "group": "stem",
+              "label": "Bezeichner",
+              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "name": "identifier",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "group": "stem",
+              "label": "Kurzbeschreibung",
+              "name": "shortDescription",
+              "inputType": "input"
+            },
+            {
+              "inputType": "checkboxes",
+              "valuelistFromProjectField": "staff",
+              "group": "stem",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Bildersteller/Bilderstellerin",
+              "description": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
+              "constraintIndexed": true,
+              "name": "draughtsmen"
+            },
+            {
+              "inputType": "checkboxes",
+              "valuelistFromProjectField": "staff",
+              "group": "stem",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Bearbeiterin/Bearbeiter",
+              "description": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
+              "constraintIndexed": true,
+              "name": "processor"
+            },
+            {
+              "inputType": "checkboxes",
+              "valuelistFromProjectField": "campaigns",
+              "allowOnlyValuesOfParent": true,
+              "group": "stem",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Kampagne",
+              "constraintIndexed": true,
+              "name": "campaign"
+            }
+          ],
+          "relations": [],
+          "label": "Stammdaten"
+        },
+        {
+          "name": "parent",
+          "fields": [
+            {
+              "inputType": "unsignedInt",
+              "editable": false,
+              "source": "builtin",
+              "visible": true,
+              "label": "Höhe",
+              "name": "height",
+              "group": "parent"
+            },
+            {
+              "inputType": "unsignedInt",
+              "editable": false,
+              "source": "builtin",
+              "visible": true,
+              "label": "Breite",
+              "name": "width",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "visible": false,
+              "editable": false,
+              "source": "builtin",
+              "name": "originalFilename",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "visible": false,
+              "editable": false,
+              "source": "builtin",
+              "name": "georeference",
+              "group": "parent"
+            },
+            {
+              "inputType": "text",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Beschreibung",
+              "description": "Freies Beschreibungsfeld",
+              "name": "description",
+              "group": "parent"
+            },
+            {
+              "inputType": "literature",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Literaturverweis",
+              "name": "literature",
+              "group": "parent"
+            },
+            {
+              "visible": false,
+              "editable": false,
+              "name": "geometry",
+              "inputType": "input",
+              "group": "parent"
+            }
+          ],
+          "relations": [],
+          "label": "Abbildung"
+        },
+        {
+          "name": "position",
+          "fields": [],
+          "relations": [
+            {
+              "name": "borders",
+              "inverse": "borders",
+              "label": "Borders",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "Image",
+                "ProcessUnit",
+                "Profile",
+                "SurveyBurial",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Drawing",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Photo",
+                "Metal",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type"
+              ],
+              "range": [
+                "BuildingPart",
+                "BuildingFloor"
+              ],
+              "sameMainCategoryResource": true
+            }
+          ],
+          "label": "Lage / Kontext"
+        }
+      ],
+      "isAbstract": false,
+      "color": "#37b93b",
+      "libraryId": "Image:default"
+    },
+    "trees": []
+  },
+  {
+    "item": {
+      "name": "Project",
+      "label": "Projekt",
+      "description": {},
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "group": "stem",
+              "label": "Kurzbeschreibung",
+              "name": "shortDescription",
+              "inputType": "input"
+            }
+          ],
+          "relations": [],
+          "label": "Stammdaten"
+        },
+        {
+          "name": "parent",
+          "fields": [
+            {
+              "inputType": "text",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Beschreibung",
+              "description": "Freies Beschreibungsfeld",
+              "name": "description",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Institution",
+              "description": "Für das Projekt verantwortliche Institution",
+              "name": "institution",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Leiterin/Leiter",
+              "description": "Leitende Person des Projekts",
+              "name": "projectSupervisor",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Kontaktperson",
+              "description": "Kontaktperson des Projekts",
+              "name": "contactPerson",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Mailadresse der Kontaktperson",
+              "description": "Mailadresse des Projekts bzw. der Kontaktperson",
+              "name": "contactMail",
+              "group": "parent"
+            },
+            {
+              "inputType": "multiInput",
+              "source": "builtin",
+              "visible": true,
+              "editable": true,
+              "label": "Team",
+              "name": "staff",
+              "group": "parent"
+            },
+            {
+              "inputType": "multiInput",
+              "source": "builtin",
+              "visible": true,
+              "editable": true,
+              "label": "Kampagnen",
+              "name": "campaigns",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Projekt-URL",
+              "description": "Hinweis auf eine externe Projektseite mit weiteren Informationen",
+              "name": "projectURI",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Projekt-Homepage",
+              "description": "Externe Referenz(en) des Projekts",
+              "name": "externalReference",
+              "group": "parent"
+            },
+            {
+              "inputType": "unsignedInt",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Gazetteer-ID",
+              "description": "ID-Nummer des Ortslexikons",
+              "name": "gazId",
+              "group": "parent"
+            },
+            {
+              "inputType": "float",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Breitengrad",
+              "description": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+              "name": "latitude",
+              "group": "parent"
+            },
+            {
+              "inputType": "float",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "Längengrad",
+              "description": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+              "name": "longitude",
+              "group": "parent"
+            },
+            {
+              "inputType": "unsignedInt",
+              "source": "library",
+              "visible": true,
+              "editable": true,
+              "label": "EPSG-Code",
+              "description": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
+              "name": "epsgId",
+              "group": "parent"
+            },
+            {
+              "inputType": "dropdown",
+              "source": "builtin",
+              "visible": true,
+              "editable": true,
+              "valuelist": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {},
+                "values": {
+                  "Eigenes Koordinatenbezugssystem": {},
+                  "EPSG4326 (WGS 84)": {},
+                  "EPSG3857 (WGS 84 Web Mercator)": {}
+                }
+              },
+              "label": "Koordinatenbezugssystem",
+              "name": "coordinateReferenceSystem",
+              "group": "parent"
+            },
+            {
+              "inputType": "input",
+              "editable": false,
+              "source": "builtin",
+              "visible": true,
+              "label": "Bezeichner",
+              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "name": "identifier",
+              "group": "parent"
+            },
+            {
+              "visible": false,
+              "editable": false,
+              "name": "geometry",
+              "inputType": "input",
+              "group": "parent"
+            }
+          ],
+          "relations": [],
+          "label": "Projekt"
+        },
+        {
+          "name": "position",
+          "fields": [],
+          "relations": [
+            {
+              "name": "borders",
+              "inverse": "borders",
+              "label": "Borders",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "Image",
+                "ProcessUnit",
+                "Profile",
+                "SurveyBurial",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Drawing",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Photo",
+                "Metal",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type"
+              ],
+              "range": [
+                "BuildingPart",
+                "BuildingFloor"
+              ],
+              "sameMainCategoryResource": true
+            }
+          ],
+          "label": "Lage / Kontext"
+        }
+      ],
+      "isAbstract": false,
+      "color": "#c8e2f9",
+      "libraryId": "Project:default"
+    },
+    "trees": []
+  },
+  {
+    "item": {
+      "name": "TypeCatalog",
+      "label": "Typenkatalog",
+      "description": {},
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "mandatory": true,
+              "group": "stem",
+              "label": "Bezeichner",
+              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "name": "identifier",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "group": "stem",
+              "label": "Kurzbeschreibung",
+              "name": "shortDescription",
+              "inputType": "input"
+            }
+          ],
+          "relations": [],
+          "label": "Stammdaten"
+        },
+        {
+          "name": "identification",
+          "fields": [
+            {
+              "inputType": "dropdown",
+              "constraintIndexed": true,
+              "group": "identification",
+              "source": "builtin",
+              "visible": true,
+              "editable": true,
+              "valuelist": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Form": {
+                    "labels": {
+                      "de": "Form",
+                      "en": "Shape"
+                    }
+                  },
+                  "Material": {
+                    "labels": {
+                      "de": "Material",
+                      "en": "Material"
+                    }
+                  },
+                  "Dekoration": {
+                    "labels": {
+                      "de": "Dekoration",
+                      "en": "Decoration"
+                    }
+                  },
+                  "Spuren": {
+                    "labels": {
+                      "de": "Spuren",
+                      "en": "Traces"
+                    }
+                  }
+                }
+              },
+              "label": "Kriterium",
+              "name": "criterion"
+            }
+          ],
+          "relations": [],
+          "label": "Bestimmung"
+        },
+        {
+          "name": "parent",
+          "fields": [
+            {
+              "inputType": "literature",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Literaturverweis",
+              "name": "literature",
+              "group": "parent"
+            },
+            {
+              "visible": false,
+              "editable": false,
+              "name": "geometry",
+              "inputType": "input",
+              "group": "parent"
+            }
+          ],
+          "relations": [],
+          "label": "Typenkatalog"
+        },
+        {
+          "name": "position",
+          "fields": [],
+          "relations": [
+            {
+              "name": "borders",
+              "inverse": "borders",
+              "label": "Borders",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "Image",
+                "ProcessUnit",
+                "Profile",
+                "SurveyBurial",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Drawing",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Photo",
+                "Metal",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type"
+              ],
+              "range": [
+                "BuildingPart",
+                "BuildingFloor"
+              ],
+              "sameMainCategoryResource": true
+            }
+          ],
+          "label": "Lage / Kontext"
+        }
+      ],
+      "isAbstract": false,
+      "color": "#e05b5f",
+      "libraryId": "TypeCatalog:default"
+    },
+    "trees": []
+  },
+  {
+    "item": {
+      "mustLieWithin": true,
+      "name": "Type",
+      "label": "Typ",
+      "description": {},
+      "groups": [
+        {
+          "name": "stem",
+          "fields": [
+            {
+              "visible": false,
+              "editable": false,
+              "group": "stem",
+              "source": "builtin",
+              "label": "Kategorie",
+              "name": "category",
+              "inputType": "input"
+            },
+            {
+              "editable": false,
+              "visible": false,
+              "group": "stem",
+              "source": "builtin",
+              "name": "id",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "mandatory": true,
+              "group": "stem",
+              "label": "Bezeichner",
+              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "name": "identifier",
+              "inputType": "input"
+            },
+            {
+              "visible": false,
+              "editable": true,
+              "group": "stem",
+              "label": "Kurzbeschreibung",
+              "name": "shortDescription",
+              "inputType": "input"
+            }
+          ],
+          "relations": [],
+          "label": "Stammdaten"
+        },
+        {
+          "name": "identification",
+          "fields": [],
+          "relations": [
+            {
+              "name": "hasInstance",
+              "inverse": "isInstanceOf",
+              "label": "Associated finds",
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ]
+            }
+          ],
+          "label": "Bestimmung"
+        },
+        {
+          "name": "parent",
+          "fields": [
+            {
+              "inputType": "literature",
+              "source": "common",
+              "visible": true,
+              "editable": true,
+              "label": "Literaturverweis",
+              "name": "literature",
+              "group": "parent"
+            },
+            {
+              "visible": false,
+              "editable": false,
+              "name": "geometry",
+              "inputType": "input",
+              "group": "parent"
+            }
+          ],
+          "relations": [],
+          "label": "Typ"
+        },
+        {
+          "name": "position",
+          "fields": [],
+          "relations": [
+            {
+              "name": "borders",
+              "inverse": "borders",
+              "label": "Borders",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "Image",
+                "ProcessUnit",
+                "Profile",
+                "SurveyBurial",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Drawing",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Photo",
+                "Metal",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type"
+              ],
+              "range": [
+                "BuildingPart",
+                "BuildingFloor"
+              ],
+              "sameMainCategoryResource": true
+            }
+          ],
+          "label": "Lage / Kontext"
+        }
+      ],
+      "isAbstract": false,
+      "color": "#28035a",
+      "libraryId": "Type:default"
+    },
+    "trees": []
+  }
+]
