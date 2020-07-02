@@ -9,7 +9,8 @@ defmodule Core.LayoutTest do
             "category" => "Operation",
             "width" => "1cm",
             "height" => "2cm",
-            "id" => "42"
+            "id" => "42",
+            "relations" => %{ "liesWithin" => ["45"]}
         }
     }
 
@@ -31,15 +32,20 @@ defmodule Core.LayoutTest do
              [%{
                 name: "stem",
                 fields: [
-                 %{
-                  name: "category",
-                  value: "Operation"
-                 },
-                 %{
-                   name: "id",
-                   value: "42"
-                 }
-                 ]
+                   %{
+                    name: "category",
+                    value: "Operation"
+                   },
+                   %{
+                     name: "id",
+                     value: "42"
+                   }],
+                relations: [
+                  %{
+                    name: "liesWithin",
+                    targets: ["45"]
+                  }
+                ]
                },
                %{
                  name: "dimensions",
@@ -52,7 +58,8 @@ defmodule Core.LayoutTest do
                      name: "width",
                      value: "1cm"
                    }
-                 ]
+                 ],
+                 relations: []
                }
               ]
   end
