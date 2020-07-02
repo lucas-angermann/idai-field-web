@@ -32,8 +32,16 @@ defmodule Core.Layout do
     end
   end
 
-  defp scan_field(config_field, _doc) do
-    0
+  defp scan_field(%{ "name" => config_field_name }, doc) do
+
+    if Map.has_key?(doc.resource, config_field_name) do
+      %{
+        name: config_field_name,
+        value: get_in(doc.resource, [config_field_name])
+      }
+    else
+      nil
+    end
   end
 
   defp append(nil), do: fn list -> list end
