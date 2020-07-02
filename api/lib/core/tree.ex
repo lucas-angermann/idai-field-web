@@ -1,6 +1,5 @@
 defmodule Core.Tree do
 
-
   def find_in_treelist(predicate, treelist) do
 
     result = Enum.find(treelist, fn %{ item: item } ->
@@ -8,7 +7,8 @@ defmodule Core.Tree do
     end)
 
     if result == nil do
-      nil
+      all_children = Enum.map(treelist, fn %{ trees: trees } -> trees end)
+      find_in_treelist(predicate, List.flatten(all_children))
     else
       result.item
     end
