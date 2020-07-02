@@ -14,8 +14,8 @@ defmodule Core.LayoutTest do
         }
     }
 
-    %{ "de" => [%{ "item" => category_conf } | _] } = ProjectConfigLoader.load("test/resources", "test-project", ["de", "en"])
-    # TODO category = Treelist.get_by_predicate -> get_by_by_category_name
+    %{ "de" => language_conf } = ProjectConfigLoader.load("test/resources", "test-project", ["de", "en"])
+    category_conf = Core.CategoryTreeList.find_by_name("Operation", language_conf)
 
     layouted_doc = Layout.get_layout(doc, category_conf)
     #IO.inspect layouted_doc
