@@ -28,7 +28,7 @@ defmodule Core.Layout do
        end
     )
 
-    object_group # if fields is empty return nil, otherwise group
+    object_group # TODO if fields is empty return nil, otherwise group
   end
 
   defp append(nil), do: fn list -> list end
