@@ -19,7 +19,8 @@ defmodule Core.Layout do
 
   # TODO see if we find fields in resource which are in that group
   # if there are none return [group], otherwise return []
-  defp scan_group(_group, _doc) do
+  defp scan_group(%{ "fields" => fields }, _doc) do
+    IO.inspect fields
     [0]
   end
 end
