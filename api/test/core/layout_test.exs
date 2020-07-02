@@ -23,5 +23,8 @@ defmodule Core.LayoutTest do
     assert get_in(layouted_doc.resource, ["width"]) == "1cm"
     assert get_in(layouted_doc.resource, ["height"]) == "2cm"
     assert length(get_in(layouted_doc.resource, ["groups"])) == 2
+
+    assert length(get_in(layouted_doc.resource, ["groups", Access.at(0), :fields])) == 2
+    assert length(get_in(layouted_doc.resource, ["groups", Access.at(1), :fields])) == 2
   end
 end

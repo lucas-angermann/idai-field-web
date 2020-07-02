@@ -17,10 +17,15 @@ defmodule Core.Layout do
     )
   end
 
-  # TODO see if we find fields in resource which are in that group
-  # if there are none return [group], otherwise return []
   defp scan_group(%{ "fields" => fields }, _doc) do
+
     IO.inspect fields
-    [0]
+
+    group = %{
+      fields: []
+    }
+    # TODO add items for existing fields
+
+    [group] # if fields is empty return [], otherwise [group]
   end
 end
