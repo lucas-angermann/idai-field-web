@@ -14,7 +14,7 @@ defmodule Core.Layout do
     )
   end
 
-  defp scan_group(%{ "fields" => config_group_fields }, doc) do
+  defp scan_group(%{ "fields" => config_group_fields, "name" => config_group_name }, doc) do
 
     fields =
       Enum.reduce(config_group_fields, [],
@@ -28,7 +28,7 @@ defmodule Core.Layout do
     if length(fields) == 0 do
       nil
     else
-      %{ fields: fields }
+      %{ fields: fields, name: config_group_name }
     end
   end
 

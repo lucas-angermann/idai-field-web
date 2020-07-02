@@ -29,6 +29,7 @@ defmodule Core.LayoutTest do
 
     assert get_in(layouted_doc.resource, ["groups"]) ==
              [%{
+                name: "stem",
                 fields: [
                  %{
                   name: "category",
@@ -41,6 +42,7 @@ defmodule Core.LayoutTest do
                  ]
                },
                %{
+                 name: "dimensions",
                  fields: [
                    %{
                      name: "height",
