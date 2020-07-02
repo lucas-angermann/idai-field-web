@@ -14,21 +14,26 @@ defmodule Core.Layout do
     )
   end
 
-  defp scan_group(%{ "fields" => config_group_fields }, _doc) do
+  defp scan_group(%{ "fields" => config_group_fields }, doc) do
 
-    object_group = %{
-      fields: []
-    }
+    fields =
+      Enum.reduce(config_group_fields, [],
+       fn config_group_field, fields ->
 
-    object_group = Enum.reduce(config_group_fields, object_group,
-       fn config_group_field, object_group ->
-
-         # field = fetch_field(object_group)
-         update_in(object_group, [:fields], append(0))
+         field = scan_field(config_group_field, doc)
+         append(field).(fields)
        end
-    )
+      )
 
-    object_group # TODO if fields is empty return nil, otherwise group
+    if length(fields) == 0 do
+      nil
+    else
+      %{ fields: fields }
+    end
+  end
+
+  defp scan_field(config_field, _doc) do
+    0
   end
 
   defp append(nil), do: fn list -> list end
