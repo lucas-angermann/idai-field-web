@@ -1,16 +1,19 @@
 defmodule Core.Layout do
 
+  @core_fields ["id", "identifier", "shortDescription", "type", "geometry", "georeference", "groups"]
+
   def to_layouted_document(doc, %{ "de" => configuration }) do
 
     %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
     doc = put_in(doc, ["resource", "groups"], [])
-
-    Enum.reduce(config_groups, doc,
+    doc = Enum.reduce(config_groups, doc,
       fn config_group, doc ->
         object_group = scan_group config_group, doc
         update_in(doc, ["resource", "groups"], append(object_group))
       end
     )
+
+    update_in(doc, ["resource"], &(Map.take(&1, @core_fields)))
   end
 
   defp scan_group(config_group, doc) do
