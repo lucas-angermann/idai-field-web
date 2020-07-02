@@ -24,7 +24,7 @@ defmodule Core.Layout do
     group = %{
       fields: []
     }
-    # TODO add items for existing fields
+    # TODO add placeholder items for existing fields to fulfill next 2 test expectations
 
     [group] # if fields is empty return [], otherwise [group]
   end
