@@ -5,19 +5,14 @@ import { Link } from 'react-router-dom';
 
 export default ({ document }: { document: any }) => {
 
-    const resource = document.resource;
-    const header = renderHeader(resource);
-    const fieldList = renderFieldList(resource);
-    const relationList = renderRelationList(resource);
     return (
         <Container>
             <Card>
                 <Card.Header>
-                    { header }
+                    { renderHeader(document.resource) }
                 </Card.Header>
                 <Card.Body>
-                    { fieldList }
-                    { relationList }
+                    { renderGroups(document.resource) }
                 </Card.Body>
             </Card>
         </Container>
@@ -40,34 +35,48 @@ const renderHeader = (resource: any) => (
 );
 
 
-const renderFieldList = (resource: any) => {
+const renderGroups = (resource: any) => {
 
-    const fields = Object.keys(resource)
-        .filter(key => !['relations', 'geometry', 'id'].includes(key))
-        .filter(key => resource[key])
-        .map(key => [
-            <dt key={ `${key}_dt`}>{ key }</dt>,
-            <dd key={ `${key}_dd`}>{ renderFieldValue(resource[key]) }</dd>
-        ]);
-    return <dl>{ fields }</dl>;
+    return resource.groups.map(renderGroup);
 };
 
 
-const renderRelationList = (resource: any) => {
+const renderGroup = (group: any) => {
 
-    if (!resource.relations) return null;
+    return (
+        <div>
+            { renderFieldList(group.fields) }
+            { renderRelationList(group.relations) }
+        </div>
+    );
+};
 
-    const relations = Object.keys(resource.relations)
-        .filter(key => resource.relations[key].length > 0)
-        .map(key => [
-            <dt key={ `${key}_dt`}>{ key }</dt>,
-            <dd key={ `${key}_dd`}>
+
+const renderFieldList = (fields: any) => {
+
+    const fieldElements = fields
+        .map(field => [
+            <dt key={ `${field.name}_dt`}>{ field.name }</dt>,
+            <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value) }</dd>
+        ]);
+    return <dl>{ fieldElements }</dl>;
+};
+
+
+const renderRelationList = (relations: any) => {
+
+    if (!relations) return null;
+
+    const relationElements = relations
+        .map(relation => [
+            <dt key={ `${relation.name}_dt`}>{ relation.name }</dt>,
+            <dd key={ `${relation.name}_dd`}>
                 <ul>
-                    { resource.relations[key].map(id => renderDocumentLink(id)) }
+                    { relation.targets.map(id => renderDocumentLink(id)) }
                 </ul>
             </dd>
         ]);
-    return <dl>{ relations }</dl>;
+    return <dl>{ relationElements }</dl>;
 };
 
 
