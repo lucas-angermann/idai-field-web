@@ -19,7 +19,7 @@ defmodule Core.Layout do
 
   # TODO see if we find fields in resource which are in that group
   # if there are none return [group], otherwise return []
-  defp scan_group(doc, groups) do
+  defp scan_group(_group, _doc) do
     [0]
   end
 end
