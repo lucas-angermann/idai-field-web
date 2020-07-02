@@ -6,5 +6,5 @@ defmodule Api.Documents.Helper do
 
   def to_atomized_result(body), do: body |> Poison.decode! |> atomize
 
-  def to_document(%{ _source: document }), do: document
+  def to_document(%{ "_source" => document }), do: document
 end

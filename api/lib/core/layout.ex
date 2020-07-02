@@ -1,14 +1,14 @@
-
 defmodule Core.Layout do
 
-  def get_layout(doc, %{ "groups" => config_groups }) do
+  def to_layouted_document(doc, %{ "de" => configuration }) do
 
-    doc = put_in(doc, [:resource, "groups"], [])
+    %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
+    doc = put_in(doc, ["resource", "groups"], [])
 
     Enum.reduce(config_groups, doc,
       fn config_group, doc ->
         object_group = scan_group config_group, doc
-        update_in(doc, [:resource, "groups"], append(object_group))
+        update_in(doc, ["resource", "groups"], append(object_group))
       end
     )
   end
@@ -49,10 +49,10 @@ defmodule Core.Layout do
 
   defp scan_relation(%{ "name" => config_relation_name}, doc) do
 
-    if Map.has_key?(get_in(doc.resource, ["relations"]), config_relation_name) do
+    if Map.has_key?(get_in(doc["resource"], ["relations"]), config_relation_name) do
       %{
         name: config_relation_name,
-        targets: get_in(doc.resource, ["relations", config_relation_name])
+        targets: get_in(doc["resource"], ["relations", config_relation_name])
       }
     else
       nil
@@ -61,10 +61,10 @@ defmodule Core.Layout do
 
   defp scan_field(%{ "name" => config_field_name }, doc) do
 
-    if Map.has_key?(doc.resource, config_field_name) do
+    if Map.has_key?(doc["resource"], config_field_name) do
       %{
         name: config_field_name,
-        value: get_in(doc.resource, [config_field_name])
+        value: get_in(doc["resource"], [config_field_name])
       }
     else
       nil
@@ -72,6 +72,5 @@ defmodule Core.Layout do
   end
 
   defp append(nil), do: fn list -> list end
-
   defp append(item), do: fn list -> list ++ [item] end
 end

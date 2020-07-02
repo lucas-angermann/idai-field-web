@@ -7,7 +7,9 @@ config :api,
   couchdb_user: "",
   couchdb_password: "",
   couchdb_databases: ["db1", "db2", "db3"],
-  gazetteer_url: "https://gazetteer.dainst.org"
+  gazetteer_url: "https://gazetteer.dainst.org",
+  config_dir: "config/projects",
+  locales: ["de", "en"]
 
 config :api, Api.Auth.Guardian,
   issuer: "api",
@@ -25,7 +27,3 @@ config :api, Api.Auth,
     "user-3" => ["a", "b"],
     "anonymous" => ["a"]
   }
-
-config :api, Worker.ProjectConfigLoader,
-  config_dir: "api/config/projects",
-  locales: ["de", "en"]

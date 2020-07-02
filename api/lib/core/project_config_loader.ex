@@ -1,4 +1,4 @@
-defmodule ProjectConfigLoader do
+defmodule Core.ProjectConfigLoader do
 
     def load(config_dir, project_name, locales = [_|_]) do
         for locale <- locales, into: %{} do
@@ -10,5 +10,4 @@ defmodule ProjectConfigLoader do
         with {:ok, body} <- File.read("#{config_dir}/#{project_name}.#{locale}.json"),
              {:ok, json} <- Poison.decode(body), do: json
     end
-
 end

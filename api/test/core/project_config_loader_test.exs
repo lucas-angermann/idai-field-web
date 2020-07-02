@@ -1,4 +1,4 @@
-defmodule Worker.ProjectConfigLoaderTest do
+defmodule Core.ProjectConfigLoaderTest do
     use ExUnit.Case, async: true
     use Plug.Test
 

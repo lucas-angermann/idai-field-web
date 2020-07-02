@@ -16,8 +16,8 @@
                 "editable": false,
                 "group": "stem",
                 "source": "builtin",
-                "label": "Category",
-                "name": "category",
+                "label": "Type",
+                "name": "type",
                 "inputType": "input"
               },
               {
