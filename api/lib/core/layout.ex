@@ -10,13 +10,16 @@ defmodule Core.Layout do
 
         update_in(doc, [:resource, "groups"],
           fn groups ->
-
-            # TODO see if we find fields in resource which are in that group
-            # if there are none return groups, otherwise attach a new group to groups
-            groups ++ [0]
+            groups ++ scan_group group, doc
           end
         )
       end
     )
+  end
+
+  # TODO see if we find fields in resource which are in that group
+  # if there are none return [group], otherwise return []
+  defp scan_group(doc, groups) do
+    [0]
   end
 end
