@@ -9,7 +9,7 @@ defmodule Core.Layout do
       fn group, doc ->
 
         update_in(doc, [:resource, "groups"],
-          fn groups ->
+          fn groups -> # TODO extract append function or search for existing alternative
             groups ++ scan_group group, doc
           end
         )
