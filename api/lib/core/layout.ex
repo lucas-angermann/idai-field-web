@@ -22,12 +22,16 @@ defmodule Core.Layout do
 
     object_group = Enum.reduce(config_group_fields, object_group,
        fn config_group_field, object_group ->
-         update_in(object_group, [:fields], append([0]))
+
+         # field = fetch_field(object_group)
+         update_in(object_group, [:fields], append(0))
        end
     )
 
-    [object_group] # if fields is empty return [], otherwise [group]
+    object_group # if fields is empty return nil, otherwise group
   end
 
-  defp append(singleton_list), do: fn list -> list ++ singleton_list end
+  defp append(nil), do: fn list -> list end
+
+  defp append(item), do: fn list -> list ++ [item] end
 end
