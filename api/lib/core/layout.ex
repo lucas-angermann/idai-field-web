@@ -65,12 +65,11 @@ defmodule Core.Layout do
   defp scan_and_add(scan_f, coll, doc) do
     Enum.reduce(coll, [],
       fn coll_item, out_coll ->
-        out_item = apply(scan_f, [coll_item, doc])
-        append(out_item, out_coll)
+        append(out_coll, apply(scan_f, [coll_item, doc]))
       end
     )
   end
 
-  defp append(nil, list), do: list
-  defp append(item, list), do: list ++ [item]
+  defp append(list, nil), do: list
+  defp append(list, item), do: list ++ [item]
 end
