@@ -21,7 +21,8 @@ defmodule Core.Layout do
            "fields" => config_group_fields,
            "name" => config_group_name,
            "relations" => config_group_relations
-         }, resource) do
+         },
+         resource) do
 
     group = %{
         fields: scan_and_add(&scan_field/2, config_group_fields, resource),
