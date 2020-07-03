@@ -21,8 +21,7 @@ defmodule Core.Layout do
            "fields" => config_group_fields,
            "name" => config_group_name,
            "relations" => config_group_relations
-         },
-         resource) do
+         }, resource) do
 
     group = %{
         fields: scan_and_add(&scan_field/2, config_group_fields, resource),
@@ -59,7 +58,7 @@ defmodule Core.Layout do
   defp scan_and_add(scan, config_items, resource) do
     Enum.reduce(config_items, [],
       fn config_item, out_items ->
-        out_items ++ apply(scan, [config_item, resource]) do
+        case apply(scan, [config_item, resource]) do
           nil      -> out_items
           out_item -> out_items ++ [out_item]
         end
