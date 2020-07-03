@@ -5,18 +5,17 @@ defmodule Core.Layout do
   def to_layouted_document(doc, %{ "de" => configuration }) do
 
     %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
-    doc = add_groups(doc, config_groups)
-
+    doc = update_in(doc, ["resource"], &(add_groups(&1, config_groups)))
     update_in(doc, ["resource"], &(Map.take(&1, @core_fields)))
   end
 
-  defp add_groups(doc, config_groups) do
+  defp add_groups(resource, config_groups) do
 
-    groups = scan_and_add(&scan_group/2, config_groups, put_in(doc, ["resource", "groups"], []))
-    put_in(doc, ["resource", "groups"], groups)
+    groups = scan_and_add(&scan_group/2, config_groups, put_in(resource, ["groups"], []))
+    put_in(resource, ["groups"], groups)
   end
 
-  defp scan_group(config_group, doc) do
+  defp scan_group(config_group, resource) do
 
     %{
       "fields" => config_group_fields,
@@ -24,8 +23,8 @@ defmodule Core.Layout do
       "relations" => config_group_relations
     } = config_group
 
-    fields = scan_and_add(&scan_field/2, config_group_fields, doc)
-    relations = scan_and_add(&scan_relation/2, config_group_relations, doc)
+    fields = scan_and_add(&scan_field/2, config_group_fields, resource)
+    relations = scan_and_add(&scan_relation/2, config_group_relations, resource)
 
     if length(fields) == 0 and length(relations) == 0 do
       nil
@@ -38,34 +37,34 @@ defmodule Core.Layout do
     end
   end
 
-  defp scan_relation(%{ "name" => config_relation_name}, doc) do
+  defp scan_relation(%{ "name" => config_relation_name}, resource) do
 
-    if Map.has_key?(get_in(doc["resource"], ["relations"]), config_relation_name) do
+    if Map.has_key?(get_in(resource, ["relations"]), config_relation_name) do
       %{
         name: config_relation_name,
-        targets: get_in(doc["resource"], ["relations", config_relation_name])
+        targets: get_in(resource, ["relations", config_relation_name])
       }
     else
       nil
     end
   end
 
-  defp scan_field(%{ "name" => config_field_name }, doc) do
+  defp scan_field(%{ "name" => config_field_name }, resource) do
 
-    if Map.has_key?(doc["resource"], config_field_name) do
+    if Map.has_key?(resource, config_field_name) do
       %{
         name: config_field_name,
-        value: get_in(doc["resource"], [config_field_name])
+        value: get_in(resource, [config_field_name])
       }
     else
       nil
     end
   end
 
-  defp scan_and_add(scan_f, coll, doc) do
+  defp scan_and_add(scan_f, coll, resource) do
     Enum.reduce(coll, [],
       fn coll_item, out_coll ->
-        append(out_coll, apply(scan_f, [coll_item, doc]))
+        append(out_coll, apply(scan_f, [coll_item, resource]))
       end
     )
   end
