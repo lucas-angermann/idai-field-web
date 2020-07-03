@@ -55,10 +55,10 @@ defmodule Core.Layout do
     end
   end
 
-  defp scan_and_add(scan_f, coll, resource) do
+  defp scan_and_add(scan, coll, resource) do
     Enum.reduce(coll, [],
       fn coll_item, out_coll ->
-        case apply(scan_f, [coll_item, resource]) do
+        case apply(scan, [coll_item, resource]) do
           nil      -> out_coll
           out_item -> out_coll ++ [out_item]
         end
