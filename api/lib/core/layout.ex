@@ -6,13 +6,9 @@ defmodule Core.Layout do
 
     %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
     doc = put_in(doc, ["resource", "groups"], [])
-    doc = Enum.reduce(config_groups, doc,
-      fn config_group, doc ->
-        object_group = scan_group config_group, doc
-        update_in(doc, ["resource", "groups"], append(object_group))
-      end
-    )
 
+    groups = scan_and_add(&scan_group/2, config_groups, doc)
+    doc = put_in(doc, ["resource", "groups"], groups)
     update_in(doc, ["resource"], &(Map.take(&1, @core_fields)))
   end
 
@@ -24,20 +20,8 @@ defmodule Core.Layout do
       "relations" => config_group_relations
     } = config_group
 
-    fields =
-      Enum.reduce(config_group_fields, [],
-       fn config_group_field, fields ->
-         field = scan_field(config_group_field, doc)
-         append(field).(fields)
-       end
-      )
-
-    relations = Enum.reduce(config_group_relations, [],
-      fn config_group_relation, relations ->
-        relation = scan_relation(config_group_relation, doc)
-        append(relation).(relations)
-      end
-    )
+    fields = scan_and_add(&scan_field/2, config_group_fields, doc)
+    relations = scan_and_add(&scan_relation/2, config_group_relations, doc)
 
     if length(fields) == 0 and length(relations) == 0 do
       nil
@@ -72,6 +56,15 @@ defmodule Core.Layout do
     else
       nil
     end
+  end
+
+  defp scan_and_add(scan_f, coll, doc) do
+    Enum.reduce(coll, [],
+      fn coll_item, out_coll ->
+        out_item = apply(scan_f, [coll_item, doc])
+        append(out_item).(out_coll)
+      end
+    )
   end
 
   defp append(nil), do: fn list -> list end
