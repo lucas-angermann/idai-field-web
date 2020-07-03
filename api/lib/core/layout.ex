@@ -5,8 +5,10 @@ defmodule Core.Layout do
   def to_layouted_document(doc, %{ "de" => configuration }) do
 
     %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
-    doc = update_in(doc, ["resource"], &(add_groups(&1, config_groups)))
-    update_in(doc, ["resource"], &(Map.take(&1, @core_fields)))
+
+    doc
+    |> update_in(["resource"], &(add_groups(&1, config_groups)))
+    |> update_in(["resource"], &(Map.take(&1, @core_fields)))
   end
 
   defp add_groups(resource, config_groups) do
