@@ -13,8 +13,7 @@ defmodule Core.Layout do
 
   defp add_groups(resource, config_groups) do
 
-    groups = scan_and_add(&scan_group/2, config_groups, put_in(resource, ["groups"], []))
-    put_in(resource, ["groups"], groups)
+    put_in(resource, ["groups"], scan_and_add(&scan_group/2, config_groups, resource))
   end
 
   defp scan_group(config_group, resource) do
