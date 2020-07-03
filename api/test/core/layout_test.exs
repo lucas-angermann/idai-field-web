@@ -31,7 +31,10 @@ defmodule Core.LayoutTest do
               "de" => "Typ",
               "en"=> "Type"
             },
-            description: %{}
+            description: %{
+              "de" => "Typ der Ressource",
+              "en" => "Type of resource"
+            }
            },
            %{
              name: "id",
