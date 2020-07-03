@@ -30,12 +30,14 @@ defmodule Core.LayoutTest do
             label: %{
               "de" => "Typ",
               "en"=> "Type"
-            }
+            },
+            description: %{}
            },
            %{
              name: "id",
              value: "42",
-             label: %{}
+             label: %{},
+             description: %{}
            }],
         relations: [
           %{
@@ -44,7 +46,8 @@ defmodule Core.LayoutTest do
             label: %{
               "de" => "Liegt in",
               "en" => "Lies within"
-            }
+            },
+            description: %{}
           }
         ]
        },
@@ -57,7 +60,8 @@ defmodule Core.LayoutTest do
              label: %{
                "de" => "Höhe",
                "en" => "Height"
-             }
+             },
+             description: %{}
            },
            %{
              name: "width",
@@ -65,7 +69,8 @@ defmodule Core.LayoutTest do
              label: %{
                "de" => "Breite",
                "en" => "Width"
-             }
+             },
+             description: %{}
            }
          ],
          relations: []

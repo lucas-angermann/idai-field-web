@@ -20,6 +20,7 @@
                 "de": "Typ",
                 "en": "Type"
               },
+              "description": {},
               "name": "type",
               "inputType": "input"
             },
@@ -30,6 +31,7 @@
               "source": "builtin",
               "name": "id",
               "label": {},
+              "description": {},
               "inputType": "input"
             }
           ],
@@ -40,6 +42,7 @@
                 "de": "Liegt in",
                 "en": "Lies within"
               },
+              "description": {},
               "domain": [
                 "Trench",
                 "Building",
@@ -67,6 +70,7 @@
                 "de": "Höhe",
                 "en": "Height"
               },
+              "description": {},
               "name": "height",
               "inputType": "input"
             },
@@ -79,6 +83,7 @@
                 "de": "Breite",
                 "en": "Width"
               },
+              "description": {},
               "name": "width",
               "inputType": "input"
             }

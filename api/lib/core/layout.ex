@@ -32,13 +32,15 @@ defmodule Core.Layout do
     if group.fields != nil or group.relations != nil, do: [group], else: []
   end
 
-  defp scan_relation(%{ "name" => config_relation_name, "label" => config_relation_label }, resource) do
+  defp scan_relation(%{ "name" => config_relation_name, "label" => config_relation_label,
+      "description" => config_relation_description }, resource) do
 
     if Map.has_key?(get_in(resource, ["relations"]), config_relation_name) do
       [
         %{
           name: config_relation_name,
           label: config_relation_label,
+          description: config_relation_description,
           targets: get_in(resource, ["relations", config_relation_name])
         }
       ]
@@ -47,13 +49,15 @@ defmodule Core.Layout do
     end
   end
 
-  defp scan_field(%{ "name" => config_field_name, "label" => config_field_label }, resource) do
+  defp scan_field(%{ "name" => config_field_name, "label" => config_field_label,
+      "description" => config_field_description }, resource) do
 
     if Map.has_key?(resource, config_field_name) do
       [
         %{
           name: config_field_name,
           label: config_field_label,
+          description: config_field_description,
           value: get_in(resource, [config_field_name])
         }
       ]
