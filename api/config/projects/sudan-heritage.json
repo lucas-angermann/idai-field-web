@@ -2,8 +2,14 @@
   {
     "item": {
       "name": "Place",
-      "label": "Ort",
-      "description": {},
+      "label": {
+        "de": "Ort",
+        "en": "Heritage Site"
+      },
+      "description": {
+        "de": {},
+        "en": {}
+      },
       "groups": [
         {
           "name": "stem",
@@ -13,7 +19,11 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Kategorie",
+              "label": {
+                "de": "Kategorie",
+                "en": "Category"
+              },
+              "description": {},
               "name": "category",
               "inputType": "input"
             },
@@ -23,15 +33,23 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
-              "inputType": "input"
+              "inputType": "input",
+              "label": {},
+              "description": {}
             },
             {
               "visible": false,
               "editable": true,
               "mandatory": true,
               "group": "stem",
-              "label": "Bezeichner",
-              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "label": {
+                "de": "Bezeichner",
+                "en": "Identifier"
+              },
+              "description": {
+                "de": "Eindeutiger Bezeichner dieser Ressource",
+                "en": "Unique identifier of this resource"
+              },
               "name": "identifier",
               "inputType": "input"
             },
@@ -39,26 +57,20 @@
               "visible": false,
               "editable": true,
               "group": "stem",
-              "label": "Kurzbeschreibung",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {},
               "name": "shortDescription",
               "inputType": "input"
             }
           ],
-          "relations": [
-            {
-              "name": "liesWithin",
-              "label": "Liegt in",
-              "domain": [
-                "Operation",
-                "Place"
-              ],
-              "range": [
-                "Place"
-              ],
-              "editable": false
-            }
-          ],
-          "label": "Stammdaten"
+          "relations": [],
+          "label": {
+            "de": "Stammdaten",
+            "en": "Core"
+          }
         },
         {
           "name": "parent",
@@ -68,8 +80,13 @@
               "source": "builtin",
               "visible": true,
               "editable": true,
-              "label": "Gazetteer-ID",
-              "description": "ID-Nummer des Ortslexikons",
+              "label": {
+                "de": "Gazetteer-ID",
+                "en": "Gazetteer ID"
+              },
+              "description": {
+                "de": "ID-Nummer des Ortslexikons"
+              },
               "constraintIndexed": true,
               "name": "gazId",
               "group": "parent"
@@ -79,8 +96,13 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Ortsname",
-              "description": "Name der Ortschaft bzw. Gemarkung",
+              "label": {
+                "de": "Ortsname",
+                "en": "Place name"
+              },
+              "description": {
+                "de": "Name der Ortschaft bzw. Gemarkung"
+              },
               "constraintIndexed": true,
               "name": "placeName",
               "group": "parent"
@@ -123,10 +145,14 @@
                   "Historical building": {}
                 }
               },
-              "label": "Klassifikation Fundplatz",
+              "label": {
+                "de": "Klassifikation Fundplatz",
+                "en": "General archaeological classification for the site"
+              },
               "constraintIndexed": true,
               "name": "siteClassification",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "dropdown",
@@ -156,18 +182,27 @@
                   "urbanes Gebäude": {}
                 }
               },
-              "label": "Klassifikation Fundstelle",
+              "label": {
+                "de": "Klassifikation Fundstelle",
+                "en": "Findspot classification"
+              },
               "constraintIndexed": true,
               "name": "findspotClassification",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Moderne Eingriffe",
-              "description": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)",
+              "label": {
+                "de": "Moderne Eingriffe",
+                "en": "Modern structures on the site"
+              },
+              "description": {
+                "de": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)"
+              },
               "name": "modernIntervention",
               "group": "parent"
             },
@@ -176,8 +211,13 @@
               "source": "library",
               "visible": false,
               "editable": false,
-              "label": "Ausgrabungsgeschichte",
-              "description": "Abhandlung über die Grabungsprojekte auf der Fundstelle",
+              "label": {
+                "de": "Ausgrabungsgeschichte",
+                "en": "Excavation history"
+              },
+              "description": {
+                "de": "Abhandlung über die Grabungsprojekte auf der Fundstelle"
+              },
               "name": "excavationHistory",
               "group": "parent"
             },
@@ -186,8 +226,13 @@
               "source": "library",
               "visible": false,
               "editable": false,
-              "label": "Forschungsgeschichte",
-              "description": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen",
+              "label": {
+                "de": "Forschungsgeschichte",
+                "en": "Research history"
+              },
+              "description": {
+                "de": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen"
+              },
               "name": "buildingResearchHistory",
               "group": "parent"
             },
@@ -196,8 +241,13 @@
               "source": "library",
               "visible": false,
               "editable": false,
-              "label": "Baugeschichte",
-              "description": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle",
+              "label": {
+                "de": "Baugeschichte",
+                "en": "Building research history"
+              },
+              "description": {
+                "de": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle"
+              },
               "name": "buildingHistory",
               "group": "parent"
             },
@@ -206,8 +256,14 @@
               "source": "library",
               "visible": false,
               "editable": false,
-              "label": "Fundumstände",
-              "description": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
+              "label": {
+                "de": "Fundumstände",
+                "en": "Find situation"
+              },
+              "description": {
+                "de": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
+                "en": "Description of the circumstances of the finding place discovery and the persons involved"
+              },
               "name": "findSituation",
               "group": "parent"
             },
@@ -217,7 +273,11 @@
               "visible": true,
               "editable": true,
               "name": "placeNameOriginalLanguage",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Place name in arabic"
+              },
+              "description": {}
             },
             {
               "inputType": "checkboxes",
@@ -247,7 +307,11 @@
                 }
               },
               "name": "periodSudanHeritage",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Periods observable on the site"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -255,7 +319,11 @@
               "visible": true,
               "editable": true,
               "name": "researchHistory",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Research history"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -263,7 +331,11 @@
               "visible": true,
               "editable": true,
               "name": "stateOfPreservation",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Description of the state of preservation"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -271,7 +343,11 @@
               "visible": true,
               "editable": true,
               "name": "conservationMeasures",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Measures for conservation of the site"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -279,7 +355,11 @@
               "visible": true,
               "editable": true,
               "name": "objectCirculation",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Archaeological objects from this site in circulation"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -287,7 +367,11 @@
               "visible": true,
               "editable": true,
               "name": "staffInCharge",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Persons in charge of this site"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
@@ -295,15 +379,24 @@
               "visible": true,
               "editable": true,
               "name": "securityMeasures",
-              "group": "parent"
+              "group": "parent",
+              "label": {
+                "en": "Measures for securing the site"
+              },
+              "description": {}
             },
             {
               "inputType": "text",
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Beschreibung",
-              "description": "Freies Beschreibungsfeld",
+              "label": {
+                "de": "Beschreibung",
+                "en": "Description"
+              },
+              "description": {
+                "de": "Freies Beschreibungsfeld"
+              },
               "name": "description",
               "group": "parent"
             },
@@ -312,11 +405,16 @@
               "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Ort"
+          "label": {
+            "de": "Ort",
+            "en": "Heritage Site"
+          }
         },
         {
           "name": "position",
@@ -326,7 +424,11 @@
               "group": "position",
               "inputType": "geometry",
               "editable": true,
-              "label": "Geometrie"
+              "label": {
+                "de": "Geometrie",
+                "en": "Geometry"
+              },
+              "description": {}
             },
             {
               "inputType": "input",
@@ -334,13 +436,21 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Beschreibung der räumlichen Lage",
-              "description": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes",
+              "label": {
+                "de": "Beschreibung der räumlichen Lage",
+                "en": "Spatial location"
+              },
+              "description": {
+                "de": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes"
+              },
               "name": "spatialLocation"
             }
           ],
           "relations": [],
-          "label": "Lage / Kontext"
+          "label": {
+            "de": "Lage / Kontext",
+            "en": "Position / Context"
+          }
         },
         {
           "name": "time",
@@ -351,12 +461,19 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Datierung",
-              "name": "dating"
+              "label": {
+                "de": "Datierung",
+                "en": "Dating"
+              },
+              "name": "dating",
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Zeit"
+          "label": {
+            "de": "Zeit",
+            "en": "Time"
+          }
         }
       ],
       "isAbstract": false,
@@ -368,8 +485,14 @@
   {
     "item": {
       "name": "Image",
-      "label": "Abbildung",
-      "description": {},
+      "label": {
+        "de": "Abbildung",
+        "en": "Image"
+      },
+      "description": {
+        "de": {},
+        "en": {}
+      },
       "groups": [
         {
           "name": "stem",
@@ -379,7 +502,11 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Kategorie",
+              "label": {
+                "de": "Kategorie",
+                "en": "Category"
+              },
+              "description": {},
               "name": "category",
               "inputType": "input"
             },
@@ -389,15 +516,23 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
-              "inputType": "input"
+              "inputType": "input",
+              "label": {},
+              "description": {}
             },
             {
               "visible": false,
               "editable": true,
               "mandatory": true,
               "group": "stem",
-              "label": "Bezeichner",
-              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "label": {
+                "de": "Bezeichner",
+                "en": "Identifier"
+              },
+              "description": {
+                "de": "Eindeutiger Bezeichner dieser Ressource",
+                "en": "Unique identifier of this resource"
+              },
               "name": "identifier",
               "inputType": "input"
             },
@@ -405,7 +540,11 @@
               "visible": false,
               "editable": true,
               "group": "stem",
-              "label": "Kurzbeschreibung",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {},
               "name": "shortDescription",
               "inputType": "input"
             },
@@ -416,8 +555,14 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Bildersteller/Bilderstellerin",
-              "description": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
+              "label": {
+                "de": "Bildersteller/Bilderstellerin",
+                "en": "Creator"
+              },
+              "description": {
+                "de": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
+                "en": "Creator of the image, photographer respectively draughtsman"
+              },
               "constraintIndexed": true,
               "name": "draughtsmen"
             },
@@ -428,8 +573,14 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Bearbeiterin/Bearbeiter",
-              "description": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
+              "label": {
+                "de": "Bearbeiterin/Bearbeiter",
+                "en": "Processor"
+              },
+              "description": {
+                "de": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
+                "en": "Processor of the image in case of changes after the creation of the image"
+              },
               "constraintIndexed": true,
               "name": "processor"
             },
@@ -441,13 +592,20 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Kampagne",
+              "label": {
+                "de": "Kampagne",
+                "en": "Campaign"
+              },
               "constraintIndexed": true,
-              "name": "campaign"
+              "name": "campaign",
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Stammdaten"
+          "label": {
+            "de": "Stammdaten",
+            "en": "Core"
+          }
         },
         {
           "name": "parent",
@@ -457,18 +615,26 @@
               "editable": false,
               "source": "builtin",
               "visible": true,
-              "label": "Höhe",
+              "label": {
+                "de": "Höhe",
+                "en": "Height"
+              },
               "name": "height",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "unsignedInt",
               "editable": false,
               "source": "builtin",
               "visible": true,
-              "label": "Breite",
+              "label": {
+                "de": "Breite",
+                "en": "Width"
+              },
               "name": "width",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "input",
@@ -476,7 +642,9 @@
               "editable": false,
               "source": "builtin",
               "name": "originalFilename",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             },
             {
               "inputType": "input",
@@ -484,15 +652,22 @@
               "editable": false,
               "source": "builtin",
               "name": "georeference",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             },
             {
               "inputType": "text",
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Beschreibung",
-              "description": "Freies Beschreibungsfeld",
+              "label": {
+                "de": "Beschreibung",
+                "en": "Description"
+              },
+              "description": {
+                "de": "Freies Beschreibungsfeld"
+              },
               "name": "description",
               "group": "parent"
             },
@@ -501,20 +676,29 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Literaturverweis",
+              "label": {
+                "de": "Literaturverweis",
+                "en": "Literature reference"
+              },
               "name": "literature",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "visible": false,
               "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Abbildung"
+          "label": {
+            "de": "Abbildung",
+            "en": "Image"
+          }
         }
       ],
       "isAbstract": false,
@@ -526,8 +710,14 @@
   {
     "item": {
       "name": "Project",
-      "label": "Projekt",
-      "description": {},
+      "label": {
+        "de": "Projekt",
+        "en": "Project"
+      },
+      "description": {
+        "de": {},
+        "en": {}
+      },
       "groups": [
         {
           "name": "stem",
@@ -537,7 +727,11 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Kategorie",
+              "label": {
+                "de": "Kategorie",
+                "en": "Category"
+              },
+              "description": {},
               "name": "category",
               "inputType": "input"
             },
@@ -547,19 +741,28 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
-              "inputType": "input"
+              "inputType": "input",
+              "label": {},
+              "description": {}
             },
             {
               "visible": false,
               "editable": true,
               "group": "stem",
-              "label": "Kurzbeschreibung",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {},
               "name": "shortDescription",
               "inputType": "input"
             }
           ],
           "relations": [],
-          "label": "Stammdaten"
+          "label": {
+            "de": "Stammdaten",
+            "en": "Core"
+          }
         },
         {
           "name": "parent",
@@ -569,8 +772,13 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Beschreibung",
-              "description": "Freies Beschreibungsfeld",
+              "label": {
+                "de": "Beschreibung",
+                "en": "Description"
+              },
+              "description": {
+                "de": "Freies Beschreibungsfeld"
+              },
               "name": "description",
               "group": "parent"
             },
@@ -579,8 +787,14 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Institution",
-              "description": "Für das Projekt verantwortliche Institution",
+              "label": {
+                "de": "Institution",
+                "en": "Institution"
+              },
+              "description": {
+                "de": "Für das Projekt verantwortliche Institution",
+                "en": "Institution responsible for the project"
+              },
               "name": "institution",
               "group": "parent"
             },
@@ -589,8 +803,14 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Leiterin/Leiter",
-              "description": "Leitende Person des Projekts",
+              "label": {
+                "de": "Leiterin/Leiter",
+                "en": "Supervisor"
+              },
+              "description": {
+                "de": "Leitende Person des Projekts",
+                "en": "Person in charge of the project"
+              },
               "name": "projectSupervisor",
               "group": "parent"
             },
@@ -599,8 +819,13 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Kontaktperson",
-              "description": "Kontaktperson des Projekts",
+              "label": {
+                "de": "Kontaktperson",
+                "en": "Contact person"
+              },
+              "description": {
+                "de": "Kontaktperson des Projekts"
+              },
               "name": "contactPerson",
               "group": "parent"
             },
@@ -609,8 +834,14 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Mailadresse der Kontaktperson",
-              "description": "Mailadresse des Projekts bzw. der Kontaktperson",
+              "label": {
+                "de": "Mailadresse der Kontaktperson",
+                "en": "Mail address of the contact person"
+              },
+              "description": {
+                "de": "Mailadresse des Projekts bzw. der Kontaktperson",
+                "en": "Mail address of the project or a contact person"
+              },
               "name": "contactMail",
               "group": "parent"
             },
@@ -619,26 +850,39 @@
               "source": "builtin",
               "visible": true,
               "editable": true,
-              "label": "Team",
+              "label": {
+                "de": "Team",
+                "en": "Staff"
+              },
               "name": "staff",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "multiInput",
               "source": "builtin",
               "visible": true,
               "editable": true,
-              "label": "Kampagnen",
+              "label": {
+                "de": "Kampagnen",
+                "en": "Campaigns"
+              },
               "name": "campaigns",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Projekt-URL",
-              "description": "Hinweis auf eine externe Projektseite mit weiteren Informationen",
+              "label": {
+                "de": "Projekt-URL",
+                "en": "Project URL"
+              },
+              "description": {
+                "de": "Hinweis auf eine externe Projektseite mit weiteren Informationen"
+              },
               "name": "projectURI",
               "group": "parent"
             },
@@ -647,8 +891,14 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Projekt-Homepage",
-              "description": "Externe Referenz(en) des Projekts",
+              "label": {
+                "de": "Projekt-Homepage",
+                "en": "Project homepage"
+              },
+              "description": {
+                "de": "Externe Referenz(en) des Projekts",
+                "en": "External reference(s) of the project"
+              },
               "name": "externalReference",
               "group": "parent"
             },
@@ -657,8 +907,13 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Gazetteer-ID",
-              "description": "ID-Nummer des Ortslexikons",
+              "label": {
+                "de": "Gazetteer-ID",
+                "en": "Gazetteer ID"
+              },
+              "description": {
+                "de": "ID-Nummer des Ortslexikons"
+              },
               "name": "gazId",
               "group": "parent"
             },
@@ -667,8 +922,13 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Breitengrad",
-              "description": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+              "label": {
+                "de": "Breitengrad",
+                "en": "Latitude"
+              },
+              "description": {
+                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
+              },
               "name": "latitude",
               "group": "parent"
             },
@@ -677,8 +937,13 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "Längengrad",
-              "description": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+              "label": {
+                "de": "Längengrad",
+                "en": "Longitude"
+              },
+              "description": {
+                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
+              },
               "name": "longitude",
               "group": "parent"
             },
@@ -687,8 +952,14 @@
               "source": "library",
               "visible": true,
               "editable": true,
-              "label": "EPSG-Code",
-              "description": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
+              "label": {
+                "de": "EPSG-Code",
+                "en": "EPSG Code"
+              },
+              "description": {
+                "de": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
+                "en": "Specification of the EPSG code (see http://spatialreference.org/, e. g. 3004)"
+              },
               "name": "epsgId",
               "group": "parent"
             },
@@ -707,17 +978,27 @@
                   "EPSG3857 (WGS 84 Web Mercator)": {}
                 }
               },
-              "label": "Koordinatenbezugssystem",
+              "label": {
+                "de": "Koordinatenbezugssystem",
+                "en": "Coordinate reference system"
+              },
               "name": "coordinateReferenceSystem",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "inputType": "input",
               "editable": false,
               "source": "builtin",
               "visible": true,
-              "label": "Bezeichner",
-              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "label": {
+                "de": "Bezeichner",
+                "en": "Identifier"
+              },
+              "description": {
+                "de": "Eindeutiger Bezeichner dieser Ressource",
+                "en": "Unique identifier of this resource"
+              },
               "name": "identifier",
               "group": "parent"
             },
@@ -726,11 +1007,16 @@
               "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Projekt"
+          "label": {
+            "de": "Projekt",
+            "en": "Project"
+          }
         }
       ],
       "isAbstract": false,
@@ -742,8 +1028,14 @@
   {
     "item": {
       "name": "TypeCatalog",
-      "label": "Typenkatalog",
-      "description": {},
+      "label": {
+        "de": "Typenkatalog",
+        "en": "Type catalog"
+      },
+      "description": {
+        "de": {},
+        "en": {}
+      },
       "groups": [
         {
           "name": "stem",
@@ -753,7 +1045,11 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Kategorie",
+              "label": {
+                "de": "Kategorie",
+                "en": "Category"
+              },
+              "description": {},
               "name": "category",
               "inputType": "input"
             },
@@ -763,15 +1059,23 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
-              "inputType": "input"
+              "inputType": "input",
+              "label": {},
+              "description": {}
             },
             {
               "visible": false,
               "editable": true,
               "mandatory": true,
               "group": "stem",
-              "label": "Bezeichner",
-              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "label": {
+                "de": "Bezeichner",
+                "en": "Identifier"
+              },
+              "description": {
+                "de": "Eindeutiger Bezeichner dieser Ressource",
+                "en": "Unique identifier of this resource"
+              },
               "name": "identifier",
               "inputType": "input"
             },
@@ -779,13 +1083,20 @@
               "visible": false,
               "editable": true,
               "group": "stem",
-              "label": "Kurzbeschreibung",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {},
               "name": "shortDescription",
               "inputType": "input"
             }
           ],
           "relations": [],
-          "label": "Stammdaten"
+          "label": {
+            "de": "Stammdaten",
+            "en": "Core"
+          }
         },
         {
           "name": "identification",
@@ -831,12 +1142,19 @@
                   }
                 }
               },
-              "label": "Kriterium",
-              "name": "criterion"
+              "label": {
+                "de": "Kriterium",
+                "en": "Criterion"
+              },
+              "name": "criterion",
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Bestimmung"
+          "label": {
+            "de": "Bestimmung",
+            "en": "Identification"
+          }
         },
         {
           "name": "parent",
@@ -846,20 +1164,29 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Literaturverweis",
+              "label": {
+                "de": "Literaturverweis",
+                "en": "Literature reference"
+              },
               "name": "literature",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "visible": false,
               "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Typenkatalog"
+          "label": {
+            "de": "Typenkatalog",
+            "en": "Type catalog"
+          }
         }
       ],
       "isAbstract": false,
@@ -872,8 +1199,14 @@
     "item": {
       "mustLieWithin": true,
       "name": "Type",
-      "label": "Typ",
-      "description": {},
+      "label": {
+        "de": "Typ",
+        "en": "Type"
+      },
+      "description": {
+        "de": {},
+        "en": {}
+      },
       "groups": [
         {
           "name": "stem",
@@ -883,7 +1216,11 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Kategorie",
+              "label": {
+                "de": "Kategorie",
+                "en": "Category"
+              },
+              "description": {},
               "name": "category",
               "inputType": "input"
             },
@@ -893,15 +1230,23 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
-              "inputType": "input"
+              "inputType": "input",
+              "label": {},
+              "description": {}
             },
             {
               "visible": false,
               "editable": true,
               "mandatory": true,
               "group": "stem",
-              "label": "Bezeichner",
-              "description": "Eindeutiger Bezeichner dieser Ressource",
+              "label": {
+                "de": "Bezeichner",
+                "en": "Identifier"
+              },
+              "description": {
+                "de": "Eindeutiger Bezeichner dieser Ressource",
+                "en": "Unique identifier of this resource"
+              },
               "name": "identifier",
               "inputType": "input"
             },
@@ -909,26 +1254,20 @@
               "visible": false,
               "editable": true,
               "group": "stem",
-              "label": "Kurzbeschreibung",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {},
               "name": "shortDescription",
               "inputType": "input"
             }
           ],
-          "relations": [
-            {
-              "name": "liesWithin",
-              "label": "Liegt in",
-              "domain": [
-                "Type"
-              ],
-              "range": [
-                "Type",
-                "TypeCatalog"
-              ],
-              "editable": false
-            }
-          ],
-          "label": "Stammdaten"
+          "relations": [],
+          "label": {
+            "de": "Stammdaten",
+            "en": "Core"
+          }
         },
         {
           "name": "identification",
@@ -937,16 +1276,23 @@
             {
               "name": "hasInstance",
               "inverse": "isInstanceOf",
-              "label": "Zugeordnete Funde",
+              "label": {
+                "de": "Zugeordnete Funde",
+                "en": "Associated finds"
+              },
               "domain": [
                 "Type"
               ],
               "range": [
                 "Find"
-              ]
+              ],
+              "description": {}
             }
           ],
-          "label": "Bestimmung"
+          "label": {
+            "de": "Bestimmung",
+            "en": "Identification"
+          }
         },
         {
           "name": "parent",
@@ -956,20 +1302,29 @@
               "source": "common",
               "visible": true,
               "editable": true,
-              "label": "Literaturverweis",
+              "label": {
+                "de": "Literaturverweis",
+                "en": "Literature reference"
+              },
               "name": "literature",
-              "group": "parent"
+              "group": "parent",
+              "description": {}
             },
             {
               "visible": false,
               "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent"
+              "group": "parent",
+              "label": {},
+              "description": {}
             }
           ],
           "relations": [],
-          "label": "Typ"
+          "label": {
+            "de": "Typ",
+            "en": "Type"
+          }
         }
       ],
       "isAbstract": false,
