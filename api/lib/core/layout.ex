@@ -16,26 +16,19 @@ defmodule Core.Layout do
     put_in(resource, ["groups"], scan_and_add(&scan_group/2, config_groups, resource))
   end
 
-  defp scan_group(config_group, resource) do
+  defp scan_group(
+         %{
+           "fields" => config_group_fields,
+           "name" => config_group_name,
+           "relations" => config_group_relations
+         }, resource) do
 
-    %{
-      "fields" => config_group_fields,
-      "name" => config_group_name,
-      "relations" => config_group_relations
-    } = config_group
-
-    fields = scan_and_add(&scan_field/2, config_group_fields, resource)
-    relations = scan_and_add(&scan_relation/2, config_group_relations, resource)
-
-    if length(fields) == 0 and length(relations) == 0 do
-      nil
-    else
-      %{
-        fields: fields,
-        relations: relations,
+    group = %{
+        fields: scan_and_add(&scan_field/2, config_group_fields, resource),
+        relations: scan_and_add(&scan_relation/2, config_group_relations, resource),
         name: config_group_name
-      }
-    end
+    }
+    if group.fields != nil or group.relations != nil, do: group, else: nil
   end
 
   defp scan_relation(%{ "name" => config_relation_name}, resource) do
