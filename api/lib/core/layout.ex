@@ -5,11 +5,15 @@ defmodule Core.Layout do
   def to_layouted_document(doc, %{ "de" => configuration }) do
 
     %{ "groups" => config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
-    doc = put_in(doc, ["resource", "groups"], [])
+    doc = add_groups(doc, config_groups)
 
-    groups = scan_and_add(&scan_group/2, config_groups, doc)
-    doc = put_in(doc, ["resource", "groups"], groups)
     update_in(doc, ["resource"], &(Map.take(&1, @core_fields)))
+  end
+
+  defp add_groups(doc, config_groups) do
+
+    groups = scan_and_add(&scan_group/2, config_groups, put_in(doc, ["resource", "groups"], []))
+    put_in(doc, ["resource", "groups"], groups)
   end
 
   defp scan_group(config_group, doc) do
@@ -62,11 +66,11 @@ defmodule Core.Layout do
     Enum.reduce(coll, [],
       fn coll_item, out_coll ->
         out_item = apply(scan_f, [coll_item, doc])
-        append(out_item).(out_coll)
+        append(out_item, out_coll)
       end
     )
   end
 
-  defp append(nil), do: fn list -> list end
-  defp append(item), do: fn list -> list ++ [item] end
+  defp append(nil, list), do: list
+  defp append(item, list), do: list ++ [item]
 end
