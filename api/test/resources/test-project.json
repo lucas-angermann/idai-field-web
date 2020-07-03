@@ -16,7 +16,10 @@
               "editable": false,
               "group": "stem",
               "source": "builtin",
-              "label": "Typ",
+              "label": {
+                "de": "Typ",
+                "en": "Type"
+              },
               "name": "type",
               "inputType": "input"
             },
@@ -26,13 +29,17 @@
               "group": "stem",
               "source": "builtin",
               "name": "id",
+              "label": {},
               "inputType": "input"
             }
           ],
           "relations": [
             {
               "name": "liesWithin",
-              "label": "Liegt in",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
               "domain": [
                 "Trench",
                 "Building",
@@ -56,7 +63,10 @@
               "editable": false,
               "group": "dimensions",
               "source": "builtin",
-              "label": "Höhe",
+              "label": {
+                "de": "Höhe",
+                "en": "Height"
+              },
               "name": "height",
               "inputType": "input"
             },
@@ -65,7 +75,10 @@
               "visible": false,
               "group": "dimensions",
               "source": "builtin",
-              "label": "Breite",
+              "label": {
+                "de": "Breite",
+                "en": "Width"
+              },
               "name": "width",
               "inputType": "input"
             }

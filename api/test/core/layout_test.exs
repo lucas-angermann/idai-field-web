@@ -15,7 +15,7 @@ defmodule Core.LayoutTest do
         }
     }
 
-    configuration = ProjectConfigLoader.load("test/resources", "test-project", ["de", "en"])
+    configuration = ProjectConfigLoader.load("test/resources", "test-project")
     layouted_doc = Layout.to_layouted_document(doc, configuration)
 
     assert get_in(layouted_doc, ["resource"]) == %{
@@ -26,16 +26,25 @@ defmodule Core.LayoutTest do
         fields: [
            %{
             name: "type",
-            value: "Operation"
+            value: "Operation",
+            label: %{
+              "de" => "Typ",
+              "en"=> "Type"
+            }
            },
            %{
              name: "id",
-             value: "42"
+             value: "42",
+             label: %{}
            }],
         relations: [
           %{
             name: "liesWithin",
-            targets: ["45"]
+            targets: ["45"],
+            label: %{
+              "de" => "Liegt in",
+              "en" => "Lies within"
+            }
           }
         ]
        },
@@ -44,11 +53,19 @@ defmodule Core.LayoutTest do
          fields: [
            %{
              name: "height",
-             value: "2cm"
+             value: "2cm",
+             label: %{
+               "de" => "Höhe",
+               "en" => "Height"
+             }
            },
            %{
              name: "width",
-             value: "1cm"
+             value: "1cm",
+             label: %{
+               "de" => "Breite",
+               "en" => "Width"
+             }
            }
          ],
          relations: []

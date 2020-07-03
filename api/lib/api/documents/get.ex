@@ -13,11 +13,7 @@ defmodule Api.Documents.Get do
     |> Poison.decode!
     |> to_document
 
-    project_config = ProjectConfigLoader.load(
-      Config.get(:config_dir),
-      document["project"],
-      Config.get(:locales)
-    )
+    project_config = ProjectConfigLoader.load(Config.get(:config_dir), document["project"])
 
     to_layouted_document(document, project_config)
   end

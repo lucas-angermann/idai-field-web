@@ -2,9 +2,8 @@ defmodule Core.ProjectConfigLoaderTest do
     use ExUnit.Case, async: true
     use Plug.Test
 
-  test "load config for project and locale" do
-    config = ProjectConfigLoader.load("test/resources", "test-project", ["de", "en"])
-    assert get_in(config, ["de", Access.at(0), "item", "label"]) == "Maßnahme"
-    assert get_in(config, ["en", Access.at(0), "item", "label"]) == "Operation"
+  test "load config for project" do
+    config = ProjectConfigLoader.load("test/resources", "test-project")
+    assert get_in(config, [Access.at(0), "item", "label", "de"]) == "Maßnahme"
   end
 end
