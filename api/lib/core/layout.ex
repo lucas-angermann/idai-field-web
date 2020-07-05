@@ -18,61 +18,51 @@ defmodule Core.Layout do
 
   defp scan_group(resource) do
     fn %{
-         "fields" => config_group_fields,
-         "name" => config_group_name,
-         "relations" => config_group_relations
+         "fields" => fields,
+         "name" => name,
+         "relations" => relations
        } ->
 
       group = %{
-          fields: Enum.flat_map(config_group_fields, scan_field(resource)),
-          relations: Enum.flat_map(config_group_relations, scan_relation(resource)),
-          name: config_group_name
+          fields: Enum.flat_map(fields, scan_field(resource)),
+          relations: Enum.flat_map(relations, scan_relation(resource)),
+          name: name
       }
       if group.fields != nil or group.relations != nil, do: [group], else: []
     end
   end
 
   defp scan_relation(resource) do
-     fn %{
-          "name" => config_relation_name,
-          "label" => config_relation_label,
-          "description" => config_relation_description
-        } ->
+    fn %{
+         "name" => name,
+         "label" => label,
+         "description" => description
+       } ->
 
-      if Map.has_key?(get_in(resource, ["relations"]), config_relation_name) do
-        [
-          %{
-            name: config_relation_name,
-            label: config_relation_label,
-            description: config_relation_description,
-            targets: get_in(resource, ["relations", config_relation_name])
-          }
-        ]
-      else
-        []
-      end
+      unless Map.has_key?(get_in(resource, ["relations"]), name), do: [], else:
+        [%{
+            name: name,
+            label: label,
+            description: description,
+            targets: get_in(resource, ["relations", name])
+          }]
     end
   end
 
   defp scan_field(resource) do
     fn %{
-         "name" => config_field_name,
-         "label" => config_field_label,
-         "description" => config_field_description
+         "name" => name,
+         "label" => label,
+         "description" => description
        } ->
 
-      if Map.has_key?(resource, config_field_name) do
-        [
-          %{
-            name: config_field_name,
-            label: config_field_label,
-            description: config_field_description,
-            value: get_in(resource, [config_field_name])
-          }
-        ]
-      else
-        []
-      end
+      unless Map.has_key?(resource, name), do: [], else:
+        [%{
+            name: name,
+            label: label,
+            description: description,
+            value: get_in(resource, [name])
+          }]
     end
   end
 end
