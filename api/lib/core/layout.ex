@@ -13,64 +13,66 @@ defmodule Core.Layout do
 
   defp add_groups(resource, config_groups) do
 
-    put_in(resource, ["groups"], scan_and_add(&scan_group/2, config_groups, resource))
+    put_in(resource, ["groups"], Enum.flat_map(config_groups, scan_group(resource)))
   end
 
-  defp scan_group(
-         %{
-           "fields" => config_group_fields,
-           "name" => config_group_name,
-           "relations" => config_group_relations
-         },
-         resource) do
+  defp scan_group(resource) do
+    fn %{
+         "fields" => config_group_fields,
+         "name" => config_group_name,
+         "relations" => config_group_relations
+       } ->
 
-    group = %{
-        fields: scan_and_add(&scan_field/2, config_group_fields, resource),
-        relations: scan_and_add(&scan_relation/2, config_group_relations, resource),
-        name: config_group_name
-    }
-    if group.fields != nil or group.relations != nil, do: [group], else: []
-  end
-
-  defp scan_relation(%{ "name" => config_relation_name, "label" => config_relation_label,
-      "description" => config_relation_description }, resource) do
-
-    if Map.has_key?(get_in(resource, ["relations"]), config_relation_name) do
-      [
-        %{
-          name: config_relation_name,
-          label: config_relation_label,
-          description: config_relation_description,
-          targets: get_in(resource, ["relations", config_relation_name])
-        }
-      ]
-    else
-      []
+      group = %{
+          fields: Enum.flat_map(config_group_fields, scan_field(resource)),
+          relations: Enum.flat_map(config_group_relations, scan_relation(resource)),
+          name: config_group_name
+      }
+      if group.fields != nil or group.relations != nil, do: [group], else: []
     end
   end
 
-  defp scan_field(%{ "name" => config_field_name, "label" => config_field_label,
-      "description" => config_field_description }, resource) do
+  defp scan_relation(resource) do
+     fn %{
+          "name" => config_relation_name,
+          "label" => config_relation_label,
+          "description" => config_relation_description
+        } ->
 
-    if Map.has_key?(resource, config_field_name) do
-      [
-        %{
-          name: config_field_name,
-          label: config_field_label,
-          description: config_field_description,
-          value: get_in(resource, [config_field_name])
-        }
-      ]
-    else
-      []
-    end
-  end
-
-  defp scan_and_add(scan, config_items, resource) do
-    Enum.flat_map(config_items,
-      fn config_item ->
-        apply(scan, [config_item, resource])
+      if Map.has_key?(get_in(resource, ["relations"]), config_relation_name) do
+        [
+          %{
+            name: config_relation_name,
+            label: config_relation_label,
+            description: config_relation_description,
+            targets: get_in(resource, ["relations", config_relation_name])
+          }
+        ]
+      else
+        []
       end
-    )
+    end
+  end
+
+  defp scan_field(resource) do
+    fn %{
+         "name" => config_field_name,
+         "label" => config_field_label,
+         "description" => config_field_description
+       } ->
+
+      if Map.has_key?(resource, config_field_name) do
+        [
+          %{
+            name: config_field_name,
+            label: config_field_label,
+            description: config_field_description,
+            value: get_in(resource, [config_field_name])
+          }
+        ]
+      else
+        []
+      end
+    end
   end
 end
