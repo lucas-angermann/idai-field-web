@@ -17,51 +17,36 @@ defmodule Core.Layout do
   end
 
   defp scan_group(resource) do
-    fn %{
-         "fields" => fields,
-         "name" => name,
-         "relations" => relations
-       } ->
-
+    fn config_item ->
       group = %{
-          fields: Enum.flat_map(fields, scan_field(resource)),
-          relations: Enum.flat_map(relations, scan_relation(resource)),
-          name: name
+          fields: Enum.flat_map(config_item["fields"], scan_field(resource)),
+          relations: Enum.flat_map(config_item["relations"], scan_relation(resource)),
+          name: config_item["name"]
       }
       if group.fields != nil or group.relations != nil, do: [group], else: []
     end
   end
 
   defp scan_relation(resource) do
-    fn %{
-         "name" => name,
-         "label" => label,
-         "description" => description
-       } ->
-
-      unless Map.has_key?(get_in(resource, ["relations"]), name), do: [], else:
+    fn config_item ->
+      unless Map.has_key?(get_in(resource, ["relations"]), config_item["name"]), do: [], else:
         [%{
-            name: name,
-            label: label,
-            description: description,
-            targets: get_in(resource, ["relations", name])
+          name: config_item["name"],
+          label: config_item["label"],
+          description: config_item["description"],
+          targets: get_in(resource, ["relations", config_item["name"]])
           }]
     end
   end
 
   defp scan_field(resource) do
-    fn %{
-         "name" => name,
-         "label" => label,
-         "description" => description
-       } ->
-
-      unless Map.has_key?(resource, name), do: [], else:
+    fn config_item ->
+      unless Map.has_key?(resource, config_item["name"]), do: [], else:
         [%{
-            name: name,
-            label: label,
-            description: description,
-            value: get_in(resource, [name])
+            name: config_item["name"],
+            label: config_item["label"],
+            description: config_item["description"],
+            value: get_in(resource, [config_item["name"]])
           }]
     end
   end
