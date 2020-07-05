@@ -67,9 +67,9 @@ defmodule Core.Layout do
   end
 
   defp scan_and_add(scan, config_items, resource) do
-    Enum.reduce(config_items, [],
-      fn config_item, out_items ->
-        out_items ++ apply(scan, [config_item, resource])
+    Enum.flat_map(config_items,
+      fn config_item ->
+        apply(scan, [config_item, resource])
       end
     )
   end
