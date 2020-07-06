@@ -44,7 +44,7 @@ const renderGroups = (resource: any) => {
 const renderGroup = (group: any) => {
 
     return (
-        <div>
+        <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields) }
             { renderRelationList(group.relations) }
         </div>
