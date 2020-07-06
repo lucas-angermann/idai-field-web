@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { search, get } from '../documents';
 import DocumentTeaser from '../document/DocumentTeaser';
@@ -24,14 +24,13 @@ export default () => {
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
     const [error, setError] = useState(false);
-    const [mapMode, setMapMode] = useState(false);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, location, newOffset, mapMode)
+            searchDocuments(id, location, newOffset)
                 .then(result => setDocuments(documents.concat(result.documents)))
                 .catch(err => setError(err));
             setOffset(newOffset);
@@ -39,28 +38,24 @@ export default () => {
     };
 
     useEffect(() => {
-        searchDocuments(id, location, 0, mapMode).then(result => {
+        searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
         get(id).then(setProjectDocument);
-    }, [id, location, mapMode]);
+    }, [id, location]);
 
     const renderResult = () => {
         return [
-            <Col key="filters" sm={ 3 } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
+            <Col sm={ 3 } onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
+                <DocumentList documents={ documents } />
+            </Col>,
+            <Col key="filters" style={ filtersContainerStyle }>
                 { renderProjectTeaser(projectDocument) }
-                <ProjectModeButtons onModeSelected={ (newMapMode: boolean) => {
-                    updateMapMode(mapMode, newMapMode, setMapMode, setOffset);
-                } } />
                 { renderFilters(filters, location) }
             </Col>,
-            <Col onScroll={ onScroll } key="results" style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
-                {
-                    mapMode
-                        ? <ProjectMap documents={ documents } />
-                        : <DocumentList documents={ documents } />
-                }
+            <Col key="results">
+                <ProjectMap documents={ documents } />
             </Col>
         ];
     };
@@ -76,17 +71,9 @@ export default () => {
 };
 
 
-const updateMapMode = (mapMode: boolean, newMapMode: boolean, setMapMode, setOffset) => {
+const searchDocuments = async (id: string, location: any, from: number) => {
 
-    if (mapMode === newMapMode) return;
-    setMapMode(newMapMode);
-    if (!mapMode && newMapMode) setOffset(0);
-};
-
-
-const searchDocuments = async (id: string, location: any, from: number, mapMode: boolean) => {
-
-    const query: Query = buildQueryTemplate(id, from, mapMode);
+    const query: Query = buildQueryTemplate(id, from);
     addFilters(query, location);
     return search(query);
 };
@@ -159,4 +146,16 @@ const renderFilterValue = (key: string, bucket: any, location: any) => {
 
 const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
 
+
 const renderError = (error: any) => <Col><Alert variant="danger">Backend not available!</Alert></Col>;
+
+
+const filtersContainerStyle: CSSProperties = {
+    height: 'calc(100vh - 56px)',
+    width: '400px',
+    position: 'absolute',
+    top: '56',
+    right: '0',
+    overflow: 'auto',
+    zIndex: 1000
+};
