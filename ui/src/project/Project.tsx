@@ -47,11 +47,13 @@ export default () => {
 
     const renderResult = () => {
         return [
-            <div style={ leftOverlayStyle }>
+            <div style={ leftOverlayStyle } key="left-overlay">
                 { renderProjectTeaser(projectDocument) }
-                <div onScroll={ onScroll } style={ listContainerStyle }>
-                    <DocumentList documents={ documents } />
-                </div>
+                <Card onScroll={ onScroll } style={ listContainerStyle }>
+                    <Card.Body style={ { padding: '.5rem 1.5rem' } }>
+                        <DocumentList documents={ documents } />
+                    </Card.Body>
+                </Card>
             </div>,
             <div key="filters" style={ filtersContainerStyle }>
                 { renderFilters(filters, location) }
@@ -110,7 +112,7 @@ const addFilters = (query: any, location: any) => {
 
 
 const renderProjectTeaser = (projectDocument: any) =>
-    projectDocument ? <DocumentTeaser document={ projectDocument } /> : '';
+    projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
 const renderFilters = (filters: any, location: any) =>
@@ -163,6 +165,7 @@ const leftOverlayStyle: CSSProperties = {
 
 
 const listContainerStyle: CSSProperties = {
+    marginTop: '0',
     overflow: 'auto',
     flexGrow: 1
 };
