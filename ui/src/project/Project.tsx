@@ -2,7 +2,7 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { search, get } from '../documents';
 import DocumentTeaser from '../document/DocumentTeaser';
-import { Container, Row, Col, Card, Alert } from 'react-bootstrap';
+import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
@@ -47,25 +47,25 @@ export default () => {
 
     const renderResult = () => {
         return [
-            <Col sm={ 3 } onScroll={ onScroll } style={ { height: 'calc(100vh - 56px)', overflow: 'auto' } }>
-                <DocumentList documents={ documents } />
-            </Col>,
-            <Col key="filters" style={ filtersContainerStyle }>
+            <div style={ leftOverlayStyle }>
                 { renderProjectTeaser(projectDocument) }
+                <div onScroll={ onScroll } style={ listContainerStyle }>
+                    <DocumentList documents={ documents } />
+                </div>
+            </div>,
+            <div key="filters" style={ filtersContainerStyle }>
                 { renderFilters(filters, location) }
-            </Col>,
-            <Col key="results">
+            </div>,
+            <div key="results">
                 <ProjectMap documents={ documents } />
-            </Col>
+            </div>
         ];
     };
 
     return (
-        <Container fluid>
-            <Row>
-                { error ? renderError(error) : renderResult() }
-            </Row>
-        </Container>
+        <div>
+            { error ? renderError(error) : renderResult() }
+        </div>
     );
 
 };
@@ -150,12 +150,30 @@ const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCir
 const renderError = (error: any) => <Col><Alert variant="danger">Backend not available!</Alert></Col>;
 
 
+const leftOverlayStyle: CSSProperties = {
+    height: 'calc(100vh - 56px)',
+    width: '400px',
+    position: 'absolute',
+    top: '56',
+    left: '10px',
+    zIndex: 1000,
+    display: 'flex',
+    flexDirection: 'column'
+};
+
+
+const listContainerStyle: CSSProperties = {
+    overflow: 'auto',
+    flexGrow: 1
+};
+
+
 const filtersContainerStyle: CSSProperties = {
     height: 'calc(100vh - 56px)',
     width: '400px',
     position: 'absolute',
     top: '56',
-    right: '0',
+    right: '10px',
     overflow: 'auto',
     zIndex: 1000
 };
