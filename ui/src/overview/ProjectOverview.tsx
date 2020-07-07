@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Map from './Map';
 import { search } from '../api/documents';
 import { Alert } from 'react-bootstrap';
-import { Document } from '../api/result';
+import { ResultDocument } from '../api/result';
 
 
 export default () => {
 
-    const [projectDocuments, setProjectDocuments] = useState<Document[]>([]);
+    const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [error, setError] = useState(false);
 
     useEffect (() => {
@@ -30,4 +30,5 @@ const renderError = (error: any) => <Alert variant="danger">Backend not availabl
 const renderMap = (projectDocuments: any) => <Map documents={ projectDocuments }></Map>;
 
 
-const getProjectDocuments = async (): Promise<Document[]> => (await search({ q: 'resource.type:Project' })).documents;
+const getProjectDocuments = async (): Promise<ResultDocument[]> =>
+    (await search({ q: 'resource.type:Project' })).documents;

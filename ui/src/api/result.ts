@@ -1,15 +1,15 @@
 export interface Result {
     size: number;
-    documents: Document[];
+    documents: ResultDocument[];
     filters: Filters;
 }
 
 
-export interface Document {
+export interface ResultDocument {
     created: ChangeEvent;
     modified: ChangeEvent[];
     project: string;
-    resource: Resource;
+    resource: ResultResource;
 }
 
 
@@ -19,7 +19,7 @@ export interface ChangeEvent {
 }
 
 
-export interface Resource {
+export interface ResultResource {
     type: string;
     id: string;
     identifier: string;

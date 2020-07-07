@@ -8,7 +8,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from '../api/query';
 import ProjectMap from './ProjectMap';
-import { Filters, FilterBucket, Result, Document } from '../api/result';
+import { Filters, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 
 
@@ -25,8 +25,8 @@ export default () => {
 
     const { id } = useParams();
     const location = useLocation<LocationState>();
-    const [documents, setDocuments] = useState<Document[]>([]);
-    const [mapDocuments, setMapDocuments] = useState<Document[]>([]);
+    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<Filters>({ });
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
