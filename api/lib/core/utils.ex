@@ -1,26 +1,16 @@
 defmodule Core.Utils do
 
-  def atomize(%{} = map) do
-    for {key, val} <- map, into: %{}, do: { String.to_atom(key), atomize val }
-  end
-  def atomize([_|_] = list), do: for item <- list, into: [], do: atomize item
-  def atomize(v), do: v
+#  def atomize([_|_] = list), do: for item <- list, into: [], do: atomize item
 
-  def atomize(%{} = map, only) do
-
-    for {key, val} <- map, into: %{} do
-      {
-          if Enum.member?(only, String.to_atom(key)) do String.to_atom(key) else key end,
-          atomize val
-      }
-    end
-  end
-
-  def atomize_excl(%{} = map, excl) do
+  def atomize(%{} = map, list, invert) do
 
     for {key, val} <- map, into: %{} do
 
-      if Enum.member?(excl, String.to_atom(key)) do
+      in_list = Enum.member?(list, String.to_atom(key))
+      exclude_item = if invert do !in_list else in_list end
+      IO.puts "#{key} #{exclude_item}"
+
+      if exclude_item do
         {
           key,
           val
@@ -28,10 +18,13 @@ defmodule Core.Utils do
       else
         {
           String.to_atom(key),
-          atomize_excl(val, excl)
+          atomize(val, list, invert)
         }
       end
     end
   end
-  def atomize_excl(v, _excl), do: v
+  def atomize(%{} = map), do: atomize(map, [], false)
+  def atomize(v), do: v
+  def atomize(v, list), do: atomize(v, list, false)
+  def atomize(v, _list, _invert), do: atomize(v)
 end
