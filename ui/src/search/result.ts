@@ -5,7 +5,7 @@ export interface Result {
 }
 
 
-interface Document {
+export interface Document {
     created: ChangeEvent;
     modified: ChangeEvent[];
     project: string;
@@ -13,13 +13,13 @@ interface Document {
 }
 
 
-interface ChangeEvent {
+export interface ChangeEvent {
     user: string;
     date: string;
 }
 
 
-interface Resource {
+export interface Resource {
     type: string;
     id: string;
     identifier: string;

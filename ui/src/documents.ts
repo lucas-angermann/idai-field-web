@@ -1,4 +1,5 @@
 import { Query, getQueryString } from './search/query';
+import { Result } from './search/result';
 
 export const get = async (id: string): Promise<any> => {
 
@@ -8,7 +9,7 @@ export const get = async (id: string): Promise<any> => {
 };
 
 
-export const search = async (query: Query): Promise<any> => {
+export const search = async (query: Query): Promise<Result> => {
 
     const uri = `/documents/?${getQueryString(query)}`;
     const response = await fetch(uri);

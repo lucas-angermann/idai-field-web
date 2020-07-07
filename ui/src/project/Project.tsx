@@ -8,7 +8,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from '../search/query';
 import ProjectMap from './ProjectMap';
-import { Filters, FilterBucket } from '../search/result';
+import { Filters, FilterBucket, Result, Document } from '../search/result';
 import { NAVBAR_HEIGHT } from '../constants';
 
 
@@ -25,8 +25,8 @@ export default () => {
 
     const { id } = useParams();
     const location = useLocation<LocationState>();
-    const [documents, setDocuments] = useState([]);
-    const [mapDocuments, setMapDocuments] = useState([]);
+    const [documents, setDocuments] = useState<Document[]>([]);
+    const [mapDocuments, setMapDocuments] = useState<Document[]>([]);
     const [filters, setFilters] = useState<Filters>({ });
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
@@ -88,7 +88,7 @@ export default () => {
 };
 
 
-const searchDocuments = async (id: string, location: LocationState, from: number) => {
+const searchDocuments = async (id: string, location: LocationState, from: number): Promise<Result> => {
 
     const query = buildQueryTemplate(id, from);
     addFilters(query, location);
@@ -96,7 +96,7 @@ const searchDocuments = async (id: string, location: LocationState, from: number
 };
 
 
-const searchMapDocuments = async (id: string, location: LocationState) => {
+const searchMapDocuments = async (id: string, location: LocationState): Promise<Result> => {
 
     const query = buildQueryTemplate(id, 0, true);
     addFilters(query, location);
