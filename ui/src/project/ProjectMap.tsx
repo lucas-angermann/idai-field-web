@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { getColor } from '../categoryColors';
 
 
-export default ({ documents }: { documents: any[] }) => {
+const ProjectMap = ({ documents }: { documents: any[] }) => {
 
     const [featureCollection, setFeatureCollection] = useState(undefined);
 
@@ -35,6 +35,8 @@ export default ({ documents }: { documents: any[] }) => {
         </Map>
     );
 };
+
+export default React.memo(ProjectMap);
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
