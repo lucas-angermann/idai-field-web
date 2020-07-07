@@ -12,17 +12,10 @@ defmodule Api.Documents.Get do
     document = body
     |> Poison.decode!
     |> to_document
-    |> (fn document -> Core.Utils.atomize(document, [:resource]) end).()
-    |> (fn document -> Core.Utils.atomize(document, [:resource, :relations, :shortDescription, :id, :type, :identifier], true) end).()
-    # TODO review; maybe put to core_properties_atomizing
-
-    IO.inspect document
+    |> CorePropertiesAtomizing.format_document
 
     project_config = ProjectConfigLoader.load(Config.get(:config_dir), document.project)
-
-    layouted = to_layouted_document(document, project_config)
-    IO.inspect layouted
-    layouted
+    to_layouted_document(document, project_config)
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do

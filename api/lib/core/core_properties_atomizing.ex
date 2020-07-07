@@ -1,6 +1,12 @@
 defmodule Core.CorePropertiesAtomizing do
 
+  @core_properties [:resource, :relations, :shortDescription, :id, :type, :identifier]
+
   def format_document(document) do
-    id = get_in(document.resource, ["id"])
+    document
+    |> (fn document -> Core.Utils.atomize(document,
+                         [:resource]) end).()
+    |> (fn document -> Core.Utils.atomize(document,
+                         @core_properties, true) end).()
   end
 end
