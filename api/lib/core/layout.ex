@@ -29,25 +29,30 @@ defmodule Core.Layout do
 
   defp scan_relation(resource) do
     fn config_item ->
-      unless Map.has_key?(resource.relations, config_item.name), do: [], else:
+
+      targets = resource.relations[config_item.name]
+
+      unless targets, do: [], else:
         [%{
           name: config_item.name,
           label: config_item.label,
           description: config_item.description,
-          targets: resource.relations[config_item.name]
+          targets: targets
           }]
     end
   end
 
   defp scan_field(resource) do
     fn config_item ->
-      unless Map.has_key?(resource, config_item.name)
-             or Map.has_key?(resource, String.to_atom(config_item.name)), do: [], else:
+
+      value = resource[config_item.name] || resource[String.to_atom(config_item.name)]
+
+      unless value, do: [], else:
         [%{
             name: config_item.name,
             label: config_item.label,
             description: config_item.description,
-            value: resource[config_item.name] || resource[String.to_atom(config_item.name)]
+            value: value
           }]
     end
   end
