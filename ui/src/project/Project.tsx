@@ -9,6 +9,7 @@ import Icon from '@mdi/react';
 import { Query } from '../search/query';
 import ProjectMap from './ProjectMap';
 import { Filters, FilterBucket } from '../search/filters';
+import { NAVBAR_HEIGHT } from '../constants';
 
 
 const CHUNK_SIZE = 50;
@@ -175,10 +176,10 @@ const renderError = (error: any) => <Col><Alert variant="danger">Backend not ava
 
 
 const leftOverlayStyle: CSSProperties = {
-    height: 'calc(100vh - 56px)',
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     width: '400px',
     position: 'absolute',
-    top: '56',
+    top: NAVBAR_HEIGHT,
     left: '10px',
     zIndex: 1000,
     display: 'flex',
@@ -194,10 +195,10 @@ const listContainerStyle: CSSProperties = {
 
 
 const filtersContainerStyle: CSSProperties = {
-    height: 'calc(100vh - 56px)',
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     width: '400px',
     position: 'absolute',
-    top: '56',
+    top: NAVBAR_HEIGHT,
     right: '10px',
     overflow: 'auto',
     zIndex: 1000
