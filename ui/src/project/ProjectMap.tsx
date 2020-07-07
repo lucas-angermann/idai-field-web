@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { Map, GeoJSON } from 'react-leaflet';
+import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
@@ -28,8 +28,10 @@ export default ({ documents }: { documents: any[] }) => {
              bounds={ getBounds(featureCollection) }
              boundsOptions={ { padding: [10, 200] } }
              renderer={ L.canvas({ padding: 0.5 }) }
-             attributionControl={ false }>
+             attributionControl={ false }
+             zoomControl={ false }>
             { getGeoJSONElement(featureCollection, history) }
+            <ZoomControl position="bottomright" />
         </Map>
     );
 };
