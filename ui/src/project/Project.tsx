@@ -6,9 +6,9 @@ import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Query } from '../search/query';
+import { Query } from '../api/query';
 import ProjectMap from './ProjectMap';
-import { Filters, FilterBucket, Result, Document } from '../search/result';
+import { Filters, FilterBucket, Result, Document } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 
 
