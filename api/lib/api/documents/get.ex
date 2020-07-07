@@ -12,7 +12,7 @@ defmodule Api.Documents.Get do
     document = body
     |> Poison.decode!
     |> to_document
-    |> CorePropertiesAtomizing.format_document
+    |> Core.CorePropertiesAtomizing.format_document
 
     project_config = ProjectConfigLoader.load(Config.get(:config_dir), document.project)
     to_layouted_document(document, project_config)
