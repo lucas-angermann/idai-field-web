@@ -1,10 +1,10 @@
 defmodule Core.Layout do
 
-  @core_fields ["id", "identifier", "shortDescription", "type", "geometry", "georeference", "groups"]
+  @core_fields [:id, :identifier, :shortDescription, :type, "geometry", "georeference", :groups]
 
   def to_layouted_document(doc, configuration) do
 
-    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"]["type"], configuration)
+    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"].type, configuration)
 
     doc
     |> update_in(["resource"], &(add_groups(&1, config_groups)))
@@ -13,7 +13,7 @@ defmodule Core.Layout do
 
   defp add_groups(resource, config_groups) do
 
-    put_in(resource, ["groups"], Enum.flat_map(config_groups, scan_group(resource)))
+    put_in(resource, [:groups], Enum.flat_map(config_groups, scan_group(resource)))
   end
 
   defp scan_group(resource) do
