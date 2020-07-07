@@ -20,6 +20,7 @@ export default () => {
     const { id } = useParams();
     const location = useLocation();
     const [documents, setDocuments] = useState([]);
+    const [mapDocuments, setMapDocuments] = useState([]);
     const [filters, setFilters] = useState([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
@@ -38,10 +39,16 @@ export default () => {
     };
 
     useEffect(() => {
+
         searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
+
+        searchMapDocuments(id, location)
+            .then(result => setMapDocuments(result.documents))
+            .catch((err: any) => setError(err));
+
         get(id).then(setProjectDocument);
     }, [id, location]);
 
@@ -59,7 +66,7 @@ export default () => {
                 { renderFilters(filters, location) }
             </div>,
             <div key="results">
-                <ProjectMap documents={ documents } />
+                <ProjectMap documents={ mapDocuments } />
             </div>
         ];
     };
@@ -75,7 +82,15 @@ export default () => {
 
 const searchDocuments = async (id: string, location: any, from: number) => {
 
-    const query: Query = buildQueryTemplate(id, from);
+    const query = buildQueryTemplate(id, from);
+    addFilters(query, location);
+    return search(query);
+};
+
+
+const searchMapDocuments = async (id: string, location: any) => {
+
+    const query = buildQueryTemplate(id, 0, true);
     addFilters(query, location);
     return search(query);
 };
