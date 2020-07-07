@@ -29,24 +29,25 @@ defmodule Core.Layout do
 
   defp scan_relation(resource) do
     fn config_item ->
-      unless Map.has_key?(get_in(resource, [:relations]), config_item.name), do: [], else:
+      unless Map.has_key?(resource.relations, config_item.name), do: [], else:
         [%{
           name: config_item.name,
           label: config_item.label,
           description: config_item.description,
-          targets: get_in(resource.relations, [config_item.name])
+          targets: resource.relations[config_item.name]
           }]
     end
   end
 
   defp scan_field(resource) do
     fn config_item ->
-      unless Map.has_key?(resource, config_item.name) or Map.has_key?(resource, String.to_atom(config_item.name)), do: [], else:
+      unless Map.has_key?(resource, config_item.name)
+             or Map.has_key?(resource, String.to_atom(config_item.name)), do: [], else:
         [%{
             name: config_item.name,
             label: config_item.label,
             description: config_item.description,
-            value: get_in(resource, [config_item.name]) || get_in(resource, [String.to_atom(config_item.name)])
+            value: resource[config_item.name] || resource[String.to_atom(config_item.name)]
           }]
     end
   end
