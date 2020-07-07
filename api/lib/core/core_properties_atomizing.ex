@@ -4,9 +4,7 @@ defmodule Core.CorePropertiesAtomizing do
 
   def format_document(document) do
     document
-    |> (fn document -> Core.Utils.atomize(document,
-                         [:resource]) end).()
-    |> (fn document -> Core.Utils.atomize(document,
-                         @core_properties, true) end).()
+    |> Core.Utils.atomize([:resource])
+    |> Core.Utils.atomize(@core_properties, true)
   end
 end
