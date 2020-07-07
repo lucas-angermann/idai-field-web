@@ -19,13 +19,22 @@ interface LocationState {
 }
 
 
+interface FilterBucket {
+    value: string;
+    count: number;
+}
+
+
+type Filters = { [x: string]: FilterBucket[] };
+
+
 export default () => {
 
     const { id } = useParams();
     const location = useLocation<LocationState>();
     const [documents, setDocuments] = useState([]);
     const [mapDocuments, setMapDocuments] = useState([]);
-    const [filters, setFilters] = useState([]);
+    const [filters, setFilters] = useState<Filters>({ });
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState(null);
     const [error, setError] = useState(false);
@@ -124,7 +133,7 @@ const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = f
 };
 
 
-const addFilters = (query: any, location: LocationState) => {
+const addFilters = (query: Query, location: LocationState) => {
 
     const filters = Array.from(new URLSearchParams(location.search).entries())
         .map(([field, value]) => ({ field, value }));
@@ -136,21 +145,21 @@ const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
-const renderFilters = (filters: any, location: LocationState) =>
+const renderFilters = (filters: Filters, location: LocationState) =>
     Object.keys(filters).map((key: string) => renderFilter(key, filters[key], location));
 
 
-const renderFilter = (key: string, filter: any, location: LocationState) => (
+const renderFilter = (key: string, filter: FilterBucket[], location: LocationState) => (
     <Card key={ key }>
         <Card.Header><h3>{ key }</h3></Card.Header>
         <Card.Body>
-            { filter.map((bucket: any) => renderFilterValue(key, bucket, location)) }
+            { filter.map((bucket: FilterBucket) => renderFilterValue(key, bucket, location)) }
         </Card.Body>
     </Card>
 );
 
 
-const renderFilterValue = (key: string, bucket: any, location: LocationState) => {
+const renderFilterValue = (key: string, bucket: FilterBucket, location: LocationState) => {
 
     const urlParams = new URLSearchParams(location.search);
     return (
