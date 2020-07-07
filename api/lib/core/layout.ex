@@ -5,7 +5,6 @@ defmodule Core.Layout do
 
   def to_layouted_resource(configuration) do
     fn resource ->
-
       %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.type, configuration)
 
       resource
@@ -27,7 +26,6 @@ defmodule Core.Layout do
 
   defp scan_relation(resource) do
     fn config_item ->
-
       targets = resource.relations[config_item.name]
 
       unless targets, do: [], else:
@@ -42,7 +40,6 @@ defmodule Core.Layout do
 
   defp scan_field(resource) do
     fn config_item ->
-
       value = resource[config_item.name] || resource[String.to_atom(config_item.name)]
 
       unless value, do: [], else:
