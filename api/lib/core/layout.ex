@@ -1,5 +1,6 @@
 defmodule Core.Layout do
 
+  # TODO review redundancy with definitions in core_properties_atomizing
   @core_fields [:id, :identifier, :shortDescription, :type, "geometry", "georeference", :groups]
 
   def to_layouted_resource(configuration) do
