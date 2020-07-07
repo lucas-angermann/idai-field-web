@@ -2,7 +2,10 @@
   {
     "item": {
       "name": "Operation",
-      "label": "Maßnahme",
+      "label": {
+        "de": "Maßnahme",
+        "en": "Operation"
+      },
       "description": {},
       "isAbstract": true,
       "color": "#8cf547",
