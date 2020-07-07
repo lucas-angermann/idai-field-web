@@ -40,6 +40,8 @@ export default () => {
 
     useEffect(() => {
 
+        setMapDocuments([]);
+
         searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
