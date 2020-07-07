@@ -26,4 +26,19 @@ defmodule Core.UtilsTest do
     assert result == %{ :a => %{ "c" => "d", :b => "m" } }
     assert result.a.b == "m"
   end
+
+  test "pass list" do
+    result = Core.Utils.atomize([%{ "a" => "d", "b" => "m" }])
+    assert result == [%{ :a => "d", :b => "m" }]
+  end
+
+  test "pass list, explicit exclusion" do
+    result = Core.Utils.atomize([%{ "a" => "d", "b" => "m" }], [:b])
+    assert result == [%{ :a => "d", "b" => "m" }]
+  end
+
+  test "exclusions - recursive case, with lists" do
+    result = Core.Utils.atomize(%{ "a" => [%{ "a" => "d", "b" => "m" }]}, [:b])
+    assert result == %{ :a => [%{ :a => "d", "b" => "m" }] }
+  end
 end
