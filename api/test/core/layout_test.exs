@@ -5,20 +5,18 @@ defmodule Core.LayoutTest do
     alias Core.ProjectConfigLoader
 
   test "map object" do
-    doc = %{
-        resource: %{
-            :type => "Operation",
-            "width" => "1cm",
-            "height" => "2cm",
-            :id => "42",
-            :relations => %{ "liesWithin" => ["45"]}
-        }
-    }
+      resource = %{
+          :type => "Operation",
+          "width" => "1cm",
+          "height" => "2cm",
+          :id => "42",
+          :relations => %{ "liesWithin" => ["45"]}
+      }
 
     configuration = ProjectConfigLoader.load("test/resources", "test-project")
-    layouted_doc = Layout.to_layouted_document(doc, configuration)
+    layouted_resource = Layout.to_layouted_resource(configuration).(resource)
 
-    assert layouted_doc.resource == %{
+    assert layouted_resource == %{
       :id => "42",
       :type => "Operation",
       :groups => [%{

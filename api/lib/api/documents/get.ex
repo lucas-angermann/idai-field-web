@@ -15,7 +15,7 @@ defmodule Api.Documents.Get do
     |> Core.CorePropertiesAtomizing.format_document
 
     project_config = ProjectConfigLoader.load(Config.get(:config_dir), document.project)
-    to_layouted_document(document, project_config)
+    update_in(document, [:resource], to_layouted_resource(project_config))
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 404}}) do
