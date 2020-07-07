@@ -13,16 +13,15 @@ defmodule Api.Documents.Get do
     |> Poison.decode!
     |> to_document
     |> (fn document -> Core.Utils.atomize(document, [:resource]) end).()
-    |> update_in(["resource"], fn resource -> Core.Utils.atomize(resource, [:id, :type, :identifier, :shortDescription], true) end)
-    # TODO review core_properties_atomizing
-    # TODO get rid of Change,Document,Resource,Action records
-    # TODO we need to atomize fields and relations, but not recursively
-    # TODO review resource, relations in layout.ex
+    |> (fn document -> Core.Utils.atomize(document, [:resource, :relations, :shortDescription, :id, :type, :identifier], true) end).()
+    # TODO review; maybe put to core_properties_atomizing
+
+    IO.inspect document
 
     project_config = ProjectConfigLoader.load(Config.get(:config_dir), document.project)
 
     layouted = to_layouted_document(document, project_config)
-    #IO.inspect layouted
+    IO.inspect layouted
     layouted
   end
 

@@ -41,4 +41,9 @@ defmodule Core.UtilsTest do
     result = Core.Utils.atomize(%{ "a" => [%{ "a" => "d", "b" => "m" }]}, [:b])
     assert result == %{ :a => [%{ :a => "d", "b" => "m" }] }
   end
+
+  test "map contains already atomized key" do
+    result = Core.Utils.atomize(%{ a: "b"}, [:a], true)
+    assert result == %{ a: "b" }
+  end
 end

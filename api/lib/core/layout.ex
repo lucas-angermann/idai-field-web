@@ -4,11 +4,11 @@ defmodule Core.Layout do
 
   def to_layouted_document(doc, configuration) do
 
-    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(doc["resource"].type, configuration)
+    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(doc.resource.type, configuration)
 
     doc
-    |> update_in(["resource"], &(add_groups(&1, config_groups)))
-    |> update_in(["resource"], &(Map.take(&1, @core_fields)))
+    |> update_in([:resource], &(add_groups(&1, config_groups)))
+    |> update_in([:resource], &(Map.take(&1, @core_fields)))
   end
 
   defp add_groups(resource, config_groups) do
@@ -29,24 +29,24 @@ defmodule Core.Layout do
 
   defp scan_relation(resource) do
     fn config_item ->
-      unless Map.has_key?(get_in(resource, ["relations"]), config_item.name), do: [], else:
+      unless Map.has_key?(get_in(resource, [:relations]), config_item.name), do: [], else:
         [%{
           name: config_item.name,
           label: config_item.label,
           description: config_item.description,
-          targets: get_in(resource, ["relations", config_item.name])
+          targets: get_in(resource.relations, [config_item.name])
           }]
     end
   end
 
   defp scan_field(resource) do
     fn config_item ->
-      unless Map.has_key?(resource, config_item.name), do: [], else:
+      unless Map.has_key?(resource, config_item.name) or Map.has_key?(resource, String.to_atom(config_item.name)), do: [], else:
         [%{
             name: config_item.name,
             label: config_item.label,
             description: config_item.description,
-            value: get_in(resource, [config_item.name])
+            value: get_in(resource, [config_item.name]) || get_in(resource, [String.to_atom(config_item.name)])
           }]
     end
   end

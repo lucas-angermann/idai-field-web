@@ -6,22 +6,22 @@ defmodule Core.LayoutTest do
 
   test "map object" do
     doc = %{
-        "resource" => %{
-            "type" => "Operation",
+        resource: %{
+            :type => "Operation",
             "width" => "1cm",
             "height" => "2cm",
-            "id" => "42",
-            "relations" => %{ "liesWithin" => ["45"]}
+            :id => "42",
+            :relations => %{ "liesWithin" => ["45"]}
         }
     }
 
     configuration = ProjectConfigLoader.load("test/resources", "test-project")
     layouted_doc = Layout.to_layouted_document(doc, configuration)
 
-    assert get_in(layouted_doc, ["resource"]) == %{
-      "id" => "42",
-      "type" => "Operation",
-      "groups" => [%{
+    assert layouted_doc.resource == %{
+      :id => "42",
+      :type => "Operation",
+      :groups => [%{
         name: "stem",
         fields: [
            %{
