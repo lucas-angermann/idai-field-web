@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { search } from './documents';
+import { search } from './api/documents';
 
 export default () => {
 

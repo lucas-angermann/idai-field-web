@@ -1,5 +1,5 @@
-import { Query, getQueryString } from './api/query';
-import { Result } from './api/result';
+import { Query, getQueryString } from './query';
+import { Result } from './result';
 
 export const get = async (id: string): Promise<any> => {
 

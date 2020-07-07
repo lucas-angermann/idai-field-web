@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { search, get } from '../documents';
+import { search, get } from '../api/documents';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
