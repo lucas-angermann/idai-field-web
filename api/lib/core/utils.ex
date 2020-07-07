@@ -1,4 +1,4 @@
-defmodule Api.Utils do
+defmodule Core.Utils do
 
   def atomize(%{} = map) do
     for {key, val} <- map, into: %{}, do: { String.to_atom(key), atomize val }

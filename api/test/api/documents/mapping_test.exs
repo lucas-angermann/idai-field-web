@@ -1,5 +1,5 @@
 defmodule Api.Documents.MappingTest do
-    import Api.Utils
+    import Core.Utils
     alias Api.Documents.Mapping
     use ExUnit.Case
 
