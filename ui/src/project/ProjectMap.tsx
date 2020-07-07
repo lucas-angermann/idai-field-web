@@ -26,7 +26,7 @@ const ProjectMap = ({ documents }: { documents: any[] }) => {
              minZoom="-20"
              maxZoom="30"
              bounds={ getBounds(featureCollection) }
-             boundsOptions={ { padding: [200, 10] } }
+             boundsOptions={ { padding: [410, 10] } }
              renderer={ L.canvas({ padding: 0.5 }) }
              attributionControl={ false }
              zoomControl={ false }>
