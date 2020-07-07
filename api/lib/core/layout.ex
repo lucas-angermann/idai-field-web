@@ -8,14 +8,9 @@ defmodule Core.Layout do
       %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.type, configuration)
 
       resource
-      |> add_groups(config_groups)
+      |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
       |> Map.take(@core_fields)
     end
-  end
-
-  defp add_groups(resource, config_groups) do
-
-    put_in(resource, [:groups], Enum.flat_map(config_groups, scan_group(resource)))
   end
 
   defp scan_group(resource) do
