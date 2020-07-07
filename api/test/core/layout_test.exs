@@ -28,12 +28,12 @@ defmodule Core.LayoutTest do
             name: "type",
             value: "Operation",
             label: %{
-              "de" => "Typ",
-              "en"=> "Type"
+              de: "Typ",
+              en: "Type"
             },
             description: %{
-              "de" => "Typ der Ressource",
-              "en" => "Type of resource"
+              de: "Typ der Ressource",
+              en: "Type of resource"
             }
            },
            %{
@@ -47,8 +47,8 @@ defmodule Core.LayoutTest do
             name: "liesWithin",
             targets: ["45"],
             label: %{
-              "de" => "Liegt in",
-              "en" => "Lies within"
+              de: "Liegt in",
+              en: "Lies within"
             },
             description: %{}
           }
@@ -61,8 +61,8 @@ defmodule Core.LayoutTest do
              name: "height",
              value: "2cm",
              label: %{
-               "de" => "Höhe",
-               "en" => "Height"
+               de: "Höhe",
+               en: "Height"
              },
              description: %{}
            },
@@ -70,8 +70,8 @@ defmodule Core.LayoutTest do
              name: "width",
              value: "1cm",
              label: %{
-               "de" => "Breite",
-               "en" => "Width"
+               de: "Breite",
+               en: "Width"
              },
              description: %{}
            }

@@ -8,16 +8,16 @@ defmodule Core.CategoryTreeListTest do
 
     category_treelist = [
       %{
-        "item" => %{ "name" => "a" },
-        "trees" => []
+        item: %{ name: "a" },
+        trees: []
       },
       %{
-        "item" => %{ "name" => "b" },
-        "trees" => []
+        item: %{ name: "b" },
+        trees: []
       }
     ]
 
     result = CategoryTreeList.find_by_name("b", category_treelist)
-    assert result == %{ "name" => "b" }
+    assert result == %{ name: "b" }
   end
 end

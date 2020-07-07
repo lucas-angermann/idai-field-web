@@ -9,12 +9,12 @@ defmodule Core.TreeTest do
 
     treelist = [
       %{
-        "item" => 5,
-        "trees" => []
+        item: 5,
+        trees: []
       },
       %{
-        "item" => 3,
-        "trees" => []
+        item: 3,
+        trees: []
       }
     ]
 
@@ -27,15 +27,15 @@ defmodule Core.TreeTest do
 
     treelist = [
       %{
-        "item" => 5,
-        "trees" => [
+        item: 5,
+        trees: [
           %{
-            "item" => 4,
-            "trees" => []
+            item: 4,
+            trees: []
           },
           %{
-            "item" => 3,
-            "trees" => []
+            item: 3,
+            trees: []
           }
         ]
       }
