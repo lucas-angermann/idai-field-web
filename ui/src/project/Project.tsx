@@ -8,17 +8,21 @@ import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from '../query';
 import ProjectMap from './ProjectMap';
-import ProjectModeButtons from './ProjectModeButtons';
 
 
 const CHUNK_SIZE = 50;
 const MAX_SIZE = 10000;
 
 
+interface LocationState {
+    search: string;
+}
+
+
 export default () => {
 
     const { id } = useParams();
-    const location = useLocation();
+    const location = useLocation<LocationState>();
     const [documents, setDocuments] = useState([]);
     const [mapDocuments, setMapDocuments] = useState([]);
     const [filters, setFilters] = useState([]);
@@ -82,7 +86,7 @@ export default () => {
 };
 
 
-const searchDocuments = async (id: string, location: any, from: number) => {
+const searchDocuments = async (id: string, location: LocationState, from: number) => {
 
     const query = buildQueryTemplate(id, from);
     addFilters(query, location);
@@ -90,7 +94,7 @@ const searchDocuments = async (id: string, location: any, from: number) => {
 };
 
 
-const searchMapDocuments = async (id: string, location: any) => {
+const searchMapDocuments = async (id: string, location: LocationState) => {
 
     const query = buildQueryTemplate(id, 0, true);
     addFilters(query, location);
@@ -120,7 +124,7 @@ const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = f
 };
 
 
-const addFilters = (query: any, location: any) => {
+const addFilters = (query: any, location: LocationState) => {
 
     const filters = Array.from(new URLSearchParams(location.search).entries())
         .map(([field, value]) => ({ field, value }));
@@ -132,11 +136,11 @@ const renderProjectTeaser = (projectDocument: any) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
-const renderFilters = (filters: any, location: any) =>
+const renderFilters = (filters: any, location: LocationState) =>
     Object.keys(filters).map((key: string) => renderFilter(key, filters[key], location));
 
 
-const renderFilter = (key: string, filter: any, location: any) => (
+const renderFilter = (key: string, filter: any, location: LocationState) => (
     <Card key={ key }>
         <Card.Header><h3>{ key }</h3></Card.Header>
         <Card.Body>
@@ -146,7 +150,7 @@ const renderFilter = (key: string, filter: any, location: any) => (
 );
 
 
-const renderFilterValue = (key: string, bucket: any, location: any) => {
+const renderFilterValue = (key: string, bucket: any, location: LocationState) => {
 
     const urlParams = new URLSearchParams(location.search);
     return (
