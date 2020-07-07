@@ -6,8 +6,9 @@ import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Query } from '../query';
+import { Query } from '../search/query';
 import ProjectMap from './ProjectMap';
+import { Filters, FilterBucket } from '../search/filters';
 
 
 const CHUNK_SIZE = 50;
@@ -17,15 +18,6 @@ const MAX_SIZE = 10000;
 interface LocationState {
     search: string;
 }
-
-
-interface FilterBucket {
-    value: string;
-    count: number;
-}
-
-
-type Filters = { [x: string]: FilterBucket[] };
 
 
 export default () => {

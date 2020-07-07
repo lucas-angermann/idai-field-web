@@ -1,4 +1,4 @@
-import { Query, getQueryString } from './query';
+import { Query, getQueryString } from './search/query';
 
 export const get = async (id: string): Promise<any> => {
 
