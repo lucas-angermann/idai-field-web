@@ -26,7 +26,7 @@ export default ({ documents }: { documents: any[] }) => {
              minZoom="-20"
              maxZoom="30"
              bounds={ getBounds(featureCollection) }
-             boundsOptions={ { padding: [10, 10] } }
+             boundsOptions={ { padding: [10, 200] } }
              renderer={ L.canvas({ padding: 0.5 }) }
              attributionControl={ false }>
             { getGeoJSONElement(featureCollection, history) }
