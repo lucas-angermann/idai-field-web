@@ -8,7 +8,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from '../search/query';
 import ProjectMap from './ProjectMap';
-import { Filters, FilterBucket } from '../search/filters';
+import { Filters, FilterBucket } from '../search/result';
 import { NAVBAR_HEIGHT } from '../constants';
 
 
