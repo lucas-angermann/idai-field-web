@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import DocumentDetails from './DocumentDetails';
 import { Container } from 'react-bootstrap';
 import { get } from '../api/documents';
+import { Document } from '../api/document';
 
 export default () => {
 
     const { id } = useParams();
-    const [document, setDocument] = useState(null);
+    const [document, setDocument] = useState<Document>(null);
     const [error, setError] = useState(null);
 
     useEffect (() => {

@@ -2,8 +2,9 @@ import React, { CSSProperties } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
+import { ResultDocument } from '../api/result';
 
-export default ({ document }) => {
+export default ({ document }: { document: ResultDocument }) => {
 
     return (
         <Link to={ `/document/${document.resource.id}` } style={ linkStyle }>

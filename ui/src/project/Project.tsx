@@ -10,6 +10,7 @@ import { Query } from '../api/query';
 import ProjectMap from './ProjectMap';
 import { Filters, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
+import { Document } from '../api/document';
 
 
 const CHUNK_SIZE = 50;
@@ -29,7 +30,7 @@ export default () => {
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<Filters>({ });
     const [offset, setOffset] = useState(0);
-    const [projectDocument, setProjectDocument] = useState(null);
+    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [error, setError] = useState(false);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
@@ -134,7 +135,7 @@ const addFilters = (query: Query, location: LocationState) => {
 };
 
 
-const renderProjectTeaser = (projectDocument: any) =>
+const renderProjectTeaser = (projectDocument: Document) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 

@@ -2,8 +2,9 @@ import React from 'react';
 import { Container, Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
+import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';
 
-export default ({ document }: { document: any }) => {
+export default ({ document }: { document: Document }) => {
 
     return (
         <Container>
@@ -20,7 +21,7 @@ export default ({ document }: { document: any }) => {
 };
 
 
-const renderHeader = (resource: any) => (
+const renderHeader = (resource: Resource) => (
     <div>
         <h1>
             <CategoryIcon category={ resource.type } size="40" />
@@ -35,13 +36,13 @@ const renderHeader = (resource: any) => (
 );
 
 
-const renderGroups = (resource: any) => {
+const renderGroups = (resource: Resource) => {
 
     return resource.groups.map(renderGroup);
 };
 
 
-const renderGroup = (group: any) => {
+const renderGroup = (group: FieldGroup) => {
 
     return (
         <div key={ `${group.name}_group` }>
@@ -52,7 +53,7 @@ const renderGroup = (group: any) => {
 };
 
 
-const renderFieldList = (fields: any) => {
+const renderFieldList = (fields: Field[]) => {
 
     const fieldElements = fields
         .map(field => [
@@ -63,7 +64,7 @@ const renderFieldList = (fields: any) => {
 };
 
 
-const renderRelationList = (relations: any) => {
+const renderRelationList = (relations: Relation[]) => {
 
     if (!relations) return null;
 
