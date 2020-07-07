@@ -1,3 +1,5 @@
+import { ChangeEvent } from './document';
+
 export interface Result {
     size: number;
     documents: ResultDocument[];
@@ -10,12 +12,6 @@ export interface ResultDocument {
     modified: ChangeEvent[];
     project: string;
     resource: ResultResource;
-}
-
-
-export interface ChangeEvent {
-    user: string;
-    date: string;
 }
 
 
