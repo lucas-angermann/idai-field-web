@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { getColor } from '../categoryColors';
 
 
-const ProjectMap = ({ documents }: { documents: any[] }) => {
+export default React.memo(function ProjectMap({ documents }: { documents: any[] }) {
 
     const history: History = useHistory();
 
@@ -30,9 +30,7 @@ const ProjectMap = ({ documents }: { documents: any[] }) => {
             <ZoomControl position="bottomright" />
         </Map>
     );
-};
-
-export default React.memo(ProjectMap);
+});
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
