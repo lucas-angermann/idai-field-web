@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { getColor, isColorTooBright } from '../categoryColors';
 
 
-export default ({ category, size }) => {
+export default React.memo(function CategoryIcon({ category, size }: { category: string, size: string }) {
 
     const color = getColor(category);
 
@@ -11,11 +11,10 @@ export default ({ category, size }) => {
             { category.substr(0, 1) }
         </span>
     </div>;
+});
 
-};
 
-
-const iconStyle = (size: number, color: string): CSSProperties => ({
+const iconStyle = (size: string, color: string): CSSProperties => ({
     width: `${size}px`,
     height: `${size}px`,
     fontSize: `${size}px`,
@@ -29,6 +28,7 @@ const iconStyle = (size: number, color: string): CSSProperties => ({
     padding: 0,
     filter: 'saturate(50%)'
 });
+
 
 const characterStyle = (color: string): CSSProperties => ({
     fontSize: '70%',

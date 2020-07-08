@@ -4,7 +4,7 @@ import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';
 
-export default ({ document }: { document: Document }) => {
+export default function DocumentDetails({ document }: { document: Document }) {
 
     return (
         <Container>
@@ -18,7 +18,7 @@ export default ({ document }: { document: Document }) => {
             </Card>
         </Container>
     );
-};
+}
 
 
 const renderHeader = (resource: Resource) => (
