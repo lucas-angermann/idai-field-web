@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
 
-export default ({ document }: { document: ResultDocument }) => {
+export default React.memo(function DocumentTeaser({ document }: { document: ResultDocument }) {
 
     return (
         <Link to={ `/document/${document.resource.id}` } style={ linkStyle }>
@@ -24,7 +24,7 @@ export default ({ document }: { document: ResultDocument }) => {
         </Link>
     );
 
-};
+});
 
 const linkStyle: CSSProperties = {
     textDecoration: 'none',
