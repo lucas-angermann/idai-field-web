@@ -1,5 +1,6 @@
 defmodule Harvester do
   alias Worker.Config
+  import Core.CorePropertiesAtomizing
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 
@@ -13,8 +14,9 @@ defmodule Harvester do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_ok(status_code) do
 
-    %{"results" => results} = Poison.decode!(body, as: %{"results" => [%Types.Change{}]})
-    results
+    Poison.decode!(body)["results"]
+    |> format_changes
+    |> update_in([Access.all(), :doc], &(Map.drop(&1, [:"_id"])))
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
