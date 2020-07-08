@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
@@ -12,13 +12,9 @@ import { getColor } from '../categoryColors';
 
 const ProjectMap = ({ documents }: { documents: any[] }) => {
 
-    const [featureCollection, setFeatureCollection] = useState(undefined);
-
     const history: History = useHistory();
 
-    useEffect(() => {
-        setFeatureCollection(createFeatureCollection(documents));
-    }, [documents]);
+    const featureCollection = createFeatureCollection(documents);
 
     return (
         <Map style={ mapStyle }
