@@ -10,7 +10,7 @@ defmodule Enricher do
         change
     end
 
-    def add_coordinates_from_gazetteer(change = %{ doc: %{ resource: %{ "gazId" => gazId, :type => "Project" }}}) do
+    def add_coordinates_from_gazetteer(change = %{ doc: %{ resource: %{ gazId: gazId, type: "Project" }}}) do
         coordinates = get_coordinates_from_gazetteer(gazId)
         add_geometry(change, coordinates)
     end
@@ -23,12 +23,12 @@ defmodule Enricher do
     end
 
     def add_geometry(change, coordinates = [_, _]) do
-        put_in change.doc.resource["geometry"], %{ "type" => "Point", "coordinates" => coordinates }
+        put_in change, [:doc, :resource, :geometry], %{ type: "Point", coordinates: coordinates }
     end
 
     def add_geometry(change, _coordinates), do: change
 
-    def get_coordinates_from_place(%{ "prefLocation" => %{ "coordinates" => [longitude, latitude] }}) do
+    def get_coordinates_from_place(%{ prefLocation: %{ coordinates: [longitude, latitude] }}) do
         [longitude, latitude]
     end
 

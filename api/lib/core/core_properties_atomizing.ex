@@ -2,12 +2,14 @@ defmodule Core.CorePropertiesAtomizing do
 
   import Core.Utils
 
-  @core_properties [:resource, :relations, :shortDescription, :id, :type, :identifier]
+  @core_properties [:groups, :relations, :shortDescription, :id, :type, :identifier, :geometry, :gazId, :georeference]
+
+  def get_core_properties(), do: @core_properties
 
   def format_document(document) do
     document
     |> atomize([:resource])
-    |> atomize(@core_properties, true)
+    |> atomize([:resource] ++ @core_properties, true)
   end
 
   def format_changes(changes) do

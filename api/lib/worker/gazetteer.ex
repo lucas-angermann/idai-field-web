@@ -13,6 +13,7 @@ defmodule Gazetteer do
        when is_ok(status_code) do
 
     Poison.decode!(body)
+    |> Core.Utils.atomize
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
