@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { search, get } from '../api/documents';
+import { search, get, mapSearch } from '../api/documents';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
@@ -101,7 +101,7 @@ const searchMapDocuments = async (id: string, location: LocationState): Promise<
 
     const query = buildQueryTemplate(id, 0, true);
     addFilters(query, location);
-    return search(query);
+    return mapSearch(query);
 };
 
 
@@ -173,7 +173,10 @@ const renderFilterValue = (key: string, bucket: FilterBucket, location: Location
 const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
 
 
-const renderError = (error: any) => <Col><Alert variant="danger">Backend not available!</Alert></Col>;
+const renderError = (error: any) => {
+    console.error(error);
+    return <Col><Alert variant="danger">Backend not available!</Alert></Col>;
+};
 
 
 const leftOverlayStyle: CSSProperties = {
