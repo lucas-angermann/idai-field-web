@@ -22,5 +22,4 @@ defmodule Worker do
     IO.puts("#{inspect self()}: Finished #{step} #{db}")
     change
   end
-
 end
