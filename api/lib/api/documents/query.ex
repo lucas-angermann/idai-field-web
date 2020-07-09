@@ -4,6 +4,7 @@ defmodule Api.Documents.Query do
     build_query_template(q, size, from)
   end
 
+  # TODO: make configurable
   def add_aggregations(query) do
     Map.put(query, :aggs, %{
       "resource.type" => %{
