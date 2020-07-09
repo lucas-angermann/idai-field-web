@@ -2,7 +2,6 @@ defmodule Api.Documents.Get do
   import Api.Documents.Helper
   import Core.Layout
   alias Core.ProjectConfigLoader
-  alias Api.Config
 
   def by(id) do
     handle_result HTTPoison.get("#{get_base_url()}/_doc/#{id}")
@@ -14,7 +13,7 @@ defmodule Api.Documents.Get do
     |> to_document
     |> Core.CorePropertiesAtomizing.format_document
 
-    project_config = ProjectConfigLoader.load(Config.get(:config_dir), document.project)
+    project_config = ProjectConfigLoader.get(document.project)
     update_in(document, [:resource], to_layouted_resource(project_config))
   end
 
