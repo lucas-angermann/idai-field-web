@@ -10,7 +10,7 @@ defmodule Api.Documents.Get do
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
     document = body
     |> Poison.decode!
-    |> to_document
+    |> get_in(["_source"])
     |> Core.CorePropertiesAtomizing.format_document
 
     project_config = ProjectConfigLoader.get(document.project)
