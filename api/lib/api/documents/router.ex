@@ -8,16 +8,16 @@ defmodule Api.Documents.Router do
   plug :dispatch
 
   get "/", do: send_json(conn, Search.by(
-    conn.params["q"],
-    conn.params["size"],
-    conn.params["from"],
+    conn.params["q"] || "*",
+    conn.params["size"] || 100,
+    conn.params["from"] || 0,
     conn.params["filters"],
     conn.params["not"],
     conn.params["exists"]
   ))
 
   get "/map", do: send_json(conn, Search.geometries_by(
-    conn.params["q"],
+    conn.params["q"] || "*",
     conn.params["filters"],
     conn.params["not"],
     conn.params["exists"]

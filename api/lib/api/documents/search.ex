@@ -7,10 +7,6 @@ defmodule Api.Documents.Search do
   @fields_geometries ["resource.type", "resource.geometry", "resource.identifier", "resource.id"]
 
   def by(q, size, from, filters, must_not, exists) do
-    q = if !q do "*" else q end
-    size = if !size do 100 else size end
-    from = if !from do 0 else from end
-
     query = Query.init(q, size, from)
     |> Query.track_total()
     |> Query.add_aggregations()
@@ -27,9 +23,6 @@ defmodule Api.Documents.Search do
   end
 
   def geometries_by(q, filters, must_not, exists) do
-
-    q = if !q do "*" else q end
-
     query = Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
