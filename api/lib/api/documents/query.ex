@@ -1,7 +1,13 @@
 defmodule Api.Documents.Query do
 
+  def init(q, size), do: init(q, size, 0)
+
   def init(q, size, from) do
     build_query_template(q, size, from)
+  end
+
+  def track_total(query) do
+    put_in(query, [:track_total_hits], true)
   end
 
   # TODO: make configurable
@@ -54,8 +60,7 @@ defmodule Api.Documents.Query do
         }
       },
       size: size,
-      from: from,
-      track_total_hits: true
+      from: from
     }
   end
 

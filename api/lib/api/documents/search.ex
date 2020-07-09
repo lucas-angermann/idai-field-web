@@ -9,6 +9,7 @@ defmodule Api.Documents.Search do
     from = if !from do 0 else from end
 
     query = Query.init(q, size, from)
+    |> Query.track_total()
     |> Query.add_aggregations()
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
