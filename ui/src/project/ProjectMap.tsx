@@ -8,6 +8,7 @@ import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
 import { useHistory } from 'react-router-dom';
 import { getColor } from '../categoryColors';
+import { Spinner } from 'react-bootstrap';
 
 
 export default React.memo(function ProjectMap({ documents }: { documents: any[] }) {
@@ -17,18 +18,22 @@ export default React.memo(function ProjectMap({ documents }: { documents: any[] 
     const featureCollection = createFeatureCollection(documents);
 
     return (
-        <Map style={ mapStyle }
-             crs={ L.CRS.Simple }
-             minZoom="-20"
-             maxZoom="30"
-             bounds={ getBounds(featureCollection) }
-             boundsOptions={ { padding: [410, 10] } }
-             renderer={ L.canvas({ padding: 0.5 }) }
-             attributionControl={ false }
-             zoomControl={ false }>
-            { getGeoJSONElement(featureCollection, history) }
-            <ZoomControl position="bottomright" />
-        </Map>
+        documents.length
+            ? <Map style={ mapStyle }
+                crs={ L.CRS.Simple }
+                minZoom="-20"
+                maxZoom="30"
+                bounds={ getBounds(featureCollection) }
+                boundsOptions={ { padding: [410, 10] } }
+                renderer={ L.canvas({ padding: 0.5 }) }
+                attributionControl={ false }
+                zoomControl={ false }>
+                { getGeoJSONElement(featureCollection, history) }
+                <ZoomControl position="bottomright" />
+            </Map>
+            : <Spinner animation="border"
+                variant="secondary"
+                style={ spinnerStyle } />
     );
 });
 
@@ -132,4 +137,11 @@ const getBounds = (featureCollection?: FeatureCollection): [number, number][] =>
 
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+};
+
+
+const spinnerStyle: CSSProperties = {
+    position: 'absolute',
+    top: '50vh',
+    left: '50vw'
 };
