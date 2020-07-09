@@ -11,11 +11,16 @@ defmodule Worker do
   def process_db(db) do
     Harvester.fetch_changes(db)
     |> Enum.map(&Mapper.process/1)
-    |> (fn c -> IO.puts("#{inspect self()}: Finished mapping #{db}"); c; end).()
+    |> log_finished("mapping", db)
     |> Enum.map(&(Enricher.process(&1, db)))
-    |> (fn c -> IO.puts("#{inspect self()}: Finished enriching #{db}"); c; end).()
+    |> log_finished("enriching", db)
     |> Enum.map(&Indexer.process/1)
-    |> (fn c -> IO.puts("#{inspect self()}: Finished indexing #{db}"); c; end).()
+    |> log_finished("indexing", db)
+  end
+
+  def log_finished(change, step, db) do
+    IO.puts("#{inspect self()}: Finished #{step} #{db}")
+    change
   end
 
 end
