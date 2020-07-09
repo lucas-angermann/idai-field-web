@@ -2,7 +2,6 @@ defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Get
   alias Api.Documents.Search
-  alias Api.Documents.Map
   import Api.RouterUtils, only: [send_json: 2]
 
   plug :match
@@ -17,7 +16,7 @@ defmodule Api.Documents.Router do
     conn.params["exists"]
   ))
 
-  get "/map", do: send_json(conn, Map.by(
+  get "/map", do: send_json(conn, Search.geometries_by(
     conn.params["q"],
     conn.params["filters"],
     conn.params["not"],

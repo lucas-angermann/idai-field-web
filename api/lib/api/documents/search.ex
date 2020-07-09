@@ -3,6 +3,8 @@ defmodule Api.Documents.Search do
   alias Api.Documents.Mapping
   alias Api.Documents.Query
 
+  @max_geometries 10000
+
   def by(q, size, from, filters, must_not, exists) do
     q = if !q do "*" else q end
     size = if !size do 100 else size end
@@ -11,6 +13,23 @@ defmodule Api.Documents.Search do
     query = Query.init(q, size, from)
     |> Query.track_total()
     |> Query.add_aggregations()
+    |> Query.add_filters(filters)
+    |> Query.add_must_not(must_not)
+    |> Query.add_exists(exists)
+    |> Query.build()
+
+    handle_result HTTPoison.post(
+      "#{get_base_url()}/_search",
+      query,
+      [{"Content-Type", "application/json"}]
+    )
+  end
+
+  def geometries_by(q, filters, must_not, exists) do
+
+    q = if !q do "*" else q end
+
+    query = Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
