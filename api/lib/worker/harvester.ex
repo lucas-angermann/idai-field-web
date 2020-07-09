@@ -22,13 +22,13 @@ defmodule Harvester do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_error(status_code) do
 
-    IO.puts "ERROR: Failed to retrieve changes, result: #{inspect body}"
+    IO.puts "#{inspect self()} - ERROR: Failed to retrieve changes, result: #{inspect body}"
     nil
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "ERROR: Failed to retrieve changes, reason: #{inspect reason}"
+    IO.puts "#{inspect self()} - ERROR: Failed to retrieve changes, reason: #{inspect reason}"
     nil
   end
 end

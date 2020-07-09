@@ -32,13 +32,13 @@ defmodule Indexer do
     when is_error(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "ERROR: Updating index failed, result: #{inspect result}"
+    IO.puts "#{inspect self()} - ERROR: Updating index failed, result: #{inspect result}"
     nil
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "ERROR: Updating index failed, reason: #{inspect reason}"
+    IO.puts "#{inspect self()} - ERROR: Updating index failed, reason: #{inspect reason}"
     nil
   end
 end
