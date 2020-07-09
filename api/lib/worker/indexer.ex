@@ -26,7 +26,6 @@ defmodule Indexer do
     when is_ok(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "#{inspect self()}: Successfully updated index: #{result["result"]} #{result["_id"]}"
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})

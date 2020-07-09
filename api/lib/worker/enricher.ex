@@ -6,8 +6,6 @@ defmodule Enricher do
 
         change = put_in(change, [:doc, :project], project)
         |> add_coordinates_from_gazetteer
-        IO.puts "#{inspect self()}: Successfully enriched: #{change.id}"
-        change
     end
 
     def add_coordinates_from_gazetteer(change = %{ doc: %{ resource: %{ gazId: gazId, type: "Project" }}}) do
