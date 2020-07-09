@@ -18,7 +18,7 @@ export default React.memo(function ProjectMap({ documents }: { documents: any[] 
     const featureCollection = createFeatureCollection(documents);
 
     return (
-        documents.length
+        featureCollection
             ? <Map style={ mapStyle }
                 crs={ L.CRS.Simple }
                 minZoom="-20"
