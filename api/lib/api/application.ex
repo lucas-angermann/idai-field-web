@@ -6,7 +6,7 @@ defmodule Api.Application do
 
     IO.puts "start"
 
-    children = [Api.Router]
+    children = [Api.Router, Core.ProjectConfigLoader]
     opts = [strategy: :one_for_one, name: Api.Supervisor]
     Supervisor.start_link(children, opts)
   end

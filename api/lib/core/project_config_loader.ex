@@ -1,7 +1,7 @@
 defmodule Core.ProjectConfigLoader do
   use Agent
 
-  def start_link do
+  def start_link(_) do
     databases = Application.fetch_env!(:api, :couchdb_databases)
     configs = for database <- databases, into: %{} do
       {

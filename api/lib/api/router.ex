@@ -38,9 +38,6 @@ defmodule Api.Router do
   end
 
   def start_link(_opts) do
-
-    {:ok, pid} = Core.ProjectConfigLoader.start_link # TODO see if we can
-
     Plug.Cowboy.http(__MODULE__, [])
   end
 end
