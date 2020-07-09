@@ -4,6 +4,7 @@ defmodule Api.Documents.Search do
   alias Api.Documents.Query
 
   @max_geometries 10000
+  @fields_geometries ["resource.type", "resource.geometry", "resource.identifier", "resource.id"]
 
   def by(q, size, from, filters, must_not, exists) do
     q = if !q do "*" else q end
@@ -33,6 +34,7 @@ defmodule Api.Documents.Search do
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
+    |> Query.only_fields(@fields_geometries)
     |> Query.build()
 
     handle_result HTTPoison.post(

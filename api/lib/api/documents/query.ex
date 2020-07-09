@@ -42,6 +42,10 @@ defmodule Api.Documents.Query do
     update_in(query[:query][:bool][:filter], &(&1 ++ exists_filter))
   end
 
+  def only_fields(query, fields) do
+    put_in(query, [:_source], fields)
+  end
+
   def build(query) do
     Poison.encode!(query)
   end
