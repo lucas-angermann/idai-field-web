@@ -7,9 +7,17 @@ defmodule Api.Documents.Search do
     q = if !q do "*" else q end
     size = if !size do 100 else size end
     from = if !from do 0 else from end
+
+    query = Query.init(q, size, from)
+    |> Query.add_aggregations()
+    |> Query.add_filters(filters)
+    |> Query.add_must_not(must_not)
+    |> Query.add_exists(exists)
+    |> Query.build()
+
     handle_result HTTPoison.post(
       "#{get_base_url()}/_search",
-      Query.build(q, size, from, filters, must_not, exists),
+      query,
       [{"Content-Type", "application/json"}]
     )
   end

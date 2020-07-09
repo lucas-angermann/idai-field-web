@@ -1,7 +1,7 @@
 defmodule Api.Router do
   use Plug.Router
   import Api.RouterUtils, only: [send_json: 2]
-  
+
   plug :match
 
   plug(Plug.Parsers,
