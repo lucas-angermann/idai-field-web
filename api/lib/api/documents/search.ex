@@ -34,7 +34,8 @@ defmodule Api.Documents.Search do
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
     body
-    |> to_atomized_result
+    |> Poison.decode!
+    |> Core.Utils.atomize
     |> Mapping.map
   end
   defp handle_result({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
