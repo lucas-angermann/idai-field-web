@@ -18,9 +18,10 @@ export const search = async (query: Query): Promise<Result> => {
     return response.json();
 };
 
+
 export const mapSearch = async (query: Query): Promise<Result> => {
 
     const uri = `/documents/map?${getQueryString(query)}`;
     const response = await fetch(uri);
     return response.json();
-}
+};
