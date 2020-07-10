@@ -1,13 +1,13 @@
 defmodule Core.Layout do
+  import Core.CorePropertiesAtomizing
+  alias Core.ProjectConfigLoader
 
-  def to_layouted_resource(configuration) do
-    fn resource ->
-      %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category, configuration)
+  def to_layouted_document(document) do
+    project_config = ProjectConfigLoader.get(document.project)
+    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(document.resource.category, project_config)
 
-      resource
-      |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
-      |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
-    end
+    put_in(document, [:resource, :groups], Enum.flat_map(config_groups, scan_group(document.resource)))
+    |> update_in([:resource], &(Map.take(&1, List.delete(get_core_properties(), :relations))))
   end
 
   defp scan_group(resource) do
