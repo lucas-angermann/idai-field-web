@@ -14,7 +14,6 @@ import { Document } from '../api/document';
 
 
 const CHUNK_SIZE = 50;
-const MAX_SIZE = 10000;
 
 
 interface LocationState {
