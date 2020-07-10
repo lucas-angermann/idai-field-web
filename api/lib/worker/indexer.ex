@@ -17,7 +17,7 @@ defmodule Indexer do
     handle_result HTTPoison.put(
       get_doc_url(change.id),
       Poison.encode!(change.doc),
-      [{"content-type", "application/json"}]
+      [{"Content-Type", "application/json"}]
     )
   end
 
