@@ -13,8 +13,8 @@ defmodule Api.Documents.Query do
   # TODO: make configurable
   def add_aggregations(query) do
     Map.put(query, :aggs, %{
-      "resource.type" => %{
-        terms: %{ field: "resource.type" }
+      "resource.category" => %{
+        terms: %{ field: "resource.category" }
       },
       "resource.material" => %{
         terms: %{ field: "resource.material" }

@@ -21,7 +21,7 @@ defmodule Enricher do
     end
 
     def add_geometry(change, coordinates = [_, _]) do
-        put_in change, [:doc, :resource, :geometry], %{ category: "Point", coordinates: coordinates }
+        put_in change, [:doc, :resource, :geometry], %{ type: "Point", coordinates: coordinates }
     end
 
     def add_geometry(change, _coordinates), do: change

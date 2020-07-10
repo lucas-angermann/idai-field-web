@@ -15,7 +15,7 @@ export interface ChangeEvent {
 
 
 export interface Resource {
-    type: string;
+    category: string;
     id: string;
     identifier: string;
     shortDescription: string;

@@ -24,7 +24,7 @@ export default function DocumentDetails({ document }: { document: Document }) {
 const renderHeader = (resource: Resource) => (
     <div>
         <h1>
-            <CategoryIcon category={ resource.type } size="40" />
+            <CategoryIcon category={ resource.category } size="40" />
             &nbsp; { resource.identifier }
         </h1>
         <code>

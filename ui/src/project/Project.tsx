@@ -114,10 +114,10 @@ const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = f
             { field: 'project', value: id }
         ],
         not: [
-            { field: 'resource.type', value: 'Project' },
-            { field: 'resource.type', value: 'Image' },
-            { field: 'resource.type', value: 'Photo' },
-            { field: 'resource.type', value: 'Drawing' }
+            { field: 'resource.category', value: 'Project' },
+            { field: 'resource.category', value: 'Image' },
+            { field: 'resource.category', value: 'Photo' },
+            { field: 'resource.category', value: 'Drawing' }
         ]
     };
 

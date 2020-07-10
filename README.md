@@ -13,7 +13,7 @@ Start elasticsearch and the api web service with docker:
 
 Setup elasticsearch mapping:
 
-    $ curl -XPUT -H "Content-Type: application/json" http://localhost:9200/idai-field -d "@api/config/elasticsearch-mapping.json"
+    $  curl -XPUT -H "Content-Type: application/json" http://localhost:9200/idai-field -d "@api/config/elasticsearch-mapping.json"
 
 Trigger indexing:
 
@@ -79,12 +79,12 @@ It can be started independently with:
 
 ## Unit testing
 
-    $ docker-compose run --service-ports --entrypoint "mix test" api
+    $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
 
 or
  
     $ docker-compose run --entrypoint "/bin/bash" api
-    $ mix test
+    $ mix test test/app && mix test --no-start test/unit
 
 ## (Re-)building containers
 

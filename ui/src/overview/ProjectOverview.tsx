@@ -31,4 +31,4 @@ const renderMap = (projectDocuments: any) => <Map documents={ projectDocuments }
 
 
 const getProjectDocuments = async (): Promise<ResultDocument[]> =>
-    (await search({ q: 'resource.type:Project' })).documents;
+    (await search({ q: 'resource.category:Project' })).documents;

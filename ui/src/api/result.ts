@@ -16,7 +16,7 @@ export interface ResultDocument {
 
 
 export interface ResultResource {
-    type: string;
+    category: string;
     id: string;
     identifier: string;
     shortDescription: string;

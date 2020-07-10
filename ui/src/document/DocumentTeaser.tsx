@@ -10,7 +10,7 @@ export default React.memo(function DocumentTeaser({ document }: { document: Resu
         <Link to={ `/document/${document.resource.id}` } style={ linkStyle }>
             <Row>
                 <Col style={ { flex: '0 0 50px' } }>
-                    <CategoryIcon size="50" category={ document.resource.type } />
+                    <CategoryIcon size="50" category={ document.resource.category } />
                 </Col>
                 <Col>
                     <Row>

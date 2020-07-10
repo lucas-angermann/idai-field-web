@@ -121,7 +121,7 @@ const createFeature = (document: any): Feature => ({
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
-        category: document.resource.type
+        category: document.resource.category
     }
 });
 
