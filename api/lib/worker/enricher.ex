@@ -3,8 +3,7 @@ defmodule Enricher do
     def process(change = %{deleted: true}, _project), do: change
 
     def process(change, project) do
-
-        change = put_in(change, [:doc, :project], project)
+        put_in(change, [:doc, :project], project)
         |> add_coordinates_from_gazetteer
     end
 
