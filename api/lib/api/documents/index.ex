@@ -9,7 +9,12 @@ defmodule Api.Documents.Index do
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
 
   def get(id) do
-    handle_get_result HTTPoison.get("#{get_base_url()}/_doc/#{id}")
+    document = handle_result(HTTPoison.get("#{get_base_url()}/_doc/#{id}"))
+    |> get_in(["_source"])
+    |> Core.CorePropertiesAtomizing.format_document
+
+    project_config = ProjectConfigLoader.get(document.project)
+    update_in(document, [:resource], to_layouted_resource(project_config))
   end
 
   def search(q, size, from, filters, must_not, exists) do
@@ -21,6 +26,8 @@ defmodule Api.Documents.Index do
     |> Query.add_exists(exists)
     |> Query.build
     |> post_query
+    |> Core.Utils.atomize
+    |> Mapping.map
   end
 
   def search_geometries(q, filters, must_not, exists) do
@@ -32,6 +39,8 @@ defmodule Api.Documents.Index do
     |> Query.only_fields(@fields_geometries)
     |> Query.build
     |> post_query
+    |> Core.Utils.atomize
+    |> Mapping.map
   end
 
   defp get_base_url do
@@ -43,30 +52,8 @@ defmodule Api.Documents.Index do
     |> handle_result
   end
 
-  defp handle_get_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    document = body
-    |> Poison.decode!
-    |> get_in(["_source"])
-    |> Core.CorePropertiesAtomizing.format_document
-
-    project_config = ProjectConfigLoader.get(document.project)
-    update_in(document, [:resource], to_layouted_resource(project_config))
-  end
-
-  defp handle_get_result({:ok, %HTTPoison.Response{status_code: 404}}) do
-    %{error: "not_found"}
-  end
-
-  defp handle_get_result({:error, %HTTPoison.Error{reason: reason}}) do
-    IO.inspect reason
-    %{error: "unknown"}
-  end
-
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    body
-    |> Poison.decode!
-    |> Core.Utils.atomize
-    |> Mapping.map
+    Poison.decode! body
   end
   defp handle_result({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
     IO.inspect body
