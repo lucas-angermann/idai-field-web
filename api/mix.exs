@@ -19,7 +19,7 @@ defmodule Api.MixProject do
     ]
   end
 
-  defp deps do 
+  defp deps do
     [
       {:poison, "~> 3.0"},
       {:plug, "~> 1.6"},
@@ -27,7 +27,6 @@ defmodule Api.MixProject do
       {:httpoison, "~> 1.6.2"},
       {:cowboy, "~> 2.4"},
       {:remix, "~> 0.0.1", only: :dev},
-      {:timex_poison, "~> 0.2.0"},
       {:guardian, "~> 2.0"}
     ]
   end
