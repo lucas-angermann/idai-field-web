@@ -28,18 +28,18 @@ defmodule Api.Documents.Query do
   def add_filters(query, nil), do: query
   def add_filters(query, filters) do
     filter = Enum.map(filters, &build_term_query/1)
-    update_in(query[:query][:bool][:filter], &(&1 ++ filter))
+    update_in(query.query.bool.filter, &(&1 ++ filter))
   end
 
   def add_must_not(query, nil), do: query
   def add_must_not(query, must_not) do
-    put_in(query[:query][:bool][:must_not], Enum.map(must_not, &build_term_query/1))
+    put_in(query.query.bool.must_not, Enum.map(must_not, &build_term_query/1))
   end
 
   def add_exists(query, nil), do: query
   def add_exists(query, exists) do
     exists_filter = Enum.map(exists, &build_exists_query/1)
-    update_in(query[:query][:bool][:filter], &(&1 ++ exists_filter))
+    update_in(query.query.bool.filter, &(&1 ++ exists_filter))
   end
 
   def only_fields(query, fields) do
