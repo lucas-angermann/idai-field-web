@@ -1,5 +1,4 @@
 defmodule Api.Documents.Index do
-  import Api.Documents.Helper
   alias Api.Documents.Mapping
   alias Api.Documents.Query
   alias Core.ProjectConfigLoader
@@ -33,6 +32,10 @@ defmodule Api.Documents.Index do
     |> Query.only_fields(@fields_geometries)
     |> Query.build
     |> post_query
+  end
+
+  defp get_base_url do
+    "#{Application.fetch_env!(:api, :elasticsearch_url)}/#{Application.fetch_env!(:api, :elasticsearch_index)}"
   end
 
   defp post_query(query) do
