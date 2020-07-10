@@ -14,9 +14,6 @@ defmodule Indexer do
   end
 
   def process(change) do
-
-    IO.inspect change.doc
-
     handle_result HTTPoison.put(
       get_doc_url(change.id),
       Poison.encode!(change.doc),
