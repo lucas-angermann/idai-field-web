@@ -6,8 +6,11 @@ defmodule Indexer do
   defguard is_error(status_code) when status_code >= 400
 
   def process(change = %{deleted: true}) do
-    # TODO: changes stream may include deletes for unindexed documents
-    handle_result HTTPoison.delete(get_doc_url(change.id))
+    # TODO: mark documents as deleted instead of removing them from index
+    case HTTPoison.delete(get_doc_url(change.id)) do
+      {:ok, %HTTPoison.Response{status_code: 404, body: body}} -> Poison.decode!(body)
+      result -> handle_result(result)
+    end
   end
 
   def process(change) do
