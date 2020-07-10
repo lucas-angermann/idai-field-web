@@ -23,6 +23,7 @@ defmodule Api.Documents.Search do
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.only_fields(@fields_geometries)
+    |> Query.show
     |> Query.build
     |> post_query
   end

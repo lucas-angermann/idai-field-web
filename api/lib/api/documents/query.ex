@@ -50,6 +50,11 @@ defmodule Api.Documents.Query do
     Poison.encode!(query)
   end
 
+  def show(query) do
+    IO.puts Poison.encode!(query, pretty: true)
+    query
+  end
+
   defp build_query_template(q, size, from) do
     %{
       query: %{
