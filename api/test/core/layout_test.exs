@@ -6,7 +6,7 @@ defmodule Core.LayoutTest do
 
   test "map object" do
       resource = %{
-          :type => "Operation",
+          :category => "Operation",
           "width" => "1cm",
           "height" => "2cm",
           :id => "42",
@@ -18,7 +18,7 @@ defmodule Core.LayoutTest do
 
     assert layouted_resource == %{
       :id => "42",
-      :type => "Operation",
+      :category => "Operation",
       :groups => [%{
         name: "stem",
         fields: [

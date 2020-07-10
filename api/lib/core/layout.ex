@@ -2,7 +2,7 @@ defmodule Core.Layout do
 
   def to_layouted_resource(configuration) do
     fn resource ->
-      %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.type, configuration)
+      %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category, configuration)
 
       resource
       |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))

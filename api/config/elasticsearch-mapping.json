@@ -9,7 +9,7 @@
                     "identifier": {
                         "type": "keyword"
                     },
-                    "type": {
+                    "category": {
                         "type": "keyword"
                     },
                     "geometry": {

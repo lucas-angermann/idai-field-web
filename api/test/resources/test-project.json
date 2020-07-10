@@ -20,14 +20,14 @@
               "group": "stem",
               "source": "builtin",
               "label": {
-                "de": "Typ",
-                "en": "Type"
+                "de": "Kategorie",
+                "en": "Category"
               },
               "description": {
                 "de": "Typ der Ressource",
                 "en": "Type of resource"
               },
-              "name": "type",
+              "name": "category",
               "inputType": "input"
             },
             {
