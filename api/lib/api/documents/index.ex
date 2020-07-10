@@ -1,4 +1,4 @@
-defmodule Api.Documents.Search do
+defmodule Api.Documents.Index do
   import Api.Documents.Helper
   alias Api.Documents.Mapping
   alias Api.Documents.Query
@@ -7,7 +7,7 @@ defmodule Api.Documents.Search do
   @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
 
-  def by(q, size, from, filters, must_not, exists) do
+  def search(q, size, from, filters, must_not, exists) do
     Query.init(q, size, from)
     |> Query.track_total
     |> Query.add_aggregations()
@@ -18,7 +18,7 @@ defmodule Api.Documents.Search do
     |> post_query
   end
 
-  def geometries_by(q, filters, must_not, exists) do
+  def search_geometries(q, filters, must_not, exists) do
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
