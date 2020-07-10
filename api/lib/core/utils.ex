@@ -22,7 +22,7 @@ defmodule Core.Utils do
     end
   end
   def atomize([_|_] = list, l, invert), do: for item <- list, into: [], do: atomize(item, l, invert)
-  def atomize(v, list), do: atomize(v, list, false)
   def atomize(v, _list, _invert), do: v
+  def atomize(v, list), do: atomize(v, list, false)
   def atomize(v), do: atomize(v, [], false)
 end
