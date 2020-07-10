@@ -1,20 +1,15 @@
 defmodule Api.Documents.Index do
   alias Api.Documents.Mapping
   alias Api.Documents.Query
-  alias Core.ProjectConfigLoader
-  import Core.Layout
 
   @max_geometries 10000
   @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
 
   def get(id) do
-    document = handle_result(HTTPoison.get("#{get_base_url()}/_doc/#{id}"))
+    handle_result(HTTPoison.get("#{get_base_url()}/_doc/#{id}"))
     |> get_in(["_source"])
     |> Core.CorePropertiesAtomizing.format_document
-
-    project_config = ProjectConfigLoader.get(document.project)
-    update_in(document, [:resource], to_layouted_resource(project_config))
   end
 
   def search(q, size, from, filters, must_not, exists) do

@@ -2,6 +2,8 @@ defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Index
   import Api.RouterUtils, only: [send_json: 2]
+  import Core.Layout
+  alias Core.ProjectConfigLoader
 
   plug :match
   plug :dispatch
@@ -22,5 +24,10 @@ defmodule Api.Documents.Router do
     conn.params["exists"]
   ))
 
-  get "/:id", do: send_json(conn, Index.get(id))
+  get "/:id" do
+    document = Index.get(id)
+    project_config = ProjectConfigLoader.get(document.project)
+    update_in(document, [:resource], to_layouted_resource(project_config))
+    send_json(conn, document)
+  end
 end
