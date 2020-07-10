@@ -8,7 +8,7 @@ defmodule Indexer do
   def process(change = %{deleted: true}) do
     # TODO: mark documents as deleted instead of removing them from index
     case HTTPoison.delete(get_doc_url(change.id)) do
-      {:ok, %HTTPoison.Response{status_code: 404, body: body}} -> Poison.decode!(body)
+      {:ok, %HTTPoison.Response{status_code: 404, body: body}} -> nil
       result -> handle_result(result)
     end
   end
