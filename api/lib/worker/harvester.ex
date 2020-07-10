@@ -1,5 +1,4 @@
 defmodule Harvester do
-  alias Worker.Config
   import Core.CorePropertiesAtomizing
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
@@ -7,8 +6,8 @@ defmodule Harvester do
   defguard is_error(status_code) when status_code >= 400
 
   def fetch_changes(db) do
-    auth = [hackney: [basic_auth: {Config.get(:couchdb_user), Config.get(:couchdb_password)}]]
-    handle_result HTTPoison.get("#{Config.get(:couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
+    auth = [hackney: [basic_auth: {Application.fetch_env!(:api, :couchdb_user), Application.fetch_env!(:api, :couchdb_password)}]]
+    handle_result HTTPoison.get("#{Application.fetch_env!(:api, :couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})

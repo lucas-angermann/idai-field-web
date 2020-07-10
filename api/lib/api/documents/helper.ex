@@ -1,6 +1,5 @@
 defmodule Api.Documents.Helper do
-  alias Api.Config
 
-  def get_base_url, do: "#{Config.get(:elasticsearch_url)}/#{Config.get(:elasticsearch_index)}"
+  def get_base_url, do: "#{Application.fetch_env!(:api, :elasticsearch_url)}/#{Application.fetch_env!(:api, :elasticsearch_index)}"
 
 end

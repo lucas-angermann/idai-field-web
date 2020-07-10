@@ -1,12 +1,11 @@
 defmodule Gazetteer do
-  alias Worker.Config
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 
   defguard is_error(status_code) when status_code >= 400
 
   def get_place(gazetteer_id) do
-    handle_result HTTPoison.get("#{Config.get(:gazetteer_url)}/doc/#{gazetteer_id}.json")
+    handle_result HTTPoison.get("#{Application.fetch_env!(:api, :gazetteer_url)}/doc/#{gazetteer_id}.json")
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})

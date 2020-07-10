@@ -1,5 +1,4 @@
 defmodule Indexer do
-  alias Worker.Config
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 
@@ -23,7 +22,7 @@ defmodule Indexer do
   end
 
   defp get_doc_url(id) do
-    "#{Config.get(:elasticsearch_url)}/#{Config.get(:elasticsearch_index)}/_doc/#{id}"
+    "#{Application.fetch_env!(:api, :elasticsearch_url)}/#{Application.fetch_env!(:api, :elasticsearch_index)}/_doc/#{id}"
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})

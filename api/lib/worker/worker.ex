@@ -1,8 +1,7 @@
 defmodule Worker do
-  alias Worker.Config
 
   def process do
-    for db <- Config.get(:couchdb_databases) do
+    for db <- Application.fetch_env!(:api, :couchdb_databases) do
       pid = spawn_link fn -> process_db(db) end
       IO.puts "Spawned indexer #{inspect pid} for #{db}"
     end
