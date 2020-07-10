@@ -28,14 +28,14 @@ defmodule Indexer do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_ok(status_code) do
 
-    result = Poison.decode!(body)
+    Poison.decode!(body)
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_error(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "#{inspect self()} - ERROR: Updating index failed, result: #{inspect result}"
+    IO.puts "#{inspect self()} - ERROR: Updating index failed, status_code #{status_code}, result: #{inspect result}"
     nil
   end
 
