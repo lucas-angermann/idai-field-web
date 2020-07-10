@@ -16,7 +16,7 @@ defmodule Harvester do
 
     Poison.decode!(body)["results"]
     |> format_changes
-    |> update_in([Access.all(), :doc], &(Map.drop(&1, [:"_id"])))
+    |> update_in([Access.all(), :doc], &(Map.drop(&1, [:"_id", :"_rev", :"_attachments"])))
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
