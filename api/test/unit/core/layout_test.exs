@@ -5,15 +5,17 @@ defmodule Core.LayoutTest do
     alias Core.ProjectConfigLoader
 
   test "map object" do
-      resource = %{
-          :category => "Operation",
-          "width" => "1cm",
-          "height" => "2cm",
-          :id => "42",
-          :relations => %{ "liesWithin" => ["45"]}
-      }
 
-    configuration = ProjectConfigLoader.load("test/resources", "test-project")
+    resource = %{
+        :category => "Operation",
+        "width" => "1cm",
+        "height" => "2cm",
+        :id => "42",
+        :relations => %{ "liesWithin" => ["45"]}
+    }
+
+    start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = ProjectConfigLoader.get("test-project")
     layouted_resource = Layout.to_layouted_resource(configuration).(resource)
 
     assert layouted_resource == %{
@@ -23,11 +25,11 @@ defmodule Core.LayoutTest do
         name: "stem",
         fields: [
            %{
-            name: "type",
+            name: "category",
             value: "Operation",
             label: %{
-              de: "Typ",
-              en: "Type"
+              de: "Kategorie",
+              en: "Category"
             },
             description: %{
               de: "Typ der Ressource",
