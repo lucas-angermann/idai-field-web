@@ -99,16 +99,16 @@ const searchDocuments = async (id: string, location: LocationState, from: number
 
 const searchMapDocuments = async (id: string, location: LocationState): Promise<Result> => {
 
-    const query = buildQueryTemplate(id, 0, true);
+    const query = buildQueryTemplate(id, 0);
     addFilters(query, location);
     return mapSearch(query);
 };
 
 
-const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = false): Query => {
+const buildQueryTemplate = (id: string, from: number): Query => {
     const query: Query = {
         q: '*',
-        size: allGeometries ? MAX_SIZE : CHUNK_SIZE,
+        size: CHUNK_SIZE,
         from,
         filters: [
             { field: 'project', value: id }
@@ -120,8 +120,6 @@ const buildQueryTemplate = (id: string, from: number, allGeometries: boolean = f
             { field: 'resource.category', value: 'Drawing' }
         ]
     };
-
-    if (allGeometries) query.exists = ['resource.geometry'];
 
     return query;
 };

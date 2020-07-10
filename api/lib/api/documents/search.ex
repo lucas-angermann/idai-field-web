@@ -4,6 +4,7 @@ defmodule Api.Documents.Search do
   alias Api.Documents.Query
 
   @max_geometries 10000
+  @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
 
   def by(q, size, from, filters, must_not, exists) do
@@ -22,8 +23,8 @@ defmodule Api.Documents.Search do
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
+    |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
-    |> Query.show
     |> Query.build
     |> post_query
   end
