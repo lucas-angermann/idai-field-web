@@ -2,10 +2,16 @@ defmodule Api.Documents.Index do
   import Api.Documents.Helper
   alias Api.Documents.Mapping
   alias Api.Documents.Query
+  alias Core.ProjectConfigLoader
+  import Core.Layout
 
   @max_geometries 10000
   @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
+
+  def get(id) do
+    handle_get_result HTTPoison.get("#{get_base_url()}/_doc/#{id}")
+  end
 
   def search(q, size, from, filters, must_not, exists) do
     Query.init(q, size, from)
@@ -32,6 +38,25 @@ defmodule Api.Documents.Index do
   defp post_query(query) do
     HTTPoison.post("#{get_base_url()}/_search", query, [{"Content-Type", "application/json"}])
     |> handle_result
+  end
+
+  defp handle_get_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+    document = body
+    |> Poison.decode!
+    |> get_in(["_source"])
+    |> Core.CorePropertiesAtomizing.format_document
+
+    project_config = ProjectConfigLoader.get(document.project)
+    update_in(document, [:resource], to_layouted_resource(project_config))
+  end
+
+  defp handle_get_result({:ok, %HTTPoison.Response{status_code: 404}}) do
+    %{error: "not_found"}
+  end
+
+  defp handle_get_result({:error, %HTTPoison.Error{reason: reason}}) do
+    IO.inspect reason
+    %{error: "unknown"}
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do

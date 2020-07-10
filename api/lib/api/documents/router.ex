@@ -1,6 +1,5 @@
 defmodule Api.Documents.Router do
   use Plug.Router
-  alias Api.Documents.Get
   alias Api.Documents.Index
   import Api.RouterUtils, only: [send_json: 2]
 
@@ -23,5 +22,5 @@ defmodule Api.Documents.Router do
     conn.params["exists"]
   ))
 
-  get "/:id", do: send_json(conn, Get.by(id))
+  get "/:id", do: send_json(conn, Index.get(id))
 end
