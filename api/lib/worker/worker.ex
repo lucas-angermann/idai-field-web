@@ -13,7 +13,7 @@ defmodule Worker do
     |> log_finished("mapping", db)
     |> Enum.map(&(Enricher.process(&1, db)))
     |> log_finished("enriching", db)
-    |> Enum.map(&Indexer.process/1)
+    |> Enum.map(&(Indexer.process(&1, db)))
     |> log_finished("indexing", db)
   end
 
