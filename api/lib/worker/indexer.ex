@@ -9,16 +9,17 @@ defmodule Indexer do
     case HTTPoison.delete(get_doc_url(change.id, project)) do
       # Deleted documents possibly never existed in the index, so ignore 404s
       {:ok, %HTTPoison.Response{status_code: 404, body: _}} -> nil
-      result -> handle_result(result)
+      result -> handle_result(result, change, project)
     end
   end
 
   def process(change, project) do
-    handle_result HTTPoison.put(
+    HTTPoison.put(
       get_doc_url(change.id, project),
       Poison.encode!(change.doc),
       [{"Content-Type", "application/json"}]
     )
+    |> handle_result(change, project)
   end
 
   def update_mapping_template() do
@@ -43,23 +44,31 @@ defmodule Indexer do
     <> "#{Application.fetch_env!(:api, :elasticsearch_index_prefix)}"
   end
 
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
+  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, _, _)
     when is_ok(status_code) do
 
     Poison.decode!(body)
   end
 
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
+  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, change, project)
     when is_error(status_code) do
 
+    IO.inspect change
     result = Poison.decode!(body)
-    IO.puts "#{inspect self()} - ERROR: Updating index failed, status_code #{status_code}, result: #{inspect result}"
+    IO.puts "#{inspect self()} - ERROR: Updating index failed!
+      status_code #{status_code}
+      project: #{project}
+      id: #{change.id}
+      result: #{inspect result}"
     nil
   end
 
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
+  defp handle_result({:error, %HTTPoison.Error{reason: reason}}, change, project) do
 
-    IO.puts "#{inspect self()} - ERROR: Updating index failed, reason: #{inspect reason}"
+    IO.puts "#{inspect self()} - ERROR: Updating index failed!
+      project: #{project}
+      id: #{change.id}
+      reason: #{inspect reason}"
     nil
   end
 end
