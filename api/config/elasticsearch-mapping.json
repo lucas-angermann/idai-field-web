@@ -18,9 +18,17 @@
                         "type": "keyword",
                         "store": true
                     },
+                    /* Elasticsearch does only support indexing wgs84
+                       coordinates in the geo_shape field type. Thus
+                       local geometry is only stored and not
+                       coordinates are not indexed. */
                     "geometry": {
-                        "type": "shape",
-                        "coerce": true
+                        "properties": {
+                            "coordinates": {
+                                "type": "double",
+                                "index": false
+                            }
+                        }
                     },
                     "geometry_wgs84": {
                         "type": "geo_shape",
