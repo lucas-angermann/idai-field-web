@@ -7,8 +7,10 @@ defmodule Api.Documents.Index do
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
 
   def get(id) do
-    handle_result(HTTPoison.get("#{get_base_url()}/_doc/#{id}"))
-    |> get_in(["_source"])
+    Query.init("_id:#{id}", 1)
+    |> Query.build
+    |> post_query
+    |> get_in(["hits", "hits", Access.at(0), "_source"])
     |> Core.CorePropertiesAtomizing.format_document
   end
 
