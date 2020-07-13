@@ -39,7 +39,7 @@ defmodule Indexer do
 
   defp get_template_url() do
     "#{Application.fetch_env!(:api, :elasticsearch_url)}/"
-    <> "_index_template/"
+    <> "_template/"
     <> "#{Application.fetch_env!(:api, :elasticsearch_index)}"
   end
 

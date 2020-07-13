@@ -2,60 +2,65 @@
     "index_patterns": [
         "idai-field_*"
     ],
-    "template": {
-        "mappings": {
-            "properties": {
-                "resource": {
-                    "properties": {
-                        "id": {
-                            "type": "keyword"
-                        },
-                        "identifier": {
-                            "type": "keyword"
-                        },
-                        "category": {
-                            "type": "keyword"
-                        },
-                        "geometry": {
-                            "type": "geo_shape",
-                            "coerce": true
-                        },
-                        "material": {
-                            "type": "keyword"
-                        },
-                        "color": {
-                            "type": "keyword"
-                        }
-                    }
-                },
-                "project": {
-                    "type": "keyword"
-                },
-                "created": {
-                    "properties": {
-                        "date": {
-                            "type": "date"
-                        }
-                    }
-                },
-                "modified": {
-                    "properties": {
-                        "date": {
-                            "type": "date"
-                        }
+    "mappings": {
+        "properties": {
+            "resource": {
+                "properties": {
+                    "id": {
+                        "type": "keyword",
+                        "store": true
+                    },
+                    "identifier": {
+                        "type": "keyword",
+                        "store": true
+                    },
+                    "category": {
+                        "type": "keyword",
+                        "store": true
+                    },
+                    "geometry": {
+                        "type": "geo_shape",
+                        "coerce": true
+                    },
+                    "material": {
+                        "type": "keyword",
+                        "store": true
+                    },
+                    "color": {
+                        "type": "keyword",
+                        "store": true
                     }
                 }
             },
-            "dynamic_templates": [
-                {
-                    "relations": {
-                        "path_match": "relations.*",
-                        "mapping": {
-                            "type": "keyword"
-                        }
+            "project": {
+                "type": "keyword",
+                "store": true
+            },
+            "created": {
+                "properties": {
+                    "date": {
+                        "type": "date"
                     }
                 }
-            ]
-        }
+            },
+            "modified": {
+                "properties": {
+                    "date": {
+                        "type": "date"
+                    }
+                }
+            }
+        },
+        "dynamic_templates": [
+            {
+                "relations": {
+                    "path_match": "relations.*",
+                    "mapping": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            }
+        ]
     }
 }
