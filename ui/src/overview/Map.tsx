@@ -88,7 +88,7 @@ const createFeatureCollection = (documents: any[]): FeatureCollection | undefine
     return {
         type: 'FeatureCollection',
         features: documents
-            .filter(document => document.resource.geometry)
+            .filter(document => document.resource.geometry_wgs84)
             .map(createFeature)
     };
 };
@@ -96,7 +96,7 @@ const createFeatureCollection = (documents: any[]): FeatureCollection | undefine
 
 const createFeature = (document: any): Feature => ({
     type: 'Feature',
-    geometry: document.resource.geometry,
+    geometry: document.resource.geometry_wgs84,
     properties: {
        identifier: document.resource.identifier
     }

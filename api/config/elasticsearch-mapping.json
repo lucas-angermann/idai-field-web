@@ -19,6 +19,10 @@
                         "store": true
                     },
                     "geometry": {
+                        "type": "shape",
+                        "coerce": true
+                    },
+                    "geometry_wgs84": {
                         "type": "geo_shape",
                         "coerce": true
                     },

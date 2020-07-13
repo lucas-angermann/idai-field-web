@@ -20,14 +20,12 @@ defmodule Enricher do
     end
 
     def add_geometry(change, coordinates = [_, _]) do
-        put_in change, [:doc, :resource, :geometry], %{ type: "Point", coordinates: coordinates }
+        put_in change, [:doc, :resource, :geometry_wgs84], %{ type: "Point", coordinates: coordinates }
     end
-
     def add_geometry(change, _coordinates), do: change
 
     def get_coordinates_from_place(%{ prefLocation: %{ coordinates: [longitude, latitude] }}) do
         [longitude, latitude]
     end
-
     def get_coordinates_from_place(_place), do: nil
 end
