@@ -21,8 +21,22 @@ defmodule Indexer do
     )
   end
 
+  def update_mapping_template() do
+    with {:ok, body} <- File.read("config/elasticsearch-mapping.json"),
+         {:ok, _} <- HTTPoison.put(get_template_url(), body, [{"Content-Type", "application/json"}])
+    do
+      IO.puts "Succesfully updated index mapping template"
+    else
+      err -> IO.puts "#{inspect self()} - ERROR: Updating index mapping failed: #{inspect err}"
+    end
+  end
+
   defp get_doc_url(id) do
     "#{Application.fetch_env!(:api, :elasticsearch_url)}/#{Application.fetch_env!(:api, :elasticsearch_index)}/_doc/#{id}"
+  end
+
+  defp get_template_url() do
+    "#{Application.fetch_env!(:api, :elasticsearch_url)}/_index_template/#{Application.fetch_env!(:api, :elasticsearch_index)}"
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})

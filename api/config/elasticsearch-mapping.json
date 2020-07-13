@@ -1,56 +1,61 @@
 {
-    "mappings": {
-        "properties": {
-            "resource": {
-                "properties": {
-                    "id": {
-                        "type": "keyword"
-                    },
-                    "identifier": {
-                        "type": "keyword"
-                    },
-                    "category": {
-                        "type": "keyword"
-                    },
-                    "geometry": {
-                        "type": "geo_shape",
-                        "coerce": true
-                    },
-                    "material": {
-                        "type": "keyword"
-                    },
-                    "color": {
-                        "type": "keyword"
+    "index_patterns": [
+        "idai-field_*"
+    ],
+    "template": {
+        "mappings": {
+            "properties": {
+                "resource": {
+                    "properties": {
+                        "id": {
+                            "type": "keyword"
+                        },
+                        "identifier": {
+                            "type": "keyword"
+                        },
+                        "category": {
+                            "type": "keyword"
+                        },
+                        "geometry": {
+                            "type": "geo_shape",
+                            "coerce": true
+                        },
+                        "material": {
+                            "type": "keyword"
+                        },
+                        "color": {
+                            "type": "keyword"
+                        }
+                    }
+                },
+                "project": {
+                    "type": "keyword"
+                },
+                "created": {
+                    "properties": {
+                        "date": {
+                            "type": "date"
+                        }
+                    }
+                },
+                "modified": {
+                    "properties": {
+                        "date": {
+                            "type": "date"
+                        }
                     }
                 }
             },
-            "project": {
-                "type": "keyword"
-            },
-            "created": {
-                "properties": {
-                    "date": {
-                        "type": "date"
+            "dynamic_templates": [
+                {
+                    "relations": {
+                        "path_match": "relations.*",
+                        "mapping": {
+                            "type": "keyword"
+                        }
                     }
                 }
-            },
-            "modified": {
-                "properties": {
-                    "date": {
-                        "type": "date"
-                    }
-                }
-            }
-        },
-        "dynamic_templates": [
-            {
-                "relations": {
-                    "path_match": "relations.*",
-                    "mapping": {
-                        "type": "keyword"
-                    }
-                }
-            }
-        ]
+            ]
+        }
     }
 }
