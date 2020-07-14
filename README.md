@@ -90,7 +90,7 @@ It can be started independently with:
 
     $ docker-compose up elasticsearch
 
-## Unit testing
+## Testing
 
     $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
 
