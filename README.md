@@ -97,7 +97,8 @@ It can be started independently with:
 or
  
     $ docker-compose run --entrypoint "/bin/bash" api
-    $ mix test test/app && mix test --no-start test/unit
+    $ mix test test/app                 # application/subsystem tests
+    $ mix test --no-start test/unit     # unit tests
 
 ## (Re-)building containers
 
