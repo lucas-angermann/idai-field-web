@@ -46,6 +46,23 @@ or interactively with iex:
     $ docker-compose run --service-ports --entrypoint "iex -S mix" api
 
 
+### Managing dependencies
+
+In order to add a dependency it has to be added to `mix.exs`. Afterwards, the api docker container
+has to be rebuilt explicitly with:
+
+    $ docker-compose build api
+
+After removing a dependency from `mix.exs` the following command has to be run inside api/ to make
+sure `mix.lock` reflects the change:
+
+    $ mix deps.clean --unused --unlock
+
+Afterwards, the api docker container has to be rebuilt explicitly with:
+
+    $ docker-compose build api
+
+
 ## UI
 
 The frontend runs on port 3000. It autmatically picks the next available port if 3000 is already in use.
