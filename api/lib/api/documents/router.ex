@@ -24,8 +24,11 @@ defmodule Api.Documents.Router do
   ))
 
   get "/:id" do
-    Index.get(id)
-    |> to_layouted_document
-    |> (&(send_json(conn, &1))).()
+    with doc <- Index.get(id),
+         config <- Core.ProjectConfigLoader.get(doc.project),
+         layouted_doc <- put_in(doc.resource, to_layouted_resource(config, doc.resource))
+    do
+      send_json(conn, layouted_doc)
+    end
   end
 end

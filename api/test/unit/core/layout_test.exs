@@ -16,7 +16,8 @@ defmodule Core.LayoutTest do
 
     start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
     configuration = ProjectConfigLoader.get("test-project")
-    layouted_resource = Layout.to_layouted_resource(configuration).(resource)
+
+    layouted_resource = Layout.to_layouted_resource(configuration, resource)
 
     assert layouted_resource == %{
       :id => "42",
