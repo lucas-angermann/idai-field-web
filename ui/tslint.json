@@ -11,6 +11,7 @@
         "no-console": [false],
         "quotemark": [true, "single", "jsx-double"],
         "semicolon": [true, "always"],
+        "no-trailing-whitespace": [true, "ignore-blank-lines"],
         "whitespace": [
             true,
             "check-branch",
