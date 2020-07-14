@@ -53,7 +53,6 @@ defmodule Indexer do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, change, project)
     when is_error(status_code) do
 
-    IO.inspect change
     result = Poison.decode!(body)
     IO.puts "#{inspect self()} - ERROR: Updating index failed!
       status_code #{status_code}
