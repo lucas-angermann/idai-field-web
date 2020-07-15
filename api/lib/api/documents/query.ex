@@ -11,14 +11,7 @@ defmodule Api.Documents.Query do
   end
 
   def add_aggregations(query) do
-    with {:ok, default_filters} <- Application.fetch_env(:api, :default_filters)
-    do
-      Map.put(query, :aggs, Enum.map(default_filters, &build_terms_aggregation/1) |> Enum.into(%{}))
-    else
-      _ ->
-        IO.puts "#{inspect self()} - ERROR: default filters not set in config, no aggregations will be generated!"
-        query
-    end
+    Map.put(query, :aggs, Enum.map(Core.Config.get(:default_filters), &build_terms_aggregation/1) |> Enum.into(%{}))
   end
 
   def add_filters(query, nil), do: query

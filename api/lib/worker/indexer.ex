@@ -33,15 +33,15 @@ defmodule Indexer do
   end
 
   defp get_doc_url(id, project) do
-    "#{Application.fetch_env!(:api, :elasticsearch_url)}/"
-    <> "#{Application.fetch_env!(:api, :elasticsearch_index_prefix)}_#{project}/"
+    "#{Core.Config.get(:elasticsearch_url)}/"
+    <> "#{Core.Config.get(:elasticsearch_index_prefix)}_#{project}/"
     <> "_doc/#{id}"
   end
 
   defp get_template_url() do
-    "#{Application.fetch_env!(:api, :elasticsearch_url)}/"
+    "#{Core.Config.get(:elasticsearch_url)}/"
     <> "_template/"
-    <> "#{Application.fetch_env!(:api, :elasticsearch_index_prefix)}"
+    <> "#{Core.Config.get(:elasticsearch_index_prefix)}"
   end
 
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, _, _)

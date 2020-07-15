@@ -5,11 +5,11 @@ defmodule Core.ProjectConfigLoader do
 
     IO.inspect params
 
-    databases = database_names || Application.fetch_env!(:api, :couchdb_databases)
+    databases = database_names || Core.Config.get(:couchdb_databases)
     configs = for database <- databases, into: %{} do
       {
         database,
-        load(config_dir_name || Application.fetch_env!(:api, :config_dir), database)
+        load(config_dir_name || Core.Config.get(:config_dir), database)
       }
     end
 

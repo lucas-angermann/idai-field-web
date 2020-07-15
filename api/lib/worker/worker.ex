@@ -4,7 +4,7 @@ defmodule Worker do
 
     Indexer.update_mapping_template()
 
-    for db <- Application.fetch_env!(:api, :couchdb_databases) do
+    for db <- Core.Config.get(:couchdb_databases) do
       pid = spawn_link fn -> process_db(db) end
       IO.puts "Spawned indexer #{inspect pid} for #{db}"
     end
