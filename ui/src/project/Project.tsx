@@ -101,7 +101,7 @@ const searchMapDocuments = async (id: string, location: Location): Promise<Resul
 
 
 const buildQueryTemplate = (id: string, from: number): Query => {
-    
+
     const query: Query = {
         q: '*',
         size: CHUNK_SIZE,
@@ -167,7 +167,7 @@ const renderFilterValue = (key: string, bucket: FilterBucket, location: Location
 const addFilterToLocation = (location: Location, key: string, value: string): Location => {
 
     const urlParams = new URLSearchParams(location.search);
-    urlParams.set(key, value);
+    urlParams.append(key, value);
     return addParamsToLocation(location, urlParams);
 };
 
@@ -175,8 +175,10 @@ const addFilterToLocation = (location: Location, key: string, value: string): Lo
 const renderCloseButton = (location: Location, key: string, value: string) => {
 
     const urlParams = new URLSearchParams(location.search);
-    if ( (urlParams.has(key) && urlParams.get(key) === value ) ) {
+    if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
+        const newParams = urlParams.getAll(key).filter(v => v !== value);
         urlParams.delete(key);
+        newParams.forEach(v => urlParams.append(key, v));
         return <Link to={ addParamsToLocation(location, urlParams) }>
             <Icon path={ mdiCloseCircle } size={ 0.8 }/>
         </Link>;
