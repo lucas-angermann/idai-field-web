@@ -11,6 +11,21 @@ config :api,
   config_dir: "config/projects",
   locales: ["de", "en"]
 
+  default_filters: [
+    %{
+      field: "category",
+      label: %{ de: "Kategorie", en: "Category" }
+    },
+    %{
+      field: "color",
+      label: %{ de: "Farbe", en: "Color" }
+    },
+    %{
+      field: "material",
+      label: %{ de: "Material", en: "Material" }
+    }
+  ]
+
 config :api, Api.Auth.Guardian,
   issuer: "api",
   secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
