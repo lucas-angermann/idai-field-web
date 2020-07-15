@@ -18,8 +18,8 @@ export default React.memo(function ProjectMap({ documents }: { documents: any[] 
     const featureCollection = createFeatureCollection(documents);
 
     return (
-        featureCollection
-            ? <Map style={ mapStyle }
+        <div>
+            <Map style={ mapStyle }
                 crs={ L.CRS.Simple }
                 minZoom="-20"
                 maxZoom="30"
@@ -31,9 +31,12 @@ export default React.memo(function ProjectMap({ documents }: { documents: any[] 
                 { getGeoJSONElement(featureCollection, history) }
                 <ZoomControl position="bottomright" />
             </Map>
-            : <Spinner animation="border"
-                variant="secondary"
-                style={ spinnerStyle } />
+            { !featureCollection &&
+                <Spinner animation="border"
+                    variant="secondary"
+                    style={ spinnerStyle } />
+            }
+        </div>
     );
 });
 
