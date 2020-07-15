@@ -9,17 +9,23 @@ defmodule Api.Documents.Mapping do
     end
 
     defp map_aggregations(result, %{ aggregations: aggregations }) do
-        filters = Enum.zip(aggregations, Core.Config.get(:default_filters)) |> Enum.map(&map_aggregation/1)
+        filters = Enum.map(Core.Config.get(:default_filters), map_aggregation(aggregations))
+        |> Enum.reject(&is_nil/1)
         put_in(result, [:filters], filters)
     end
     defp map_aggregations(result, _), do: result
 
-    defp map_aggregation({{key, %{ buckets: buckets }}, %{ label: label }}) do
-        %{
-            name: key,
-            values: Enum.map(buckets, &map_bucket/1),
-            label: label
-        }
+    defp map_aggregation(aggregations) do
+        fn filter ->
+            with agg when not is_nil(agg) <- get_in(aggregations, [String.to_atom(filter.field), :buckets])
+            do
+                %{
+                    name: filter.field,
+                    label: filter.label,
+                    values: Enum.map(agg, &map_bucket/1)
+                }
+            end
+        end
     end
 
     defp map_bucket(%{ doc_count: doc_count, key: key }) do

@@ -94,7 +94,7 @@
         ]
     },
     "aggregations": {
-        "type": {
+        "resource.category": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 959,
             "buckets": [
@@ -108,16 +108,16 @@
                 }
             ]
         },
-        "project": {
+        "resource.material": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 2,
             "buckets": [
                 {
-                    "key": "project1",
+                    "key": "Stone",
                     "doc_count": 124234
                 },
                 {
-                    "key": "project2",
+                    "key": "Marble",
                     "doc_count": 867
                 }
             ]

@@ -72,7 +72,6 @@ defmodule Api.Documents.Query do
   end
 
   defp build_terms_aggregation(filter) do
-    field = "resource.#{filter.field}"
-    { field, %{ terms: %{ field: field }}}
+    { filter.field, %{ terms: %{ field: filter.field }}}
   end
 end
