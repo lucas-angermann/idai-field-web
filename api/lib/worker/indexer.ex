@@ -4,6 +4,7 @@ defmodule Indexer do
 
   defguard is_error(status_code) when status_code >= 400
 
+  def process(project), do: fn change -> process(change, project) end
   def process(change = %{deleted: true}, project) do
     # TODO: mark documents as deleted instead of removing them from index
     case HTTPoison.delete(get_doc_url(change.id, project)) do
@@ -12,7 +13,6 @@ defmodule Indexer do
       result -> handle_result(result, change, project)
     end
   end
-
   def process(change, project) do
     HTTPoison.put(
       get_doc_url(change.id, project),

@@ -12,11 +12,11 @@ defmodule Worker do
 
   def process_db(db) do
     Harvester.fetch_changes(db)
-    |> Enum.map(&Mapper.process/1)
+    |> Enum.map(Mapper.process)
     |> log_finished("mapping", db)
-    |> Enum.map(&(Enricher.process(&1, db)))
+    |> Enum.map(Enricher.process(db))
     |> log_finished("enriching", db)
-    |> Enum.map(&(Indexer.process(&1, db)))
+    |> Enum.map(Indexer.process(db))
     |> log_finished("indexing", db)
   end
 
