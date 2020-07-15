@@ -1,9 +1,9 @@
-import { ChangeEvent } from './document';
+import { ChangeEvent, I18nString } from './document';
 
 export interface Result {
     size: number;
     documents: ResultDocument[];
-    filters: Filters;
+    filters: ResultFilter[];
 }
 
 
@@ -23,7 +23,11 @@ export interface ResultResource {
 }
 
 
-export type Filters = { [x: string]: FilterBucket[] };
+export interface ResultFilter {
+    name: string;
+    values: FilterBucket[];
+    label: I18nString;
+}
 
 
 export interface FilterBucket {

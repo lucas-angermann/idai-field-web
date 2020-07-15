@@ -8,7 +8,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Query } from '../api/query';
 import ProjectMap from './ProjectMap';
-import { Filters, FilterBucket, Result, ResultDocument } from '../api/result';
+import { ResultFilter, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 import { Document } from '../api/document';
 
@@ -27,7 +27,7 @@ export default () => {
     const location = useLocation<LocationState>();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
-    const [filters, setFilters] = useState<Filters>({ });
+    const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [error, setError] = useState(false);
@@ -136,15 +136,15 @@ const renderProjectTeaser = (projectDocument: Document) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
-const renderFilters = (filters: Filters, location: LocationState) =>
-    Object.keys(filters).map((key: string) => renderFilter(key, filters[key], location));
+const renderFilters = (filters: ResultFilter[], location: LocationState) =>
+    filters.map((filter: ResultFilter) => renderFilter(filter, location));
 
 
-const renderFilter = (key: string, filter: FilterBucket[], location: LocationState) => (
-    <Card key={ key }>
-        <Card.Header><h3>{ key }</h3></Card.Header>
+const renderFilter = (filter: ResultFilter, location: LocationState) => (
+    <Card key={ filter.name }>
+        <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
         <Card.Body>
-            { filter.map((bucket: FilterBucket) => renderFilterValue(key, bucket, location)) }
+            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, location)) }
         </Card.Body>
     </Card>
 );
