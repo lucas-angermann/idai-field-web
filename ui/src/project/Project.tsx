@@ -1,5 +1,6 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
+import { Location } from 'history';
 import { search, get, mapSearch } from '../api/documents';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { Row, Col, Card, Alert } from 'react-bootstrap';
@@ -16,15 +17,10 @@ import { Document } from '../api/document';
 const CHUNK_SIZE = 50;
 
 
-interface LocationState {
-    search: string;
-}
-
-
 export default () => {
 
     const { id } = useParams();
-    const location = useLocation<LocationState>();
+    const location = useLocation();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -88,7 +84,7 @@ export default () => {
 };
 
 
-const searchDocuments = async (id: string, location: LocationState, from: number): Promise<Result> => {
+const searchDocuments = async (id: string, location: Location, from: number): Promise<Result> => {
 
     const query = buildQueryTemplate(id, from);
     addFilters(query, location);
@@ -96,7 +92,7 @@ const searchDocuments = async (id: string, location: LocationState, from: number
 };
 
 
-const searchMapDocuments = async (id: string, location: LocationState): Promise<Result> => {
+const searchMapDocuments = async (id: string, location: Location): Promise<Result> => {
 
     const query = buildQueryTemplate(id, 0);
     addFilters(query, location);
@@ -124,7 +120,7 @@ const buildQueryTemplate = (id: string, from: number): Query => {
 };
 
 
-const addFilters = (query: Query, location: LocationState) => {
+const addFilters = (query: Query, location: Location) => {
 
     const filters = Array.from(new URLSearchParams(location.search).entries())
         .map(([field, value]) => ({ field, value }));
@@ -136,11 +132,11 @@ const renderProjectTeaser = (projectDocument: Document) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
-const renderFilters = (filters: ResultFilter[], location: LocationState) =>
+const renderFilters = (filters: ResultFilter[], location: Location) =>
     filters.map((filter: ResultFilter) => renderFilter(filter, location));
 
 
-const renderFilter = (filter: ResultFilter, location: LocationState) => (
+const renderFilter = (filter: ResultFilter, location: Location) => (
     <Card key={ filter.name }>
         <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
         <Card.Body>
@@ -150,16 +146,15 @@ const renderFilter = (filter: ResultFilter, location: LocationState) => (
 );
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, location: LocationState) => {
+const renderFilterValue = (key: string, bucket: FilterBucket, location: Location) => {
 
-    const urlParams = new URLSearchParams(location.search);
     return (
         <Row key={ bucket.value }>
             <Col>
-                <Link to={ `?${key}=${bucket.value}` }>
+                <Link to={ addFilterToLocation(location, key, bucket.value) }>
                     { bucket.value }
                 </Link>
-                { (urlParams.has(key) && urlParams.get(key) === bucket.value ) ? renderCloseButton(key) : '' }
+                { renderCloseButton(location, key, bucket.value) }
             </Col>
             <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
         </Row>
@@ -167,7 +162,27 @@ const renderFilterValue = (key: string, bucket: FilterBucket, location: Location
 };
 
 
-const renderCloseButton = (key: string) => <Link to="?"><Icon path={ mdiCloseCircle } size={ 0.8 }/></Link>;
+const addFilterToLocation = (location: Location, key: string, value: string): Location => {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set(key, value);
+    return addParamsToLocation(location, urlParams);
+};
+
+
+const renderCloseButton = (location: Location, key: string, value: string) => {
+    const urlParams = new URLSearchParams(location.search);
+    if ( (urlParams.has(key) && urlParams.get(key) === value ) ) {
+        urlParams.delete(key);
+        return <Link to={ addParamsToLocation(location, urlParams) }>
+            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
+        </Link>;
+    }
+    return '';
+};
+
+
+const addParamsToLocation = (location: Location, urlParams: URLSearchParams): Location =>
+    ({ search: `?${urlParams.toString()}`, pathname: location.pathname, state: null, hash: null });
 
 
 const renderError = (error: any) => {
