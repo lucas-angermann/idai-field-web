@@ -23,6 +23,7 @@ export default () => {
     const location = useLocation();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
+    const [mapLoading, setMapLoading] = useState<boolean>(true);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -42,6 +43,7 @@ export default () => {
 
     useEffect(() => {
 
+        setMapLoading(true);
         setMapDocuments([]);
 
         searchDocuments(id, location, 0).then(result => {
@@ -51,6 +53,7 @@ export default () => {
 
         searchMapDocuments(id, location)
             .then(result => setMapDocuments(result.documents))
+            .then(() => setMapLoading(false))
             .catch((err: any) => setError(err));
 
         get(id).then(setProjectDocument);
@@ -70,7 +73,7 @@ export default () => {
                 { renderFilters(filters, location) }
             </div>,
             <div key="results">
-                <ProjectMap documents={ mapDocuments } />
+                <ProjectMap documents={ mapDocuments } loading={ mapLoading } />
             </div>
         ];
     };

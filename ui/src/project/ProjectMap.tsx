@@ -11,7 +11,7 @@ import { getColor } from '../categoryColors';
 import { Spinner } from 'react-bootstrap';
 
 
-export default React.memo(function ProjectMap({ documents }: { documents: any[] }) {
+export default React.memo(function ProjectMap({ documents, loading }: { documents: any[], loading: boolean }) {
 
     const history: History = useHistory();
 
@@ -31,7 +31,7 @@ export default React.memo(function ProjectMap({ documents }: { documents: any[] 
                 { getGeoJSONElement(featureCollection, history) }
                 <ZoomControl position="bottomright" />
             </Map>
-            { !featureCollection &&
+            { loading &&
                 <Spinner animation="border"
                     variant="secondary"
                     style={ spinnerStyle } />
