@@ -101,6 +101,7 @@ const searchMapDocuments = async (id: string, location: Location): Promise<Resul
 
 
 const buildQueryTemplate = (id: string, from: number): Query => {
+    
     const query: Query = {
         q: '*',
         size: CHUNK_SIZE,
@@ -137,6 +138,7 @@ const renderFilters = (filters: ResultFilter[], location: Location) =>
 
 
 const renderFilter = (filter: ResultFilter, location: Location) => (
+
     <Card key={ filter.name }>
         <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
         <Card.Body>
@@ -163,6 +165,7 @@ const renderFilterValue = (key: string, bucket: FilterBucket, location: Location
 
 
 const addFilterToLocation = (location: Location, key: string, value: string): Location => {
+
     const urlParams = new URLSearchParams(location.search);
     urlParams.set(key, value);
     return addParamsToLocation(location, urlParams);
@@ -170,6 +173,7 @@ const addFilterToLocation = (location: Location, key: string, value: string): Lo
 
 
 const renderCloseButton = (location: Location, key: string, value: string) => {
+
     const urlParams = new URLSearchParams(location.search);
     if ( (urlParams.has(key) && urlParams.get(key) === value ) ) {
         urlParams.delete(key);
@@ -186,6 +190,7 @@ const addParamsToLocation = (location: Location, urlParams: URLSearchParams): Lo
 
 
 const renderError = (error: any) => {
+
     console.error(error);
     return <Col><Alert variant="danger">Backend not available!</Alert></Col>;
 };
