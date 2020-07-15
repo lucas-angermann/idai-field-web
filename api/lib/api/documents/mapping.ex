@@ -9,12 +9,17 @@ defmodule Api.Documents.Mapping do
     end
 
     defp map_aggregations(result, %{ aggregations: aggregations }) do
-        put_in(result, [:filters], aggregations |> Enum.map(&map_aggregation/1) |> Enum.into(%{}))
+        with {:ok, default_filters} = Application.fetch_env(:api, :default_filters),
+        do: put_in(result, [:filters], Enum.zip(aggregations, default_filters) |> Enum.map(&map_aggregation/1))
     end
     defp map_aggregations(result, _), do: result
 
-    defp map_aggregation({key, %{ buckets: buckets }}) do
-        {key, Enum.map(buckets, &map_bucket/1)}
+    defp map_aggregation({{key, %{ buckets: buckets }}, %{ label: label }}) do
+        %{
+            name: key,
+            values: Enum.map(buckets, &map_bucket/1),
+            label: label
+        }
     end
 
     defp map_bucket(%{ doc_count: doc_count, key: key }) do
