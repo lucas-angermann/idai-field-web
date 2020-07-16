@@ -6,16 +6,20 @@ defmodule Core.Config do
     if Mix.env() == :test do
       get_test module, key
     else
-      with {:ok, val} <- Application.fetch_env(:api, key) do
-        val
-      else
-        _ -> Logger.error "#{key} not set in config!"
-        nil
-      end
+      get_default module, key
     end
   end
 
-  defp get_test(module, key) do
+  def get_default module, key do
+    with {:ok, val} <- Application.fetch_env(:api, key) do
+      val
+    else
+      _ -> Logger.error "#{key} not set in config!"
+           nil
+    end
+  end
+
+  defp get_test module, key do
 
     if module == Elixir.Api.Auth do
       case key do
@@ -36,6 +40,8 @@ defmodule Core.Config do
     else
       if key == :config_dir do
         "test/resources"
+      else
+        get_default module, key
       end
     end
   end
