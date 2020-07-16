@@ -1,18 +1,9 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
-import { useParams } from 'react-router-dom';
-import { get } from '../api/documents';
 import { Document } from '../api/document';
 import DocumentDetails from '../document/DocumentDetails';
 import { NAVBAR_HEIGHT } from '../constants';
 
-export default function DocumentInfo() {
-
-    const { id } = useParams();
-    const [document, setDocument] = useState<Document>(null);
-
-    useEffect (() => {
-        get(id).then(setDocument);
-    }, [id]);
+export default function DocumentInfo({ document }: { document: Document }) {
 
     return (
         <div style={ documentContainerStyle }>
