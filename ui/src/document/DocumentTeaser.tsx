@@ -7,7 +7,7 @@ import { ResultDocument } from '../api/result';
 export default React.memo(function DocumentTeaser({ document }: { document: ResultDocument }) {
 
     return (
-        <Link to={ `/document/${document.resource.id}` } style={ linkStyle }>
+        <Link to={ `/project/${document.project}/${document.resource.id}` } style={ linkStyle }>
             <Row>
                 <Col style={ { flex: '0 0 50px' } }>
                     <CategoryIcon size="50" category={ document.resource.category } />

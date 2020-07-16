@@ -128,8 +128,8 @@ const addTooltip = (feature: Feature, layer: L.Layer) => {
 
 const onClick = (history: History) => (event: any) => {
 
-    const id: string = event.target.feature.properties.id;
-    history.push(`/document/${id}`);
+    const { id, project } = event.target.feature.properties;
+    history.push(`/project/${project}/${id}`);
 };
 
 
@@ -152,7 +152,8 @@ const createFeature = (document: any): Feature => ({
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
-        category: document.resource.category
+        category: document.resource.category,
+        project: document.project
     }
 });
 
