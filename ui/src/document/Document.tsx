@@ -18,7 +18,7 @@ export default () => {
     }, [id]);
 
     return (document && document.resource)
-        ? renderDocument(document)
+        ? <Container>{ renderDocument(document) }</Container>
         : error
             ? renderError(error)
             : null;

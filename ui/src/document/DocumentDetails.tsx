@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Container, Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
@@ -7,16 +7,14 @@ import { Document, Resource, FieldGroup, Field, Relation } from '../api/document
 export default function DocumentDetails({ document }: { document: Document }) {
 
     return (
-        <Container>
-            <Card>
-                <Card.Header>
-                    { renderHeader(document.resource) }
-                </Card.Header>
-                <Card.Body>
-                    { renderGroups(document.resource) }
-                </Card.Body>
-            </Card>
-        </Container>
+        <Card style={ cardStyle }>
+            <Card.Header>
+                { renderHeader(document.resource) }
+            </Card.Header>
+            <Card.Body>
+                { renderGroups(document.resource) }
+            </Card.Body>
+        </Card>
     );
 }
 
@@ -110,3 +108,9 @@ const renderFieldValueBoolean = (value: boolean) => value ? 'yes' : 'no';
 
 
 const renderDocumentLink = (id: string) => <li key={ id }><Link to={ `/document/${id}` }>{ id }</Link></li>;
+
+
+const cardStyle: CSSProperties = {
+    overflow: 'auto',
+    flexGrow: 1
+};
