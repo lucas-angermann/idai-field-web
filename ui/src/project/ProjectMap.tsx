@@ -1,29 +1,49 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState, useEffect } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
-import { History } from 'history';
+import { History, Location } from 'history';
 import extent from 'turf-extent';
 import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getColor } from '../categoryColors';
 import { Spinner } from 'react-bootstrap';
+import { ResultDocument, Result } from '../api/result';
+import { buildProjectQueryTemplate, addFilters } from '../api/query';
+import { mapSearch } from '../api/documents';
+import { Document } from '../api/document';
 
 
-export default React.memo(function ProjectMap({ documents, loading }: { documents: any[], loading: boolean }) {
+const MAX_SIZE = 10000;
+
+
+export default React.memo(function ProjectMap({ id, document }: { id: string, document: Document }) {
 
     const history: History = useHistory();
+    const location = useLocation();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [featureCollection, setFeatureCollection] = useState<FeatureCollection>();
 
-    const featureCollection = createFeatureCollection(documents);
+    useEffect(() => {
+
+        setLoading(true);
+        setFeatureCollection(null);
+
+        searchMapDocuments(id, location)
+            .then(result => createFeatureCollection(result.documents))
+            .then(features => setFeatureCollection(features))
+            .then(() => setLoading(false));
+
+    }, [id, location]);
 
     return (
         <div>
             <Map style={ mapStyle }
                 crs={ L.CRS.Simple }
                 minZoom="-20"
-                maxZoom="30"
-                bounds={ getBounds(featureCollection) }
+                maxZoom="10"
+                bounds={ getBounds(featureCollection, document) }
                 boundsOptions={ { padding: [410, 10] } }
                 renderer={ L.canvas({ padding: 0.5 }) }
                 attributionControl={ false }
@@ -39,6 +59,14 @@ export default React.memo(function ProjectMap({ documents, loading }: { document
         </div>
     );
 });
+
+
+const searchMapDocuments = async (id: string, location: Location): Promise<Result> => {
+
+    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
+    addFilters(query, location);
+    return mapSearch(query);
+};
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
@@ -100,8 +128,8 @@ const addTooltip = (feature: Feature, layer: L.Layer) => {
 
 const onClick = (history: History) => (event: any) => {
 
-    const id: string = event.target.feature.properties.id;
-    history.push(`/document/${id}`);
+    const { id, project } = event.target.feature.properties;
+    history.push(`/project/${project}/${id}`);
 };
 
 
@@ -124,17 +152,25 @@ const createFeature = (document: any): Feature => ({
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
-        category: document.resource.category
+        category: document.resource.category,
+        project: document.project
     }
 });
 
 
-const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
+const getBounds = (featureCollection?: FeatureCollection, document?: Document): [number, number][] => {
 
-    if (!featureCollection) return [[-10, -10], [10, 10]];
+    if (document?.resource?.geometry) {
+        const extentResult: number[] = extent(document.resource.geometry);
+        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    }
 
-    const extentResult: number[] = extent(featureCollection);
-    return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    if (featureCollection) {
+        const extentResult: number[] = extent(featureCollection);
+        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    }
+
+    return [[-10, -10], [10, 10]];
 };
 
 

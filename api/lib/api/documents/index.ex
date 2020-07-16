@@ -5,7 +5,7 @@ defmodule Api.Documents.Index do
 
   @max_geometries 10000
   @exists_geometries ["resource.geometry"]
-  @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id"]
+  @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id", "project"]
 
   def get(id) do
     Query.init("_id:#{id}", 1)
