@@ -1,3 +1,5 @@
+import { Location } from 'history';
+
 export type Query = {
     q: string,
     filters?: Filter[],
@@ -32,4 +34,33 @@ export const getQueryString = (query: Query) => {
     if (query.from) queryParams.push(['from', query.from.toString()]);
 
     return queryParams.map(([k, v]) => `${k}=${v}`).join('&');
+};
+
+
+export const buildProjectQueryTemplate = (id: string, from: number, size: number): Query => {
+
+    const query: Query = {
+        q: '*',
+        size,
+        from,
+        filters: [
+            { field: 'project', value: id }
+        ],
+        not: [
+            { field: 'resource.category', value: 'Project' },
+            { field: 'resource.category', value: 'Image' },
+            { field: 'resource.category', value: 'Photo' },
+            { field: 'resource.category', value: 'Drawing' }
+        ]
+    };
+
+    return query;
+};
+
+
+export const addFilters = (query: Query, location: Location) => {
+
+    const filters = Array.from(new URLSearchParams(location.search).entries())
+        .map(([field, value]) => ({ field, value }));
+    query.filters = query.filters.concat(filters);
 };

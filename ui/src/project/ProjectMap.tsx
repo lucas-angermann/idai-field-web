@@ -1,21 +1,40 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useState, useEffect } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
-import { History } from 'history';
+import { History, Location } from 'history';
 import extent from 'turf-extent';
 import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getColor } from '../categoryColors';
 import { Spinner } from 'react-bootstrap';
+import { ResultDocument, Result } from '../api/result';
+import { buildProjectQueryTemplate, addFilters } from '../api/query';
+import { mapSearch } from '../api/documents';
 
 
-export default React.memo(function ProjectMap({ documents, loading }: { documents: any[], loading: boolean }) {
+const MAX_SIZE = 10000;
+
+
+export default React.memo(function ProjectMap({ id }: { id: string }) {
 
     const history: History = useHistory();
+    const location = useLocation();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [featureCollection, setFeatureCollection] = useState<FeatureCollection>();
 
-    const featureCollection = createFeatureCollection(documents);
+    useEffect(() => {
+
+        setLoading(true);
+        setFeatureCollection(null);
+
+        searchMapDocuments(id, location)
+            .then(result => createFeatureCollection(result.documents))
+            .then(features => setFeatureCollection(features))
+            .then(() => setLoading(false));
+
+    }, [id, location]);
 
     return (
         <div>
@@ -39,6 +58,14 @@ export default React.memo(function ProjectMap({ documents, loading }: { document
         </div>
     );
 });
+
+
+const searchMapDocuments = async (id: string, location: Location): Promise<Result> => {
+
+    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
+    addFilters(query, location);
+    return mapSearch(query);
+};
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {

@@ -7,7 +7,7 @@ import { Row, Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Query } from '../api/query';
+import { Query, buildProjectQueryTemplate, addFilters } from '../api/query';
 import ProjectMap from './ProjectMap';
 import { ResultFilter, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
@@ -22,8 +22,6 @@ export default () => {
     const { id } = useParams();
     const location = useLocation();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
-    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
-    const [mapLoading, setMapLoading] = useState<boolean>(true);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [offset, setOffset] = useState(0);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -43,18 +41,10 @@ export default () => {
 
     useEffect(() => {
 
-        setMapLoading(true);
-        setMapDocuments([]);
-
         searchDocuments(id, location, 0).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
-
-        searchMapDocuments(id, location)
-            .then(result => setMapDocuments(result.documents))
-            .then(() => setMapLoading(false))
-            .catch((err: any) => setError(err));
 
         get(id).then(setProjectDocument);
     }, [id, location]);
@@ -73,7 +63,7 @@ export default () => {
                 { renderFilters(filters, location) }
             </div>,
             <div key="results">
-                <ProjectMap documents={ mapDocuments } loading={ mapLoading } />
+                <ProjectMap id={ id } />
             </div>
         ];
     };
@@ -89,46 +79,9 @@ export default () => {
 
 const searchDocuments = async (id: string, location: Location, from: number): Promise<Result> => {
 
-    const query = buildQueryTemplate(id, from);
+    const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
     addFilters(query, location);
     return search(query);
-};
-
-
-const searchMapDocuments = async (id: string, location: Location): Promise<Result> => {
-
-    const query = buildQueryTemplate(id, 0);
-    addFilters(query, location);
-    return mapSearch(query);
-};
-
-
-const buildQueryTemplate = (id: string, from: number): Query => {
-
-    const query: Query = {
-        q: '*',
-        size: CHUNK_SIZE,
-        from,
-        filters: [
-            { field: 'project', value: id }
-        ],
-        not: [
-            { field: 'resource.category', value: 'Project' },
-            { field: 'resource.category', value: 'Image' },
-            { field: 'resource.category', value: 'Photo' },
-            { field: 'resource.category', value: 'Drawing' }
-        ]
-    };
-
-    return query;
-};
-
-
-const addFilters = (query: Query, location: Location) => {
-
-    const filters = Array.from(new URLSearchParams(location.search).entries())
-        .map(([field, value]) => ({ field, value }));
-    query.filters = query.filters.concat(filters);
 };
 
 
