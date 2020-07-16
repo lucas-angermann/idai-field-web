@@ -39,7 +39,7 @@ defmodule Api.RouterTest do
   end
 
   defp sign_in name, pass do
-    conn = conn(:post, "/auth/sign_in", %{name: name, pass: pass})
+    conn = conn(:post, "/auth/sign_in", %{ name: name, pass: pass })
       |> Api.Router.call(@opts)
     Poison.decode!(conn.resp_body)["token"]
   end

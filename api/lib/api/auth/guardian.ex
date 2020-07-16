@@ -2,14 +2,13 @@ defmodule Api.Auth.Guardian do
   use Guardian, otp_app: :api
 
   def subject_for_token(user_json, _claims) do
-
     user = User.by(user_json)
+    readable_projects = Core.Config.get(Api.Auth, :readable_projects)[user.name]
 
     rights = Poison.encode!(%{
       user: user.name,
-      readable_projects: Application.get_env(:api, Api.Auth)[:readable_projects][user.name]
+      readable_projects: readable_projects
     })
-
     {:ok, rights}
   end
 
