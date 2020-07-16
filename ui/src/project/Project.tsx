@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
-import Document from '../document/Document';
+import DocumentInfo from './DocumentInfo';
 
 export default function Project() {
 
@@ -12,7 +12,8 @@ export default function Project() {
     return (
         <div>
             <Switch>
-                <Route path={ `${path}/:id` }>
+                <Route path={ `${path}:project_id/document/:id` } component={ DocumentInfo } />
+                <Route>
                     <ProjectHome id={ id } />
                 </Route>
             </Switch>

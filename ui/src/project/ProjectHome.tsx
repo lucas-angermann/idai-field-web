@@ -68,8 +68,7 @@ export default function ProjectHome({ id }: { id: string }) {
             { error ? renderError(error) : renderResult() }
         </div>
     );
-
-};
+}
 
 
 const searchDocuments = async (id: string, location: Location, from: number): Promise<Result> => {
