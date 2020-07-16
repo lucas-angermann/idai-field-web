@@ -4,12 +4,7 @@ defmodule Core.ProjectConfigLoader do
 
   def start_link(params = {config_dir_name, database_names}) do
 
-    databases = database_names || (if Mix.env() == :test
-    do
-      ["a"]
-    else
-      Core.Config.get(:couchdb_databases)
-    end)
+    databases = database_names || Core.Config.get(:couchdb_databases)
 
     configs = for database <- databases, into: %{} do
       {
@@ -17,7 +12,6 @@ defmodule Core.ProjectConfigLoader do
         load(config_dir_name || Core.Config.get(:config_dir), database)
       }
     end
-
     Agent.start_link(fn -> configs end, name: __MODULE__)
   end
   def start_link(_), do: start_link({nil, nil})

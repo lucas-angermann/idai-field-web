@@ -16,11 +16,27 @@ defmodule Api.RouterTest do
   end
 
   test "get document" do
-    conn = conn(:get, "/documents/t1")
+    conn = conn(:get, "/documents/doc-of-proj-a")
+    conn = Api.Router.call(conn, @opts)
+    doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    assert doc.project == "a"
+  end
+
+  test "do not get document as anonymous user" do
+    conn = conn(:get, "/documents/doc-of-proj-b")
     conn = Api.Router.call(conn, @opts)
     doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
 
-    assert doc.project == "a"
+    # TODO assert unauthorized access
+  end
+
+  test "get document as logged in user" do
+    token = sign_in "user-1", "pass-1"
+    conn = conn(:get, "/documents/doc-of-proj-b")
+           |> put_req_header("authorization", token)
+           |> Api.Router.call(@opts)
+    doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    assert doc.project == "b"
   end
 
   test "show rights" do

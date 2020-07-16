@@ -38,10 +38,10 @@ defmodule Core.Config do
           ]
       end
     else
-      if key == :config_dir do
-        "test/resources"
-      else
-        get_default module, key
+      case key  do
+        :config_dir        -> "test/resources"
+        :couchdb_databases -> ["a", "b"]
+        _                  -> get_default module, key
       end
     end
   end

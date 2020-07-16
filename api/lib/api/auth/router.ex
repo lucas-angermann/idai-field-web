@@ -32,8 +32,9 @@ defmodule Api.Auth.Router do
     |> send_json(%{ token: token })
   end
 
-  defp get_user_for_bearer(nil), do: Auth.Rights.empty()
-  defp get_user_for_bearer(bearer) do
+  # todo move
+  def get_user_for_bearer(nil), do: Auth.Rights.empty()
+  def get_user_for_bearer(bearer) do
     token = String.replace bearer, "Bearer ", ""
     {:ok, user, _} = Auth.Guardian.resource_from_token(token)
     # TODO handle error

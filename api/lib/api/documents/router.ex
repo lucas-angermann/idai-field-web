@@ -25,7 +25,14 @@ defmodule Api.Documents.Router do
 
   get "/:id" do
 
-    with doc <- index.get(id),
+    rights =
+      conn
+      |> get_req_header("authorization")
+      |> List.first
+      |> Api.Auth.Router.get_user_for_bearer
+
+    # TODO evaluate if user is allowed to access resource
+    with doc <- index().get(id),
          config <- Core.ProjectConfigLoader.get(doc.project),
          layouted_doc <- put_in(doc.resource, to_layouted_resource(config, doc.resource))
     do
