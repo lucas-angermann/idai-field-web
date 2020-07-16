@@ -12,12 +12,13 @@ import { Spinner } from 'react-bootstrap';
 import { ResultDocument, Result } from '../api/result';
 import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { mapSearch } from '../api/documents';
+import { Document } from '../api/document';
 
 
 const MAX_SIZE = 10000;
 
 
-export default React.memo(function ProjectMap({ id }: { id: string }) {
+export default React.memo(function ProjectMap({ id, document }: { id: string, document: Document }) {
 
     const history: History = useHistory();
     const location = useLocation();
@@ -42,7 +43,7 @@ export default React.memo(function ProjectMap({ id }: { id: string }) {
                 crs={ L.CRS.Simple }
                 minZoom="-20"
                 maxZoom="30"
-                bounds={ getBounds(featureCollection) }
+                bounds={ getBounds(featureCollection, document) }
                 boundsOptions={ { padding: [410, 10] } }
                 renderer={ L.canvas({ padding: 0.5 }) }
                 attributionControl={ false }
@@ -156,12 +157,19 @@ const createFeature = (document: any): Feature => ({
 });
 
 
-const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
+const getBounds = (featureCollection?: FeatureCollection, document?: Document): [number, number][] => {
 
-    if (!featureCollection) return [[-10, -10], [10, 10]];
+    if (document?.resource?.geometry) {
+        const extentResult: number[] = extent(document.resource.geometry);
+        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    }
 
-    const extentResult: number[] = extent(featureCollection);
-    return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    if (featureCollection) {
+        const extentResult: number[] = extent(featureCollection);
+        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
+    }
+
+    return [[-10, -10], [10, 10]];
 };
 
 

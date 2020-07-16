@@ -13,14 +13,14 @@ export default function Project() {
     const [document, setDocument] = useState<Document>(null);
 
     useEffect (() => {
-        get(documentId).then(setDocument);
+        if (documentId) get(documentId).then(setDocument);
     }, [documentId]);
 
     return (
         <div>
             { document ? <DocumentInfo document={ document } /> : <ProjectHome id={ projectId } /> }
             <div key="results">
-                <ProjectMap id={ projectId } />
+                <ProjectMap id={ projectId } document={ document } />
             </div>
         </div>
     );
