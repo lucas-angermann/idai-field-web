@@ -15,6 +15,14 @@ defmodule Api.RouterTest do
     assert Poison.decode!(conn.resp_body) == %{ "status" => "ok!" }
   end
 
+  test "get document" do
+    conn = conn(:get, "/documents/t1")
+    conn = Api.Router.call(conn, @opts)
+    doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+
+    assert doc.project == "a"
+  end
+
   test "show rights" do
 
     token = sign_in "user-1", "pass-1"

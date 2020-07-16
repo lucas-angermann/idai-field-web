@@ -4,9 +4,13 @@ defmodule Core.ProjectConfigLoader do
 
   def start_link(params = {config_dir_name, database_names}) do
 
-    IO.inspect params
+    databases = database_names || (if Mix.env() == :test
+    do
+      ["a"]
+    else
+      Core.Config.get(:couchdb_databases)
+    end)
 
-    databases = database_names || Core.Config.get(:couchdb_databases)
     configs = for database <- databases, into: %{} do
       {
         database,

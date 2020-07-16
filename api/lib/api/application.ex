@@ -5,7 +5,7 @@ defmodule Api.Application do
 
   def start(_type, _args) do
 
-    Logger.info "Starting iDAI.field backend"
+    Logger.info "Starting iDAI.field backend #{inspect Mix.env()}"
 
     children = [Api.Router, Core.ProjectConfigLoader]
     opts = [strategy: :one_for_one, name: Api.Supervisor]
