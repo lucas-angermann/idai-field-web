@@ -13,7 +13,7 @@ export default function Project() {
     const [document, setDocument] = useState<Document>(null);
 
     useEffect (() => {
-        if (documentId) get(documentId).then(setDocument);
+        documentId ? get(documentId).then(setDocument) : setDocument(null);
     }, [documentId]);
 
     return (

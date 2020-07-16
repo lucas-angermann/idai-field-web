@@ -42,7 +42,7 @@ export default React.memo(function ProjectMap({ id, document }: { id: string, do
             <Map style={ mapStyle }
                 crs={ L.CRS.Simple }
                 minZoom="-20"
-                maxZoom="30"
+                maxZoom="20"
                 bounds={ getBounds(featureCollection, document) }
                 boundsOptions={ { padding: [410, 10] } }
                 renderer={ L.canvas({ padding: 0.5 }) }
