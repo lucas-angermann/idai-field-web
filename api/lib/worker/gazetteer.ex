@@ -1,4 +1,5 @@
 defmodule Gazetteer do
+  require Logger
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 
@@ -18,13 +19,13 @@ defmodule Gazetteer do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
        when is_error(status_code) do
 
-    IO.puts "ERROR: Failed to fetch gazetteer place, result: #{inspect body}"
+    Logger.error "Failed to fetch gazetteer place, result: #{inspect body}"
     nil
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "ERROR: Failed to fetch gazetteer place, reason: #{inspect reason}"
+    Logger.error "Failed to fetch gazetteer place, reason: #{inspect reason}"
     nil
   end
 end

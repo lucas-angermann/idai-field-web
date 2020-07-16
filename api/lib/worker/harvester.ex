@@ -1,4 +1,5 @@
 defmodule Harvester do
+  require Logger
   import Core.CorePropertiesAtomizing
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
@@ -21,13 +22,13 @@ defmodule Harvester do
   defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
     when is_error(status_code) do
 
-    IO.puts "#{inspect self()} - ERROR: Failed to retrieve changes, result: #{inspect body}"
+    Logger.error "Failed to retrieve changes, result: #{inspect body}"
     nil
   end
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
 
-    IO.puts "#{inspect self()} - ERROR: Failed to retrieve changes, reason: #{inspect reason}"
+    Logger.error "ERROR: Failed to retrieve changes, reason: #{inspect reason}"
     nil
   end
 end

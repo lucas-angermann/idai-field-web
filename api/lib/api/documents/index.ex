@@ -1,4 +1,5 @@
 defmodule Api.Documents.Index do
+  require Logger
   alias Api.Documents.Mapping
   alias Api.Documents.Query
 
@@ -53,11 +54,11 @@ defmodule Api.Documents.Index do
     Poison.decode! body
   end
   defp handle_result({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
-    IO.inspect body
+    Logger.error "Elasticsearch query failed with status 400! Response: #{inspect body}"
     %{error: "bad_request"}
   end
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
-    IO.inspect reason
+    Logger.error "Elasticsearch query failed! Reason: #{inspect reason}"
     %{error: "unknown"}
   end
 end

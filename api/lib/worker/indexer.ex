@@ -1,4 +1,5 @@
 defmodule Indexer do
+  require Logger
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 
@@ -26,9 +27,9 @@ defmodule Indexer do
     with {:ok, body} <- File.read("config/elasticsearch-mapping.json"),
          {:ok, _} <- HTTPoison.put(get_template_url(), body, [{"Content-Type", "application/json"}])
     do
-      IO.puts "Succesfully updated index mapping template"
+      Logger.info "Succesfully updated index mapping template"
     else
-      err -> IO.puts "#{inspect self()} - ERROR: Updating index mapping failed: #{inspect err}"
+      err -> Logger.error "Updating index mapping failed: #{inspect err}"
     end
   end
 
@@ -54,7 +55,7 @@ defmodule Indexer do
     when is_error(status_code) do
 
     result = Poison.decode!(body)
-    IO.puts "#{inspect self()} - ERROR: Updating index failed!
+    Logger.error "Updating index failed!
       status_code #{status_code}
       project: #{project}
       id: #{change.id}
@@ -64,7 +65,7 @@ defmodule Indexer do
 
   defp handle_result({:error, %HTTPoison.Error{reason: reason}}, change, project) do
 
-    IO.puts "#{inspect self()} - ERROR: Updating index failed!
+    Logger.error "Updating index failed!
       project: #{project}
       id: #{change.id}
       reason: #{inspect reason}"

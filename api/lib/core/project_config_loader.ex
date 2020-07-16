@@ -1,4 +1,5 @@
 defmodule Core.ProjectConfigLoader do
+  require Logger
   use Agent
 
   def start_link(params = {config_dir_name, database_names}) do
@@ -20,7 +21,7 @@ defmodule Core.ProjectConfigLoader do
   def get(project_name), do: Agent.get(__MODULE__, fn configs -> configs[project_name]  end)
 
   defp load(config_dir, project_name) do
-    IO.puts "Load Project Configuration: #{project_name}"
+    Logger.info "Load Project Configuration: #{project_name}"
     with {:ok, body} <- File.read("#{config_dir}/#{project_name}.json"),
          {:ok, json} <- Poison.decode(body), do: Core.Utils.atomize(json, [:values])
   end

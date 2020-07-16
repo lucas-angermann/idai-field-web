@@ -1,10 +1,11 @@
 defmodule Core.Config do
+  require Logger
 
   def get(key) do
     with {:ok, val} <- Application.fetch_env(:api, key) do
       val
     else
-      _ -> IO.puts "#{inspect self()} - ERROR: #{key} not set in config!"
+      _ -> Logger.error "#{key} not set in config!"
       nil
     end
   end

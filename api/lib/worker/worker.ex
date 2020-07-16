@@ -1,4 +1,5 @@
 defmodule Worker do
+  require Logger
 
   def process do
 
@@ -6,7 +7,7 @@ defmodule Worker do
 
     for db <- Core.Config.get(:couchdb_databases) do
       pid = spawn_link fn -> process_db(db) end
-      IO.puts "Spawned indexer #{inspect pid} for #{db}"
+      Logger.info "Spawned indexer #{inspect pid} for #{db}"
     end
   end
 
@@ -21,7 +22,7 @@ defmodule Worker do
   end
 
   def log_finished(change, step, db) do
-    IO.puts("#{inspect self()}: Finished #{step} #{db}")
+    Logger.info "Finished #{step} #{db}"
     change
   end
 end
