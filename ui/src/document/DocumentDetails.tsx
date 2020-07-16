@@ -92,7 +92,7 @@ const renderFieldValue = (value: any) => {
 
 const renderFieldValueArray = (values: any[]) =>
     values.length > 1
-        ? values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value) }</li>)
+        ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value) }</li>) }</ul>
         : renderFieldValue(values[0]);
 
 
@@ -100,7 +100,8 @@ const renderFieldValueObject = (object: any) => {
 
     if (object.label) return object.label;
 
-    const listItems = Object.keys(object).map(key => <li key={ key }><strong>{ key }:</strong> { object[key] }</li>);
+    const listItems = Object.keys(object).map(key =>
+        <li key={ key }><strong>{ key }:</strong> { renderFieldValue(object[key]) }</li>);
     return <ul>{ listItems }</ul>;
 };
 
