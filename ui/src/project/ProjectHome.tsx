@@ -1,5 +1,5 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Location } from 'history';
 import { search, get } from '../api/documents';
 import DocumentTeaser from '../document/DocumentTeaser';
@@ -8,7 +8,6 @@ import DocumentList from './DocumentList';
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { buildProjectQueryTemplate, addFilters } from '../api/query';
-import ProjectMap from './ProjectMap';
 import { ResultFilter, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 import { Document } from '../api/document';
@@ -17,9 +16,8 @@ import { Document } from '../api/document';
 const CHUNK_SIZE = 50;
 
 
-export default () => {
+export default function ProjectHome({ id }: { id: string }) {
 
-    const { id } = useParams();
     const location = useLocation();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -61,9 +59,6 @@ export default () => {
             </div>,
             <div key="filters" style={ filtersContainerStyle }>
                 { renderFilters(filters, location) }
-            </div>,
-            <div key="results">
-                <ProjectMap id={ id } />
             </div>
         ];
     };

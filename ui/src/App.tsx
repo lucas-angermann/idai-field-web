@@ -23,7 +23,7 @@ export default () => {
                     <Route path="/document/:id" component={ Document } />
                     <Redirect from="/documents/:id" to="/document/:id" />
 
-                    <Route path="/project" component={ Project } />
+                    <Route path="/project/:id" component={ Project } />
                     <Redirect from="/projects/:id" to="/project/:id" />
 
                     <Route path="/download" component={ Download } />
