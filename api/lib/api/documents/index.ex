@@ -10,7 +10,7 @@ defmodule Api.Documents.Index do
   def get(id) do
     Query.init("_id:#{id}", 1)
     |> Query.build
-    |> post_query
+    |> index_adapter().post_query
     |> get_in(["hits", "hits", Access.at(0), "_source"])
     |> Core.CorePropertiesAtomizing.format_document
   end
@@ -23,7 +23,7 @@ defmodule Api.Documents.Index do
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.build
-    |> post_query
+    |> Api.Documents.ElasticsearchIndexAdapter.post_query
     |> Core.Utils.atomize
     |> Mapping.map
   end
@@ -36,29 +36,16 @@ defmodule Api.Documents.Index do
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
     |> Query.build
-    |> post_query
+    |> Api.Documents.ElasticsearchIndexAdapter.post_query
     |> Core.Utils.atomize
     |> Mapping.map
   end
 
-  defp get_base_url do
-    "#{Core.Config.get(:elasticsearch_url)}/#{Core.Config.get(:elasticsearch_index_prefix)}_*"
-  end
-
-  defp post_query(query) do
-    HTTPoison.post("#{get_base_url()}/_search", query, [{"Content-Type", "application/json"}])
-    |> handle_result
-  end
-
-  defp handle_result({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
-    Poison.decode! body
-  end
-  defp handle_result({:ok, %HTTPoison.Response{status_code: 400, body: body}}) do
-    Logger.error "Elasticsearch query failed with status 400! Response: #{inspect body}"
-    %{error: "bad_request"}
-  end
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
-    Logger.error "Elasticsearch query failed! Reason: #{inspect reason}"
-    %{error: "unknown"}
+  defp index_adapter do
+    if Mix.env() == :test do
+      Api.Documents.MockIndexAdapter
+    else
+      Api.Documents.ElasticsearchIndexAdapter
+    end
   end
 end

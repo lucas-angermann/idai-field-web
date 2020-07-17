@@ -36,7 +36,7 @@ defmodule Api.Documents.Router do
 
   get "/:id" do
 
-    with doc <- index().get(id),
+    with doc <- Index.get(id),
          :ok <- access_for_project_allowed(conn, doc.project),
          config <- Core.ProjectConfigLoader.get(doc.project),
          layouted_doc <- put_in(doc.resource, to_layouted_resource(config, doc.resource))
