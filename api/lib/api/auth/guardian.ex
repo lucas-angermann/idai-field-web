@@ -14,7 +14,7 @@ defmodule Api.Auth.Guardian do
 
   def resource_from_claims(claims) do
 
-    rights = Poison.decode!(claims["sub"])
+    rights = Core.Utils.atomize(Poison.decode!(claims["sub"]))
     {:ok, rights}
   end
 end

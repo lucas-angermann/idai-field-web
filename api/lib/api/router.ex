@@ -19,11 +19,6 @@ defmodule Api.Router do
     send_json(conn, %{ status: "ok", message: "indexing started"})
   end
 
-  # can be removed after we have a first real endpoint test
-  get "/test" do
-    send_json(conn, %{ status: "ok!" })
-  end
-
   forward("/auth", to: Api.Auth.Router)
 
   match _ do

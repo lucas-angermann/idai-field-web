@@ -24,4 +24,10 @@ defmodule Api.RouterUtils do
     |> put_resp_content_type("application/json")
     |> send_resp(200, Poison.encode!(body))
   end
+
+  def send_unauthorized(conn) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(401, Poison.encode!(%{error: :unauthorized}))
+  end
 end
