@@ -4,6 +4,12 @@ defmodule Api.RouterTest do
 
   @opts Api.Router.init([])
 
+  test "show rights" do
+    assert show_rights("user-1", "pass-1") == ["a", "b", "c", "d"]
+    assert show_rights("user-2", "pass-2") == ["a", "b", "c"]
+    assert show_rights("user-3", "pass-3") == ["a", "b"]
+  end
+
   test "get document" do
     {conn, doc} = get_doc "doc-of-proj-a"
 
@@ -28,10 +34,12 @@ defmodule Api.RouterTest do
     assert doc.project == "b"
   end
 
-  test "show rights" do
-    assert show_rights("user-1", "pass-1") == ["a", "b", "c", "d"]
-    assert show_rights("user-2", "pass-2") == ["a", "b", "c"]
-    assert show_rights("user-3", "pass-3") == ["a", "b"]
+  test "show multiple documents" do
+    conn = call_get "/documents", nil, nil
+    # todo as an anonymous user, get documents should get us the documents from project a
+    assert Core.Utils.atomize(Poison.decode!(conn.resp_body)).hits == []
+
+    # todo as user-1, we should see documents from project a and project b
   end
 
   defp sign_in name, pass do

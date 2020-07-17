@@ -7,14 +7,25 @@ defmodule Api.Documents.Router do
   plug :match
   plug :dispatch
 
-  get "/", do: send_json(conn, Index.search(
-    conn.params["q"] || "*",
-    conn.params["size"] || 100,
-    conn.params["from"] || 0,
-    conn.params["filters"],
-    conn.params["not"],
-    conn.params["exists"]
-  ))
+  get "/" do
+
+    # todo use readable projects to filter projects
+    # todo remove code duplication
+    readable_projects =
+      (conn
+       |> get_req_header("authorization")
+       |> List.first
+       |> Api.Auth.Router.get_user_for_bearer).readable_projects
+
+    send_json(conn, index().search(
+      conn.params["q"] || "*",
+      conn.params["size"] || 100,
+      conn.params["from"] || 0,
+      conn.params["filters"],
+      conn.params["not"],
+      conn.params["exists"]
+    ))
+  end
 
   get "/map", do: send_json(conn, Index.search_geometries(
     conn.params["q"] || "*",

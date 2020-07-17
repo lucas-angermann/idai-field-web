@@ -1,5 +1,9 @@
 defmodule Api.Documents.MockIndex do
 
+  def search(_, _, _, _, _, _) do
+    %{ hits: [] }
+  end
+
   def get(id) do
     case id do
       "doc-of-proj-a" ->
