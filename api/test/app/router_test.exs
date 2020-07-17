@@ -5,9 +5,7 @@ defmodule Api.RouterTest do
   @opts Api.Router.init([])
 
   test "get document" do
-    conn = conn(:get, "/documents/doc-of-proj-a")
-    conn = Api.Router.call(conn, @opts)
-    doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    {conn, doc} = get_doc "doc-of-proj-a"
 
     assert conn.state == :sent
     assert conn.status == 200
@@ -15,9 +13,7 @@ defmodule Api.RouterTest do
   end
 
   test "do not get document as anonymous user" do
-    conn = conn(:get, "/documents/doc-of-proj-b")
-    conn = Api.Router.call(conn, @opts)
-    resp_body = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    {conn, resp_body} = get_doc "doc-of-proj-b"
 
     assert conn.state == :sent
     assert conn.status == 401
@@ -25,11 +21,7 @@ defmodule Api.RouterTest do
   end
 
   test "get document as logged in user" do
-    token = sign_in "user-1", "pass-1"
-    conn = conn(:get, "/documents/doc-of-proj-b")
-           |> put_req_header("authorization", token)
-           |> Api.Router.call(@opts)
-    doc = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    {conn, doc} = get_doc "doc-of-proj-b", "user-1", "pass-1"
 
     assert conn.state == :sent
     assert conn.status == 200
@@ -37,18 +29,9 @@ defmodule Api.RouterTest do
   end
 
   test "show rights" do
-
-    token = sign_in "user-1", "pass-1"
-    readable_projects = show_rights token
-    assert readable_projects == ["a", "b", "c", "d"]
-
-    token = sign_in "user-2", "pass-2"
-    readable_projects = show_rights token
-    assert readable_projects == ["a", "b", "c"]
-
-    token = sign_in "user-3", "pass-3"
-    readable_projects = show_rights token
-    assert readable_projects == ["a", "b"]
+    assert show_rights("user-1", "pass-1") == ["a", "b", "c", "d"]
+    assert show_rights("user-2", "pass-2") == ["a", "b", "c"]
+    assert show_rights("user-3", "pass-3") == ["a", "b"]
   end
 
   defp sign_in name, pass do
@@ -57,11 +40,22 @@ defmodule Api.RouterTest do
     Poison.decode!(conn.resp_body)["token"]
   end
 
-  defp show_rights token do
-    conn = conn(:get, "/auth/show")
-      |> put_req_header("authorization", token)
-      |> Api.Router.call(@opts)
+  defp get_doc id do
+    get_doc id, nil, nil
+  end
+  defp get_doc id, user, pass do
+    conn = call_get "/documents/" <> id, user, pass
+    { conn, Core.Utils.atomize(Poison.decode!(conn.resp_body)) }
+  end
 
+  defp show_rights user, pass do
+    conn = call_get "/auth/show", user, pass
     Core.Utils.atomize(Poison.decode!(conn.resp_body)).rights.readable_projects
+  end
+
+  defp call_get path, user, pass do
+    conn = conn(:get, path)
+    conn = if user == nil do conn else put_req_header(conn, "authorization", sign_in(user, pass)) end
+    Api.Router.call(conn, @opts)
   end
 end
