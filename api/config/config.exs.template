@@ -38,3 +38,5 @@ config :api, Api.Auth,
     "user-1" => ["a", "b", "c", "d"],
     "anonymous" => ["a"]
   }
+
+import_config "#{Mix.env()}.exs"
