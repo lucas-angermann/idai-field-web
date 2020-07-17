@@ -17,11 +17,11 @@ defmodule Api.Documents.MappingTest do
 
         assert mapped.size == result.hits.total.value
 
-        category_aggregation = result.aggregations[:"resource.category"]
-        assert length(get_in(mapped, [:filters, Access.at(0), :values])) == length(category_aggregation.buckets)
+        aggregation2 = result.aggregations[:field2]
+        assert length(get_in(mapped, [:filters, Access.at(1), :values])) == length(aggregation2.buckets)
 
-        mapped_value = get_in(mapped.filters, [Access.at(0), :values, Access.at(0), :value])
-        original_value = get_in(category_aggregation.buckets, [Access.at(0), :key])
+        mapped_value = get_in(mapped.filters, [Access.at(1), :values, Access.at(0), :value])
+        original_value = get_in(aggregation2.buckets, [Access.at(0), :key])
         assert mapped_value == original_value
 
         assert length(mapped.documents) == length(result.hits.hits)

@@ -94,30 +94,30 @@
         ]
     },
     "aggregations": {
-        "resource.category": {
+        "field1": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 959,
             "buckets": [
                 {
-                    "key": "Photo",
+                    "key": "Value 1",
                     "doc_count": 22356
                 },
                 {
-                    "key": "Pottery",
+                    "key": "Value 2",
                     "doc_count": 1817
                 }
             ]
         },
-        "resource.material": {
+        "field2": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 2,
             "buckets": [
                 {
-                    "key": "Stone",
+                    "key": "Value 3",
                     "doc_count": 124234
                 },
                 {
-                    "key": "Marble",
+                    "key": "Value 4",
                     "doc_count": 867
                 }
             ]
