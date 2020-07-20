@@ -7,7 +7,7 @@ defmodule Api.Documents.ElasticsearchIndexAdapter do
     "#{Core.Config.get(:elasticsearch_url)}/#{Core.Config.get(:elasticsearch_index_prefix)}_*"
   end
 
-  def post_query(query) do
+  def post_query query do
     HTTPoison.post("#{get_base_url()}/_search", query, [{"Content-Type", "application/json"}])
     |> handle_result
   end

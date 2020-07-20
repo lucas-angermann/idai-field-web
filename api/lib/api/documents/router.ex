@@ -8,22 +8,16 @@ defmodule Api.Documents.Router do
   plug :dispatch
 
   get "/" do
+    readable_projects = get_readable_projects conn
 
-    # todo use readable projects to filter projects
-    # todo remove code duplication
-    readable_projects =
-      (conn
-       |> get_req_header("authorization")
-       |> List.first
-       |> Api.Auth.Router.get_user_for_bearer).readable_projects
-
-    send_json(conn, index().search(
+    send_json(conn, Index.search(
       conn.params["q"] || "*",
       conn.params["size"] || 100,
       conn.params["from"] || 0,
       conn.params["filters"],
       conn.params["not"],
-      conn.params["exists"]
+      conn.params["exists"],
+      readable_projects || []
     ))
   end
 
@@ -49,16 +43,14 @@ defmodule Api.Documents.Router do
   end
 
   defp access_for_project_allowed conn, project do
-    readable_projects =
-      (conn
-       |> get_req_header("authorization")
-       |> List.first
-       |> Api.Auth.Router.get_user_for_bearer).readable_projects
-
+    readable_projects = get_readable_projects conn
     if project in readable_projects, do: :ok, else: :unauthorized_access
   end
 
-  defp index do
-    if Mix.env() == :test do Api.Documents.MockIndex else Index end
+  defp get_readable_projects conn do
+    (conn
+     |> get_req_header("authorization")
+     |> List.first
+     |> Api.Auth.Router.get_user_for_bearer).readable_projects
   end
 end

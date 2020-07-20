@@ -1,6 +1,7 @@
 defmodule Api.Documents.Mapping do
 
     def map(elasticsearch_result) do
+
         %{
             size: elasticsearch_result.hits.total.value,
             documents: elasticsearch_result.hits.hits |> Enum.map(&map_document/1)
@@ -36,5 +37,4 @@ defmodule Api.Documents.Mapping do
     end
 
     defp map_document(%{ _source: document }), do: document
-
 end

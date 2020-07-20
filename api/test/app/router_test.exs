@@ -36,8 +36,10 @@ defmodule Api.RouterTest do
 
   test "show multiple documents" do
     conn = call_get "/documents", nil, nil
+
     # todo as an anonymous user, get documents should get us the documents from project a
-    assert Core.Utils.atomize(Poison.decode!(conn.resp_body)).hits == []
+    result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    assert List.first(result.documents).project == "a"
 
     # todo as user-1, we should see documents from project a and project b
   end
