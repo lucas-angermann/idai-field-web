@@ -58,9 +58,9 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 };
 
 
-export const addFilters = (query: Query, location: Location) => {
+export const addFilters = (query: Query, searchParams: string) => {
 
-    const filters = Array.from(new URLSearchParams(location.search).entries())
+    const filters = Array.from(new URLSearchParams(searchParams).entries())
         .map(([field, value]) => ({ field, value }));
     query.filters = query.filters.concat(filters);
 };

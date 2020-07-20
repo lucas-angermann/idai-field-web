@@ -74,7 +74,7 @@ export default function ProjectHome({ id }: { id: string }) {
 const searchDocuments = async (id: string, location: Location, from: number): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
-    addFilters(query, location);
+    addFilters(query, location.search);
     return search(query);
 };
 

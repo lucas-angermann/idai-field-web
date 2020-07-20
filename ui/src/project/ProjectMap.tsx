@@ -1,75 +1,55 @@
-import React, { CSSProperties, useState, useEffect } from 'react';
+import React, { CSSProperties } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
-import { History, Location } from 'history';
 import extent from 'turf-extent';
 import { NAVBAR_HEIGHT } from '../constants';
 import hash from 'object-hash';
-import { useHistory, useLocation } from 'react-router-dom';
 import { getColor } from '../categoryColors';
-import { Spinner } from 'react-bootstrap';
-import { ResultDocument, Result } from '../api/result';
-import { buildProjectQueryTemplate, addFilters } from '../api/query';
-import { mapSearch } from '../api/documents';
+import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 
 
-const MAX_SIZE = 10000;
+export default React.memo(function ProjectMap({
+    id,
+    document,
+    documents,
+    searchParams,
+    onDocumentClick
+}: {
+    id: string,
+    document: Document,
+    documents: ResultDocument[],
+    searchParams: string,
+    onDocumentClick: (_: any) => void
+}) {
 
-
-export default React.memo(function ProjectMap({ id, document }: { id: string, document: Document }) {
-
-    const history: History = useHistory();
-    const location = useLocation();
-    const [loading, setLoading] = useState<boolean>(true);
-    const [featureCollection, setFeatureCollection] = useState<FeatureCollection>();
-
-    useEffect(() => {
-
-        setLoading(true);
-        setFeatureCollection(null);
-
-        searchMapDocuments(id, location)
-            .then(result => createFeatureCollection(result.documents))
-            .then(features => setFeatureCollection(features))
-            .then(() => setLoading(false));
-
-    }, [id, location]);
+    const featureCollection = createFeatureCollection(documents);
 
     return (
-        <div>
-            <Map style={ mapStyle }
-                crs={ L.CRS.Simple }
-                minZoom="-20"
-                maxZoom="10"
-                bounds={ getBounds(featureCollection, document) }
-                boundsOptions={ { padding: [410, 10] } }
-                renderer={ L.canvas({ padding: 0.5 }) }
-                attributionControl={ false }
-                zoomControl={ false }>
-                { getGeoJSONElement(featureCollection, history) }
-                <ZoomControl position="bottomright" />
-            </Map>
-            { loading &&
-                <Spinner animation="border"
-                    variant="secondary"
-                    style={ spinnerStyle } />
-            }
-        </div>
+        <Map style={ mapStyle }
+            crs={ L.CRS.Simple }
+            minZoom="-20"
+            maxZoom="10"
+            bounds={ getBounds(featureCollection, document) }
+            boundsOptions={ { padding: [410, 10] } }
+            renderer={ L.canvas({ padding: 0.5 }) }
+            attributionControl={ false }
+            zoomControl={ false }>
+            { getGeoJSONElement(featureCollection, onDocumentClick) }
+            <ZoomControl position="bottomright" />
+        </Map>
     );
+}, (prevProps: any, nextProps: any) => {
+    if (prevProps.id === nextProps.id
+        && prevProps.document === nextProps.document
+        && prevProps.documents === nextProps.documents
+        && prevProps.searchParams === nextProps.searchParams) return true;
+    return false;
 });
 
 
-const searchMapDocuments = async (id: string, location: Location): Promise<Result> => {
-
-    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
-    addFilters(query, location);
-    return mapSearch(query);
-};
-
-
-const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
+const getGeoJSONElement = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
 
     if (!featureCollection) return;
 
@@ -78,7 +58,7 @@ const getGeoJSONElement = (featureCollection: FeatureCollection, history: Histor
                  data={ featureCollection }
                  pointToLayer={ pointToLayer }
                  style={ getStyle }
-                 onEachFeature={ onEachFeature(history) } />
+                 onEachFeature={ onEachFeature(onDocumentClick) } />
     );
 };
 
@@ -105,17 +85,17 @@ const getStyle = (feature: Feature) => ({
 });
 
 
-const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer) => {
+const onEachFeature = (onDocumentClick: (_: any) => void) => (feature: Feature, layer: L.Layer) => {
 
-    registerEventListeners(feature, layer, history);
+    registerEventListeners(feature, layer, onDocumentClick);
     addTooltip(feature, layer);
 };
 
 
-const registerEventListeners = (feature: Feature, layer: L.Layer, history: History) => {
+const registerEventListeners = (feature: Feature, layer: L.Layer, onDocumentClick: (_: any) => void) => {
 
     layer.on({
-        click: onClick(history)
+        click: onClick(onDocumentClick)
     });
 };
 
@@ -126,10 +106,10 @@ const addTooltip = (feature: Feature, layer: L.Layer) => {
 };
 
 
-const onClick = (history: History) => (event: any) => {
+const onClick = (onDocumentClick: (_: any) => void) => (event: any) => {
 
     const { id, project } = event.target.feature.properties;
-    history.push(`/project/${project}/${id}`);
+    onDocumentClick(`/project/${project}/${id}`);
 };
 
 
@@ -176,11 +156,4 @@ const getBounds = (featureCollection?: FeatureCollection, document?: Document): 
 
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
-};
-
-
-const spinnerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw'
 };
