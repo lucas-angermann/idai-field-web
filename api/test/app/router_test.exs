@@ -34,14 +34,21 @@ defmodule Api.RouterTest do
     assert doc.project == "b"
   end
 
-  test "show multiple documents" do
+  test "show multiple documents - only project 'a' documents for anonymous user" do
     conn = call_get "/documents", nil, nil
 
-    # todo as an anonymous user, get documents should get us the documents from project a
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+#    assert length(result.documents) == 1                           # todo implement and uncomment
     assert List.first(result.documents).project == "a"
+  end
 
-    # todo as user-1, we should see documents from project a and project b
+  test "show multiple documents - all documents for user-1" do
+    conn = call_get "/documents", nil, nil
+
+    result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    assert length(result.documents) == 2
+    assert List.first(result.documents).project == "a"
+    assert List.last(result.documents).project == "b"
   end
 
   defp sign_in name, pass do
