@@ -11,16 +11,12 @@ import { Document } from '../api/document';
 
 
 export default React.memo(function ProjectMap({
-    id,
     document,
     documents,
-    searchParams,
     onDocumentClick
 }: {
-    id: string,
     document: Document,
     documents: ResultDocument[],
-    searchParams: string,
     onDocumentClick: (_: any) => void
 }) {
 
@@ -41,10 +37,8 @@ export default React.memo(function ProjectMap({
         </Map>
     );
 }, (prevProps: any, nextProps: any) => {
-    if (prevProps.id === nextProps.id
-        && prevProps.document === nextProps.document
-        && prevProps.documents === nextProps.documents
-        && prevProps.searchParams === nextProps.searchParams) return true;
+    if (prevProps.document === nextProps.document
+        && prevProps.documents === nextProps.documents) return true;
     return false;
 });
 

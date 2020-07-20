@@ -46,10 +46,8 @@ export default function Project() {
                         style={ spinnerStyle } />
                 }
                 <ProjectMap
-                    id={ projectId }
                     document={ document }
                     documents={ documents }
-                    searchParams={ location.search }
                     onDocumentClick={ onDocumentClick(history) }/>
             </div>
         </div>
