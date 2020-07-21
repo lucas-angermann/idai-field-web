@@ -29,6 +29,7 @@ defmodule Api.Documents.Index do
     |> Mapping.map
   end
 
+  # todo check readable permissions
   def search_geometries q, filters, must_not, exists do
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
@@ -38,7 +39,7 @@ defmodule Api.Documents.Index do
     |> Query.only_fields(@fields_geometries)
     |> Query.build
     |> Api.Documents.ElasticsearchIndexAdapter.post_query
-    |> Core.Utils.atomize
+    |> Core.Utils.atomize # todo restrict scope of atomization
     |> Mapping.map
   end
 
