@@ -11,10 +11,10 @@ export const get = async (id: string): Promise<Document> => {
 };
 
 
-export const search = async (query: Query): Promise<Result> => {
+export const search = async (query: Query, token: any): Promise<Result> => {
 
     const uri = `/documents/?${getQueryString(query)}`;
-    const response = await fetch(uri);
+    const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
 };
 
@@ -24,4 +24,10 @@ export const mapSearch = async (query: Query): Promise<Result> => {
     const uri = `/documents/map?${getQueryString(query)}`;
     const response = await fetch(uri);
     return response.json();
+};
+
+
+const getHeaders = (token: string) => {
+    if (token) return { 'Authorization': `Bearer ${token}`};
+    else return { };
 };

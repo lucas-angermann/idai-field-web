@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Location } from 'history';
 import { search, get } from '../api/documents';
@@ -11,6 +11,7 @@ import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { ResultFilter, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 import { Document } from '../api/document';
+import { JwtContext } from '../App';
 
 
 const CHUNK_SIZE = 50;
@@ -19,6 +20,7 @@ const CHUNK_SIZE = 50;
 export default function ProjectHome({ id }: { id: string }) {
 
     const location = useLocation();
+    const jwtToken = useContext(JwtContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [offset, setOffset] = useState(0);
@@ -30,7 +32,7 @@ export default function ProjectHome({ id }: { id: string }) {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, location, newOffset)
+            searchDocuments(id, location, newOffset, jwtToken.token)
                 .then(result => setDocuments(documents.concat(result.documents)))
                 .catch(err => setError(err));
             setOffset(newOffset);
@@ -39,7 +41,7 @@ export default function ProjectHome({ id }: { id: string }) {
 
     useEffect(() => {
 
-        searchDocuments(id, location, 0).then(result => {
+        searchDocuments(id, location, 0, jwtToken.token).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
@@ -71,11 +73,11 @@ export default function ProjectHome({ id }: { id: string }) {
 }
 
 
-const searchDocuments = async (id: string, location: Location, from: number): Promise<Result> => {
+const searchDocuments = async (id: string, location: Location, from: number, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
     addFilters(query, location.search);
-    return search(query);
+    return search(query, token);
 };
 
 

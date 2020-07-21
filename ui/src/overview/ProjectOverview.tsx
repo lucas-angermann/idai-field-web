@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Map from './Map';
 import { search } from '../api/documents';
 import { Alert } from 'react-bootstrap';
 import { ResultDocument } from '../api/result';
+import { JwtContext } from '../App';
 
 
 export default () => {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [error, setError] = useState(false);
+    const jwtToken = useContext(JwtContext);
 
     useEffect (() => {
-        getProjectDocuments()
+        getProjectDocuments(jwtToken.token)
             .then(setProjectDocuments)
             .catch(err => setError(err));
     }, []);
@@ -30,5 +32,5 @@ const renderError = (error: any) => <Alert variant="danger">Backend not availabl
 const renderMap = (projectDocuments: any) => <Map documents={ projectDocuments }></Map>;
 
 
-const getProjectDocuments = async (): Promise<ResultDocument[]> =>
-    (await search({ q: 'resource.category:Project' })).documents;
+const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
+    (await search({ q: 'resource.category:Project' }, token)).documents;

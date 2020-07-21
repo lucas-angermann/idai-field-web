@@ -18,7 +18,8 @@ export default () => {
 
 const getId = async (project: string, identifier: string): Promise<string> => {
 
-    const result = await search({ q: getQueryString(project, identifier) });
+    // TODO: get token
+    const result = await search({ q: getQueryString(project, identifier) }, '');
     return result.documents[0].resource.id;
 };
 
