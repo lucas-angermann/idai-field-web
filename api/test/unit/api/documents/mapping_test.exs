@@ -6,7 +6,7 @@ defmodule Api.Documents.MappingTest do
     setup_all do
         result = File.read!("test/resources/elasticsearch_result.json")
             |> Poison.decode!
-            |> atomize
+            |> atomize([:_source])
         [result: result]
     end
 

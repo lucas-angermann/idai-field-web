@@ -25,7 +25,7 @@ defmodule Api.Documents.Index do
     |> Query.set_readable_projects(readable_projects)
     |> Query.build
     |> index_adapter().post_query
-    |> Core.Utils.atomize # todo review; we do not want to atomize the complete documents (compare to format_document)
+    |> Core.Utils.atomize([:_source])
     |> Mapping.map
   end
 
