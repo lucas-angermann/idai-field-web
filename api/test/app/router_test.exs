@@ -35,7 +35,7 @@ defmodule Api.RouterTest do
   end
 
   test "show multiple documents - only project 'a' documents for anonymous user" do
-    conn = call_get "/documents", nil, nil
+    conn = get_docs
 
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
     assert length(result.documents) == 1
@@ -43,7 +43,7 @@ defmodule Api.RouterTest do
   end
 
   test "show multiple documents - all documents for user-1" do
-    conn = call_get "/documents", "user-1", "pass-1"
+    conn = get_docs "user-1", "pass-1"
 
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
     assert length(result.documents) == 2
@@ -63,6 +63,12 @@ defmodule Api.RouterTest do
   defp get_doc id, user, pass do
     conn = call_get "/documents/" <> id, user, pass
     { conn, Core.Utils.atomize(Poison.decode!(conn.resp_body)) }
+  end
+  defp get_docs do
+    get_docs nil, nil
+  end
+  defp get_docs user, pass do
+    conn = call_get "/documents/", user, pass
   end
 
   defp show_rights user, pass do
