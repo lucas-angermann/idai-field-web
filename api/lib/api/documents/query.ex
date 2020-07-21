@@ -1,45 +1,50 @@
 defmodule Api.Documents.Query do
 
-  def init q, size, do: init(q, size, 0)
-
-  def init q, size, from do
+  def init(q, size), do: init(q, size, 0)
+  def init(q, size, from) do
     build_query_template(q, size, from)
   end
 
-  def track_total query do
+  def track_total(query) do
     put_in(query, [:track_total_hits], true)
   end
 
-  def add_aggregations query do
+  def add_aggregations(query) do
     Map.put(query, :aggs, Enum.map(Core.Config.get(:default_filters), &build_terms_aggregation/1) |> Enum.into(%{}))
   end
 
-  def add_filters query, nil, do: query
-  def add_filters query, filters do
+  def set_readable_projects(query, readable_projects) do
+    update_in(query.query.bool.filter, fn filter ->
+      filter ++ [%{ terms: %{ project: readable_projects }}]
+    end)
+  end
+
+  def add_filters(query, nil), do: query
+  def add_filters(query, filters) do
     filter = Enum.map(filters, &build_term_query/1)
     update_in(query.query.bool.filter, &(&1 ++ filter))
   end
 
-  def add_must_not query, nil, do: query
+  def add_must_not(query, nil), do: query
   def add_must_not query, must_not do
     put_in(query.query.bool.must_not, Enum.map(must_not, &build_term_query/1))
   end
 
-  def add_exists query, nil, do: query
+  def add_exists(query, nil), do: query
   def add_exists query, exists do
     exists_filter = Enum.map(exists, &build_exists_query/1)
     update_in(query.query.bool.filter, &(&1 ++ exists_filter))
   end
 
-  def only_fields query, fields do
+  def only_fields(query, fields) do
     put_in(query, [:_source], fields)
   end
 
-  def build query do
+  def build(query) do
     Poison.encode!(query)
   end
 
-  defp build_query_template q, size, from do
+  defp build_query_template(q, size, from) do
     %{
       query: %{
         bool: %{

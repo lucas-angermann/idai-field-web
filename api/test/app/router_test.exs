@@ -38,12 +38,12 @@ defmodule Api.RouterTest do
     conn = call_get "/documents", nil, nil
 
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
-#    assert length(result.documents) == 1                           # todo implement and uncomment
+    assert length(result.documents) == 1
     assert List.first(result.documents).project == "a"
   end
 
   test "show multiple documents - all documents for user-1" do
-    conn = call_get "/documents", nil, nil
+    conn = call_get "/documents", "user-1", "pass-1"
 
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
     assert length(result.documents) == 2
