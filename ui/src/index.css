@@ -64,3 +64,11 @@ a:hover {
 .navbar-brand {
   font-family: var(--font-headings);
 }
+
+.navbar-dark .navbar-nav .nav-link a {
+  color: rgba(255,255,255,.5);
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link a:hover {
+  color: rgba(255,255,255,.75);
+}

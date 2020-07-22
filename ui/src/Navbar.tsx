@@ -12,13 +12,13 @@ export default () => {
         <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
             <Nav activeKey={ location.pathname }>
-                <Nav.Link>
+                <Nav.Link as="span">
                     <Link to="/">Projekte</Link>
                 </Nav.Link>
-                <Nav.Link>
+                <Nav.Link as="span">
                     <Link to="/download">Download</Link>
                 </Nav.Link>
-                <Nav.Link>
+                <Nav.Link as="span">
                     <Link to="/manual">Handbuch</Link>
                 </Nav.Link>
             </Nav>
