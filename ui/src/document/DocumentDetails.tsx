@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { Container, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';

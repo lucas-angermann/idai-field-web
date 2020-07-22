@@ -47,7 +47,7 @@ export default function ProjectHome({ id }: { id: string }) {
         }).catch(err => setError(err));
 
         get(id, loginData.token).then(setProjectDocument);
-    }, [id, location]);
+    }, [id, location, loginData]);
 
     const renderResult = () => {
         return [

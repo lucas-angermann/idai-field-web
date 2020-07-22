@@ -37,7 +37,7 @@ export default function Project() {
                 setDocuments(result.documents);
                 setLoading(false);
             });
-    }, [location.search, loginData]);
+    }, [projectId, location.search, loginData]);
 
     return (
         <div>

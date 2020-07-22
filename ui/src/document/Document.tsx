@@ -17,7 +17,7 @@ export default () => {
         get(id, loginData.token)
             .then(setDocument)
             .catch(setError);
-    }, [id]);
+    }, [id, loginData]);
 
     return (document && document.resource)
         ? <Container>{ renderDocument(document) }</Container>

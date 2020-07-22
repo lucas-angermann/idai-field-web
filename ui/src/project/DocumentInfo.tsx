@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import { Document } from '../api/document';
 import DocumentDetails from '../document/DocumentDetails';
 import { NAVBAR_HEIGHT } from '../constants';

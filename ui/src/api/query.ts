@@ -1,5 +1,3 @@
-import { Location } from 'history';
-
 export type Query = {
     q: string,
     filters?: Filter[],
