@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { LoginData } from './App';
+import { postLogin, doPersistLogin, LoginData } from './login';
 
 export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }) {
 
@@ -57,23 +57,3 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
     );
 
 }
-
-
-const postLogin = async (user: string, password: string): Promise<LoginData> => {
-
-    const response = await fetch('/auth/sign_in', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name: user, pass: password })
-    });
-    return {
-        user,
-        token: (await response.json()).token
-    };
-};
-
-
-const doPersistLogin = (loginData: LoginData) =>
-    localStorage.setItem('loginData', JSON.stringify(loginData));

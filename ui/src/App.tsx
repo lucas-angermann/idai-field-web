@@ -8,24 +8,13 @@ import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
 import Navbar from './Navbar';
 import LoginForm from './LoginForm';
+import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './login';
 
 
-export interface LoginData {
-    user: string;
-    token: string;
-}
+export const LoginContext = React.createContext(ANONYMOUS_USER);
 
 
-const anonymousUser: LoginData = {
-    user: 'anonymous',
-    token: ''
-};
-
-
-export const LoginContext = React.createContext(anonymousUser);
-
-
-export default () => {
+export default function App() {
 
     const [loginData, setLoginData] = useState(getPersistedLogin());
 
@@ -60,18 +49,10 @@ export default () => {
             </div>
         </LoginContext.Provider>
     );
-};
-
-
-const getPersistedLogin = (): LoginData => {
-
-    const loginDataValue = localStorage.getItem('loginData');
-    if (!loginDataValue) return anonymousUser;
-    return JSON.parse(loginDataValue);
-};
+}
 
 const doLogout = (setLoginData: (_: LoginData) => void) => () : void => {
 
-    localStorage.removeItem('loginData');
-    setLoginData(anonymousUser);
-}
+    forgetLogin();
+    setLoginData(ANONYMOUS_USER);
+};

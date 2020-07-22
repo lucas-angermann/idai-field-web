@@ -1,7 +1,8 @@
 import React, { CSSProperties, useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
-import { LoginContext, LoginData } from './App';
+import { LoginContext } from './App';
+import { LoginData } from './login';
 
 export default ({ onLogout }: { onLogout: () => void }) => {
 
