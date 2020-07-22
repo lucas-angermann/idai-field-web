@@ -12,17 +12,21 @@ export const ANONYMOUS_USER: LoginData = {
 
 export const postLogin = async (user: string, password: string): Promise<LoginData> => {
 
-    const response = await fetch('/auth/sign_in', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name: user, pass: password })
-    });
-    return {
-        user,
-        token: (await response.json()).token
-    };
+    try {
+        const response = await fetch('/auth/sign_in', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: user, pass: password })
+        });
+        return {
+            user,
+            token: (await response.json()).token
+        };
+    } catch (_) {
+        return null;
+    }
 };
 
 

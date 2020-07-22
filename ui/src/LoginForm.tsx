@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { postLogin, persistLogin, LoginData } from './login';
 
@@ -8,20 +8,27 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [shouldPersistLogin, setShouldPersistLogin] = useState(false);
+    const [loginFailed, setLoginFailed] = useState(false);
     const history = useHistory();
 
     const handleSubmit = async (e: any) => {
+
         e.preventDefault();
         const loginData = await postLogin(user, password);
-        if (shouldPersistLogin) persistLogin(loginData);
-        onLogin(loginData);
-        history.push('/');
+        if (loginData) {
+            if (shouldPersistLogin) persistLogin(loginData);
+            onLogin(loginData);
+            history.push('/');
+        } else {
+            setLoginFailed(true);
+        }
     };
 
     return (
         <Container>
             <Row>
                 <Col>
+                    { loginFailed && <Alert variant="danger">Nutzername oder Passwort falsch!</Alert> }
                     <Card>
                         <Card.Body>
                             <Form onSubmit={ handleSubmit }>
