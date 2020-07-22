@@ -33,7 +33,7 @@ export default () => {
         <LoginContext.Provider value={ loginData }>
             <div>
                 <BrowserRouter>
-                    <Navbar />
+                    <Navbar onLogout={ doLogout(setLoginData) } />
                     <Switch>
 
                         <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
@@ -69,3 +69,9 @@ const getPersistedLogin = (): LoginData => {
     if (!loginDataValue) return anonymousUser;
     return JSON.parse(loginDataValue);
 };
+
+const doLogout = (setLoginData: (_: LoginData) => void) => () : void => {
+
+    localStorage.removeItem('loginData');
+    setLoginData(anonymousUser);
+}

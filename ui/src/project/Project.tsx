@@ -28,7 +28,7 @@ export default function Project() {
     useEffect(() => {
         documentId ? get(documentId, loginData.token)
             .then(setDocument) : setDocument(null);
-    }, [documentId]);
+    }, [documentId, loginData]);
 
     useEffect(() => {
         setLoading(true);
@@ -37,7 +37,7 @@ export default function Project() {
                 setDocuments(result.documents);
                 setLoading(false);
             });
-    }, [location.search]);
+    }, [location.search, loginData]);
 
     return (
         <div>

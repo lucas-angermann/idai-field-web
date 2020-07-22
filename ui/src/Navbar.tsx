@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import { LoginContext, LoginData } from './App';
 
-export default () => {
+export default ({ onLogout }: { onLogout: () => void }) => {
 
     const location = useLocation();
     const loginData = useContext(LoginContext);
@@ -22,16 +22,16 @@ export default () => {
                     <Link to="/manual">Handbuch</Link>
                 </Nav.Link>
             </Nav>
-            <Navbar.Text className="mr-sm-2">{ renderLogin(loginData) }</Navbar.Text>
+            <Navbar.Text className="mr-sm-2">{ renderLogin(loginData, onLogout) }</Navbar.Text>
         </Navbar>
     );
 };
 
 
-const renderLogin = (loginData: LoginData) =>
+const renderLogin = (loginData: LoginData, onLogout: () => void) =>
     loginData.user === 'anonymous'
         ? <Link to="/login">Login</Link>
-        : <span>Eingeloggt als: { loginData.user }</span>;
+        : <span>Eingeloggt als: { loginData.user } <a href="#" onClick={ onLogout }>Ausloggen</a></span>;
 
 
 const navbarStyle: CSSProperties = {
