@@ -23,13 +23,14 @@ defmodule Api.Documents.MockIndexAdapter do
 
     decoded_and_atomized = Core.Utils.atomize(Poison.decode!(query))
 
+    
     hits = case decoded_and_atomized.query.bool.must.query_string.query do
       "*" ->
-
+      
         filters = decoded_and_atomized.query.bool.filter
         %{ terms: %{ project: readable_projects }} = Enum.find(filters, fn filter -> Map.has_key? filter, :terms end)
         Enum.filter([@doc_a, @doc_b], fn doc -> doc.project in readable_projects end)
-
+  
       "_id:doc-of-proj-a" -> @doc_a
       "_id:doc-of-proj-b" -> @doc_b
     end

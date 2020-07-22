@@ -36,16 +36,33 @@ defmodule Api.RouterTest do
 
   test "show multiple documents - only project 'a' documents for anonymous user" do
     conn = get_docs()
-
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    
     assert length(result.documents) == 1
     assert List.first(result.documents).project == "a"
   end
 
   test "show multiple documents - all documents for user-1" do
     conn = get_docs "user-1", "pass-1"
-
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    
+    assert length(result.documents) == 2
+    assert List.first(result.documents).project == "a"
+    assert List.last(result.documents).project == "b"
+  end
+
+  test "show geometries - only project 'a' documents for anonymous user" do
+    conn = get_geometries()
+    result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    
+    assert length(result.documents) == 1
+    assert List.first(result.documents).project == "a"
+  end
+
+  test "show geometries - all documents for user-1" do
+    conn = get_geometries "user-1", "pass-1"
+    result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    
     assert length(result.documents) == 2
     assert List.first(result.documents).project == "a"
     assert List.last(result.documents).project == "b"
@@ -69,6 +86,12 @@ defmodule Api.RouterTest do
   end
   defp get_docs user, pass do
     call_get "/documents/", user, pass
+  end
+  defp get_geometries do
+    get_geometries nil, nil
+  end
+  defp get_geometries user, pass do
+    call_get "/documents/map", user, pass
   end
 
   defp show_rights user, pass do

@@ -21,12 +21,17 @@ defmodule Api.Documents.Router do
     ))
   end
 
-  get "/map", do: send_json(conn, Index.search_geometries(
-    conn.params["q"] || "*",
-    conn.params["filters"],
-    conn.params["not"],
-    conn.params["exists"]
-  ))
+  get "/map" do
+    readable_projects = get_readable_projects conn
+    
+    send_json(conn, Index.search_geometries(
+      conn.params["q"] || "*",
+      conn.params["filters"],
+      conn.params["not"],
+      conn.params["exists"],
+      readable_projects || []
+    ))
+  end
 
   get "/:id" do
 

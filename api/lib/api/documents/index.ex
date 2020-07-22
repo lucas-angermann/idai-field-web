@@ -31,15 +31,16 @@ defmodule Api.Documents.Index do
   end
 
   # todo check readable permissions
-  def search_geometries q, filters, must_not, exists do
+  def search_geometries q, filters, must_not, exists, readable_projects do
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
+    |> Query.set_readable_projects(readable_projects)
     |> Query.build
-    |> Api.Documents.ElasticsearchIndexAdapter.post_query
+    |> index_adapter().post_query
     |> Core.Utils.atomize # todo restrict scope of atomization
     |> Mapping.map
   end
