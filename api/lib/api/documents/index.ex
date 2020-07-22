@@ -25,7 +25,7 @@ defmodule Api.Documents.Index do
     |> Query.set_readable_projects(readable_projects)
     |> Query.build
     |> index_adapter().post_query
-    |> Core.Utils.atomize([:_source])
+    |> Core.Utils.atomize_up_to(:_source)
     |> Mapping.map
   end
 
@@ -44,7 +44,7 @@ defmodule Api.Documents.Index do
   end
 
   defp index_adapter do
-    if Mix.env() == :test do # todo write more concise
+    if Mix.env() == :test do
       Api.Documents.MockIndexAdapter
     else
       Api.Documents.ElasticsearchIndexAdapter

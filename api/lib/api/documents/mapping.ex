@@ -36,5 +36,5 @@ defmodule Api.Documents.Mapping do
         }
     end
 
-    defp map_document(%{ "_source" => document }), do: document
+    defp map_document(%{ _source: document }), do: document
 end

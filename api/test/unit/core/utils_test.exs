@@ -46,4 +46,32 @@ defmodule Core.UtilsTest do
     result = Core.Utils.atomize(%{ a: "b"}, [:a], true)
     assert result == %{ a: "b" }
   end
+
+  test "up to" do
+    result = Core.Utils.atomize_up_to(%{ "a" => %{ "b" => "c" }}, :a)
+    assert result == %{ a: %{ "b" => "c" } }
+
+    result = Core.Utils.atomize_up_to(%{ "a" => %{ "b" => %{ "c" => "d" } }}, :b)
+    assert result == %{ a: %{ b: %{ "c" => "d" }} }
+
+    result = Core.Utils.atomize_up_to(%{ "a" => 3 }, :a)
+    assert result == %{ a: 3 }
+
+    result = Core.Utils.atomize_up_to(%{ "a" => 3 }, :b)
+    assert result == %{ a: 3 }
+  end
+
+  test "up to - with arrays" do
+    result = Core.Utils.atomize_up_to([%{ "a" => %{ "b" => "c" }}], :a)
+    assert result == [%{ a: %{ "b" => "c" } }]
+
+    result = Core.Utils.atomize_up_to(%{ "a" => [%{ "b" => %{ "c" => "d" } }]}, :b)
+    assert result == %{ a: [%{ b: %{ "c" => "d" }}] }
+
+    result = Core.Utils.atomize_up_to(%{ "a" => [3] }, :a)
+    assert result == %{ a: [3] }
+
+    result = Core.Utils.atomize_up_to(%{ "a" => [3] }, :b)
+    assert result == %{ a: [3] }
+  end
 end
