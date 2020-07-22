@@ -16,7 +16,7 @@ export default () => {
         getProjectDocuments(loginData.token)
             .then(setProjectDocuments)
             .catch(err => setError(err));
-    }, []);
+    }, [loginData]);
 
     return (
         <div>
