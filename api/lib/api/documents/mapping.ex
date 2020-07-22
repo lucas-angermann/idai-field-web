@@ -1,5 +1,11 @@
 defmodule Api.Documents.Mapping do
   
+  def map_single elasticsearch_result do
+    elasticsearch_result
+    |> get_in([:hits, :hits, Access.at(0), :_source])
+    |> Core.CorePropertiesAtomizing.format_document
+  end
+  
   def map(elasticsearch_result) do
     
     %{

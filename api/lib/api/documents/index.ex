@@ -10,8 +10,7 @@ defmodule Api.Documents.Index do
   def get id do
     Query.init("_id:#{id}", 1)
     |> build_post_atomize
-    |> get_in([:hits, :hits, Access.at(0), :_source])
-    |> Core.CorePropertiesAtomizing.format_document
+    |> Mapping.map_single
   end
 
   def search q, size, from, filters, must_not, exists, readable_projects do
