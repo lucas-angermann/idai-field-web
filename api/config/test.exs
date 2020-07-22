@@ -19,6 +19,10 @@ config :api,
     }
   ]
 
+config :api, Api.Auth.Guardian,
+       issuer: "api",
+       secret_key: "znQNeSqapxKso80yjsM5yuO/0vvPjgFi86lcNk6o8tZL+ccCUawi9FScQuE9IcO5"
+
 config :api, Elixir.Api.Auth,
   users: [
     %{ name: "user-1", pass: "pass-1" },

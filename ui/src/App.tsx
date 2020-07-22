@@ -7,27 +7,22 @@ import Project from './project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
 import Navbar from './Navbar';
-import Login from './Login';
+import LoginForm from './LoginForm';
+import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './login';
 
 
-const anonymousUser = {
-    user: 'anonymous',
-    token: ''
-};
+export const LoginContext = React.createContext(ANONYMOUS_USER);
 
 
-export const JwtContext = React.createContext(anonymousUser);
+export default function App() {
 
-
-export default () => {
-
-    const [jwtToken, setJwtToken] = useState(anonymousUser);
+    const [loginData, setLoginData] = useState(getPersistedLogin());
 
     return (
-        <JwtContext.Provider value={ jwtToken }>
+        <LoginContext.Provider value={ loginData }>
             <div>
                 <BrowserRouter>
-                    <Navbar />
+                    <Navbar onLogout={ doLogout(setLoginData) } />
                     <Switch>
 
                         <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
@@ -44,7 +39,7 @@ export default () => {
                         <Route path="/manual" component={ Manual } />
 
                         <Route path="/login">
-                            <Login onLogin={ setJwtToken } />
+                            <LoginForm onLogin={ setLoginData } />
                         </Route>
 
                         <Route path="/" component={ ProjectOverview } />
@@ -52,6 +47,12 @@ export default () => {
                     </Switch>
                 </BrowserRouter>
             </div>
-        </JwtContext.Provider>
+        </LoginContext.Provider>
     );
+}
+
+const doLogout = (setLoginData: (_: LoginData) => void) => () : void => {
+
+    forgetLogin();
+    setLoginData(ANONYMOUS_USER);
 };

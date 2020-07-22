@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext } from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
@@ -9,6 +9,7 @@ import { Spinner } from 'react-bootstrap';
 import { ResultDocument, Result } from '../api/result';
 import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { History } from 'history';
+import { LoginContext } from '../App';
 
 
 const MAX_SIZE = 10000;
@@ -19,22 +20,24 @@ export default function Project() {
     const { projectId, documentId } = useParams();
     const location = useLocation();
     const history = useHistory();
+    const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        documentId ? get(documentId).then(setDocument) : setDocument(null);
-    }, [documentId]);
+        documentId ? get(documentId, loginData.token)
+            .then(setDocument) : setDocument(null);
+    }, [documentId, loginData]);
 
     useEffect(() => {
         setLoading(true);
-        searchMapDocuments(projectId, location.search)
+        searchMapDocuments(projectId, location.search, loginData.token)
             .then(result => {
                 setDocuments(result.documents);
                 setLoading(false);
             });
-    }, [location.search]);
+    }, [projectId, location.search, loginData]);
 
     return (
         <div>
@@ -56,11 +59,11 @@ export default function Project() {
 }
 
 
-const searchMapDocuments = async (id: string, searchParams: string): Promise<Result> => {
+const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
     addFilters(query, searchParams);
-    return mapSearch(query);
+    return mapSearch(query, token);
 };
 
 

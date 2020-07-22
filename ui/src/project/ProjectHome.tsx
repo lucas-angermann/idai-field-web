@@ -11,7 +11,7 @@ import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { ResultFilter, FilterBucket, Result, ResultDocument } from '../api/result';
 import { NAVBAR_HEIGHT } from '../constants';
 import { Document } from '../api/document';
-import { JwtContext } from '../App';
+import { LoginContext } from '../App';
 
 
 const CHUNK_SIZE = 50;
@@ -20,7 +20,7 @@ const CHUNK_SIZE = 50;
 export default function ProjectHome({ id }: { id: string }) {
 
     const location = useLocation();
-    const jwtToken = useContext(JwtContext);
+    const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [offset, setOffset] = useState(0);
@@ -32,7 +32,7 @@ export default function ProjectHome({ id }: { id: string }) {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, location, newOffset, jwtToken.token)
+            searchDocuments(id, location, newOffset, loginData.token)
                 .then(result => setDocuments(documents.concat(result.documents)))
                 .catch(err => setError(err));
             setOffset(newOffset);
@@ -41,13 +41,13 @@ export default function ProjectHome({ id }: { id: string }) {
 
     useEffect(() => {
 
-        searchDocuments(id, location, 0, jwtToken.token).then(result => {
+        searchDocuments(id, location, 0, loginData.token).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
 
-        get(id).then(setProjectDocument);
-    }, [id, location]);
+        get(id, loginData.token).then(setProjectDocument);
+    }, [id, location, loginData]);
 
     const renderResult = () => {
         return [
