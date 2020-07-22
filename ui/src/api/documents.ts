@@ -19,10 +19,10 @@ export const search = async (query: Query, token: string): Promise<Result> => {
 };
 
 
-export const mapSearch = async (query: Query): Promise<Result> => {
+export const mapSearch = async (query: Query, token: string): Promise<Result> => {
 
     const uri = `/documents/map?${getQueryString(query)}`;
-    const response = await fetch(uri);
+    const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
 };
 

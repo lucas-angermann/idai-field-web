@@ -32,7 +32,7 @@ export default function Project() {
 
     useEffect(() => {
         setLoading(true);
-        searchMapDocuments(projectId, location.search)
+        searchMapDocuments(projectId, location.search, loginData.token)
             .then(result => {
                 setDocuments(result.documents);
                 setLoading(false);
@@ -59,11 +59,11 @@ export default function Project() {
 }
 
 
-const searchMapDocuments = async (id: string, searchParams: string): Promise<Result> => {
+const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
     addFilters(query, searchParams);
-    return mapSearch(query);
+    return mapSearch(query, token);
 };
 
 
