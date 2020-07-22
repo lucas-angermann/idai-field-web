@@ -3,17 +3,17 @@ import Map from './Map';
 import { search } from '../api/documents';
 import { Alert } from 'react-bootstrap';
 import { ResultDocument } from '../api/result';
-import { JwtContext } from '../App';
+import { LoginContext } from '../App';
 
 
 export default () => {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [error, setError] = useState(false);
-    const jwtToken = useContext(JwtContext);
+    const loginData = useContext(LoginContext);
 
     useEffect (() => {
-        getProjectDocuments(jwtToken.token)
+        getProjectDocuments(loginData.token)
             .then(setProjectDocuments)
             .catch(err => setError(err));
     }, []);

@@ -10,13 +10,19 @@ import Navbar from './Navbar';
 import Login from './Login';
 
 
-const anonymousUser = {
+export interface LoginData {
+    user: string;
+    token: string;
+}
+
+
+const anonymousUser: LoginData = {
     user: 'anonymous',
     token: ''
 };
 
 
-export const JwtContext = React.createContext(anonymousUser);
+export const LoginContext = React.createContext(anonymousUser);
 
 
 export default () => {
@@ -24,7 +30,7 @@ export default () => {
     const [jwtToken, setJwtToken] = useState(anonymousUser);
 
     return (
-        <JwtContext.Provider value={ jwtToken }>
+        <LoginContext.Provider value={ jwtToken }>
             <div>
                 <BrowserRouter>
                     <Navbar />
@@ -52,6 +58,6 @@ export default () => {
                     </Switch>
                 </BrowserRouter>
             </div>
-        </JwtContext.Provider>
+        </LoginContext.Provider>
     );
 };

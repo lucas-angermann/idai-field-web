@@ -1,12 +1,12 @@
 import React, { CSSProperties, useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
-import { JwtContext } from './App';
+import { LoginContext, LoginData } from './App';
 
 export default () => {
 
     const location = useLocation();
-    const jwtContext = useContext(JwtContext);
+    const loginData = useContext(LoginContext);
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
@@ -22,16 +22,16 @@ export default () => {
                     <Link to="/manual">Handbuch</Link>
                 </Nav.Link>
             </Nav>
-            <Navbar.Text className="mr-sm-2">{ renderLogin(jwtContext) }</Navbar.Text>
+            <Navbar.Text className="mr-sm-2">{ renderLogin(loginData) }</Navbar.Text>
         </Navbar>
     );
 };
 
 
-const renderLogin = (jwtContext: any) =>
-    jwtContext.user === 'anonymous'
+const renderLogin = (loginData: LoginData) =>
+    loginData.user === 'anonymous'
         ? <Link to="/login">Login</Link>
-        : <span>Eingeloggt als: { jwtContext.user }</span>;
+        : <span>Eingeloggt als: { loginData.user }</span>;
 
 
 const navbarStyle: CSSProperties = {

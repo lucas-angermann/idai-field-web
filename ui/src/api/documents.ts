@@ -3,7 +3,7 @@ import { Result } from './result';
 import { Document } from './document';
 
 
-export const get = async (id: string, token: any): Promise<Document> => {
+export const get = async (id: string, token: string): Promise<Document> => {
 
     const response = await fetch(`/documents/${id}`, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
@@ -11,7 +11,7 @@ export const get = async (id: string, token: any): Promise<Document> => {
 };
 
 
-export const search = async (query: Query, token: any): Promise<Result> => {
+export const search = async (query: Query, token: string): Promise<Result> => {
 
     const uri = `/documents/?${getQueryString(query)}`;
     const response = await fetch(uri, { headers: getHeaders(token) });

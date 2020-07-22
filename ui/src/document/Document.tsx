@@ -4,17 +4,17 @@ import DocumentDetails from './DocumentDetails';
 import { Container } from 'react-bootstrap';
 import { get } from '../api/documents';
 import { Document } from '../api/document';
-import { JwtContext } from '../App';
+import { LoginContext } from '../App';
 
 export default () => {
 
     const { id } = useParams();
-    const jwtToken = useContext(JwtContext);
+    const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [error, setError] = useState(null);
 
     useEffect (() => {
-        get(id, jwtToken.token)
+        get(id, loginData.token)
             .then(setDocument)
             .catch(setError);
     }, [id]);
