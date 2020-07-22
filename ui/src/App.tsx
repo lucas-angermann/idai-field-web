@@ -27,10 +27,10 @@ export const LoginContext = React.createContext(anonymousUser);
 
 export default () => {
 
-    const [jwtToken, setJwtToken] = useState(anonymousUser);
+    const [loginData, setLoginData] = useState(getPersistedLogin());
 
     return (
-        <LoginContext.Provider value={ jwtToken }>
+        <LoginContext.Provider value={ loginData }>
             <div>
                 <BrowserRouter>
                     <Navbar />
@@ -50,7 +50,7 @@ export default () => {
                         <Route path="/manual" component={ Manual } />
 
                         <Route path="/login">
-                            <Login onLogin={ setJwtToken } />
+                            <Login onLogin={ setLoginData } />
                         </Route>
 
                         <Route path="/" component={ ProjectOverview } />
@@ -60,4 +60,12 @@ export default () => {
             </div>
         </LoginContext.Provider>
     );
+};
+
+
+const getPersistedLogin = (): LoginData => {
+
+    const loginDataValue = localStorage.getItem('loginData');
+    if (!loginDataValue) return anonymousUser;
+    return JSON.parse(loginDataValue);
 };

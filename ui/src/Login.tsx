@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { LoginData } from './App';
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin }: { onLogin: (_: LoginData) => void }) {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const [persistLogin, setPersistLogin] = useState(false);
     const history = useHistory();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const jwtToken = await postLogin(user, password);
-        onLogin(jwtToken);
+        const loginData = await postLogin(user, password);
+        if (persistLogin) doPersistLogin(loginData);
+        onLogin(loginData);
         history.push('/');
     };
 
@@ -36,6 +39,12 @@ export default function Login({ onLogin }) {
                                         placeholder="Passwort"
                                         onChange={ e => setPassword(e.target.value) } />
                                 </Form.Group>
+                                <Form.Group controlId="formBasicCheckbox">
+                                    <Form.Check
+                                        type="checkbox"
+                                        label="Eingeloggt bleiben"
+                                        onChange={ e => setPersistLogin(e.target.value) }/>
+                                </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Einloggen
                                 </Button>
@@ -50,7 +59,7 @@ export default function Login({ onLogin }) {
 }
 
 
-const postLogin = async (user: string, password: string): Promise<any> => {
+const postLogin = async (user: string, password: string): Promise<LoginData> => {
 
     const response = await fetch('/auth/sign_in', {
         method: 'POST',
@@ -64,3 +73,7 @@ const postLogin = async (user: string, password: string): Promise<any> => {
         token: (await response.json()).token
     };
 };
+
+
+const doPersistLogin = (loginData: LoginData) =>
+    localStorage.setItem('loginData', JSON.stringify(loginData));
