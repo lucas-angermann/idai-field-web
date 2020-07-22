@@ -7,7 +7,7 @@ import Project from './project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
 import Navbar from './Navbar';
-import Login from './Login';
+import LoginForm from './LoginForm';
 
 
 export interface LoginData {
@@ -50,7 +50,7 @@ export default () => {
                         <Route path="/manual" component={ Manual } />
 
                         <Route path="/login">
-                            <Login onLogin={ setLoginData } />
+                            <LoginForm onLogin={ setLoginData } />
                         </Route>
 
                         <Route path="/" component={ ProjectOverview } />

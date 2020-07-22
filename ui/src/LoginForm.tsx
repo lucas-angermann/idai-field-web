@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { LoginData } from './App';
 
-export default function Login({ onLogin }: { onLogin: (_: LoginData) => void }) {
+export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }) {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
