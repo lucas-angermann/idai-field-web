@@ -1,6 +1,6 @@
 import React, { CSSProperties, useContext } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { JwtContext } from './App';
 
 export default () => {
@@ -12,9 +12,15 @@ export default () => {
         <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
             <Nav activeKey={ location.pathname }>
-                <Nav.Link href="/">Projekte</Nav.Link>
-                <Nav.Link href="/download">Download</Nav.Link>
-                <Nav.Link href="/manual">Handbuch</Nav.Link>
+                <Nav.Link>
+                    <Link to="/">Projekte</Link>
+                </Nav.Link>
+                <Nav.Link>
+                    <Link to="/download">Download</Link>
+                </Nav.Link>
+                <Nav.Link>
+                    <Link to="/manual">Handbuch</Link>
+                </Nav.Link>
             </Nav>
             <Navbar.Text>{ jwtContext.user }</Navbar.Text>
         </Navbar>
