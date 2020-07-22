@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import { LoginContext } from './App';
 import { LoginData } from './login';
@@ -23,7 +23,7 @@ export default ({ onLogout }: { onLogout: () => void }) => {
                     <Link to="/manual">Handbuch</Link>
                 </Nav.Link>
             </Nav>
-            <Navbar.Text className="mr-sm-2">{ renderLogin(loginData, onLogout) }</Navbar.Text>
+            { renderLogin(loginData, onLogout) }
         </Navbar>
     );
 };
@@ -31,8 +31,9 @@ export default ({ onLogout }: { onLogout: () => void }) => {
 
 const renderLogin = (loginData: LoginData, onLogout: () => void) =>
     loginData.user === 'anonymous'
-        ? <Link to="/login">Login</Link>
-        : <span>Eingeloggt als: { loginData.user } <a href="#" onClick={ onLogout }>Ausloggen</a></span>;
+        ? <Navbar.Text className="mr-sm-2"><Link to="/login">Login</Link></Navbar.Text>
+        : [<Navbar.Text>Eingeloggt als: { loginData.user }</Navbar.Text>,
+        <Button variant="link" onClick={ onLogout }>Ausloggen</Button>];
 
 
 const navbarStyle: CSSProperties = {
