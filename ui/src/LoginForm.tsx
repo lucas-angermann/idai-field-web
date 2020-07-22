@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { postLogin, doPersistLogin, LoginData } from './login';
+import { postLogin, persistLogin, LoginData } from './login';
 
 export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }) {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const [persistLogin, setPersistLogin] = useState(false);
+    const [shouldPersistLogin, setShouldPersistLogin] = useState(false);
     const history = useHistory();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         const loginData = await postLogin(user, password);
-        if (persistLogin) doPersistLogin(loginData);
+        if (shouldPersistLogin) persistLogin(loginData);
         onLogin(loginData);
         history.push('/');
     };
@@ -43,7 +43,7 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
                                     <Form.Check
                                         type="checkbox"
                                         label="Eingeloggt bleiben"
-                                        onChange={ e => setPersistLogin(e.target.value) }/>
+                                        onChange={ e => setShouldPersistLogin(e.target.value) }/>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Einloggen

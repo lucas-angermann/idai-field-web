@@ -26,7 +26,7 @@ export const postLogin = async (user: string, password: string): Promise<LoginDa
 };
 
 
-export const doPersistLogin = (loginData: LoginData) =>
+export const persistLogin = (loginData: LoginData) =>
     localStorage.setItem('loginData', JSON.stringify(loginData));
 
 
