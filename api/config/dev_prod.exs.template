@@ -1,16 +1,17 @@
 import Config
 
+# depending on intended environment, make a copy as either 'prod.exs' or 'dev.exs'
+
 config :api,
   elasticsearch_url: "elasticsearch:9200",
   elasticsearch_index_prefix: "idai-field",
   couchdb_url: "field.dainst.org/sync",
   couchdb_user: "",
   couchdb_password: "",
-  couchdb_databases: ["db1", "db2", "db3"],
   gazetteer_url: "https://gazetteer.dainst.org",
   config_dir: "config/projects",
+  couchdb_databases: ["db1", "db2", "db3"],
   locales: ["de", "en"],
-
   default_filters: [
     %{
       field: "resource.category",
@@ -27,8 +28,8 @@ config :api,
   ]
 
 config :api, Api.Auth.Guardian,
-  issuer: "api",
-  secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
+       issuer: "api",
+       secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
 
 config :api, Api.Auth,
   users: [
@@ -38,5 +39,3 @@ config :api, Api.Auth,
     "user-1" => ["a", "b", "c", "d"],
     "anonymous" => ["a"]
   }
-
-import_config "#{Mix.env()}.exs"

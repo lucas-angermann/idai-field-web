@@ -4,8 +4,10 @@
 
 Prepare the configuration:
 
-    $ cp api/config/config.exs.template api/config/config.exs
-    $ vi api/config/config.exs # Edit configuration
+    $ cp api/config/dev_prod.exs.template api/config/dev.exs
+    $ cp api/config/dev_prod.exs.template api/config/prod.exs
+    $ vi api/config/dev.exs # Edit configuration
+    $ vi api/config/prod.exs # Edit configuration
 
 Start elasticsearch and the api web service with docker:
 

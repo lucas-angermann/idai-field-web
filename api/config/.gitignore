@@ -1,2 +1,2 @@
-config.exs
 prod.exs
+dev.exs
