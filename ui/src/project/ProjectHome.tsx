@@ -46,7 +46,7 @@ export default function ProjectHome({ id }: { id: string }) {
             setFilters(result.filters);
         }).catch(err => setError(err));
 
-        get(id).then(setProjectDocument);
+        get(id, jwtToken.token).then(setProjectDocument);
     }, [id, location]);
 
     const renderResult = () => {

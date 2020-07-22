@@ -3,9 +3,9 @@ import { Result } from './result';
 import { Document } from './document';
 
 
-export const get = async (id: string): Promise<Document> => {
+export const get = async (id: string, token: any): Promise<Document> => {
 
-    const response = await fetch(`/documents/${id}`);
+    const response = await fetch(`/documents/${id}`, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
 };

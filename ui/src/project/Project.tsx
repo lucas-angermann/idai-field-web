@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext } from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
@@ -9,6 +9,7 @@ import { Spinner } from 'react-bootstrap';
 import { ResultDocument, Result } from '../api/result';
 import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { History } from 'history';
+import { JwtContext } from '../App';
 
 
 const MAX_SIZE = 10000;
@@ -19,12 +20,14 @@ export default function Project() {
     const { projectId, documentId } = useParams();
     const location = useLocation();
     const history = useHistory();
+    const jwtToken = useContext(JwtContext);
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        documentId ? get(documentId).then(setDocument) : setDocument(null);
+        documentId ? get(documentId, jwtToken.token)
+            .then(setDocument) : setDocument(null);
     }, [documentId]);
 
     useEffect(() => {
