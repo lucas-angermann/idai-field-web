@@ -4,12 +4,31 @@ defmodule Api.RouterTest do
 
   @opts Api.Router.init([])
 
-  test "show rights" do
-    assert show_rights("user-1", "pass-1") == ["a", "b", "c", "d"]
-    assert show_rights("user-2", "pass-2") == ["a", "b", "c"]
-    assert show_rights("user-3", "pass-3") == ["a", "b"]
+  setup context do
+    if login_info = context[:login] do
+      {name, pass} = login_info
+      [token: sign_in(name, pass)]
+    else
+      :ok
+    end
   end
 
+  test "show rights - anonymous" do
+    assert show_rights() == ["a"]
+  end
+  @tag login: {"user-1", "pass-1"}
+  test "show rights - user-1", context do
+    assert show_rights(context.token) == ["a", "b", "c", "d"]
+  end
+  @tag login: {"user-2", "pass-2"}
+  test "show rights - user-2", context do
+    assert show_rights(context.token) == ["a", "b", "c"]
+  end
+  @tag login: {"user-3", "pass-3"}
+  test "show rights - user-3", context do
+    assert show_rights(context.token) == ["a", "b"]
+  end
+  
   test "get document" do
     {conn, doc} = get_doc "doc-of-proj-a"
 
@@ -26,8 +45,9 @@ defmodule Api.RouterTest do
     assert resp_body.error == "unauthorized"
   end
 
-  test "get document as logged in user" do
-    {conn, doc} = get_doc "doc-of-proj-b", "user-1", "pass-1"
+  @tag login: {"user-1", "pass-1"}
+  test "get document as logged in user", context do
+    {conn, doc} = get_doc "doc-of-proj-b", context.token
 
     assert conn.state == :sent
     assert conn.status == 200
@@ -42,8 +62,9 @@ defmodule Api.RouterTest do
     assert List.first(result.documents).project == "a"
   end
 
-  test "show multiple documents - all documents for user-1" do
-    conn = get_docs "user-1", "pass-1"
+  @tag login: {"user-1", "pass-1"}
+  test "show multiple documents - all documents for user-1", context do
+    conn = get_docs context.token
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
     
     assert length(result.documents) == 2
@@ -59,8 +80,9 @@ defmodule Api.RouterTest do
     assert List.first(result.documents).project == "a"
   end
 
-  test "show geometries - all documents for user-1" do
-    conn = get_geometries "user-1", "pass-1"
+  @tag login: {"user-1", "pass-1"}
+  test "show geometries - all documents for user-1", context do
+    conn = get_geometries context.token
     result = Core.Utils.atomize(Poison.decode!(conn.resp_body))
     
     assert length(result.documents) == 2
@@ -75,33 +97,37 @@ defmodule Api.RouterTest do
   end
 
   defp get_doc id do
-    get_doc id, nil, nil
+    get_doc id, nil
   end
-  defp get_doc id, user, pass do
-    conn = call_get "/documents/" <> id, user, pass
+  defp get_doc id, token do
+    conn = call_get "/documents/" <> id, token
     { conn, Core.Utils.atomize(Poison.decode!(conn.resp_body)) }
   end
   defp get_docs do
-    get_docs nil, nil
+    get_docs nil
   end
-  defp get_docs user, pass do
-    call_get "/documents/", user, pass
+  defp get_docs token do
+    call_get "/documents/", token
   end
   defp get_geometries do
-    get_geometries nil, nil
+    get_geometries nil
   end
-  defp get_geometries user, pass do
-    call_get "/documents/map", user, pass
+  defp get_geometries token do
+    call_get "/documents/map", token
   end
-
-  defp show_rights user, pass do
-    conn = call_get "/auth/show", user, pass
-    Core.Utils.atomize(Poison.decode!(conn.resp_body)).rights.readable_projects
+  defp show_rights token do
+    (call_get("/auth/show", token).resp_body)
+    |> Poison.decode!
+    |> Core.Utils.atomize
+    |> get_in([:rights, :readable_projects])
   end
-
-  defp call_get path, user, pass do
+  defp show_rights do
+    show_rights nil
+  end
+  
+  defp call_get path, token do
     conn = conn(:get, path)
-    conn = if user == nil do conn else put_req_header(conn, "authorization", sign_in(user, pass)) end
+    conn = if token == nil do conn else put_req_header(conn, "authorization", token) end
     Api.Router.call(conn, @opts)
   end
 end
