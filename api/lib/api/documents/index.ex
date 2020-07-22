@@ -9,9 +9,7 @@ defmodule Api.Documents.Index do
 
   def get id do
     Query.init("_id:#{id}", 1)
-    |> Query.build
-    |> index_adapter().post_query
-    |> Core.Utils.atomize_up_to(:_source)
+    |> build_post_atomize
     |> get_in([:hits, :hits, Access.at(0), :_source])
     |> Core.CorePropertiesAtomizing.format_document
   end
@@ -24,13 +22,10 @@ defmodule Api.Documents.Index do
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
-    |> Query.build
-    |> index_adapter().post_query
-    |> Core.Utils.atomize_up_to(:_source)
+    |> build_post_atomize
     |> Mapping.map
   end
 
-  # todo check readable permissions
   def search_geometries q, filters, must_not, exists, readable_projects do
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
@@ -39,10 +34,15 @@ defmodule Api.Documents.Index do
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
     |> Query.set_readable_projects(readable_projects)
+    |> build_post_atomize
+    |> Mapping.map
+  end
+  
+  defp build_post_atomize query do
+    query
     |> Query.build
     |> index_adapter().post_query
-    |> Core.Utils.atomize # todo restrict scope of atomization
-    |> Mapping.map
+    |> Core.Utils.atomize_up_to(:_source)
   end
 
   defp index_adapter do
