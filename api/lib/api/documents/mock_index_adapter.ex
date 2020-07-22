@@ -37,11 +37,11 @@ defmodule Api.Documents.MockIndexAdapter do
     if is_list hits do
       %{ hits: %{ total: %{ value: length(hits) }, hits: Enum.map(hits, &wrap_source/1)}}
     else
-      %{ "hits" => %{ "hits" => [ wrap_source(hits) ]}}
+      %{ hits: %{ hits: [ wrap_source(hits) ]}}
     end
   end
 
   defp wrap_source hit do
-    %{ "_source" => hit }
+    %{ _source: hit }
   end
 end
