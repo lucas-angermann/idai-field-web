@@ -11,7 +11,8 @@ defmodule Api.Documents.Index do
     Query.init("_id:#{id}", 1)
     |> Query.build
     |> index_adapter().post_query
-    |> get_in(["hits", "hits", Access.at(0), "_source"])
+    |> Core.Utils.atomize_up_to(:_source)
+    |> get_in([:hits, :hits, Access.at(0), :_source])
     |> Core.CorePropertiesAtomizing.format_document
   end
 
