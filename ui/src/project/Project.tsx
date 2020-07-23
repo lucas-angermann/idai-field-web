@@ -103,12 +103,14 @@ const renderFilters = (filters: ResultFilter[], searchParams: string) =>
 
 const renderFilter = (filter: ResultFilter, searchParams: string) => (
 
-    <Card key={ filter.name }>
-        <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
-        <Card.Body>
-            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
-        </Card.Body>
-    </Card>
+    filter.values.length
+        ? <Card key={ filter.name }>
+            <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
+            <Card.Body>
+                { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
+            </Card.Body>
+        </Card>
+        : null
 );
 
 
