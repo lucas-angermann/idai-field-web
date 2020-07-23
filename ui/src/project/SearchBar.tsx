@@ -17,21 +17,19 @@ export default function SearchBar({ projectId }: { projectId: string }) {
 
     return (
         <Card>
-            <Card.Body>
-                <Form onSubmit={ submitSearch }>
-                    <InputGroup>
-                        <Form.Control
-                            type="text"
-                            placeholder="Suche"
-                            onChange={ e => setQueryString(e.target.value) } />
-                        <InputGroup.Append>
-                            <Button variant="primary" type="submit">
-                                <Icon path={ mdiMagnify } size={ 0.8 } />
-                            </Button>
-                        </InputGroup.Append>
-                    </InputGroup>
-                </Form>
-            </Card.Body>
+            <Form onSubmit={ submitSearch }>
+                <InputGroup>
+                    <Form.Control
+                        type="text"
+                        placeholder="Suche"
+                        onChange={ e => setQueryString(e.target.value) } />
+                    <InputGroup.Append>
+                        <Button variant="primary" type="submit">
+                            <Icon path={ mdiMagnify } size={ 0.8 } />
+                        </Button>
+                    </InputGroup.Append>
+                </InputGroup>
+            </Form>
         </Card>
     );
 }
