@@ -32,8 +32,10 @@ export default ({ onLogout }: { onLogout: () => void }) => {
 const renderLogin = (loginData: LoginData, onLogout: () => void) =>
     loginData.user === 'anonymous'
         ? <Navbar.Text className="mr-sm-2"><Link to="/login">Login</Link></Navbar.Text>
-        : [<Navbar.Text>Eingeloggt als: { loginData.user }</Navbar.Text>,
-        <Button variant="link" onClick={ onLogout }>Ausloggen</Button>];
+        : <span>
+            <Navbar.Text>Eingeloggt als: { loginData.user }</Navbar.Text>
+            <Button variant="link" onClick={ onLogout }>Ausloggen</Button>
+        </span>;
 
 
 const navbarStyle: CSSProperties = {
