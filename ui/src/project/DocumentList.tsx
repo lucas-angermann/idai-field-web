@@ -1,13 +1,21 @@
 import React, { CSSProperties } from 'react';
 import DocumentTeaser from '../document/DocumentTeaser';
+import { ResultDocument } from '../api/result';
 
 
-export default ({ documents } : { documents: any }) =>
-    documents.map((document: any) => (
-        <div style={ documentContainerStyle } key={ document.resource.id }>
-            <DocumentTeaser document={ document }/>
+export default function DocumentList({ documents, searchParams = '' }
+        : { documents: ResultDocument[], searchParams?: string }) {
+
+    return (
+        <div>
+            { documents.map((document: ResultDocument) =>
+                <div style={ documentContainerStyle } key={ document.resource.id }>
+                    <DocumentTeaser document={ document } searchParams={ searchParams } />
+                </div>
+            )}
         </div>
-    ));
+    );
+}
 
 
 const documentContainerStyle: CSSProperties = {

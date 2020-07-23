@@ -17,7 +17,7 @@ import { LoginContext } from '../App';
 const CHUNK_SIZE = 50;
 
 
-export default function ProjectHome({ id, searchParams }: { id: string, searchParams: string }) {
+export default function ProjectHome({ id, searchParams = '' }: { id: string, searchParams?: string }) {
 
     const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
@@ -54,7 +54,7 @@ export default function ProjectHome({ id, searchParams }: { id: string, searchPa
                 { renderProjectTeaser(projectDocument) }
                 <Card onScroll={ onScroll } style={ listContainerStyle }>
                     <Card.Body style={ { padding: '.5rem 1.5rem' } }>
-                        <DocumentList documents={ documents } />
+                        <DocumentList documents={ documents } searchParams={ searchParams } />
                     </Card.Body>
                 </Card>
             </div>,
