@@ -51,7 +51,7 @@ export default function Project() {
     return (
         <div>
             { document
-                ? <DocumentInfo document={ document } />
+                ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
             }
             <div key="results">
