@@ -1,0 +1,7 @@
+.sidebar .card {
+    margin: 0 0 10px;
+}
+
+.sidebar .card:first-child {
+    margin: 10px 0;
+}

@@ -14,6 +14,7 @@ import Icon from '@mdi/react';
 import { mdiCloseCircle } from '@mdi/js';
 import { NAVBAR_HEIGHT } from '../constants';
 import SearchBar from './SearchBar';
+import './project.css';
 
 
 const MAX_SIZE = 10000;
@@ -50,7 +51,7 @@ export default function Project() {
     }, [projectId, location.search, loginData]);
 
     return <>
-        <div style={ leftSidebarStyle }>
+        <div style={ leftSidebarStyle } className="sidebar">
             <SearchBar />
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
@@ -68,7 +69,7 @@ export default function Project() {
                 documents={ documents }
                 onDocumentClick={ onDocumentClick(history, location.search) }/>
         </div>
-        <div key="filters" style={ filtersContainerStyle }>
+        <div key="filters" style={ filtersContainerStyle } className="sidebar">
             { renderFilters(filters, location.search) }
         </div>
     </>;
