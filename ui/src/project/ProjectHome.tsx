@@ -85,7 +85,7 @@ const renderError = (error: any) => {
 
 const leftOverlayStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: '400px',
+    width: '500px',
     position: 'absolute',
     top: NAVBAR_HEIGHT,
     left: '10px',
