@@ -17,9 +17,8 @@ import { LoginContext } from '../App';
 const CHUNK_SIZE = 50;
 
 
-export default function ProjectHome({ id }: { id: string }) {
+export default function ProjectHome({ id, searchParams }: { id: string, searchParams: string }) {
 
-    const location = useLocation();
     const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -32,7 +31,7 @@ export default function ProjectHome({ id }: { id: string }) {
         const el = e.currentTarget;
         if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
             const newOffset = offset + CHUNK_SIZE;
-            searchDocuments(id, location, newOffset, loginData.token)
+            searchDocuments(id, searchParams, newOffset, loginData.token)
                 .then(result => setDocuments(documents.concat(result.documents)))
                 .catch(err => setError(err));
             setOffset(newOffset);
@@ -41,13 +40,13 @@ export default function ProjectHome({ id }: { id: string }) {
 
     useEffect(() => {
 
-        searchDocuments(id, location, 0, loginData.token).then(result => {
+        searchDocuments(id, searchParams, 0, loginData.token).then(result => {
             setDocuments(result.documents);
             setFilters(result.filters);
         }).catch(err => setError(err));
 
         get(id, loginData.token).then(setProjectDocument);
-    }, [id, location, loginData]);
+    }, [id, searchParams, loginData]);
 
     const renderResult = () => {
         return [
@@ -60,7 +59,7 @@ export default function ProjectHome({ id }: { id: string }) {
                 </Card>
             </div>,
             <div key="filters" style={ filtersContainerStyle }>
-                { renderFilters(filters, location) }
+                { renderFilters(filters, searchParams) }
             </div>
         ];
     };
@@ -73,10 +72,10 @@ export default function ProjectHome({ id }: { id: string }) {
 }
 
 
-const searchDocuments = async (id: string, location: Location, from: number, token: string): Promise<Result> => {
+const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
-    addFilters(query, location.search);
+    addFilters(query, searchParams);
     return search(query, token);
 };
 
@@ -85,30 +84,30 @@ const renderProjectTeaser = (projectDocument: Document) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
-const renderFilters = (filters: ResultFilter[], location: Location) =>
-    filters.map((filter: ResultFilter) => renderFilter(filter, location));
+const renderFilters = (filters: ResultFilter[], searchParams: string) =>
+    filters.map((filter: ResultFilter) => renderFilter(filter, searchParams));
 
 
-const renderFilter = (filter: ResultFilter, location: Location) => (
+const renderFilter = (filter: ResultFilter, searchParams: string) => (
 
     <Card key={ filter.name }>
         <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
         <Card.Body>
-            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, location)) }
+            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
         </Card.Body>
     </Card>
 );
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, location: Location) => {
+const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: string) => {
 
     return (
         <Row key={ bucket.value }>
             <Col>
-                <Link to={ addFilterToLocation(location, key, bucket.value) }>
+                <Link to={ addFilterToLocation(searchParams, key, bucket.value) }>
                     { bucket.value }
                 </Link>
-                { renderCloseButton(location, key, bucket.value) }
+                { renderCloseButton(searchParams, key, bucket.value) }
             </Col>
             <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
         </Row>
@@ -116,31 +115,27 @@ const renderFilterValue = (key: string, bucket: FilterBucket, location: Location
 };
 
 
-const addFilterToLocation = (location: Location, key: string, value: string): Location => {
+const addFilterToLocation = (searchParams: string, key: string, value: string): string => {
 
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(searchParams);
     urlParams.append(key, value);
-    return addParamsToLocation(location, urlParams);
+    return `?${urlParams.toString()}`;
 };
 
 
-const renderCloseButton = (location: Location, key: string, value: string) => {
+const renderCloseButton = (searchParams: string, key: string, value: string) => {
 
-    const urlParams = new URLSearchParams(location.search);
+    const urlParams = new URLSearchParams(searchParams);
     if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
         const newParams = urlParams.getAll(key).filter(v => v !== value);
         urlParams.delete(key);
         newParams.forEach(v => urlParams.append(key, v));
-        return <Link to={ addParamsToLocation(location, urlParams) }>
+        return <Link to={ `?${urlParams.toString()}` }>
             <Icon path={ mdiCloseCircle } size={ 0.8 }/>
         </Link>;
     }
     return '';
 };
-
-
-const addParamsToLocation = (location: Location, urlParams: URLSearchParams): Location =>
-    ({ search: `?${urlParams.toString()}`, pathname: location.pathname, state: null, hash: null });
 
 
 const renderError = (error: any) => {

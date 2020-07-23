@@ -41,7 +41,10 @@ export default function Project() {
 
     return (
         <div>
-            { document ? <DocumentInfo document={ document } /> : <ProjectHome id={ projectId } /> }
+            { document
+                ? <DocumentInfo document={ document } />
+                : <ProjectHome id={ projectId } searchParams={ location.search } />
+            }
             <div key="results">
                 { loading &&
                     <Spinner animation="border"
