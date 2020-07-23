@@ -1,3 +1,4 @@
+
 export type Query = {
     q: string,
     filters?: Filter[],
@@ -56,9 +57,14 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 };
 
 
-export const addFilters = (query: Query, searchParams: string) => {
+export const parseParams = (query: Query, searchParams: string) => {
 
-    const filters = Array.from(new URLSearchParams(searchParams).entries())
+    const params = new URLSearchParams(searchParams);
+
+    if (params.has('q') && params.get('q')) query.q = params.get('q');
+
+    const filters = Array.from(params.entries())
+        .filter(([field, _]) => field !== 'q')
         .map(([field, value]) => ({ field, value }));
     query.filters = query.filters.concat(filters);
 };

@@ -3,7 +3,7 @@ import { search, get } from '../api/documents';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
-import { buildProjectQueryTemplate, addFilters } from '../api/query';
+import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { Result, ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 import { LoginContext } from '../App';
@@ -60,7 +60,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
-    addFilters(query, searchParams);
+    parseParams(query, searchParams);
     return search(query, token);
 };
 
@@ -77,7 +77,6 @@ const renderError = (error: any) => {
 
 
 const listContainerStyle: CSSProperties = {
-    marginTop: '0',
     overflow: 'auto',
     flexGrow: 1
 };

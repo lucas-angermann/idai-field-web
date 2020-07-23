@@ -7,12 +7,13 @@ import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
 import { Spinner, Card, Row, Col } from 'react-bootstrap';
 import { ResultDocument, Result, FilterBucket, ResultFilter } from '../api/result';
-import { buildProjectQueryTemplate, addFilters } from '../api/query';
+import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { History } from 'history';
 import { LoginContext } from '../App';
 import Icon from '@mdi/react';
 import { mdiCloseCircle } from '@mdi/js';
 import { NAVBAR_HEIGHT } from '../constants';
+import SearchBar from './SearchBar';
 
 
 const MAX_SIZE = 10000;
@@ -50,6 +51,7 @@ export default function Project() {
 
     return <>
         <div style={ leftSidebarStyle }>
+            <SearchBar />
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
@@ -77,7 +79,7 @@ export default function Project() {
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, 0);
-    addFilters(query, searchParams);
+    parseParams(query, searchParams);
     return search(query, token);
 };
 
@@ -85,7 +87,7 @@ const initFilters = async (id: string, searchParams: string, token: string): Pro
 const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
-    addFilters(query, searchParams);
+    parseParams(query, searchParams);
     return mapSearch(query, token);
 };
 
