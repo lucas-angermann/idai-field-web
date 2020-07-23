@@ -5,7 +5,6 @@ import { Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { buildProjectQueryTemplate, addFilters } from '../api/query';
 import { Result, ResultDocument } from '../api/result';
-import { NAVBAR_HEIGHT } from '../constants';
 import { Document } from '../api/document';
 import { LoginContext } from '../App';
 
@@ -44,23 +43,17 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
 
     const renderResult = () => {
         
-        return (
-            <div style={ leftOverlayStyle } key="left-overlay">
-                { renderProjectTeaser(projectDocument) }
-                <Card onScroll={ onScroll } style={ listContainerStyle }>
-                    <Card.Body style={ { padding: '.5rem 1.5rem' } }>
-                        <DocumentList documents={ documents } searchParams={ searchParams } />
-                    </Card.Body>
-                </Card>
-            </div>
-        );
+        return <>
+            { renderProjectTeaser(projectDocument) }
+            <Card onScroll={ onScroll } style={ listContainerStyle }>
+                <Card.Body style={ { padding: '.5rem 1.5rem' } }>
+                    <DocumentList documents={ documents } searchParams={ searchParams } />
+                </Card.Body>
+            </Card>
+        </>;
     };
 
-    return (
-        <div>
-            { error ? renderError(error) : renderResult() }
-        </div>
-    );
+    return error ? renderError(error) : renderResult();
 }
 
 
@@ -80,18 +73,6 @@ const renderError = (error: any) => {
 
     console.error(error);
     return <Col><Alert variant="danger">Backend not available!</Alert></Col>;
-};
-
-
-const leftOverlayStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: '500px',
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    left: '10px',
-    zIndex: 1000,
-    display: 'flex',
-    flexDirection: 'column'
 };
 
 

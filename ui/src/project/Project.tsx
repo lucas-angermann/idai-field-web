@@ -48,28 +48,28 @@ export default function Project() {
             });
     }, [projectId, location.search, loginData]);
 
-    return (
-        <div>
+    return <>
+        <div style={ leftSidebarStyle }>
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
             }
-            <div key="results">
-                { loading &&
-                    <Spinner animation="border"
-                        variant="secondary"
-                        style={ spinnerStyle } />
-                }
-                <ProjectMap
-                    document={ document }
-                    documents={ documents }
-                    onDocumentClick={ onDocumentClick(history, location.search) }/>
-            </div>
-            <div key="filters" style={ filtersContainerStyle }>
-                { renderFilters(filters, location.search) }
-            </div>
         </div>
-    );
+        <div key="results">
+            { loading &&
+                <Spinner animation="border"
+                    variant="secondary"
+                    style={ spinnerStyle } />
+            }
+            <ProjectMap
+                document={ document }
+                documents={ documents }
+                onDocumentClick={ onDocumentClick(history, location.search) }/>
+        </div>
+        <div key="filters" style={ filtersContainerStyle }>
+            { renderFilters(filters, location.search) }
+        </div>
+    </>;
 
 }
 
@@ -150,6 +150,17 @@ const renderCloseButton = (searchParams: string, key: string, value: string) => 
         </Link>;
     }
     return '';
+};
+
+const leftSidebarStyle: CSSProperties = {
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    width: '500px',
+    position: 'absolute',
+    top: NAVBAR_HEIGHT,
+    left: '10px',
+    zIndex: 1000,
+    display: 'flex',
+    flexDirection: 'column'
 };
 
 
