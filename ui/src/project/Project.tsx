@@ -54,7 +54,7 @@ export default function Project() {
                 <ProjectMap
                     document={ document }
                     documents={ documents }
-                    onDocumentClick={ onDocumentClick(history) }/>
+                    onDocumentClick={ onDocumentClick(history, location.search) }/>
             </div>
         </div>
     );
@@ -70,9 +70,9 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 };
 
 
-const onDocumentClick = (history: History) => {
+const onDocumentClick = (history: History, searchParams: string) => {
     return (path: string) => {
-        history.push(path);
+        history.push(path + searchParams);
     };
 };
 
