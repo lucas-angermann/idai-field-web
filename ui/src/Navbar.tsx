@@ -1,5 +1,5 @@
 import React, { CSSProperties, useContext } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import { LoginContext } from './App';
 import { LoginData } from './login';
@@ -33,7 +33,7 @@ const renderLogin = (loginData: LoginData, onLogout: () => void) =>
     loginData.user === 'anonymous'
         ? <Navbar.Text className="mr-sm-2"><Link to="/login">Login</Link></Navbar.Text>
         : <Navbar.Text>Eingeloggt als: { loginData.user }
-            <a className="ml-sm-2" href="#" onClick={ onLogout }>Ausloggen</a>
+            <Button variant="link" onClick={ onLogout }>Ausloggen</Button>
         </Navbar.Text>;
 
 

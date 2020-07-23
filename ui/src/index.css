@@ -76,6 +76,10 @@ a:hover {
 
 .navbar-dark .btn-link {
   color: rgb(255,255,255);
+  padding: 1px 6px;
+  line-height: 1;
+  border: 0;
+  vertical-align: baseline;
 }
 
 .navbar-dark .btn-link:focus,
