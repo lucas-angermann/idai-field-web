@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 
-export default function SearchBar() {
+export default function SearchBar({ projectId }: { projectId: string }) {
 
     const [queryString, setQueryString] = useState('');
     const history = useHistory();
@@ -12,7 +12,7 @@ export default function SearchBar() {
     const submitSearch = (e: FormEvent) => {
 
         e.preventDefault();
-        history.push(`?q=${queryString}`);
+        history.push(`/project/${projectId}?q=${queryString}`);
     };
 
     return (

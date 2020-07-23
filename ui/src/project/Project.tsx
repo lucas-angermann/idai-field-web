@@ -52,7 +52,7 @@ export default function Project() {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar />
+            <SearchBar projectId={ projectId } />
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
