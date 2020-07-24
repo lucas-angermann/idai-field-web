@@ -57,14 +57,18 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 };
 
 
-export const parseParams = (query: Query, searchParams: string) => {
+export const parseParams = (searchParams: string, query: Query = { q: '*', filters: [] }): Query => {
+
+    const newQuery = JSON.parse(JSON.stringify(query));
 
     const params = new URLSearchParams(searchParams);
 
-    if (params.has('q') && params.get('q')) query.q = params.get('q');
+    if (params.has('q') && params.get('q')) newQuery.q = params.get('q');
 
     const filters = Array.from(params.entries())
         .filter(([field, _]) => field !== 'q')
         .map(([field, value]) => ({ field, value }));
-    query.filters = query.filters.concat(filters);
+        newQuery.filters = newQuery.filters.concat(filters);
+
+    return newQuery;
 };

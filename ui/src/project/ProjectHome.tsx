@@ -61,7 +61,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE);
-    parseParams(query, searchParams);
+    parseParams(searchParams, query);
     return search(query, token);
 };
 

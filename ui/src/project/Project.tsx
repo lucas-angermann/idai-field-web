@@ -78,7 +78,7 @@ export default function Project() {
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, 0);
-    parseParams(query, searchParams);
+    parseParams(searchParams, query);
     return search(query, token);
 };
 
@@ -86,7 +86,7 @@ const initFilters = async (id: string, searchParams: string, token: string): Pro
 const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
-    parseParams(query, searchParams);
+    parseParams(searchParams, query);
     return mapSearch(query, token);
 };
 
@@ -130,7 +130,6 @@ const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: stri
                 style={ filterValueStyle }
                 to={ addFilterToLocation(searchParams, key, bucket.value) }>
             { bucket.value }
-            { renderCloseButton(searchParams, key, bucket.value) }
             <span className="float-right"><em>{ bucket.count }</em></span>
         </Dropdown.Item>
     );
@@ -158,6 +157,7 @@ const renderCloseButton = (searchParams: string, key: string, value: string) => 
     }
     return '';
 };
+
 
 const leftSidebarStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
