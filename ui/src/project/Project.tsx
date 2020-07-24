@@ -77,16 +77,14 @@ export default function Project() {
 
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = buildProjectQueryTemplate(id, 0, 0);
-    parseParams(searchParams, query);
+    const query = parseParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
     return search(query, token);
 };
 
 
 const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE);
-    parseParams(searchParams, query);
+    const query = parseParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE));
     return mapSearch(query, token);
 };
 
