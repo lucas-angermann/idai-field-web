@@ -97,9 +97,10 @@ const onDocumentClick = (history: History, searchParams: string) => {
 
 
 const renderFilters = (filters: ResultFilter[], searchParams: string) =>
-    <Card body>
-        <h4 className="d-inline">Filter:</h4>
-        { filters.map((filter: ResultFilter) => renderFilter(filter, searchParams)) }
+    <Card>
+        <Card.Body className="d-flex py-2 pl-1 pr-2 align-self-stretch">
+            { filters.map((filter: ResultFilter) => renderFilter(filter, searchParams)) }
+        </Card.Body>
     </Card>;
 
 
@@ -112,7 +113,8 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
     return <Dropdown
                 as={ ButtonGroup }
                 key={ filter.name }
-                size="sm ml-sm-2">
+                size="sm pl-2"
+                style={ { flexGrow: 1 } }>
             {
                 urlParams.has(filter.name)
                     ? <>
@@ -188,6 +190,12 @@ const leftSidebarStyle: CSSProperties = {
     zIndex: 1000,
     display: 'flex',
     flexDirection: 'column'
+};
+
+
+const filterContainerStyle: CSSProperties = {
+    padding: '.75rem',
+    display: 'flex'
 };
 
 
