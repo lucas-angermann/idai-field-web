@@ -20,6 +20,7 @@ export default function SearchBar({ projectId }: { projectId: string }) {
             <Form onSubmit={ submitSearch }>
                 <InputGroup>
                     <Form.Control
+                        autoFocus={ true }
                         type="text"
                         placeholder="Suche"
                         onChange={ e => setQueryString(e.target.value) } />
