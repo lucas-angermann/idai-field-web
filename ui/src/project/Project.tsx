@@ -5,7 +5,7 @@ import ProjectMap from './ProjectMap';
 import DocumentInfo from './DocumentInfo';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card, Row, Col, Nav, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
+import { Spinner, Card, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 import { ResultDocument, Result, FilterBucket, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { History } from 'history';
