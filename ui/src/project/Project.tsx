@@ -5,7 +5,7 @@ import ProjectMap from './ProjectMap';
 import DocumentInfo from './DocumentInfo';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import { Spinner, Card, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
 import { ResultDocument, Result, FilterBucket, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { History } from 'history';
@@ -105,20 +105,33 @@ const renderFilters = (filters: ResultFilter[], searchParams: string) =>
     </Card>;
 
 
-const renderFilter = (filter: ResultFilter, searchParams: string) => (
+const renderFilter = (filter: ResultFilter, searchParams: string) => {
 
-    filter.values.length
-        ? <DropdownButton
+    if (!filter.values.length) return null;
+
+    const urlParams = new URLSearchParams(searchParams);
+
+    return <Dropdown
                 as={ ButtonGroup }
-                id={ `filter-dropdown-${filter.name}` }
-                title={ filter.label.de  }
                 key={ filter.name }
                 size="sm ml-sm-2">
-            <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
-            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
-        </DropdownButton>
-        : null
-);
+            {
+                urlParams.has(filter.name)
+                    ? <>
+                        <Link to={ getLinkWithoutFilter(searchParams, filter.name) } component={ Button }>
+                            { filter.label.de }: { urlParams.getAll(filter.name).join(', ') }
+                            &nbsp; <Icon path={ mdiCloseCircle } size={ 0.7 } />
+                        </Link>
+                        <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` } />
+                      </>
+                    : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>
+            }
+            <Dropdown.Menu>
+                <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
+                { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
+            </Dropdown.Menu>
+    </Dropdown>;
+};
 
 
 const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: string) => {
@@ -130,9 +143,25 @@ const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: stri
                 style={ filterValueStyle }
                 to={ addFilterToLocation(searchParams, key, bucket.value) }>
             { bucket.value }
+            { renderCloseButton(searchParams, key, bucket.value) }
             <span className="float-right"><em>{ bucket.count }</em></span>
         </Dropdown.Item>
     );
+};
+
+
+const renderCloseButton = (searchParams: string, key: string, value: string) => {
+     
+    const urlParams = new URLSearchParams(searchParams);
+    if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
+        const newParams = urlParams.getAll(key).filter(v => v !== value);
+        urlParams.delete(key);
+        newParams.forEach(v => urlParams.append(key, v));
+        return <Link to={ `?${urlParams.toString()}` }>
+            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
+        </Link>;
+    }
+    return '';
 };
 
 
@@ -144,18 +173,11 @@ const addFilterToLocation = (searchParams: string, key: string, value: string): 
 };
 
 
-const renderCloseButton = (searchParams: string, key: string, value: string) => {
+const getLinkWithoutFilter = (searchParams: string, key: string): string => {
 
     const urlParams = new URLSearchParams(searchParams);
-    if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
-        const newParams = urlParams.getAll(key).filter(v => v !== value);
-        urlParams.delete(key);
-        newParams.forEach(v => urlParams.append(key, v));
-        return <Link to={ `?${urlParams.toString()}` }>
-            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
-        </Link>;
-    }
-    return '';
+    urlParams.delete(key);
+    return '?' + urlParams.toString();
 };
 
 
