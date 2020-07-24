@@ -22,7 +22,7 @@ export default React.memo(function ProjectMap({
 
     const featureCollection = createFeatureCollection(documents);
 
-    return (
+    return <>
         <Map style={ mapStyle }
             crs={ L.CRS.Simple }
             minZoom="-20"
@@ -35,12 +35,21 @@ export default React.memo(function ProjectMap({
             { getGeoJSONElement(featureCollection, onDocumentClick) }
             <ZoomControl position="bottomright" />
         </Map>
-    );
+        { (!documents || documents.length === 0) && renderEmptyResult() }
+    </>;
 }, (prevProps: any, nextProps: any) => {
     if (prevProps.document === nextProps.document
         && prevProps.documents === nextProps.documents) return true;
     return false;
 });
+
+
+const renderEmptyResult = () => {
+
+    return <div style={ emptyResultStyle }>
+        Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind.
+    </div>
+}
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
@@ -150,4 +159,13 @@ const getBounds = (featureCollection?: FeatureCollection, document?: Document): 
 
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+};
+
+
+const emptyResultStyle: CSSProperties = {
+    position: 'absolute',
+    top: '50vh',
+    left: '50vw',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 1
 };
