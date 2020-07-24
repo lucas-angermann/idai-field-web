@@ -60,15 +60,15 @@ export default function Project() {
             }
         </div>
         <div key="results">
-            { loading &&
-                <div style={ spinnerContainerStyle }>
+            { loading
+                ? <div style={ spinnerContainerStyle }>
                     <Spinner animation="border" variant="secondary" />
-                </div>
+                  </div>
+                : <ProjectMap
+                    document={ document }
+                    documents={ documents }
+                    onDocumentClick={ onDocumentClick(history, location.search) }/>
             }
-            <ProjectMap
-                document={ document }
-                documents={ documents }
-                onDocumentClick={ onDocumentClick(history, location.search) }/>
         </div>
     </>;
 
