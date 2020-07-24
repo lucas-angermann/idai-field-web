@@ -5,7 +5,7 @@ import ProjectMap from './ProjectMap';
 import DocumentInfo from './DocumentInfo';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card, Row, Col } from 'react-bootstrap';
+import { Spinner, Card, Row, Col, Nav, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
 import { ResultDocument, Result, FilterBucket, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { History } from 'history';
@@ -53,6 +53,7 @@ export default function Project() {
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
             <SearchBar projectId={ projectId } />
+            { renderFilters(filters, location.search) }
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
@@ -68,9 +69,6 @@ export default function Project() {
                 document={ document }
                 documents={ documents }
                 onDocumentClick={ onDocumentClick(history, location.search) }/>
-        </div>
-        <div key="filters" style={ filtersContainerStyle } className="sidebar">
-            { renderFilters(filters, location.search) }
         </div>
     </>;
 
@@ -101,18 +99,24 @@ const onDocumentClick = (history: History, searchParams: string) => {
 
 
 const renderFilters = (filters: ResultFilter[], searchParams: string) =>
-    filters.map((filter: ResultFilter) => renderFilter(filter, searchParams));
+    <Card body>
+        <h4 className="d-inline">Filter:</h4>
+        { filters.map((filter: ResultFilter) => renderFilter(filter, searchParams)) }
+    </Card>;
 
 
 const renderFilter = (filter: ResultFilter, searchParams: string) => (
 
     filter.values.length
-        ? <Card key={ filter.name }>
-            <Card.Header><h3>{ filter.label.de }</h3></Card.Header>
-            <Card.Body>
-                { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
-            </Card.Body>
-        </Card>
+        ? <DropdownButton
+                as={ ButtonGroup }
+                id={ `filter-dropdown-${filter.name}` }
+                title={ filter.label.de  }
+                key={ filter.name }
+                size="sm ml-sm-2">
+            <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
+            { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
+        </DropdownButton>
         : null
 );
 
@@ -120,15 +124,15 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => (
 const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: string) => {
 
     return (
-        <Row key={ bucket.value }>
-            <Col>
-                <Link to={ addFilterToLocation(searchParams, key, bucket.value) }>
-                    { bucket.value }
-                </Link>
-                { renderCloseButton(searchParams, key, bucket.value) }
-            </Col>
-            <Col sm={ 3 } className="text-right"><em>{ bucket.count }</em></Col>
-        </Row>
+        <Dropdown.Item
+                as={ Link }
+                key={ bucket.value }
+                style={ filterValueStyle }
+                to={ addFilterToLocation(searchParams, key, bucket.value) }>
+            { bucket.value }
+            { renderCloseButton(searchParams, key, bucket.value) }
+            <span className="float-right"><em>{ bucket.count }</em></span>
+        </Dropdown.Item>
     );
 };
 
@@ -183,4 +187,8 @@ const filtersContainerStyle: CSSProperties = {
     right: '10px',
     overflow: 'auto',
     zIndex: 1000
+};
+
+const filterValueStyle: CSSProperties = {
+    width: '350px'
 };
