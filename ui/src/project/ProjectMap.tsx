@@ -3,7 +3,7 @@ import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import extent from 'turf-extent';
-import { NAVBAR_HEIGHT } from '../constants';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import hash from 'object-hash';
 import { getColor } from '../categoryColors';
 import { ResultDocument } from '../api/result';
@@ -28,7 +28,7 @@ export default React.memo(function ProjectMap({
             minZoom="-20"
             maxZoom="10"
             bounds={ getBounds(featureCollection, document) }
-            boundsOptions={ { padding: [410, 10] } }
+            boundsOptions={ { paddingTopLeft: [410, 10], paddingBottomRight: [10, 10] } }
             renderer={ L.canvas({ padding: 0.5 }) }
             attributionControl={ false }
             zoomControl={ false }>
@@ -48,8 +48,8 @@ const renderEmptyResult = () => {
 
     return <div style={ emptyResultStyle }>
         Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind.
-    </div>
-}
+    </div>;
+};
 
 
 const getGeoJSONElement = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
@@ -166,6 +166,6 @@ const emptyResultStyle: CSSProperties = {
     position: 'absolute',
     top: '50vh',
     left: '50vw',
-    transform: 'translate(-50%, -50%)',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
     zIndex: 1
 };

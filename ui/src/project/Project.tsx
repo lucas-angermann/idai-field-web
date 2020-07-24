@@ -5,14 +5,14 @@ import ProjectMap from './ProjectMap';
 import DocumentInfo from './DocumentInfo';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card, Dropdown, DropdownButton, ButtonGroup, Button } from 'react-bootstrap';
+import { Spinner, Card, Dropdown, ButtonGroup, Button } from 'react-bootstrap';
 import { ResultDocument, Result, FilterBucket, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { History } from 'history';
 import { LoginContext } from '../App';
 import Icon from '@mdi/react';
 import { mdiCloseCircle } from '@mdi/js';
-import { NAVBAR_HEIGHT } from '../constants';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
 
@@ -61,9 +61,9 @@ export default function Project() {
         </div>
         <div key="results">
             { loading &&
-                <Spinner animation="border"
-                    variant="secondary"
-                    style={ spinnerStyle } />
+                <div style={ spinnerContainerStyle }>
+                    <Spinner animation="border" variant="secondary" />
+                </div>
             }
             <ProjectMap
                 document={ document }
@@ -181,7 +181,7 @@ const getLinkWithoutFilter = (searchParams: string, key: string): string => {
 
 const leftSidebarStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: '500px',
+    width: `${SIDEBAR_WIDTH}px`,
     position: 'absolute',
     top: NAVBAR_HEIGHT,
     left: '10px',
@@ -191,23 +191,14 @@ const leftSidebarStyle: CSSProperties = {
 };
 
 
-const spinnerStyle: CSSProperties = {
+const spinnerContainerStyle: CSSProperties = {
     position: 'absolute',
     top: '50vh',
     left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
     zIndex: 1
 };
 
-
-const filtersContainerStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: '400px',
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    right: '10px',
-    overflow: 'auto',
-    zIndex: 1000
-};
 
 const filterValueStyle: CSSProperties = {
     width: '350px'
