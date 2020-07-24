@@ -48,6 +48,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
             <Card onScroll={ onScroll } style={ listContainerStyle }>
                 <Card.Body style={ { padding: '.5rem 1.5rem' } }>
                     <DocumentList documents={ documents } searchParams={ searchParams } />
+                    { (!documents || documents.length === 0) && renderEmptyResult()}
                 </Card.Body>
             </Card>
         </>;
@@ -67,6 +68,9 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 
 const renderProjectTeaser = (projectDocument: Document) =>
     projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
+
+
+const renderEmptyResult = () => <div className="text-center mt-sm-5"><em>Keine Ergebnisse</em></div>;
 
 
 const renderError = (error: any) => {
