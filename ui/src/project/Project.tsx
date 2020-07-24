@@ -15,6 +15,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
+import DocumentTeaser from '../document/DocumentTeaser';
 
 
 const MAX_SIZE = 10000;
@@ -27,21 +28,30 @@ export default function Project() {
     const history = useHistory();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
+    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
+
+        get(projectId, loginData.token).then(setProjectDocument);
+    }, [projectId]);
+
+    useEffect(() => {
+
         documentId ? get(documentId, loginData.token)
             .then(setDocument) : setDocument(null);
     }, [documentId, loginData]);
 
     useEffect(() => {
+
         initFilters(projectId, location.search, loginData.token)
             .then(result => setFilters(result.filters));
     }, [projectId, location.search, loginData]);
 
     useEffect(() => {
+
         setLoading(true);
         searchMapDocuments(projectId, location.search, loginData.token)
             .then(result => {
@@ -52,6 +62,7 @@ export default function Project() {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
+            { renderProjectTeaser(projectDocument) }
             <SearchBar projectId={ projectId } />
             { renderFilters(filters, location.search) }
             { document
@@ -94,6 +105,10 @@ const onDocumentClick = (history: History, searchParams: string) => {
         history.push(path + searchParams);
     };
 };
+
+
+const renderProjectTeaser = (projectDocument: Document) =>
+    projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
 const renderFilters = (filters: ResultFilter[], searchParams: string) =>

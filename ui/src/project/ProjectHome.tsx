@@ -17,7 +17,6 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
     const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [offset, setOffset] = useState(0);
-    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [error, setError] = useState(false);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
@@ -37,21 +36,18 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
         searchDocuments(id, searchParams, 0, loginData.token).then(result => {
             setDocuments(result.documents);
         }).catch(err => setError(err));
-
-        get(id, loginData.token).then(setProjectDocument);
     }, [id, searchParams, loginData]);
 
     const renderResult = () => {
         
-        return <>
-            { renderProjectTeaser(projectDocument) }
+        return (
             <Card onScroll={ onScroll } style={ listContainerStyle }>
                 <Card.Body style={ { padding: '.5rem 1.5rem' } }>
                     <DocumentList documents={ documents } searchParams={ searchParams } />
                     { (!documents || documents.length === 0) && renderEmptyResult()}
                 </Card.Body>
             </Card>
-        </>;
+        );
     };
 
     return error ? renderError(error) : renderResult();
@@ -63,10 +59,6 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
     const query = parseParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE));
     return search(query, token);
 };
-
-
-const renderProjectTeaser = (projectDocument: Document) =>
-    projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
 
 
 const renderEmptyResult = () => <div className="text-center mt-sm-5"><em>Keine Ergebnisse</em></div>;
