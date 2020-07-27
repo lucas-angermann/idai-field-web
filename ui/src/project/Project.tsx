@@ -36,7 +36,7 @@ export default function Project() {
     useEffect(() => {
 
         get(projectId, loginData.token).then(setProjectDocument);
-    }, [projectId]);
+    }, [projectId, loginData]);
 
     useEffect(() => {
 
@@ -208,12 +208,6 @@ const leftSidebarStyle: CSSProperties = {
     zIndex: 1000,
     display: 'flex',
     flexDirection: 'column'
-};
-
-
-const filterContainerStyle: CSSProperties = {
-    padding: '.75rem',
-    display: 'flex'
 };
 
 

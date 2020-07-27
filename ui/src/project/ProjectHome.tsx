@@ -1,11 +1,9 @@
 import React, { useState, useEffect, CSSProperties, useContext } from 'react';
-import { search, get } from '../api/documents';
-import DocumentTeaser from '../document/DocumentTeaser';
+import { search } from '../api/documents';
 import { Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
 import { buildProjectQueryTemplate, parseParams } from '../api/query';
 import { Result, ResultDocument } from '../api/result';
-import { Document } from '../api/document';
 import { LoginContext } from '../App';
 
 
