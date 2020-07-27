@@ -16,6 +16,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
+import Filters from './Filters';
 
 
 const MAX_SIZE = 10000;
@@ -62,9 +63,11 @@ export default function Project() {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            { renderProjectTeaser(projectDocument) }
+            { projectDocument
+                && <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card>
+            }
             <SearchBar projectId={ projectId } />
-            { renderFilters(filters, location.search) }
+            <Filters filters={ filters } searchParams={ location.search } />
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
                 : <ProjectHome id={ projectId } searchParams={ location.search } />
@@ -107,98 +110,6 @@ const onDocumentClick = (history: History, searchParams: string) => {
 };
 
 
-const renderProjectTeaser = (projectDocument: Document) =>
-    projectDocument ? <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card> : '';
-
-
-const renderFilters = (filters: ResultFilter[], searchParams: string) =>
-    <Card>
-        <Card.Body className="d-flex py-2 pl-1 pr-2 align-self-stretch">
-            { filters.map((filter: ResultFilter) => renderFilter(filter, searchParams)) }
-        </Card.Body>
-    </Card>;
-
-
-const renderFilter = (filter: ResultFilter, searchParams: string) => {
-
-    if (!filter.values.length) return null;
-
-    const urlParams = new URLSearchParams(searchParams);
-
-    return <Dropdown
-                as={ ButtonGroup }
-                key={ filter.name }
-                size="sm pl-2"
-                style={ { flexGrow: 1 } }>
-            {
-                urlParams.has(filter.name)
-                    ? <>
-                        <Link to={ getLinkWithoutFilter(searchParams, filter.name) }
-                                component={ Button }
-                                style={ { flexGrow: 1 } }>
-                            { filter.label.de }: <em>{ urlParams.getAll(filter.name).join(', ') }</em>
-                            &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
-                        </Link>
-                        <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
-                                style={ { maxWidth: '2.5rem' } }/>
-                      </>
-                    : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>
-            }
-            <Dropdown.Menu>
-                <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
-                { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams)) }
-            </Dropdown.Menu>
-    </Dropdown>;
-};
-
-
-const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: string) => {
-
-    return (
-        <Dropdown.Item
-                as={ Link }
-                key={ bucket.value }
-                style={ filterValueStyle }
-                to={ addFilterToLocation(searchParams, key, bucket.value) }>
-            { bucket.value }
-            { renderCloseButton(searchParams, key, bucket.value) }
-            <span className="float-right"><em>{ bucket.count }</em></span>
-        </Dropdown.Item>
-    );
-};
-
-
-const renderCloseButton = (searchParams: string, key: string, value: string) => {
-     
-    const urlParams = new URLSearchParams(searchParams);
-    if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
-        const newParams = urlParams.getAll(key).filter(v => v !== value);
-        urlParams.delete(key);
-        newParams.forEach(v => urlParams.append(key, v));
-        return <Link to={ `?${urlParams.toString()}` }>
-            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
-        </Link>;
-    }
-    return '';
-};
-
-
-const addFilterToLocation = (searchParams: string, key: string, value: string): string => {
-
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.append(key, value);
-    return `?${urlParams.toString()}`;
-};
-
-
-const getLinkWithoutFilter = (searchParams: string, key: string): string => {
-
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.delete(key);
-    return '?' + urlParams.toString();
-};
-
-
 const leftSidebarStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     width: `${SIDEBAR_WIDTH}px`,
@@ -217,9 +128,4 @@ const spinnerContainerStyle: CSSProperties = {
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
     zIndex: 1
-};
-
-
-const filterValueStyle: CSSProperties = {
-    width: '350px'
 };
