@@ -1,5 +1,6 @@
 .sidebar .card {
     margin: 0 0 10px;
+    flex-shrink: 0;
 }
 
 .sidebar .card:first-child {
