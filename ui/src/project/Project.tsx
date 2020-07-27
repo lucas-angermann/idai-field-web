@@ -133,11 +133,14 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
             {
                 urlParams.has(filter.name)
                     ? <>
-                        <Link to={ getLinkWithoutFilter(searchParams, filter.name) } component={ Button }>
+                        <Link to={ getLinkWithoutFilter(searchParams, filter.name) }
+                                component={ Button }
+                                style={ { flexGrow: 1 } }>
                             { filter.label.de }: <em>{ urlParams.getAll(filter.name).join(', ') }</em>
                             &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
                         </Link>
-                        <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` } />
+                        <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
+                                style={ { maxWidth: '2.5rem' } }/>
                       </>
                     : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>
             }
