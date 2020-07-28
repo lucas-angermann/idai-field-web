@@ -1,4 +1,4 @@
-import { Query, getQueryString, parseParams } from './query';
+import { Query, buildBackendGetParams, parseFrontendGetParams } from './query';
 
 test('transform query object to backend GET parameters', () => {
 
@@ -29,7 +29,7 @@ test('transform query object to backend GET parameters', () => {
         from: 23
     };
 
-    const result = getQueryString(query);
+    const result = buildBackendGetParams(query);
     expect(result.length).toBeGreaterThan(0);
 
     const splitResult = result.split('&');
@@ -50,7 +50,7 @@ test('transform frontend GET parameters to query object', () => {
 
     const params = 'q=asdf&field1=value1&field2=value2';
     
-    const query = parseParams(params);
+    const query = parseFrontendGetParams(params);
 
     expect(query.q).toBe('asdf');
     expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });
@@ -62,7 +62,7 @@ test('transform frontend GET parameters to query object should create filters ar
 
     const params = 'q=qwer&field1=value1&field2=value2';
     
-    const query = parseParams(params, { q: 'asdf' });
+    const query = parseFrontendGetParams(params, { q: 'asdf' });
 
     expect(query.q).toBe('qwer');
     expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });
@@ -75,7 +75,7 @@ test('transform frontend GET parameters to query object should return new query 
     const params = 'q=qwer&field1=value1&field2=value2';
     
     const oldQuery: Query = { q: 'asdf', filters: [{ field: 'field1', value: 'value1' }] };
-    const query = parseParams(params, oldQuery);
+    const query = parseFrontendGetParams(params, oldQuery);
 
     expect(query.q).toBe('qwer');
     expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });

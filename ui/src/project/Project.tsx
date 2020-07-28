@@ -7,7 +7,7 @@ import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
 import { Spinner, Card } from 'react-bootstrap';
 import { ResultDocument, Result, ResultFilter } from '../api/result';
-import { buildProjectQueryTemplate, parseParams } from '../api/query';
+import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { History } from 'history';
 import { LoginContext } from '../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
@@ -89,14 +89,14 @@ export default function Project() {
 
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = parseParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
     return search(query, token);
 };
 
 
 const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = parseParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE));
     return mapSearch(query, token);
 };
 

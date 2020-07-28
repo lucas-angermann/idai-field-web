@@ -15,7 +15,7 @@ export type Filter = {
 };
 
 
-export const getQueryString = (query: Query) => {
+export const buildBackendGetParams = (query: Query) => {
 
     const queryParams = [['q', query.q]];
 
@@ -57,7 +57,7 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 };
 
 
-export const parseParams = (searchParams: string, query: Query = { q: '*', filters: [] }): Query => {
+export const parseFrontendGetParams = (searchParams: string, query: Query = { q: '*', filters: [] }): Query => {
 
     const newQuery = JSON.parse(JSON.stringify(query));
     const params = new URLSearchParams(searchParams);

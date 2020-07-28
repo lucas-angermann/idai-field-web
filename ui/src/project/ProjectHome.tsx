@@ -2,7 +2,7 @@ import React, { useState, useEffect, CSSProperties, useContext } from 'react';
 import { search } from '../api/documents';
 import { Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
-import { buildProjectQueryTemplate, parseParams } from '../api/query';
+import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { Result, ResultDocument } from '../api/result';
 import { LoginContext } from '../App';
 
@@ -54,7 +54,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
 
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
 
-    const query = parseParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE));
     return search(query, token);
 };
 
