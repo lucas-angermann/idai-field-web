@@ -71,5 +71,6 @@ const renderError = (error: any) => {
 
 const listContainerStyle: CSSProperties = {
     overflow: 'auto',
-    flexGrow: 1
+    flexGrow: 1,
+    flexShrink: 1
 };
