@@ -1,6 +1,6 @@
-import { Query, getQueryString } from './query';
+import { Query, getQueryString, parseParams } from './query';
 
-test('transform query object to GET parameters', () => {
+test('transform query object to backend GET parameters', () => {
 
     const query: Query = {
         q: '*',
@@ -34,6 +34,7 @@ test('transform query object to GET parameters', () => {
 
     const splitResult = result.split('&');
 
+    expect(splitResult).toContain('q=*');
     expect(splitResult).toContain('filters[]=field1:value1');
     expect(splitResult).toContain('filters[]=field2:value2');
     expect(splitResult).toContain('not[]=field3:value3');
@@ -43,4 +44,42 @@ test('transform query object to GET parameters', () => {
     expect(splitResult).toContain('size=42');
     expect(splitResult).toContain('from=23');
 
+});
+
+test('transform frontend GET parameters to query object', () => {
+
+    const params = 'q=asdf&field1=value1&field2=value2';
+    
+    const query = parseParams(params);
+
+    expect(query.q).toBe('asdf');
+    expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });
+    expect(query.filters).toContainEqual({ field: 'field2', value: 'value2' });
+});
+
+
+test('transform frontend GET parameters to query object should create filters array', () => {
+
+    const params = 'q=qwer&field1=value1&field2=value2';
+    
+    const query = parseParams(params, { q: 'asdf' });
+
+    expect(query.q).toBe('qwer');
+    expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });
+    expect(query.filters).toContainEqual({ field: 'field2', value: 'value2' });
+});
+
+
+test('transform frontend GET parameters to query object should return new query instance', () => {
+
+    const params = 'q=qwer&field1=value1&field2=value2';
+    
+    const oldQuery: Query = { q: 'asdf', filters: [{ field: 'field1', value: 'value1' }] };
+    const query = parseParams(params, oldQuery);
+
+    expect(query.q).toBe('qwer');
+    expect(query.filters).toContainEqual({ field: 'field1', value: 'value1' });
+    expect(query.filters).toContainEqual({ field: 'field2', value: 'value2' });
+
+    expect(query).not.toBe(oldQuery);
 });
