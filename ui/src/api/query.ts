@@ -73,3 +73,19 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { q:
 
     return newQuery;
 };
+
+
+export const addFilterToLocation = (searchParams: string, key: string, value: string): string => {
+
+    const urlParams = new URLSearchParams(searchParams);
+    urlParams.append(key, value);
+    return `?${urlParams.toString()}`;
+};
+
+
+export const getLinkWithoutFilter = (searchParams: string, key: string): string => {
+
+    const urlParams = new URLSearchParams(searchParams);
+    urlParams.delete(key);
+    return '?' + urlParams.toString();
+};

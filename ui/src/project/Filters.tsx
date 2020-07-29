@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { mdiCloseCircle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import LinkButton from '../LinkButton';
+import { addFilterToLocation, getLinkWithoutFilter } from '../api/query';
 
 
 export default function Filters({ filters, searchParams }: { filters: ResultFilter[], searchParams: string }) {
@@ -87,22 +88,6 @@ const renderCloseButton = (searchParams: string, key: string, value: string) => 
         );
     }
     return '';
-};
-
-
-const addFilterToLocation = (searchParams: string, key: string, value: string): string => {
-
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.append(key, value);
-    return `?${urlParams.toString()}`;
-};
-
-
-const getLinkWithoutFilter = (searchParams: string, key: string): string => {
-
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.delete(key);
-    return '?' + urlParams.toString();
 };
 
 
