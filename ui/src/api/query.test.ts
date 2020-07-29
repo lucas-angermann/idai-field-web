@@ -1,4 +1,4 @@
-import { Query, buildBackendGetParams, parseFrontendGetParams } from './query';
+import { Query, buildBackendGetParams, parseFrontendGetParams, deleteFilterFromParams } from './query';
 
 test('transform query object to backend GET parameters', () => {
 
@@ -58,7 +58,7 @@ test('transform frontend GET parameters to query object', () => {
 });
 
 
-test('transform frontend GET parameters to query object should create filters array', () => {
+test('transform frontend GET parameters to query object and create filters array', () => {
 
     const params = 'q=qwer&field1=value1&field2=value2';
     
@@ -70,7 +70,7 @@ test('transform frontend GET parameters to query object should create filters ar
 });
 
 
-test('transform frontend GET parameters to query object should return new query instance', () => {
+test('transform frontend GET parameters to query object and return new query instance', () => {
 
     const params = 'q=qwer&field1=value1&field2=value2';
     
@@ -82,4 +82,24 @@ test('transform frontend GET parameters to query object should return new query 
     expect(query.filters).toContainEqual({ field: 'field2', value: 'value2' });
 
     expect(query).not.toBe(oldQuery);
+});
+
+
+test('delete filter from params by key', () => {
+
+    const params = new URLSearchParams('q=qwer&field1=value1&field1=value2&field2=value3');
+
+    const newParams = deleteFilterFromParams(params, 'field1');
+    
+    expect(newParams.toString()).toEqual('q=qwer&field2=value3');
+});
+
+
+test('delete filter from params by key and return new params instance', () => {
+
+    const params = new URLSearchParams('q=qwer&field1=value1&field1=value2&field2=value3');
+
+    const newParams = deleteFilterFromParams(params, 'field1');
+    
+    expect(newParams).not.toBe(params);
 });
