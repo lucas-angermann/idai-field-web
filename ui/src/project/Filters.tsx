@@ -27,24 +27,8 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
     const params = new URLSearchParams(searchParams);
 
     return (
-        <Dropdown
-                as={ ButtonGroup }
-                key={ filter.name }
-                size="sm pl-2"
-                style={ { flexGrow: 1 } }>
-            {
-                params.has(filter.name)
-                    ? <>
-                        <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name).toString() }
-                                style={ { flexGrow: 1 } }>
-                            { filter.label.de }: <em>{ params.getAll(filter.name).join(', ') }</em>
-                            &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
-                        </LinkButton>
-                        <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
-                                style={ { maxWidth: '2.5rem' } }/>
-                      </>
-                    : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>
-            }
+        <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
+            { renderFilterDropdownToggle(filter, params) }
             <Dropdown.Menu>
                 <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
                 { filter.values.map((bucket: FilterBucket) =>
@@ -55,36 +39,41 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
 };
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams) => {
+const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams): ReactNode =>
+    params.has(filter.name)
+        ?
+            <>
+                <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name) }
+                        style={ { flexGrow: 1 } }>
+                    { filter.label.de }: <em>{ params.getAll(filter.name).join(', ') }</em>
+                    &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
+                </LinkButton>
+                <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
+                        style={ { maxWidth: '2.5rem' } }/>
+            </>
+        : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>;
 
-    return (
-        <Dropdown.Item
-                as={ Link }
-                key={ bucket.value }
-                style={ filterValueStyle }
-                to={ '?' + addFilterToParams(params, key, bucket.value).toString() }>
-            { bucket.value }
-            { renderCloseButton(params, key, bucket.value) }
-            <span className="float-right"><em>{ bucket.count }</em></span>
-        </Dropdown.Item>
-    );
-};
+
+const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode => 
+    <Dropdown.Item
+            as={ Link }
+            key={ bucket.value }
+            style={ filterValueStyle }
+            to={ '?' + addFilterToParams(params, key, bucket.value) }>
+        { bucket.value }
+        { renderCloseButton(params, key, bucket.value) }
+        <span className="float-right"><em>{ bucket.count }</em></span>
+    </Dropdown.Item>;
 
 
-const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode => {
-
-    if ( (params.has(key) && params.getAll(key).includes(value) ) ) {
-        return (
-            <LinkButton
-                    to={ '?' + deleteFilterFromParams(params, key, value).toString() }
-                    variant="link"
-                    style={ { padding: 0, verticalAlign: 'baseline' } }>
-                <Icon path={ mdiCloseCircle } size={ 0.8 }/>
-            </LinkButton>
-        );
-    }
-    return '';
-};
+const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode =>
+    (params.has(key) && params.getAll(key).includes(value)) &&
+        <LinkButton
+                to={ '?' + deleteFilterFromParams(params, key, value) }
+                variant="link"
+                style={ { padding: 0, verticalAlign: 'baseline' } }>
+            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
+        </LinkButton>;
 
 
 const filterValueStyle: CSSProperties = {
