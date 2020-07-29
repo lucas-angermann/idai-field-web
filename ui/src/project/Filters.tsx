@@ -72,16 +72,11 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
 
 
 const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode => {
-     
-    const oldParams = new URLSearchParams(params);
 
-    if ( (oldParams.has(key) && oldParams.getAll(key).includes(value) ) ) {
-        const newParams = oldParams.getAll(key).filter(v => v !== value);
-        oldParams.delete(key);
-        newParams.forEach(v => oldParams.append(key, v));
+    if ( (params.has(key) && params.getAll(key).includes(value) ) ) {
         return (
             <LinkButton
-                    to={ `?${oldParams.toString()}` }
+                    to={ '?' + deleteFilterFromParams(params, key, value).toString() }
                     variant="link"
                     style={ { padding: 0, verticalAlign: 'baseline' } }>
                 <Icon path={ mdiCloseCircle } size={ 0.8 }/>

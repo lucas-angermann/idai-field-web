@@ -83,9 +83,13 @@ export const addFilterToParams = (params: URLSearchParams, key: string, value: s
 };
 
 
-export const deleteFilterFromParams = (params: URLSearchParams, key: string): URLSearchParams => {
+export const deleteFilterFromParams = (params: URLSearchParams, key: string, value?: string): URLSearchParams => {
 
     const newParams = new URLSearchParams(params);
-    newParams.delete(key);
+    if (value) {
+        const newValues = params.getAll(key).filter(v => v !== value);
+        newParams.delete(key);
+        newValues.forEach(v => newParams.append(key, v));
+    } else newParams.delete(key);
     return newParams;
 };

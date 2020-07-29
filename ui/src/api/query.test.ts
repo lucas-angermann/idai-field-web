@@ -91,7 +91,25 @@ test('delete filter from params by key', () => {
 
     const newParams = deleteFilterFromParams(params, 'field1');
     
-    expect(newParams.toString()).toEqual('q=qwer&field2=value3');
+    const entries = Array.from(newParams.entries());
+    expect(entries).not.toContainEqual(['field1', 'value1']);
+    expect(entries).not.toContainEqual(['field1', 'value2']);
+    expect(entries).toContainEqual(['q', 'qwer']);
+    expect(entries).toContainEqual(['field2', 'value3']);
+});
+
+
+test('delete filter from params by key and value', () => {
+
+    const params = new URLSearchParams('q=qwer&field1=value1&field1=value2&field2=value3');
+
+    const newParams = deleteFilterFromParams(params, 'field1', 'value2');
+    
+    const entries = Array.from(newParams.entries());
+    expect(entries).not.toContainEqual(['field1', 'value2']);
+    expect(entries).toContainEqual(['field1', 'value1']);
+    expect(entries).toContainEqual(['q', 'qwer']);
+    expect(entries).toContainEqual(['field2', 'value3']);
 });
 
 
