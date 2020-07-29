@@ -1,10 +1,10 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';
 
-export default function DocumentDetails({ document }: { document: Document }) {
+export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
     return (
         <Card style={ cardStyle }>
@@ -19,7 +19,7 @@ export default function DocumentDetails({ document }: { document: Document }) {
 }
 
 
-const renderHeader = (resource: Resource) => (
+const renderHeader = (resource: Resource): ReactElement => (
     <div>
         <h1>
             <CategoryIcon category={ resource.category } size="40" />
@@ -34,13 +34,13 @@ const renderHeader = (resource: Resource) => (
 );
 
 
-const renderGroups = (resource: Resource) => {
+const renderGroups = (resource: Resource): ReactNode => {
 
     return resource.groups.map(renderGroup);
 };
 
 
-const renderGroup = (group: FieldGroup) => {
+const renderGroup = (group: FieldGroup): ReactNode => {
 
     return (
         <div key={ `${group.name}_group` }>
@@ -51,7 +51,7 @@ const renderGroup = (group: FieldGroup) => {
 };
 
 
-const renderFieldList = (fields: Field[]) => {
+const renderFieldList = (fields: Field[]): ReactNode => {
 
     const fieldElements = fields
         .map(field => [
@@ -62,7 +62,7 @@ const renderFieldList = (fields: Field[]) => {
 };
 
 
-const renderRelationList = (relations: Relation[]) => {
+const renderRelationList = (relations: Relation[]): ReactNode => {
 
     if (!relations) return null;
 
@@ -79,7 +79,7 @@ const renderRelationList = (relations: Relation[]) => {
 };
 
 
-const renderFieldValue = (value: any) => {
+const renderFieldValue = (value: any): ReactNode => {
 
     if (Array.isArray(value)) return renderFieldValueArray(value);
     if (typeof value === 'object') return renderFieldValueObject(value);
@@ -88,13 +88,13 @@ const renderFieldValue = (value: any) => {
 };
 
 
-const renderFieldValueArray = (values: any[]) =>
+const renderFieldValueArray = (values: any[]): ReactNode =>
     values.length > 1
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value) }</li>) }</ul>
         : renderFieldValue(values[0]);
 
 
-const renderFieldValueObject = (object: any) => {
+const renderFieldValueObject = (object: any): ReactNode => {
 
     if (object.label) return object.label;
 
@@ -104,10 +104,10 @@ const renderFieldValueObject = (object: any) => {
 };
 
 
-const renderFieldValueBoolean = (value: boolean) => value ? 'yes' : 'no';
+const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (id: string) => <li key={ id }><Link to={ `/document/${id}` }>{ id }</Link></li>;
+const renderDocumentLink = (id: string): ReactNode => <li key={ id }><Link to={ `/document/${id}` }>{ id }</Link></li>;
 
 
 const cardStyle: CSSProperties = {

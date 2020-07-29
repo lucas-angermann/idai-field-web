@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode } from 'react';
+import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card, Dropdown, ButtonGroup } from 'react-bootstrap';
 import { ResultFilter, FilterBucket } from '../api/result';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,8 @@ import LinkButton from '../LinkButton';
 import { deleteFilterFromParams, addFilterToParams } from '../api/query';
 
 
-export default function Filters({ filters, searchParams }: { filters: ResultFilter[], searchParams: string }) {
+export default function Filters({ filters, searchParams }
+        : { filters: ResultFilter[], searchParams: string }): ReactElement {
 
     return (
         <Card>
@@ -20,7 +21,7 @@ export default function Filters({ filters, searchParams }: { filters: ResultFilt
 }
 
 
-const renderFilter = (filter: ResultFilter, searchParams: string) => {
+const renderFilter = (filter: ResultFilter, searchParams: string): ReactNode => {
 
     if (!filter.values.length) return null;
 
@@ -54,7 +55,7 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
         : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>;
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode => 
+const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
     <Dropdown.Item
             as={ Link }
             key={ bucket.value }

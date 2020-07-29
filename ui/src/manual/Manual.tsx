@@ -1,4 +1,4 @@
-import React, { ElementRef, useEffect, useRef, useState } from 'react';
+import React, { ElementRef, useEffect, useRef, useState, ReactElement } from 'react';
 import ChapterNavigation from './ChapterNavigation';
 import MarkdownViewer from './MarkdownViewer';
 import { loadManual } from './loadManual';
@@ -13,7 +13,7 @@ export type Chapter = {
 };
 
 
-export default () => {
+export default function Manual(): ReactElement {
 
     const [markdown, setMarkdown] = useState('');
     const [chapters, setChapters] = useState([]);
@@ -41,4 +41,4 @@ export default () => {
                             manualElementRef={ manualElementRef } />
         </div>
     );
-};
+}

@@ -1,15 +1,15 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, ReactElement } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 
-export default function SearchBar({ projectId }: { projectId: string }) {
+export default function SearchBar({ projectId }: { projectId: string }): ReactElement {
 
     const [queryString, setQueryString] = useState('');
     const history = useHistory();
     
-    const submitSearch = (e: FormEvent) => {
+    const submitSearch = (e: FormEvent): void => {
 
         e.preventDefault();
         history.push(`/project/${projectId}?q=${queryString}`);

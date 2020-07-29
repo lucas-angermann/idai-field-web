@@ -1,4 +1,4 @@
-import React, { CSSProperties, ElementRef } from 'react';
+import React, { CSSProperties, ElementRef, ReactElement } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Chapter } from './Manual';
 import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
@@ -6,22 +6,28 @@ import './MarkdownViewer.css';
 import { NAVBAR_HEIGHT } from '../constants';
 
 
-export default ({ markdown, chapters, setActiveChapter, manualElementRef }
-                    : { markdown: string, chapters: Chapter[],
-                        setActiveChapter: (activeChapter: Chapter) => void,
-                        manualElementRef: ElementRef<any> }) => {
+interface MarkdownViewerProps {
+    markdown: string;
+    chapters: Chapter[];
+    setActiveChapter: (activeChapter: Chapter) => void;
+    manualElementRef: ElementRef<any>;
+}
+
+
+export default function MarkdownViewer(
+    { markdown, chapters, setActiveChapter, manualElementRef }: MarkdownViewerProps): ReactElement {
 
     return (
         <div ref={ manualElementRef }
-             style={ markdownContainerStyle }
-             onScroll={ () => updateActiveChapter(chapters, setActiveChapter) }>
+                style={ markdownContainerStyle }
+                onScroll={ () => updateActiveChapter(chapters, setActiveChapter) }>
             <ReactMarkdown source={ markdown } escapeHtml={ false } />
         </div>
     );
-};
+}
 
 
-const updateActiveChapter = (chapters: Chapter[], setActiveChapter: (chapter: Chapter) => void) => {
+const updateActiveChapter = (chapters: Chapter[], setActiveChapter: (chapter: Chapter) => void): void => {
 
     let activeElementTop: number = 1;
 

@@ -1,8 +1,9 @@
 import { Button, ButtonGroup } from 'react-bootstrap';
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 
 
-export default ({ onModeSelected }: { onModeSelected: (mapMode: boolean) => void } ) => {
+export default function ProjectModeButtons({ onModeSelected }
+        : { onModeSelected: (mapMode: boolean) => void } ): ReactElement {
 
     return (
         <ButtonGroup style={ buttonGroupStyle }>
@@ -18,7 +19,7 @@ export default ({ onModeSelected }: { onModeSelected: (mapMode: boolean) => void
             </Button>
         </ButtonGroup>
     );
-};
+}
 
 
 const buttonGroupStyle: CSSProperties = {

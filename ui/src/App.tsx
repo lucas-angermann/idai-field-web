@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import ProjectOverview from './overview/ProjectOverview';
 import Download from './download/Download';
@@ -14,7 +14,7 @@ import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './log
 export const LoginContext = React.createContext(ANONYMOUS_USER);
 
 
-export default function App() {
+export default function App(): ReactElement {
 
     const [loginData, setLoginData] = useState(getPersistedLogin());
 
@@ -51,7 +51,7 @@ export default function App() {
     );
 }
 
-const doLogout = (setLoginData: (_: LoginData) => void) => () : void => {
+const doLogout = (setLoginData: (_: LoginData) => void) => (): void => {
 
     forgetLogin();
     setLoginData(ANONYMOUS_USER);

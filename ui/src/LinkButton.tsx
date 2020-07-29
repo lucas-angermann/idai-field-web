@@ -1,4 +1,4 @@
-import React, { ReactNode, CSSProperties, MouseEvent } from 'react';
+import React, { ReactNode, CSSProperties, MouseEvent, ReactElement } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -14,7 +14,7 @@ interface LinkButtonProps {
 }
 
 
-export default function LinkButton({ to, children, style, size, variant = 'primary' }: LinkButtonProps) {
+export default function LinkButton({ to, children, style, size, variant = 'primary' }: LinkButtonProps): ReactElement {
 
     const history = useHistory();
 

@@ -1,5 +1,5 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { Map, GeoJSON, TileLayer } from 'react-leaflet';
+import React, { CSSProperties, useEffect, useState, ReactElement } from 'react';
+import { Map as ReactLeafletMap, GeoJSON, TileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
@@ -13,7 +13,7 @@ const TILES_URL: string = 'https://tile.thunderforest.com/landscape/{z}/{x}/{y}.
 const API_KEY: string = 'b47a3cf895b94aedad41e5cfb5222b87';
 
 
-export default ({ documents }: { documents: any[] }) => {
+export default function Map({ documents }: { documents: any[] }): ReactElement {
 
     const [featureCollection, setFeatureCollection] = useState(undefined);
 
@@ -24,17 +24,17 @@ export default ({ documents }: { documents: any[] }) => {
     }, [documents]);
 
     return (
-        <Map style={ mapStyle }
-             bounds={ getBounds(featureCollection) }
-             boundsOptions={ { padding: [10, 10] } }>
+        <ReactLeafletMap style={ mapStyle }
+                bounds={ getBounds(featureCollection) }
+                boundsOptions={ { padding: [10, 10] } }>
             <TileLayer url={ `${TILES_URL}?apikey=${API_KEY}` } />
             { getGeoJSONElement(featureCollection, history) }
-        </Map>
+        </ReactLeafletMap>
     );
-};
+}
 
 
-const getGeoJSONElement = (featureCollection: FeatureCollection, history: History) => {
+const getGeoJSONElement = (featureCollection: FeatureCollection, history: History): ReactElement => {
 
     if (!featureCollection) return;
 
@@ -53,14 +53,14 @@ const pointToLayer = (feature: Feature, latLng: L.LatLng): L.Marker => {
 };
 
 
-const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer) => {
+const onEachFeature = (history: History) => (feature: Feature, layer: L.Layer): void => {
 
     registerEventListeners(feature, layer, history);
     addTooltip(feature, layer);
 };
 
 
-const registerEventListeners = (feature: Feature, layer: L.Layer, history: History) => {
+const registerEventListeners = (feature: Feature, layer: L.Layer, history: History): void => {
 
     layer.on({
         click: onClick(history)
@@ -68,13 +68,13 @@ const registerEventListeners = (feature: Feature, layer: L.Layer, history: Histo
 };
 
 
-const addTooltip = (feature: Feature, layer: L.Layer) => {
+const addTooltip = (feature: Feature, layer: L.Layer): void => {
 
     layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -30] } );
 };
 
 
-const onClick = (history: History) => (event: any) => {
+const onClick = (history: History) => (event: any): void => {
 
     const identifier: string = event.target.feature.properties.identifier;
     history.push(`/project/${identifier}`);

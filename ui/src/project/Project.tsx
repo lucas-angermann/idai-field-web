@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties, useContext } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext, ReactElement } from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
@@ -20,7 +20,7 @@ import Filters from './Filters';
 const MAX_SIZE = 10000;
 
 
-export default function Project() {
+export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams();
     const location = useLocation();
@@ -101,7 +101,7 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 };
 
 
-const onDocumentClick = (history: History, searchParams: string) => {
+const onDocumentClick = (history: History, searchParams: string): ((_: string) => void) => {
     return (path: string) => {
         history.push(path + searchParams);
     };

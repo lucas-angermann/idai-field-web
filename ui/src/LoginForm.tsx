@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { postLogin, persistLogin, LoginData } from './login';
 
-export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }) {
+export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }): ReactElement {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');

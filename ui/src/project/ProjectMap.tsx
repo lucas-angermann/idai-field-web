@@ -1,6 +1,6 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
-import L from 'leaflet';
+import L, { PathOptions } from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import extent from 'turf-extent';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
@@ -10,15 +10,8 @@ import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 
 
-export default React.memo(function ProjectMap({
-    document,
-    documents,
-    onDocumentClick
-}: {
-    document: Document,
-    documents: ResultDocument[],
-    onDocumentClick: (_: any) => void
-}) {
+export default React.memo(function ProjectMap({ document, documents, onDocumentClick }
+        : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
 
     const featureCollection = createFeatureCollection(documents);
 
@@ -44,7 +37,7 @@ export default React.memo(function ProjectMap({
 });
 
 
-const renderEmptyResult = () => {
+const renderEmptyResult = (): ReactElement => {
 
     return <div style={ emptyResultStyle }>
         Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind.
@@ -52,7 +45,7 @@ const renderEmptyResult = () => {
 };
 
 
-const getGeoJSONElement = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
+const getGeoJSONElement = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void): ReactElement => {
 
     if (!featureCollection) return;
 
@@ -80,7 +73,7 @@ const pointToLayer = (feature: Feature, latLng: L.LatLng): L.CircleMarker => {
 };
 
 
-const getStyle = (feature: Feature) => ({
+const getStyle = (feature: Feature): PathOptions => ({
     color: getColor(feature.properties.category),
     weight: feature.geometry.type === 'LineString' ? 2 : 1,
     opacity: 0.5,
@@ -88,14 +81,14 @@ const getStyle = (feature: Feature) => ({
 });
 
 
-const onEachFeature = (onDocumentClick: (_: any) => void) => (feature: Feature, layer: L.Layer) => {
+const onEachFeature = (onDocumentClick: (_: any) => void) => (feature: Feature, layer: L.Layer): void => {
 
     registerEventListeners(feature, layer, onDocumentClick);
     addTooltip(feature, layer);
 };
 
 
-const registerEventListeners = (feature: Feature, layer: L.Layer, onDocumentClick: (_: any) => void) => {
+const registerEventListeners = (feature: Feature, layer: L.Layer, onDocumentClick: (_: any) => void): void => {
 
     layer.on({
         click: onClick(onDocumentClick)
@@ -103,13 +96,13 @@ const registerEventListeners = (feature: Feature, layer: L.Layer, onDocumentClic
 };
 
 
-const addTooltip = (feature: Feature, layer: L.Layer) => {
+const addTooltip = (feature: Feature, layer: L.Layer): void => {
 
     layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -30] } );
 };
 
 
-const onClick = (onDocumentClick: (_: any) => void) => (event: any) => {
+const onClick = (onDocumentClick: (_: any) => void) => (event: any): void => {
 
     const { id, project } = event.target.feature.properties;
     onDocumentClick(`/project/${project}/${id}`);

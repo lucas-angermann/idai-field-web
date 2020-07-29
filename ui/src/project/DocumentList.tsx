@@ -1,10 +1,10 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 
 
 export default function DocumentList({ documents, searchParams = '' }
-        : { documents: ResultDocument[], searchParams?: string }) {
+        : { documents: ResultDocument[], searchParams?: string }): ReactElement {
 
     return (
         <div>

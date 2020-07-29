@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState, ReactElement, ReactNode } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
@@ -37,7 +37,7 @@ const slides: Slide[] = [
 ];
 
 
-export default () => {
+export default function Download(): ReactElement {
 
     const [latestVersion, setLatestVersion] = useState('');
 
@@ -51,10 +51,10 @@ export default () => {
             { getDownloadSection(latestVersion) }
         </div>
     );
-};
+}
 
 
-const getCarousel = () => {
+const getCarousel = (): ReactNode => {
 
     return (
         <div style={ carouselContainerStyle } className="mt-5">
@@ -66,7 +66,7 @@ const getCarousel = () => {
 };
 
 
-const getCarouselItems = () => {
+const getCarouselItems = (): ReactNode => {
 
     return slides.map(slide => {
        return (
@@ -81,7 +81,7 @@ const getCarouselItems = () => {
 };
 
 
-const getDownloadSection = (latestVersion: string) => {
+const getDownloadSection = (latestVersion: string): ReactNode => {
 
     if (latestVersion === '') return;
 

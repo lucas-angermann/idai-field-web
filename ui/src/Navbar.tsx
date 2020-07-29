@@ -1,10 +1,10 @@
-import React, { CSSProperties, useContext } from 'react';
+import React, { CSSProperties, useContext, ReactElement } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import { LoginContext } from './App';
 import { LoginData } from './login';
 
-export default ({ onLogout }: { onLogout: () => void }) => {
+export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
     const location = useLocation();
     const loginData = useContext(LoginContext);
@@ -29,7 +29,7 @@ export default ({ onLogout }: { onLogout: () => void }) => {
 };
 
 
-const renderLogin = (loginData: LoginData, onLogout: () => void) =>
+const renderLogin = (loginData: LoginData, onLogout: () => void): ReactElement =>
     loginData.user === 'anonymous'
         ? <Navbar.Text className="mr-sm-2"><Link to="/login">Login</Link></Navbar.Text>
         : <Navbar.Text>Eingeloggt als: { loginData.user }

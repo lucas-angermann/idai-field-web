@@ -1,11 +1,18 @@
-import React, { CSSProperties, ElementRef } from 'react';
+import React, { CSSProperties, ElementRef, ReactElement } from 'react';
 import { Chapter } from './Manual';
 import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
 
-export default ({ chapters, activeChapter, setActiveChapter, manualElementRef }
-                    : { chapters: Chapter[], activeChapter: Chapter,
-                        setActiveChapter: (activeChapter: Chapter) => void,
-                        manualElementRef: ElementRef<any> }) => {
+
+interface ChapterNavigationProps {
+    chapters: Chapter[];
+    activeChapter: Chapter;
+    setActiveChapter: (activeChapter: Chapter) => void;
+    manualElementRef: ElementRef<any>;
+}
+
+
+export default function ChapterNavigation(
+        { chapters, activeChapter, setActiveChapter, manualElementRef }: ChapterNavigationProps): ReactElement {
 
     return (
         <ul className="col-md-2 nav flex-column" style={ chapterNavigationStyle }>
@@ -18,13 +25,13 @@ export default ({ chapters, activeChapter, setActiveChapter, manualElementRef }
             }
         </ul>
     );
-};
+}
 
 
 const getChapterElement = (chapter: Chapter,
                            isActiveChapter: boolean,
                            setActiveChapter: (chapter: Chapter) => void,
-                           manualElementRef: ElementRef<any>) => {
+                           manualElementRef: ElementRef<any>): ReactElement => {
 
     return (
         <li key={ chapter.id } className="nav nav-pills flex-column">
@@ -40,7 +47,7 @@ const getChapterElement = (chapter: Chapter,
 
 const scrollToChapter = (chapter: Chapter,
                          setActiveChapter: (chapter: Chapter) => void,
-                         manualElementRef: ElementRef<any>) => {
+                         manualElementRef: ElementRef<any>): void => {
 
     setActiveChapter(chapter);
 

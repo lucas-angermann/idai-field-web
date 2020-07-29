@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties, useContext } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext, ReactElement } from 'react';
 import { search } from '../api/documents';
 import { Col, Card, Alert } from 'react-bootstrap';
 import DocumentList from './DocumentList';
@@ -10,7 +10,7 @@ import { LoginContext } from '../App';
 const CHUNK_SIZE = 50;
 
 
-export default function ProjectHome({ id, searchParams = '' }: { id: string, searchParams?: string }) {
+export default function ProjectHome({ id, searchParams = '' }: { id: string, searchParams?: string }): ReactElement {
 
     const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
@@ -36,7 +36,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
         }).catch(err => setError(err));
     }, [id, searchParams, loginData]);
 
-    const renderResult = () => {
+    const renderResult = (): ReactElement => {
         
         return (
             <Card onScroll={ onScroll } style={ listContainerStyle }>
@@ -59,10 +59,10 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 };
 
 
-const renderEmptyResult = () => <div className="text-center mt-sm-5"><em>Keine Ergebnisse</em></div>;
+const renderEmptyResult = (): ReactElement => <div className="text-center mt-sm-5"><em>Keine Ergebnisse</em></div>;
 
 
-const renderError = (error: any) => {
+const renderError = (error: any): ReactElement => {
 
     console.error(error);
     return <Col><Alert variant="danger">Backend not available!</Alert></Col>;
