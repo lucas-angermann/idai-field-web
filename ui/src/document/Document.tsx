@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, ReactNode, ReactElement } from 'react';
+import React, { useState, useEffect, useContext, ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import DocumentDetails from './DocumentDetails';
 import { Container } from 'react-bootstrap';
