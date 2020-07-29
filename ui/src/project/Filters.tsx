@@ -1,11 +1,11 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Card, Dropdown, ButtonGroup } from 'react-bootstrap';
 import { ResultFilter, FilterBucket } from '../api/result';
 import { Link } from 'react-router-dom';
 import { mdiCloseCircle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import LinkButton from '../LinkButton';
-import { addFilterToLocation, getLinkWithoutFilter } from '../api/query';
+import { deleteFilterFromParams, addFilterToParams } from '../api/query';
 
 
 export default function Filters({ filters, searchParams }: { filters: ResultFilter[], searchParams: string }) {
@@ -24,7 +24,7 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
 
     if (!filter.values.length) return null;
 
-    const urlParams = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams);
 
     return (
         <Dropdown
@@ -33,11 +33,11 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
                 size="sm pl-2"
                 style={ { flexGrow: 1 } }>
             {
-                urlParams.has(filter.name)
+                params.has(filter.name)
                     ? <>
-                        <LinkButton to={ getLinkWithoutFilter(searchParams, filter.name) }
+                        <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name).toString() }
                                 style={ { flexGrow: 1 } }>
-                            { filter.label.de }: <em>{ urlParams.getAll(filter.name).join(', ') }</em>
+                            { filter.label.de }: <em>{ params.getAll(filter.name).join(', ') }</em>
                             &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
                         </LinkButton>
                         <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
@@ -48,39 +48,40 @@ const renderFilter = (filter: ResultFilter, searchParams: string) => {
             <Dropdown.Menu>
                 <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
                 { filter.values.map((bucket: FilterBucket) =>
-                    renderFilterValue(filter.name, bucket, searchParams)) }
+                    renderFilterValue(filter.name, bucket, params)) }
             </Dropdown.Menu>
         </Dropdown>
     );
 };
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, searchParams: string) => {
+const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams) => {
 
     return (
         <Dropdown.Item
                 as={ Link }
                 key={ bucket.value }
                 style={ filterValueStyle }
-                to={ addFilterToLocation(searchParams, key, bucket.value) }>
+                to={ '?' + addFilterToParams(params, key, bucket.value).toString() }>
             { bucket.value }
-            { renderCloseButton(searchParams, key, bucket.value) }
+            { renderCloseButton(params, key, bucket.value) }
             <span className="float-right"><em>{ bucket.count }</em></span>
         </Dropdown.Item>
     );
 };
 
 
-const renderCloseButton = (searchParams: string, key: string, value: string) => {
+const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode => {
      
-    const urlParams = new URLSearchParams(searchParams);
-    if ( (urlParams.has(key) && urlParams.getAll(key).includes(value) ) ) {
-        const newParams = urlParams.getAll(key).filter(v => v !== value);
-        urlParams.delete(key);
-        newParams.forEach(v => urlParams.append(key, v));
+    const oldParams = new URLSearchParams(params);
+
+    if ( (oldParams.has(key) && oldParams.getAll(key).includes(value) ) ) {
+        const newParams = oldParams.getAll(key).filter(v => v !== value);
+        oldParams.delete(key);
+        newParams.forEach(v => oldParams.append(key, v));
         return (
             <LinkButton
-                    to={ `?${urlParams.toString()}` }
+                    to={ `?${oldParams.toString()}` }
                     variant="link"
                     style={ { padding: 0, verticalAlign: 'baseline' } }>
                 <Icon path={ mdiCloseCircle } size={ 0.8 }/>

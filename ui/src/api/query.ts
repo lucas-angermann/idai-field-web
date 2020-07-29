@@ -75,17 +75,17 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { q:
 };
 
 
-export const addFilterToLocation = (searchParams: string, key: string, value: string): string => {
+export const addFilterToParams = (params: URLSearchParams, key: string, value: string): URLSearchParams => {
 
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.append(key, value);
-    return `?${urlParams.toString()}`;
+    const newParams = new URLSearchParams(params);
+    newParams.append(key, value);
+    return newParams;
 };
 
 
-export const getLinkWithoutFilter = (searchParams: string, key: string): string => {
+export const deleteFilterFromParams = (params: URLSearchParams, key: string): URLSearchParams => {
 
-    const urlParams = new URLSearchParams(searchParams);
-    urlParams.delete(key);
-    return '?' + urlParams.toString();
+    const newParams = new URLSearchParams(params);
+    newParams.delete(key);
+    return newParams;
 };
