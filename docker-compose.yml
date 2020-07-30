@@ -20,6 +20,7 @@ services:
       - "./data/elasticsearch:/usr/share/elasticsearch/data"
 
   api:
+    image: "dainst/idai-field-web-api"
     build: "./api"
     ports:
       - "4000:4000"
