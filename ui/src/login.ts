@@ -13,7 +13,7 @@ export const ANONYMOUS_USER: LoginData = {
 export const postLogin = async (user: string, password: string): Promise<LoginData> => {
 
     try {
-        const response = await fetch('/auth/sign_in', {
+        const response = await fetch('/api/auth/sign_in', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

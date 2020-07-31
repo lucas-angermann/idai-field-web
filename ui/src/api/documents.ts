@@ -5,7 +5,7 @@ import { Document } from './document';
 
 export const get = async (id: string, token: string): Promise<Document> => {
 
-    const response = await fetch(`/documents/${id}`, { headers: getHeaders(token) });
+    const response = await fetch(`/api/documents/${id}`, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
 };
@@ -13,7 +13,7 @@ export const get = async (id: string, token: string): Promise<Document> => {
 
 export const search = async (query: Query, token: string): Promise<Result> => {
 
-    const uri = `/documents/?${buildBackendGetParams(query)}`;
+    const uri = `/api/documents/?${buildBackendGetParams(query)}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
 };
@@ -21,7 +21,7 @@ export const search = async (query: Query, token: string): Promise<Result> => {
 
 export const mapSearch = async (query: Query, token: string): Promise<Result> => {
 
-    const uri = `/documents/map?${buildBackendGetParams(query)}`;
+    const uri = `/api/documents/map?${buildBackendGetParams(query)}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
 };

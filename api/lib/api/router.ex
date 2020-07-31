@@ -12,14 +12,14 @@ defmodule Api.Router do
 
   plug :dispatch
 
-  forward("/documents", to: Api.Documents.Router)
+  forward("/api/documents", to: Api.Documents.Router)
 
-  post "/reindex" do
+  post "/api/reindex" do
     Task.async fn -> Worker.process() end
     send_json(conn, %{ status: "ok", message: "indexing started"})
   end
 
-  forward("/auth", to: Api.Auth.Router)
+  forward("/api/auth", to: Api.Auth.Router)
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")
