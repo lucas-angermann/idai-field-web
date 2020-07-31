@@ -29,3 +29,11 @@ services:
       - "./api/lib:/opt/src/api/lib"
       - "./api/test:/opt/src/api/test"
       - "./api/_build:/opt/src/api/_build"
+
+  ui:
+    image: "dainst/idai-field-web-ui"
+    build: "./ui"
+    ports:
+      - "3001:80"
+    volumes:
+      - "./ui/build:/usr/share/nginx/html"
