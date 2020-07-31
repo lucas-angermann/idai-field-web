@@ -32,8 +32,20 @@ services:
       labels:
         - "traefik.docker.network=web"
         - "traefik.enable=true"
-        - "traefik.frontend.rule=Host:field.test.idai.world; PathPrefixStrip:/api"
+        - "traefik.frontend.rule=Host:field.test.idai.world; PathPrefix:/api"
         - "traefik.port=4000"
+
+  ui:
+    image: "dainst/idai-field-web-ui:latest"
+    networks:
+      - web
+      - default
+    deploy:
+      labels:
+        - "traefik.docker.network=web"
+        - "traefik.enable=true"
+        - "traefik.frontend.rule=Host:field.test.idai.world"
+        - "traefik.port=80"
 
 volumes:
   elasticsearch-data:
@@ -41,3 +53,5 @@ volumes:
 networks:
   web:
     external: true
+
+
