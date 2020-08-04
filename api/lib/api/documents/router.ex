@@ -43,10 +43,6 @@ defmodule Api.Documents.Router do
     end
   end
 
-  defp access_for_project_allowed readable_projects, project do
-    if project in readable_projects, do: :ok, else: :unauthorized_access
-  end
-
   defp get_readable_projects conn do
     (conn
      |> get_req_header("authorization")
