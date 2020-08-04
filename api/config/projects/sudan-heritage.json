@@ -15,9 +15,6 @@
           "name": "stem",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "stem",
               "source": "builtin",
               "label": {
                 "de": "Kategorie",
@@ -28,9 +25,6 @@
               "inputType": "input"
             },
             {
-              "editable": false,
-              "visible": false,
-              "group": "stem",
               "source": "builtin",
               "name": "id",
               "inputType": "input",
@@ -38,10 +32,7 @@
               "description": {}
             },
             {
-              "visible": false,
-              "editable": true,
               "mandatory": true,
-              "group": "stem",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -54,9 +45,6 @@
               "inputType": "input"
             },
             {
-              "visible": false,
-              "editable": true,
-              "group": "stem",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
@@ -69,16 +57,6 @@
           "relations": [
             {
               "name": "isDepictedIn",
-              "domain": [
-                "Project",
-                "Place",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "Image"
-              ],
-              "inverse": "depicts",
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in"
@@ -91,13 +69,6 @@
                 "de": "Liegt in",
                 "en": "Lies within"
               },
-              "domain": [
-                "Operation",
-                "Place"
-              ],
-              "range": [
-                "Place"
-              ],
               "description": {}
             }
           ],
@@ -112,8 +83,6 @@
             {
               "inputType": "unsignedInt",
               "source": "builtin",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Gazetteer-ID",
                 "en": "Gazetteer ID"
@@ -121,15 +90,11 @@
               "description": {
                 "de": "ID-Nummer des Ortslexikons"
               },
-              "constraintIndexed": true,
-              "name": "gazId",
-              "group": "parent"
+              "name": "gazId"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Ortsname",
                 "en": "Place name"
@@ -137,15 +102,11 @@
               "description": {
                 "de": "Name der Ortschaft bzw. Gemarkung"
               },
-              "constraintIndexed": true,
-              "name": "placeName",
-              "group": "parent"
+              "name": "placeName"
             },
             {
               "inputType": "checkboxes",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "valuelist": {
                 "creationDate": "",
                 "createdBy": "",
@@ -183,16 +144,12 @@
                 "de": "Klassifikation Fundplatz",
                 "en": "General archaeological classification for the site"
               },
-              "constraintIndexed": true,
               "name": "siteClassification",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "dropdown",
               "source": "library",
-              "visible": false,
-              "editable": false,
               "valuelist": {
                 "creationDate": "",
                 "createdBy": "",
@@ -220,16 +177,12 @@
                 "de": "Klassifikation Fundstelle",
                 "en": "Findspot classification"
               },
-              "constraintIndexed": true,
               "name": "findspotClassification",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Moderne Eingriffe",
                 "en": "Modern structures on the site"
@@ -237,14 +190,11 @@
               "description": {
                 "de": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)"
               },
-              "name": "modernIntervention",
-              "group": "parent"
+              "name": "modernIntervention"
             },
             {
               "inputType": "text",
               "source": "library",
-              "visible": false,
-              "editable": false,
               "label": {
                 "de": "Ausgrabungsgeschichte",
                 "en": "Excavation history"
@@ -252,14 +202,11 @@
               "description": {
                 "de": "Abhandlung über die Grabungsprojekte auf der Fundstelle"
               },
-              "name": "excavationHistory",
-              "group": "parent"
+              "name": "excavationHistory"
             },
             {
               "inputType": "text",
               "source": "library",
-              "visible": false,
-              "editable": false,
               "label": {
                 "de": "Forschungsgeschichte",
                 "en": "Research history"
@@ -267,14 +214,11 @@
               "description": {
                 "de": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen"
               },
-              "name": "buildingResearchHistory",
-              "group": "parent"
+              "name": "buildingResearchHistory"
             },
             {
               "inputType": "text",
               "source": "library",
-              "visible": false,
-              "editable": false,
               "label": {
                 "de": "Baugeschichte",
                 "en": "Building research history"
@@ -282,14 +226,11 @@
               "description": {
                 "de": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle"
               },
-              "name": "buildingHistory",
-              "group": "parent"
+              "name": "buildingHistory"
             },
             {
               "inputType": "text",
               "source": "library",
-              "visible": false,
-              "editable": false,
               "label": {
                 "de": "Fundumstände",
                 "en": "Find situation"
@@ -298,16 +239,12 @@
                 "de": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
                 "en": "Description of the circumstances of the finding place discovery and the persons involved"
               },
-              "name": "findSituation",
-              "group": "parent"
+              "name": "findSituation"
             },
             {
               "inputType": "input",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "placeNameOriginalLanguage",
-              "group": "parent",
               "label": {
                 "en": "Place name in arabic"
               },
@@ -316,8 +253,6 @@
             {
               "inputType": "checkboxes",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "valuelist": {
                 "creationDate": "14-11-2019",
                 "createdBy": "Sami Elamin",
@@ -341,7 +276,6 @@
                 }
               },
               "name": "periodSudanHeritage",
-              "group": "parent",
               "label": {
                 "en": "Periods observable on the site"
               },
@@ -350,10 +284,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "researchHistory",
-              "group": "parent",
               "label": {
                 "en": "Research history"
               },
@@ -362,10 +293,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "stateOfPreservation",
-              "group": "parent",
               "label": {
                 "en": "Description of the state of preservation"
               },
@@ -374,10 +302,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "conservationMeasures",
-              "group": "parent",
               "label": {
                 "en": "Measures for conservation of the site"
               },
@@ -386,10 +311,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "objectCirculation",
-              "group": "parent",
               "label": {
                 "en": "Archaeological objects from this site in circulation"
               },
@@ -398,10 +320,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "staffInCharge",
-              "group": "parent",
               "label": {
                 "en": "Persons in charge of this site"
               },
@@ -410,10 +329,7 @@
             {
               "inputType": "text",
               "source": "custom",
-              "visible": true,
-              "editable": true,
               "name": "securityMeasures",
-              "group": "parent",
               "label": {
                 "en": "Measures for securing the site"
               },
@@ -422,8 +338,6 @@
             {
               "inputType": "text",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
@@ -431,15 +345,11 @@
               "description": {
                 "de": "Freies Beschreibungsfeld"
               },
-              "name": "description",
-              "group": "parent"
+              "name": "description"
             },
             {
-              "visible": false,
-              "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent",
               "label": {},
               "description": {}
             }
@@ -455,9 +365,7 @@
           "fields": [
             {
               "name": "geometry",
-              "group": "position",
               "inputType": "geometry",
-              "editable": true,
               "label": {
                 "de": "Geometrie",
                 "en": "Geometry"
@@ -466,10 +374,7 @@
             },
             {
               "inputType": "input",
-              "group": "position",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location"
@@ -491,10 +396,7 @@
           "fields": [
             {
               "inputType": "dating",
-              "group": "time",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Datierung",
                 "en": "Dating"
@@ -532,9 +434,6 @@
           "name": "stem",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "stem",
               "source": "builtin",
               "label": {
                 "de": "Kategorie",
@@ -545,9 +444,6 @@
               "inputType": "input"
             },
             {
-              "editable": false,
-              "visible": false,
-              "group": "stem",
               "source": "builtin",
               "name": "id",
               "inputType": "input",
@@ -555,10 +451,7 @@
               "description": {}
             },
             {
-              "visible": false,
-              "editable": true,
               "mandatory": true,
-              "group": "stem",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -571,9 +464,6 @@
               "inputType": "input"
             },
             {
-              "visible": false,
-              "editable": true,
-              "group": "stem",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
@@ -585,10 +475,7 @@
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "staff",
-              "group": "stem",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Bildersteller/Bilderstellerin",
                 "en": "Creator"
@@ -597,16 +484,12 @@
                 "de": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
                 "en": "Creator of the image, photographer respectively draughtsman"
               },
-              "constraintIndexed": true,
               "name": "draughtsmen"
             },
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "staff",
-              "group": "stem",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor"
@@ -615,22 +498,16 @@
                 "de": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
                 "en": "Processor of the image in case of changes after the creation of the image"
               },
-              "constraintIndexed": true,
               "name": "processor"
             },
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "campaigns",
-              "allowOnlyValuesOfParent": true,
-              "group": "stem",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign"
               },
-              "constraintIndexed": true,
               "name": "campaign",
               "description": {}
             }
@@ -638,16 +515,6 @@
           "relations": [
             {
               "name": "depicts",
-              "domain": [
-                "Image"
-              ],
-              "range": [
-                "Project",
-                "Place",
-                "TypeCatalog",
-                "Type"
-              ],
-              "inverse": "isDepictedIn",
               "label": {
                 "de": "Zeigt",
                 "en": "Depicts"
@@ -665,55 +532,41 @@
           "fields": [
             {
               "inputType": "unsignedInt",
-              "editable": false,
               "source": "builtin",
-              "visible": true,
               "label": {
                 "de": "Höhe",
                 "en": "Height"
               },
               "name": "height",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "unsignedInt",
-              "editable": false,
               "source": "builtin",
-              "visible": true,
               "label": {
                 "de": "Breite",
                 "en": "Width"
               },
               "name": "width",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "input",
-              "visible": false,
-              "editable": false,
               "source": "builtin",
               "name": "originalFilename",
-              "group": "parent",
               "label": {},
               "description": {}
             },
             {
               "inputType": "input",
-              "visible": false,
-              "editable": false,
               "source": "builtin",
               "name": "georeference",
-              "group": "parent",
               "label": {},
               "description": {}
             },
             {
               "inputType": "text",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
@@ -721,28 +574,21 @@
               "description": {
                 "de": "Freies Beschreibungsfeld"
               },
-              "name": "description",
-              "group": "parent"
+              "name": "description"
             },
             {
               "inputType": "literature",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
               "name": "literature",
-              "group": "parent",
               "description": {}
             },
             {
-              "visible": false,
-              "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent",
               "label": {},
               "description": {}
             }
@@ -776,9 +622,6 @@
           "name": "stem",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "stem",
               "source": "builtin",
               "label": {
                 "de": "Kategorie",
@@ -789,9 +632,6 @@
               "inputType": "input"
             },
             {
-              "editable": false,
-              "visible": false,
-              "group": "stem",
               "source": "builtin",
               "name": "id",
               "inputType": "input",
@@ -799,9 +639,6 @@
               "description": {}
             },
             {
-              "visible": false,
-              "editable": true,
-              "group": "stem",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
@@ -814,16 +651,6 @@
           "relations": [
             {
               "name": "isDepictedIn",
-              "domain": [
-                "Project",
-                "Place",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "Image"
-              ],
-              "inverse": "depicts",
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in"
@@ -842,8 +669,6 @@
             {
               "inputType": "text",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
@@ -851,14 +676,11 @@
               "description": {
                 "de": "Freies Beschreibungsfeld"
               },
-              "name": "description",
-              "group": "parent"
+              "name": "description"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Institution",
                 "en": "Institution"
@@ -867,14 +689,11 @@
                 "de": "Für das Projekt verantwortliche Institution",
                 "en": "Institution responsible for the project"
               },
-              "name": "institution",
-              "group": "parent"
+              "name": "institution"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Leiterin/Leiter",
                 "en": "Supervisor"
@@ -883,14 +702,11 @@
                 "de": "Leitende Person des Projekts",
                 "en": "Person in charge of the project"
               },
-              "name": "projectSupervisor",
-              "group": "parent"
+              "name": "projectSupervisor"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Kontaktperson",
                 "en": "Contact person"
@@ -898,14 +714,11 @@
               "description": {
                 "de": "Kontaktperson des Projekts"
               },
-              "name": "contactPerson",
-              "group": "parent"
+              "name": "contactPerson"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Mailadresse der Kontaktperson",
                 "en": "Mail address of the contact person"
@@ -914,40 +727,31 @@
                 "de": "Mailadresse des Projekts bzw. der Kontaktperson",
                 "en": "Mail address of the project or a contact person"
               },
-              "name": "contactMail",
-              "group": "parent"
+              "name": "contactMail"
             },
             {
               "inputType": "multiInput",
               "source": "builtin",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Team",
                 "en": "Staff"
               },
               "name": "staff",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "multiInput",
               "source": "builtin",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Kampagnen",
                 "en": "Campaigns"
               },
               "name": "campaigns",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Projekt-URL",
                 "en": "Project URL"
@@ -955,14 +759,11 @@
               "description": {
                 "de": "Hinweis auf eine externe Projektseite mit weiteren Informationen"
               },
-              "name": "projectURI",
-              "group": "parent"
+              "name": "projectURI"
             },
             {
               "inputType": "input",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Projekt-Homepage",
                 "en": "Project homepage"
@@ -971,14 +772,11 @@
                 "de": "Externe Referenz(en) des Projekts",
                 "en": "External reference(s) of the project"
               },
-              "name": "externalReference",
-              "group": "parent"
+              "name": "externalReference"
             },
             {
               "inputType": "unsignedInt",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Gazetteer-ID",
                 "en": "Gazetteer ID"
@@ -986,14 +784,11 @@
               "description": {
                 "de": "ID-Nummer des Ortslexikons"
               },
-              "name": "gazId",
-              "group": "parent"
+              "name": "gazId"
             },
             {
               "inputType": "float",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Breitengrad",
                 "en": "Latitude"
@@ -1001,14 +796,11 @@
               "description": {
                 "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
               },
-              "name": "latitude",
-              "group": "parent"
+              "name": "latitude"
             },
             {
               "inputType": "float",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Längengrad",
                 "en": "Longitude"
@@ -1016,14 +808,11 @@
               "description": {
                 "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
               },
-              "name": "longitude",
-              "group": "parent"
+              "name": "longitude"
             },
             {
               "inputType": "unsignedInt",
               "source": "library",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "EPSG-Code",
                 "en": "EPSG Code"
@@ -1032,14 +821,11 @@
                 "de": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
                 "en": "Specification of the EPSG code (see http://spatialreference.org/, e. g. 3004)"
               },
-              "name": "epsgId",
-              "group": "parent"
+              "name": "epsgId"
             },
             {
               "inputType": "dropdown",
               "source": "builtin",
-              "visible": true,
-              "editable": true,
               "valuelist": {
                 "createdBy": "",
                 "creationDate": "",
@@ -1055,14 +841,11 @@
                 "en": "Coordinate reference system"
               },
               "name": "coordinateReferenceSystem",
-              "group": "parent",
               "description": {}
             },
             {
               "inputType": "input",
-              "editable": false,
               "source": "builtin",
-              "visible": true,
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -1071,15 +854,11 @@
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
               },
-              "name": "identifier",
-              "group": "parent"
+              "name": "identifier"
             },
             {
-              "visible": false,
-              "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent",
               "label": {},
               "description": {}
             }
@@ -1113,9 +892,6 @@
           "name": "stem",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "stem",
               "source": "builtin",
               "label": {
                 "de": "Kategorie",
@@ -1126,9 +902,6 @@
               "inputType": "input"
             },
             {
-              "editable": false,
-              "visible": false,
-              "group": "stem",
               "source": "builtin",
               "name": "id",
               "inputType": "input",
@@ -1136,10 +909,7 @@
               "description": {}
             },
             {
-              "visible": false,
-              "editable": true,
               "mandatory": true,
-              "group": "stem",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -1152,9 +922,6 @@
               "inputType": "input"
             },
             {
-              "visible": false,
-              "editable": true,
-              "group": "stem",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
@@ -1167,16 +934,6 @@
           "relations": [
             {
               "name": "isDepictedIn",
-              "domain": [
-                "Project",
-                "Place",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "Image"
-              ],
-              "inverse": "depicts",
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in"
@@ -1194,11 +951,7 @@
           "fields": [
             {
               "inputType": "dropdown",
-              "constraintIndexed": true,
-              "group": "identification",
               "source": "builtin",
-              "visible": true,
-              "editable": true,
               "valuelist": {
                 "createdBy": "",
                 "creationDate": "",
@@ -1253,22 +1006,16 @@
             {
               "inputType": "literature",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
               "name": "literature",
-              "group": "parent",
               "description": {}
             },
             {
-              "visible": false,
-              "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent",
               "label": {},
               "description": {}
             }
@@ -1303,9 +1050,6 @@
           "name": "stem",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "stem",
               "source": "builtin",
               "label": {
                 "de": "Kategorie",
@@ -1316,9 +1060,6 @@
               "inputType": "input"
             },
             {
-              "editable": false,
-              "visible": false,
-              "group": "stem",
               "source": "builtin",
               "name": "id",
               "inputType": "input",
@@ -1326,10 +1067,7 @@
               "description": {}
             },
             {
-              "visible": false,
-              "editable": true,
               "mandatory": true,
-              "group": "stem",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -1342,9 +1080,6 @@
               "inputType": "input"
             },
             {
-              "visible": false,
-              "editable": true,
-              "group": "stem",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
@@ -1357,16 +1092,6 @@
           "relations": [
             {
               "name": "isDepictedIn",
-              "domain": [
-                "Project",
-                "Place",
-                "TypeCatalog",
-                "Type"
-              ],
-              "range": [
-                "Image"
-              ],
-              "inverse": "depicts",
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in"
@@ -1379,13 +1104,6 @@
                 "de": "Liegt in",
                 "en": "Lies within"
               },
-              "domain": [
-                "Type"
-              ],
-              "range": [
-                "Type",
-                "TypeCatalog"
-              ],
               "description": {}
             }
           ],
@@ -1400,17 +1118,10 @@
           "relations": [
             {
               "name": "hasInstance",
-              "inverse": "isInstanceOf",
               "label": {
                 "de": "Zugeordnete Funde",
                 "en": "Associated finds"
               },
-              "domain": [
-                "Type"
-              ],
-              "range": [
-                "Find"
-              ],
               "description": {}
             }
           ],
@@ -1425,22 +1136,16 @@
             {
               "inputType": "literature",
               "source": "common",
-              "visible": true,
-              "editable": true,
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
               "name": "literature",
-              "group": "parent",
               "description": {}
             },
             {
-              "visible": false,
-              "editable": false,
               "name": "geometry",
               "inputType": "input",
-              "group": "parent",
               "label": {},
               "description": {}
             }
