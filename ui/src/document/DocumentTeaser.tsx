@@ -9,16 +9,18 @@ export default React.memo(function DocumentTeaser({ document, searchParams = '' 
 
     return (
         <Link to={ `/project/${document.project}/${document.resource.id}${searchParams}` } style={ linkStyle }>
-            <Row>
-                <Col style={ { flex: '0 0 50px' } }>
-                    <CategoryIcon size="50" category={ document.resource.category } />
+            <Row className="m-0">
+                <Col style={ { flex: '0 0 40px' } } className="pl-2">
+                    <CategoryIcon size="40" category={ document.resource.category } />
                 </Col>
                 <Col>
                     <Row>
-                        <Col><h3>{ document.resource.identifier }</h3></Col>
+                        <Col className="p-0"><h4 className="m-0">{ document.resource.identifier }</h4></Col>
                     </Row>
                     <Row>
-                        <Col>{ document.resource.shortDescription }</Col>
+                        <Col className="p-0 text-muted" style={ { fontSize: '.9rem' } }>
+                            { document.resource.shortDescription }
+                        </Col>
                     </Row>
                 </Col>
             </Row>
@@ -26,6 +28,7 @@ export default React.memo(function DocumentTeaser({ document, searchParams = '' 
     );
 
 });
+
 
 const linkStyle: CSSProperties = {
     textDecoration: 'none',
