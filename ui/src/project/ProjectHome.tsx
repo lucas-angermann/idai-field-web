@@ -40,7 +40,7 @@ export default function ProjectHome({ id, searchParams = '' }: { id: string, sea
         
         return (
             <Card onScroll={ onScroll } style={ listContainerStyle }>
-                <Card.Body style={ { padding: '.5rem 1.5rem' } }>
+                <Card.Body className="px-0 py-1">
                     <DocumentList documents={ documents } searchParams={ searchParams } />
                     { (!documents || documents.length === 0) && renderEmptyResult()}
                 </Card.Body>

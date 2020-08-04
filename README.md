@@ -15,7 +15,7 @@ Start elasticsearch and the api web service with docker:
 
 Trigger indexing:
 
-    $ curl -XPOST localhost:4000/reindex
+    $ curl -XPOST localhost:4000/api/reindex
 
 Start the web UI:
 

@@ -9,7 +9,7 @@ export default function DocumentList({ documents, searchParams = '' }
     return (
         <div>
             { documents.map((document: ResultDocument) =>
-                <div style={ documentContainerStyle } key={ document.resource.id }>
+                <div style={ documentContainerStyle } className="p-2" key={ document.resource.id }>
                     <DocumentTeaser document={ document } searchParams={ searchParams } />
                 </div>
             )}
@@ -19,6 +19,5 @@ export default function DocumentList({ documents, searchParams = '' }
 
 
 const documentContainerStyle: CSSProperties = {
-    borderBottom: '1px solid var(--main-bg-color)',
-    padding: '.7rem 0'
+    borderBottom: '1px solid var(--main-bg-color)'
 };
