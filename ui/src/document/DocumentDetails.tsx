@@ -3,13 +3,14 @@ import { Card } from 'react-bootstrap';
 import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';
+import DocumentTeaser from './DocumentTeaser';
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
     return (
         <Card style={ cardStyle }>
-            <Card.Header>
-                { renderHeader(document.resource) }
+            <Card.Header className="px-2 py-3">
+                { renderHeader(document) }
             </Card.Header>
             <Card.Body>
                 { renderGroups(document.resource) }
@@ -19,17 +20,9 @@ export default function DocumentDetails({ document }: { document: Document }): R
 }
 
 
-const renderHeader = (resource: Resource): ReactElement => (
+const renderHeader = (document: Document): ReactElement => (
     <div>
-        <h1>
-            <CategoryIcon category={ resource.category } size="40" />
-            &nbsp; { resource.identifier }
-        </h1>
-        <code>
-            <Link to={ `/document/${resource.id}` }>
-                { `https://field.dainst.org/document/${resource.id}` }
-            </Link>
-        </code>
+        <DocumentTeaser document={ document }/>
     </div>
 );
 
