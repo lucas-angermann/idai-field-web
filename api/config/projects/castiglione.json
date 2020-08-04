@@ -150,7 +150,79 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -445,7 +517,79 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -878,7 +1022,79 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -1631,7 +1847,79 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Trench",
+                    "Building",
+                    "Survey",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -1870,7 +2158,79 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Trench",
+                "Building",
+                "Survey",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -2297,7 +2657,108 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Interface",
+                "Feature"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Interface",
+                "Feature"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Interface",
+                "Feature"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -3265,7 +3726,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -4524,7 +5086,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -5865,7 +6528,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -7172,7 +7936,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -8836,7 +9701,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -10061,7 +11027,108 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Trench"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -11114,7 +12181,96 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "Survey"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "range": [
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -11377,7 +12533,96 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -11641,7 +12886,96 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "range": [
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -11949,7 +13283,94 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "Building",
+                "Survey"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "BuildingPart"
+              ],
+              "range": [
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -12120,7 +13541,75 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Room"
+              ],
+              "range": [
+                "Building"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -12598,7 +14087,122 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Interface",
+                "Feature",
+                "SurveyUnit",
+                "Excavation",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -13481,7 +15085,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -15685,7 +17404,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -17218,7 +19052,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -18789,7 +20738,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -19929,7 +21993,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -21237,7 +23416,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -22537,7 +24831,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -23933,7 +26342,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -25233,7 +27757,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -26752,7 +29391,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -27763,7 +30517,122 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Wood",
+                    "Pottery",
+                    "Bone",
+                    "Terracotta",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "Find"
+                  ],
+                  "range": [
+                    "Burial",
+                    "Architecture",
+                    "Layer",
+                    "Floor",
+                    "Grave",
+                    "Interface",
+                    "Feature",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -28672,7 +31541,101 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -29107,7 +32070,109 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Sample"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Sample"
+              ],
+              "range": [
+                "Burial",
+                "Architecture",
+                "Layer",
+                "Floor",
+                "Grave",
+                "Interface",
+                "Feature",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Wood",
+                "Pottery",
+                "Bone",
+                "Terracotta",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -29454,7 +32519,61 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "depicts",
+              "domain": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "range": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "inverse": "isDepictedIn",
+              "label": {
+                "de": "Zeigt",
+                "en": "Depicts"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -29678,7 +32797,61 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "depicts",
+                  "domain": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "range": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "inverse": "isDepictedIn",
+                  "label": {
+                    "de": "Zeigt",
+                    "en": "Depicts"
+                  },
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -30040,7 +33213,61 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "depicts",
+                  "domain": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "range": [
+                    "Operation",
+                    "Area",
+                    "Feature",
+                    "Find",
+                    "RoomCeiling",
+                    "RoomFloor",
+                    "RoomWall",
+                    "Trench",
+                    "Glass",
+                    "Mollusk",
+                    "Brick",
+                    "Project",
+                    "Burial",
+                    "Building",
+                    "Wood",
+                    "Architecture",
+                    "Place",
+                    "Layer",
+                    "Floor",
+                    "Inscription",
+                    "Pottery",
+                    "Grave",
+                    "Bone",
+                    "Room",
+                    "Terracotta",
+                    "Survey",
+                    "Stone",
+                    "Coin",
+                    "PlasterFragment",
+                    "Metal",
+                    "BuildingPart",
+                    "SurveyUnit",
+                    "Excavation",
+                    "Sample",
+                    "TypeCatalog",
+                    "Type",
+                    "Interface"
+                  ],
+                  "inverse": "isDepictedIn",
+                  "label": {
+                    "de": "Zeigt",
+                    "en": "Depicts"
+                  },
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -30267,7 +33494,90 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Building"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "RoomCeiling"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -30600,7 +33910,90 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Building"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "RoomFloor"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -30933,7 +34326,90 @@
               "name": "diary"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Building"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "RoomWall"
+              ],
+              "range": [
+                "Room"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -31182,7 +34658,61 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -31516,7 +35046,61 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -31687,7 +35271,76 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Area",
+                "Feature",
+                "Find",
+                "RoomCeiling",
+                "RoomFloor",
+                "RoomWall",
+                "Trench",
+                "Glass",
+                "Mollusk",
+                "Brick",
+                "Project",
+                "Burial",
+                "Building",
+                "Wood",
+                "Architecture",
+                "Place",
+                "Layer",
+                "Floor",
+                "Inscription",
+                "Pottery",
+                "Grave",
+                "Bone",
+                "Room",
+                "Terracotta",
+                "Survey",
+                "Stone",
+                "Coin",
+                "PlasterFragment",
+                "Metal",
+                "BuildingPart",
+                "SurveyUnit",
+                "Excavation",
+                "Sample",
+                "TypeCatalog",
+                "Type",
+                "Interface"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"

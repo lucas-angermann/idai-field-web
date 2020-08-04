@@ -29,7 +29,7 @@ defmodule Core.Layout do
           label: config_item.label,
           description: config_item.description,
           targets: targets
-          }]
+        }]
     end
   end
 

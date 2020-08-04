@@ -150,7 +150,62 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Trench",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -445,7 +500,62 @@
                   "name": "endDate"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Trench",
+                    "Operation",
+                    "Place"
+                  ],
+                  "range": [
+                    "Place"
+                  ],
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -796,7 +906,62 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Trench",
+                "Operation",
+                "Place"
+              ],
+              "range": [
+                "Place"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -1223,7 +1388,75 @@
               "name": "endDate"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Feature"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Feature"
+              ],
+              "range": [
+                "Feature"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -1916,7 +2149,103 @@
               "name": "date"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "range": [
+                "Trench",
+                "Survey"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "range": [
+                "Feature",
+                "Area"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -2751,7 +3080,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -5076,7 +5501,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -6690,7 +7211,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -7561,7 +8178,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -8600,7 +9313,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -9769,7 +10578,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -10842,7 +11747,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -11868,7 +12869,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -12865,7 +13962,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -13864,7 +15057,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -14866,7 +16155,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -15806,7 +17191,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -17092,7 +18573,103 @@
                   "name": "date"
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "isDepictedIn",
+                  "domain": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "range": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "inverse": "depicts",
+                  "label": {
+                    "de": "Wird gezeigt in",
+                    "en": "Depicted in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "isRecordedIn",
+                  "label": {
+                    "de": "Aufgenommen in Maßnahme",
+                    "en": "Recorded in operation"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Trench",
+                    "Survey"
+                  ],
+                  "description": {}
+                },
+                {
+                  "name": "liesWithin",
+                  "label": {
+                    "de": "Liegt in",
+                    "en": "Lies within"
+                  },
+                  "domain": [
+                    "Pottery",
+                    "Terracotta",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk",
+                    "Find"
+                  ],
+                  "range": [
+                    "Feature",
+                    "Area"
+                  ],
+                  "sameMainCategoryResource": true,
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -18177,7 +19754,88 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "isRecordedIn",
+              "label": {
+                "de": "Aufgenommen in Maßnahme",
+                "en": "Recorded in operation"
+              },
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Trench"
+              ],
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Inscription"
+              ],
+              "range": [
+                "Pottery",
+                "Terracotta",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk",
+                "Find"
+              ],
+              "sameMainCategoryResource": true,
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -18644,7 +20302,46 @@
               "description": {}
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "depicts",
+              "domain": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "range": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "inverse": "isDepictedIn",
+              "label": {
+                "de": "Zeigt",
+                "en": "Depicts"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -18868,7 +20565,46 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "depicts",
+                  "domain": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "range": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "inverse": "isDepictedIn",
+                  "label": {
+                    "de": "Zeigt",
+                    "en": "Depicts"
+                  },
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -19230,7 +20966,46 @@
                   "description": {}
                 }
               ],
-              "relations": [],
+              "relations": [
+                {
+                  "name": "depicts",
+                  "domain": [
+                    "Drawing",
+                    "Photo",
+                    "Image"
+                  ],
+                  "range": [
+                    "Operation",
+                    "Find",
+                    "Trench",
+                    "Project",
+                    "Place",
+                    "Feature",
+                    "Inscription",
+                    "Pottery",
+                    "Terracotta",
+                    "TypeCatalog",
+                    "Type",
+                    "KnappingWasteProduct",
+                    "KnappedCore",
+                    "FragmentOfDrill",
+                    "FragmentOfCuttingtool",
+                    "FragmentOfHammertool",
+                    "FragmentOfChopper",
+                    "FragmentofCoating",
+                    "RawMaterial",
+                    "FragmentofStonevessel",
+                    "FragmentOfBead",
+                    "Mollusk"
+                  ],
+                  "inverse": "isDepictedIn",
+                  "label": {
+                    "de": "Zeigt",
+                    "en": "Depicts"
+                  },
+                  "description": {}
+                }
+              ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core"
@@ -19389,7 +21164,46 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -19723,7 +21537,46 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
@@ -19894,7 +21747,61 @@
               "inputType": "input"
             }
           ],
-          "relations": [],
+          "relations": [
+            {
+              "name": "isDepictedIn",
+              "domain": [
+                "Operation",
+                "Find",
+                "Trench",
+                "Project",
+                "Place",
+                "Feature",
+                "Inscription",
+                "Pottery",
+                "Terracotta",
+                "TypeCatalog",
+                "Type",
+                "KnappingWasteProduct",
+                "KnappedCore",
+                "FragmentOfDrill",
+                "FragmentOfCuttingtool",
+                "FragmentOfHammertool",
+                "FragmentOfChopper",
+                "FragmentofCoating",
+                "RawMaterial",
+                "FragmentofStonevessel",
+                "FragmentOfBead",
+                "Mollusk"
+              ],
+              "range": [
+                "Drawing",
+                "Photo",
+                "Image"
+              ],
+              "inverse": "depicts",
+              "label": {
+                "de": "Wird gezeigt in",
+                "en": "Depicted in"
+              },
+              "description": {}
+            },
+            {
+              "name": "liesWithin",
+              "label": {
+                "de": "Liegt in",
+                "en": "Lies within"
+              },
+              "domain": [
+                "Type"
+              ],
+              "range": [
+                "Type",
+                "TypeCatalog"
+              ],
+              "description": {}
+            }
+          ],
           "label": {
             "de": "Stammdaten",
             "en": "Core"
