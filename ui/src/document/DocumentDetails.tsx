@@ -112,5 +112,6 @@ const renderDocumentLink = (id: string): ReactNode => <li key={ id }><Link to={ 
 
 const cardStyle: CSSProperties = {
     overflow: 'auto',
-    flexGrow: 1
+    flexGrow: 1,
+    flexShrink: 1
 };
