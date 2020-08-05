@@ -12,6 +12,26 @@ defmodule MapperTest do
     assert resource[:type] == nil
     assert resource.category == "abc"
   end
+
+  test "convert Project category document" do
+    change = %{ id: "?", doc: %{ resource: %{
+      type: "Project",
+      identifier: "Proj-A",
+      id: "id-A"
+    }}}
+    %{id: change_id, doc: %{ resource: resource }} = Mapper.process change
+    
+    assert resource.category == "Project"
+    assert resource.id == "Proj-A"
+    assert change_id == "Proj-A"
+  end
+
+  test "leave deletion unchanged" do
+    change = %{ deleted: true }
+    result = Mapper.process change
+  
+    assert result == %{ deleted: true }
+  end
   
   test "convert old style period field - period is string" do
     change = %{ doc: %{ resource: %{
