@@ -9,7 +9,6 @@ config :api,
   couchdb_user: "",
   couchdb_password: "",
   gazetteer_url: "https://gazetteer.dainst.org",
-  config_dir: "config/projects",
   couchdb_databases: ["db1", "db2", "db3"],
   locales: ["de", "en"],
   default_filters: [

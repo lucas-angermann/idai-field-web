@@ -1,7 +1,6 @@
 import Config
 
 config :api,
-  config_dir: "test/resources",
   couchdb_databases: ["a", "b"],
 
   default_filters: [

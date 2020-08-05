@@ -7,7 +7,22 @@ defmodule Api.Application do
 
     Logger.info "Starting iDAI.field backend #{inspect Mix.env()}"
 
-    children = [Api.Router, Core.ProjectConfigLoader]
+    children = [
+      Api.Router,
+      %{
+        id: Core.ProjectConfigLoader,
+        start: {
+          Core.ProjectConfigLoader,
+          :start_link,
+          [
+            {
+              if Mix.env() == :test do "test/resources" else "resources/projects" end,
+              Core.Config.get(:couchdb_databases)
+            }
+          ]
+        }
+      }
+    ]
     opts = [strategy: :one_for_one, name: Api.Supervisor]
     Supervisor.start_link(children, opts)
   end

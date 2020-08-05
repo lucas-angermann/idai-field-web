@@ -26,6 +26,7 @@ services:
       - "4000:4000"
     volumes:
       - "./api/config:/opt/src/api/config"
+      - "./api/resources:/opt/src/api/resources"
       - "./api/lib:/opt/src/api/lib"
       - "./api/test:/opt/src/api/test"
       - "./api/_build:/opt/src/api/_build"
