@@ -43,10 +43,4 @@ defmodule Api.Documents.Router do
     end
   end
 
-  defp get_readable_projects conn do
-    (conn
-     |> get_req_header("authorization")
-     |> List.first
-     |> Api.Auth.Router.get_user_for_bearer).readable_projects
-  end
 end
