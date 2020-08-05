@@ -31,6 +31,18 @@ defmodule Api.RouterUtils do
     |> send_resp(401, Poison.encode!(%{error: :unauthorized}))
   end
 
+  def send_error(conn, message) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(500, Poison.encode!(%{error: message}))
+  end
+
+  def send_not_found(conn) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(404, Poison.encode!(%{error: :not_found}))
+  end
+
   def access_for_project_allowed readable_projects, project do
     if project in readable_projects, do: :ok, else: :unauthorized_access
   end

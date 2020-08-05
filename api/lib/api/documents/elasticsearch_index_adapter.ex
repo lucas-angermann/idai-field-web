@@ -1,7 +1,5 @@
 defmodule Api.Documents.ElasticsearchIndexAdapter do
   require Logger
-  alias Api.Documents.Mapping
-  alias Api.Documents.Query
 
   defp get_base_url do
     "#{Core.Config.get(:elasticsearch_url)}/#{Core.Config.get(:elasticsearch_index_prefix)}_*"

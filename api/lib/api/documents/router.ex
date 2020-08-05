@@ -31,22 +31,17 @@ defmodule Api.Documents.Router do
   end
 
   get "/:id" do
-    with doc <- Index.get(id),
-         :ok <- access_for_project_allowed(conn.private[:readable_projects], doc.project),
-         config <- Core.ProjectConfigLoader.get(doc.project),
-         layouted_doc <- put_in(doc.resource, to_layouted_resource(config, doc.resource))
+    with doc = %{ project: project, resource: resource } <- Index.get(id),
+         :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
+         config <- Core.ProjectConfigLoader.get(project),
+         layouted_doc <- put_in(doc.resource, to_layouted_resource(config, resource))
     do
       send_json(conn, layouted_doc)
     else
+      nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
       _ -> IO.puts "other error"
     end
   end
 
-  defp get_readable_projects conn do
-    (conn
-     |> get_req_header("authorization")
-     |> List.first
-     |> Api.Auth.Router.get_user_for_bearer).readable_projects
-  end
 end

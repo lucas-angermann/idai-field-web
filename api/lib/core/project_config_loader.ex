@@ -3,7 +3,10 @@ defmodule Core.ProjectConfigLoader do
   use Agent
 
   def start_link({project_config_dir_name, database_names}) do
-    configs = for database <- database_names, into: %{} do
+    
+    databases = database_names || Core.Config.get(:couchdb_databases)
+    
+    configs = for database <- databases, into: %{} do
       {
         database,
         load(project_config_dir_name, database)
