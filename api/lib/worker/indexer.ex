@@ -24,7 +24,7 @@ defmodule Indexer do
   end
 
   def update_mapping_template() do
-    with {:ok, body} <- File.read("config/elasticsearch-mapping.json"),
+    with {:ok, body} <- File.read("resources/elasticsearch-mapping.json"),
          {:ok, _} <- HTTPoison.put(get_template_url(), body, [{"Content-Type", "application/json"}])
     do
       Logger.info "Succesfully updated index mapping template"
