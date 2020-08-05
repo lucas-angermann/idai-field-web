@@ -4,10 +4,11 @@ defmodule Api.RouterTest do
 
   @opts Api.Router.init([])
   
-  @auth_path "/auth"
+  @api_path "/api"
+  @auth_path @api_path <> "/auth"
   @auth_show_path @auth_path <> "/show"
   @auth_sign_in_path @auth_path <> "/sign_in"
-  @documents_path "/documents"
+  @documents_path @api_path <> "/documents"
   @map_path @documents_path <> "/map"
   
   @user1 {"user-1", "pass-1"}
