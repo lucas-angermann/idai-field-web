@@ -13,7 +13,36 @@ defmodule MapperTest do
     assert resource.category == "abc"
   end
   
-  test "convert old style period fields" do
+  test "convert old style period field - period is string" do
+    change = %{ doc: %{ resource: %{
+      type: "abc",
+      period: "start"
+    }}}
+    %{ doc: %{ resource: _resource }} = Mapper.process change
+
+    # todo implement and add assertion
+  end
+
+  test "convert old style period field - period and periodEnd as strings" do
+    change = %{ doc: %{ resource: %{
+      type: "abc",
+      period: "start",
+      periodEnd: "end"
+    }}}
+    %{ doc: %{ resource: _resource }} = Mapper.process change
+  
+    # todo implement and add assertion
+  end
+
+  test "new style period field - leave unchanged" do
+    change = %{ doc: %{ resource: %{
+      type: "abc",
+      period: %{
+        # todo put something here
+      }
+    }}}
+    %{ doc: %{ resource: _resource }} = Mapper.process change
+  
     # todo implement and add assertion
   end
 end
