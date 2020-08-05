@@ -38,9 +38,9 @@ defmodule MapperTest do
       type: "abc",
       period: "start"
     }}}
-    %{ doc: %{ resource: _resource }} = Mapper.process change
+    %{ doc: %{ resource: resource }} = Mapper.process change
 
-    # todo implement and add assertion
+    assert resource.period == %{ value: "start" }
   end
 
   test "convert old style period field - period and periodEnd as strings" do
