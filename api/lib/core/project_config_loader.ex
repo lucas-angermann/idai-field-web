@@ -2,7 +2,7 @@ defmodule Core.ProjectConfigLoader do
   require Logger
   use Agent
 
-  def start_link(params = {config_dir_name, database_names}) do
+  def start_link({config_dir_name, database_names}) do
 
     databases = database_names || Core.Config.get(:couchdb_databases)
 
