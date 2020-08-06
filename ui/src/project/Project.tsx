@@ -1,8 +1,7 @@
-import React, { useState, useEffect, CSSProperties, useContext, ReactElement } from 'react';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode } from 'react';
+import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
-import DocumentInfo from './DocumentInfo';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
 import { Spinner, Card } from 'react-bootstrap';
@@ -15,6 +14,9 @@ import SearchBar from './SearchBar';
 import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from './Filters';
+import { mdiArrowLeftCircle } from '@mdi/js';
+import DocumentDetails from '../document/DocumentDetails';
+import Icon from '@mdi/react';
 
 
 const MAX_SIZE = 10000;
@@ -31,6 +33,7 @@ export default function Project(): ReactElement {
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [total, setTotal] = useState<number>();
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -55,6 +58,7 @@ export default function Project(): ReactElement {
 
         searchDocuments(projectId, location.search, 0, loginData.token).then(result => {
             setDocuments(result.documents);
+            setTotal(result.size);
         });
     }, [projectId, location.search, loginData]);
 
@@ -81,8 +85,9 @@ export default function Project(): ReactElement {
             }
             <SearchBar projectId={ projectId } />
             <Filters filters={ filters } searchParams={ location.search } />
+            { renderTotal(total, document, projectId, location.search) }
             { document
-                ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
+                ? <DocumentDetails document={ document } />
                 : <ProjectHome
                     id={ projectId }
                     searchParams={ location.search }
@@ -104,6 +109,26 @@ export default function Project(): ReactElement {
     </>;
 
 }
+
+
+const renderTotal = (total: number, document: Document, projectId: string, searchParams): ReactNode => {
+
+    if (!total) return null;
+
+    const content = <span>Insgesamt <b>{ total.toLocaleString('de-DE') }</b> Ressourcen</span>;
+    return (
+        <Card>
+            <Card.Body>
+                { document
+                    ? <Link to={ `/project/${projectId}${searchParams}`}>
+                        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { content }
+                      </Link>
+                    : content
+                }
+            </Card.Body>
+        </Card>
+    );
+};
 
 
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
