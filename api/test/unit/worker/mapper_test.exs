@@ -35,36 +35,36 @@ defmodule MapperTest do
   
   test "convert old style period field - period is string" do
     change = %{ doc: %{ resource: %{
-      type: "abc",
-      period: "start"
+      :type => "abc",
+      "period" => "start"
     }}}
     %{ doc: %{ resource: resource }} = Mapper.process change
 
-    assert resource.period == %{ value: "start" }
+    assert resource["period"] == %{ "value" => "start" }
   end
 
   test "convert old style period field - period and periodEnd as strings" do
     change = %{ doc: %{ resource: %{
-      type: "abc",
-      period: "start",
-      periodEnd: "end"
+      :type => "abc",
+      "period" => "start",
+      "periodEnd" => "end"
     }}}
     %{ doc: %{ resource: resource }} = Mapper.process change
 
-    assert resource[:periodEnd] == nil
-    assert resource.period == %{ value: "start", endValue: "end" }
+    assert resource["periodEnd"] == nil
+    assert resource["period"] == %{ "value" => "start", "endValue" => "end" }
   end
 
   test "new style period field - leave unchanged" do
     change = %{ doc: %{ resource: %{
-      type: "abc",
-      period: %{
-        value: "start",
-        endValue: "end"
+      :type => "abc",
+      "period" => %{
+        "value" => "start",
+        "endValue" => "end"
       }
     }}}
     %{ doc: %{ resource: resource }} = Mapper.process change
 
-    assert resource.period == %{ value: "start", endValue: "end" }
+    assert resource["period"] == %{ "value" => "start", "endValue" => "end" }
   end
 end

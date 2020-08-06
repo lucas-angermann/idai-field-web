@@ -21,18 +21,18 @@ defmodule Mapper do
   end
   
   defp convert_period(change = %{ doc: %{ resource: resource }}) do
-    if resource[:period] == nil or is_map(resource[:period]) do
+    if resource["period"] == nil or is_map(resource["period"]) do
       change
     else
       {_, change} =
         change
-        |> put_in([:doc, :resource, :period],
-             if resource[:periodEnd] == nil do
-               %{ value: resource.period }
+        |> put_in([:doc, :resource, "period"],
+             if resource["periodEnd"] == nil do
+               %{ "value" => resource["period"] }
              else
-               %{ value: resource.period, endValue: resource.periodEnd }
+               %{ "value" => resource["period"], "endValue" => resource["periodEnd"] }
              end)
-        |> pop_in([:doc, :resource, :periodEnd])
+        |> pop_in([:doc, :resource, "periodEnd"])
       change
     end
   end
