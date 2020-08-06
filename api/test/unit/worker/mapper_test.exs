@@ -49,20 +49,22 @@ defmodule MapperTest do
       period: "start",
       periodEnd: "end"
     }}}
-    %{ doc: %{ resource: _resource }} = Mapper.process change
-  
-    # todo implement and add assertion
+    %{ doc: %{ resource: resource }} = Mapper.process change
+
+    assert resource[:periodEnd] == nil
+    assert resource.period == %{ value: "start", endValue: "end" }
   end
 
   test "new style period field - leave unchanged" do
     change = %{ doc: %{ resource: %{
       type: "abc",
       period: %{
-        # todo put something here
+        value: "start",
+        endValue: "end"
       }
     }}}
-    %{ doc: %{ resource: _resource }} = Mapper.process change
-  
-    # todo implement and add assertion
+    %{ doc: %{ resource: resource }} = Mapper.process change
+
+    assert resource.period == %{ value: "start", endValue: "end" }
   end
 end
