@@ -30,6 +30,7 @@ services:
       - "./api/lib:/opt/src/api/lib"
       - "./api/test:/opt/src/api/test"
       - "./api/_build:/opt/src/api/_build"
+      - "./api/images:/opt/src/api/images" # symlink to bcloud03/idaiworld-scans/idaifield
 
   ui:
     image: "dainst/idai-field-web-ui"
