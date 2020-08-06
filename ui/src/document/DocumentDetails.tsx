@@ -30,8 +30,15 @@ const renderHeader = (document: Document): ReactElement => (
 const renderImages = (images: string[]): ReactNode => images?.map(renderImage);
 
 
-const renderImage = (image: string): ReactNode =>
-    <img src={ `/api/images/${image}` } className="img-fluid" alt={ image } />;
+const renderImage = (image: string): ReactNode => {
+
+    const imgUrl =  `/api/images/${image}`;
+    return (
+        <a href={ imgUrl } target="_blank">
+            <img src={ imgUrl } className="img-fluid" alt={ image } />
+        </a>
+    );
+};
 
 
 const renderGroups = (resource: Resource): ReactNode => {
