@@ -1,4 +1,5 @@
 import { Geometry } from 'geojson';
+import Document from '../document/Document';
 
 export interface Document {
     created: ChangeEvent;
@@ -50,4 +51,10 @@ export interface Relation {
     label: I18nString;
     name: string;
     targets: string[];
+}
+
+export function getImages(document: Document): string[] {
+
+    return document.resource.groups.find((group: FieldGroup) => group.name === 'stem')
+        .relations.find((rel: Relation) => rel.name === 'isDepictedIn')?.targets;
 }

@@ -1,8 +1,7 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
-import CategoryIcon from './CategoryIcon';
 import { Link } from 'react-router-dom';
-import { Document, Resource, FieldGroup, Field, Relation } from '../api/document';
+import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
@@ -13,6 +12,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
                 { renderHeader(document) }
             </Card.Header>
             <Card.Body>
+                { renderImages(getImages(document))}
                 { renderGroups(document.resource) }
             </Card.Body>
         </Card>
@@ -25,6 +25,13 @@ const renderHeader = (document: Document): ReactElement => (
         <DocumentTeaser document={ document }/>
     </div>
 );
+
+
+const renderImages = (images: string[]): ReactNode => images?.map(renderImage);
+
+
+const renderImage = (image: string): ReactNode =>
+    <img src={ `/api/images/${image}` } className="img-fluid" alt={ image } />;
 
 
 const renderGroups = (resource: Resource): ReactNode => {
