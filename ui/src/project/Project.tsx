@@ -18,6 +18,7 @@ import Filters from './Filters';
 
 
 const MAX_SIZE = 10000;
+export const CHUNK_SIZE = 50;
 
 
 export default function Project(): ReactElement {
@@ -30,6 +31,7 @@ export default function Project(): ReactElement {
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -51,13 +53,26 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        searchDocuments(projectId, location.search, 0, loginData.token).then(result => {
+            setDocuments(result.documents);
+        });
+    }, [projectId, location.search, loginData]);
+
+    useEffect(() => {
+
         setLoading(true);
         searchMapDocuments(projectId, location.search, loginData.token)
             .then(result => {
-                setDocuments(result.documents);
+                setMapDocuments(result.documents);
                 setLoading(false);
             });
     }, [projectId, location.search, loginData]);
+
+    const getChunk = (offset: number): void => {
+        searchDocuments(projectId, location.search, offset, loginData.token).then(result => {
+            setDocuments(documents.concat(result.documents));
+        });
+    };
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
@@ -68,7 +83,11 @@ export default function Project(): ReactElement {
             <Filters filters={ filters } searchParams={ location.search } />
             { document
                 ? <DocumentInfo projectId={ projectId } searchParams={ location.search } document={ document } />
-                : <ProjectHome id={ projectId } searchParams={ location.search } />
+                : <ProjectHome
+                    id={ projectId }
+                    searchParams={ location.search }
+                    documents={ documents }
+                    getChunk={ getChunk }/>
             }
         </div>
         <div key="results">
@@ -78,7 +97,7 @@ export default function Project(): ReactElement {
                   </div>
                 : <ProjectMap
                     document={ document }
-                    documents={ documents }
+                    documents={ mapDocuments }
                     onDocumentClick={ onDocumentClick(history, location.search) }/>
             }
         </div>
@@ -90,6 +109,13 @@ export default function Project(): ReactElement {
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
+    return search(query, token);
+};
+
+
+const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
+
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE));
     return search(query, token);
 };
 

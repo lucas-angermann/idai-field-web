@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
-import Image from '../image/Image';
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
