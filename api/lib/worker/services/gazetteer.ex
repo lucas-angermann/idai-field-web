@@ -1,4 +1,4 @@
-defmodule Gazetteer do
+defmodule Services.Gazetteer do
   require Logger
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300

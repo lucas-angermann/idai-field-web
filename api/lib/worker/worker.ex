@@ -1,5 +1,6 @@
 defmodule Worker do
   require Logger
+  alias Enricher.Enricher
 
   def process do
 
