@@ -25,10 +25,6 @@ Start the web UI:
 
 Visit `http://localhost:3000`.
 
-In order to be able to see images you can set `image_dir` in the config
-file to a mounted volume that holds the image folders for the specific
-projects.
-
 ## Test Data
 
 To set up test data, and provide them via elasticsearch, do:
@@ -38,6 +34,24 @@ To set up test data, and provide them via elasticsearch, do:
     $ ./put-test-data.sh
 
 Test via `http://localhost:9200/idai-field/_search`.
+
+## Images
+
+In order to be able to see images you can override the images volume by creating
+a `docker-compose.override.yml` that contains the the volume definition. This
+file gets automatically picked up by `docker-compose` and will not be published
+to the repository.
+
+Example:
+
+    version: "3.7"
+
+    services:
+
+    api:
+        volumes:
+        - "/Volumes/bcloud03/idaiworld-scans/idaifield:/opt/src/api/images"
+
 
 ## API
 
