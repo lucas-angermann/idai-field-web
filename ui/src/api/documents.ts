@@ -1,6 +1,7 @@
 import { Query, buildBackendGetParams } from './query';
 import { Result } from './result';
 import { Document } from './document';
+import { getHeaders } from './utils';
 
 
 export const get = async (id: string, token: string): Promise<Document> => {
@@ -24,10 +25,4 @@ export const mapSearch = async (query: Query, token: string): Promise<Result> =>
     const uri = `/api/documents/map?${buildBackendGetParams(query)}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
-};
-
-
-const getHeaders = (token: string) => {
-    if (token) return { 'Authorization': `Bearer ${token}`};
-    else return { };
 };
