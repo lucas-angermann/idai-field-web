@@ -3,18 +3,19 @@ defmodule Api.RouterTest do
   use Plug.Test
 
   @opts Api.Router.init([])
-  
+
   @api_path "/api"
   @auth_path @api_path <> "/auth"
   @auth_show_path @auth_path <> "/show"
   @auth_sign_in_path @auth_path <> "/sign_in"
   @documents_path @api_path <> "/documents"
   @map_path @documents_path <> "/map"
-  
+  @image_path @api_path <> "/images"
+
   @user1 {"user-1", "pass-1"}
   @user2 {"user-2", "pass-2"}
   @user3 {"user-3", "pass-3"}
-  
+
   setup context do
     conn = conn(:get, context[:path])
     conn = Api.Router.call((if login_info = context[:login] do
@@ -23,7 +24,12 @@ defmodule Api.RouterTest do
     else
       conn
     end), @opts)
-    [conn: conn, body: Core.Utils.atomize(Poison.decode!(conn.resp_body))]
+    body = if Enum.member?(conn.resp_headers, {"content-type", "application/json; charset=utf-8"}) do
+      Core.Utils.atomize(Poison.decode!(conn.resp_body))
+    else
+      conn.resp_body
+    end
+    [conn: conn, body: body]
   end
 
   @tag path: @auth_show_path
@@ -42,7 +48,7 @@ defmodule Api.RouterTest do
   test "show rights - user-3", context do
     assert context.body.rights.readable_projects == ["a", "b"]
   end
-  
+
   @tag path: @documents_path <> "/doc-of-proj-a"
   test "get document", context do
     assert context.conn.state == :sent
@@ -88,6 +94,32 @@ defmodule Api.RouterTest do
     assert length(context.body.documents) == 2
     assert List.first(context.body.documents).project == "a"
     assert List.last(context.body.documents).project == "b"
+  end
+
+  @tag path: @image_path <> "/doc-of-proj-a"
+  test "get image", context do
+    assert context.conn.state == :sent
+    assert context.conn.status == 200
+  end
+
+  @tag path: @image_path <> "/doc-of-proj-b"
+  test "image not authorized", context do
+    assert context.conn.state == :sent
+    assert context.conn.status == 401
+    assert context.body.error == "unauthorized"
+  end
+
+  @tag path: @image_path <> "/doc-of-proj-b", login: @user1
+  test "image authorized", context do
+    assert context.conn.state == :sent
+    assert context.conn.status == 200
+  end
+
+  @tag path: @image_path <> "/doc-of-proj-c"
+  test "image not found", context do
+    assert context.conn.state == :sent
+    assert context.conn.status == 404
+    assert context.body.error == "not_found"
   end
 
   defp sign_in name, pass do

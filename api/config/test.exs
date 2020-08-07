@@ -2,6 +2,7 @@ import Config
 
 config :api,
   couchdb_databases: ["a", "b"],
+  image_dir: "test/resources/images",
 
   default_filters: [
     %{
