@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
+import { ResultDocument } from '../api/result';
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
@@ -28,14 +29,14 @@ const renderHeader = (document: Document): ReactElement => (
 );
 
 
-const renderImages = (images: string[]): ReactNode => images?.map(renderImage);
+const renderImages = (images: ResultDocument[]): ReactNode => images?.map(renderImage);
 
 
-const renderImage = (id: string): ReactNode => {
+const renderImage = (imageDoc: ResultDocument): ReactNode => {
 
     return (
-        <Link to={ `/image/${id}` } key={ `image-${id}` } className="d-block mb-2">
-            <Image id={ id } />
+        <Link to={ `/image/${imageDoc.resource.id}` } key={ imageDoc.resource.id } className="d-block mb-2">
+            <Image id={ imageDoc.resource.id } />
         </Link>
     );
 };
@@ -78,7 +79,7 @@ const renderRelationList = (relations: Relation[]): ReactNode => {
             <dt key={ `${relation.name}_dt`}>{ relation.label.de }</dt>,
             <dd key={ `${relation.name}_dd`}>
                 <ul>
-                    { relation.targets.map(id => renderDocumentLink(id)) }
+                    { relation.targets.map(doc => renderDocumentLink(doc)) }
                 </ul>
             </dd>
         ]);
@@ -114,7 +115,12 @@ const renderFieldValueObject = (object: any): ReactNode => {
 const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (id: string): ReactNode => <li key={ id }><Link to={ `/document/${id}` }>{ id }</Link></li>;
+const renderDocumentLink = (doc: ResultDocument): ReactNode => {
+
+    console.log(doc);
+    return  <li key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
+};
+   
 
 
 const cardStyle: CSSProperties = {

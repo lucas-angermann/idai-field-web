@@ -1,5 +1,6 @@
 import { Geometry } from 'geojson';
 import Document from '../document/Document';
+import { ResultDocument } from './result';
 
 export interface Document {
     created: ChangeEvent;
@@ -50,10 +51,10 @@ export interface Relation {
     description: I18nString;
     label: I18nString;
     name: string;
-    targets: string[];
+    targets: ResultDocument[];
 }
 
-export function getImages(document: Document): string[] {
+export function getImages(document: Document): ResultDocument[] {
 
     return document.resource.groups.find((group: FieldGroup) => group.name === 'stem')
         .relations.find((rel: Relation) => rel.name === 'isDepictedIn')?.targets;
