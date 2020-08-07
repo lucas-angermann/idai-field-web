@@ -6,7 +6,6 @@ import Image from './Image';
 export default function ImageView() {
 
     const { id } = useParams();
-    console.log(id);
     
     return (
         <div style={ containerStyle }>
