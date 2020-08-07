@@ -19,8 +19,17 @@ defmodule Enricher.Relations do
     doc = get_doc_from_couchdb(targetId, project)
     case doc do
       nil -> %{ resource: %{ id: targetId, deleted: true }}
-      _ -> %{ resource: Map.take(doc.resource, @result_document_properties) }
+      _ -> map_resource(doc.resource, project)
     end
+  end
+
+  defp map_resource(resource, project) do
+    result = %{ resource: Map.take(resource, @result_document_properties), project: project }
+    result = if Map.has_key?(result.resource, :type) do
+      {category, result} = pop_in(result.resource[:type])
+      put_in(result, [:resource, :category], category)
+    end
+    result
   end
 
   defp get_doc_from_couchdb(id, db) do
