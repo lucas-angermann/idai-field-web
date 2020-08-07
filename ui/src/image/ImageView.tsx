@@ -9,7 +9,7 @@ export default function ImageView() {
     
     return (
         <div style={ containerStyle }>
-            <Image id={ id } style={ imageStyle } />
+            <Image id={ id } />
         </div>
     );
 }
@@ -20,11 +20,4 @@ const containerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
-};
-
-const imageStyle: CSSProperties = {
-    display: 'block',
-    maxHeight: `100%`,
-    maxWidth: '100%',
-    margin: 'auto'
 };
