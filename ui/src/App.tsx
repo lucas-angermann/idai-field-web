@@ -8,7 +8,7 @@ import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
 import Navbar from './Navbar';
 import LoginForm from './LoginForm';
-import Image from './image/Image';
+import ImageView from './image/ImageView';
 import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './login';
 
 
@@ -43,7 +43,7 @@ export default function App(): ReactElement {
                             <LoginForm onLogin={ setLoginData } />
                         </Route>
 
-                        <Route path="/image/:id" component={ Image } />
+                        <Route path="/image/:id" component={ ImageView } />
 
                         <Route path="/" component={ ProjectOverview } />
 
