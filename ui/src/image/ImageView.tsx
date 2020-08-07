@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
 import { NAVBAR_HEIGHT } from '../constants';
 
-export default function Image() {
+export default function ImageView() {
 
     const { id } = useParams();
     
