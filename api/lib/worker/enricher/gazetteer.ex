@@ -1,12 +1,13 @@
 defmodule Enricher.Gazetteer do
   alias Services.Gazetteer
 
-  def add_coordinates_from_gazetteer(change = %{ doc: %{ resource: %{ gazId: gazId, category: "Project" }}}) do
+  def add_coordinates(change = %{ doc: %{ resource: %{ gazId: gazId, category: "Project" }}}) do
       coordinates = get_coordinates_from_gazetteer(gazId)
       add_geometry(change, coordinates)
   end
-  def add_coordinates_from_gazetteer(change), do: change
-  def get_coordinates_from_gazetteer(gazetteer_id) do
+  def add_coordinates(change), do: change
+
+  defp get_coordinates_from_gazetteer(gazetteer_id) do
       Gazetteer.get_place(gazetteer_id)
       |> get_coordinates_from_place
   end
