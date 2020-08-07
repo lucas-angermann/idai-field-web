@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
+import Image from '../image/Image';
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
@@ -34,7 +35,7 @@ const renderImage = (id: string): ReactNode => {
 
     return (
         <Link to={ `/image/${id}` }>
-            <img src={ `/api/images/${id}` } className="img-fluid" alt={ id } />
+            <Image id={ id } className="img-fluid"/>
         </Link>
     );
 };

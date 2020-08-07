@@ -1,14 +1,16 @@
 import React, { CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
 import { NAVBAR_HEIGHT } from '../constants';
+import Image from './Image';
 
 export default function ImageView() {
 
     const { id } = useParams();
+    console.log(id);
     
     return (
         <div style={ containerStyle }>
-            <img src={ `/api/images/${id}` } style={ imageStyle } alt={ id } />
+            <Image id={ id } style={ imageStyle } />
         </div>
     );
 }
