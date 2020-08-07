@@ -25,8 +25,9 @@ Start the web UI:
 
 Visit `http://localhost:3000`.
 
-In order to be able to see images the network volume `smb://bcloud/bclou03/idaiworld-scans/idaifield``
-has to be mounted and symlinked to `./api/images`.
+In order to be able to see images you can set `image_dir` in the config
+file to a mounted volume that holds the image folders for the specific
+projects.
 
 ## Test Data
 
