@@ -10,7 +10,7 @@ defmodule Api.Images.Router do
   get "/:id" do
     with %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-         {:ok, image_data} <- File.read("images/#{project}/#{id}")
+         {:ok, image_data} <- File.read("#{Core.Config.get(:image_dir)}/#{project}/#{id}")
     do
       conn
       |> put_resp_content_type("image/jpeg")
