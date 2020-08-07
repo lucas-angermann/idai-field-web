@@ -34,7 +34,7 @@ const renderImages = (images: string[]): ReactNode => images?.map(renderImage);
 const renderImage = (id: string): ReactNode => {
 
     return (
-        <Link to={ `/image/${id}` }>
+        <Link to={ `/image/${id}` } key={ `image-${id}` }>
             <Image id={ id } className="img-fluid"/>
         </Link>
     );
