@@ -5,11 +5,11 @@ import Image from './Image';
 
 export default function ImageView() {
 
-    const { id } = useParams();
+    const { project, id } = useParams();
     
     return (
         <div style={ containerStyle }>
-            <Image id={ id } />
+            <Image project={ project } id={ id } maxWidth={ 1600 } maxHeight={ 1200 } />
         </div>
     );
 }

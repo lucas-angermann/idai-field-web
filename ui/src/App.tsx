@@ -43,7 +43,7 @@ export default function App(): ReactElement {
                             <LoginForm onLogin={ setLoginData } />
                         </Route>
 
-                        <Route path="/image/:id" component={ ImageView } />
+                        <Route path="/image/:project/:id" component={ ImageView } />
 
                         <Route path="/" component={ ProjectOverview } />
 

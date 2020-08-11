@@ -4,7 +4,16 @@ import { fetchImage } from '../api/image';
 import { mdiEmoticonSad } from '@mdi/js';
 import Icon from '@mdi/react';
 
-export default React.memo(function Image({ id }: { id: string }): ReactElement {
+
+interface ImageProps {
+    project: string;
+    id: string;
+    maxWidth: number;
+    maxHeight: number;
+}
+
+
+export default React.memo(function Image({ project, id, maxWidth, maxHeight }: ImageProps): ReactElement {
 
     const [imgUrl, setImgUrl] = useState<string>();
     const [error, setError] = useState<string>();
@@ -17,7 +26,7 @@ export default React.memo(function Image({ id }: { id: string }): ReactElement {
 
         const fetchAndSetImage = async () => {
             try {
-                url = await fetchImage(id, loginData.token);
+                url = await fetchImage(project, id, maxWidth, maxHeight);
                 if (!didCancel) {
                     setImgUrl(url);
                 }
@@ -31,7 +40,7 @@ export default React.memo(function Image({ id }: { id: string }): ReactElement {
             didCancel = true; // necessary to avoid setting imgUrl after the component is removed
             if (url) URL.revokeObjectURL(url); // necessary to allow garbage collection of image objects
         };
-    }, [id, loginData]);
+    }, [project, id, loginData]);
 
     return imgUrl
         ? <img src={ imgUrl } style={ imageStyle } alt={ id }/>

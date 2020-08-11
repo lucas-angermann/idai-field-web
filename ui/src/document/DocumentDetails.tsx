@@ -35,8 +35,10 @@ const renderImages = (images: ResultDocument[]): ReactNode => images?.map(render
 const renderImage = (imageDoc: ResultDocument): ReactNode => {
 
     return (
-        <Link to={ `/image/${imageDoc.resource.id}` } key={ imageDoc.resource.id } className="d-block mb-2">
-            <Image id={ imageDoc.resource.id } />
+        <Link to={ `/image/${imageDoc.project}/${imageDoc.resource.id}` }
+                key={ imageDoc.resource.id }
+                className="d-block mb-2">
+            <Image project={ imageDoc.project} id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
         </Link>
     );
 };
@@ -121,7 +123,6 @@ const renderDocumentLink = (doc: ResultDocument): ReactNode => {
     return  <li key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
 };
    
-
 
 const cardStyle: CSSProperties = {
     overflow: 'auto',
