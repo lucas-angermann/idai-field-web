@@ -67,7 +67,8 @@ const pointToLayer = (feature: Feature, latLng: L.LatLng): L.CircleMarker => {
             fillColor: getColor(feature.properties.category),
             fillOpacity: 1,
             radius: 5,
-            stroke: false
+            stroke: false,
+            pane: 'markerPane'
         }
     );
 };
