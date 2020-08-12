@@ -117,7 +117,7 @@ const renderFieldValueObject = (object: any): ReactNode => {
 const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (doc: ResultDocument): ReactNode => 
+const renderDocumentLink = (doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
    
 
