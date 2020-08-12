@@ -1,0 +1,25 @@
+defmodule Services.ResultHandler do
+  require Logger
+
+  defguard is_ok(status_code) when status_code >= 200 and status_code < 300
+
+  defguard is_error(status_code) when status_code >= 400
+
+  def handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
+    when is_ok(status_code) do
+
+    Poison.decode!(body)
+  end
+  def handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
+    when is_error(status_code) do
+
+    Logger.error "Got HTTP Error, result: #{inspect body}"
+    nil
+  end
+  def handle_result({:error, %HTTPoison.Error{reason: reason}}) do
+
+    Logger.error "API call failed, reason: #{inspect reason}"
+    nil
+  end
+
+end

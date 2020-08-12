@@ -1,5 +1,6 @@
 defmodule Worker do
   require Logger
+  alias Services.IdaiFieldDb
   alias Enricher.Enricher
 
   def process do
@@ -13,7 +14,7 @@ defmodule Worker do
   end
 
   def process_db(db) do
-    Harvester.fetch_changes(db)
+    IdaiFieldDb.fetch_changes(db)
     |> Enum.map(Mapper.process)
     |> log_finished("mapping", db)
     |> Enum.map(Enricher.process(db))

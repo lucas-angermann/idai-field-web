@@ -1,31 +1,22 @@
 defmodule Services.IdaiFieldDb do
+  alias Core.CorePropertiesAtomizing
+  alias Services.ResultHandler
   require Logger
-
-  defguard is_ok(status_code) when status_code >= 200 and status_code < 300
-
-  defguard is_error(status_code) when status_code >= 400
 
   def get_doc(db, id) do
     auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
-    handle_result HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
+    HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
+    |> ResultHandler.handle_result
+    |> CorePropertiesAtomizing.format_document
   end
 
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
-    when is_ok(status_code) do
-
-    Poison.decode!(body)
-    |> Core.CorePropertiesAtomizing.format_document
-  end
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
-    when is_error(status_code) do
-
-    Logger.error "Failed to retrieve document, result: #{inspect body}"
-    nil
-  end
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}}) do
-
-    Logger.error "ERROR: Failed to retrieve document, reason: #{inspect reason}"
-    nil
+  def fetch_changes(db) do
+    auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
+    HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
+    |> ResultHandler.handle_result
+    |> get_in(["results"])
+    |> CorePropertiesAtomizing.format_changes
+    |> update_in([Access.all(), :doc], &(Map.drop(&1, [:_id, :_rev, :_attachments])))
   end
 
 end
