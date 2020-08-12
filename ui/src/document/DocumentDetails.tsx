@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
@@ -29,17 +29,21 @@ const renderHeader = (document: Document): ReactElement => (
 );
 
 
-const renderImages = (images: ResultDocument[]): ReactNode => images?.map(renderImage);
+const renderImages = (images: ResultDocument[]): ReactNode =>
+    <Carousel interval={ null }>
+        { images?.map(renderImage) }
+    </Carousel>;
 
 
 const renderImage = (imageDoc: ResultDocument): ReactNode => {
 
     return (
-        <Link to={ `/image/${imageDoc.project}/${imageDoc.resource.id}` }
-                key={ imageDoc.resource.id }
-                className="d-block mb-2">
-            <Image project={ imageDoc.project} id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
-        </Link>
+        <Carousel.Item key={ imageDoc.resource.id }>
+            <Link to={ `/image/${imageDoc.project}/${imageDoc.resource.id}` }
+                    className="d-block mb-2">
+                <Image project={ imageDoc.project} id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
+            </Link>
+        </Carousel.Item>
     );
 };
 
