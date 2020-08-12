@@ -1,37 +1,37 @@
-.carousel-indicators li {
+.download-view .carousel-indicators li {
     background-color: black;
 }
 
-.carousel-caption h3 {
+.download-view .carousel-caption h3 {
     color: black;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
+.download-view .carousel-control-next,
+.download-view .carousel-control-prev {
     filter: invert(100%);
 }
 
-.carousel-item img {
+.download-view .carousel-item img {
     width: 1000px;
     height: 490px;
 }
 
-.apple-icon,
-.windows-icon,
-.github-icon {
+.download-view .apple-icon,
+.download-view .windows-icon,
+.download-view .github-icon {
     position: relative;
     margin-right: 4px;
 }
 
-.apple-icon {
+.download-view .apple-icon {
     bottom: 2px;
 }
 
-.github-icon,
-.windows-icon {
+.download-view .github-icon,
+.download-view .windows-icon {
     bottom: 1px;
 }
 
-.download-icon {
+.download-view .download-icon {
     margin-left: 2px;
 }

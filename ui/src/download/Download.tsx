@@ -46,7 +46,7 @@ export default function Download(): ReactElement {
     }, []);
 
     return (
-        <div style={ pageStyle }>
+        <div style={ pageStyle } className="download-view">
             { getCarousel() }
             { getDownloadSection(latestVersion) }
         </div>
