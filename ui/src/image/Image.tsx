@@ -40,7 +40,7 @@ export default React.memo(function Image({ project, id, maxWidth, maxHeight }: I
             didCancel = true; // necessary to avoid setting imgUrl after the component is removed
             if (url) URL.revokeObjectURL(url); // necessary to allow garbage collection of image objects
         };
-    }, [project, id, loginData]);
+    }, [project, id, loginData, maxWidth, maxHeight]);
 
     return imgUrl
         ? <img src={ imgUrl } style={ imageStyle } alt={ id }/>
