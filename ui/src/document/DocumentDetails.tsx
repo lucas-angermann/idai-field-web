@@ -84,7 +84,7 @@ const renderRelationList = (relations: Relation[]): ReactNode => {
         .map(relation => [
             <dt key={ `${relation.name}_dt`}>{ relation.label.de ?? relation.label.en ?? relation.name }</dt>,
             <dd key={ `${relation.name}_dd`}>
-                <ul>
+                <ul className="list-unstyled">
                     { relation.targets.map(doc => renderDocumentLink(doc)) }
                 </ul>
             </dd>
@@ -122,7 +122,7 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 
 const renderDocumentLink = (doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
+    <li className="py-1" key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
    
 
 const cardStyle: CSSProperties = {
