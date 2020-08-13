@@ -6,10 +6,22 @@
     align-items: center;
 }
 
+.document-teaser .short-description {
+    font-size: .9rem;
+}
+
+.document-teaser .teaser-small {
+    padding: .25rem 1rem !important;
+}
+
 .document-teaser .teaser-small h3 {
     font-size: 15px;
 }
 
 .document-teaser .teaser-small h4 {
     font-size: 13px;
+}
+
+.document-teaser .teaser-small .short-description {
+    font-size: 11px;
 }

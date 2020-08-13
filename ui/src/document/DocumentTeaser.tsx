@@ -30,7 +30,7 @@ export default React.memo(function DocumentTeaser({ document, searchParams = '',
                         </Row>
                         { document.resource.shortDescription &&
                             <Row>
-                                <Col className="p-0 text-muted" style={ { fontSize: '.9rem' } }>
+                                <Col className="p-0 text-muted short-description">
                                     { document.resource.shortDescription }
                                 </Col>
                             </Row>
