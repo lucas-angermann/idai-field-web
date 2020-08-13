@@ -15,13 +15,20 @@ export default React.memo(function DocumentTeaser({ document, searchParams = '' 
                 </Col>
                 <Col>
                     <Row>
-                        <Col className="p-0"><h4 className="m-0">{ document.resource.identifier }</h4></Col>
-                    </Row>
-                    <Row>
-                        <Col className="p-0 text-muted" style={ { fontSize: '.9rem' } }>
-                            { document.resource.shortDescription }
+                        <Col className="p-0">
+                            { document.resource.shortDescription
+                                ? <h4 className="m-0">{ document.resource.identifier }</h4>
+                                : <h3 className="my-2">{ document.resource.identifier }</h3>
+                            }
                         </Col>
                     </Row>
+                    { document.resource.shortDescription &&
+                        <Row>
+                            <Col className="p-0 text-muted" style={ { fontSize: '.9rem' } }>
+                                { document.resource.shortDescription }
+                            </Col>
+                        </Row>
+                    }
                 </Col>
             </Row>
         </Link>
