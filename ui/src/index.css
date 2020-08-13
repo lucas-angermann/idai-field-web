@@ -9,6 +9,7 @@
 
 :root {
   --main-bg-color: #d3d3cf;
+  --main-bg-color-hover: #efefef;
   --secondary-bg-color: white;
   --main-link-color: #5882c2;
   --main-link-color-hover: #375d97;

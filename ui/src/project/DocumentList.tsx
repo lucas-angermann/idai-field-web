@@ -9,7 +9,7 @@ export default function DocumentList({ documents, searchParams = '' }
     return (
         <div>
             { documents.map((document: ResultDocument) =>
-                <div style={ documentContainerStyle } className="p-2" key={ document.resource.id }>
+                <div style={ documentContainerStyle } key={ document.resource.id }>
                     <DocumentTeaser document={ document } searchParams={ searchParams } />
                 </div>
             )}

@@ -122,7 +122,7 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 
 const renderDocumentLink = (doc: ResultDocument): ReactNode =>
-    <li className="py-1" key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
+    <li key={ doc.resource.id }><DocumentTeaser document={ doc }/></li>;
    
 
 const cardStyle: CSSProperties = {

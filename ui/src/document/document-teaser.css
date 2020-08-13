@@ -1,0 +1,3 @@
+.document-teaser .teaser-container:hover {
+    background-color: var(--main-bg-color-hover);
+}
