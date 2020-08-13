@@ -1,3 +1,15 @@
 .document-teaser .teaser-container:hover {
     background-color: var(--main-bg-color-hover);
 }
+
+.document-teaser .teaser-container .row {
+    align-items: center;
+}
+
+.document-teaser .teaser-small h3 {
+    font-size: 15px;
+}
+
+.document-teaser .teaser-small h4 {
+    font-size: 13px;
+}

@@ -5,17 +5,19 @@ import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
 import './document-teaser.css';
 
-export default React.memo(function DocumentTeaser({ document, searchParams = '' }
-        : { document: ResultDocument, searchParams?: string }): ReactElement {
+export default React.memo(function DocumentTeaser({ document, searchParams = '', size = 'normal' }
+        : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal' }): ReactElement {
+
+    const height = (size === 'small') ? 26 : 40;
 
     return (
         <Link to={ `/project/${document.project}/${document.resource.id}${searchParams}` }
             style={ linkStyle }
             className="document-teaser">
-            <div className="py-2 px-4 teaser-container">
+            <div className={ `py-2 px-4 teaser-container teaser-${size}` }>
                 <Row>
-                    <Col style={ { flex: '0 0 40px' } } className="pl-2">
-                        <CategoryIcon size="40" category={ document.resource.category } />
+                    <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
+                        <CategoryIcon size={ `${height}` } category={ document.resource.category } />
                     </Col>
                     <Col>
                         <Row>
