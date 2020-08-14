@@ -1,5 +1,7 @@
 defmodule Enricher.Gazetteer do
+  require Logger
   alias Services.Gazetteer
+  alias Core.Utils
 
   def add_coordinates(change = %{ doc: %{ resource: %{ gazId: gazId, category: "Project" }}}) do
       coordinates = get_coordinates_from_gazetteer(gazId)
@@ -9,6 +11,7 @@ defmodule Enricher.Gazetteer do
 
   defp get_coordinates_from_gazetteer(gazetteer_id) do
       Gazetteer.get_place(gazetteer_id)
+      |> Utils.atomize
       |> get_coordinates_from_place
   end
 
@@ -20,6 +23,10 @@ defmodule Enricher.Gazetteer do
   defp get_coordinates_from_place(%{ prefLocation: %{ coordinates: [longitude, latitude] }}) do
       [longitude, latitude]
   end
-  defp get_coordinates_from_place(_place), do: nil
+  defp get_coordinates_from_place(_place) do
+
+    Logger.error "Failed to retrieve coordinates from gazetteer place, coordinates field is missing."
+    nil
+  end
 
 end
