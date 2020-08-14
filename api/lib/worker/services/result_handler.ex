@@ -10,10 +10,10 @@ defmodule Services.ResultHandler do
 
     Poison.decode!(body)
   end
-  def handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}})
+  def handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body, request: request}})
     when is_error(status_code) do
 
-    Logger.error "Got HTTP Error, result: #{inspect body}"
+    Logger.error "Got HTTP Error for request: #{request.url}, response: #{inspect body}"
     nil
   end
   def handle_result({:error, %HTTPoison.Error{reason: reason}}) do
