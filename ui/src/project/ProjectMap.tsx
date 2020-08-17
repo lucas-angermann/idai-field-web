@@ -13,7 +13,7 @@ import { Document } from '../api/document';
 export default React.memo(function ProjectMap({ document, documents, onDocumentClick }
         : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
 
-    const featureCollection = createFeatureCollection(documents);
+    const featureCollection = createFeatureCollection(documents, document);
 
     return <>
         <Map style={ mapStyle }
@@ -86,6 +86,11 @@ const onEachFeature = (onDocumentClick: (_: any) => void) => (feature: Feature, 
 
     registerEventListeners(feature, layer, onDocumentClick);
     addTooltip(feature, layer);
+
+    if (feature.properties.selected) {
+        // TODO Do this without the timeout
+        setTimeout(() => (layer as any).bringToFront(), 100);
+    }
 };
 
 
@@ -110,7 +115,7 @@ const onClick = (onDocumentClick: (_: any) => void) => (event: any): void => {
 };
 
 
-const createFeatureCollection = (documents: any[]): FeatureCollection | undefined => {
+const createFeatureCollection = (documents: any[], selectedDocument: any): FeatureCollection | undefined => {
 
     if (documents.length === 0) return undefined;
 
@@ -118,19 +123,20 @@ const createFeatureCollection = (documents: any[]): FeatureCollection | undefine
         type: 'FeatureCollection',
         features: documents
             .filter(document => document?.resource.geometry)
-            .map(createFeature)
+            .map(document => createFeature(document, document.resource.id === selectedDocument?.resource.id))
     };
 };
 
 
-const createFeature = (document: any): Feature => ({
+const createFeature = (document: any, selected: boolean): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry,
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
         category: document.resource.category,
-        project: document.project
+        project: document.project,
+        selected
     }
 });
 
