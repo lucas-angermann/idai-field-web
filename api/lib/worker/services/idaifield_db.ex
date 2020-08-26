@@ -3,24 +3,7 @@ defmodule Services.IdaiFieldDb do
   alias Services.ResultHandler
   require Logger
 
-  # todo if to be moved
-  def get_target_docs(documents, get) do
-    Enum.reduce(documents, %{},
-      fn %{ resource: resource }, target_documents ->
-        if resource.relations == nil do
-          target_documents
-        else
-          Enum.reduce(resource.relations, target_documents,
-            fn {relation_name, relation_target_ids}, target_documents ->
-              Enum.reduce(relation_target_ids, target_documents,
-                fn relation_target_id, target_documents ->
-                  put_in(target_documents, [relation_target_id], get.(relation_target_id))
-                end)
-            end)
-        end
-      end)
-  end
-
+  def get_doc(db), do: fn id -> get_doc(db, id) end
   def get_doc(db, id) do
     auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
     HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
