@@ -28,5 +28,4 @@ defmodule Enricher.Gazetteer do
     Logger.error "Failed to retrieve coordinates from gazetteer place, coordinates field is missing."
     nil
   end
-
 end
