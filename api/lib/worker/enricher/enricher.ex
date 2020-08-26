@@ -8,14 +8,13 @@ defmodule Enricher.Enricher do
     def process(change, project) do
 
         target_docs_map = get_target_docs(change.doc.resource, IdaiFieldDb.get_doc(project))
-        # todo pass to relations.expand
 
         put_in(change, [:doc, :project], project)
         |> Gazetteer.add_coordinates
-        |> Relations.expand
+        |> Relations.expand(target_docs_map)
     end
 
-    def get_target_docs(resource, get) do
+    defp get_target_docs(resource, get) do
       if resource.relations == nil do
           %{}
       else
