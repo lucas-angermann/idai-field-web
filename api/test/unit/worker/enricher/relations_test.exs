@@ -17,7 +17,6 @@ defmodule Enricher.RelationsTest do
     }
     %{ doc: %{ resource: %{ relations: %{ "isAbove" => targets } }}} = Relations.expand(%{
       doc: %{
-        project: "proj", # todo review
         resource: %{
           id: "2",
           identifier: "i2",
@@ -30,6 +29,6 @@ defmodule Enricher.RelationsTest do
     }, target_docs_map)
 
     assert targets == [
-      %{ project: "proj", resource: %{category: "Feature", id: "1", identifier: "i1" }}]
+      %{ resource: %{category: "Feature", id: "1", identifier: "i1" }}]
   end
 end

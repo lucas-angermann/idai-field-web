@@ -9,9 +9,10 @@ defmodule Enricher.Enricher do
 
         target_docs_map = get_target_docs(change.doc.resource, IdaiFieldDb.get_doc(project))
 
-        put_in(change, [:doc, :project], project)
+        change
         |> Gazetteer.add_coordinates
         |> Relations.expand(target_docs_map)
+        |> put_in([:doc, :project], project)
     end
 
     defp get_target_docs(resource, get) do
