@@ -9,7 +9,7 @@ defmodule Enricher.Enricher do
 
     change
     |> Gazetteer.add_coordinates
-    |> Relations.expand(IdaiFieldDb.get_doc(project))
+    |> Relations.expand(IdaiFieldDb.get_doc(project)) # todo pull up
     |> put_in([:doc, :project], project)
   end
 end
