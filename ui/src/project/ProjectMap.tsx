@@ -18,8 +18,8 @@ export default React.memo(function ProjectMap({ document, documents, onDocumentC
     return <>
         <Map style={ mapStyle }
             crs={ L.CRS.Simple }
-            minZoom="-20"
-            maxZoom="10"
+            minZoom={ -20 }
+            maxZoom={ 10 }
             bounds={ getBounds(featureCollection, document) }
             boundsOptions={ { paddingTopLeft: [410, 10], paddingBottomRight: [10, 10] } }
             renderer={ L.canvas({ padding: 0.5 }) }
