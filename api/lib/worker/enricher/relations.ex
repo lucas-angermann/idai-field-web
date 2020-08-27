@@ -1,18 +1,18 @@
 defmodule Enricher.Relations do
   @result_document_properties [:shortDescription, :id, :type, :category, :identifier]
 
-  def expand(change = %{ doc: %{ resource: %{ relations: relations }}}, target_docs_map) do
-    put_in(change.doc.resource.relations, Enum.map(relations, &(expand_relation(&1, target_docs_map))) |> Enum.into(%{}))
+  def expand(change = %{ doc: %{ resource: %{ relations: relations }}}, get_for_id) do
+    put_in(change.doc.resource.relations, Enum.map(relations, &(expand_relation(&1, get_for_id))) |> Enum.into(%{}))
   end
 
-  defp expand_relation({ name, targets }, target_docs_map) do
-    { name, Enum.map(targets, &(expand_target(&1, target_docs_map))) }
+  defp expand_relation({ name, targets }, get_for_id) do
+    { name, Enum.map(targets, &(expand_target(&1, get_for_id))) }
   end
 
-  defp expand_target(targetId, target_docs_map) do
-    doc = target_docs_map[targetId]
+  defp expand_target(target_id, get_for_id) do
+    doc = get_for_id.(target_id)
     case doc do
-      nil -> %{ resource: %{ id: targetId, deleted: true }}
+      nil -> %{ resource: %{ id: target_id, deleted: true }}
       _ -> map_resource(doc.resource)
     end
   end

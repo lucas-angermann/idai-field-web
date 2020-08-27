@@ -6,15 +6,16 @@ defmodule Enricher.RelationsTest do
   alias Enricher.Relations
 
   test "base" do
-    target_docs_map = %{
-      "1" => %{
-        resource: %{
-          id: "1",
-          identifier: "i1",
-          type: "Feature",
-        }
-      }
-    }
+    get =
+      fn _ -> %{
+                resource: %{
+                  id: "1",
+                  identifier: "i1",
+                  type: "Feature",
+                }
+              }
+      end
+
     %{ doc: %{ resource: %{ relations: %{ "isAbove" => targets } }}} = Relations.expand(%{
       doc: %{
         resource: %{
@@ -26,7 +27,7 @@ defmodule Enricher.RelationsTest do
           }
         }
       }
-    }, target_docs_map)
+    }, get)
 
     assert targets == [
       %{ resource: %{category: "Feature", id: "1", identifier: "i1" }}]
