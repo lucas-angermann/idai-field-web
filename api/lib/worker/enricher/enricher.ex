@@ -1,15 +1,14 @@
 defmodule Enricher.Enricher do
   alias Enricher.Gazetteer
   alias Enricher.Relations
-  alias Services.IdaiFieldDb
 
-  def process(project), do: fn change -> process(change, project) end
-  def process(change = %{deleted: true}, _project), do: change
-  def process(change, project) do
-
+  # todo add test
+  def process(project, get_for_id), do: fn change -> process(change, project, get_for_id) end
+  def process(change = %{deleted: true}, _project, _get_for_id), do: change
+  def process(change, project, get_for_id) do
     change
     |> Gazetteer.add_coordinates
-    |> Relations.expand(IdaiFieldDb.get_doc(project)) # todo pull up
+    |> Relations.expand(get_for_id)
     |> put_in([:doc, :project], project)
   end
 end
