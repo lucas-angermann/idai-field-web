@@ -1,6 +1,7 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Dating, Dimension, Literature } from 'idai-components-2';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
@@ -110,11 +111,16 @@ const renderFieldValueArray = (values: any[]): ReactNode =>
 
 const renderFieldValueObject = (object: any): ReactNode => {
 
-    if (object.label) return object.label;
-
-    const listItems = Object.keys(object).map(key =>
-        <li key={ key }><strong>{ key }:</strong> { renderFieldValue(object[key]) }</li>);
-    return <ul>{ listItems }</ul>;
+    if (object.label) {
+        return object.label;
+    } else if (Dating.isValid(object, { permissive: true })) {
+        return Dating.generateLabel(object, getTranslation);
+    } else if (Dimension.isValid(object)) {
+        // TODO Get translated label for measurement position from value list
+        return Dimension.generateLabel(object, getDecimalValue, getTranslation, object.measurementPosition);
+    } else if (Literature.isValid(object)) {
+        return Literature.generateLabel(object, getTranslation);
+    }
 };
 
 
@@ -123,7 +129,30 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 const renderDocumentLink = (doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }><DocumentTeaser document={ doc } size="small"/></li>;
-   
+
+
+// TODO Replace with proper i18n solution
+const getTranslation = (key: string): string | undefined => {
+
+    const translations = {
+        'bce': 'v. Chr.',
+        'ce': 'n. Chr.',
+        'bp': 'BP',
+        'before': 'Vor',
+        'after': 'Nach',
+        'asMeasuredBy': 'gemessen an',
+        'zenonId': 'Zenon-ID'
+    };
+
+    return translations[key];
+};
+
+
+const getDecimalValue = (value: number): string => {
+
+    return value.toString().replace('.', ',');
+};
+
 
 const cardStyle: CSSProperties = {
     overflow: 'auto',
