@@ -69,6 +69,7 @@ const renderGroup = (group: FieldGroup): ReactNode => {
 const renderFieldList = (fields: Field[]): ReactNode => {
 
     const fieldElements = fields
+        .filter(field => field.name !== 'geometry')
         .map(field => [
             <dt key={ `${field.name}_dt`}>{ field.label.de ?? field.label.en ?? field.name }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value) }</dd>
