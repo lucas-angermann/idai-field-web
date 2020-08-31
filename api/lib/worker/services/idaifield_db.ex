@@ -3,12 +3,22 @@ defmodule Services.IdaiFieldDb do
   alias Services.ResultHandler
   require Logger
 
+  @doc """
+  returns nil if document not available
+  """
   def get_doc(db), do: fn id -> get_doc(db, id) end
   def get_doc(db, id) do
     auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
-    HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
-    |> ResultHandler.handle_result
-    |> CorePropertiesAtomizing.format_document
+
+    result = HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
+             |> ResultHandler.handle_result
+
+    case result do
+      document = %{ "resource" => resource } -> CorePropertiesAtomizing.format_document document
+      nil -> nil
+      unexpected -> Logger.error "(Services.IdaiFieldDb) Unexpected: #{inspect unexpected}"
+                    nil
+    end
   end
 
   def fetch_changes(db) do
