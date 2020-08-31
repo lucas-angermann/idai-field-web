@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Dating, Dimension, Literature } from 'idai-components-2';
+import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
@@ -121,6 +121,8 @@ const renderFieldValueObject = (object: any): ReactNode => {
         return Dimension.generateLabel(object, getDecimalValue, getTranslation, object.measurementPosition);
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, getTranslation);
+    } else if (OptionalRange.isValid(object)) {
+        return OptionalRange.generateLabel(object, getTranslation);
     }
 };
 
@@ -142,7 +144,9 @@ const getTranslation = (key: string): string | undefined => {
         'before': 'Vor',
         'after': 'Nach',
         'asMeasuredBy': 'gemessen an',
-        'zenonId': 'Zenon-ID'
+        'zenonId': 'Zenon-ID',
+        'from': 'Von: ',
+        'to': ', bis: '
     };
 
     return translations[key];
