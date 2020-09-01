@@ -2,7 +2,6 @@ defmodule Worker do
   require Logger
   alias Services.IdaiFieldDb
   alias Enricher.Enricher
-  alias Services.IdaiFieldDb
 
   def process do
 
