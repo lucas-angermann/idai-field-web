@@ -23,7 +23,7 @@ Start the web UI:
     $ npm i
     $ npm start
 
-Visit `http://localhost:3000`.
+Visit `http://localhost:3001`.
 
 ## Test Data
 
@@ -85,7 +85,7 @@ Afterwards, the api docker container has to be rebuilt explicitly with:
 
 ## UI
 
-The frontend runs on port 3000. It autmatically picks the next available port if 3000 is already in use.
+The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
 
 Start the development server with:
 
