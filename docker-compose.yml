@@ -39,6 +39,6 @@ services:
     image: "dainst/idai-field-web-ui"
     build: "./ui"
     ports:
-      - "3001:80"
+      - "3002:80"
     volumes:
       - "./ui/build:/usr/share/nginx/html"
