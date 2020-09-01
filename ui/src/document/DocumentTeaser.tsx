@@ -5,10 +5,15 @@ import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
 import './document-teaser.css';
 
+
 export default React.memo(function DocumentTeaser({ document, searchParams = '', size = 'normal' }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal' }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
+
+    if (document['deleted'] === true && document['deleted'] === 'true') {
+        return (<div>Zielressource nicht vorhanden [{ document.resource.id }]</div>);
+    }
 
     return (
         <Link to={ `/project/${document.project}/${document.resource.id}${searchParams}` }
