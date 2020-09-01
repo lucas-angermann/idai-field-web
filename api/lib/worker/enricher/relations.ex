@@ -1,4 +1,6 @@
 defmodule Enricher.Relations do
+  require Logger
+
   @result_document_properties [:shortDescription, :id, :type, :category, :identifier]
 
   def expand(change = %{ doc: %{ resource: %{ relations: relations }}}, get_for_id) do
@@ -12,8 +14,8 @@ defmodule Enricher.Relations do
   defp expand_target(target_id, get_for_id) do
     doc = get_for_id.(target_id)
     case doc do
+      %{ resource: resource } -> map_resource(resource)
       nil -> %{ resource: %{ id: target_id, deleted: true }}
-      _ -> map_resource(doc.resource)
     end
   end
 
