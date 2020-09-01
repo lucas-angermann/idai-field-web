@@ -56,7 +56,7 @@ defmodule Indexer do
 
     result = Poison.decode!(body)
     Logger.error "Updating index failed!
-      status_code #{status_code}
+      status_code: #{status_code}
       project: #{project}
       id: #{change.id}
       result: #{inspect result}"
