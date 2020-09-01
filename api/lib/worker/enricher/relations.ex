@@ -15,7 +15,7 @@ defmodule Enricher.Relations do
     doc = get_for_id.(target_id)
     case doc do
       %{ resource: resource } -> map_resource(resource)
-      nil -> %{ resource: %{ id: target_id, deleted: true }}
+      nil -> %{ resource: %{ id: target_id }, deleted: true }
     end
   end
 
