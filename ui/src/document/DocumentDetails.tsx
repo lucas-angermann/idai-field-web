@@ -123,6 +123,8 @@ const renderFieldValueObject = (object: any): ReactNode => {
         return Literature.generateLabel(object, getTranslation);
     } else if (OptionalRange.isValid(object)) {
         return OptionalRange.generateLabel(object, getTranslation);
+    } else {
+        return renderObjectFields(object);
     }
 };
 
@@ -132,6 +134,16 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 const renderDocumentLink = (doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }><DocumentTeaser document={ doc } size="small"/></li>;
+
+
+const renderObjectFields = (object: any): ReactNode => {
+
+    const listItems = Object.keys(object).map(key =>
+        <li key={ key }><strong>{ key }:</strong> { renderFieldValue(object[key]) }</li>
+    );
+
+    return <ul>{ listItems }</ul>;
+};
 
 
 // TODO Replace with proper i18n solution
