@@ -9,8 +9,9 @@ defmodule Api.Images.Router do
   plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
-  get "/" do
-    result = Api.Images.CantaloupeAdapter.get()
+  get "/:project/:id" do
+    IO.puts "#{project}:#{id}"
+    result = Api.Images.CantaloupeAdapter.get(project, id)
     # IO.inspect result
     case result do
       {:ok, %{ body: image_data }} -> conn
