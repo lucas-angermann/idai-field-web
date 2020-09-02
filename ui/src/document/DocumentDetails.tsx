@@ -17,7 +17,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
                 { renderHeader(document) }
             </Card.Header>
             <Card.Body>
-                { renderImages(getImages(document))}
+                { renderImages(getImages(document), document.project)}
                 { renderGroups(document.resource) }
             </Card.Body>
         </Card>
@@ -32,19 +32,19 @@ const renderHeader = (document: Document): ReactElement => (
 );
 
 
-const renderImages = (images: ResultDocument[]): ReactNode =>
+const renderImages = (images: ResultDocument[], project: string): ReactNode =>
     <Carousel interval={ null }>
-        { images?.map(renderImage) }
+        { images?.map(renderImage(project)) }
     </Carousel>;
 
 
-const renderImage = (imageDoc: ResultDocument): ReactNode => {
+const renderImage = (project: string) => (imageDoc: ResultDocument): ReactNode => {
 
     return (
         <Carousel.Item key={ imageDoc.resource.id }>
-            <Link to={ `/image/${imageDoc.project}/${imageDoc.resource.id}` }
+            <Link to={ `/image/${project}/${imageDoc.resource.id}` }
                     className="d-block mb-2">
-                <Image project={ imageDoc.project} id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
+                <Image project={ project } id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
             </Link>
         </Carousel.Item>
     );
