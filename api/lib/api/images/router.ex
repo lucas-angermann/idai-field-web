@@ -16,8 +16,8 @@ defmodule Api.Images.Router do
       |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")
       |> send_resp(200, image_data)
     else
-      {:error, reason} -> send_error(conn, "Error when reading file: #{reason |> :file.format_error}")
       :unauthorized_access -> send_unauthorized(conn)
+      {:error, reason} -> send_error(conn, "Error when reading file: #{reason |> :file.format_error}")
       unexpected -> IO.puts "unexpected #{inspect unexpected}"; send_error(conn, "Unknown error")
       # nil -> send_not_found(conn) # todo review
     end
