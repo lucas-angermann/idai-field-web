@@ -38,7 +38,7 @@ Test via `http://localhost:9200/idai-field/_search`.
 ## Images
 
 In order to be able to see images you can override the images volume by creating
-a `docker-compose.override.yml` that contains the the volume definition. This
+a `docker-compose.override.yml` that contains the volume definition. This
 file gets automatically picked up by `docker-compose` and will not be published
 to the repository.
 
@@ -50,7 +50,7 @@ Example:
 
     api:
         volumes:
-        - "/Volumes/bcloud03/idaiworld-scans/idaifield:/opt/src/api/images"
+        - "/host/environment/path/to/images:/opt/src/api/images"
 
 
 ## API
