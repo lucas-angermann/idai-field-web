@@ -23,6 +23,7 @@ services:
       - "./data/elasticsearch:/usr/share/elasticsearch/data"
 
   api:
+    network_mode: "host"
     image: "dainst/idai-field-web-api"
     build: "./api"
     ports:

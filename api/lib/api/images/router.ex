@@ -1,16 +1,28 @@
 defmodule Api.Images.Router do
+
   use Plug.Router
   alias Api.Documents.Index
   import Api.RouterUtils
+
 
   plug :match
   plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
+  get "/" do
+    result = Api.Images.CantaloupeAdapter.get()
+    IO.inspect result
+    case result do
+      {:ok, res} -> nil
+      {:error, _error} -> nil
+    end
+    # todo forward body as image
+  end
+
   get "/:id" do
     with %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-         {:ok, image_data} <- File.read("#{Core.Config.get(:image_dir)}/#{project}/#{id}")
+         {:ok, image_data} <- File.read("#{Core.Config.get(:images_dir)}/#{project}/#{id}")
     do
       conn
       |> put_resp_content_type("image/jpeg")
@@ -23,5 +35,4 @@ defmodule Api.Images.Router do
       _ -> send_error(conn, "Unknown error")
     end
   end
-
 end

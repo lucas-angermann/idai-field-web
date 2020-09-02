@@ -21,6 +21,8 @@ defmodule Api.MixProject do
 
   defp deps do
     [
+      {:tesla, "~> 1.3.0"},
+      {:ibrowse, "~> 4.2"},
       {:poison, "~> 3.0"},
       {:plug, "~> 1.6"},
       {:plug_cowboy, "~> 2.0"},
