@@ -47,6 +47,10 @@ defmodule Core.Layout do
     end
   end
 
+  defp get_value([head|tail], config_item) do
+    Enum.map([head|tail], fn value -> get_value(value, config_item) end)
+  end
+
   defp get_value(value, %{ valuelist: %{ "values" => values }}) do
     unless Map.has_key?(values, value), do: value, else:
     %{

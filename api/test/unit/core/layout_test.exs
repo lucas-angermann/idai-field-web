@@ -10,7 +10,7 @@ defmodule Core.LayoutTest do
         :category => "Operation",
         "width" => "1cm",
         "height" => "2cm",
-        "color" => "Grün",
+        "color" => ["Grün", "Blau"],
         :id => "42",
         :relations => %{ "liesWithin" => ["45"]}
     }
@@ -46,13 +46,22 @@ defmodule Core.LayoutTest do
            },
            %{
               name: "color",
-              value: %{
-                name: "Grün",
-                label: %{
-                  de: "Grün",
-                  en: "Green"
+              value: [
+                %{
+                  name: "Grün",
+                  label: %{
+                    de: "Grün",
+                    en: "Green"
+                  }
+                },
+                %{
+                  name: "Blau",
+                  label: %{
+                    de: "Blau",
+                    en: "Blue"
+                  }
                 }
-              },
+              ],
               label: %{
                 de: "Farbe",
                 en: "Color"
