@@ -6,6 +6,7 @@ import { mdiCloseCircle } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import LinkButton from '../LinkButton';
 import { deleteFilterFromParams, addFilterToParams } from '../api/query';
+import { getLabel } from '../languages';
 
 
 export default function Filters({ filters, searchParams }
@@ -31,7 +32,7 @@ const renderFilter = (filter: ResultFilter, searchParams: string): ReactNode => 
         <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
             { renderFilterDropdownToggle(filter, params) }
             <Dropdown.Menu>
-                <Dropdown.Header><h3>{ filter.label.de }</h3></Dropdown.Header>
+                <Dropdown.Header><h3>{ getLabel(filter.name, filter.label) }</h3></Dropdown.Header>
                 { filter.values.map((bucket: FilterBucket) =>
                     renderFilterValue(filter.name, bucket, params)) }
             </Dropdown.Menu>
@@ -46,13 +47,15 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
             <>
                 <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name) }
                         style={ { flexGrow: 1 } }>
-                    { filter.label.de }: <em>{ params.getAll(filter.name).join(', ') }</em>
+                    { getLabel(filter.name, filter.label) }: <em>{ params.getAll(filter.name).join(', ') }</em>
                     &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
                 </LinkButton>
                 <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
                         style={ { maxWidth: '2.5rem' } }/>
             </>
-        : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>{ filter.label.de }</Dropdown.Toggle>;
+        :   <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>
+                { getLabel(filter.name, filter.label) }
+            </Dropdown.Toggle>;
 
 
 const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>

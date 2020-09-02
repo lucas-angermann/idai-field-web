@@ -41,10 +41,7 @@ export interface Field {
 }
 
 
-export interface I18nString {
-    en: string;
-    de: string;
-}
+export type I18nString = { [languageCode: string]: string };
 
 
 export interface Relation {

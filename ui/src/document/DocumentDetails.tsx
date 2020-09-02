@@ -6,6 +6,8 @@ import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../a
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
+import { getLabel } from '../languages';
+
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
@@ -71,7 +73,7 @@ const renderFieldList = (fields: Field[]): ReactNode => {
     const fieldElements = fields
         .filter(field => field.name !== 'geometry')
         .map(field => [
-            <dt key={ `${field.name}_dt`}>{ field.label.de ?? field.label.en ?? field.name }</dt>,
+            <dt key={ `${field.name}_dt`}>{ getLabel(field.name, field.label) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value) }</dd>
         ]);
     return <dl>{ fieldElements }</dl>;
@@ -84,7 +86,7 @@ const renderRelationList = (relations: Relation[]): ReactNode => {
 
     const relationElements = relations
         .map(relation => [
-            <dt key={ `${relation.name}_dt`}>{ relation.label.de ?? relation.label.en ?? relation.name }</dt>,
+            <dt key={ `${relation.name}_dt`}>{ getLabel(relation.name, relation.label) }</dt>,
             <dd key={ `${relation.name}_dd`}>
                 <ul className="list-unstyled">
                     { relation.targets.map(doc => renderDocumentLink(doc)) }
