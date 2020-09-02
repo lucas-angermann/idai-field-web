@@ -6,6 +6,6 @@ defmodule Api.Images.CantaloupeAdapter do
   adapter Tesla.Adapter.Ibrowse
 
   def get(project, id) do
-    get("%2F#{project}%2F2#{id}/full/\!380,350/0/default.jpg")
+    get("%2F#{project}%2F#{id}/full/\!380,350/0/default.jpg")
   end
 end
