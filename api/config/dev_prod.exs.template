@@ -11,7 +11,7 @@ config :api,
   gazetteer_url: "https://gazetteer.dainst.org",
   couchdb_databases: ["db1", "db2", "db3"],
   locales: ["de", "en"],
-  images_dir: "images",
+  image_source: "local", # can be either "local" or "cantaloupe"
   default_filters: [
     %{
       field: "resource.category",

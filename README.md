@@ -37,12 +37,18 @@ Test via `http://localhost:9200/idai-field/_search`.
 
 ## Images
 
+in config.exs
+
+When using cantaloupe, set images to "cantaloupe". Use other values or "local" to indicate usage of filesystem. 
+
 In order to be able to see images you can override the images volume by creating
 a `docker-compose.override.yml` that contains the volume definition. This
 file gets automatically picked up by `docker-compose` and will not be published
 to the repository.
 
-Example:
+### Development - using filesystem
+
+docker-compose.override.yml
 
     version: "3.7"
 
@@ -50,8 +56,18 @@ Example:
 
     api:
         volumes:
-        - "/host/environment/path/to/images:/opt/src/api/images"
+        - "/host/environment/path/to/images/project_name:/opt/src/api/images/project_name"
 
+### Development - using cantaloupe
+
+docker-compose.override.yml
+
+    version: "3.7"
+    
+    services:
+    
+        api:
+            network_mode: "host"
 
 ## API
 
