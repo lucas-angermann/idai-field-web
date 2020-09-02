@@ -41,14 +41,14 @@ in config.exs
 
 When using cantaloupe, set images to "cantaloupe". Use other values or "local" to indicate usage of filesystem. 
 
-### Development - using filesystem
-
 In order to be able to see images you can override the images volume by creating
 a `docker-compose.override.yml` that contains the volume definition. This
 file gets automatically picked up by `docker-compose` and will not be published
 to the repository.
 
-Example:
+### Development - using filesystem
+
+docker-compose.override.yml
 
     version: "3.7"
 
@@ -60,7 +60,7 @@ Example:
 
 ### Development - using cantaloupe
 
-Example:
+docker-compose.override.yml
 
     version: "3.7"
     
