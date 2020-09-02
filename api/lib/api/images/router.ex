@@ -18,16 +18,13 @@ defmodule Api.Images.Router do
     else
       {:error, reason} -> send_error(conn, "Error when reading file: #{reason |> :file.format_error}")
       :unauthorized_access -> send_unauthorized(conn)
-      unexpected -> IO.puts "unexpected #{inspect unexpected}"
-
-      # todo review
-      # nil -> send_not_found(conn)
-      # _ -> send_error(conn, "Unknown error")
+      unexpected -> IO.puts "unexpected #{inspect unexpected}"; send_error(conn, "Unknown error")
+      # nil -> send_not_found(conn) # todo review
     end
   end
 
   defp get_image_source() do
-    image_source = if Core.Config.get(:image_source) == "cantaloupe" do
+    if Core.Config.get(:image_source) == "cantaloupe" do
       Api.Images.CantaloupeAdapter
     else
       Api.Images.FilesystemAdapter
