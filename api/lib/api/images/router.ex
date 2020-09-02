@@ -1,5 +1,5 @@
 defmodule Api.Images.Router do
-
+  require Logger
   use Plug.Router
   alias Api.Documents.Index
   import Api.RouterUtils
@@ -18,7 +18,7 @@ defmodule Api.Images.Router do
     else
       :unauthorized_access -> send_unauthorized(conn)
       {:error, reason} -> send_error(conn, "Error when reading file: #{reason |> :file.format_error}")
-      unexpected -> IO.puts "unexpected #{inspect unexpected}"; send_error(conn, "Unknown error")
+      unexpected -> Logger.error "unexpected #{inspect unexpected}"; send_error(conn, "Unknown error")
       # nil -> send_not_found(conn) # todo review
     end
   end
