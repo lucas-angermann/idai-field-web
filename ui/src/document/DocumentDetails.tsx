@@ -114,7 +114,9 @@ const renderFieldValueArray = (values: any[]): ReactNode =>
 
 const renderFieldValueObject = (object: any): ReactNode => {
 
-    if (object.label) {
+    if (object.label && object.name) {
+        return getLabel(object.name, object.label);
+    } else if (object.label) {
         return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
         return Dating.generateLabel(object, getTranslation);

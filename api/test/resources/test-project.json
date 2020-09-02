@@ -39,6 +39,44 @@
               "label": {},
               "description": {},
               "inputType": "input"
+            },
+            {
+              "inputType": "checkboxes",
+              "source": "library",
+              "valuelist": {
+                "creationDate": "",
+                "createdBy": "",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Blau": {
+                    "labels": {
+                      "en": "Blue",
+                      "de": "Blau"
+                    }
+                  },
+                  "Gelb": {
+                    "labels": {
+                      "en": "Yellow",
+                      "de": "Gelb"
+                    }
+                  },
+                  "Grün": {
+                    "labels": {
+                      "en": "Green",
+                      "de": "Grün"
+                    }
+                  }
+                }
+              },
+              "label": {
+                "de": "Farbe",
+                "en": "Color"
+              },
+              "description": {},
+              "name": "color"
             }
           ],
           "relations": [
