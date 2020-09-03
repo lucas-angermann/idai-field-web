@@ -1,6 +1,7 @@
 import React, { CSSProperties, useContext, ReactElement } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { LoginContext } from './App';
 import { LoginData } from './login';
 
@@ -8,19 +9,20 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
     const location = useLocation();
     const loginData = useContext(LoginContext);
+    const { t } = useTranslation();
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
-                    <Link to="/">Projekte</Link>
+                    <Link to="/">{ t('navbar.projects') }</Link>
                 </Nav.Link>
                 <Nav.Link as="span">
-                    <Link to="/download">Download</Link>
+                    <Link to="/download">{ t('navbar.download') }</Link>
                 </Nav.Link>
                 <Nav.Link as="span">
-                    <Link to="/manual">Handbuch</Link>
+                    <Link to="/manual">{ t('navbar.manual') }</Link>
                 </Nav.Link>
             </Nav>
             { renderLogin(loginData, onLogout) }

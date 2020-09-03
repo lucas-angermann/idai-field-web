@@ -3,8 +3,13 @@ import { I18nString } from './api/document';
 
 const MAIN_LANGUAGES = ['en', 'de'];
 
+const LANGUAGES: string[] = initializeLanguages();
 
-export const LANGUAGES: string[] = initializeLanguages();
+
+export function getPreferedLanguage(): string {
+
+    return LANGUAGES[0];
+}
 
 
 export function getLabel(name: string, label: I18nString): string {
