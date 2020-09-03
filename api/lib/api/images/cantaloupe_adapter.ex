@@ -1,8 +1,7 @@
 defmodule Api.Images.CantaloupeAdapter do
+  require Logger
   use Tesla
-
   plug Tesla.Middleware.BaseUrl, Core.Config.get(:cantaloupe_url)
-
   adapter Tesla.Adapter.Ibrowse
 
   def get(project, id) do
@@ -10,7 +9,7 @@ defmodule Api.Images.CantaloupeAdapter do
     case result do
       {:ok, %{ body: image_data, status: 200 }} -> {:ok, image_data}
       {:ok, %{ body: error, status: _status }} -> {:error, error}
-      other -> IO.puts ": #{inspect other}"
+      other -> Logger.error ": #{inspect other}"; {:error, "Unknown error (see server logs)"}
     end
   end
 end
