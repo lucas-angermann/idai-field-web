@@ -16,6 +16,7 @@ defmodule Api.Images.Router do
       |> send_resp(200, image_data)
     else
       :unauthorized_access -> send_unauthorized(conn)
+      {:error, :not_found} -> send_not_found(conn)
       {:error, reason} -> send_error(conn, reason)
     end
   end
