@@ -14,7 +14,7 @@ defmodule Services.IdaiFieldDb do
              |> ResultHandler.handle_result
 
     case result do
-      document = %{ "resource" => resource } -> CorePropertiesAtomizing.format_document document
+      document = %{ "resource" => _resource } -> CorePropertiesAtomizing.format_document document
       nil -> nil
       unexpected -> Logger.error "(Services.IdaiFieldDb) Unexpected: #{inspect unexpected}"
                     nil
