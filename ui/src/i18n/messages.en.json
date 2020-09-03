@@ -30,6 +30,9 @@
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend nicht erreichbar!"
   },
+  "documentTeaser": {
+    "noTargetResource": "Target resource not found"
+  },
   "download": {
     "download": "Download iDAI.field",
     "downloadInfo": "Here you can download the current version of iDAI.field.",
@@ -50,5 +53,14 @@
   },
   "resourceRedirect": {
     "waitForRedirection": "Please wait while being redirected..."
-  }
+  },
+  "bce": "BCE",
+  "ce": "CE",
+  "bp": "BP",
+  "before": "Before",
+  "after": "After",
+  "asMeasuredBy": "as measured by",
+  "zenonId": "Zenon ID",
+  "from": "From: ",
+  "to": ", to: "
 }
