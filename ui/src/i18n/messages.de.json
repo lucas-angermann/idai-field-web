@@ -27,6 +27,27 @@
     "total": "Ingesamt",
     "resources": "Ressourcen"
   },
+  "projectOverview": {
+    "projectOverview.backendNotAvailable": "Backend not available!"
+  },
+  "download": {
+    "download": "iDAI.field herunterladen",
+    "downloadInfo": "Hier können Sie die aktuelle Version von iDAI.field herunterladen.",
+    "packageInfo": "Es werden Pakete für macOS und Windows zur Verfügung gestellt.",
+    "currentVersion": "Aktuelle Version:",
+    "allVersions": "Alle Versionen...",
+    "sourceCode": "Quellcode auf GitHub",
+    "windows": "Download für Windows",
+    "macOS": "Download für macOS",
+    "slides": {
+      "metadataEditor": "Metadaten-Editor",
+      "geodataEditor": "Geodaten-Editor",
+      "matrixView": "Matrixansicht",
+      "synchronization": "Synchronisation",
+      "tableView": "Tabellenansicht",
+      "nesting": "Hierarchisierung"
+    }
+  },
   "resourceRedirect": {
     "waitForRedirection": "Bitte warten Sie einen Moment, während Sie weitergeleitet werden..."
   }

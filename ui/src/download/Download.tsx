@@ -1,5 +1,7 @@
 import React, { CSSProperties, useEffect, useState, ReactElement, ReactNode } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
 import './Download.css';
@@ -9,37 +11,10 @@ import { NAVBAR_HEIGHT } from '../constants';
 type Slide = { imageUrl: string, description: string };
 
 
-const slides: Slide[] = [
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-1.png',
-        description: 'Metadata editor'
-    },
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-2.png',
-        description: 'Shape editor'
-    },
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-8.png',
-        description: 'Matrix view'
-    },
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-6.png',
-        description: 'Synchronization'
-    },
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-3.png',
-        description: 'Table view'
-    },
-    {
-        imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-4.png',
-        description: 'Nesting'
-    }
-];
-
-
 export default function Download(): ReactElement {
 
     const [latestVersion, setLatestVersion] = useState('');
+    const { t } = useTranslation();
 
     useEffect (() => {
         getLatestVersion().then(setLatestVersion);
@@ -47,26 +22,53 @@ export default function Download(): ReactElement {
 
     return (
         <div style={ pageStyle } className="download-view">
-            { getCarousel() }
-            { getDownloadSection(latestVersion) }
+            { getCarousel(t) }
+            { getDownloadSection(latestVersion, t) }
         </div>
     );
 }
 
 
-const getCarousel = (): ReactNode => {
+const getCarousel = (t: TFunction): ReactNode => {
 
     return (
         <div style={ carouselContainerStyle } className="mt-5">
             <Carousel>
-                { getCarouselItems() }
+                { getCarouselItems(t) }
             </Carousel>
         </div>
     );
 };
 
 
-const getCarouselItems = (): ReactNode => {
+const getCarouselItems = (t: TFunction): ReactNode => {
+
+    const slides: Slide[] = [
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-1.png',
+            description: t('download.slides.metadataEditor')
+        },
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-2.png',
+            description: t('download.slides.geodataEditor')
+        },
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-8.png',
+            description: t('download.slides.matrixView')
+        },
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-6.png',
+            description: t('download.slides.synchronization')
+        },
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-3.png',
+            description: t('download.slides.tableView')
+        },
+        {
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-4.png',
+            description: t('download.slides.nesting')
+        }
+    ];
 
     return slides.map(slide => {
        return (
@@ -81,34 +83,34 @@ const getCarouselItems = (): ReactNode => {
 };
 
 
-const getDownloadSection = (latestVersion: string): ReactNode => {
+const getDownloadSection = (latestVersion: string, t: TFunction): ReactNode => {
 
     if (latestVersion === '') return;
 
     return (
         <div style={ downloadContainerStyle }>
             <hr className="m-5"/>
-            <h1>iDAI.field herunterladen</h1>
-            <p className="lead text-muted">Hier können Sie die aktuelle Version von iDAI.field herunterladen.</p>
-            <p>Es werden Pakete für macOS und Windows zur Verfügung gestellt.</p>
-            <p>Aktuelle Version: <strong>{ latestVersion }</strong></p>
+            <h1>{ t('download.download') }</h1>
+            <p className="lead text-muted">{ t('download.downloadInfo') }</p>
+            <p>{ t('download.packageInfo') }</p>
+            <p>{ t('download.currentVersion') } <strong>{ latestVersion }</strong></p>
             <p>
                 <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
                 + latestVersion + '-Windows.exe' } className="btn btn-primary my-2 mr-1">
                     <Icon path={ mdiMicrosoftWindows } size={ 0.8 } className="windows-icon"/>
-                    Download für Windows
+                    { t('download.windows') }
                     <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
                 </a>
                 <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
                 + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
                     <Icon path={ mdiApple } size={ 0.8 } className="apple-icon"/>
-                    Download für macOS
+                    { t('download.macOS') }
                     <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
                 </a>
             </p>
             <p>
                 <a href="https://github.com/dainst/idai-field/releases" target="_blank" rel="noopener noreferrer">
-                    Alle Versionen...
+                    { t('download.allVersions') }
                 </a>
             </p>
             <hr className="m-5"/>
@@ -116,7 +118,7 @@ const getDownloadSection = (latestVersion: string): ReactNode => {
                 <a className="btn btn-secondary" href="https://github.com/dainst/idai-field"
                    target="_blank" rel="noopener noreferrer">
                     <Icon path={ mdiGithub } size={ 0.8 } className="github-icon" />
-                    Quellcode auf GitHub
+                    { t('download.sourceCode') }
                 </a>
             </p>
         </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext, ReactElement } from 'react';
+import { Alert } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import Map from './Map';
 import { search } from '../api/documents';
-import { Alert } from 'react-bootstrap';
 import { ResultDocument } from '../api/result';
 import { LoginContext } from '../App';
 
@@ -11,6 +13,7 @@ export default function ProjectOverview(): ReactElement {
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [error, setError] = useState(false);
     const loginData = useContext(LoginContext);
+    const { t } = useTranslation();
 
     useEffect (() => {
         getProjectDocuments(loginData.token)
@@ -20,13 +23,17 @@ export default function ProjectOverview(): ReactElement {
 
     return (
         <div>
-            { error ? renderError(error) : renderMap(projectDocuments)}
+            { error ? renderError(t) : renderMap(projectDocuments)}
         </div>
     );
 }
 
 
-const renderError = (error: any): ReactElement => <Alert variant="danger">Backend not available!</Alert>;
+const renderError = (t: TFunction): ReactElement => (
+    <Alert variant="danger">
+        { t('projectOverview.backendNotAvailable') }
+    </Alert>
+);
 
 
 const renderMap = (projectDocuments: ResultDocument[]): ReactElement => <Map documents={ projectDocuments }></Map>;

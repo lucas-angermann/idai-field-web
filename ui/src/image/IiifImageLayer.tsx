@@ -1,8 +1,8 @@
 import React from 'react';
 import L from 'leaflet';
-import './LeafletIiif.d';
 import { GridLayer, withLeaflet, TileLayerProps } from 'react-leaflet';
 import 'leaflet-iiif';
+import './LeafletIiif.d';
 
 
 class IiifImageLayer extends GridLayer<TileLayerProps, L.TileLayer> {
@@ -18,7 +18,6 @@ class IiifImageLayer extends GridLayer<TileLayerProps, L.TileLayer> {
             this.leafletElement.setUrl(toProps.url);
         }
     }
-
 }
 
 export default withLeaflet<TileLayerProps>(IiifImageLayer);
