@@ -6,6 +6,11 @@ defmodule Api.Images.CantaloupeAdapter do
   adapter Tesla.Adapter.Ibrowse
 
   def get(project, id) do
-    get("%2F#{project}%2F#{id}/full/\!380,350/0/default.jpg")
+    result = get("%2F#{project}%2F#{id}/full/\!380,350/0/default.jpg")
+    case result do
+      {:ok, %{ body: error, status: 404 }} -> {:error, error}
+      {:ok, %{ body: image_data }} -> {:ok, image_data}
+      other -> IO.puts ": #{inspect other}"
+    end
   end
 end
