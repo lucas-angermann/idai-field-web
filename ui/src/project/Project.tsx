@@ -19,7 +19,7 @@ import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from './Filters';
 import DocumentDetails from '../document/DocumentDetails';
-import { getPreferedLanguage } from '../languages';
+import { getUserInterfaceLanguage } from '../languages';
 
 
 const MAX_SIZE = 10000;
@@ -122,7 +122,7 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
     const content = (
         <span>
             { t('project.total') }
-            <b> { total.toLocaleString(getPreferedLanguage()) } </b>
+            <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
             { t('project.resources') }
         </span>
     );

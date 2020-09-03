@@ -1,14 +1,14 @@
 import { set } from 'tsfun';
 import { I18nString } from './api/document';
 
-const MAIN_LANGUAGES = ['en', 'de'];
+const USER_INTERFACE_LANGUAGES = ['en', 'de'];
 
 const LANGUAGES: string[] = initializeLanguages();
 
 
-export function getPreferedLanguage(): string {
+export function getUserInterfaceLanguage(): string {
 
-    return LANGUAGES[0];
+    return LANGUAGES.find(language => USER_INTERFACE_LANGUAGES.includes(language));
 }
 
 
@@ -25,7 +25,7 @@ function initializeLanguages(): string[] {
         window.navigator.languages
             .map(getBasicLanguageCode)
             .filter(language => language.length === 2)
-            .concat(MAIN_LANGUAGES)
+            .concat(USER_INTERFACE_LANGUAGES)
     );
 }
 
