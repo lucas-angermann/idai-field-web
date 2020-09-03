@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react';
 import { useParams } from 'react-router-dom';
-import { NAVBAR_HEIGHT } from '../constants';
 import { Map } from 'react-leaflet';
-import IiifImageLayer from './IiifImageLayer';
 import L from 'leaflet';
+import IiifImageLayer from './IiifImageLayer';
+import { NAVBAR_HEIGHT } from '../constants';
 
 export default function ImageView() {
 
