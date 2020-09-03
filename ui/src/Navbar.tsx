@@ -2,6 +2,7 @@ import React, { CSSProperties, useContext, ReactElement } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { LoginContext } from './App';
 import { LoginData } from './login';
 
@@ -25,17 +26,17 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                     <Link to="/manual">{ t('navbar.manual') }</Link>
                 </Nav.Link>
             </Nav>
-            { renderLogin(loginData, onLogout) }
+            { renderLogin(loginData, onLogout, t) }
         </Navbar>
     );
 };
 
 
-const renderLogin = (loginData: LoginData, onLogout: () => void): ReactElement =>
+const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): ReactElement =>
     loginData.user === 'anonymous'
-        ? <Navbar.Text className="mr-sm-2"><Link to="/login">Login</Link></Navbar.Text>
-        : <Navbar.Text>Eingeloggt als: { loginData.user }
-            <Button variant="link" onClick={ onLogout }>Ausloggen</Button>
+        ? <Navbar.Text className="mr-sm-2"><Link to="/login">{ t('navbar.login') }</Link></Navbar.Text>
+        : <Navbar.Text>{ t('navbar.loggedInAs') } { loginData.user }
+            <Button variant="link" onClick={ onLogout }>{ t('navbar.logOut') }</Button>
         </Navbar.Text>;
 
 

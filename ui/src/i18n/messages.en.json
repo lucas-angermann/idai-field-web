@@ -2,6 +2,32 @@
   "navbar": {
     "projects": "Projects",
     "download": "Download",
-    "manual": "Manual"
+    "manual": "Manual",
+    "login": "Login",
+    "loggedInAs": "Logged in as:",
+    "logOut": "Log out"
+  },
+  "login": {
+    "wrongUserNameOrPassword": "Wrong user name or password!",
+    "userName": "User name",
+    "password": "Password",
+    "stayLoggedIn": "Stay logged in",
+    "logIn": "Log in"
+  },
+  "searchBar": {
+    "search": "Search"
+  },
+  "projectMap": {
+    "noResources": "The search results do not include any resources linked to geodata."
+  },
+  "projectHome": {
+    "noResults": "No results"
+  },
+  "project": {
+    "total": "Total of",
+    "resources": "resources"
+  },
+  "resourceRedirect": {
+    "waitForRedirection": "Please wait while being redirected..."
   }
 }

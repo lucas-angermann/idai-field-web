@@ -1,5 +1,7 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Map, GeoJSON, ZoomControl } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import L, { PathOptions } from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import extent from 'turf-extent';
@@ -14,6 +16,7 @@ export default React.memo(function ProjectMap({ document, documents, onDocumentC
         : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
 
     const featureCollection = createFeatureCollection(documents, document);
+    const { t } = useTranslation();
 
     return <>
         <Map style={ mapStyle }
@@ -28,7 +31,7 @@ export default React.memo(function ProjectMap({ document, documents, onDocumentC
             { getGeoJSONElement(featureCollection, onDocumentClick) }
             <ZoomControl position="bottomright" />
         </Map>
-        { (!documents || documents.length === 0) && renderEmptyResult() }
+        { (!documents || documents.length === 0) && renderEmptyResult(t) }
     </>;
 }, (prevProps: any, nextProps: any) => {
     if (prevProps.document === nextProps.document
@@ -37,11 +40,9 @@ export default React.memo(function ProjectMap({ document, documents, onDocumentC
 });
 
 
-const renderEmptyResult = (): ReactElement => {
+const renderEmptyResult = (t: TFunction): ReactElement => {
 
-    return <div style={ emptyResultStyle }>
-        Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind.
-    </div>;
+    return <div style={ emptyResultStyle }>{ t('projectMap.noResources') }</div>;
 };
 
 
