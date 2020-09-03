@@ -8,8 +8,8 @@ defmodule Api.Images.CantaloupeAdapter do
   def get(project, id) do
     result = get("%2F#{project}%2F#{id}/full/\!380,350/0/default.jpg")
     case result do
-      {:ok, %{ body: error, status: 404 }} -> {:error, error}
-      {:ok, %{ body: image_data }} -> {:ok, image_data}
+      {:ok, %{ body: image_data, status: 200 }} -> {:ok, image_data}
+      {:ok, %{ body: error, status: _status }} -> {:error, error}
       other -> IO.puts ": #{inspect other}"
     end
   end
