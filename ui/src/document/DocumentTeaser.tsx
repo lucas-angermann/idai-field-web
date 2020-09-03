@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
 import './document-teaser.css';
+import { useTranslation } from 'react-i18next';
 
 
 export default React.memo(function DocumentTeaser({ document, searchParams = '', size = 'normal' }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal' }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
+    const { t } = useTranslation();
 
     if (document['deleted'] === true && document['deleted'] === 'true') {
-        return (<div>Zielressource nicht vorhanden [{ document.resource.id }]</div>);
+        return (<div>{ t('documentTeaser.noTargetResource') } [{ document.resource.id }]</div>);
     }
 
     return (
