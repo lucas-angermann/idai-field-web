@@ -1,5 +1,10 @@
 import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode } from 'react';
 import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
+import Icon from '@mdi/react';
+import { mdiArrowLeftCircle } from '@mdi/js';
+import { History } from 'history';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -7,16 +12,13 @@ import { Document } from '../api/document';
 import { Spinner, Card } from 'react-bootstrap';
 import { ResultDocument, Result, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
-import { History } from 'history';
 import { LoginContext } from '../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from './Filters';
-import { mdiArrowLeftCircle } from '@mdi/js';
 import DocumentDetails from '../document/DocumentDetails';
-import Icon from '@mdi/react';
 
 
 const MAX_SIZE = 10000;
@@ -36,6 +38,7 @@ export default function Project(): ReactElement {
     const [total, setTotal] = useState<number>();
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
 
@@ -85,7 +88,7 @@ export default function Project(): ReactElement {
             }
             <SearchBar projectId={ projectId } />
             <Filters filters={ filters } searchParams={ location.search } />
-            { renderTotal(total, document, projectId, location.search) }
+            { renderTotal(total, document, projectId, location.search, t) }
             { document
                 ? <DocumentDetails document={ document } />
                 : <ProjectHome
@@ -111,11 +114,15 @@ export default function Project(): ReactElement {
 }
 
 
-const renderTotal = (total: number, document: Document, projectId: string, searchParams): ReactNode => {
+const renderTotal = (total: number, document: Document, projectId: string, searchParams, t: TFunction): ReactNode => {
 
     if (!total) return null;
 
-    const content = <span>Insgesamt <b>{ total.toLocaleString('de-DE') }</b> Ressourcen</span>;
+    const content = (
+        <span>
+            { t('project.total') } <b>{ total.toLocaleString('de-DE') }</b> { t('project.resources') }
+        </span>
+    );
     return (
         <Card>
             <Card.Body>
