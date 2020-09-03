@@ -12,6 +12,7 @@ config :api,
   couchdb_databases: ["db1", "db2", "db3"],
   locales: ["de", "en"],
   image_source: "local", # can be either "local" or "cantaloupe"
+  # cantaloupe_url: "http://localhost:8182/iiif/2/", # must end with slash. use if "cantaloupe" selected as image_source
   default_filters: [
     %{
       field: "resource.category",

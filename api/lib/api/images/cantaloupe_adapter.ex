@@ -1,7 +1,7 @@
 defmodule Api.Images.CantaloupeAdapter do
   use Tesla
 
-  plug Tesla.Middleware.BaseUrl, "http://localhost:8182/iiif/2/"
+  plug Tesla.Middleware.BaseUrl, Core.Config.get(:cantaloupe_url)
 
   adapter Tesla.Adapter.Ibrowse
 

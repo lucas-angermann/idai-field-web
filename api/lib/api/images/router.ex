@@ -1,7 +1,6 @@
 defmodule Api.Images.Router do
   require Logger
   use Plug.Router
-  alias Api.Documents.Index
   import Api.RouterUtils
 
   plug :match
