@@ -56,7 +56,7 @@ docker-compose.override.yml
 
     api:
         volumes:
-        - "/host/environment/path/to/images/project_name:/opt/src/api/images/project_name"
+            - "/host/environment/path/to/images/project_name:/opt/src/api/images/project_name"
 
 ### Development - using cantaloupe
 
@@ -64,10 +64,9 @@ docker-compose.override.yml
 
     version: "3.7"
     
-    services:
-    
-        api:
-            network_mode: "host"
+    cantaloupe:
+        volumes:
+            - "/host/environment/path/to/images/project_name:/home/myself/images/project_name"
 
 ## API
 

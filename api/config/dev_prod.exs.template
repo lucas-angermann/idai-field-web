@@ -5,14 +5,13 @@ import Config
 config :api,
   elasticsearch_url: "elasticsearch:9200",
   elasticsearch_index_prefix: "idai-field",
+  cantaloupe_url: "http://cantaloupe:8182/iiif/2/", # must end with slash
   couchdb_url: "field.dainst.org/sync",
   couchdb_user: "",
   couchdb_password: "",
   gazetteer_url: "https://gazetteer.dainst.org",
   couchdb_databases: ["db1", "db2", "db3"],
   locales: ["de", "en"],
-  image_source: "local", # can be either "local" or "cantaloupe"
-  # cantaloupe_url: "http://localhost:8182/iiif/2/", # must end with slash. use if "cantaloupe" selected as image_source
   default_filters: [
     %{
       field: "resource.category",
