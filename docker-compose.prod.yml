@@ -19,13 +19,21 @@ services:
     volumes:
       - "elasticsearch-data:/usr/share/elasticsearch/data"
 
+  cantaloupe:
+    image: "lvanwissen/cantaloupe:latest"
+    ports:
+      - "8182:8282"
+    volumes:
+      - "idai-field-web_images:/home/myself/images"
+    networks:
+      - default
+
   api:
     image: "dainst/idai-field-web-api:latest"
     ports:
       - "4000:4000"
     volumes:
       - "/opt/idai-field/api/config:/opt/src/api/config"
-      - "idai-field-web_images:/opt/src/api/images"
     networks:
       - web
       - default
