@@ -46,27 +46,13 @@ a `docker-compose.override.yml` that contains the volume definition. This
 file gets automatically picked up by `docker-compose` and will not be published
 to the repository.
 
-### Development - using filesystem
-
-docker-compose.override.yml
-
-    version: "3.7"
-
-    services:
-
-    api:
-        volumes:
-            - "/host/environment/path/to/images/project_name:/opt/src/api/images/project_name"
-
-### Development - using cantaloupe
-
 docker-compose.override.yml
 
     version: "3.7"
     
     cantaloupe:
         volumes:
-            - "/host/environment/path/to/images/project_name:/home/myself/images/project_name"
+            - "/host/environment/path/to/images/project_name:/imageroot/project_name"
 
 ## API
 
