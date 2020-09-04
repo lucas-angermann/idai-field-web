@@ -36,7 +36,7 @@ services:
       LOG_ACCESS_CONSOLEAPPENDER_ENABLED: "true"
     volumes:
       - type: volume
-        source: idaifield_images
+        source: idai-field-web_images
         target: /imageroot
         volume:
           nocopy: true
