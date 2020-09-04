@@ -20,13 +20,26 @@ services:
       - "elasticsearch-data:/usr/share/elasticsearch/data"
 
   cantaloupe:
-    image: "lvanwissen/cantaloupe:latest"
+    image: dainst/cantaloupe
+    build: .
     ports:
-      - "8182:8282"
+      - 8182:8182
+    environment:
+      HTTP_HTTP2_ENABLED: "true"
+      HTTPS_HTTP2_ENABLED: "true"
+      ENDPOINT_IIIF_CONTENT_DISPOSITION: none
+      SOURCE_STATIC: FilesystemSource
+      FILESYSTEMSOURCE_BASICLOOKUPSTRATEGY_PATH_PREFIX: /imageroot/
+      PROCESSOR_SELECTION_STRATEGY: ManualSelectionStrategy
+      PROCESSOR_MANUALSELECTIONSTRATEGY_JP2: OpenJpegProcessor
+      LOG_APPLICATION_LEVEL: warn
+      LOG_ACCESS_CONSOLEAPPENDER_ENABLED: "true"
     volumes:
-      - "idai-field-web_images:/home/myself/images"
-    networks:
-      - default
+      - type: volume
+        source: idaifield_images
+        target: /imageroot
+        volume:
+          nocopy: true
 
   api:
     image: "dainst/idai-field-web-api:latest"
