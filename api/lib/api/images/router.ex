@@ -9,7 +9,7 @@ defmodule Api.Images.Router do
 
   get "/:project/:id" do
     with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-        {:ok, image_data} <- Api.Images.CantaloupeAdapter.get(project, id) do
+        {:ok, image_data} <- images_adapter().get(project, id) do
       conn
       |> put_resp_content_type("image/jpeg")
       |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")
@@ -18,6 +18,14 @@ defmodule Api.Images.Router do
       :unauthorized_access -> send_unauthorized(conn)
       {:error, :not_found} -> send_not_found(conn)
       {:error, reason} -> send_error(conn, reason)
+    end
+  end
+
+  defp images_adapter do
+    if Mix.env() == :test do
+      Api.Images.MockImagesAdapter
+    else
+      Api.Images.CantaloupeImagesAdapter
     end
   end
 end

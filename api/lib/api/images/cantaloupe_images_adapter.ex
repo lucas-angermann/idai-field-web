@@ -1,4 +1,4 @@
-defmodule Api.Images.CantaloupeAdapter do
+defmodule Api.Images.CantaloupeImagesAdapter do
   require Logger
   use Tesla
   plug Tesla.Middleware.BaseUrl, Core.Config.get(:cantaloupe_url)

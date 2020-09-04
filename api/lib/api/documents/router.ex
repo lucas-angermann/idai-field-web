@@ -43,5 +43,4 @@ defmodule Api.Documents.Router do
       _ -> IO.puts "other error"
     end
   end
-
 end

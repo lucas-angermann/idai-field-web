@@ -96,26 +96,26 @@ defmodule Api.RouterTest do
     assert List.last(context.body.documents).project == "b"
   end
 
-  @tag path: @image_path <> "/doc-of-proj-a"
+  @tag path: @image_path <> "/a/doc-of-proj-a"
   test "get image", context do
     assert context.conn.state == :sent
     assert context.conn.status == 200
   end
 
-  @tag path: @image_path <> "/doc-of-proj-b"
+  @tag path: @image_path <> "/b/doc-of-proj-b"
   test "image not authorized", context do
     assert context.conn.state == :sent
     assert context.conn.status == 401
     assert context.body.error == "unauthorized"
   end
 
-  @tag path: @image_path <> "/doc-of-proj-b", login: @user1
+  @tag path: @image_path <> "/b/doc-of-proj-b", login: @user1
   test "image authorized", context do
     assert context.conn.state == :sent
     assert context.conn.status == 200
   end
 
-  @tag path: @image_path <> "/doc-of-proj-c"
+  @tag path: @image_path <> "/c/non-existing-doc", login: @user2
   test "image not found", context do
     assert context.conn.state == :sent
     assert context.conn.status == 404

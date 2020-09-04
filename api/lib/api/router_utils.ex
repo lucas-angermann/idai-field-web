@@ -44,6 +44,7 @@ defmodule Api.RouterUtils do
   end
 
   def access_for_project_allowed readable_projects, project do
+
     if project in readable_projects, do: :ok, else: :unauthorized_access
   end
 end
