@@ -13,6 +13,6 @@ defmodule Api.Documents.ReadableProjectsPlug do
     (conn
      |> get_req_header("authorization")
      |> List.first
-     |> Api.Auth.Router.get_user_for_bearer).readable_projects
+     |> Api.Auth.Bearer.get_user_for_bearer).readable_projects
   end
 end
