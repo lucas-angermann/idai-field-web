@@ -1,5 +1,5 @@
 defmodule Api.Images.MockImagesAdapter do
-  def get(project, id) do
+  def get(_, id) do
     if id == "non-existing-doc" do
       {:error, :not_found}
     else
