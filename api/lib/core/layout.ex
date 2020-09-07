@@ -52,7 +52,8 @@ defmodule Core.Layout do
   end
 
   defp get_value(dimension = %{ "measurementPosition" => position }, %{ positionValues: %{ "values" => values } }) do
-    unless Map.has_key?(values, position), do: dimension, else:
+    unless Map.has_key?(values, position), do:
+      put_in(dimension["measurementPosition"], %{ name: position }), else:
       put_in(dimension["measurementPosition"], %{ name: position, label: get_labels(values[position]["labels"]) })
   end
 
