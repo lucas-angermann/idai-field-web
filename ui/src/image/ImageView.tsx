@@ -9,8 +9,8 @@ export default function ImageView() {
 
     const { project, id } = useParams();
 
-    const url = `https://images.idai.world/iiif/2/${project}%2F${id}.jp2/info.json`;
-    
+    const url = `/api/images/${project}%2F${id}/info.json`; // TODO info.json would not work
+
     return (
         <div style={ containerStyle }>
             <Map style={ mapStyle }

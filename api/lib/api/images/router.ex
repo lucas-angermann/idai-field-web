@@ -7,7 +7,6 @@ defmodule Api.Images.Router do
   plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
-  # todo pass query parameters through to cantaloupe
   get "/:project/:id/*params" do
     with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
         {:ok, image_data} <- images_adapter().get(project, id, params) do
