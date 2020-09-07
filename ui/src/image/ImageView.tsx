@@ -1,15 +1,17 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Map } from 'react-leaflet';
 import L from 'leaflet';
 import IiifImageLayer from './IiifImageLayer';
 import { NAVBAR_HEIGHT } from '../constants';
+import { LoginContext } from '../App';
+import { get } from '../api/documents';
 
 export default function ImageView() {
 
     const { project, id } = useParams();
 
-    const url = `/api/images/${project}%2F${id}/info.json`; // TODO info.json would not work
+    const url = `/api/images/${project}/${id}/full%2Finfo.json`;
 
     return (
         <div style={ containerStyle }>
