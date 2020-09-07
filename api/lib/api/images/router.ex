@@ -7,6 +7,19 @@ defmodule Api.Images.Router do
   plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
+  get "/:project/:id/info" do
+    with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
+        {:ok, image_info} <- images_adapter().info(project, id) do
+      conn
+      |> put_resp_content_type("application/json")
+      |> send_resp(200, image_info)
+    else
+      :unauthorized_access -> send_unauthorized(conn)
+      {:error, :not_found} -> send_not_found(conn)
+      {:error, reason} -> send_error(conn, reason)
+    end
+  end
+
   get "/:project/:id/*params" do
     with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
         {:ok, image_data} <- images_adapter().get(project, id, params) do
