@@ -26,7 +26,7 @@ export default React.memo(function Image({ project, id, maxWidth, maxHeight }: I
 
         const fetchAndSetImage = async () => {
             try {
-                url = await fetchImage(project, id, maxWidth, maxHeight);
+                url = await fetchImage(project, id, maxWidth, maxHeight, loginData.token);
                 if (!didCancel) {
                     setImgUrl(url);
                 }

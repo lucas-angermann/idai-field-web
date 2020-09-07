@@ -1,10 +1,16 @@
-export const fetchImage = async (project: string, id: string, maxWidth: number, maxHeight: number): Promise<string> => {
+import { getHeaders } from './utils';
 
-    const response = await fetch(getImageUrl(project, id, maxWidth, maxHeight));
+export const fetchImage = async (project: string,
+                                 id: string,
+                                 maxWidth: number,
+                                 maxHeight: number,
+                                 token: string): Promise<string> => {
+
+    const response = await fetch(getImageUrl(project, id, maxWidth, maxHeight), { headers: getHeaders(token) });
     if (response.ok) return URL.createObjectURL(await response.blob());
     else throw (await response.json());
 };
 
 
 const getImageUrl = (project: string, id: string, maxWidth: number, maxHeight: number) =>
-    `https://images.idai.world/iiif/2/${project}%2F${id}.jp2/full/!${maxWidth},${maxHeight}/0/default.jpg`;
+    `/api/images/${project}/${id}/!${maxWidth},${maxHeight}%2F0${true /* if production */ ? '.jp2' : ''}`;
