@@ -8,9 +8,9 @@ defmodule Api.Images.Router do
   plug :dispatch
 
   # todo pass query parameters through to cantaloupe
-  get "/:project/:id" do
+  get "/:project/:id/*params" do
     with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-        {:ok, image_data} <- images_adapter().get(project, id) do
+        {:ok, image_data} <- images_adapter().get(project, id, params) do
       conn
       |> put_resp_content_type("image/jpeg")
       |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")

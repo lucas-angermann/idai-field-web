@@ -4,8 +4,9 @@ defmodule Api.Images.CantaloupeImagesAdapter do
   plug Tesla.Middleware.BaseUrl, Core.Config.get(:cantaloupe_url)
   adapter Tesla.Adapter.Ibrowse
 
-  def get(project, id) do
-    result = get("%2F#{project}%2F#{id}/full/\!380,350/0/default.jpg")
+  def get(project, id, cantaloupe_params) do
+    cantaloupe_url = "%2F#{project}%2F#{id}/full/#{cantaloupe_params}/default.jpg"
+    result = get(cantaloupe_url)
     case result do
       {:ok, %{ body: image_data, status: 200 }} -> {:ok, image_data}
       {:ok, %{ body: _, status: 404 }} -> {:error, :not_found}
