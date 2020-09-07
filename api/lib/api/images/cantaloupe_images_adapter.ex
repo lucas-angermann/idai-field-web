@@ -16,7 +16,7 @@ defmodule Api.Images.CantaloupeImagesAdapter do
   end
 
   def get(project, id, cantaloupe_params) do
-    cantaloupe_url = "%2F#{project}%2F#{id}/full/#{cantaloupe_params}/default.jpg"
+    cantaloupe_url = "%2F#{project}%2F#{id}/#{cantaloupe_params}"
     result = get(cantaloupe_url)
     case result do
       {:ok, %{ body: image_data, status: 200 }} -> {:ok, image_data}
