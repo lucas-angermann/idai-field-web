@@ -1,16 +1,15 @@
-import { getHeaders } from './utils';
-
 export const fetchImage = async (project: string,
                                  id: string,
                                  maxWidth: number,
                                  maxHeight: number,
                                  token: string): Promise<string> => {
 
-    const response = await fetch(getImageUrl(project, id, maxWidth, maxHeight), { headers: getHeaders(token) });
+    const imageUrl = getImageUrl(project, id, maxWidth, maxHeight, token);
+    const response = await fetch(imageUrl);
     if (response.ok) return URL.createObjectURL(await response.blob());
     else throw (await response.json());
 };
 
 
-const getImageUrl = (project: string, id: string, maxWidth: number, maxHeight: number) =>
-    `/api/images/${project}/${id}${false /* if production */ ? '.jp2' : ''}/full%2F!${maxWidth},${maxHeight}%2F0%2Fdefault.jpg?q=hallo`;
+const getImageUrl = (project: string, id: string, maxWidth: number, maxHeight: number, token: string) =>
+    `/api/images/${project}/${id}${false /* if production */ ? '.jp2' : ''}/${token}/full/!${maxWidth},${maxHeight}/0/default.jpg`;
