@@ -1,17 +1,20 @@
-import React, { CSSProperties, useContext, useEffect } from 'react';
+import React, { CSSProperties, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Map } from 'react-leaflet';
 import L from 'leaflet';
 import IiifImageLayer from './IiifImageLayer';
 import { NAVBAR_HEIGHT } from '../constants';
 import { LoginContext } from '../App';
-import { get } from '../api/documents';
 
 export default function ImageView() {
 
     const { project, id } = useParams();
+    const [url, setUrl] = useState<string>('');
+    const loginData = useContext(LoginContext);
 
-    const url = `/api/images/${project}/${id}.jp2/anonymous/info.json`;
+    useEffect (() => {
+        setUrl(`/api/images/${project}/${id}.jp2/${loginData.token}/info.json`); // todo review: token not set
+    }, [id, project, loginData]);
 
     return (
         <div style={ containerStyle }>

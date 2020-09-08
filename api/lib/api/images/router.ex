@@ -10,11 +10,9 @@ defmodule Api.Images.Router do
 
   get "/:project/:id/:token/*params" do
 
-    path_info = Enum.drop conn.path_info, 3
-    # IO.puts "path_info #{Path.join(path_info)}"
+    readable_projects = Api.Auth.Bearer.get_user_for_bearer(token).readable_projects
 
-    readable_projects = ["meninx-project"] #conn.private[:readable_projects]
-    project = "meninx-project"
+    path_info = Enum.drop conn.path_info, 3
 
     if String.contains?(List.first(path_info), "info.json") do
       with :ok <- access_for_project_allowed(readable_projects, project),
