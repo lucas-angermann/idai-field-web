@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
-import { Card, Carousel } from 'react-bootstrap';
+import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
@@ -119,7 +119,7 @@ const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
 const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 
     if (object.label && object.name) {
-        return getLabel(object.name, object.label);
+        return renderMultiLanguageValue(object);
     } else if (object.label) {
       return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
@@ -135,6 +135,18 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
     } else {
         return renderObjectFields(object, t);
     }
+};
+
+
+const renderMultiLanguageValue = (object: any): ReactNode => {
+
+    const label: string = getLabel(object.name, object.label);
+
+    return object.label && Object.keys(object.label).length > 0
+        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ getPopover(object) }>
+            <div style={ multiLanguageValueStyle }>{ label }</div>
+          </OverlayTrigger>
+        : label;
 };
 
 
@@ -155,6 +167,18 @@ const renderObjectFields = (object: any, t: TFunction): ReactNode => {
 };
 
 
+const getPopover = (object: any): any => {
+
+    return (
+        <Popover id={ 'popover-' + object.name }>
+            <Popover.Content>
+                { Object.keys(object.label).map(language => <div key={ language }>{ object.label[language] }</div>) }
+            </Popover.Content>
+        </Popover>
+    );
+};
+
+
 const getDecimalValue = (value: number): string => {
 
     return value.toString().replace('.', ',');
@@ -165,4 +189,9 @@ const cardStyle: CSSProperties = {
     overflow: 'auto',
     flexGrow: 1,
     flexShrink: 1
+};
+
+
+const multiLanguageValueStyle: CSSProperties = {
+    display: 'inline-block'
 };
