@@ -121,12 +121,13 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
     if (object.label && object.name) {
         return getLabel(object.name, object.label);
     } else if (object.label) {
-        return object.label;
+      return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
         return Dating.generateLabel(object, t);
     } else if (Dimension.isValid(object)) {
-        // TODO Get translated label for measurement position from value list
-        return Dimension.generateLabel(object, getDecimalValue, t, object.measurementPosition);
+        return Dimension.generateLabel(
+            object, getDecimalValue, t, getLabel(object.measurementPosition.name, object.measurementPosition.label)
+        );
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, t);
     } else if (OptionalRange.isValid(object)) {

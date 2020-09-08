@@ -10,7 +10,7 @@ defmodule Core.ProjectConfigTest do
     label = ProjectConfig.get_label(configuration, "Operation", "category")
     assert label == %{ en: "Category", de: "Kategorie"}
 
-    label = ProjectConfig.get_label(configuration, "Operation", "height")
-    assert label == %{ en: "Height", de: "Höhe"}
+    label = ProjectConfig.get_label(configuration, "Operation", "width")
+    assert label == %{ en: "Width", de: "Breite"}
   end
 end

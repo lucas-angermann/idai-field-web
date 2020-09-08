@@ -8,9 +8,8 @@ defmodule Core.LayoutTest do
 
     resource = %{
         :category => "Operation",
-        "width" => "1cm",
-        "height" => "2cm",
         "color" => ["Grün", "Blau"],
+        "width" => [%{ "inputValue" => 10, "inputUnit" => "cm", "measurementPosition" => "Maximale Ausdehnung" }],
         :id => "42",
         :relations => %{ "liesWithin" => ["45"]}
     }
@@ -85,17 +84,20 @@ defmodule Core.LayoutTest do
          name: "dimensions",
          fields: [
            %{
-             name: "height",
-             value: "2cm",
-             label: %{
-               de: "Höhe",
-               en: "Height"
-             },
-             description: %{}
-           },
-           %{
              name: "width",
-             value: "1cm",
+             value: [
+               %{
+                 inputValue: 10,
+                 inputUnit: "cm",
+                 measurementPosition: %{
+                   name: "Maximale Ausdehnung",
+                   label: %{
+                     de: "Maximale Ausdehnung",
+                     en: "Maximum expansion"
+                   }
+                 }
+               }
+             ],
              label: %{
                de: "Breite",
                en: "Width"
@@ -105,7 +107,7 @@ defmodule Core.LayoutTest do
          ],
          relations: []
        }
-      ]
+     ]
     }
   end
 end
