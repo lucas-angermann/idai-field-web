@@ -13,4 +13,4 @@ export const fetchImage = async (project: string,
 
 
 const getImageUrl = (project: string, id: string, maxWidth: number, maxHeight: number) =>
-    `/api/images/${project}/${id}${true /* if production */ ? '.jp2' : ''}/full%2F!${maxWidth},${maxHeight}%2F0%2Fdefault.jpg`;
+    `/api/images/${project}/${id}${false /* if production */ ? '.jp2' : ''}/full%2F!${maxWidth},${maxHeight}%2F0%2Fdefault.jpg?q=hallo`;

@@ -2,14 +2,22 @@ defmodule Api.Images.Router do
   require Logger
   use Plug.Router
   import Api.RouterUtils
+  alias Plug.Conn
 
   plug :match
-  plug Api.Documents.ReadableProjectsPlug
+  #plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
-  get "/:project/:id/*params" do
-    if String.contains?(List.first(params), "info.json") do
-      with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
+  get "/:project/:id/:token/*params" do
+
+    path_info = Enum.drop conn.path_info, 3
+    # IO.puts "path_info #{Path.join(path_info)}"
+
+    readable_projects = ["meninx-project"] #conn.private[:readable_projects]
+    project = "meninx-project"
+
+    if String.contains?(List.first(path_info), "info.json") do
+      with :ok <- access_for_project_allowed(readable_projects, project),
            {:ok, image_info} <- images_adapter().info(project, id) do
         conn
         |> put_resp_content_type("application/json")
@@ -20,8 +28,8 @@ defmodule Api.Images.Router do
         {:error, reason} -> send_error(conn, reason)
       end
     else
-      with :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-          {:ok, image_data} <- images_adapter().get(project, id, params) do
+      with :ok <- access_for_project_allowed(readable_projects, project),
+          {:ok, image_data} <- images_adapter().get(project, id, Path.join(path_info)) do
         conn
         |> put_resp_content_type("image/jpeg")
         |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")

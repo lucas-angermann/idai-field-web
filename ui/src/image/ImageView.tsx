@@ -11,7 +11,7 @@ export default function ImageView() {
 
     const { project, id } = useParams();
 
-    const url = `/api/images/${project}/${id}/full%2Finfo.json`;
+    const url = `/api/images/${project}/${id}.jp2/anonymous/info.json`;
 
     return (
         <div style={ containerStyle }>
