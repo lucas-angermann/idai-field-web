@@ -9,11 +9,11 @@ import { LoginContext } from '../App';
 export default function ImageView() {
 
     const { project, id } = useParams();
-    const [url, setUrl] = useState<string>('');
+    const [url, setUrl] = useState<string>(makeUrl(project, id));
     const loginData = useContext(LoginContext);
 
     useEffect (() => {
-        setUrl(`/api/images/${project}/${id}.jp2/${loginData.token}/info.json`); // todo review: token not set
+        setUrl(makeUrl(project, id, loginData.token));
     }, [id, project, loginData]);
 
     return (
@@ -27,6 +27,10 @@ export default function ImageView() {
         </div>
     );
 }
+
+const makeUrl = (project: string, id: string, token?: string) => {
+    return `/api/images/${project}/${id}.jp2/${token !== undefined ? token : 'anonymous' }/info.json`;
+};
 
 const containerStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
