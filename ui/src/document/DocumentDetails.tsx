@@ -143,7 +143,7 @@ const renderMultiLanguageValue = (object: any): ReactNode => {
     const label: string = getLabel(object.name, object.label);
 
     return object.label && Object.keys(object.label).length > 0
-        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ getPopover(object) }>
+        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object) }>
             <div style={ multiLanguageValueStyle }>{ label }</div>
           </OverlayTrigger>
         : label;
@@ -167,7 +167,7 @@ const renderObjectFields = (object: any, t: TFunction): ReactNode => {
 };
 
 
-const getPopover = (object: any): any => {
+const renderPopover = (object: any): any => {
 
     return (
         <Popover id={ 'popover-' + object.name }>
