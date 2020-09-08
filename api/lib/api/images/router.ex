@@ -5,35 +5,36 @@ defmodule Api.Images.Router do
   alias Plug.Conn
 
   plug :match
-  #plug Api.Documents.ReadableProjectsPlug
   plug :dispatch
 
   get "/:project/:id/:token/*params" do
-
     readable_projects = Api.Auth.Bearer.get_user_for_bearer(token).readable_projects
+    with :ok <- access_for_project_allowed(readable_projects, project) do
+      handle_call conn, project, id
+    else
+      :unauthorized_access -> Api.RouterUtils.send_unauthorized conn
+    end
+  end
 
+  defp handle_call(conn, project, id) do
     path_info = Enum.drop conn.path_info, 3
 
     if String.contains?(List.first(path_info), "info.json") do
-      with :ok <- access_for_project_allowed(readable_projects, project),
-           {:ok, image_info} <- images_adapter().info(project, id) do
+      with {:ok, image_info} <- images_adapter().info(project, id) do
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(200, image_info)
       else
-        :unauthorized_access -> send_unauthorized(conn)
         {:error, :not_found} -> send_not_found(conn)
         {:error, reason} -> send_error(conn, reason)
       end
     else
-      with :ok <- access_for_project_allowed(readable_projects, project),
-          {:ok, image_data} <- images_adapter().get(project, id, Path.join(path_info)) do
+      with {:ok, image_data} <- images_adapter().get(project, id, Path.join(path_info)) do
         conn
         |> put_resp_content_type("image/jpeg")
         |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")
         |> send_resp(200, image_data)
       else
-        :unauthorized_access -> send_unauthorized(conn)
         {:error, :not_found} -> send_not_found(conn)
         {:error, reason} -> send_error(conn, reason)
       end
