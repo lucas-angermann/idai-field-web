@@ -119,7 +119,7 @@ const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
 const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 
     if (object.label && object.name) {
-        return renderMultiLanguageValue(object);
+        return renderMultiLanguageValue(object, t);
     } else if (object.label) {
       return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
@@ -138,12 +138,12 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 };
 
 
-const renderMultiLanguageValue = (object: any): ReactNode => {
+const renderMultiLanguageValue = (object: any, t: TFunction): ReactNode => {
 
     const label: string = getLabel(object.name, object.label);
 
     return object.label && Object.keys(object.label).length > 0
-        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object) }>
+        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object, t) }>
             <div style={ multiLanguageValueStyle }>{ label }</div>
           </OverlayTrigger>
         : label;
@@ -167,12 +167,18 @@ const renderObjectFields = (object: any, t: TFunction): ReactNode => {
 };
 
 
-const renderPopover = (object: any): any => {
+const renderPopover = (object: any, t: TFunction): any => {
 
     return (
         <Popover id={ 'popover-' + object.name }>
             <Popover.Content>
-                { Object.keys(object.label).map(language => <div key={ language }>{ object.label[language] }</div>) }
+                { Object.keys(object.label).map(language => (
+                        <div key={ language }>
+                            <em>{ t('languages.' + language) }: </em>
+                            { object.label[language] }
+                        </div>
+                    ))
+                }
             </Popover.Content>
         </Popover>
     );
