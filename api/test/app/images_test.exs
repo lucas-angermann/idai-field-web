@@ -2,11 +2,7 @@ defmodule Api.ImagesTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
-  @opts Api.Router.init([])
-
-  @api_path "/api"
-  @auth_path @api_path <> "/auth"
-  @auth_sign_in_path @auth_path <> "/sign_in"
+  @api_path Api.AppTestHelper.api_path
   @image_path @api_path <> "/images"
 
   @user1 {"user-1", "pass-1"}
@@ -15,13 +11,13 @@ defmodule Api.ImagesTest do
   setup context do
     token = if login_info = context[:login] do
       {name, pass} = login_info
-      sign_in(name, pass)
+      Api.AppTestHelper.sign_in(name, pass)
     else
       "anonymous"
     end
 
     path = String.replace(context[:path], "TOKEN", token)
-    conn = conn(:get, path) |> Api.Router.call(@opts)
+    conn = conn(:get, path) |> Api.Router.call(Api.AppTestHelper.opts)
 
     body = if Enum.member?(conn.resp_headers, {"content-type", "application/json; charset=utf-8"}) do
       Core.Utils.atomize(Poison.decode!(conn.resp_body))
@@ -55,13 +51,5 @@ defmodule Api.ImagesTest do
     assert context.conn.state == :sent
     assert context.conn.status == 404
     assert context.body.error == "not_found"
-  end
-
-
-  # todo remove duplication with router_test.exs
-  defp sign_in name, pass do
-    conn = conn(:post, @auth_sign_in_path, %{ name: name, pass: pass })
-           |> Api.Router.call(@opts)
-    Poison.decode!(conn.resp_body)["token"]
   end
 end

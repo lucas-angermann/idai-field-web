@@ -2,12 +2,8 @@ defmodule Api.RouterTest do
   use ExUnit.Case, async: true
   use Plug.Test
 
-  @opts Api.Router.init([])
-
-  @api_path "/api"
-  @auth_path @api_path <> "/auth"
-  @auth_show_path @auth_path <> "/show"
-  @auth_sign_in_path @auth_path <> "/sign_in"
+  @api_path Api.AppTestHelper.api_path
+  @auth_show_path Api.AppTestHelper.auth_path <> "/show"
   @documents_path @api_path <> "/documents"
   @map_path @documents_path <> "/map"
 
@@ -19,10 +15,10 @@ defmodule Api.RouterTest do
     conn = conn(:get, context[:path])
     conn = Api.Router.call((if login_info = context[:login] do
       {name, pass} = login_info
-      put_req_header(conn, "authorization", sign_in(name, pass))
+      put_req_header(conn, "authorization", Api.AppTestHelper.sign_in(name, pass))
     else
       conn
-    end), @opts)
+    end), Api.AppTestHelper.opts)
     body = if Enum.member?(conn.resp_headers, {"content-type", "application/json; charset=utf-8"}) do
       Core.Utils.atomize(Poison.decode!(conn.resp_body))
     else
@@ -93,11 +89,5 @@ defmodule Api.RouterTest do
     assert length(context.body.documents) == 2
     assert List.first(context.body.documents).project == "a"
     assert List.last(context.body.documents).project == "b"
-  end
-
-  defp sign_in name, pass do
-    conn = conn(:post, @auth_sign_in_path, %{ name: name, pass: pass })
-      |> Api.Router.call(@opts)
-    Poison.decode!(conn.resp_body)["token"]
   end
 end
