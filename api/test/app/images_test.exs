@@ -13,8 +13,6 @@ defmodule Api.ImagesTest do
   @user2 {"user-2", "pass-2"}
 
   setup context do
-
-    path = context[:path]
     token = if login_info = context[:login] do
       {name, pass} = login_info
       sign_in(name, pass)
@@ -22,10 +20,9 @@ defmodule Api.ImagesTest do
       "anonymous"
     end
 
-    path = String.replace(path, "TOKEN", token)
-    conn = conn(:get, path)
+    path = String.replace(context[:path], "TOKEN", token)
+    conn = conn(:get, path) |> Api.Router.call(@opts)
 
-    conn = Api.Router.call(conn, @opts)
     body = if Enum.member?(conn.resp_headers, {"content-type", "application/json; charset=utf-8"}) do
       Core.Utils.atomize(Poison.decode!(conn.resp_body))
     else
