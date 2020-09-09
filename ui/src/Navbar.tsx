@@ -53,32 +53,39 @@ const renderLanguageButton = (modalOpened: boolean, setModalOpened: (opened: boo
         <Button variant="link" style={ languageButtonStyle } onClick={ () => setModalOpened(true) }>
             <Icon path={ mdiEarth } size={ 1 } />
         </Button>
-        <Modal isOpen={ modalOpened } onRequestClose={ () => setModalOpened(false) } style={ modalStyle }>
-            <Button onClick={ () => setModalOpened(false) } style={ closeButtonStyle }>
-                <Icon path={ mdiClose } size={ 0.8 } className="close-button-icon" />
-            </Button>
-            <h2>{ t('navbar.languageModal.title') }</h2>
-            <p>
-                <div>{ t('navbar.languageModal.info') }</div>
-            </p>
-            <p>
-                <div>
-                    { t('navbar.languageModal.userInterfaceLanguage') }
-                    <strong> { t('languages.' + getUserInterfaceLanguage()) }</strong>
-                </div>
-                <div>
-                    { t('navbar.languageModal.availableUserInterfaceLanguages')}
-                    { USER_INTERFACE_LANGUAGES.map(language => t('languages.' + language)).join(', ') }
-                </div>
-            </p>
-            <p>
-                <div>{ t('navbar.languageModal.configurationLanguages') }</div>
-                <ol style={ languageListStyle }>
-                    { LANGUAGES.map(language => <li>{ t('languages.' + language) }</li>) }
-                </ol>
-            </p>
-        </Modal>
+        { renderLanguageModal(modalOpened, setModalOpened, t) }
     </>
+);
+
+
+const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: boolean) => void,
+                             t: TFunction) => (
+
+    <Modal isOpen={ modalOpened } onRequestClose={ () => setModalOpened(false) } style={ modalStyle }>
+        <Button onClick={ () => setModalOpened(false) } style={ closeButtonStyle }>
+            <Icon path={ mdiClose } size={ 0.8 } className="close-button-icon" />
+        </Button>
+        <h2>{ t('navbar.languageModal.title') }</h2>
+        <p>
+            <div>{ t('navbar.languageModal.info') }</div>
+        </p>
+        <p>
+            <div>
+                { t('navbar.languageModal.userInterfaceLanguage') }
+                <strong> { t('languages.' + getUserInterfaceLanguage()) }</strong>
+            </div>
+            <div>
+                { t('navbar.languageModal.availableUserInterfaceLanguages')}
+                { USER_INTERFACE_LANGUAGES.map(language => t('languages.' + language)).join(', ') }
+            </div>
+        </p>
+        <p>
+            <div>{ t('navbar.languageModal.configurationLanguages') }</div>
+            <ol style={ languageListStyle }>
+                { LANGUAGES.map(language => <li>{ t('languages.' + language) }</li>) }
+            </ol>
+        </p>
+    </Modal>
 );
 
 
