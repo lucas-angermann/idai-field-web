@@ -29,9 +29,9 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
         <Button onClick={ () => setModalOpened(false) } style={ closeButtonStyle }>
             <Icon path={ mdiClose } size={ 0.8 } className="close-button-icon" />
         </Button>
-        <h2 style={ headingStyle }>{ t('navbar.languageModal.title') }</h2>
-        <p>{ t('navbar.languageModal.info') }</p>
-        <p>
+        <h2 style={ paragraphStyle }>{ t('navbar.languageModal.title') }</h2>
+        <div style={ paragraphStyle }>{ t('navbar.languageModal.info') }</div>
+        <div style={ paragraphStyle }>
             <div>
                 { t('navbar.languageModal.userInterfaceLanguage') }
                 <strong> { t('languages.' + getUserInterfaceLanguage()) }</strong>
@@ -40,13 +40,13 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
                 <span>{ t('navbar.languageModal.availableUserInterfaceLanguages') } </span>
                 { USER_INTERFACE_LANGUAGES.map(language => t('languages.' + language)).join(', ') }
             </div>
-        </p>
-        <p>
+        </div>
+        <div style={ paragraphStyle }>
             <div>{ t('navbar.languageModal.configurationLanguages') }</div>
             <ol style={ languageListStyle }>
                 { LANGUAGES.map(language => <li>{ t('languages.' + language) }</li>) }
             </ol>
-        </p>
+        </div>
     </Modal>
 );
 
@@ -72,7 +72,7 @@ const modalStyle = {
 };
 
 
-const headingStyle: CSSProperties = {
+const paragraphStyle: CSSProperties = {
     marginBottom: '1rem'
 };
 
