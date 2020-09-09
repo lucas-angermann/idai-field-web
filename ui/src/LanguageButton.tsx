@@ -44,7 +44,7 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
         <div style={ paragraphStyle }>
             <div>{ t('navbar.languageModal.configurationLanguages') }</div>
             <ol style={ languageListStyle }>
-                { LANGUAGES.map(language => <li>{ t('languages.' + language) }</li>) }
+                { LANGUAGES.map(language => <li key={ language }>{ t('languages.' + language) }</li>) }
             </ol>
         </div>
     </Modal>
