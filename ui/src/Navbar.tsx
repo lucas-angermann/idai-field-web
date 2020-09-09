@@ -65,16 +65,14 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
         <Button onClick={ () => setModalOpened(false) } style={ closeButtonStyle }>
             <Icon path={ mdiClose } size={ 0.8 } className="close-button-icon" />
         </Button>
-        <h2>{ t('navbar.languageModal.title') }</h2>
-        <p>
-            <div>{ t('navbar.languageModal.info') }</div>
-        </p>
+        <h2 style={ headingStyle }>{ t('navbar.languageModal.title') }</h2>
+        <p>{ t('navbar.languageModal.info') }</p>
         <p>
             <div>
                 { t('navbar.languageModal.userInterfaceLanguage') }
                 <strong> { t('languages.' + getUserInterfaceLanguage()) }</strong>
             </div>
-            <div>
+            <div style={ smallInfoStyle }>
                 <span>{ t('navbar.languageModal.availableUserInterfaceLanguages') } </span>
                 { USER_INTERFACE_LANGUAGES.map(language => t('languages.' + language)).join(', ') }
             </div>
@@ -115,8 +113,17 @@ const modalStyle = {
 };
 
 
-const languageListStyle: CSSProperties = {
+const headingStyle: CSSProperties = {
+    marginBottom: '1rem'
+};
 
+
+const smallInfoStyle: CSSProperties = {
+    fontSize: '14px'
+};
+
+
+const languageListStyle: CSSProperties = {
     maxHeight: '290px',
     overflow: 'auto'
 };
