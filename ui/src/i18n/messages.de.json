@@ -10,7 +10,7 @@
       "title": "Sprachen",
       "info": "Die ausgewählten Sprachen und ihre Priorität richten sich nach den Spracheinstellungen des Browsers.",
       "userInterfaceLanguage": "Sprache der Benutzeroberfläche:",
-      "availableUserInterfaceLanguages": "Übersetzungen der Benutzeroberfläche sind verfügbar für die Sprachen: ",
+      "availableUserInterfaceLanguages": "Übersetzungen der Benutzeroberfläche sind verfügbar für die Sprachen:",
       "configurationLanguages": "Sprachen für Feldbezeichnungen und -werte:"
     }
   },

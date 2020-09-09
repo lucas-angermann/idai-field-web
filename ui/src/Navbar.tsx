@@ -75,7 +75,7 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
                 <strong> { t('languages.' + getUserInterfaceLanguage()) }</strong>
             </div>
             <div>
-                { t('navbar.languageModal.availableUserInterfaceLanguages')}
+                <span>{ t('navbar.languageModal.availableUserInterfaceLanguages') } </span>
                 { USER_INTERFACE_LANGUAGES.map(language => t('languages.' + language)).join(', ') }
             </div>
         </p>

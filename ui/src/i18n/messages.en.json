@@ -9,8 +9,8 @@
     "languageModal": {
       "title": "Languages",
       "info": "The selected languages and their priority depend on the language settings of the browser.",
-      "userInterfaceLanguage": "Language of the user interface:",
-      "availableUserInterfaceLanguages": "User interface translations are available for the following languages: ",
+      "userInterfaceLanguage": "User interface language:",
+      "availableUserInterfaceLanguages": "User interface translations are available for the following languages:",
       "configurationLanguages": "Languages for field names and values:"
     }
   },
