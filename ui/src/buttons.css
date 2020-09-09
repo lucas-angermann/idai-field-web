@@ -41,3 +41,8 @@
 .btn {
     border-radius: 0;
 }
+
+.close-button-icon {
+    position: relative;
+    bottom: 2px;
+}

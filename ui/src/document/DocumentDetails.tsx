@@ -1,14 +1,14 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
 import { getLabel } from '../languages';
-import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
