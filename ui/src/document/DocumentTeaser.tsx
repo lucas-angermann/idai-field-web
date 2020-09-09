@@ -6,9 +6,13 @@ import { ResultDocument } from '../api/result';
 import './document-teaser.css';
 import { useTranslation } from 'react-i18next';
 
+const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
-export default React.memo(function DocumentTeaser({ document, searchParams = '', size = 'normal' }
-        : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal' }): ReactElement {
+export default React.memo(function DocumentTeaser(
+    { document, searchParams = '', size = 'normal', project = 'undefined' }
+        : { document: ResultDocument, project?: string
+            /* on rendering relation targets, the project is not part of the document*/,
+            searchParams?: string, size?: 'small' | 'normal' }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -17,8 +21,13 @@ export default React.memo(function DocumentTeaser({ document, searchParams = '',
         return (<div>{ t('documentTeaser.noTargetResource') } [{ document.resource.id }]</div>);
     }
 
+    const isImage = IMAGE_CATEGORIES.includes(document.resource.category);
+    const linkUrl = isImage
+        ? `/image/${document?.project ?? project}/${document.resource.id}`
+        : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
+
     return (
-        <Link to={ `/project/${document.project}/${document.resource.id}${searchParams}` }
+        <Link to={ linkUrl }
             style={ linkStyle }
             className="document-teaser">
             <div className={ `py-2 px-4 teaser-container teaser-${size}` }>

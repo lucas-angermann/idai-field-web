@@ -22,7 +22,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
             </Card.Header>
             <Card.Body>
                 { renderImages(getImages(document), document.project)}
-                { renderGroups(document.resource, t) }
+                { renderGroups(document, t) }
             </Card.Body>
         </Card>
     );
@@ -31,7 +31,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
 
 const renderHeader = (document: Document): ReactElement => (
     <div>
-        <DocumentTeaser document={ document }/>
+        <DocumentTeaser project={ document.project } document={ document }/>
     </div>
 );
 
@@ -55,18 +55,18 @@ const renderImage = (project: string) => (imageDoc: ResultDocument): ReactNode =
 };
 
 
-const renderGroups = (resource: Resource, t: TFunction): ReactNode => {
+const renderGroups = (document: Document, t: TFunction): ReactNode => {
 
-    return resource.groups.map(renderGroup(t));
+    return document.resource.groups.map(renderGroup(t, document.project));
 };
 
 
-const renderGroup = (t: TFunction) => (group: FieldGroup): ReactNode => {
+const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): ReactNode => {
 
     return (
         <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields, t) }
-            { renderRelationList(group.relations) }
+            { renderRelationList(group.relations, project) }
         </div>
     );
 };
@@ -84,7 +84,7 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
 };
 
 
-const renderRelationList = (relations: Relation[]): ReactNode => {
+const renderRelationList = (relations: Relation[], project: string): ReactNode => {
 
     if (!relations) return null;
 
@@ -93,7 +93,7 @@ const renderRelationList = (relations: Relation[]): ReactNode => {
             <dt key={ `${relation.name}_dt`}>{ getLabel(relation.name, relation.label) }</dt>,
             <dd key={ `${relation.name}_dd`}>
                 <ul className="list-unstyled">
-                    { relation.targets.map(doc => renderDocumentLink(doc)) }
+                    { relation.targets.map(doc => renderDocumentLink(project, doc)) }
                 </ul>
             </dd>
         ]);
@@ -153,8 +153,8 @@ const renderMultiLanguageValue = (object: any, t: TFunction): ReactNode => {
 const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc } size="small"/></li>;
+const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
+    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project = { project } size="small"/></li>;
 
 
 const renderObjectFields = (object: any, t: TFunction): ReactNode => {
