@@ -1,5 +1,6 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, ReactElement, useEffect } from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+import Modal from 'react-modal';
 import ProjectOverview from './overview/ProjectOverview';
 import Download from './download/Download';
 import Document from './document/Document';
@@ -18,6 +19,10 @@ export const LoginContext = React.createContext(ANONYMOUS_USER);
 export default function App(): ReactElement {
 
     const [loginData, setLoginData] = useState(getPersistedLogin());
+
+    useEffect(() => {
+        Modal.setAppElement('#root');
+    });
 
     return (
         <LoginContext.Provider value={ loginData }>
