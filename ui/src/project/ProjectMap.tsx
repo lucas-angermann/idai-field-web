@@ -13,7 +13,7 @@ import { Vector as VectorSource, TileImage } from 'ol/source';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
-import { Feature as OlFeature } from 'ol';
+import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import GeoJSON from 'ol/format/GeoJSON';
 import { get as getProjection } from 'ol/proj';
 import proj4 from 'proj4';
@@ -47,12 +47,14 @@ export default React.memo(function ProjectMap({ document, documents, onDocumentC
 
 const createMap = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
 
-    let layers = [];
+    const layers = [];
 
-    layers = layers.concat(getTileLayer());
-    layers = layers.concat(getGeoJSONLayer(featureCollection, onDocumentClick));
+    const tileLayer = getTileLayer();
+    if (tileLayer) layers.push(tileLayer);
+    const vectorLayer = getGeoJSONLayer(featureCollection);
+    if (vectorLayer) layers.push(vectorLayer);
 
-    return new Map({
+    const map = new Map({
         target: 'ol-map',
         layers,
         view: new View({
@@ -61,6 +63,24 @@ const createMap = (featureCollection: FeatureCollection, onDocumentClick: (_: an
             resolution: 2.012063
         })
     });
+
+    map.on('click', handleMapClick(vectorLayer, onDocumentClick));
+
+    return map;
+};
+
+
+const handleMapClick = (vectorLayer: VectorLayer, onDocumentClick: (_: any) => void)
+        : ((_: MapBrowserEvent) => void) => {
+
+    return async (e: MapBrowserEvent) => {
+
+        const features = await vectorLayer.getFeatures(e.pixel);
+        if (features.length) {
+            const { id, project } = features[0].getProperties();
+            onDocumentClick(`/project/${project}/${id}`);
+        }
+    };
 };
 
 
@@ -70,9 +90,9 @@ const renderEmptyResult = (t: TFunction): ReactElement => {
 };
 
 
-const getGeoJSONLayer = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void): VectorLayer[] => {
+const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 
-    if (!featureCollection) return [];
+    if (!featureCollection) return;
 
     const vectorSource = new VectorSource({
         features: new GeoJSON().readFeatures(featureCollection),
@@ -80,18 +100,18 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection, onDocumentClick: 
 
     const vectorLayer = new VectorLayer({
         source: vectorSource,
-        style: getStyle,
+        style: getStyle
     });
 
-    return [ vectorLayer ];
+    return vectorLayer;
 };
 
 
-const getTileLayer = (): TileLayer[] => {
+const getTileLayer = (): TileLayer => {
 
     const url = '/0127b1ce-696b-591d-a77a-3f22fa54432a_32638/{z}/{x}/{y}.png';
 
-    return [ new TileLayer({
+    return new TileLayer({
         source: new TileImage({
             tileGrid: new TileGrid({
                 extent: [ 562998.477499999804, 3466498.50669999979, 563501.493200000143, 3467001.52240000013 ],
@@ -107,7 +127,7 @@ const getTileLayer = (): TileLayer[] => {
                     .replace('{y}', String(tileCoord[2]))
             ,
         })
-    }) ];
+    });
 };
 
 
