@@ -43,6 +43,7 @@ export default function ProjectMap({ document, documents, onDocumentClick }
     }, []);
 
     useEffect(() => {
+
         if (!map) return;
 
         const featureCollection = createFeatureCollection(documents, document);
@@ -64,7 +65,7 @@ export default function ProjectMap({ document, documents, onDocumentClick }
         if (map && document?.resource?.geometry) {
             map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
         }
-    }, [document]);
+    }, [map, document]);
 
     return <>
         <div id="ol-map" style={ mapStyle }/>
@@ -219,83 +220,4 @@ const emptyResultStyle: CSSProperties = {
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
     zIndex: 1
-};
-
-const geoJSONStyles = {
-    'Point': new Style({
-        image: new CircleStyle({
-            radius: 5,
-            fill: null,
-            stroke: new Stroke({
-                color: 'red',
-                width: 1
-            }),
-        }),
-    }),
-    'LineString': new Style({
-        stroke: new Stroke({
-            color: 'green',
-            width: 1,
-        }),
-    }),
-    'MultiLineString': new Style({
-        stroke: new Stroke({
-            color: 'green',
-            width: 1,
-        }),
-    }),
-    'MultiPoint': new Style({
-        image: new CircleStyle({
-            radius: 5,
-            fill: null,
-            stroke: new Stroke({
-                color: 'red',
-                width: 1
-            }),
-        }),
-    }),
-    'MultiPolygon': new Style({
-        stroke: new Stroke({
-            color: 'yellow',
-            width: 1,
-        }),
-        fill: new Fill({
-            color: 'rgba(255, 255, 0, 0.1)',
-        }),
-    }),
-    'Polygon': new Style({
-        stroke: new Stroke({
-            color: 'blue',
-            lineDash: [4],
-            width: 3,
-        }),
-        fill: new Fill({
-            color: 'rgba(0, 0, 255, 0.1)',
-        }),
-    }),
-    'GeometryCollection': new Style({
-        stroke: new Stroke({
-            color: 'magenta',
-            width: 2,
-        }),
-        fill: new Fill({
-            color: 'magenta',
-        }),
-        image: new CircleStyle({
-            radius: 10,
-            fill: null,
-            stroke: new Stroke({
-                color: 'magenta',
-            }),
-        }),
-    }),
-    'Circle': new Style({
-        stroke: new Stroke({
-            color: 'red',
-            width: 2,
-        }),
-        fill: new Fill({
-            color: 'rgba(255,0,0,0.2)',
-        }),
-    }),
 };
