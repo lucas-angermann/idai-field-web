@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import { Feature, FeatureCollection, Geometry } from 'geojson';
+import { Feature, FeatureCollection } from 'geojson';
 import extent from 'turf-extent';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { getColor, hexToRgb } from '../categoryColors';
@@ -151,39 +151,6 @@ const getStyle = (feature: OlFeature): Style => {
 const getColorForCategory = (category: string, opacity: number): string => {
     const rgb = hexToRgb(getColor(category));
     return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
-};
-
-
-const onEachFeature = (onDocumentClick: (_: any) => void) => (feature: Feature, layer: L.Layer): void => {
-
-    registerEventListeners(feature, layer, onDocumentClick);
-    addTooltip(feature, layer);
-
-    if (feature.properties.selected) {
-        // TODO Do this without the timeout
-        setTimeout(() => (layer as any).bringToFront(), 100);
-    }
-};
-
-
-const registerEventListeners = (feature: Feature, layer: L.Layer, onDocumentClick: (_: any) => void): void => {
-
-    layer.on({
-        click: onClick(onDocumentClick)
-    });
-};
-
-
-const addTooltip = (feature: Feature, layer: L.Layer): void => {
-
-    layer.bindTooltip(feature.properties.identifier, { direction: 'center', offset: [0, -30] } );
-};
-
-
-const onClick = (onDocumentClick: (_: any) => void) => (event: any): void => {
-
-    const { id, project } = event.target.feature.properties;
-    onDocumentClick(`/project/${project}/${id}`);
 };
 
 
