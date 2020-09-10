@@ -20,6 +20,7 @@ import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
 import { EventsKey } from 'ol/events';
 import { unByKey } from 'ol/Observable';
+import { Polygon } from 'ol/geom';
 
 
 proj4.defs('EPSG:32638', '+proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
@@ -105,9 +106,24 @@ const handleMapClick = (vectorLayer: VectorLayer, onDocumentClick: (_: any) => v
 
     return async (e: MapBrowserEvent) => {
 
-        const features = await vectorLayer.getFeatures(e.pixel);
+        const features = e.map.getFeaturesAtPixel(e.pixel);
         if (features.length) {
-            const { id, project } = features[0].getProperties();
+            let smallestFeature = features[0];
+            let smallestArea = 0;
+            for (const feature of features) {
+                if (feature.getGeometry().getType() === 'Polygon') {
+                    const featureArea = (feature.getGeometry() as Polygon).getArea();
+                    if (!smallestArea || featureArea < smallestArea) {
+                        smallestFeature = feature;
+                        smallestArea = featureArea;
+                    }
+                } else {
+                    smallestFeature = feature;
+                    break;
+                }
+                
+            }
+            const { id, project } = smallestFeature.getProperties();
             onDocumentClick(`/project/${project}/${id}`);
         }
     };
