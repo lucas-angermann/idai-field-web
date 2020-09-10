@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useEffect } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { Feature, FeatureCollection } from 'geojson';
@@ -18,53 +18,75 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { get as getProjection } from 'ol/proj';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
+import { EventsKey } from 'ol/events';
+import { unByKey } from 'ol/Observable';
 
 
 proj4.defs('EPSG:32638', '+proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
 register(proj4);
 
 
-export default React.memo(function ProjectMap({ document, documents, onDocumentClick }
-        : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
+const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
-    const featureCollection = createFeatureCollection(documents, document);
+
+export default function ProjectMap({ document, documents, onDocumentClick }
+        : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
     const { t } = useTranslation();
 
+    const [map, setMap] = useState<Map>(null);
+    const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
+    const [clickListener, setClickListener] = useState<EventsKey>(null);
+
     useEffect(() => {
-        createMap(featureCollection, onDocumentClick);
-    });
+
+        setMap(createMap());
+    }, []);
+
+    useEffect(() => {
+        if (!map) return;
+
+        const featureCollection = createFeatureCollection(documents, document);
+        
+        if (vectorLayer) map.removeLayer(vectorLayer);
+        const newVectorLayer = getGeoJSONLayer(featureCollection);
+        if (newVectorLayer) map.addLayer(newVectorLayer);
+        setVectorLayer(newVectorLayer);
+
+        if (clickListener) unByKey(clickListener);
+        const newClickListener = map.on('click', handleMapClick(newVectorLayer, onDocumentClick));
+        setClickListener(newClickListener);
+
+        map.getView().fit(extent(featureCollection), { padding });
+    }, [map, documents]);
+
+    useEffect(() => {
+
+        if (map && document?.resource?.geometry) {
+            map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
+        }
+    }, [document]);
 
     return <>
         <div id="ol-map" style={ mapStyle }/>
         { (!documents || documents.length === 0) && renderEmptyResult(t) }
     </>;
-}, (prevProps: any, nextProps: any) => {
-    if (prevProps.document === nextProps.document
-        && prevProps.documents === nextProps.documents) return true;
-    return false;
-});
+}
 
 
-const createMap = (featureCollection: FeatureCollection, onDocumentClick: (_: any) => void) => {
+const createMap = (): Map => {
 
     const layers = [];
 
     const tileLayer = getTileLayer();
     if (tileLayer) layers.push(tileLayer);
-    const vectorLayer = getGeoJSONLayer(featureCollection);
-    if (vectorLayer) layers.push(vectorLayer);
 
     const map = new Map({
         target: 'ol-map',
         layers,
         view: new View({
-            projection: getProjection('EPSG:32638'),
-            center: [563249.985350, 3466750.014550],
-            resolution: 2.012063
+            projection: getProjection('EPSG:32638')
         })
     });
-
-    map.on('click', handleMapClick(vectorLayer, onDocumentClick));
 
     return map;
 };
@@ -184,22 +206,6 @@ const createFeature = (document: any, selected: boolean): Feature => ({
         selected
     }
 });
-
-
-const getBounds = (featureCollection?: FeatureCollection, document?: Document): [number, number][] => {
-
-    if (document?.resource?.geometry) {
-        const extentResult: number[] = extent(document.resource.geometry);
-        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
-    }
-
-    if (featureCollection) {
-        const extentResult: number[] = extent(featureCollection);
-        return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
-    }
-
-    return [[-10, -10], [10, 10]];
-};
 
 
 const mapStyle: CSSProperties = {
