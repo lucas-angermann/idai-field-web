@@ -36,6 +36,7 @@ export default function ProjectMap({ document, documents, onDocumentClick }
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [clickListener, setClickListener] = useState<EventsKey>(null);
+    const [documentGeometry, setDocumentGeometry] = useState(null);
 
     useEffect(() => {
 
@@ -46,7 +47,7 @@ export default function ProjectMap({ document, documents, onDocumentClick }
 
         if (!map) return;
 
-        const featureCollection = createFeatureCollection(documents, document);
+        const featureCollection = createFeatureCollection(documents);
         
         if (vectorLayer) map.removeLayer(vectorLayer);
         const newVectorLayer = getGeoJSONLayer(featureCollection);
@@ -63,6 +64,12 @@ export default function ProjectMap({ document, documents, onDocumentClick }
     useEffect(() => {
 
         if (map && document?.resource?.geometry) {
+            
+            if (documentGeometry) map.removeLayer(documentGeometry);
+            const newDocumentGeometry = getGeoJSONLayer(createFeatureCollection([document]));
+            if (newDocumentGeometry) map.addLayer(newDocumentGeometry);
+            setDocumentGeometry(newDocumentGeometry);
+
             map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
         }
     }, [map, document]);
@@ -123,7 +130,8 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 
     const vectorLayer = new VectorLayer({
         source: vectorSource,
-        style: getStyle
+        style: getStyle,
+        updateWhileAnimating: true
     });
 
     return vectorLayer;
@@ -177,7 +185,7 @@ const getColorForCategory = (category: string, opacity: number): string => {
 };
 
 
-const createFeatureCollection = (documents: any[], selectedDocument: any): any => {
+const createFeatureCollection = (documents: any[]): any => {
 
     if (documents.length === 0) return undefined;
 
@@ -185,7 +193,7 @@ const createFeatureCollection = (documents: any[], selectedDocument: any): any =
         type: 'FeatureCollection',
         features: documents
             .filter(document => document?.resource.geometry)
-            .map(document => createFeature(document, document.resource.id === selectedDocument?.resource.id)),
+            .map(createFeature),
         crs: {
             'type': 'name',
             'properties': {
@@ -196,15 +204,14 @@ const createFeatureCollection = (documents: any[], selectedDocument: any): any =
 };
 
 
-const createFeature = (document: any, selected: boolean): Feature => ({
+const createFeature = (document: any): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry,
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
         category: document.resource.category,
-        project: document.project,
-        selected
+        project: document.project
     }
 });
 
