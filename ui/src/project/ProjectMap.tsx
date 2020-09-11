@@ -109,7 +109,7 @@ const createOnClick = (map: Map, onDocumentClick: any): EventsKey => map.on('cli
 
 const createSelect = (map: Map): Select => {
 
-    const select = new Select({ condition: never });
+    const select = new Select({ condition: never, style: getSelectStyle });
     map.addInteraction(select);
     return select;
 };
@@ -205,6 +205,24 @@ const getStyle = (feature: OlFeature): Style => {
         }),
         stroke: new Stroke({ color }),
         fill: new Fill({ color: transparentColor })
+    });
+};
+
+
+const getSelectStyle = (feature: OlFeature) => {
+
+    const transparentColor = getColorForCategory(feature.getProperties().category, 0.3);
+    const color = getColorForCategory(feature.getProperties().category, 1);
+
+    return new Style({
+        image: new CircleStyle({
+            radius: 4,
+            fill: new Fill({ color }),
+            stroke: new Stroke({ color: 'white', width: 5 }),
+        }),
+        stroke: new Stroke({ color: 'white' }),
+        fill: new Fill({ color: transparentColor }),
+        zIndex: 100
     });
 };
 
