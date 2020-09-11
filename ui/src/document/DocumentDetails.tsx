@@ -144,7 +144,7 @@ const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
 
     return object.label && Object.keys(object.label).length > 0
         ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object, t) }>
-            <div style={ multiLanguageValueStyle }>{ label }</div>
+            <div style={ multiLanguageTextStyle }>{ label }</div>
           </OverlayTrigger>
         : label;
 };
@@ -198,6 +198,8 @@ const cardStyle: CSSProperties = {
 };
 
 
-const multiLanguageValueStyle: CSSProperties = {
-    display: 'inline-block'
+const multiLanguageTextStyle: CSSProperties = {
+    display: 'inline-block',
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'dotted'
 };
