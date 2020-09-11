@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
+import { Document, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
@@ -66,7 +66,7 @@ const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): Reac
     return (
         <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields, t) }
-            { renderRelationList(group.relations, project) }
+            { renderRelationList(group.relations, project, t) }
         </div>
     );
 };
@@ -77,20 +77,20 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
     const fieldElements = fields
         .filter(field => field.name !== 'geometry')
         .map(field => [
-            <dt key={ `${field.name}_dt`}>{ getLabel(field.name, field.label) }</dt>,
+            <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
         ]);
     return <dl>{ fieldElements }</dl>;
 };
 
 
-const renderRelationList = (relations: Relation[], project: string): ReactNode => {
+const renderRelationList = (relations: Relation[], project: string, t: TFunction): ReactNode => {
 
     if (!relations) return null;
 
     const relationElements = relations
         .map(relation => [
-            <dt key={ `${relation.name}_dt`}>{ getLabel(relation.name, relation.label) }</dt>,
+            <dt key={ `${relation.name}_dt`}>{ renderMultiLanguageText(relation, t) }</dt>,
             <dd key={ `${relation.name}_dd`}>
                 <ul className="list-unstyled">
                     { relation.targets.map(doc => renderDocumentLink(project, doc)) }
@@ -119,7 +119,7 @@ const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
 const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 
     if (object.label && object.name) {
-        return renderMultiLanguageValue(object, t);
+        return renderMultiLanguageText(object, t);
     } else if (object.label) {
       return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
@@ -138,7 +138,7 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 };
 
 
-const renderMultiLanguageValue = (object: any, t: TFunction): ReactNode => {
+const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
 
     const label: string = getLabel(object.name, object.label);
 
@@ -154,7 +154,7 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 
 const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project = { project } size="small"/></li>;
+    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small"/></li>;
 
 
 const renderObjectFields = (object: any, t: TFunction): ReactNode => {
