@@ -18,9 +18,10 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { get as getProjection } from 'ol/proj';
 import proj4 from 'proj4';
 import { register } from 'ol/proj/proj4';
-import { EventsKey } from 'ol/events';
-import { unByKey } from 'ol/Observable';
 import { Polygon } from 'ol/geom';
+import { Select } from 'ol/interaction';
+import { never } from 'ol/events/condition';
+import { EventsKey } from 'ol/events';
 
 
 proj4.defs('EPSG:32638', '+proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
@@ -36,13 +37,21 @@ export default function ProjectMap({ document, documents, onDocumentClick }
 
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
-    const [clickListener, setClickListener] = useState<EventsKey>(null);
-    const [documentGeometry, setDocumentGeometry] = useState(null);
+    const [select, setSelect] = useState<Select>(null);
 
     useEffect(() => {
 
-        setMap(createMap());
+        const newMap = createMap();
+        setMap(newMap);
+        setSelect(createSelect(newMap));
     }, []);
+
+    useEffect(() => {
+
+        if (!map) return;
+
+        createOnClick(map, onDocumentClick);
+    }, [map, onDocumentClick]);
 
     useEffect(() => {
 
@@ -55,25 +64,19 @@ export default function ProjectMap({ document, documents, onDocumentClick }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        if (clickListener) unByKey(clickListener);
-        const newClickListener = map.on('click', handleMapClick(newVectorLayer, onDocumentClick));
-        setClickListener(newClickListener);
-
         map.getView().fit(extent(featureCollection), { padding });
     }, [map, documents]);
 
     useEffect(() => {
 
-        if (map && document?.resource?.geometry) {
-            
-            if (documentGeometry) map.removeLayer(documentGeometry);
-            const newDocumentGeometry = getGeoJSONLayer(createFeatureCollection([document]));
-            if (newDocumentGeometry) map.addLayer(newDocumentGeometry);
-            setDocumentGeometry(newDocumentGeometry);
+        if (map && vectorLayer && document?.resource?.geometry) {
 
+            const feature = vectorLayer.getSource().getFeatureById(document.resource.id);
+            select.getFeatures().clear();
+            select.getFeatures().push(feature);
             map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
         }
-    }, [map, document]);
+    }, [map, document, vectorLayer]);
 
     return <>
         <div id="ol-map" style={ mapStyle }/>
@@ -101,7 +104,18 @@ const createMap = (): Map => {
 };
 
 
-const handleMapClick = (vectorLayer: VectorLayer, onDocumentClick: (_: any) => void)
+const createOnClick = (map: Map, onDocumentClick: any): EventsKey => map.on('click', handleMapClick(onDocumentClick));
+
+
+const createSelect = (map: Map): Select => {
+
+    const select = new Select({ condition: never });
+    map.addInteraction(select);
+    return select;
+};
+
+
+const handleMapClick = (onDocumentClick: (_: any) => void)
         : ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
@@ -222,6 +236,7 @@ const createFeatureCollection = (documents: any[]): any => {
 
 const createFeature = (document: any): Feature => ({
     type: 'Feature',
+    id: document.resource.id,
     geometry: document.resource.geometry,
     properties: {
         id: document.resource.id,
