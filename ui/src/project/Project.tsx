@@ -106,8 +106,7 @@ export default function Project(): ReactElement {
                   </div>
                 : <ProjectMap
                     document={ document }
-                    documents={ mapDocuments }
-                    onDocumentClick={ onDocumentClick(history, location.search) }/>
+                    documents={ mapDocuments }/>
             }
         </div>
     </>;
@@ -159,13 +158,6 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE));
     return mapSearch(query, token);
-};
-
-
-const onDocumentClick = (history: History, searchParams: string): ((_: string) => void) => {
-    return (path: string) => {
-        history.push(path + searchParams);
-    };
 };
 
 

@@ -21,7 +21,8 @@ import { register } from 'ol/proj/proj4';
 import { Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
 import { never } from 'ol/events/condition';
-import { EventsKey } from 'ol/events';
+import { useHistory, useLocation } from 'react-router-dom';
+import { History } from 'history';
 
 
 proj4.defs('EPSG:32638', '+proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
@@ -31,10 +32,12 @@ register(proj4);
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
 
-export default function ProjectMap({ document, documents, onDocumentClick }
-        : { document: Document, documents: ResultDocument[], onDocumentClick: (_: any) => void }): ReactElement {
+export default function ProjectMap({ document, documents }
+: { document: Document, documents: ResultDocument[] }): ReactElement {
     const { t } = useTranslation();
 
+    const history = useHistory();
+    const location = useLocation();
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
@@ -50,8 +53,8 @@ export default function ProjectMap({ document, documents, onDocumentClick }
 
         if (!map) return;
 
-        createOnClick(map, onDocumentClick);
-    }, [map, onDocumentClick]);
+        map.on('click', handleMapClick(history, location.search));
+    }, [map, history, location.search]);
 
     useEffect(() => {
 
@@ -104,9 +107,6 @@ const createMap = (): Map => {
 };
 
 
-const createOnClick = (map: Map, onDocumentClick: any): EventsKey => map.on('click', handleMapClick(onDocumentClick));
-
-
 const createSelect = (map: Map): Select => {
 
     const select = new Select({ condition: never, style: getSelectStyle });
@@ -115,7 +115,7 @@ const createSelect = (map: Map): Select => {
 };
 
 
-const handleMapClick = (onDocumentClick: (_: any) => void)
+const handleMapClick = (history: History, searchParams: string)
         : ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
@@ -138,7 +138,7 @@ const handleMapClick = (onDocumentClick: (_: any) => void)
                 
             }
             const { id, project } = smallestFeature.getProperties();
-            onDocumentClick(`/project/${project}/${id}`);
+            history.push(`/project/${project}/${id}`, searchParams);
         }
     };
 };
