@@ -180,17 +180,17 @@ const getTileLayer = (): TileLayer => {
 
 const getStyle = (feature: OlFeature): Style => {
 
-    const fill = new Fill({ color: getColorForCategory(feature.getProperties().category, 0.2) });
-    const stroke = new Stroke({ color: getColorForCategory(feature.getProperties().category, 1) });
+    const transparentColor = getColorForCategory(feature.getProperties().category, 0.3);
+    const color = getColorForCategory(feature.getProperties().category, 1);
 
     return new Style({
         image: new CircleStyle({
-            radius: 5,
-            fill,
-            stroke,
+            radius: 4,
+            fill: new Fill({ color: 'white' }),
+            stroke: new Stroke({ color, width: 5 }),
         }),
-        stroke,
-        fill
+        stroke: new Stroke({ color }),
+        fill: new Fill({ color: transparentColor })
     });
 };
 
