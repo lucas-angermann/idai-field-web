@@ -1,10 +1,9 @@
 import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode } from 'react';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiArrowLeftCircle } from '@mdi/js';
-import { History } from 'history';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -30,7 +29,6 @@ export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams();
     const location = useLocation();
-    const history = useHistory();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [projectDocument, setProjectDocument] = useState<Document>(null);

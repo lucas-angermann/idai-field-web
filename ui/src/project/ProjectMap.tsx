@@ -62,7 +62,6 @@ export default function ProjectMap({ document, documents }
 
         const featureCollection = createFeatureCollection(documents);
         
-        if (vectorLayer) map.removeLayer(vectorLayer);
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
@@ -79,7 +78,7 @@ export default function ProjectMap({ document, documents }
             select.getFeatures().push(feature);
             map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
         }
-    }, [map, document, vectorLayer]);
+    }, [map, document, vectorLayer, select]);
 
     return <>
         <div id="ol-map" style={ mapStyle }/>
