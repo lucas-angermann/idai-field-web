@@ -25,10 +25,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { History } from 'history';
 
 
-proj4.defs('EPSG:32638', '+proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
-register(proj4);
-
-
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
 
@@ -97,9 +93,7 @@ const createMap = (): Map => {
     const map = new Map({
         target: 'ol-map',
         layers,
-        view: new View({
-            projection: getProjection('EPSG:32638')
-        })
+        view: new View()
     });
 
     return map;
@@ -185,7 +179,6 @@ const getTileLayer = (): TileLayer => {
                     .replace('{z}', String(tileCoord[0]))
                     .replace('{x}', String(tileCoord[1]))
                     .replace('{y}', String(tileCoord[2]))
-            ,
         })
     });
 };
@@ -240,13 +233,7 @@ const createFeatureCollection = (documents: any[]): any => {
         type: 'FeatureCollection',
         features: documents
             .filter(document => document?.resource.geometry)
-            .map(createFeature),
-        crs: {
-            'type': 'name',
-            'properties': {
-                'name': 'EPSG:32638'
-            }
-        }
+            .map(createFeature)
     };
 };
 
