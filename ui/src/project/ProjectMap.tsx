@@ -23,6 +23,7 @@ import { History } from 'history';
 import { LoginContext } from '../App';
 import { LoginData } from '../login';
 import { get } from '../api/documents';
+import { getTileLayerExtent, getResolutions } from './tileLayer';
 
 
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
@@ -188,19 +189,6 @@ const getTileLayer = async (loginData: LoginData): Promise<TileLayer> => {
                     .replace('{y}', String(tileCoord[2]))
         })
     });
-};
-
-
-const getTileLayerExtent = (document: Document): [number, number, number, number] => {
-
-    return [ 562998.477499999804, 3466498.50669999979, 563501.493200000143, 3467001.52240000013 ];
-};
-
-
-const getResolutions = (extent: [number, number, number, number], tileSize: [number, number]): number[] => {
-
-    return [ 2.0120628000014551, 1.00603140000072755, 0.503015700000363775, 0.251507850000181887,
-        0.125753925000090944, 0.0628769625000454718];
 };
 
 
