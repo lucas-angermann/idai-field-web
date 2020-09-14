@@ -1,8 +1,8 @@
-import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { Feature, FeatureCollection } from 'geojson';
-import extent from 'turf-extent';
+import turfExtent from 'turf-extent';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { getColor, hexToRgb } from '../categoryColors';
 import { ResultDocument } from '../api/result';
@@ -15,14 +15,14 @@ import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import GeoJSON from 'ol/format/GeoJSON';
-import { get as getProjection } from 'ol/proj';
-import proj4 from 'proj4';
-import { register } from 'ol/proj/proj4';
 import { Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
 import { never } from 'ol/events/condition';
 import { useHistory, useLocation } from 'react-router-dom';
 import { History } from 'history';
+import { LoginContext } from '../App';
+import { LoginData } from '../login';
+import { get } from '../api/documents';
 
 
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
@@ -34,16 +34,20 @@ export default function ProjectMap({ document, documents }
 
     const history = useHistory();
     const location = useLocation();
+    const loginData = useContext(LoginContext);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
 
     useEffect(() => {
 
-        const newMap = createMap();
-        setMap(newMap);
-        setSelect(createSelect(newMap));
-    }, []);
+        (async () => {
+
+            const newMap = await createMap(loginData);
+            setMap(newMap);
+            setSelect(createSelect(newMap));
+        })();
+    }, [loginData]);
 
     useEffect(() => {
 
@@ -62,7 +66,7 @@ export default function ProjectMap({ document, documents }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        map.getView().fit(extent(featureCollection), { padding });
+        map.getView().fit(turfExtent(featureCollection), { padding });
     }, [map, documents]);
 
     useEffect(() => {
@@ -72,7 +76,7 @@ export default function ProjectMap({ document, documents }
             const feature = vectorLayer.getSource().getFeatureById(document.resource.id);
             select.getFeatures().clear();
             select.getFeatures().push(feature);
-            map.getView().fit(extent(document.resource.geometry), { duration: 500, padding });
+            map.getView().fit(turfExtent(document.resource.geometry), { duration: 500, padding });
         }
     }, [map, document, vectorLayer, select]);
 
@@ -83,11 +87,11 @@ export default function ProjectMap({ document, documents }
 }
 
 
-const createMap = (): Map => {
+const createMap = async (loginData: LoginData): Promise<Map> => {
 
     const layers = [];
 
-    const tileLayer = getTileLayer();
+    const tileLayer = await getTileLayer(loginData);
     if (tileLayer) layers.push(tileLayer);
 
     const map = new Map({
@@ -161,18 +165,21 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 };
 
 
-const getTileLayer = (): TileLayer => {
+const getTileLayer = async (loginData: LoginData): Promise<TileLayer> => {
 
-    const url = '/0127b1ce-696b-591d-a77a-3f22fa54432a_32638/{z}/{x}/{y}.png';
+    const tileSize: [number, number] = [256, 256];
+    const id = '0127b1ce-696b-591d-a77a-3f22fa54432a';
+    const url = '/{id}/{z}/{x}/{y}.png'.replace('{id}', id);
+    const document = await get(id, loginData.token);
+    const extent = getTileLayerExtent(document);
 
     return new TileLayer({
         source: new TileImage({
             tileGrid: new TileGrid({
-                extent: [ 562998.477499999804, 3466498.50669999979, 563501.493200000143, 3467001.52240000013 ],
-                origin: [ 562998.477499999804, 3467001.52240000013 ],
-                resolutions: [ 2.0120628000014551, 1.00603140000072755, 0.503015700000363775, 0.251507850000181887,
-                    0.125753925000090944, 0.0628769625000454718],
-                tileSize: [256, 256]
+                extent,
+                origin: [ extent[0], extent[3] ],
+                resolutions: getResolutions(extent, tileSize),
+                tileSize
             }),
             tileUrlFunction: (tileCoord) =>
                 url
@@ -181,6 +188,19 @@ const getTileLayer = (): TileLayer => {
                     .replace('{y}', String(tileCoord[2]))
         })
     });
+};
+
+
+const getTileLayerExtent = (document: Document): [number, number, number, number] => {
+
+    return [ 562998.477499999804, 3466498.50669999979, 563501.493200000143, 3467001.52240000013 ];
+};
+
+
+const getResolutions = (extent: [number, number, number, number], tileSize: [number, number]): number[] => {
+
+    return [ 2.0120628000014551, 1.00603140000072755, 0.503015700000363775, 0.251507850000181887,
+        0.125753925000090944, 0.0628769625000454718];
 };
 
 
