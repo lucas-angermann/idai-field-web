@@ -2,11 +2,14 @@ defmodule Enricher.Labels do
   alias Core.CategoryTreeList
   alias Core.Utils
 
-  def add_labels(resource, configuration) do
+  def add_labels(change = %{ doc: %{ resource: resource } }, configuration) do
     category = CategoryTreeList.find_by_name(resource.category, configuration)
-    Enum.map(resource, &(add_labels_to_field(&1, configuration, category)))
-    |> Enum.into(%{})
-    |> Utils.atomize
+    put_in(
+      change.doc.resource,
+      Enum.map(resource, &(add_labels_to_field(&1, configuration, category)))
+      |> Enum.into(%{})
+      |> Utils.atomize
+    )
   end
 
   defp add_labels_to_field({ :category, field_value }, configuration, category) do
