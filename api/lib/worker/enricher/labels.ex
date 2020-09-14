@@ -24,25 +24,20 @@ defmodule Enricher.Labels do
   end
 
   defp get_value_with_label(field_name, dimension = %{ "measurementPosition" => position }, category) do
-    put_in(dimension["measurementPosition"], %{ name: position, label: get_label(field_name, dimension, category) })
+    put_in(
+      dimension["measurementPosition"],
+      %{ name: position, label: get_label(field_name, position, category, :positionValues) }
+    )
   end
   defp get_value_with_label(field_name, field_value, category) do
-    %{ name: field_value, label: get_label(field_name, field_value, category) }
+    %{ name: field_value, label: get_label(field_name, field_value, category, :valuelist) }
   end
 
-  defp get_label(field_name, dimension = %{ "measurementPosition" => position }, category) do
-    field_definition = get_field_definition(category, field_name)
-    if Map.has_key?(field_definition, :positionValues)
-       && Map.has_key?(field_definition.positionValues["values"], position) do
-      field_definition.positionValues["values"][position]["labels"]
-    else
-      %{}
-    end
-  end
-  defp get_label(field_name, field_value, category) do
+  defp get_label(field_name, field_value, category, valuelist_property_name) do
      field_definition = get_field_definition(category, field_name)
-     if Map.has_key?(field_definition, :valuelist) && Map.has_key?(field_definition.valuelist["values"], field_value) do
-       field_definition.valuelist["values"][field_value]["labels"]
+     if Map.has_key?(field_definition, valuelist_property_name)
+        && Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) do
+       field_definition[valuelist_property_name]["values"][field_value]["labels"]
      else
        %{}
      end
