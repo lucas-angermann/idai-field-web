@@ -1,0 +1,60 @@
+defmodule Enricher.Labels do
+  alias Core.CategoryTreeList
+  alias Core.Utils
+
+  def add_labels(resource, configuration) do
+    category = CategoryTreeList.find_by_name(resource.category, configuration)
+    Enum.map(resource, &(add_labels_to_field(&1, configuration, category)))
+    |> Enum.into(%{})
+    |> Utils.atomize
+  end
+
+  defp add_labels_to_field({ :category, field_value }, configuration, category) do
+    { :category, %{ name: field_value, label: category.label } }
+  end
+  defp add_labels_to_field({ field_name, field_value }, configuration, category) do
+    if Enum.member?([:id, :relations, :geometry, :georeference], field_name) do
+      { field_name, field_value }
+    else
+      case field_value do
+        [_|_] -> { field_name, Enum.map(field_value, &get_value_with_label(field_name, &1, category)) }
+        _ -> { field_name, get_value_with_label(field_name, field_value, category) }
+      end
+    end
+  end
+
+  defp get_value_with_label(field_name, dimension = %{ "measurementPosition" => position }, category) do
+    put_in(dimension["measurementPosition"], %{ name: position, label: get_label(field_name, dimension, category) })
+  end
+  defp get_value_with_label(field_name, field_value, category) do
+    %{ name: field_value, label: get_label(field_name, field_value, category) }
+  end
+
+  defp get_label(field_name, dimension = %{ "measurementPosition" => position }, category) do
+    field_definition = get_field_definition(category, field_name)
+    if Map.has_key?(field_definition, :positionValues)
+       && Map.has_key?(field_definition.positionValues["values"], position) do
+      field_definition.positionValues["values"][position]["labels"]
+    else
+      %{}
+    end
+  end
+  defp get_label(field_name, field_value, category) do
+     field_definition = get_field_definition(category, field_name)
+     if Map.has_key?(field_definition, :valuelist) && Map.has_key?(field_definition.valuelist["values"], field_value) do
+       field_definition.valuelist["values"][field_value]["labels"]
+     else
+       %{}
+     end
+  end
+
+  defp get_field_definition(category, field_name) do
+    group = Enum.find(category.groups, &get_field_definition_from_group(&1, field_name))
+    get_field_definition_from_group(group, field_name)
+  end
+
+  defp get_field_definition_from_group(%{ fields: fields }, field_name) do
+    Enum.find(fields, fn field -> field.name == field_name end)
+  end
+
+end
