@@ -179,7 +179,7 @@ const getTileLayer = async (loginData: LoginData): Promise<TileLayer> => {
             tileGrid: new TileGrid({
                 extent,
                 origin: [ extent[0], extent[3] ],
-                resolutions: getResolutions(extent, tileSize),
+                resolutions: getResolutions(extent, tileSize[0], document),
                 tileSize
             }),
             tileUrlFunction: (tileCoord) =>

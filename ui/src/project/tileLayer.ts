@@ -6,8 +6,20 @@ export const getTileLayerExtent = (document: any): [number, number, number, numb
 ];
 
 
-export const getResolutions = (extent: [number, number, number, number], tileSize: [number, number]): number[] => {
+export const getResolutions = (
+        extent: [number, number, number, number],
+        tileSize: number,
+        document: any): number[] => {
 
-    return [ 2.0120628000014551, 1.00603140000072755, 0.503015700000363775, 0.251507850000181887,
-        0.125753925000090944, 0.0628769625000454718];
+    const result = [];
+    const layerWidth = extent[2] - extent[0];
+    const imageWidth = document.resource.groups[1].fields[1].value;
+    
+    let zoom = 0;
+    while (zoom * tileSize < imageWidth / (zoom + 1)) {
+        result.push(layerWidth / imageWidth * Math.pow(2, zoom));
+        zoom++;
+    }
+
+    return result.reverse();
 };
