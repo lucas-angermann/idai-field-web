@@ -16,7 +16,7 @@ defmodule Enricher.Labels do
     { :category, %{ name: field_value, label: category.label } }
   end
   defp add_labels_to_field({ field_name, field_value }, configuration, category) do
-    if Enum.member?([:id, :relations, :geometry, :georeference], field_name) do
+    if Enum.member?([:id, :identifier, :relations, :geometry, :georeference], field_name) do
       { field_name, field_value }
     else
       case field_value do
