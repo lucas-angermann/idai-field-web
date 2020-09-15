@@ -30,7 +30,8 @@ const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
 
 export default function ProjectMap({ document, documents }
-: { document: Document, documents: ResultDocument[] }): ReactElement {
+        : { document: Document, documents: ResultDocument[] }): ReactElement {
+
     const { t } = useTranslation();
 
     const history = useHistory();
@@ -42,12 +43,15 @@ export default function ProjectMap({ document, documents }
 
     useEffect(() => {
 
-        (async () => {
-
-            const newMap = await createMap(loginData);
-            setMap(newMap);
-            setSelect(createSelect(newMap));
-        })();
+        let mounted = true;
+        createMap(loginData)
+            .then(newMap => {
+                if (mounted) {
+                    setMap(newMap);
+                    setSelect(createSelect(newMap));
+                }
+            });
+        return () => mounted = false;
     }, [loginData]);
 
     useEffect(() => {
