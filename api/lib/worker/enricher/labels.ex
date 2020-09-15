@@ -6,16 +6,16 @@ defmodule Enricher.Labels do
     category = CategoryTreeList.find_by_name(resource.category, configuration)
     put_in(
       change.doc.resource,
-      Enum.map(resource, &(add_labels_to_field(&1, configuration, category)))
+      Enum.map(resource, &(add_labels_to_field(&1, category)))
       |> Enum.into(%{})
       |> Utils.atomize
     )
   end
 
-  defp add_labels_to_field({ :category, field_value }, configuration, category) do
+  defp add_labels_to_field({ :category, field_value }, category) do
     { :category, %{ name: field_value, label: category.label } }
   end
-  defp add_labels_to_field({ field_name, field_value }, configuration, category) do
+  defp add_labels_to_field({ field_name, field_value }, category) do
     if Enum.member?([:id, :identifier, :relations, :geometry, :georeference], field_name) do
       { field_name, field_value }
     else
