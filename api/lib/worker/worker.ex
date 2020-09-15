@@ -2,6 +2,7 @@ defmodule Worker do
   require Logger
   alias Services.IdaiFieldDb
   alias Enricher.Enricher
+  alias Core.ProjectConfigLoader
 
   def process do
 
@@ -14,10 +15,12 @@ defmodule Worker do
   end
 
   def process_db(db) do
+    configuration = ProjectConfigLoader.get(db)
+
     IdaiFieldDb.fetch_changes(db)
     |> Enum.map(Mapper.process)
     |> log_finished("mapping", db)
-    |> Enum.map(Enricher.process(db, IdaiFieldDb.get_doc(db)))
+    |> Enum.map(Enricher.process(db, IdaiFieldDb.get_doc(db), configuration))
     |> log_finished("enriching", db)
     |> Enum.map(Indexer.process(db))
     |> log_finished("indexing", db)

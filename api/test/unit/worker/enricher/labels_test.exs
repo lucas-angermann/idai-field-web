@@ -3,6 +3,7 @@ defmodule Enricher.LabelsTest do
   use Plug.Test
   alias Enricher.Labels
   alias Core.ProjectConfigLoader
+  alias Core.CategoryTreeList
 
   test "add labels" do
 
@@ -21,8 +22,9 @@ defmodule Enricher.LabelsTest do
 
     start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
     configuration = ProjectConfigLoader.get("test-project")
+    category = CategoryTreeList.find_by_name(change.doc.resource.category, configuration)
 
-    result = Labels.add_labels(change, configuration)
+    result = Labels.add_labels(change, category)
 
     assert result == %{
       :doc => %{

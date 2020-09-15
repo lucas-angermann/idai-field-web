@@ -15,12 +15,16 @@
                         "store": true
                     },
                     "category": {
-                        "type": "keyword",
-                        "store": true
+                        "properties": {
+                            "name": {
+                                "type": "keyword",
+                                "store": true
+                            }
+                        }
                     },
                     /* Elasticsearch does only support indexing wgs84
                        coordinates in the geo_shape field type. Thus
-                       local geometry is only stored and not
+                       local geometry is only stored and
                        coordinates are not indexed. */
                     "geometry": {
                         "properties": {
@@ -35,12 +39,20 @@
                         "coerce": true
                     },
                     "material": {
-                        "type": "keyword",
-                        "store": true
+                        "properties": {
+                            "name": {
+                                "type": "keyword",
+                                "store": true
+                            }
+                        }
                     },
                     "color": {
-                        "type": "keyword",
-                        "store": true
+                        "properties": {
+                            "name": {
+                                "type": "keyword",
+                                "store": true
+                            }
+                        }
                     }
                 }
             },
