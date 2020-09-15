@@ -1,10 +1,11 @@
 defmodule Core.Layout do
 
   def to_layouted_resource(configuration, resource) do
-    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category, configuration)
+    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category["name"], configuration)
 
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
+    |> put_in([:category], resource.category["name"])
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
   end
 
@@ -42,30 +43,9 @@ defmodule Core.Layout do
             name: config_item.name,
             label: config_item.label,
             description: config_item.description,
-            value: Core.Utils.atomize(get_value(value, config_item))
+            value: Core.Utils.atomize(value)
         }]
     end
   end
 
-  defp get_value([head|tail], config_item) do
-    Enum.map([head|tail], fn value -> get_value(value, config_item) end)
-  end
-
-  defp get_value(dimension = %{ "measurementPosition" => position }, %{ positionValues: %{ "values" => values } }) do
-    unless Map.has_key?(values, position), do:
-      put_in(dimension["measurementPosition"], %{ name: position }), else:
-      put_in(dimension["measurementPosition"], %{ name: position, label: get_labels(values[position]["labels"]) })
-  end
-
-  defp get_value(value, %{ valuelist: %{ "values" => values }}) do
-    unless Map.has_key?(values, value), do: value, else:
-    %{
-        name: value,
-        label: get_labels(values[value]["labels"])
-    }
-  end
-  defp get_value(value, _), do: value
-
-  defp get_labels(nil), do: %{}
-  defp get_labels(labels), do: labels
 end
