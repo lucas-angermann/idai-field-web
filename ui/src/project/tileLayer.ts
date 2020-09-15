@@ -15,11 +15,12 @@ export const getResolutions = (
     const layerWidth = extent[2] - extent[0];
     const imageWidth = document.resource.groups[1].fields[1].value;
     
-    let zoom = 0;
-    while (zoom * tileSize < imageWidth / (zoom + 1)) {
-        result.push(layerWidth / imageWidth * Math.pow(2, zoom));
-        zoom++;
+    let scale = 1;
+    while (tileSize < imageWidth / scale) {
+        result.push(layerWidth / imageWidth * scale);
+        scale *= 2;
     }
+    result.push(layerWidth / imageWidth * scale);
 
     return result.reverse();
 };
