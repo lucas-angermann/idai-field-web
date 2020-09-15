@@ -22,7 +22,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { History } from 'history';
 import { LoginContext } from '../App';
 import { LoginData } from '../login';
-import { get } from '../api/documents';
+import { get, search } from '../api/documents';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
 
 
@@ -90,10 +90,10 @@ export default function ProjectMap({ document, documents }
 
 const createMap = async (loginData: LoginData): Promise<Map> => {
 
-    const layers = [];
+    let layers = [];
 
-    const tileLayer = await getTileLayer(loginData);
-    if (tileLayer) layers.push(tileLayer);
+    const tileLayers = await getTileLayers(loginData);
+    if (tileLayers) layers = layers.concat(tileLayers);
 
     const map = new Map({
         target: 'ol-map',
@@ -166,20 +166,30 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 };
 
 
-const getTileLayer = async (loginData: LoginData): Promise<TileLayer> => {
+const getTileLayers = async (loginData: LoginData): Promise<TileLayer[]> =>
+    (await getTileLayerDocuments(loginData)).map(doc => getTileLayer(doc));
+
+
+const getTileLayerDocuments = async (loginData: LoginData): Promise<Document[]> => {
+
+    const result = await search({ q: '*', exists: ['resource.georeference'] }, loginData.token);
+    return Promise.all(result.documents.map((doc: ResultDocument) => get(doc.resource.id, loginData.token)));
+};
+
+
+const getTileLayer = (document: Document): TileLayer => {
 
     const tileSize: [number, number] = [256, 256];
-    const id = '0127b1ce-696b-591d-a77a-3f22fa54432a';
-    const url = '/{id}/{z}/{x}/{y}.png'.replace('{id}', id);
-    const document = await get(id, loginData.token);
+    const url = `/${document.resource.id}/{z}/{x}/{y}.png`;
     const extent = getTileLayerExtent(document);
+    const resolutions = getResolutions(extent, tileSize[0], document);
 
     return new TileLayer({
         source: new TileImage({
             tileGrid: new TileGrid({
                 extent,
                 origin: [ extent[0], extent[3] ],
-                resolutions: getResolutions(extent, tileSize[0], document),
+                resolutions,
                 tileSize
             }),
             tileUrlFunction: (tileCoord) =>
