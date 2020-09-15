@@ -24,6 +24,7 @@ import { LoginContext } from '../App';
 import { LoginData } from '../login';
 import { get, search } from '../api/documents';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
+import './project-map.css';
 
 
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
@@ -86,7 +87,7 @@ export default function ProjectMap({ document, documents }
     }, [map, document, vectorLayer, select]);
 
     return <>
-        <div id="ol-map" style={ mapStyle }/>
+        <div className="project-map" id="ol-map" style={ mapStyle }/>
         { (!documents || documents.length === 0) && renderEmptyResult(t) }
     </>;
 }
