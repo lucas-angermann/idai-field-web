@@ -43,11 +43,11 @@ defmodule Enricher.Labels do
 
   defp get_label(field_name, field_value, category_definition, valuelist_property_name) do
      field_definition = get_field_definition(category_definition, field_name)
-     if !is_nil(field_definition) && Map.has_key?(field_definition, valuelist_property_name)
-        && Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) do
-       field_definition[valuelist_property_name]["values"][field_value]["labels"]
-     else
-       nil
+     cond do
+      is_nil(field_definition) || !Map.has_key?(field_definition, valuelist_property_name) -> nil
+      Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) ->
+        get_labels_object(field_definition[valuelist_property_name]["values"][field_value])
+      true -> %{}
      end
   end
 
@@ -60,5 +60,8 @@ defmodule Enricher.Labels do
     Enum.find(fields, fn field -> field.name == field_name end)
   end
   defp get_field_definition_from_group(_, _), do: nil
+
+  defp get_labels_object(%{ "labels" => labels }), do: labels
+  defp get_labels_object(_), do: %{}
 
 end

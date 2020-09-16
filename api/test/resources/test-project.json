@@ -72,12 +72,7 @@
                       "de": "Gelb"
                     }
                   },
-                  "Grün": {
-                    "labels": {
-                      "en": "Green",
-                      "de": "Grün"
-                    }
-                  }
+                  "Grün": {}
                 }
               },
               "label": {
@@ -86,6 +81,37 @@
               },
               "description": {},
               "name": "color"
+            },
+            {
+              "inputType": "checkboxes",
+              "source": "library",
+              "valuelist": {
+                "creationDate": "",
+                "createdBy": "",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Granit": {},
+                  "Kalk": {},
+                  "Kalkmörtel": {},
+                  "Kalkstein": {},
+                  "Kalzit": {},
+                  "Kreide": {},
+                  "Marmor": {},
+                  "Pophyr": {},
+                  "Quarz": {},
+                  "Sandstein": {},
+                  "Ziegel": {}
+                }
+              },
+              "name": "material",
+              "label": {
+                "de": "Material",
+                "en": "Material"
+              },
+              "description": {}
             }
           ],
           "relations": [
