@@ -3,6 +3,7 @@ defmodule Enricher.Enricher do
   alias Enricher.Relations
   alias Enricher.Labels
   alias Core.CategoryTreeList
+  require Logger
 
   def process(project, get_for_id, configuration), do:
     fn change -> process(change, project, get_for_id, configuration) end
@@ -10,8 +11,8 @@ defmodule Enricher.Enricher do
   def process(change, project, get_for_id, configuration) do
     category = CategoryTreeList.find_by_name(change.doc.resource.category, configuration)
     if is_nil(category) do
-      IO.puts "Failed to process resource #{change.doc.resource.id} in enricher: Category " <>
-              "#{change.doc.resource.category} not found in configuration."
+      Logger.error "Failed to process resource #{change.doc.resource.id}: Category #{change.doc.resource.category} not
+        found in configuration."
       nil
     else
       change
