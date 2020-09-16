@@ -87,10 +87,7 @@ export default function ProjectMap({ document, documents }
         }
     }, [map, document, vectorLayer, select]);
 
-    return <>
-        <div className="project-map" id="ol-map" style={ mapStyle }/>
-        { (!documents || documents.length === 0) && renderEmptyResult(t) }
-    </>;
+    return <div className="project-map" id="ol-map" style={ mapStyle } />;
 }
 
 
@@ -145,12 +142,6 @@ const handleMapClick = (history: History, searchParams: string)
             history.push(`/project/${project}/${id}`, searchParams);
         }
     };
-};
-
-
-const renderEmptyResult = (t: TFunction): ReactElement => {
-
-    return <div style={ emptyResultStyle }>{ t('projectMap.noResources') }</div>;
 };
 
 
@@ -277,13 +268,4 @@ const createFeature = (document: any): Feature => ({
 
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
-};
-
-
-const emptyResultStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
-    zIndex: 1
 };

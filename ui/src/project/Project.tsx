@@ -3,7 +3,7 @@ import { useParams, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiArrowLeftCircle } from '@mdi/js';
+import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -101,8 +101,9 @@ export default function Project(): ReactElement {
             { loading &&
                 <div style={ spinnerContainerStyle }>
                     <Spinner animation="border" variant="secondary" />
-                  </div>
+                </div>
             }
+            { !mapDocuments?.length && !loading && renderEmptyResult(t) }
             <ProjectMap
                 document={ document }
                 documents={ mapDocuments } />
@@ -135,6 +136,17 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
             </Card.Body>
         </Card>
     );
+};
+
+
+const renderEmptyResult = (t: TFunction): ReactElement => {
+
+    return <>
+        <div className="alert alert-info" style={ emptyResultStyle }>
+            <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
+            { t('projectMap.noResources') }
+        </div>
+    </>;
 };
 
 
@@ -176,5 +188,14 @@ const spinnerContainerStyle: CSSProperties = {
     top: '50vh',
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
+    zIndex: 1
+};
+
+
+const emptyResultStyle: CSSProperties = {
+    position: 'absolute',
+    top: NAVBAR_HEIGHT,
+    left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), 10px)`,
     zIndex: 1
 };
