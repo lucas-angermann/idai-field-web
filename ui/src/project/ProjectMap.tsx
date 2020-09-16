@@ -49,7 +49,10 @@ export default function ProjectMap({ document, documents, project }
                     setSelect(createSelect(newMap));
                 }
             });
-        return () => mounted = false;
+        return () => {
+            map.setTarget(null);
+            mounted = false;
+        };
     }, [project, loginData]);
 
     useEffect(() => {
