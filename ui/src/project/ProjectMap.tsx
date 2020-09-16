@@ -1,6 +1,4 @@
 import React, { CSSProperties, ReactElement, useEffect, useState, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
 import { Feature, FeatureCollection } from 'geojson';
 import turfExtent from 'turf-extent';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
@@ -32,8 +30,6 @@ const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
 export default function ProjectMap({ document, documents }
         : { document: Document, documents: ResultDocument[] }): ReactElement {
-
-    const { t } = useTranslation();
 
     const history = useHistory();
     const location = useLocation();
