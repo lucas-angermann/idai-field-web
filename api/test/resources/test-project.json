@@ -41,6 +41,15 @@
               "inputType": "input"
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
+              "label": {
+                "de": "Kurzbeschreibung",
+                "en": "Short description"
+              },
+              "description": {}
+            },
+            {
               "inputType": "checkboxes",
               "source": "library",
               "valuelist": {

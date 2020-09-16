@@ -25,13 +25,20 @@ defmodule Enricher.Labels do
   end
 
   defp get_value_with_label(field_name, dimension = %{ "measurementPosition" => position }, category_definition) do
-    put_in(
-      dimension["measurementPosition"],
-      %{ name: position, label: get_label(field_name, position, category_definition, :positionValues) }
-    )
+    label = get_label(field_name, position, category_definition, :positionValues)
+    if !is_nil(label) do
+      put_in(dimension["measurementPosition"], %{ name: position, label: label })
+    else
+      dimension
+    end
   end
   defp get_value_with_label(field_name, field_value, category_definition) do
-    %{ name: field_value, label: get_label(field_name, field_value, category_definition, :valuelist) }
+    label = get_label(field_name, field_value, category_definition, :valuelist)
+    if !is_nil(label) do
+      %{ name: field_value, label: label }
+    else
+      field_value
+    end
   end
 
   defp get_label(field_name, field_value, category_definition, valuelist_property_name) do
@@ -40,7 +47,7 @@ defmodule Enricher.Labels do
         && Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) do
        field_definition[valuelist_property_name]["values"][field_value]["labels"]
      else
-       %{}
+       nil
      end
   end
 

@@ -10,8 +10,9 @@ defmodule Enricher.LabelsTest do
     change = %{
       :doc => %{
         :resource => %{
-          :category => "Operation",
           :identifier => "ABC",
+          :shortDescription => "Test resource",
+          :category => "Operation",
           "color" => ["Grün", "Blau"],
           "width" => [%{ "inputValue" => 10, "inputUnit" => "cm", "measurementPosition" => "Maximale Ausdehnung" }],
           :id => "42",
@@ -31,6 +32,7 @@ defmodule Enricher.LabelsTest do
         :resource => %{
           id: "42",
           identifier: "ABC",
+          shortDescription: "Test resource",
           category: %{ name: "Operation", label: %{ de: "Maßnahme", en: "Operation" } },
           color: [
             %{ name: "Grün", label: %{ de: "Grün", en: "Green" } },
