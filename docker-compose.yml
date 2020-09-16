@@ -27,7 +27,7 @@ services:
     ports:
       - "8182:8182"
     volumes:
-      - "./data/cantaloupe:/imageroot/images"
+      - "./data/cantaloupe:/imageroot"
     environment:
       HTTP_HTTP2_ENABLED: "true"
       HTTPS_HTTP2_ENABLED: "true"
