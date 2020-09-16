@@ -3,8 +3,8 @@ defmodule Core.TreeTest do
   use Plug.Test
   alias Core.Tree
 
-  test "find_in_treelist" do
-    treelist = [
+  test "find_in_tree_list" do
+    tree_list = [
       %{
         item: 5,
         trees: []
@@ -15,12 +15,12 @@ defmodule Core.TreeTest do
       }
     ]
 
-    result = Tree.find_in_treelist(fn x -> x == 3 end, treelist)
+    result = Tree.find_in_tree_list(fn x -> x == 3 end, tree_list)
     assert result == 3
   end
 
-  test "find_in_treelist - recursive" do
-    treelist = [
+  test "find_in_tree_list - recursive" do
+    tree_list = [
       %{
         item: 5,
         trees: [
@@ -36,13 +36,13 @@ defmodule Core.TreeTest do
       }
     ]
 
-    result = Tree.find_in_treelist(fn x -> x == 3 end, treelist)
+    result = Tree.find_in_tree_list(fn x -> x == 3 end, tree_list)
     assert result == 3
   end
 
-  test "find_in_treelist - return nil if not found" do
+  test "find_in_tree_list - return nil if not found" do
 
-    treelist = [
+    tree_list = [
       %{
         item: 1,
         trees: []
@@ -53,7 +53,7 @@ defmodule Core.TreeTest do
       }
     ]
 
-    result = Tree.find_in_treelist(fn x -> x == 3 end, treelist)
+    result = Tree.find_in_tree_list(fn x -> x == 3 end, tree_list)
     assert result == nil
   end
 end

@@ -1,12 +1,10 @@
 defmodule Core.CategoryTreeListTest do
-
   use ExUnit.Case
   use Plug.Test
   alias Core.CategoryTreeList
 
   test "find_by_name" do
-
-    category_treelist = [
+    category_tree_list = [
       %{
         item: %{ name: "a" },
         trees: []
@@ -17,7 +15,7 @@ defmodule Core.CategoryTreeListTest do
       }
     ]
 
-    result = CategoryTreeList.find_by_name("b", category_treelist)
+    result = CategoryTreeList.find_by_name("b", category_tree_list)
     assert result == %{ name: "b" }
   end
 end
