@@ -46,10 +46,10 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
             { field: 'project', value: id }
         ],
         not: [
-            { field: 'resource.category', value: 'Project' },
-            { field: 'resource.category', value: 'Image' },
-            { field: 'resource.category', value: 'Photo' },
-            { field: 'resource.category', value: 'Drawing' }
+            { field: 'resource.category.name', value: 'Project' },
+            { field: 'resource.category.name', value: 'Image' },
+            { field: 'resource.category.name', value: 'Photo' },
+            { field: 'resource.category.name', value: 'Drawing' }
         ]
     };
 

@@ -40,4 +40,4 @@ const renderMap = (projectDocuments: ResultDocument[]): ReactElement => <Map doc
 
 
 const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
-    (await search({ q: 'resource.category:Project' }, token)).documents;
+    (await search({ q: 'resource.category.name:Project' }, token)).documents;
