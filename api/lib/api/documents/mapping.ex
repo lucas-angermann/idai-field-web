@@ -46,5 +46,8 @@ defmodule Api.Documents.Mapping do
     }
   end
   
-  defp map_document(%{_source: document}), do: document
+  defp map_document(%{_source: document}) do
+    document = Core.CorePropertiesAtomizing.format_document(document)
+    put_in(document.resource.category, document.resource.category["name"])
+  end
 end
