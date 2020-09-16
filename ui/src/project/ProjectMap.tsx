@@ -28,8 +28,8 @@ import './project-map.css';
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
 
 
-export default function ProjectMap({ document, documents }
-        : { document: Document, documents: ResultDocument[] }): ReactElement {
+export default function ProjectMap({ document, documents, project }
+        : { document: Document, documents: ResultDocument[], project: string }): ReactElement {
 
     const history = useHistory();
     const location = useLocation();
@@ -41,7 +41,7 @@ export default function ProjectMap({ document, documents }
     useEffect(() => {
 
         let mounted = true;
-        createMap(loginData)
+        createMap(project, loginData)
             .then(newMap => {
                 if (mounted) {
                     setMap(newMap);
@@ -49,7 +49,7 @@ export default function ProjectMap({ document, documents }
                 }
             });
         return () => mounted = false;
-    }, [loginData]);
+    }, [project, loginData]);
 
     useEffect(() => {
 
@@ -87,11 +87,11 @@ export default function ProjectMap({ document, documents }
 }
 
 
-const createMap = async (loginData: LoginData): Promise<Map> => {
+const createMap = async (project: string, loginData: LoginData): Promise<Map> => {
 
     let layers = [];
 
-    const tileLayers = await getTileLayers(loginData);
+    const tileLayers = await getTileLayers(project, loginData);
     if (tileLayers) layers = layers.concat(tileLayers);
 
     const map = new Map({
@@ -159,13 +159,17 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 };
 
 
-const getTileLayers = async (loginData: LoginData): Promise<TileLayer[]> =>
-    (await getTileLayerDocuments(loginData)).map(doc => getTileLayer(doc));
+const getTileLayers = async (project: string, loginData: LoginData): Promise<TileLayer[]> =>
+    (await getTileLayerDocuments(project, loginData)).map(doc => getTileLayer(doc));
 
 
-const getTileLayerDocuments = async (loginData: LoginData): Promise<Document[]> => {
+const getTileLayerDocuments = async (project: string, loginData: LoginData): Promise<Document[]> => {
 
-    const result = await search({ q: '*', exists: ['resource.georeference'] }, loginData.token);
+    const result = await search({
+        q: '*',
+        exists: ['resource.georeference'],
+        filters: [{ field: 'project', value: project }]
+    }, loginData.token);
     return Promise.all(result.documents.map((doc: ResultDocument) => get(doc.resource.id, loginData.token)));
 };
 

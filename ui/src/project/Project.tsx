@@ -106,7 +106,8 @@ export default function Project(): ReactElement {
             { !mapDocuments?.length && !loading && renderEmptyResult(t) }
             <ProjectMap
                 document={ document }
-                documents={ mapDocuments } />
+                documents={ mapDocuments }
+                project={ projectId } />
         </div>
     </>;
 
