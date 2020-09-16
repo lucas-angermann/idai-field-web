@@ -23,6 +23,7 @@ import { LoginData } from '../login';
 import { get, search } from '../api/documents';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
+import { getImageUrl } from '../api/image';
 
 
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
@@ -160,7 +161,7 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 
 
 const getTileLayers = async (project: string, loginData: LoginData): Promise<TileLayer[]> =>
-    (await getTileLayerDocuments(project, loginData)).map(doc => getTileLayer(doc));
+    (await getTileLayerDocuments(project, loginData)).map(doc => getTileLayer(doc, loginData));
 
 
 const getTileLayerDocuments = async (project: string, loginData: LoginData): Promise<Document[]> => {
@@ -174,10 +175,10 @@ const getTileLayerDocuments = async (project: string, loginData: LoginData): Pro
 };
 
 
-const getTileLayer = (document: Document): TileLayer => {
+const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
 
     const tileSize: [number, number] = [256, 256];
-    const url = `/${document.resource.id}/{z}/{x}/{y}.png`;
+    const pathTemplate = `${document.resource.id}/{z}/{x}/{y}.png`;
     const extent = getTileLayerExtent(document);
     const resolutions = getResolutions(extent, tileSize[0], document);
 
@@ -189,11 +190,13 @@ const getTileLayer = (document: Document): TileLayer => {
                 resolutions,
                 tileSize
             }),
-            tileUrlFunction: (tileCoord) =>
-                url
+            tileUrlFunction: (tileCoord) => {
+                const path = pathTemplate
                     .replace('{z}', String(tileCoord[0]))
                     .replace('{x}', String(tileCoord[1]))
-                    .replace('{y}', String(tileCoord[2]))
+                    .replace('{y}', String(tileCoord[2]));
+                return getImageUrl(document.project, path , tileSize[0], tileSize[1], loginData.token, 'png');
+            }
         })
     });
 };
