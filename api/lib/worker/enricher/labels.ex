@@ -1,13 +1,19 @@
 defmodule Enricher.Labels do
   alias Core.Utils
+  alias Core.CategoryTreeList
 
-  def add_labels(change = %{ doc: %{ resource: resource } }, category_definition) do
-    put_in(
-      change.doc.resource,
-      Enum.map(resource, &(add_labels_to_field(&1, category_definition)))
-      |> Enum.into(%{})
-      |> Utils.atomize
-    )
+  def add_labels(change = %{ doc: %{ resource: resource } }, configuration) do
+    category_definition = CategoryTreeList.find_by_name(change.doc.resource.category, configuration)
+    if is_nil(category_definition) do
+      raise "No category definition found for category #{change.doc.resource.category}"
+    else
+      put_in(
+        change.doc.resource,
+        Enum.map(resource, &(add_labels_to_field(&1, category_definition)))
+        |> Enum.into(%{})
+        |> Utils.atomize
+      )
+    end
   end
 
   defp add_labels_to_field({ :category, field_value }, category_definition) do
@@ -46,8 +52,8 @@ defmodule Enricher.Labels do
   defp get_label(field_name, field_value, category_definition, valuelist_property_name) do
      field_definition = get_field_definition(category_definition, field_name)
      cond do
-      is_nil(field_definition) -> raise "No field definition found for field #{field_name} of category
-        #{category_definition.name}"
+      is_nil(field_definition) -> raise "No field definition found for field #{field_name} of category "
+        <> category_definition.name
       !Map.has_key?(field_definition, valuelist_property_name) -> nil
       Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) ->
         get_labels_object(field_definition[valuelist_property_name]["values"][field_value])
