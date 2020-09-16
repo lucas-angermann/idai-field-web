@@ -3,7 +3,6 @@ defmodule Enricher.LabelsTest do
   use Plug.Test
   alias Enricher.Labels
   alias Core.ProjectConfigLoader
-  alias Core.CategoryTreeList
 
   test "add labels" do
 
