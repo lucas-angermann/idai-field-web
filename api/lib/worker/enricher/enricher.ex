@@ -15,11 +15,16 @@ defmodule Enricher.Enricher do
         found in configuration."
       nil
     else
-      change
-      |> Gazetteer.add_coordinates
-      |> Relations.expand(get_for_id)
-      |> Labels.add_labels(category)
-      |> put_in([:doc, :project], project)
+      try do
+        change
+        |> Gazetteer.add_coordinates
+        |> Relations.expand(get_for_id)
+        |> Labels.add_labels(category)
+        |> put_in([:doc, :project], project)
+      rescue
+        error -> Logger.error(error.message)
+        nil
+      end
     end
   end
 end

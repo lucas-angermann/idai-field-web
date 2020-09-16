@@ -46,7 +46,9 @@ defmodule Enricher.Labels do
   defp get_label(field_name, field_value, category_definition, valuelist_property_name) do
      field_definition = get_field_definition(category_definition, field_name)
      cond do
-      is_nil(field_definition) || !Map.has_key?(field_definition, valuelist_property_name) -> nil
+      is_nil(field_definition) -> raise "No field definition found for field #{field_name} of category
+        #{category_definition.name}"
+      !Map.has_key?(field_definition, valuelist_property_name) -> nil
       Map.has_key?(field_definition[valuelist_property_name]["values"], field_value) ->
         get_labels_object(field_definition[valuelist_property_name]["values"][field_value])
       true -> %{}
