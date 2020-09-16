@@ -3,7 +3,7 @@ import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
+import { Dating, Dimension, Literature } from 'idai-components-2';
 import { Document, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
@@ -130,8 +130,8 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
         );
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, t);
-    } else if (OptionalRange.isValid(object)) {
-        return OptionalRange.generateLabel(object, t);
+    } else if (object.value) {
+        return generateOptionalRangeLabel(object, t);
     } else {
         return renderObjectFields(object, t);
     }
@@ -188,6 +188,15 @@ const renderPopover = (object: any, t: TFunction): any => {
 const getDecimalValue = (value: number): string => {
 
     return value.toString().replace('.', ',');
+};
+
+
+const generateOptionalRangeLabel = (optionalRange: any, t: TFunction): string => {
+
+    return optionalRange.endValue
+        ? t('from') + getLabel(optionalRange.value.name, optionalRange.value.label)
+        + t('to') + getLabel(optionalRange.endValue.name, optionalRange.endValue.label)
+        : getLabel(optionalRange.value.name, optionalRange.value.label);
 };
 
 
