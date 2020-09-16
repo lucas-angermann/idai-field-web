@@ -40,6 +40,11 @@ defmodule Enricher.Labels do
       dimension
     end
   end
+  defp get_value_with_label(field_name, period = %{ "value" => value }, category_definition) when is_binary(value) do
+    period
+    |> put_labels_in_subfields(field_name, "value", category_definition)
+    |> put_labels_in_subfields(field_name, "endValue", category_definition)
+  end
   defp get_value_with_label(field_name, field_value, category_definition) do
     label = get_label(field_name, field_value, category_definition, :valuelist)
     if !is_nil(label) do
@@ -49,6 +54,16 @@ defmodule Enricher.Labels do
     end
   end
 
+  defp put_labels_in_subfields(field_value, field_name, field_value_subfield, category_definition) do
+    label = get_label(field_name, field_value[field_value_subfield], category_definition, :valuelist)
+    if !is_nil(label) do
+      put_in(field_value[field_value_subfield], %{ name: field_value[field_value_subfield], label: label })
+    else
+      field_value
+    end
+  end
+
+  defp get_label(_, nil, _, _), do: nil
   defp get_label(field_name, field_value, category_definition, valuelist_property_name) do
      field_definition = get_field_definition(category_definition, field_name)
      cond do

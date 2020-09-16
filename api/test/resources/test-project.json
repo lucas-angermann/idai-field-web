@@ -172,6 +172,48 @@
           ],
           "relations": [],
           "label": "Maße"
+        },
+        {
+          "name": "time",
+          "fields": [
+            {
+              "inputType": "dropdownRange",
+              "source": "common",
+              "valuelist": {
+                "creationDate": "",
+                "createdBy": "IT-Referat, DAI, 2019",
+                "description": {
+                  "de": "",
+                  "en": ""
+                },
+                "values": {
+                  "Old Babylonian": {
+                    "labels": {
+                      "de": "Altbabylonisch",
+                      "en": "Old Babylonian"
+                    }
+                  },
+                  "New Babylonian": {
+                    "labels": {
+                      "de": "Neubabylonisch",
+                      "en": "New Babylonian"
+                    }
+                  }
+                }
+              },
+              "name": "period",
+              "label": {
+                "de": "Grobdatierung",
+                "en": "Period"
+              },
+              "description": {}
+            }
+          ],
+          "relations": [],
+          "label": {
+            "de": "Zeit",
+            "en": "Time"
+          }
         }
       ]
     }

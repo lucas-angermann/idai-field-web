@@ -16,6 +16,7 @@ defmodule Enricher.LabelsTest do
           "color" => ["Grün", "Blau"],
           "material" => ["Eisen"],
           "width" => [%{ "inputValue" => 10, "inputUnit" => "cm", "measurementPosition" => "Maximale Ausdehnung" }],
+          "period" => %{ "value" => "Old Babylonian", "endValue" => "New Babylonian" },
           :id => "42",
           :relations => %{ "liesWithin" => ["45"] }
         }
@@ -54,6 +55,22 @@ defmodule Enricher.LabelsTest do
               }
             }
           ],
+          period: %{
+            value: %{
+              name: "Old Babylonian",
+              label: %{
+                de: "Altbabylonisch",
+                en: "Old Babylonian"
+              }
+            },
+            endValue: %{
+              name: "New Babylonian",
+              label: %{
+                de: "Neubabylonisch",
+                en: "New Babylonian"
+              }
+            }
+          },
           relations: %{ liesWithin: ["45"] }
         }
       }

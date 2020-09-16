@@ -121,7 +121,12 @@ defmodule Core.LayoutTest do
            }
          ],
          relations: []
-       }
+       },
+      %{
+        name: "time",
+        fields: [],
+        relations: []
+      }
      ]
     }
   end
