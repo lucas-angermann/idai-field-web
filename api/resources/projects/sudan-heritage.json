@@ -6,23 +6,20 @@
         "de": "Ort",
         "en": "Heritage Site"
       },
-      "description": {
-        "de": {},
-        "en": {}
-      },
+      "description": {},
       "groups": [
         {
           "name": "stem",
           "fields": [
             {
               "source": "builtin",
+              "name": "category",
+              "inputType": "input",
               "label": {
                 "de": "Kategorie",
                 "en": "Category"
               },
-              "description": {},
-              "name": "category",
-              "inputType": "input"
+              "description": {}
             },
             {
               "source": "builtin",
@@ -33,6 +30,8 @@
             },
             {
               "mandatory": true,
+              "name": "identifier",
+              "inputType": "input",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -40,18 +39,16 @@
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
-              },
-              "name": "identifier",
-              "inputType": "input"
+              }
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
               },
-              "description": {},
-              "name": "shortDescription",
-              "inputType": "input"
+              "description": {}
             }
           ],
           "relations": [
@@ -83,26 +80,26 @@
             {
               "inputType": "unsignedInt",
               "source": "builtin",
+              "name": "gazId",
               "label": {
                 "de": "Gazetteer-ID",
                 "en": "Gazetteer ID"
               },
               "description": {
                 "de": "ID-Nummer des Ortslexikons"
-              },
-              "name": "gazId"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "placeName",
               "label": {
                 "de": "Ortsname",
                 "en": "Place name"
               },
               "description": {
                 "de": "Name der Ortschaft bzw. Gemarkung"
-              },
-              "name": "placeName"
+              }
             },
             {
               "inputType": "checkboxes",
@@ -140,11 +137,11 @@
                   "Historical building": {}
                 }
               },
+              "name": "siteClassification",
               "label": {
                 "de": "Klassifikation Fundplatz",
                 "en": "General archaeological classification for the site"
               },
-              "name": "siteClassification",
               "description": {}
             },
             {
@@ -173,64 +170,65 @@
                   "urbanes Gebäude": {}
                 }
               },
+              "name": "findspotClassification",
               "label": {
                 "de": "Klassifikation Fundstelle",
                 "en": "Findspot classification"
               },
-              "name": "findspotClassification",
               "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "modernIntervention",
               "label": {
                 "de": "Moderne Eingriffe",
                 "en": "Modern structures on the site"
               },
               "description": {
                 "de": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)"
-              },
-              "name": "modernIntervention"
+              }
             },
             {
               "inputType": "text",
               "source": "library",
+              "name": "excavationHistory",
               "label": {
                 "de": "Ausgrabungsgeschichte",
                 "en": "Excavation history"
               },
               "description": {
                 "de": "Abhandlung über die Grabungsprojekte auf der Fundstelle"
-              },
-              "name": "excavationHistory"
+              }
             },
             {
               "inputType": "text",
               "source": "library",
+              "name": "buildingResearchHistory",
               "label": {
                 "de": "Forschungsgeschichte",
                 "en": "Research history"
               },
               "description": {
                 "de": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen"
-              },
-              "name": "buildingResearchHistory"
+              }
             },
             {
               "inputType": "text",
               "source": "library",
+              "name": "buildingHistory",
               "label": {
                 "de": "Baugeschichte",
                 "en": "Building research history"
               },
               "description": {
                 "de": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle"
-              },
-              "name": "buildingHistory"
+              }
             },
             {
               "inputType": "text",
               "source": "library",
+              "name": "findSituation",
               "label": {
                 "de": "Fundumstände",
                 "en": "Find situation"
@@ -238,8 +236,7 @@
               "description": {
                 "de": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
                 "en": "Description of the circumstances of the finding place discovery and the persons involved"
-              },
-              "name": "findSituation"
+              }
             },
             {
               "inputType": "input",
@@ -273,7 +270,21 @@
                   "Christian": {},
                   "Islamic": {},
                   "Modern History": {}
-                }
+                },
+                "order": [
+                  "Paleolithic",
+                  "Mesolithic",
+                  "Neolithic",
+                  "Pre-Kerma",
+                  "Kerma",
+                  "New Egyptian Kingdom",
+                  "Napata",
+                  "Meroe",
+                  "Post-Meroitic",
+                  "Christian",
+                  "Islamic",
+                  "Modern History"
+                ]
               },
               "name": "periodSudanHeritage",
               "label": {
@@ -338,20 +349,14 @@
             {
               "inputType": "text",
               "source": "common",
+              "name": "description",
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
               },
               "description": {
                 "de": "Freies Beschreibungsfeld"
-              },
-              "name": "description"
-            },
-            {
-              "name": "geometry",
-              "inputType": "input",
-              "label": {},
-              "description": {}
+              }
             }
           ],
           "relations": [],
@@ -375,14 +380,14 @@
             {
               "inputType": "input",
               "source": "common",
+              "name": "spatialLocation",
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location"
               },
               "description": {
                 "de": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes"
-              },
-              "name": "spatialLocation"
+              }
             }
           ],
           "relations": [],
@@ -397,11 +402,11 @@
             {
               "inputType": "dating",
               "source": "common",
+              "name": "dating",
               "label": {
                 "de": "Datierung",
                 "en": "Dating"
               },
-              "name": "dating",
               "description": {}
             }
           ],
@@ -425,23 +430,20 @@
         "de": "Abbildung",
         "en": "Image"
       },
-      "description": {
-        "de": {},
-        "en": {}
-      },
+      "description": {},
       "groups": [
         {
           "name": "stem",
           "fields": [
             {
               "source": "builtin",
+              "name": "category",
+              "inputType": "input",
               "label": {
                 "de": "Kategorie",
                 "en": "Category"
               },
-              "description": {},
-              "name": "category",
-              "inputType": "input"
+              "description": {}
             },
             {
               "source": "builtin",
@@ -452,6 +454,8 @@
             },
             {
               "mandatory": true,
+              "name": "identifier",
+              "inputType": "input",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -459,23 +463,22 @@
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
-              },
-              "name": "identifier",
-              "inputType": "input"
+              }
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
               },
-              "description": {},
-              "name": "shortDescription",
-              "inputType": "input"
+              "description": {}
             },
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "staff",
               "source": "common",
+              "name": "draughtsmen",
               "label": {
                 "de": "Bildersteller/Bilderstellerin",
                 "en": "Creator"
@@ -483,13 +486,13 @@
               "description": {
                 "de": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
                 "en": "Creator of the image, photographer respectively draughtsman"
-              },
-              "name": "draughtsmen"
+              }
             },
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "staff",
               "source": "common",
+              "name": "processor",
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor"
@@ -497,18 +500,17 @@
               "description": {
                 "de": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
                 "en": "Processor of the image in case of changes after the creation of the image"
-              },
-              "name": "processor"
+              }
             },
             {
               "inputType": "checkboxes",
               "valuelistFromProjectField": "campaigns",
               "source": "common",
+              "name": "campaign",
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign"
               },
-              "name": "campaign",
               "description": {}
             }
           ],
@@ -533,21 +535,21 @@
             {
               "inputType": "unsignedInt",
               "source": "builtin",
+              "name": "height",
               "label": {
                 "de": "Höhe",
                 "en": "Height"
               },
-              "name": "height",
               "description": {}
             },
             {
               "inputType": "unsignedInt",
               "source": "builtin",
+              "name": "width",
               "label": {
                 "de": "Breite",
                 "en": "Width"
               },
-              "name": "width",
               "description": {}
             },
             {
@@ -567,29 +569,23 @@
             {
               "inputType": "text",
               "source": "common",
+              "name": "description",
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
               },
               "description": {
                 "de": "Freies Beschreibungsfeld"
-              },
-              "name": "description"
+              }
             },
             {
               "inputType": "literature",
               "source": "common",
+              "name": "literature",
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
-              "name": "literature",
-              "description": {}
-            },
-            {
-              "name": "geometry",
-              "inputType": "input",
-              "label": {},
               "description": {}
             }
           ],
@@ -613,23 +609,20 @@
         "de": "Projekt",
         "en": "Project"
       },
-      "description": {
-        "de": {},
-        "en": {}
-      },
+      "description": {},
       "groups": [
         {
           "name": "stem",
           "fields": [
             {
               "source": "builtin",
+              "name": "category",
+              "inputType": "input",
               "label": {
                 "de": "Kategorie",
                 "en": "Category"
               },
-              "description": {},
-              "name": "category",
-              "inputType": "input"
+              "description": {}
             },
             {
               "source": "builtin",
@@ -639,13 +632,13 @@
               "description": {}
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
               },
-              "description": {},
-              "name": "shortDescription",
-              "inputType": "input"
+              "description": {}
             }
           ],
           "relations": [
@@ -669,18 +662,19 @@
             {
               "inputType": "text",
               "source": "common",
+              "name": "description",
               "label": {
                 "de": "Beschreibung",
                 "en": "Description"
               },
               "description": {
                 "de": "Freies Beschreibungsfeld"
-              },
-              "name": "description"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "institution",
               "label": {
                 "de": "Institution",
                 "en": "Institution"
@@ -688,12 +682,12 @@
               "description": {
                 "de": "Für das Projekt verantwortliche Institution",
                 "en": "Institution responsible for the project"
-              },
-              "name": "institution"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "projectSupervisor",
               "label": {
                 "de": "Leiterin/Leiter",
                 "en": "Supervisor"
@@ -701,24 +695,24 @@
               "description": {
                 "de": "Leitende Person des Projekts",
                 "en": "Person in charge of the project"
-              },
-              "name": "projectSupervisor"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "contactPerson",
               "label": {
                 "de": "Kontaktperson",
                 "en": "Contact person"
               },
               "description": {
                 "de": "Kontaktperson des Projekts"
-              },
-              "name": "contactPerson"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "contactMail",
               "label": {
                 "de": "Mailadresse der Kontaktperson",
                 "en": "Mail address of the contact person"
@@ -726,44 +720,44 @@
               "description": {
                 "de": "Mailadresse des Projekts bzw. der Kontaktperson",
                 "en": "Mail address of the project or a contact person"
-              },
-              "name": "contactMail"
+              }
             },
             {
               "inputType": "multiInput",
               "source": "builtin",
+              "name": "staff",
               "label": {
                 "de": "Team",
                 "en": "Staff"
               },
-              "name": "staff",
               "description": {}
             },
             {
               "inputType": "multiInput",
               "source": "builtin",
+              "name": "campaigns",
               "label": {
                 "de": "Kampagnen",
                 "en": "Campaigns"
               },
-              "name": "campaigns",
               "description": {}
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "projectURI",
               "label": {
                 "de": "Projekt-URL",
                 "en": "Project URL"
               },
               "description": {
                 "de": "Hinweis auf eine externe Projektseite mit weiteren Informationen"
-              },
-              "name": "projectURI"
+              }
             },
             {
               "inputType": "input",
               "source": "library",
+              "name": "externalReference",
               "label": {
                 "de": "Projekt-Homepage",
                 "en": "Project homepage"
@@ -771,48 +765,48 @@
               "description": {
                 "de": "Externe Referenz(en) des Projekts",
                 "en": "External reference(s) of the project"
-              },
-              "name": "externalReference"
+              }
             },
             {
               "inputType": "unsignedInt",
               "source": "library",
+              "name": "gazId",
               "label": {
                 "de": "Gazetteer-ID",
                 "en": "Gazetteer ID"
               },
               "description": {
                 "de": "ID-Nummer des Ortslexikons"
-              },
-              "name": "gazId"
+              }
             },
             {
               "inputType": "float",
               "source": "library",
+              "name": "latitude",
               "label": {
                 "de": "Breitengrad",
                 "en": "Latitude"
               },
               "description": {
                 "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
-              },
-              "name": "latitude"
+              }
             },
             {
               "inputType": "float",
               "source": "library",
+              "name": "longitude",
               "label": {
                 "de": "Längengrad",
                 "en": "Longitude"
               },
               "description": {
                 "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
-              },
-              "name": "longitude"
+              }
             },
             {
               "inputType": "unsignedInt",
               "source": "library",
+              "name": "epsgId",
               "label": {
                 "de": "EPSG-Code",
                 "en": "EPSG Code"
@@ -820,8 +814,7 @@
               "description": {
                 "de": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
                 "en": "Specification of the EPSG code (see http://spatialreference.org/, e. g. 3004)"
-              },
-              "name": "epsgId"
+              }
             },
             {
               "inputType": "dropdown",
@@ -834,18 +827,24 @@
                   "Eigenes Koordinatenbezugssystem": {},
                   "EPSG4326 (WGS 84)": {},
                   "EPSG3857 (WGS 84 Web Mercator)": {}
-                }
+                },
+                "order": [
+                  "Eigenes Koordinatenbezugssystem",
+                  "EPSG4326 (WGS 84)",
+                  "EPSG3857 (WGS 84 Web Mercator)"
+                ]
               },
+              "name": "coordinateReferenceSystem",
               "label": {
                 "de": "Koordinatenbezugssystem",
                 "en": "Coordinate reference system"
               },
-              "name": "coordinateReferenceSystem",
               "description": {}
             },
             {
               "inputType": "input",
               "source": "builtin",
+              "name": "identifier",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -853,14 +852,7 @@
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
-              },
-              "name": "identifier"
-            },
-            {
-              "name": "geometry",
-              "inputType": "input",
-              "label": {},
-              "description": {}
+              }
             }
           ],
           "relations": [],
@@ -883,23 +875,20 @@
         "de": "Typenkatalog",
         "en": "Type catalog"
       },
-      "description": {
-        "de": {},
-        "en": {}
-      },
+      "description": {},
       "groups": [
         {
           "name": "stem",
           "fields": [
             {
               "source": "builtin",
+              "name": "category",
+              "inputType": "input",
               "label": {
                 "de": "Kategorie",
                 "en": "Category"
               },
-              "description": {},
-              "name": "category",
-              "inputType": "input"
+              "description": {}
             },
             {
               "source": "builtin",
@@ -910,6 +899,8 @@
             },
             {
               "mandatory": true,
+              "name": "identifier",
+              "inputType": "input",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -917,18 +908,16 @@
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
-              },
-              "name": "identifier",
-              "inputType": "input"
+              }
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
               },
-              "description": {},
-              "name": "shortDescription",
-              "inputType": "input"
+              "description": {}
             }
           ],
           "relations": [
@@ -986,11 +975,11 @@
                   }
                 }
               },
+              "name": "criterion",
               "label": {
                 "de": "Kriterium",
                 "en": "Criterion"
               },
-              "name": "criterion",
               "description": {}
             }
           ],
@@ -1006,17 +995,11 @@
             {
               "inputType": "literature",
               "source": "common",
+              "name": "literature",
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
-              "name": "literature",
-              "description": {}
-            },
-            {
-              "name": "geometry",
-              "inputType": "input",
-              "label": {},
               "description": {}
             }
           ],
@@ -1041,23 +1024,20 @@
         "de": "Typ",
         "en": "Type"
       },
-      "description": {
-        "de": {},
-        "en": {}
-      },
+      "description": {},
       "groups": [
         {
           "name": "stem",
           "fields": [
             {
               "source": "builtin",
+              "name": "category",
+              "inputType": "input",
               "label": {
                 "de": "Kategorie",
                 "en": "Category"
               },
-              "description": {},
-              "name": "category",
-              "inputType": "input"
+              "description": {}
             },
             {
               "source": "builtin",
@@ -1068,6 +1048,8 @@
             },
             {
               "mandatory": true,
+              "name": "identifier",
+              "inputType": "input",
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier"
@@ -1075,18 +1057,16 @@
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource"
-              },
-              "name": "identifier",
-              "inputType": "input"
+              }
             },
             {
+              "name": "shortDescription",
+              "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description"
               },
-              "description": {},
-              "name": "shortDescription",
-              "inputType": "input"
+              "description": {}
             }
           ],
           "relations": [
@@ -1136,17 +1116,11 @@
             {
               "inputType": "literature",
               "source": "common",
+              "name": "literature",
               "label": {
                 "de": "Literaturverweis",
                 "en": "Literature reference"
               },
-              "name": "literature",
-              "description": {}
-            },
-            {
-              "name": "geometry",
-              "inputType": "input",
-              "label": {},
               "description": {}
             }
           ],

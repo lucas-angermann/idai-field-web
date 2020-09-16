@@ -106,30 +106,33 @@
           "name": "dimensions",
           "fields": [
             {
-              "visible": false,
-              "editable": false,
-              "group": "dimensions",
-              "source": "builtin",
-              "label": {
-                "de": "Höhe",
-                "en": "Height"
+              "inputType": "dimension",
+              "source": "common",
+              "positionValues": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {},
+                "values": {
+                  "Maximale Ausdehnung": {
+                    "labels": {
+                      "de": "Maximale Ausdehnung",
+                      "en": "Maximum expansion"
+                    }
+                  },
+                  "Minimale Ausdehnung": {
+                    "labels": {
+                      "de": "Minimale Ausdehnung",
+                      "en": "Minimum expansion"
+                    }
+                  }
+                }
               },
-              "description": {},
-              "name": "height",
-              "inputType": "input"
-            },
-            {
-              "editable": false,
-              "visible": false,
-              "group": "dimensions",
-              "source": "builtin",
+              "name": "width",
               "label": {
                 "de": "Breite",
                 "en": "Width"
               },
-              "description": {},
-              "name": "width",
-              "inputType": "input"
+              "description": {}
             }
           ],
           "relations": [],

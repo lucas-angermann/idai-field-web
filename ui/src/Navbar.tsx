@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { LoginContext } from './App';
 import { LoginData } from './login';
+import LanguageButton from './LanguageButton';
+
 
 export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
@@ -26,6 +28,7 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                     <Link to="/manual">{ t('navbar.manual') }</Link>
                 </Nav.Link>
             </Nav>
+            <LanguageButton/>
             { renderLogin(loginData, onLogout, t) }
         </Navbar>
     );
@@ -43,3 +46,4 @@ const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): 
 const navbarStyle: CSSProperties = {
     backgroundImage: 'linear-gradient(to right, rgba(106,164,184,0.95) 0%, #557ebb 100%)'
 };
+

@@ -1,14 +1,14 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
-import { Card, Carousel } from 'react-bootstrap';
+import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { Document, Resource, FieldGroup, Field, Relation, getImages } from '../api/document';
+import { Document, FieldGroup, Field, Relation, getImages } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
 import { getLabel } from '../languages';
-import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
 
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
@@ -22,7 +22,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
             </Card.Header>
             <Card.Body>
                 { renderImages(getImages(document), document.project)}
-                { renderGroups(document.resource, t) }
+                { renderGroups(document, t) }
             </Card.Body>
         </Card>
     );
@@ -31,7 +31,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
 
 const renderHeader = (document: Document): ReactElement => (
     <div>
-        <DocumentTeaser document={ document }/>
+        <DocumentTeaser project={ document.project } document={ document }/>
     </div>
 );
 
@@ -55,18 +55,18 @@ const renderImage = (project: string) => (imageDoc: ResultDocument): ReactNode =
 };
 
 
-const renderGroups = (resource: Resource, t: TFunction): ReactNode => {
+const renderGroups = (document: Document, t: TFunction): ReactNode => {
 
-    return resource.groups.map(renderGroup(t));
+    return document.resource.groups.map(renderGroup(t, document.project));
 };
 
 
-const renderGroup = (t: TFunction) => (group: FieldGroup): ReactNode => {
+const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): ReactNode => {
 
     return (
         <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields, t) }
-            { renderRelationList(group.relations) }
+            { renderRelationList(group.relations, project, t) }
         </div>
     );
 };
@@ -77,23 +77,23 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
     const fieldElements = fields
         .filter(field => field.name !== 'geometry')
         .map(field => [
-            <dt key={ `${field.name}_dt`}>{ getLabel(field.name, field.label) }</dt>,
+            <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
         ]);
     return <dl>{ fieldElements }</dl>;
 };
 
 
-const renderRelationList = (relations: Relation[]): ReactNode => {
+const renderRelationList = (relations: Relation[], project: string, t: TFunction): ReactNode => {
 
     if (!relations) return null;
 
     const relationElements = relations
         .map(relation => [
-            <dt key={ `${relation.name}_dt`}>{ getLabel(relation.name, relation.label) }</dt>,
+            <dt key={ `${relation.name}_dt`}>{ renderMultiLanguageText(relation, t) }</dt>,
             <dd key={ `${relation.name}_dd`}>
                 <ul className="list-unstyled">
-                    { relation.targets.map(doc => renderDocumentLink(doc)) }
+                    { relation.targets.map(doc => renderDocumentLink(project, doc)) }
                 </ul>
             </dd>
         ]);
@@ -119,14 +119,15 @@ const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
 const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 
     if (object.label && object.name) {
-        return getLabel(object.name, object.label);
+        return renderMultiLanguageText(object, t);
     } else if (object.label) {
-        return object.label;
+      return object.label;
     } else if (Dating.isValid(object, { permissive: true })) {
         return Dating.generateLabel(object, t);
     } else if (Dimension.isValid(object)) {
-        // TODO Get translated label for measurement position from value list
-        return Dimension.generateLabel(object, getDecimalValue, t, object.measurementPosition);
+        return Dimension.generateLabel(
+            object, getDecimalValue, t, getLabel(object.measurementPosition.name, object.measurementPosition.label)
+        );
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, t);
     } else if (OptionalRange.isValid(object)) {
@@ -137,11 +138,23 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 };
 
 
+const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
+
+    const label: string = getLabel(object.name, object.label);
+
+    return object.label && Object.keys(object.label).length > 0
+        ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object, t) }>
+            <div style={ multiLanguageTextStyle }>{ label }</div>
+          </OverlayTrigger>
+        : label;
+};
+
+
 const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc } size="small"/></li>;
+const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
+    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small"/></li>;
 
 
 const renderObjectFields = (object: any, t: TFunction): ReactNode => {
@@ -151,6 +164,24 @@ const renderObjectFields = (object: any, t: TFunction): ReactNode => {
     );
 
     return <ul>{ listItems }</ul>;
+};
+
+
+const renderPopover = (object: any, t: TFunction): any => {
+
+    return (
+        <Popover id={ 'popover-' + object.name }>
+            <Popover.Content>
+                { Object.keys(object.label).map(language => (
+                        <div key={ language }>
+                            <em>{ t('languages.' + language) }: </em>
+                            { object.label[language] }
+                        </div>
+                    ))
+                }
+            </Popover.Content>
+        </Popover>
+    );
 };
 
 
@@ -164,4 +195,11 @@ const cardStyle: CSSProperties = {
     overflow: 'auto',
     flexGrow: 1,
     flexShrink: 1
+};
+
+
+const multiLanguageTextStyle: CSSProperties = {
+    display: 'inline-block',
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'dotted'
 };

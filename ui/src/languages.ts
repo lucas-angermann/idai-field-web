@@ -1,9 +1,9 @@
 import { set } from 'tsfun';
 import { I18nString } from './api/document';
 
-const USER_INTERFACE_LANGUAGES = ['en', 'de'];
+export const USER_INTERFACE_LANGUAGES = ['en', 'de'];
 
-const LANGUAGES: string[] = initializeLanguages();
+export const LANGUAGES: string[] = initializeLanguages();
 
 
 export function getUserInterfaceLanguage(): string {
