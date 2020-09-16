@@ -21,7 +21,10 @@
                 "_score": 0.96345556,
                 "_source": {
                     "resource": {
-                        "type": "PlasterFragment",
+                        "category": {
+                            "name": "PlasterFragment",
+                            "label": {}
+                        },
                         "relations": {
                             "liesWithin": [
                                 "b0e90175-bcea-9dae-0724-5cb8702e0318"
@@ -48,7 +51,13 @@
                 "_score": 0.96345556,
                 "_source": {
                     "resource": {
-                        "type": "Trench",
+                        "category": {
+                            "name": "Trench",
+                            "label": {
+                                "de": "Schnitt",
+                                "en": "Trench"
+                            }
+                        },
                         "shortDescription": "Quadrant ohne einen zugeordneten Grabungsplatz",
                         "relations": {
                             "liesWithin": [

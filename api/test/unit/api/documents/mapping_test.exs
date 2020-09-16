@@ -27,7 +27,7 @@ defmodule Api.Documents.MappingTest do
     assert length(mapped.documents) == length(result.hits.hits)
     
     mapped_identifier = get_in(mapped.documents, [Access.at(0), :resource, :identifier])
-    original_key = get_in(result.hits.hits, [Access.at(0), :_source, :resource, :identifier])
+    original_key = get_in(result.hits.hits, [Access.at(0), :_source, "resource", "identifier"])
     assert mapped_identifier == original_key
   end
 end
