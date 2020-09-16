@@ -98,14 +98,14 @@ export default function Project(): ReactElement {
             }
         </div>
         <div key="results">
-            { loading
-                ? <div style={ spinnerContainerStyle }>
+            { loading &&
+                <div style={ spinnerContainerStyle }>
                     <Spinner animation="border" variant="secondary" />
                   </div>
-                : <ProjectMap
-                    document={ document }
-                    documents={ mapDocuments }/>
             }
+            <ProjectMap
+                document={ document }
+                documents={ mapDocuments } />
         </div>
     </>;
 

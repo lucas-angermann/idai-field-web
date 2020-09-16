@@ -64,7 +64,7 @@ export default function ProjectMap({ document, documents }
 
     useEffect(() => {
 
-        if (!map) return;
+        if (!map || !documents?.length) return;
 
         const featureCollection = createFeatureCollection(documents);
         
@@ -73,6 +73,7 @@ export default function ProjectMap({ document, documents }
         setVectorLayer(newVectorLayer);
 
         map.getView().fit(turfExtent(featureCollection), { padding });
+        return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
     useEffect(() => {
