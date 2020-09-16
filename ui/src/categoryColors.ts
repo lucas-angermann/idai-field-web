@@ -31,7 +31,7 @@ export const isColorTooBright = (color: string): boolean => {
 
 
 const colors: { [categoryName: string]: string } = {
-    Trench: 'blue',
+    Trench: '#0000FF',
     Glass: '#99CC33',
     Mollusk: '#ff99ff',
     Brick: '#CC0000',
@@ -39,14 +39,14 @@ const colors: { [categoryName: string]: string } = {
     Architecture: '#707070',
     Place: '#5572A1',
     Layer: '#663300',
-    Feature: 'black',
+    Feature: '#000000',
     Floor: '#6600cc',
     Grave: '#339900',
     Bone: '#CCFFFF',
     Terracotta: '#FF6600',
     Stone: '#5c5c8a',
     Coin: '#cc9900',
-    Find: 'black',
+    Find: '#000000',
     PlasterFragment: '#737373',
     Metal: '#995f25',
     BuildingPart: '#707070',
