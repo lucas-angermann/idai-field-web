@@ -1,10 +1,9 @@
 import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode } from 'react';
-import { useParams, useLocation, useHistory, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiArrowLeftCircle } from '@mdi/js';
-import { History } from 'history';
+import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
 import ProjectHome from './ProjectHome';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -30,7 +29,6 @@ export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams();
     const location = useLocation();
-    const history = useHistory();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -100,15 +98,16 @@ export default function Project(): ReactElement {
             }
         </div>
         <div key="results">
-            { loading
-                ? <div style={ spinnerContainerStyle }>
+            { loading &&
+                <div style={ spinnerContainerStyle }>
                     <Spinner animation="border" variant="secondary" />
-                  </div>
-                : <ProjectMap
-                    document={ document }
-                    documents={ mapDocuments }
-                    onDocumentClick={ onDocumentClick(history, location.search) }/>
+                </div>
             }
+            { !mapDocuments?.length && !loading && renderEmptyResult(t) }
+            <ProjectMap
+                document={ document }
+                documents={ mapDocuments }
+                project={ projectId } />
         </div>
     </>;
 
@@ -141,6 +140,17 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
 };
 
 
+const renderEmptyResult = (t: TFunction): ReactElement => {
+
+    return <>
+        <div className="alert alert-info" style={ emptyResultStyle }>
+            <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
+            { t('projectMap.noResources') }
+        </div>
+    </>;
+};
+
+
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
@@ -162,13 +172,6 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 };
 
 
-const onDocumentClick = (history: History, searchParams: string): ((_: string) => void) => {
-    return (path: string) => {
-        history.push(path + searchParams);
-    };
-};
-
-
 const leftSidebarStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     width: `${SIDEBAR_WIDTH}px`,
@@ -186,5 +189,14 @@ const spinnerContainerStyle: CSSProperties = {
     top: '50vh',
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
+    zIndex: 1
+};
+
+
+const emptyResultStyle: CSSProperties = {
+    position: 'absolute',
+    top: NAVBAR_HEIGHT,
+    left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), 10px)`,
     zIndex: 1
 };

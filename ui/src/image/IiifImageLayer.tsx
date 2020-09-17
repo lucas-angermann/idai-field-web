@@ -1,8 +1,6 @@
-import React from 'react';
 import L from 'leaflet';
 import { GridLayer, withLeaflet, TileLayerProps } from 'react-leaflet';
 import 'leaflet-iiif';
-import './LeafletIiif.d';
 
 
 class IiifImageLayer extends GridLayer<TileLayerProps, L.TileLayer> {

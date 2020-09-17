@@ -5,8 +5,7 @@ defmodule Api.Images.CantaloupeImagesAdapter do
   adapter Tesla.Adapter.Ibrowse
 
   def info(project, id) do
-    cantaloupe_url = "%2F#{project}%2F#{id}/info.json"
-#    IO.puts "info #{cantaloupe_url}"
+    cantaloupe_url = "#{project}%2F#{id}/info.json"
     result = get(cantaloupe_url)
     case result do
       {:ok, %{ body: image_info, status: 200 }} -> {:ok, image_info}
@@ -17,8 +16,7 @@ defmodule Api.Images.CantaloupeImagesAdapter do
   end
 
   def get(project, id, cantaloupe_params) do
-    cantaloupe_url = "%2F#{project}%2F#{id}/#{cantaloupe_params}"
-#    IO.puts "get #{cantaloupe_url}"
+    cantaloupe_url = "#{project}%2F#{URI.encode_www_form(id)}/#{cantaloupe_params}"
     result = get(cantaloupe_url)
     case result do
       {:ok, %{ body: image_data, status: 200 }} -> {:ok, image_data}
