@@ -71,8 +71,7 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
 
 
 const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode =>
-    (params.has('resource.' + key + '.name')
-        && params.getAll('resource.' + key + '.name').includes(value)) &&
+    (params.has(key + '.name') && params.getAll(key + '.name').includes(value)) &&
         <LinkButton
                 to={ '?' + deleteFilterFromParams(params, key, value) }
                 variant="link"

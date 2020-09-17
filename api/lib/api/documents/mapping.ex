@@ -42,7 +42,7 @@ defmodule Api.Documents.Mapping do
     %{
       value: %{
         name: key,
-        label: get_label(hit._source["resource"][field_name], key)
+        label: get_label(get_in(hit._source, String.split(field_name, ".")), key)
       },
       count: doc_count
     }

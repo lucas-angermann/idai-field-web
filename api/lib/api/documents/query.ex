@@ -73,8 +73,8 @@ defmodule Api.Documents.Query do
 
   defp build_terms_aggregation(filter) do
     { filter.field, %{
-      terms: %{ field: "resource.#{filter.field}.name" },
-      aggs: Map.new([{ :data, %{ top_hits: %{ size: 1, _source: ["resource.#{filter.field}"] } } }])
+      terms: %{ field: "#{filter.field}.name" },
+      aggs: Map.new([{ :data, %{ top_hits: %{ size: 1, _source: ["#{filter.field}"] } } }])
     }}
   end
 end
