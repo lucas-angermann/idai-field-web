@@ -191,15 +191,6 @@ const getDecimalValue = (value: number): string => {
 };
 
 
-const generateOptionalRangeLabel = (optionalRange: any, t: TFunction): string => {
-
-    return optionalRange.endValue
-        ? t('from') + getLabel(optionalRange.value.name, optionalRange.value.label)
-        + t('to') + getLabel(optionalRange.endValue.name, optionalRange.endValue.label)
-        : getLabel(optionalRange.value.name, optionalRange.value.label);
-};
-
-
 const cardStyle: CSSProperties = {
     overflow: 'auto',
     flexGrow: 1,
