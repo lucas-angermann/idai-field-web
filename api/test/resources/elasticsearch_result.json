@@ -109,11 +109,45 @@
             "buckets": [
                 {
                     "key": "Value 1",
-                    "doc_count": 22356
+                    "doc_count": 22356,
+                    "data": {
+                        "hits": {
+                            "hits": [
+                                {
+                                    "_source": {
+                                        "field1": [{
+                                            "name": "Value 1",
+                                            "label": {
+                                                "de": "Value 1 (Deutsch)",
+                                                "en": "Value 1 (English)"
+                                            }
+                                        }]
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 },
                 {
                     "key": "Value 2",
-                    "doc_count": 1817
+                    "doc_count": 1817,
+                    "data": {
+                        "hits": {
+                            "hits": [
+                                {
+                                    "_source": {
+                                        "field1": [{
+                                            "name": "Value 2",
+                                            "label": {
+                                                "de": "Value 2 (Deutsch)",
+                                                "en": "Value 2 (English)"
+                                            }
+                                        }]
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         },
@@ -123,11 +157,45 @@
             "buckets": [
                 {
                     "key": "Value 3",
-                    "doc_count": 124234
+                    "doc_count": 124234,
+                    "data": {
+                        "hits": {
+                            "hits": [
+                                {
+                                    "_source": {
+                                        "field2": [{
+                                            "name": "Value 3",
+                                            "label": {
+                                                "de": "Value 3 (Deutsch)",
+                                                "en": "Value 3 (English)"
+                                            }
+                                        }]
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 },
                 {
                     "key": "Value 4",
-                    "doc_count": 867
+                    "doc_count": 867,
+                    "data": {
+                        "hits": {
+                            "hits": [
+                                {
+                                    "_source": {
+                                        "field2": [{
+                                            "name": "Value 4",
+                                            "label": {
+                                                "de": "Value 4 (Deutsch)",
+                                                "en": "Value 4 (English)"
+                                            }
+                                        }]
+                                    }
+                                }
+                            ]
+                        }
+                    }
                 }
             ]
         }

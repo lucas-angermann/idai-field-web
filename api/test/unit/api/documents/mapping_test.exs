@@ -20,7 +20,7 @@ defmodule Api.Documents.MappingTest do
     aggregation2 = result.aggregations[:field2]
     assert length(get_in(mapped, [:filters, Access.at(1), :values])) == length(aggregation2.buckets)
     
-    mapped_value = get_in(mapped.filters, [Access.at(1), :values, Access.at(0), :value])
+    mapped_value = get_in(mapped.filters, [Access.at(1), :values, Access.at(0), :value, :name])
     original_value = get_in(aggregation2.buckets, [Access.at(0), :key])
     assert mapped_value == original_value
     
