@@ -19,6 +19,12 @@ export function getLabel(name: string, label: I18nString): string {
 }
 
 
+export function getNumberOfUndisplayedLabels(label: I18nString): number {
+
+    return Object.keys(label).length - (LANGUAGES.find((lang: string) => label[lang]) ? 1 : 0);
+}
+
+
 function initializeLanguages(): string[] {
 
     return set(

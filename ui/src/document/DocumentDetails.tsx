@@ -8,7 +8,7 @@ import { Document, FieldGroup, Field, Relation, getImages } from '../api/documen
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
-import { getLabel } from '../languages';
+import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
@@ -142,7 +142,7 @@ const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
 
     const label: string = getLabel(object.name, object.label);
 
-    return object.label && Object.keys(object.label).length > 0
+    return object.label && getNumberOfUndisplayedLabels(object.label) > 0
         ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object, t) }>
             <div style={ multiLanguageTextStyle }>{ label }</div>
           </OverlayTrigger>
