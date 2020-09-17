@@ -31,6 +31,9 @@ export interface ResultFilter {
 
 
 export interface FilterBucket {
-    value: string;
+    value: {
+        name: string;
+        label: I18nString
+    };
     count: number;
 }

@@ -61,17 +61,18 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
 const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
     <Dropdown.Item
             as={ Link }
-            key={ bucket.value }
+            key={ bucket.value.name }
             style={ filterValueStyle }
-            to={ '?' + addFilterToParams(params, key, bucket.value) }>
-        { bucket.value }
-        { renderCloseButton(params, key, bucket.value) }
+            to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
+        { getLabel(bucket.value.name, bucket.value.label) }
+        { renderCloseButton(params, key, bucket.value.name) }
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;
 
 
 const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode =>
-    (params.has(key) && params.getAll(key).includes(value)) &&
+    (params.has('resource.' + key + '.name')
+        && params.getAll('resource.' + key + '.name').includes(value)) &&
         <LinkButton
                 to={ '?' + deleteFilterFromParams(params, key, value) }
                 variant="link"

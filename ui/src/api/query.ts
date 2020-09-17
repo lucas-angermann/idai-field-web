@@ -1,4 +1,3 @@
-
 export type Query = {
     q: string,
     filters?: Filter[],
@@ -78,7 +77,7 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { q:
 export const addFilterToParams = (params: URLSearchParams, key: string, value: string): URLSearchParams => {
 
     const newParams = new URLSearchParams(params);
-    newParams.append(key, value);
+    newParams.append('resource.' + key + '.name', value);
     return newParams;
 };
 
@@ -86,10 +85,11 @@ export const addFilterToParams = (params: URLSearchParams, key: string, value: s
 export const deleteFilterFromParams = (params: URLSearchParams, key: string, value?: string): URLSearchParams => {
 
     const newParams = new URLSearchParams(params);
+    const fullKey = 'resource.' + key + '.name';
     if (value) {
-        const newValues = params.getAll(key).filter(v => v !== value);
-        newParams.delete(key);
-        newValues.forEach(v => newParams.append(key, v));
-    } else newParams.delete(key);
+        const newValues = params.getAll(fullKey).filter(v => v !== value);
+        newParams.delete(fullKey);
+        newValues.forEach(v => newParams.append(fullKey, v));
+    } else newParams.delete(fullKey);
     return newParams;
 };

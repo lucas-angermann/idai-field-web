@@ -14,15 +14,15 @@ config :api,
   locales: ["de", "en"],
   default_filters: [
     %{
-      field: "resource.category",
+      field: "category",
       label: %{ de: "Kategorie", en: "Category" }
     },
     %{
-      field: "resource.color",
+      field: "color",
       label: %{ de: "Farbe", en: "Color" }
     },
     %{
-      field: "resource.material",
+      field: "material",
       label: %{ de: "Material", en: "Material" }
     }
   ]
