@@ -50,7 +50,7 @@ export default function ProjectMap({ document, documents, project }
                 }
             });
         return () => {
-            map.setTarget(null);
+            if (map) map.setTarget(null);
             mounted = false;
         };
     }, [project, loginData]);

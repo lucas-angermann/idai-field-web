@@ -35,10 +35,17 @@ defmodule Api.Images.Router do
         |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")
         |> send_resp(200, image_data)
       else
-        {:error, :not_found} -> send_not_found(conn)
+        {:error, :not_found} -> send_not_found_image(conn)
         {:error, reason} -> send_error(conn, reason)
       end
     end
+  end
+
+  defp send_not_found_image(conn) do
+    conn
+    |> put_resp_content_type("image/png")
+    |> put_resp_header("cache-control", "max-age=86400, private, must-revalidate")
+    |> Conn.send_file(200, "resources/not_found.png")
   end
 
   defp images_adapter do
