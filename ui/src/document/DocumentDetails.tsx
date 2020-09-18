@@ -126,7 +126,10 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
         return Dating.generateLabel(object, t);
     } else if (Dimension.isValid(object)) {
         return Dimension.generateLabel(
-            object, getDecimalValue, t, getLabel(object.measurementPosition.name, object.measurementPosition.label)
+            object, getDecimalValue, t,
+            object.measurementPosition
+                ? getLabel(object.measurementPosition.name, object.measurementPosition.label)
+                : undefined
         );
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, t);
