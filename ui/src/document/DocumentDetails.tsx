@@ -131,7 +131,7 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
     } else if (Literature.isValid(object)) {
         return Literature.generateLabel(object, t);
     } else if (OptionalRange.isValid(object)) {
-        return OptionalRange.generateLabel(object, t, (o: any) => getLabel(o.name, o.label));
+        return renderOptionalRange(object, t);
     } else {
         return renderObjectFields(object, t);
     }
@@ -147,6 +147,19 @@ const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
             <div style={ multiLanguageTextStyle }>{ label }</div>
           </OverlayTrigger>
         : label;
+};
+
+
+const renderOptionalRange = (optionalRange: any, t: TFunction): ReactNode => {
+
+    return optionalRange.endValue
+        ? <div>
+            { t('from') }
+            { renderMultiLanguageText(optionalRange.value, t) }
+            { t('to') }
+            { renderMultiLanguageText(optionalRange.endValue, t) }
+        </div>
+        : renderMultiLanguageText(optionalRange.value, t);
 };
 
 
