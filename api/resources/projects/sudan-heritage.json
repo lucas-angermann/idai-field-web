@@ -107,34 +107,123 @@
               "valuelist": {
                 "creationDate": "",
                 "createdBy": "",
-                "description": {
-                  "de": "",
-                  "en": ""
-                },
+                "description": {},
                 "values": {
-                  "settlement": {},
-                  "cemetery": {},
-                  "tumuli grave": {},
-                  "mound grave": {},
-                  "rock grave": {},
-                  "box grave": {},
-                  "other grave": {},
-                  "Pyramid (Sandstone)": {},
-                  "Pyramid (Mud Brick)": {},
-                  "Rock Art": {},
-                  "Fortress": {},
-                  "Castle": {},
-                  "Hafir": {},
-                  "Quarry": {},
-                  "Granary": {},
-                  "Old mining site": {},
-                  "Workshop": {},
-                  "Church": {},
-                  "Monastery": {},
-                  "Cathedral": {},
-                  "Mosque": {},
-                  "Landscape feature": {},
-                  "Historical building": {}
+                  "settlement": {
+                    "labels": {
+                      "en": "settlement"
+                    }
+                  },
+                  "cemetery": {
+                    "labels": {
+                      "en": "cemetery"
+                    }
+                  },
+                  "tumuli grave": {
+                    "labels": {
+                      "en": "tumuli grave"
+                    }
+                  },
+                  "mound grave": {
+                    "labels": {
+                      "en": "mound grave"
+                    }
+                  },
+                  "rock grave": {
+                    "labels": {
+                      "en": "rock grave"
+                    }
+                  },
+                  "box grave": {
+                    "labels": {
+                      "en": "box grave"
+                    }
+                  },
+                  "other grave": {
+                    "labels": {
+                      "en": "other grave"
+                    }
+                  },
+                  "Pyramid (Sandstone)": {
+                    "labels": {
+                      "en": "Pyramid (Sandstone)"
+                    }
+                  },
+                  "Pyramid (Mud Brick)": {
+                    "labels": {
+                      "en": "Pyramid (Mud Brick)"
+                    }
+                  },
+                  "Rock Art": {
+                    "labels": {
+                      "en": "Rock Art"
+                    }
+                  },
+                  "Fortress": {
+                    "labels": {
+                      "en": "Fortress"
+                    }
+                  },
+                  "Castle": {
+                    "labels": {
+                      "en": "Castle"
+                    }
+                  },
+                  "Hafir": {
+                    "labels": {
+                      "en": "Hafir"
+                    }
+                  },
+                  "Quarry": {
+                    "labels": {
+                      "en": "Quarry"
+                    }
+                  },
+                  "Granary": {
+                    "labels": {
+                      "en": "Granary"
+                    }
+                  },
+                  "Old mining site": {
+                    "labels": {
+                      "en": "Old mining site"
+                    }
+                  },
+                  "Workshop": {
+                    "labels": {
+                      "en": "Workshop"
+                    }
+                  },
+                  "Church": {
+                    "labels": {
+                      "en": "Church"
+                    }
+                  },
+                  "Monastery": {
+                    "labels": {
+                      "en": "Monastery"
+                    }
+                  },
+                  "Cathedral": {
+                    "labels": {
+                      "en": "Cathedral"
+                    }
+                  },
+                  "Mosque": {
+                    "labels": {
+                      "en": "Mosque"
+                    }
+                  },
+                  "Landscape feature": {
+                    "labels": {
+                      "en": "Landscape feature"
+                    }
+                  },
+                  "Historical building": {
+                    "labels": {
+                      "en": "Historical building"
+                    }
+                  }
                 }
               },
               "name": "siteClassification",
@@ -150,24 +239,73 @@
               "valuelist": {
                 "creationDate": "",
                 "createdBy": "",
-                "description": {
-                  "de": "",
-                  "en": ""
-                },
+                "description": {},
                 "values": {
-                  "Einzelmauer": {},
-                  "Felsabarbeitung": {},
-                  "Funderfassung": {},
-                  "Fundsammlung": {},
-                  "Grab": {},
-                  "Nekropole": {},
-                  "Spolie in rezenter Mauer": {},
-                  "Steinbruch": {},
-                  "Straße/Platz": {},
-                  "Wein- bzw. Ölpresse": {},
-                  "einzelnes Steindenkmal": {},
-                  "ländliches Gebäude": {},
-                  "urbanes Gebäude": {}
+                  "Einzelmauer": {
+                    "labels": {
+                      "de": "Einzelmauer"
+                    }
+                  },
+                  "Felsabarbeitung": {
+                    "labels": {
+                      "de": "Felsabarbeitung"
+                    }
+                  },
+                  "Funderfassung": {
+                    "labels": {
+                      "de": "Funderfassung"
+                    }
+                  },
+                  "Fundsammlung": {
+                    "labels": {
+                      "de": "Fundsammlung"
+                    }
+                  },
+                  "Grab": {
+                    "labels": {
+                      "de": "Grab"
+                    }
+                  },
+                  "Nekropole": {
+                    "labels": {
+                      "de": "Nekropole"
+                    }
+                  },
+                  "Spolie in rezenter Mauer": {
+                    "labels": {
+                      "de": "Spolie in rezenter Mauer"
+                    }
+                  },
+                  "Steinbruch": {
+                    "labels": {
+                      "de": "Steinbruch"
+                    }
+                  },
+                  "Straße/Platz": {
+                    "labels": {
+                      "de": "Straße/Platz"
+                    }
+                  },
+                  "Wein- bzw. Ölpresse": {
+                    "labels": {
+                      "de": "Wein- bzw. Ölpresse"
+                    }
+                  },
+                  "einzelnes Steindenkmal": {
+                    "labels": {
+                      "de": "einzelnes Steindenkmal"
+                    }
+                  },
+                  "ländliches Gebäude": {
+                    "labels": {
+                      "de": "ländliches Gebäude"
+                    }
+                  },
+                  "urbanes Gebäude": {
+                    "labels": {
+                      "de": "urbanes Gebäude"
+                    }
+                  }
                 }
               },
               "name": "findspotClassification",
@@ -253,23 +391,68 @@
               "valuelist": {
                 "creationDate": "14-11-2019",
                 "createdBy": "Sami Elamin",
-                "description": {
-                  "de": "",
-                  "en": ""
-                },
+                "description": {},
                 "values": {
-                  "Paleolithic": {},
-                  "Mesolithic": {},
-                  "Neolithic": {},
-                  "Pre-Kerma": {},
-                  "Kerma": {},
-                  "New Egyptian Kingdom": {},
-                  "Napata": {},
-                  "Meroe": {},
-                  "Post-Meroitic": {},
-                  "Christian": {},
-                  "Islamic": {},
-                  "Modern History": {}
+                  "Paleolithic": {
+                    "labels": {
+                      "en": "Paleolithic"
+                    }
+                  },
+                  "Mesolithic": {
+                    "labels": {
+                      "en": "Mesolithic"
+                    }
+                  },
+                  "Neolithic": {
+                    "labels": {
+                      "en": "Neolithic"
+                    }
+                  },
+                  "Pre-Kerma": {
+                    "labels": {
+                      "en": "Pre-Kerma"
+                    }
+                  },
+                  "Kerma": {
+                    "labels": {
+                      "en": "Kerma"
+                    }
+                  },
+                  "New Egyptian Kingdom": {
+                    "labels": {
+                      "en": "New Egyptian Kingdom"
+                    }
+                  },
+                  "Napata": {
+                    "labels": {
+                      "en": "Napata"
+                    }
+                  },
+                  "Meroe": {
+                    "labels": {
+                      "en": "Meroe"
+                    }
+                  },
+                  "Post-Meroitic": {
+                    "labels": {
+                      "en": "Post-Meroitic"
+                    }
+                  },
+                  "Christian": {
+                    "labels": {
+                      "en": "Christian"
+                    }
+                  },
+                  "Islamic": {
+                    "labels": {
+                      "en": "Islamic"
+                    }
+                  },
+                  "Modern History": {
+                    "labels": {
+                      "en": "Modern History"
+                    }
+                  }
                 },
                 "order": [
                   "Paleolithic",
@@ -824,9 +1007,21 @@
                 "creationDate": "",
                 "description": {},
                 "values": {
-                  "Eigenes Koordinatenbezugssystem": {},
-                  "EPSG4326 (WGS 84)": {},
-                  "EPSG3857 (WGS 84 Web Mercator)": {}
+                  "Eigenes Koordinatenbezugssystem": {
+                    "labels": {
+                      "de": "Eigenes Koordinatenbezugssystem"
+                    }
+                  },
+                  "EPSG4326 (WGS 84)": {
+                    "labels": {
+                      "de": "EPSG4326 (WGS 84)"
+                    }
+                  },
+                  "EPSG3857 (WGS 84 Web Mercator)": {
+                    "labels": {
+                      "de": "EPSG3857 (WGS 84 Web Mercator)"
+                    }
+                  }
                 },
                 "order": [
                   "Eigenes Koordinatenbezugssystem",
@@ -944,10 +1139,7 @@
               "valuelist": {
                 "createdBy": "",
                 "creationDate": "",
-                "description": {
-                  "de": "",
-                  "en": ""
-                },
+                "description": {},
                 "values": {
                   "Form": {
                     "labels": {
@@ -1122,6 +1314,18 @@
                 "en": "Literature reference"
               },
               "description": {}
+            },
+            {
+              "inputType": "text",
+              "source": "common",
+              "name": "description",
+              "label": {
+                "de": "Beschreibung",
+                "en": "Description"
+              },
+              "description": {
+                "de": "Freies Beschreibungsfeld"
+              }
             }
           ],
           "relations": [],
