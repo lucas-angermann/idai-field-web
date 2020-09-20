@@ -1,7 +1,7 @@
 # iDAI.field Web
 
 ## Getting started
-
+ 
 Prepare the configuration:
 
     $ cp api/config/dev_prod.exs.template api/config/dev.exs
