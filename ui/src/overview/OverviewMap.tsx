@@ -11,7 +11,7 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
-import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
+import { Icon, Fill, Stroke, Style }  from 'ol/style';
 import { Feature as OlFeature } from 'ol';
 
 
@@ -67,13 +67,11 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 };
 
 
-const getStyle = (feature: OlFeature): Style => {
+const getStyle = (_: OlFeature): Style => {
 
     return new Style({
-        image: new CircleStyle({
-            radius: 4,
-            fill: new Fill({ color: 'white' }),
-            stroke: new Stroke({ color: 'black', width: 5 }),
+        image: new Icon({
+            src: '/marker-icon.svg'
         })
     });
 };
@@ -112,10 +110,3 @@ const getBounds = (featureCollection?: FeatureCollection): [number, number][] =>
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
 };
-
-
-const MarkerIcon = L.icon({
-    iconUrl: 'marker-icon.svg',
-    iconSize: [25, 25],
-    iconAnchor: [13, 13]
-});
