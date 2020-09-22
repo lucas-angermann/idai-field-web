@@ -13,13 +13,16 @@ defmodule Enricher.Labels do
     else
       put_in(
         change.doc.resource,
-        Enum.reduce(resource, %{}, &(add_labels_to_field(&2, &1, category_definition)))
+        Enum.reduce(resource, %{}, add_labels_to_field(category_definition))
         |> Enum.into(%{})
         |> Utils.atomize
       )
     end
   end
 
+  defp add_labels_to_field(category_definition) do
+    fn field, resource -> add_labels_to_field(resource, field, category_definition) end
+  end
   defp add_labels_to_field(resource, { :category, field_value }, category_definition) do
     put_in(resource[:category], %{ name: field_value, label: category_definition.label })
   end
