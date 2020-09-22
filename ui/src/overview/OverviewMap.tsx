@@ -1,5 +1,4 @@
 import React, { CSSProperties, useEffect, ReactElement } from 'react';
-import L from 'leaflet';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import extent from 'turf-extent';
@@ -7,11 +6,11 @@ import { NAVBAR_HEIGHT } from '../constants';
 import { useHistory } from 'react-router-dom';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { Layer, Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
-import { Icon, Fill, Stroke, Style }  from 'ol/style';
+import { Icon, Style }  from 'ol/style';
 import { Feature as OlFeature } from 'ol';
 
 
@@ -33,19 +32,25 @@ export default function OverviewMap({ documents }: { documents: ResultDocument[]
 
 const createMap = (documents: ResultDocument[]): Map => {
 
-    const featureColletion = createFeatureCollection(documents);
+    const layers: Layer[] = [ new TileLayer({ source: new OSM() }) ];
 
-    return new Map({
+    const featureCollection = createFeatureCollection(documents);
+    const vectorLayer = getGeoJSONLayer(featureCollection);
+    if (vectorLayer) layers.push(vectorLayer);
+
+    const map = new Map({
         target: 'ol-map',
-        layers: [
-            new TileLayer({ source: new OSM() }),
-            getGeoJSONLayer(featureColletion)
-        ],
+        layers,
         view: new View({
             center: [0, 0],
             zoom: 0
         })
     });
+
+    if (vectorLayer?.getSource().getExtent())
+        map.getView().fit(vectorLayer.getSource().getExtent(), { padding: [40, 40, 40, 40] });
+
+    return map;
 };
 
 
