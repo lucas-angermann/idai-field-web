@@ -5,7 +5,7 @@ defmodule Api.Documents.MockIndexAdapter do
     resource: %{
       id: "1",
       identifier: "ident1",
-      category: "Operation",
+      category: %{"name" => "Operation"},
       groups: []
     }
   }
@@ -14,7 +14,7 @@ defmodule Api.Documents.MockIndexAdapter do
     resource: %{
       id: "2",
       identifier: "ident2",
-      category: "Operation",
+      category: %{"name" => "Operation"},
       groups: []
     }
   }
