@@ -40,20 +40,25 @@ export default function ProjectMap({ document, documents, project }
     const [select, setSelect] = useState<Select>(null);
 
     useEffect(() => {
+        const newMap = createMap();
+        setMap(newMap);
+        setSelect(createSelect(newMap));
+
+        return () => newMap ?? newMap.setTarget(null);
+    }, []);
+
+    useEffect(() => {
 
         let mounted = true;
-        createMap(project, loginData)
-            .then(newMap => {
-                if (mounted) {
-                    setMap(newMap);
-                    setSelect(createSelect(newMap));
-                }
-            });
-        return () => {
-            if (map) map.setTarget(null);
-            mounted = false;
-        };
-    }, [project, loginData]);
+
+        getTileLayers(project, loginData).then((tileLayers) => {
+            if (mounted) {
+                tileLayers.forEach(layer => map.addLayer(layer));
+            }
+        });
+
+        return () => mounted = false;
+    }, [map, project, loginData]);
 
     useEffect(() => {
 
@@ -91,20 +96,12 @@ export default function ProjectMap({ document, documents, project }
 }
 
 
-const createMap = async (project: string, loginData: LoginData): Promise<Map> => {
+const createMap = (): Map => {
 
-    let layers = [];
-
-    const tileLayers = await getTileLayers(project, loginData);
-    if (tileLayers) layers = layers.concat(tileLayers);
-
-    const map = new Map({
+    return new Map({
         target: 'ol-project-map',
-        layers,
         view: new View()
     });
-
-    return map;
 };
 
 
