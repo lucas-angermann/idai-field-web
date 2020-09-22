@@ -75,4 +75,26 @@ defmodule Enricher.LabelsTest do
       }
     }
   end
+
+  test "handle missing label - omit field" do
+
+    change = %{
+      :doc => %{
+        :resource => %{
+          :identifier => "ABC",
+          :shortDescription => "Test resource",
+          :category => "Operation",
+          "non_existing" => ["Grün", "Blau"],
+          :id => "42",
+          :relations => %{ "liesWithin" => ["45"] }
+        }
+      }
+    }
+
+    start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = ProjectConfigLoader.get("test-project")
+
+    result = Labels.add_labels(change, configuration)
+    # IO.inspect result
+  end
 end

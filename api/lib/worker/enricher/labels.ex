@@ -88,5 +88,4 @@ defmodule Enricher.Labels do
 
   defp get_labels_object(%{ "labels" => labels }), do: labels
   defp get_labels_object(_), do: %{}
-
 end
