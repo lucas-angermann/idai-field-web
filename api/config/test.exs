@@ -1,5 +1,7 @@
 import Config
 
+config :logger, level: :error
+
 config :api,
   couchdb_databases: ["a", "b"],
   image_dir: "test/resources/images",

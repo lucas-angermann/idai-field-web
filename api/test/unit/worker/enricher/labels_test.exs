@@ -84,7 +84,7 @@ defmodule Enricher.LabelsTest do
           :identifier => "ABC",
           :shortDescription => "Test resource",
           :category => "Operation",
-          "non_existing" => ["Grün", "Blau"],
+          "non_existing" => ["Grün", "Blau"], # should not exist in result
           :id => "42",
           :relations => %{ "liesWithin" => ["45"] }
         }
@@ -95,6 +95,16 @@ defmodule Enricher.LabelsTest do
     configuration = ProjectConfigLoader.get("test-project")
 
     result = Labels.add_labels(change, configuration)
-    # IO.inspect result
+    assert result == %{
+             doc: %{
+               resource: %{
+                 category: %{label: %{de: "Maßnahme", en: "Operation"}, name: "Operation"},
+                 id: "42",
+                 identifier: "ABC",
+                 relations: %{liesWithin: ["45"]},
+                 shortDescription: "Test resource"
+               }
+             }
+           }
   end
 end

@@ -1,6 +1,10 @@
 defmodule Enricher.Labels do
+  require Logger
   alias Core.Utils
   alias Core.CategoryTreeList
+
+  @core_properties [:id, :identifier, :shortDescription, :relations, :geometry, :geometry_wgs84, :georeference,
+    :gazId]
 
   def add_labels(change = %{ doc: %{ resource: resource } }, configuration) do
     category_definition = CategoryTreeList.find_by_name(change.doc.resource.category, configuration)
@@ -9,26 +13,28 @@ defmodule Enricher.Labels do
     else
       put_in(
         change.doc.resource,
-        Enum.map(resource, &(add_labels_to_field(&1, category_definition)))
+        Enum.reduce(resource, %{}, &(add_labels_to_field(&2, &1, category_definition)))
         |> Enum.into(%{})
         |> Utils.atomize
       )
     end
   end
 
-  defp add_labels_to_field({ :category, field_value }, category_definition) do
-    { :category, %{ name: field_value, label: category_definition.label } }
+  defp add_labels_to_field(resource, { :category, field_value }, category_definition) do
+    put_in(resource[:category], %{ name: field_value, label: category_definition.label })
   end
-  defp add_labels_to_field({ field_name, field_value }, category_definition) do
-    core_properties = [:id, :identifier, :shortDescription, :relations, :geometry, :geometry_wgs84, :georeference,
-      :gazId]
-    if Enum.member?(core_properties, field_name) do
-      { field_name, field_value }
-    else
-      case field_value do
-        [_|_] -> { field_name, Enum.map(field_value, &get_value_with_label(field_name, &1, category_definition)) }
-        _ -> { field_name, get_value_with_label(field_name, field_value, category_definition) }
-      end
+  defp add_labels_to_field(resource, { field_name, field_value }, category_definition) do
+    cond do
+      Enum.member?(@core_properties, field_name) -> put_in(resource, [field_name], field_value)
+
+      get_field_definition(category_definition, field_name) == nil ->
+        Logger.warn "not found: field \"#{field_name}\" of category \"#{category_definition.name}\""
+        resource
+      true ->
+        case field_value do
+          [_|_] -> put_in(resource[field_name], Enum.map(field_value, &get_value_with_label(field_name, &1, category_definition)))
+          _ -> put_in(resource[field_name], get_value_with_label(field_name, field_value, category_definition))
+        end
     end
   end
 
