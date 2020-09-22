@@ -106,7 +106,8 @@ const getStyle = (feature: OlFeature): Style => {
             fill: new Fill({ color: 'black' }),
             stroke: new Stroke({ color: 'white', width: 3, }),
             offsetY: 23,
-            font: 'normal 15px Cargan'
+            font: 'normal 15px Cargan',
+            backgroundFill: new Fill({ color: [255, 255, 255, 0.01] }),
         })
     });
 };
