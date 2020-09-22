@@ -11,6 +11,8 @@ import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
+import { Attribution, defaults as defaultControls } from 'ol/control';
+import './overview-map.css';
 
 
 export default function OverviewMap({ documents }: { documents: ResultDocument[] }): ReactElement {
@@ -40,6 +42,7 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
     const map = new Map({
         target: 'ol-overview-map',
         layers,
+        controls: defaultControls({ attribution: false }).extend([ new Attribution({ collapsible: false })]),
         view: new View({
             center: [0, 0],
             zoom: 0
