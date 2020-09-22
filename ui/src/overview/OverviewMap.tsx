@@ -9,7 +9,7 @@ import { Layer, Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
-import { Icon, Style }  from 'ol/style';
+import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 
 
@@ -85,11 +85,19 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 };
 
 
-const getStyle = (_: OlFeature): Style => {
+const getStyle = (feature: OlFeature): Style => {
 
     return new Style({
         image: new Icon({
-            src: '/marker-icon.svg'
+            src: '/marker-icon.svg',
+            scale: 1.5
+        }),
+        text: new Text({
+            text: feature.get('identifier'),
+            fill: new Fill({ color: 'black' }),
+            stroke: new Stroke({ color: 'white', width: 3, }),
+            offsetY: 23,
+            font: 'normal 15px Cargan'
         })
     });
 };
