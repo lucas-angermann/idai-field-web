@@ -87,7 +87,7 @@ export default function ProjectMap({ document, documents, project }
         }
     }, [map, document, vectorLayer, select]);
 
-    return <div className="project-map" id="ol-map" style={ mapStyle } />;
+    return <div className="project-map" id="ol-project-map" style={ mapStyle } />;
 }
 
 
@@ -99,7 +99,7 @@ const createMap = async (project: string, loginData: LoginData): Promise<Map> =>
     if (tileLayers) layers = layers.concat(tileLayers);
 
     const map = new Map({
-        target: 'ol-map',
+        target: 'ol-project-map',
         layers,
         view: new View()
     });

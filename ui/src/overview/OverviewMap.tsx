@@ -1,7 +1,6 @@
 import React, { CSSProperties, useEffect, ReactElement } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
-import extent from 'turf-extent';
 import { NAVBAR_HEIGHT } from '../constants';
 import { useHistory } from 'react-router-dom';
 import Map from 'ol/Map';
@@ -11,7 +10,7 @@ import { OSM, Vector as VectorSource } from 'ol/source';
 import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Icon, Style }  from 'ol/style';
-import { Feature as OlFeature } from 'ol';
+import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 
 
 export default function OverviewMap({ documents }: { documents: ResultDocument[] }): ReactElement {
@@ -22,15 +21,15 @@ export default function OverviewMap({ documents }: { documents: ResultDocument[]
 
         if (!documents?.length) return;
 
-        const map = createMap(documents);
+        const map = createMap(documents, history);
         return () => map ?? map.setTarget(null);
-    }, [documents]);
+    }, [documents, history]);
 
-    return <div className="overview-map" id="ol-map" style={ mapStyle } />;
+    return <div className="overview-map" id="ol-overview-map" style={ mapStyle } />;
 }
 
 
-const createMap = (documents: ResultDocument[]): Map => {
+const createMap = (documents: ResultDocument[], history: History): Map => {
 
     const layers: Layer[] = [ new TileLayer({ source: new OSM() }) ];
 
@@ -39,12 +38,26 @@ const createMap = (documents: ResultDocument[]): Map => {
     if (vectorLayer) layers.push(vectorLayer);
 
     const map = new Map({
-        target: 'ol-map',
+        target: 'ol-overview-map',
         layers,
         view: new View({
             center: [0, 0],
             zoom: 0
         })
+    });
+
+    map.on('click', (e: MapBrowserEvent) => {
+        e.preventDefault();
+        map.forEachFeatureAtPixel(e.pixel, feature => {
+            if (feature.getProperties().identifier) {
+                // this causes openlayers to throw an error, presumably because
+                // the map element does not exist when some event listener fires
+                // history.push(`/project/${feature.getProperties().identifier}`);
+
+                // so instead reload the application when selecting a project
+                window.location.href = `/project/${feature.getProperties().identifier}`;
+            }
+        });
     });
 
     if (vectorLayer?.getSource().getExtent())
@@ -101,15 +114,6 @@ const createFeature = (document: any): Feature => ({
        identifier: document.resource.identifier
     }
 });
-
-
-const getBounds = (featureCollection?: FeatureCollection): [number, number][] => {
-
-    if (!featureCollection) return [[-90, 180], [90, 180]];
-
-    const extentResult: number[] = extent(featureCollection);
-    return [[extentResult[1], extentResult[0]], [extentResult[3], extentResult[2]]];
-};
 
 
 const mapStyle: CSSProperties = {
