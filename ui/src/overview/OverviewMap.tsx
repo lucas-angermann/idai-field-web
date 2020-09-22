@@ -13,6 +13,10 @@ import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import { Attribution, defaults as defaultControls } from 'ol/control';
 import './overview-map.css';
+import olms from 'ol-mapbox-style';
+
+
+const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
 
 export default function OverviewMap({ documents }: { documents: ResultDocument[] }): ReactElement {
@@ -33,21 +37,20 @@ export default function OverviewMap({ documents }: { documents: ResultDocument[]
 
 const createMap = (documents: ResultDocument[], history: History): Map => {
 
-    const layers: Layer[] = [ new TileLayer({ source: new OSM() }) ];
-
-    const featureCollection = createFeatureCollection(documents);
-    const vectorLayer = getGeoJSONLayer(featureCollection);
-    if (vectorLayer) layers.push(vectorLayer);
-
     const map = new Map({
         target: 'ol-overview-map',
-        layers,
         controls: defaultControls({ attribution: false }).extend([ new Attribution({ collapsible: false })]),
         view: new View({
             center: [0, 0],
             zoom: 0
         })
     });
+
+    olms(map, 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v11?access_token=' + MAPBOX_KEY);
+
+    const featureCollection = createFeatureCollection(documents);
+    const vectorLayer = getGeoJSONLayer(featureCollection);
+    map.addLayer(vectorLayer);
 
     map.on('click', (e: MapBrowserEvent) => {
         e.preventDefault();
@@ -65,12 +68,12 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
 
     map.on('pointermove', (e: MapBrowserEvent) => {
         const pixel = map.getEventPixel(e.originalEvent);
-        const hit = map.hasFeatureAtPixel(pixel);
+        const hit = map.hasFeatureAtPixel(pixel, { layerFilter: (layer) => layer === vectorLayer });
         map.getViewport().style.cursor = hit ? 'pointer' : '';
     });
 
     if (vectorLayer?.getSource().getExtent())
-        map.getView().fit(vectorLayer.getSource().getExtent(), { padding: [40, 40, 40, 40] });
+        map.getView().fit(vectorLayer.getSource().getExtent(), { padding: [40, 80, 40, 80] });
 
     return map;
 };
@@ -87,7 +90,8 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
     const vectorLayer = new VectorLayer({
         source: vectorSource,
         style: getStyle,
-        updateWhileAnimating: true
+        updateWhileAnimating: true,
+        zIndex: Number.MAX_SAFE_INTEGER
     });
 
     return vectorLayer;
