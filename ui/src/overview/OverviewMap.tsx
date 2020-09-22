@@ -63,6 +63,12 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
         });
     });
 
+    map.on('pointermove', (e: MapBrowserEvent) => {
+        const pixel = map.getEventPixel(e.originalEvent);
+        const hit = map.hasFeatureAtPixel(pixel);
+        map.getViewport().style.cursor = hit ? 'pointer' : '';
+    });
+
     if (vectorLayer?.getSource().getExtent())
         map.getView().fit(vectorLayer.getSource().getExtent(), { padding: [40, 40, 40, 40] });
 
