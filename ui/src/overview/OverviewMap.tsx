@@ -46,7 +46,7 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
         })
     });
 
-    olms(map, 'https://api.mapbox.com/styles/v1/mapbox/outdoors-v11?access_token=' + MAPBOX_KEY);
+    olms(map, 'https://api.mapbox.com/styles/v1/sebastiancuy/ckff2undp0v1o19mhucq9oycb?access_token=' + MAPBOX_KEY);
 
     const featureCollection = createFeatureCollection(documents);
     const vectorLayer = getGeoJSONLayer(featureCollection);
