@@ -139,10 +139,12 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
     return (
         <li style={ layerSelectorItemStyle } key={ resource.id }
                 className={ 'list-group-item' + (visibleTileLayers.includes(resource.id) ? ' active' : '') }>
-                <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
+                <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
+                        style={ layerSelectorButtonStyle }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
                 </Button>
-                <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }>
+                <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }
+                        style={ layerSelectorButtonStyle }>
                     <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
                 </Button>
             { resource.identifier }
@@ -348,6 +350,11 @@ const layerSelectorStyle: CSSProperties = {
 };
 
 const layerSelectorItemStyle: CSSProperties = {
-    padding: 0,
+    padding: '.375em .75em',
     fontSize: '.9em'
+};
+
+const layerSelectorButtonStyle: CSSProperties = {
+    padding: '0 .375em .2em 0',
+    lineHeight: 1
 };
