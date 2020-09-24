@@ -29,7 +29,7 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus } from '@mdi/js';
 import { Button } from 'react-bootstrap';
 
 
-const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
+const fitOptions = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
@@ -86,7 +86,7 @@ export default function ProjectMap({ document, documents, project }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        map.getView().fit(turfExtent(featureCollection), { padding });
+        map.getView().fit(turfExtent(featureCollection), { padding: fitOptions.padding });
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
@@ -97,7 +97,7 @@ export default function ProjectMap({ document, documents, project }
             const feature = vectorLayer.getSource().getFeatureById(document.resource.id);
             select.getFeatures().clear();
             select.getFeatures().push(feature);
-            map.getView().fit(turfExtent(document.resource.geometry), { duration: 500, padding });
+            map.getView().fit(turfExtent(document.resource.geometry), fitOptions);
         }
     }, [map, document, vectorLayer, select]);
 
@@ -142,7 +142,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
                 <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
                 </Button>
-                <Button variant="link" onClick={ () => map.getView().fit(extent, { duration: 500, padding }) }>
+                <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }>
                     <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
                 </Button>
             { resource.identifier }
