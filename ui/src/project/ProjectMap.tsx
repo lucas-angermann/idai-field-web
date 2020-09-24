@@ -269,7 +269,8 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
                 return getImageUrl(document.project, path , tileSize[0], tileSize[1], loginData.token, 'png');
             }
         }),
-        visible: false
+        visible: false,
+        extent
     });
     
     layer.set('document', document);
