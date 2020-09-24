@@ -29,6 +29,7 @@ import { Button } from 'react-bootstrap';
 
 
 const fitOptions = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
+const styleCache: { [ category: string ] : Style } = {};
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
@@ -284,10 +285,14 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
 
 const getStyle = (feature: OlFeature): Style => {
 
+    const category = feature.getProperties().category;
+
+    if (styleCache[category]) return styleCache[category];
+
     const transparentColor = getColorForCategory(feature.getProperties().category, 0.3);
     const color = getColorForCategory(feature.getProperties().category, 1);
 
-    return new Style({
+    const style = new Style({
         image: new CircleStyle({
             radius: 4,
             fill: new Fill({ color: 'white' }),
@@ -296,6 +301,10 @@ const getStyle = (feature: OlFeature): Style => {
         stroke: new Stroke({ color }),
         fill: new Fill({ color: transparentColor })
     });
+
+    styleCache[category] = style;
+
+    return style;
 };
 
 
