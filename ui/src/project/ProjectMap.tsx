@@ -148,10 +148,10 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
     const extent = tileLayer.getSource().getTileGrid().getExtent();
 
     return (
-        <li style={ layerSelectorItemStyle } key={ resource.id }
-                className={ 'list-group-item' + (visibleTileLayers.includes(resource.id) ? ' active' : '') }>
+        <li style={ layerSelectorItemStyle } key={ resource.id } className="list-group-item">
                 <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
-                        style={ layerSelectorButtonStyle }>
+                        style={ layerSelectorButtonStyle }
+                        className={ visibleTileLayers.includes(resource.id) && 'active' }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
                 </Button>
                 <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }

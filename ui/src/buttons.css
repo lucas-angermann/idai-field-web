@@ -34,6 +34,10 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.btn-link.active {
+    color: var(--main-link-color-hover);
+}
+
 .btn-link:hover {
     color: rgba(0, 0, 0, 0.9) !important;
 }
