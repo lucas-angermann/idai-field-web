@@ -48,8 +48,7 @@ defmodule Api.ImagesTest do
 
   @tag path: @image_path <> "/c/non-existing-doc/TOKEN/default.json", login: @user2
   test "image not found", context do
-    assert context.conn.state == :sent
-    assert context.conn.status == 404
-    assert context.body.error == "not_found"
+    assert context.conn.state == :file
+    assert context.conn.status == 200
   end
 end
