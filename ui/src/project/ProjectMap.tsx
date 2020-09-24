@@ -7,12 +7,12 @@ import { Document } from '../api/document';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorSource, TileImage } from 'ol/source';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import { Tile as TileLayer, VectorImage as VectorLayer } from 'ol/layer';
 import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import GeoJSON from 'ol/format/GeoJSON';
-import { Polygon } from 'ol/geom';
+import { Geometry, Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
 import { never } from 'ol/events/condition';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -87,7 +87,8 @@ export default function ProjectMap({ document, documents, project }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: fitOptions.padding });
+        map.getView().fit((newVectorLayer.getSource() as VectorSource<Geometry>).getExtent(),
+            { padding: fitOptions.padding });
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
@@ -95,7 +96,8 @@ export default function ProjectMap({ document, documents, project }
 
         if (map && vectorLayer && document?.resource?.geometry) {
 
-            const feature = vectorLayer.getSource().getFeatureById(document.resource.id);
+            const feature = (vectorLayer.getSource() as VectorSource<Geometry>)
+                .getFeatureById(document.resource.id);
             select.getFeatures().clear();
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), fitOptions);
