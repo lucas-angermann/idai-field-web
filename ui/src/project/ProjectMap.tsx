@@ -25,7 +25,7 @@ import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
 import { getImageUrl } from '../api/image';
 import Icon from '@mdi/react';
-import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus } from '@mdi/js';
+import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
 import { Button } from 'react-bootstrap';
 
 
@@ -45,7 +45,8 @@ export default function ProjectMap({ document, documents, project }
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-    const [visibleTileLayers, setVsibileTileLayers] = useState<string[]>([]);
+    const [visibleTileLayers, setVisibileTileLayers] = useState<string[]>([]);
+    const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
  
     useEffect(() => {
         const newMap = createMap();
@@ -103,7 +104,8 @@ export default function ProjectMap({ document, documents, project }
 
     return <>
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        { renderLayerControls(map, tileLayers, visibleTileLayers, setVsibileTileLayers) }
+        { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibileTileLayers) }
+        { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
 
@@ -115,6 +117,15 @@ const createMap = (): Map => {
         view: new View()
     });
 };
+
+
+const renderLayerControlsButton = (layerControlsVisible: boolean,
+        setLayerControlsVisible: React.Dispatch<React.SetStateAction<boolean>>): ReactElement => <>
+    <Button variant="primary" style={ layerControlsButtonStyle }
+            onClick={ () => setLayerControlsVisible(!layerControlsVisible)}>
+        <Icon path={ mdiLayers } size={ 0.8 } />
+    </Button>
+</>;
 
 
 const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayers: string[],
@@ -339,13 +350,18 @@ const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
 };
 
-const layerSelectorStyle: CSSProperties = {
+const layerControlsButtonStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 10}px`,
+    right: '10px'
+};
+
+const layerSelectorStyle: CSSProperties = {
+    position: 'absolute',
+    top: `${NAVBAR_HEIGHT + 50}px`,
     right: '10px',
-    width: '300px',
     zIndex: 100,
-    height: `calc(100vh - ${NAVBAR_HEIGHT + 20}px)`,
+    height: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
     overflow: 'auto'
 };
 
