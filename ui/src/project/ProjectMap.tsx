@@ -28,8 +28,8 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import { Button } from 'react-bootstrap';
 
 
-const fitOptions = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
-const styleCache: { [ category: string ] : Style } = {};
+const FIT_OPTIONS = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
+const STYLE_CACHE: { [ category: string ] : Style } = {};
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
@@ -89,7 +89,7 @@ export default function ProjectMap({ document, documents, project }
         setVectorLayer(newVectorLayer);
 
         map.getView().fit((newVectorLayer.getSource() as VectorSource<Geometry>).getExtent(),
-            { padding: fitOptions.padding });
+            { padding: FIT_OPTIONS.padding });
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
@@ -101,7 +101,7 @@ export default function ProjectMap({ document, documents, project }
                 .getFeatureById(document.resource.id);
             select.getFeatures().clear();
             select.getFeatures().push(feature);
-            map.getView().fit(feature.getGeometry().getExtent(), fitOptions);
+            map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
         }
     }, [map, document, vectorLayer, select]);
 
@@ -157,7 +157,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
                 </Button>
-                <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }
+                <Button variant="link" onClick={ () => map.getView().fit(extent, FIT_OPTIONS) }
                         style={ layerSelectorButtonStyle }>
                     <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
                 </Button>
@@ -197,7 +197,7 @@ const handleMapClick = (history: History, searchParams: string)
             let smallestFeature = features[0];
             let smallestArea = 0;
             for (const feature of features) {
-                if (feature.getGeometry().getType() === 'Polygon') {
+                if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
                     const featureArea = (feature.getGeometry() as Polygon).getArea();
                     if (!smallestArea || featureArea < smallestArea) {
                         smallestFeature = feature;
@@ -207,7 +207,6 @@ const handleMapClick = (history: History, searchParams: string)
                     smallestFeature = feature;
                     break;
                 }
-                
             }
             const { id, project } = smallestFeature.getProperties();
             history.push(`/project/${project}/${id}`, searchParams);
@@ -287,7 +286,7 @@ const getStyle = (feature: OlFeature): Style => {
 
     const category = feature.getProperties().category;
 
-    if (styleCache[category]) return styleCache[category];
+    if (STYLE_CACHE[category]) return STYLE_CACHE[category];
 
     const transparentColor = getColorForCategory(feature.getProperties().category, 0.3);
     const color = getColorForCategory(feature.getProperties().category, 1);
@@ -302,7 +301,7 @@ const getStyle = (feature: OlFeature): Style => {
         fill: new Fill({ color: transparentColor })
     });
 
-    styleCache[category] = style;
+    STYLE_CACHE[category] = style;
 
     return style;
 };
