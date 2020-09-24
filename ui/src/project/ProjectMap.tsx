@@ -24,9 +24,15 @@ import { get, search } from '../api/documents';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
 import { getImageUrl } from '../api/image';
+import Icon from '@mdi/react';
+import { mdiEye, mdiEyeOff } from '@mdi/js';
+import { Button } from 'react-bootstrap';
 
 
 const padding = [ 20, 20, 20, SIDEBAR_WIDTH + 20 ];
+
+
+type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
 
 export default function ProjectMap({ document, documents, project }
@@ -38,7 +44,9 @@ export default function ProjectMap({ document, documents, project }
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
-
+    const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
+    const [visibleTileLayers, setVsibileTileLayers] = useState<string[]>([]);
+ 
     useEffect(() => {
         const newMap = createMap();
         setMap(newMap);
@@ -51,9 +59,10 @@ export default function ProjectMap({ document, documents, project }
 
         let mounted = true;
 
-        getTileLayers(project, loginData).then((tileLayers) => {
+        getTileLayers(project, loginData).then((newTileLayers) => {
             if (mounted) {
-                tileLayers.forEach(layer => map.addLayer(layer));
+                setTileLayers(newTileLayers);
+                newTileLayers.forEach(layer => map.addLayer(layer));
             }
         });
 
@@ -92,7 +101,10 @@ export default function ProjectMap({ document, documents, project }
         }
     }, [map, document, vectorLayer, select]);
 
-    return <div className="project-map" id="ol-project-map" style={ mapStyle } />;
+    return <>
+        <div className="project-map" id="ol-project-map" style={ mapStyle } />
+        { renderLayerControls(tileLayers, visibleTileLayers, setVsibileTileLayers) }
+    </>;
 }
 
 
@@ -102,6 +114,48 @@ const createMap = (): Map => {
         target: 'ol-project-map',
         view: new View()
     });
+};
+
+
+const renderLayerControls = (tileLayers: TileLayer[], visibleTileLayers: string[],
+        setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
+
+    return <>
+        <div style={ layerSelectorStyle }>
+            <ul className="list-group">
+                { tileLayers.map(renderLayerControl(visibleTileLayers, setVisibleTileLayers)) }
+            </ul>
+        </div>
+    </>;
+};
+
+
+const renderLayerControl = (visibleTileLayers: string[], setVisibleTileLayers: VisibleTileLayersSetter) =>
+        (tileLayer: TileLayer): ReactElement => {
+
+    const resource = tileLayer.get('document').resource;
+
+    return <>
+        <li style={ layerSelectorItemStyle } key={ resource.id }
+                className={ 'list-group-item' + (visibleTileLayers.includes(resource.id) ? ' active' : '') }>
+            <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
+                <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
+            </Button>
+            { resource.identifier }
+        </li>
+    </>;
+};
+
+
+const toggleLayer = (tileLayer: TileLayer,
+        setVisibleTileLayers: React.Dispatch<React.SetStateAction<string[]>>): void => {
+
+    const docId = tileLayer.get('document').resource.id;
+
+    tileLayer.setVisible(!tileLayer.getVisible());
+    tileLayer.getVisible()
+        ? setVisibleTileLayers(old => [...old, docId])
+        : setVisibleTileLayers(old => old.filter(id => id !== docId));
 };
 
 
@@ -153,7 +207,8 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
     const vectorLayer = new VectorLayer({
         source: vectorSource,
         style: getStyle,
-        updateWhileAnimating: true
+        updateWhileAnimating: true,
+        zIndex: 1000
     });
 
     return vectorLayer;
@@ -182,7 +237,7 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
     const extent = getTileLayerExtent(document);
     const resolutions = getResolutions(extent, tileSize[0], document);
 
-    return new TileLayer({
+    const layer = new TileLayer({
         source: new TileImage({
             tileGrid: new TileGrid({
                 extent,
@@ -197,8 +252,13 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
                     .replace('{y}', String(tileCoord[2]));
                 return getImageUrl(document.project, path , tileSize[0], tileSize[1], loginData.token, 'png');
             }
-        })
+        }),
+        visible: false
     });
+    
+    layer.set('document', document);
+    
+    return layer;
 };
 
 
@@ -271,4 +331,19 @@ const createFeature = (document: any): Feature => ({
 
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+};
+
+const layerSelectorStyle: CSSProperties = {
+    position: 'absolute',
+    top: `${NAVBAR_HEIGHT + 10}px`,
+    right: '10px',
+    width: '300px',
+    zIndex: 100,
+    height: `calc(100vh - ${NAVBAR_HEIGHT + 20}px)`,
+    overflow: 'auto'
+};
+
+const layerSelectorItemStyle: CSSProperties = {
+    padding: 0,
+    fontSize: '.9em'
 };
