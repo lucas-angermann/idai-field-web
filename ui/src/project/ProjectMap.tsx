@@ -7,7 +7,7 @@ import { Document } from '../api/document';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorSource, TileImage } from 'ol/source';
-import { Tile as TileLayer, VectorImage as VectorLayer } from 'ol/layer';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
