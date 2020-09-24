@@ -44,7 +44,7 @@ export default function ProjectMap({ document, documents, project }
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-    const [visibleTileLayers, setVisibileTileLayers] = useState<string[]>([]);
+    const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
     const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
  
     useEffect(() => {
@@ -63,6 +63,7 @@ export default function ProjectMap({ document, documents, project }
             if (mounted) {
                 setTileLayers(newTileLayers);
                 newTileLayers.forEach(layer => map.addLayer(layer));
+                setVisibleTileLayers(newTileLayers.map(layer => layer.get('document').resource.id));
             }
         });
 
@@ -103,7 +104,7 @@ export default function ProjectMap({ document, documents, project }
 
     return <>
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibileTileLayers) }
+        { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibleTileLayers) }
         { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
@@ -269,7 +270,7 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
                 return getImageUrl(document.project, path , tileSize[0], tileSize[1], loginData.token, 'png');
             }
         }),
-        visible: false,
+        visible: true,
         extent
     });
     
