@@ -25,7 +25,7 @@ import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
 import { getImageUrl } from '../api/image';
 import Icon from '@mdi/react';
-import { mdiEye, mdiEyeOff } from '@mdi/js';
+import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus } from '@mdi/js';
 import { Button } from 'react-bootstrap';
 
 
@@ -103,7 +103,7 @@ export default function ProjectMap({ document, documents, project }
 
     return <>
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        { renderLayerControls(tileLayers, visibleTileLayers, setVsibileTileLayers) }
+        { renderLayerControls(map, tileLayers, visibleTileLayers, setVsibileTileLayers) }
     </>;
 }
 
@@ -117,29 +117,33 @@ const createMap = (): Map => {
 };
 
 
-const renderLayerControls = (tileLayers: TileLayer[], visibleTileLayers: string[],
+const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayers: string[],
         setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <>
         <div style={ layerSelectorStyle }>
             <ul className="list-group">
-                { tileLayers.map(renderLayerControl(visibleTileLayers, setVisibleTileLayers)) }
+                { tileLayers.map(renderLayerControl(map, visibleTileLayers, setVisibleTileLayers)) }
             </ul>
         </div>
     </>;
 };
 
 
-const renderLayerControl = (visibleTileLayers: string[], setVisibleTileLayers: VisibleTileLayersSetter) =>
+const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTileLayers: VisibleTileLayersSetter) =>
         (tileLayer: TileLayer): ReactElement => {
 
     const resource = tileLayer.get('document').resource;
+    const extent = tileLayer.getSource().getTileGrid().getExtent();
 
     return <>
         <li style={ layerSelectorItemStyle } key={ resource.id }
                 className={ 'list-group-item' + (visibleTileLayers.includes(resource.id) ? ' active' : '') }>
             <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
                 <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
+            </Button>
+            <Button variant="link" onClick={ () => map.getView().fit(extent, { duration: 500, padding }) }>
+                <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
             </Button>
             { resource.identifier }
         </li>
