@@ -1,6 +1,5 @@
 import React, { CSSProperties, ReactElement, useEffect, useState, useContext } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
-import turfExtent from 'turf-extent';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { getColor, hexToRgb } from '../categoryColors';
 import { ResultDocument } from '../api/result';
@@ -87,7 +86,7 @@ export default function ProjectMap({ document, documents, project }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        map.getView().fit(turfExtent(featureCollection), { padding: fitOptions.padding });
+        map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: fitOptions.padding });
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
@@ -98,7 +97,7 @@ export default function ProjectMap({ document, documents, project }
             const feature = vectorLayer.getSource().getFeatureById(document.resource.id);
             select.getFeatures().clear();
             select.getFeatures().push(feature);
-            map.getView().fit(turfExtent(document.resource.geometry), fitOptions);
+            map.getView().fit(feature.getGeometry().getExtent(), fitOptions);
         }
     }, [map, document, vectorLayer, select]);
 
