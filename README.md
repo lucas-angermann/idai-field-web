@@ -54,6 +54,11 @@ docker-compose.override.yml
         volumes:
             - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
             - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+            
+    api:
+        volumes:
+            - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
+            - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
 
 ## API
 

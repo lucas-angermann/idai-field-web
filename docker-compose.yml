@@ -50,7 +50,7 @@ services:
       - "./api/lib:/opt/src/api/lib"
       - "./api/test:/opt/src/api/test"
       - "./api/_build:/opt/src/api/_build"
-      - "./api/images:/opt/src/api/images"
+      - "./data/cantaloupe:/imageroot"
 
   ui:
     image: "dainst/idai-field-web-ui"
