@@ -136,18 +136,18 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
     const resource = tileLayer.get('document').resource;
     const extent = tileLayer.getSource().getTileGrid().getExtent();
 
-    return <>
+    return (
         <li style={ layerSelectorItemStyle } key={ resource.id }
                 className={ 'list-group-item' + (visibleTileLayers.includes(resource.id) ? ' active' : '') }>
-            <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
-                <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
-            </Button>
-            <Button variant="link" onClick={ () => map.getView().fit(extent, { duration: 500, padding }) }>
-                <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
-            </Button>
+                <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }>
+                    <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
+                </Button>
+                <Button variant="link" onClick={ () => map.getView().fit(extent, { duration: 500, padding }) }>
+                    <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
+                </Button>
             { resource.identifier }
         </li>
-    </>;
+    );
 };
 
 
