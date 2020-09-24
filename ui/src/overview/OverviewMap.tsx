@@ -5,8 +5,8 @@ import { NAVBAR_HEIGHT } from '../constants';
 import { useHistory } from 'react-router-dom';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { Layer, Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import { OSM, Vector as VectorSource } from 'ol/source';
+import { Vector as VectorLayer } from 'ol/layer';
+import { Vector as VectorSource } from 'ol/source';
 import { ResultDocument } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
@@ -108,7 +108,7 @@ const getStyle = (feature: OlFeature): Style => {
         text: new Text({
             text: feature.get('identifier'),
             fill: new Fill({ color: 'black' }),
-            stroke: new Stroke({ color: 'white', width: 3, }),
+            stroke: new Stroke({ color: 'white', width: 3 }),
             offsetY: 23,
             font: 'normal 15px Cargan',
             backgroundFill: new Fill({ color: [255, 255, 255, 0.01] }),
