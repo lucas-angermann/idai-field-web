@@ -50,12 +50,12 @@ defmodule Worker.Services.TilesCalculator do
   defp calc_template(current_size, tile_size) do
     fit_times = Integer.floor_div(floor(current_size), tile_size) + if Integer.mod(floor(current_size), tile_size) != 0 do 1 else 0 end
     Enum.reduce(
-      0..fit_times - 1,
+      0 .. fit_times-1,
       [],
       fn x_val, acc ->
         acc ++ [
           Enum.reduce(
-            0..fit_times - 1,
+            0 .. fit_times-1,
             [],
             fn y_val, acc ->
               acc ++ [
