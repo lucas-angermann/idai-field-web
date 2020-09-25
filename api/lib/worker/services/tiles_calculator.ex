@@ -11,6 +11,7 @@ defmodule Worker.Services.TilesCalculator do
 
     template = create_template(size, tile_size)
 
+    # todo: build all commands, then flatten, then execute them
     commands = Enum.map(template, fn {{rescale, entries}, z} ->
       rescale = floor(rescale)
       {cmd, args} = make_rescale_command(project, rescale, rescale)
