@@ -28,28 +28,25 @@ defmodule Worker.Services.TilesCalculator do
   end
 
   defp create_template(size, output_tile_size) do
-    Stream.unfold({:ok, size, 1}, fn {run, current_size, scale_factor} ->
-
-      if run != :ok do
+    Stream.unfold({:continue, size}, fn {run, current_size} ->
+      if run != :continue do
         nil
       else
         {
           {
             current_size,
-            List.flatten(calc_template(current_size, output_tile_size, scale_factor))
+            List.flatten(calc_template(current_size, output_tile_size))
           },
           {
-            if current_size < output_tile_size do :halt else :ok end,
-            current_size / 2,
-            scale_factor * 2
+            if current_size < output_tile_size do :halt else :continue end,
+            current_size / 2
           }
         }
       end
-
     end) |> Enum.to_list() |> Enum.reverse() |> Enum.with_index()
   end
 
-  defp calc_template(current_size, tile_size, scale_factor) do
+  defp calc_template(current_size, tile_size) do
     fit_times = Integer.floor_div(floor(current_size), tile_size) + if Integer.mod(floor(current_size), tile_size) != 0 do 1 else 0 end
     Enum.reduce(
       0..fit_times - 1,
