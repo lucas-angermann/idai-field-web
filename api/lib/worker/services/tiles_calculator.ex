@@ -27,40 +27,6 @@ defmodule Worker.Services.TilesCalculator do
     nil
   end
 
-  def make_rescale_command(project, rescale_x, rescale_y) do
-    {"convert",
-      [
-        @imageroot <> project <> "/6c5f936b-dba9-bf57-b681-5fc292e00e0b.jpg",
-        "-resize",
-        "#{rescale_x}x#{rescale_y}",
-        @imageroot <> project <> "/6c5f936b-dba9-bf57-b681-5fc292e00e0b.#{rescale_x}.jpg" # todo rescale_y
-      ]
-    }
-  end
-
-  defp make_crop_commands(
-         project,
-         tile_size,
-         input,
-         output,
-         z_index,
-         %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
-    {
-      "mkdir",
-      [
-        "-p", @imageroot <> project <> "/#{output}/#{z_index}/#{x_index}"
-      ],
-      "convert",
-      [
-        @imageroot <> project <> "/#{input}",
-        "-crop", "#{tile_size}x#{tile_size}+#{x_pos}+#{y_pos}",
-        "-background", "transparent",
-        "-extent", "#{tile_size}x#{tile_size}",
-        "/imageroot/wes/#{output}/#{z_index}/#{x_index}/#{y_index}.png"
-      ]
-    }
-  end
-
   defp create_template(size, output_tile_size) do
     Stream.unfold({:ok, size, 1}, fn {run, current_size, scale_factor} ->
 
@@ -107,5 +73,39 @@ defmodule Worker.Services.TilesCalculator do
         ]
       end
     )
+  end
+
+  defp make_rescale_command(project, rescale_x, rescale_y) do
+    {"convert",
+      [
+        @imageroot <> project <> "/6c5f936b-dba9-bf57-b681-5fc292e00e0b.jpg",
+        "-resize",
+        "#{rescale_x}x#{rescale_y}",
+        @imageroot <> project <> "/6c5f936b-dba9-bf57-b681-5fc292e00e0b.#{rescale_x}.jpg" # todo rescale_y
+      ]
+    }
+  end
+
+  defp make_crop_commands(
+         project,
+         tile_size,
+         input,
+         output,
+         z_index,
+         %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
+    {
+      "mkdir",
+      [
+        "-p", @imageroot <> project <> "/#{output}/#{z_index}/#{x_index}"
+      ],
+      "convert",
+      [
+        @imageroot <> project <> "/#{input}",
+        "-crop", "#{tile_size}x#{tile_size}+#{x_pos}+#{y_pos}",
+        "-background", "transparent",
+        "-extent", "#{tile_size}x#{tile_size}",
+        "/imageroot/wes/#{output}/#{z_index}/#{x_index}/#{y_index}.png"
+      ]
+    }
   end
 end
