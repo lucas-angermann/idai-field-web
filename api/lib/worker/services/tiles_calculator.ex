@@ -7,6 +7,7 @@ defmodule Worker.Services.TilesCalculator do
     size = 6000
     tile_size = 256
     project = "wes"
+    image_id = "6c5f936b-dba9-bf57-b681-5fc292e00e0b"
 
     template = create_template(size, tile_size)
 
@@ -16,7 +17,8 @@ defmodule Worker.Services.TilesCalculator do
       System.cmd(cmd, args)
       Enum.map(entries,
         fn entry ->
-           {cmd_a, args_a, cmd_b, args_b} = make_crop_commands(project, tile_size, "6c5f936b-dba9-bf57-b681-5fc292e00e0b.#{rescale}.jpg","6c5f936b-dba9-bf57-b681-5fc292e00e0b",z, entry)
+           {cmd_a, args_a, cmd_b, args_b} = make_crop_commands(
+             project, tile_size, "#{image_id}.#{rescale}.jpg", image_id, z, entry)
            System.cmd(cmd_a, args_a)
            System.cmd(cmd_b, args_b)
            nil
