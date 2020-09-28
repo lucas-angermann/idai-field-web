@@ -1,15 +1,15 @@
 defmodule Worker.Services.TilesCalculator do
 
   @imageroot "/imageroot/"
+  @tile_size 256
 
-  def calc_tiles() do
+#    size = 6000
+#    project = "wes"
+#    image_id = "6c5f936b-dba9-bf57-b681-5fc292e00e0b"
 
-    size = 6000
-    tile_size = 256
-    project = "wes"
-    image_id = "6c5f936b-dba9-bf57-b681-5fc292e00e0b"
+  def calc_tiles(project, image_id, image_size = {size_x, size_y}) do
 
-    template = create_template(size, tile_size)
+    template = create_template(image_size, @tile_size)
 
     # todo: build all commands, then flatten, then execute them
     commands = Enum.map(template, fn {{rescale, entries}, z} ->
@@ -19,7 +19,7 @@ defmodule Worker.Services.TilesCalculator do
       Enum.map(entries,
         fn entry ->
            {cmd_a, args_a, cmd_b, args_b} = make_crop_commands(
-             project, tile_size, "#{image_id}.#{rescale}.jpg", image_id, z, entry)
+             project, @tile_size, "#{image_id}.#{rescale}.jpg", image_id, z, entry)
            System.cmd(cmd_a, args_a)
            System.cmd(cmd_b, args_b)
            nil
@@ -28,19 +28,19 @@ defmodule Worker.Services.TilesCalculator do
     nil
   end
 
-  defp create_template(size, output_tile_size) do
-    Stream.unfold({:continue, size}, fn {run, current_size} ->
+  defp create_template(image_size = {size_x, size_y}, tile_size) do
+    Stream.unfold({:continue, image_size}, fn {run, current_size = {current_size_x, current_size_y}} ->
       if run != :continue do
         nil
       else
         {
           {
             current_size,
-            List.flatten(calc_template(current_size, output_tile_size))
+            List.flatten(calc_template(current_size, tile_size))
           },
           {
-            if current_size < output_tile_size do :halt else :continue end,
-            current_size / 2
+            if current_size_x < tile_size do :halt else :continue end,
+            {current_size_x / 2, current_size_y / 2}
           }
         }
       end
