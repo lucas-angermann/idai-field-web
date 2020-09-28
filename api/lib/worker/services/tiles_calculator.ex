@@ -52,13 +52,13 @@ defmodule Worker.Services.TilesCalculator do
     Enum.reduce(
       0 .. fit_times-1,
       [],
-      fn x_val, acc ->
-        acc ++ [
+      fn x_val, x_acc ->
+        x_acc ++ [
           Enum.reduce(
             0 .. fit_times-1,
             [],
-            fn y_val, acc ->
-              acc ++ [
+            fn y_val, y_acc ->
+              y_acc ++ [
                 %{
                   x_index: x_val,
                   y_index: y_val,
