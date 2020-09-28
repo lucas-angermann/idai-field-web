@@ -1,4 +1,5 @@
 FROM elixir:latest
+# currently (September 2020) this comes with imagemagick 6.9, including delegates jp2, jpeg, png
 
 COPY . /opt/src/api
 
