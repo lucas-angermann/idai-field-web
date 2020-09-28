@@ -1,6 +1,6 @@
-defmodule MapperTest do
+defmodule Worker.MapperTest do
   
-  # todo rename Mapper to Worker.Mapper
+  alias Worker.Mapper
   
   use ExUnit.Case
   use Plug.Test

@@ -1,7 +1,7 @@
-defmodule Enricher.LabelsTest do
+defmodule Worker.Enricher.LabelsTest do
   use ExUnit.Case, async: true
   use Plug.Test
-  alias Enricher.Labels
+  alias Worker.Enricher.Labels
   alias Core.ProjectConfigLoader
 
   test "add labels" do

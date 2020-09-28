@@ -1,9 +1,9 @@
-defmodule Enricher.RelationsTest do
+defmodule Worker.Enricher.RelationsTest do
 
   use ExUnit.Case
   use Plug.Test
 
-  alias Enricher.Relations
+  alias Worker.Enricher.Relations
 
   test "base" do
     get =
