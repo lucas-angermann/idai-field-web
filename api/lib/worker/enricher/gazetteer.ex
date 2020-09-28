@@ -1,6 +1,6 @@
-defmodule Enricher.Gazetteer do
+defmodule Worker.Enricher.Gazetteer do
   require Logger
-  alias Services.Gazetteer
+  alias Worker.Services.Gazetteer
   alias Core.Utils
 
   def add_coordinates(change = %{ doc: %{ resource: %{ gazId: gazId, category: "Project" }}}) do

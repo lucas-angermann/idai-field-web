@@ -1,4 +1,4 @@
-defmodule Enricher.Labels do
+defmodule Worker.Enricher.Labels do
   require Logger
   alias Core.Utils
   alias Core.CategoryTreeList

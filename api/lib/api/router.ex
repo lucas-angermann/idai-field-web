@@ -17,7 +17,7 @@ defmodule Api.Router do
   forward("/api/images", to: Api.Images.Router)
 
   post "/api/reindex" do
-    Task.async fn -> Worker.process() end
+    Task.async fn -> Worker.Worker.process() end
     send_json(conn, %{ status: "ok", message: "indexing started"})
   end
 

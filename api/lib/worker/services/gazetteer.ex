@@ -1,5 +1,5 @@
-defmodule Services.Gazetteer do
-  alias Services.ResultHandler
+defmodule Worker.Services.Gazetteer do
+  alias Worker.Services.ResultHandler
   require Logger
 
   def get_place(gazetteer_id) do

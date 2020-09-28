@@ -1,4 +1,4 @@
-defmodule Enricher.Relations do
+defmodule Worker.Enricher.Relations do
   require Logger
 
   @result_document_properties [:shortDescription, :id, :type, :category, :identifier]

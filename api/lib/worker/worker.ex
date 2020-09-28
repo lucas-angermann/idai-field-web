@@ -1,4 +1,4 @@
-defmodule Worker do
+defmodule Worker.Worker do
   require Logger
   alias Services.IdaiFieldDb
   alias Enricher.Enricher

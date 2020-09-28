@@ -1,4 +1,4 @@
-defmodule Services.ResultHandler do
+defmodule Worker.Services.ResultHandler do
   require Logger
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300

@@ -1,6 +1,6 @@
-defmodule Services.IdaiFieldDb do
+defmodule Worker.Services.IdaiFieldDb do
   alias Core.CorePropertiesAtomizing
-  alias Services.ResultHandler
+  alias Worker.Services.ResultHandler
   require Logger
 
   @doc """

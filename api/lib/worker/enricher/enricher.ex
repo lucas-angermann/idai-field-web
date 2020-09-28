@@ -1,7 +1,7 @@
-defmodule Enricher.Enricher do
-  alias Enricher.Gazetteer
-  alias Enricher.Relations
-  alias Enricher.Labels
+defmodule Worker.Enricher.Enricher do
+  alias Worker.Enricher.Gazetteer
+  alias Worker.Enricher.Relations
+  alias Worker.Enricher.Labels
   require Logger
 
   def process(project, get_for_id, configuration), do:
