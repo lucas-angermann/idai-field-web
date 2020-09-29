@@ -1,4 +1,4 @@
-defmodule Worker.Services.ImageMagickAdapter do
+defmodule Worker.Services.ImageMagickTiling do
 
   @imageroot "/imageroot/"
   @required_imagemagick_version [6, 9]
@@ -30,9 +30,8 @@ defmodule Worker.Services.ImageMagickAdapter do
     and required_delegates_present(delegates)
   end
 
-  # todo make private and provide a public function which executes the command
-  def make_rescale_commands(project, image_id, rescale) do
-    {
+  def rescale(project, image_id, rescale) do
+    {mkdir_cmd, mkdir_args, rescale_cmd, rescale_args} = {
       "mkdir",
       [
         "-p", "#{@imageroot}#{project}/#{image_id}"
@@ -45,16 +44,19 @@ defmodule Worker.Services.ImageMagickAdapter do
         "#{@imageroot}#{project}/#{image_id}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
       ]
     }
+    System.cmd(mkdir_cmd, mkdir_args)
+    System.cmd(rescale_cmd, rescale_args)
   end
 
-  def make_crop_commands(
+  def crop(
          project,
          tile_size,
          image_id,
          rescale,
          z_index,
          %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
-    {
+
+    {mkdir_cmd, mkdir_args, crop_cmd, crop_args} = {
       "mkdir",
       [
         "-p", "#{@imageroot}#{project}/#{image_id}/#{z_index}/#{x_index}"
@@ -69,5 +71,7 @@ defmodule Worker.Services.ImageMagickAdapter do
         "/imageroot/wes/#{image_id}/#{z_index}/#{x_index}/#{y_index}.png"
       ]
     }
+    System.cmd(mkdir_cmd, mkdir_args)
+    System.cmd(crop_cmd, crop_args)
   end
 end

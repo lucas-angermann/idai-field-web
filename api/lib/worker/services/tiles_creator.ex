@@ -1,35 +1,13 @@
-defmodule Worker.Services.TilesCalculator do
+defmodule Worker.Services.TilesCreator do
 
-  alias Worker.Services.ImageMagickAdapter
-
-  @tile_size 256
-
-  # size = 6000
-  # project = "wes"
-  # image_id = "6c5f936b-dba9-bf57-b681-5fc292e00e0b"
-  # todo it is necessary for indexing to run before tile generation
-  def trigger_tile_calculation() do
-    %{ documents: docs } = Api.Documents.Index.search "*", 10, 0, [], [], ["resource.georeference"], ["wes"]
-    entries = Enum.map(docs, fn %{resource: %{ :id => id, "width" => width, "height" => height }} -> {id, width, height} end)
-    IO.inspect entries
-    nil
-  end
-
-  def calc_tiles(project, image_id, image_size = {width, height}) do
+  def create_tiles(project, image_id, image_size = {width, height}) do
     template = create_template(Enum.max([width, height]), @tile_size)
     commands = Enum.map(template, fn {{rescale, entries}, z} ->
-      rescale = floor(rescale)
-      {mkdir_cmd, mkdir_args, rescale_cmd, rescale_args} =
-        ImageMagickAdapter.make_rescale_commands(project, image_id, rescale)
-      System.cmd(mkdir_cmd, mkdir_args)
-      System.cmd(rescale_cmd, rescale_args)
+      ImageMagickTiling.rescale(project, image_id, floor(rescale))
       Enum.map(entries,
         fn entry ->
-           {mkdir_cmd, mkdir_args, crop_cmd, crop_args} =
-             ImageMagickAdapter.make_crop_commands(project, @tile_size, image_id, rescale, z, entry)
-           System.cmd(mkdir_cmd, mkdir_args)
-           System.cmd(crop_cmd, crop_args)
-           nil
+          ImageMagickTiling.crop(project, @tile_size, image_id, rescale, z, entry)
+          nil
         end)
     end)
     nil
