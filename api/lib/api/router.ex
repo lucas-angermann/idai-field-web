@@ -21,6 +21,11 @@ defmodule Api.Router do
     send_json(conn, %{ status: "ok", message: "indexing started"})
   end
 
+  post "api/tiling" do
+    Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation() end
+    send_json(conn, %{ status: "ok", message: "tile generation started"})
+  end
+
   forward("/api/auth", to: Api.Auth.Router)
 
   match _ do

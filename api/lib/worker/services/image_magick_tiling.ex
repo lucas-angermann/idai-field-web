@@ -1,8 +1,9 @@
 defmodule Worker.Services.ImageMagickTiling do
 
-  @imageroot "/imageroot/"
+  @imageroot "/imageroot"
   @required_imagemagick_version [6, 9]
   @required_delegates ["jp2", "png", "jpeg"]
+  @source_format_suffix "jp2"
   @intermediate_format_suffix "jpg"
 
   def required_version_matches(version, [required_major, required_minor]) do
@@ -30,18 +31,26 @@ defmodule Worker.Services.ImageMagickTiling do
     and required_delegates_present(delegates)
   end
 
+  defp img_path(project, image_id) do
+    "#{@imageroot}/#{project}/#{image_id}"
+  end
+
+  def exists?(project, image_id) do
+    File.exists?("#{img_path(project, image_id)}.#{@source_format_suffix}")
+  end
+
   def rescale(project, image_id, rescale) do
     {mkdir_cmd, mkdir_args, rescale_cmd, rescale_args} = {
       "mkdir",
       [
-        "-p", "#{@imageroot}#{project}/#{image_id}"
+        "-p", "#{img_path(project, image_id)}"
       ],
       "convert",
       [
-        "#{@imageroot}#{project}/#{image_id}.jpg", # todo make param for suffix
+        "#{img_path(project, image_id)}.#{@source_format_suffix}",
         "-resize",
         "#{rescale}x#{rescale}",
-        "#{@imageroot}#{project}/#{image_id}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
+        "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
       ]
     }
     System.cmd(mkdir_cmd, mkdir_args)
@@ -59,16 +68,16 @@ defmodule Worker.Services.ImageMagickTiling do
     {mkdir_cmd, mkdir_args, crop_cmd, crop_args} = {
       "mkdir",
       [
-        "-p", "#{@imageroot}#{project}/#{image_id}/#{z_index}/#{x_index}"
+        "-p", "#{img_path(project, image_id)}/#{z_index}/#{x_index}"
       ],
       "convert",
       [
-        "#{@imageroot}#{project}/#{image_id}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}",
+        "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}",
         "-quiet", # suppress 'convert: geometry does not contain image', some tiles simply will have no content with tiled rectangular images
         "-crop", "#{tile_size}x#{tile_size}+#{x_pos}+#{y_pos}",
         "-background", "transparent",
         "-extent", "#{tile_size}x#{tile_size}",
-        "/imageroot/wes/#{image_id}/#{z_index}/#{x_index}/#{y_index}.png"
+        "#{img_path(project, image_id)}/#{z_index}/#{x_index}/#{y_index}.png"
       ]
     }
     System.cmd(mkdir_cmd, mkdir_args)
