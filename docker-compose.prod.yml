@@ -47,6 +47,11 @@ services:
       - "4000:4000"
     volumes:
       - "/opt/idai-field/api/config:/opt/src/api/config"
+      - type: volume
+        source: idai-field-web_images
+        target: /imageroot
+        volume:
+           nocopy: true
     networks:
       - web
       - default
