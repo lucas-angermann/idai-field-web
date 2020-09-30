@@ -1,7 +1,10 @@
 defmodule Worker.Worker do
   require Logger
-  alias Services.IdaiFieldDb
-  alias Enricher.Enricher
+
+  alias Worker.Indexer
+  alias Worker.Mapper
+  alias Worker.Services.IdaiFieldDb
+  alias Worker.Enricher.Enricher
   alias Core.ProjectConfigLoader
 
   def process do
