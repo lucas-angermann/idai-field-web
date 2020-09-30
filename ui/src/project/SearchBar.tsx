@@ -5,7 +5,7 @@ import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 
-export default function SearchBar({ projectId }: { projectId: string }): ReactElement {
+export default function SearchBar({ projectId }: { projectId?: string }): ReactElement {
 
     const [queryString, setQueryString] = useState('');
     const history = useHistory();
@@ -15,7 +15,7 @@ export default function SearchBar({ projectId }: { projectId: string }): ReactEl
     const submitSearch = (e: FormEvent): void => {
 
         e.preventDefault();
-        history.push(`/project/${projectId}?q=${queryString}`);
+        history.push(`?q=${queryString}`);
     };
 
     return (
