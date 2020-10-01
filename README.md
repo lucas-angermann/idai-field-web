@@ -1,21 +1,32 @@
 # iDAI.field Web
 
+## Prerequisites
+
+* Docker
+* docker-compose
+
 ## Getting started
 
 Prepare the configuration:
 
-    $ cp api/config/dev_prod.exs.template api/config/dev.exs
-    $ cp api/config/dev_prod.exs.template api/config/prod.exs
-    $ vi api/config/dev.exs # Edit configuration
-    $ vi api/config/prod.exs # Edit configuration
+    $ cd api
+    $ cp config/dev_prod.exs.template config/dev.exs
+    $ vi config/dev.exs                                  # Edit configuration
 
-Start elasticsearch and the api web service with docker:
+Start elasticsearch, cantaloupe and the api web service with docker:
 
     $ docker-compose up
 
-Trigger indexing:
+Trigger indexing
 
     $ curl -XPOST localhost:4000/api/reindex
+    
+or alternatively generate test data
+
+    $ docker-compose up elasticsearch
+    $ ./put-test-data.sh
+    
+If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
 Start the web UI:
 
@@ -25,21 +36,58 @@ Start the web UI:
 
 Visit `http://localhost:3001`.
 
-## Test Data
+## Development
 
-To set up test data, and provide them via elasticsearch, do:
+### Components
 
+#### API
+
+It can be run independently with the following command:
+
+    $ docker-compose up api
+    
+The api runs on port 4000. Indexed documents can be retrieved via `http://localhost:4000/documents`.
+
+#### UI
+
+The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
+
+To build for production use:
+
+    $ npm run build
+
+#### Elasticsearch
+
+It can be started independently with:
 
     $ docker-compose up elasticsearch
-    $ ./put-test-data.sh
+    
+The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved via
+`http://localhost:9200/idai-field/_search`.
 
-Test via `http://localhost:9200/idai-field/_search`.
+#### Cantaloupe
 
-## Images
+Can be started independently with
+
+    $ docker-compose up cantaloupe
+
+### Interactive Elixir
+
+    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
+
+### Testing
+
+    $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
+
+or
+ 
+    $ docker-compose run --entrypoint "/bin/bash" api
+    $ mix test test/app                 # application/subsystem tests
+    $ mix test --no-start test/unit     # unit tests
+    
+### Override docker-compose configuration to change image directories
 
 in config.exs
-
-When using cantaloupe, set images to "cantaloupe". Use other values or "local" to indicate usage of filesystem. 
 
 In order to be able to see images you can override the images volume by creating
 a `docker-compose.override.yml` that contains the volume definition. This
@@ -59,21 +107,14 @@ docker-compose.override.yml
         volumes:
             - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
             - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+            
+### Managing containers
+            
+#### (Re-)building containers
 
-## API
+    $ docker-compose up --build api
 
-The api runs on port 4000. Indexed documents can be retrieved via `http://localhost:4000/documents`.
-
-It can be run independently with the following command:
-
-    $ docker-compose up api
-
-or interactively with iex:
-
-    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
-
-
-### Managing dependencies
+#### Managing dependencies
 
 In order to add a dependency it has to be added to `mix.exs`. Afterwards, the api docker container
 has to be rebuilt explicitly with:
@@ -88,45 +129,3 @@ sure `mix.lock` reflects the change:
 Afterwards, the api docker container has to be rebuilt explicitly with:
 
     $ docker-compose build api
-
-
-## UI
-
-The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
-
-Start the development server with:
-
-    $ cd ui
-    $ npm start
-
-To install dependencies use:
-
-    $ npm i
-
-To build for production use:
-
-    $ npm run build
-
-
-## Elasticsearch
-
-The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved via
-`http://localhost:9200/idai-field/_search`.
-
-It can be started independently with:
-
-    $ docker-compose up elasticsearch
-
-## Testing
-
-    $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
-
-or
- 
-    $ docker-compose run --entrypoint "/bin/bash" api
-    $ mix test test/app                 # application/subsystem tests
-    $ mix test --no-start test/unit     # unit tests
-
-## (Re-)building containers
-
-    $ docker-compose up --build api
