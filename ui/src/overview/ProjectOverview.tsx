@@ -29,9 +29,11 @@ export default function ProjectOverview(): ReactElement {
     }, [loginData]);
 
     useEffect (() => {
-        searchDocuments(location.search, 0, loginData.token).then(result => {
-            setProjectFilter(result.filters.find(filter => filter.name === 'project'));
-        });
+        if (location.search.length > 0) {
+            searchDocuments(location.search, 0, loginData.token).then(result => {
+                setProjectFilter(result.filters.find(filter => filter.name === 'project'));
+            });
+        }
     }, [location.search, loginData]);
 
     return <>

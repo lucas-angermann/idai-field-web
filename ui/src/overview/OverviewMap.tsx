@@ -125,7 +125,7 @@ const getStyle = (feature: OlFeature): Style => {
             scale: 1.5
         }),
         text: new Text({
-            text: feature.get('identifier'),
+            text: feature.get('label'),
             fill: new Fill({ color: 'black' }),
             stroke: new Stroke({ color: 'white', width: 3 }),
             offsetY: 23,
@@ -143,18 +143,31 @@ const createFeatureCollection = (documents: any[], filter: ResultFilter): any =>
         type: 'FeatureCollection',
         features: filterDocuments(documents, filter)
             .filter(document => document.resource.geometry_wgs84)
-            .map(createFeature)
+            .map(document => createFeature(document, filter))
     };
 };
 
 
-const createFeature = (document: any): Feature => ({
+const createFeature = (document: any, filter: ResultFilter): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry_wgs84,
     properties: {
-       identifier: document.resource.identifier
+       identifier: document.resource.identifier,
+       label: createFeatureLabel(document, filter)
     }
 });
+
+
+const createFeatureLabel = (document: any, filter?: ResultFilter): string => {
+
+    const projectBucket = filter?.values.find(bucket => bucket.value.name === document.project);
+
+    return document.resource.identifier + (
+        projectBucket && projectBucket.count > 0
+            ? ` (${projectBucket.count})`
+            : ''
+    );
+};
 
 
 const filterDocuments = (documents: ResultDocument[], filter?: ResultFilter): any[] => {
