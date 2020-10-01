@@ -6,7 +6,7 @@ import { mdiMagnify } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 import { parseFrontendGetParams } from '../api/query';
 
-export default function SearchBar({ projectId }: { projectId?: string }): ReactElement {
+export default function SearchBar(): ReactElement {
 
     const [queryString, setQueryString] = useState('');
     const history = useHistory();
