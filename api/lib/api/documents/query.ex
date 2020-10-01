@@ -1,4 +1,5 @@
 defmodule Api.Documents.Query do
+  alias Api.Core.Filters
 
   def init(q, size), do: init(q, size, 0)
   def init(q, size, from) do
@@ -10,7 +11,7 @@ defmodule Api.Documents.Query do
   end
 
   def add_aggregations(query) do
-    Map.put(query, :aggs, Enum.map(Core.Config.get(:default_filters), &build_terms_aggregation/1) |> Enum.into(%{}))
+    Map.put(query, :aggs, Enum.map(Filters.get_filters(), &build_aggregation/1) |> Enum.into(%{}))
   end
 
   def set_readable_projects(query, readable_projects) do
@@ -62,8 +63,8 @@ defmodule Api.Documents.Query do
     }
   end
 
-  defp build_term_query(fieldAndValue) do
-    [field, value] = String.split(fieldAndValue, ":")
+  defp build_term_query(field_and_value) do
+    [field, value] = String.split(field_and_value, ":")
     %{ term: %{ field => value }}
   end
 
@@ -71,10 +72,15 @@ defmodule Api.Documents.Query do
     %{ exists: %{ field: field } }
   end
 
-  defp build_terms_aggregation(filter) do
+  defp build_aggregation(filter = %{ labeled_value: true }) do
     { filter.field, %{
       terms: %{ field: "#{filter.field}.name" },
       aggs: Map.new([{ :data, %{ top_hits: %{ size: 1, _source: ["#{filter.field}"] } } }])
+    }}
+  end
+  defp build_aggregation(filter = %{ labeled_value: false }) do
+    { filter.field, %{
+      terms: %{ field: "#{filter.field}" }
     }}
   end
 end

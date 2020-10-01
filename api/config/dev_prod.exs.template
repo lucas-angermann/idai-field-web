@@ -11,21 +11,7 @@ config :api,
   couchdb_password: "",
   gazetteer_url: "https://gazetteer.dainst.org",
   couchdb_databases: ["db1", "db2", "db3"],
-  locales: ["de", "en"],
-  default_filters: [
-    %{
-      field: "category",
-      label: %{ de: "Kategorie", en: "Category" }
-    },
-    %{
-      field: "color",
-      label: %{ de: "Farbe", en: "Color" }
-    },
-    %{
-      field: "material",
-      label: %{ de: "Material", en: "Material" }
-    }
-  ]
+  locales: ["de", "en"]
 
 config :api, Api.Auth.Guardian,
        issuer: "api",

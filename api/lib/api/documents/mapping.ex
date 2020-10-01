@@ -1,4 +1,5 @@
 defmodule Api.Documents.Mapping do
+  alias Api.Core.Filters
   
   def map_single elasticsearch_result do
     elasticsearch_result
@@ -16,7 +17,7 @@ defmodule Api.Documents.Mapping do
   end
   
   defp map_aggregations(result, %{ aggregations: aggregations }) do
-    filters = Enum.map(Core.Config.get(:default_filters), map_aggregation(aggregations))
+    filters = Enum.map(Filters.get_filters(), map_aggregation(aggregations))
               |> Enum.reject(&is_nil/1)
     put_in(result, [:filters], filters)
   end
@@ -30,7 +31,7 @@ defmodule Api.Documents.Mapping do
       )
         do
           %{
-            name: filter.field,
+            name: Filters.get_filter_name(filter),
             label: filter.label,
             values: Enum.map(agg, fn bucket -> map_bucket(bucket, filter.field) end)
           }
@@ -43,6 +44,15 @@ defmodule Api.Documents.Mapping do
       value: %{
         name: key,
         label: get_label(get_in(hit._source, String.split(field_name, ".")), key)
+      },
+      count: doc_count
+    }
+  end
+  defp map_bucket(%{ doc_count: doc_count, key: key }, field_name) do
+    %{
+      value: %{
+        name: key,
+        label: %{}
       },
       count: doc_count
     }
