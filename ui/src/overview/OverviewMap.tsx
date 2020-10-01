@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, ReactElement } from 'react';
+import React, { CSSProperties, useEffect, ReactElement, useState } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import { NAVBAR_HEIGHT } from '../constants';
@@ -7,29 +7,61 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source';
-import { ResultDocument } from '../api/result';
+import { ResultDocument, ResultFilter } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import { Attribution, defaults as defaultControls } from 'ol/control';
 import './overview-map.css';
 import olms from 'ol-mapbox-style';
+import { Geometry } from 'ol/geom';
+import { FIT_OPTIONS } from '../project/ProjectMap';
 
 
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
 
-export default function OverviewMap({ documents }: { documents: ResultDocument[] }): ReactElement {
+export default function OverviewMap({ documents, filter }
+        : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
 
     const history: History = useHistory();
+    const [map, setMap] = useState<Map>(null);
 
     useEffect(() => {
 
         if (!documents?.length) return;
 
-        const map = createMap(documents, history);
-        return () => map ?? map.setTarget(null);
+        const newMap = createMap(documents, history);
+        setMap(newMap);
+
+        return () => newMap ?? newMap.setTarget(null);
     }, [documents, history]);
+
+    useEffect(() => {
+
+        if (!map || !documents?.length) return;
+
+        const featureCollection = createFeatureCollection(documents, filter);
+        const vectorLayer = getGeoJSONLayer(featureCollection);
+        map.addLayer(vectorLayer);
+
+        map.getView().fit((vectorLayer.getSource() as VectorSource<Geometry>).getExtent(),
+            { padding: FIT_OPTIONS.padding });
+
+        const onPointerMove = (e: MapBrowserEvent) => {
+            const pixel = map.getEventPixel(e.originalEvent);
+            const hit = map.hasFeatureAtPixel(pixel,
+                { layerFilter: (layer) => layer === vectorLayer }
+            );
+            map.getViewport().style.cursor = hit ? 'pointer' : '';
+        };
+        map.on('pointermove', onPointerMove);
+
+        return () => {
+            map.removeLayer(vectorLayer);
+            map.un('pointermove', onPointerMove);
+        };
+    }, [map, documents, filter]);
 
     return <div className="overview-map" id="ol-overview-map" style={ mapStyle } />;
 }
@@ -48,10 +80,6 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
 
     olms(map, 'https://api.mapbox.com/styles/v1/sebastiancuy/ckff2undp0v1o19mhucq9oycb?access_token=' + MAPBOX_KEY);
 
-    const featureCollection = createFeatureCollection(documents);
-    const vectorLayer = getGeoJSONLayer(featureCollection);
-    map.addLayer(vectorLayer);
-
     map.on('click', (e: MapBrowserEvent) => {
         e.preventDefault();
         map.forEachFeatureAtPixel(e.pixel, feature => {
@@ -65,15 +93,6 @@ const createMap = (documents: ResultDocument[], history: History): Map => {
             }
         });
     });
-
-    map.on('pointermove', (e: MapBrowserEvent) => {
-        const pixel = map.getEventPixel(e.originalEvent);
-        const hit = map.hasFeatureAtPixel(pixel, { layerFilter: (layer) => layer === vectorLayer });
-        map.getViewport().style.cursor = hit ? 'pointer' : '';
-    });
-
-    if (vectorLayer?.getSource().getExtent())
-        map.getView().fit(vectorLayer.getSource().getExtent(), { padding: [40, 80, 40, 80] });
 
     return map;
 };
@@ -116,13 +135,13 @@ const getStyle = (feature: OlFeature): Style => {
     });
 };
 
-const createFeatureCollection = (documents: any[]): any => {
+const createFeatureCollection = (documents: any[], filter: ResultFilter): any => {
 
     if (!documents || documents.length === 0) return undefined;
 
     return {
         type: 'FeatureCollection',
-        features: documents
+        features: filterDocuments(documents, filter)
             .filter(document => document.resource.geometry_wgs84)
             .map(createFeature)
     };
@@ -136,6 +155,14 @@ const createFeature = (document: any): Feature => ({
        identifier: document.resource.identifier
     }
 });
+
+
+const filterDocuments = (documents: ResultDocument[], filter?: ResultFilter): any[] => {
+
+    if (!filter) return documents;
+
+    return documents.filter(document => filter.values.map(bucket => bucket.value.name).includes(document.project));
+};
 
 
 const mapStyle: CSSProperties = {

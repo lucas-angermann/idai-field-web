@@ -28,8 +28,8 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import { Button } from 'react-bootstrap';
 
 
-const FIT_OPTIONS = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
-const STYLE_CACHE: { [ category: string ] : Style } = {};
+export const FIT_OPTIONS = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
+const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
@@ -197,7 +197,8 @@ const handleMapClick = (history: History, searchParams: string)
             let smallestFeature = features[0];
             let smallestArea = 0;
             for (const feature of features) {
-                if (feature.getGeometry().getType() === 'Polygon' || feature.getGeometry().getType() === 'MultiPolygon') {
+                if (feature.getGeometry().getType() === 'Polygon'
+                        || feature.getGeometry().getType() === 'MultiPolygon') {
                     const featureArea = (feature.getGeometry() as Polygon).getArea();
                     if (!smallestArea || featureArea < smallestArea) {
                         smallestFeature = feature;
