@@ -1,8 +1,7 @@
 import React, { CSSProperties, useEffect, ReactElement, useState } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
-import { History } from 'history';
 import { NAVBAR_HEIGHT } from '../constants';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorLayer } from 'ol/layer';
@@ -25,6 +24,7 @@ export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
 
     const [map, setMap] = useState<Map>(null);
+    const location = useLocation();
 
     useEffect(() => {
 
@@ -60,6 +60,29 @@ export default function OverviewMap({ documents, filter }
         };
     }, [map, documents, filter]);
 
+    useEffect(() => {
+
+        if (!map) return;
+
+        const onClick = (e: MapBrowserEvent) => {
+            e.preventDefault();
+            map.forEachFeatureAtPixel(e.pixel, feature => {
+                if (feature.getProperties().identifier) {
+                    // this causes openlayers to throw an error, presumably because
+                    // the map element does not exist when some event listener fires
+                    // history.push(`/project/${feature.getProperties().identifier}`);
+
+                    // so instead reload the application when selecting a project
+                    window.location.href = `/project/${feature.getProperties().identifier}${location.search}`;
+                }
+            });
+        };
+
+        map.on('click', onClick);
+
+        return () => map.un('click', onClick);
+    }, [map, location]);
+
     return <div className="overview-map" id="ol-overview-map" style={ mapStyle } />;
 }
 
@@ -76,20 +99,6 @@ const createMap = (): Map => {
     });
 
     olms(map, 'https://api.mapbox.com/styles/v1/sebastiancuy/ckff2undp0v1o19mhucq9oycb?access_token=' + MAPBOX_KEY);
-
-    map.on('click', (e: MapBrowserEvent) => {
-        e.preventDefault();
-        map.forEachFeatureAtPixel(e.pixel, feature => {
-            if (feature.getProperties().identifier) {
-                // this causes openlayers to throw an error, presumably because
-                // the map element does not exist when some event listener fires
-                // history.push(`/project/${feature.getProperties().identifier}`);
-
-                // so instead reload the application when selecting a project
-                window.location.href = `/project/${feature.getProperties().identifier}`;
-            }
-        });
-    });
 
     return map;
 };
