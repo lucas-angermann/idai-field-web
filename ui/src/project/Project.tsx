@@ -86,7 +86,7 @@ export default function Project(): ReactElement {
                 && <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card>
             }
             <SearchBar projectId={ projectId } />
-            <Filters filters={ filters } searchParams={ location.search } />
+            <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
             { renderTotal(total, document, projectId, location.search, t) }
             { document
                 ? <DocumentDetails document={ document } />
