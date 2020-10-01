@@ -24,18 +24,15 @@ const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZ
 export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
 
-    const history: History = useHistory();
     const [map, setMap] = useState<Map>(null);
 
     useEffect(() => {
 
-        if (!documents?.length) return;
-
-        const newMap = createMap(documents, history);
+        const newMap = createMap();
         setMap(newMap);
 
         return () => newMap ?? newMap.setTarget(null);
-    }, [documents, history]);
+    }, []);
 
     useEffect(() => {
 
@@ -67,7 +64,7 @@ export default function OverviewMap({ documents, filter }
 }
 
 
-const createMap = (documents: ResultDocument[], history: History): Map => {
+const createMap = (): Map => {
 
     const map = new Map({
         target: 'ol-overview-map',
