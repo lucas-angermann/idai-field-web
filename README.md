@@ -48,6 +48,20 @@ It can be run independently with the following command:
     
 The api runs on port 4000. Indexed documents can be retrieved via `http://localhost:4000/documents`.
 
+#### Testing
+
+    $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
+
+or
+ 
+    $ docker-compose run --entrypoint "/bin/bash" api
+    $ mix test test/app                 # application/subsystem tests
+    $ mix test --no-start test/unit     # unit tests
+
+#### Interactive Elixir
+
+    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
+
 #### UI
 
 The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
@@ -70,20 +84,6 @@ The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved
 Can be started independently with
 
     $ docker-compose up cantaloupe
-
-### Interactive Elixir
-
-    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
-
-### Testing
-
-    $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
-
-or
- 
-    $ docker-compose run --entrypoint "/bin/bash" api
-    $ mix test test/app                 # application/subsystem tests
-    $ mix test --no-start test/unit     # unit tests
     
 ### Override docker-compose configuration to change image directories
 
