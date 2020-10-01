@@ -1,15 +1,21 @@
-import React, { useState, FormEvent, ReactElement } from 'react';
+import React, { useState, FormEvent, ReactElement, useEffect } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiMagnify } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
+import { parseFrontendGetParams } from '../api/query';
 
 export default function SearchBar({ projectId }: { projectId?: string }): ReactElement {
 
     const [queryString, setQueryString] = useState('');
     const history = useHistory();
     const { t } = useTranslation();
+    const location = useLocation();
+
+    useEffect(() => {
+        setQueryString(parseFrontendGetParams(location.search).q);
+    }, [location.search]);
 
     
     const submitSearch = (e: FormEvent): void => {
@@ -26,6 +32,7 @@ export default function SearchBar({ projectId }: { projectId?: string }): ReactE
                         autoFocus={ true }
                         type="text"
                         placeholder={ t('searchBar.search') }
+                        value={ queryString }
                         onChange={ e => setQueryString(e.target.value) } />
                     <InputGroup.Append>
                         <Button variant="primary" type="submit">
