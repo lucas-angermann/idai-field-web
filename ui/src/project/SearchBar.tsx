@@ -14,7 +14,7 @@ export default function SearchBar({ projectId }: { projectId?: string }): ReactE
     const location = useLocation();
 
     useEffect(() => {
-        setQueryString(parseFrontendGetParams(location.search).q);
+        setQueryString(parseQueryString(location.search));
     }, [location.search]);
 
     
@@ -44,3 +44,10 @@ export default function SearchBar({ projectId }: { projectId?: string }): ReactE
         </Card>
     );
 }
+
+
+const parseQueryString = (locationSearch: string): string => {
+
+    const queryString = parseFrontendGetParams(locationSearch).q;
+    return queryString === '*' ? '' : queryString;
+};
