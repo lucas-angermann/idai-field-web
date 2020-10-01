@@ -28,6 +28,10 @@ or alternatively generate test data
     
 If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
+Generate tiles
+
+    $ curl -XPOST localhost:4000/api/tiling
+
 Start the web UI:
 
     $ cd ui
