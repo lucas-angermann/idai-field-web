@@ -81,7 +81,7 @@ export default function OverviewMap({ documents, filter }
         map.on('click', onClick);
 
         return () => map.un('click', onClick);
-    }, [map, location]);
+    }, [map, location.search]);
 
     return <div className="overview-map" id="ol-overview-map" style={ mapStyle } />;
 }
