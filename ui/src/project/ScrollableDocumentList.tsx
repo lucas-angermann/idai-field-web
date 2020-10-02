@@ -8,14 +8,15 @@ import { CHUNK_SIZE } from './Project';
 
 
 interface ProjectHomeProps {
-    id: string;
     documents: ResultDocument[];
     searchParams: string;
     getChunk: (offset: number) => void;
 }
 
 
-export default function ProjectHome({ id, documents, getChunk, searchParams = '' }: ProjectHomeProps): ReactElement {
+export default function ScrollableDocumentList(
+    { documents, getChunk, searchParams = '' }: ProjectHomeProps)
+    : ReactElement {
 
     const [offset, setOffset] = useState(0);
     const { t } = useTranslation();

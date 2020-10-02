@@ -11,12 +11,16 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { useLocation } from 'react-router-dom';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
+import Filters from '../project/Filters';
+import ScrollableDocumentList from '../project/ScrollableDocumentList';
 
 
 export default function ProjectOverview(): ReactElement {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
+    const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
+    const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
     const location = useLocation();
     const loginData = useContext(LoginContext);
@@ -32,13 +36,26 @@ export default function ProjectOverview(): ReactElement {
         if (location.search.length > 0) {
             searchDocuments(location.search, 0, loginData.token).then(result => {
                 setProjectFilter(result.filters.find(filter => filter.name === 'project'));
+                setFilters(result.filters.filter(filter => filter.name !== 'project'));
+                setDocuments(result.documents);
             });
         }
     }, [location.search, loginData]);
 
+    const getChunk = (offset: number): void => {
+
+        searchDocuments(location.search, offset, loginData.token).then(result => {
+            setDocuments(documents.concat(result.documents));
+        });
+    };
+
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
             <SearchBar />
+            <Filters filters={ filters } searchParams={ location.search } />
+            <ScrollableDocumentList searchParams={ location.search }
+                                    documents={ documents }
+                                    getChunk={ getChunk }></ScrollableDocumentList>
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
@@ -67,6 +84,7 @@ const searchDocuments = async (searchParams: string, from: number, token: string
     const query = parseFrontendGetParams(searchParams, buildProjectOverviewQueryTemplate(from, CHUNK_SIZE));
     return search(query, token);
 };
+
 
 const leftSidebarStyle: CSSProperties = {
     maxHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
