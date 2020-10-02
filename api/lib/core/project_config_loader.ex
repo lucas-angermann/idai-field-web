@@ -4,7 +4,7 @@ defmodule Core.ProjectConfigLoader do
 
   def start_link({project_config_dir_name, database_names}) do
     
-    databases = database_names || Core.Config.get(:couchdb_databases)
+    databases = (database_names || Core.Config.get(:couchdb_databases)) ++ ["default"]
     
     configs = for database <- databases, into: %{} do
       {

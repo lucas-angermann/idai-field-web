@@ -1,5 +1,6 @@
 defmodule Api.Documents.Mapping do
   alias Api.Core.Filters
+  alias Core.Tree
   
   def map_single elasticsearch_result do
     elasticsearch_result
@@ -7,25 +8,25 @@ defmodule Api.Documents.Mapping do
     |> Core.CorePropertiesAtomizing.format_document
   end
 
-  def map(elasticsearch_result) do
+  def map(elasticsearch_result, default_config) do
     %{
       size: elasticsearch_result.hits.total.value,
       documents: elasticsearch_result.hits.hits
                  |> Enum.map(&map_document/1)
     }
-    |> map_aggregations(elasticsearch_result)
+    |> map_aggregations(elasticsearch_result, default_config)
   end
   
-  defp map_aggregations(result, %{ aggregations: aggregations }) do
-    filters = Enum.map(Filters.get_filters(), map_aggregation(aggregations))
+  defp map_aggregations(result, %{ aggregations: aggregations }, default_config) do
+    filters = Enum.map(Filters.get_filters(), map_aggregation(aggregations, default_config))
               |> Enum.reject(&is_nil/1)
     put_in(result, [:filters], filters)
   end
-  defp map_aggregations(result, _), do: result
+  defp map_aggregations(result, _, _), do: result
 
-  defp map_aggregation(aggregations) do
+  defp map_aggregation(aggregations, default_config) do
     fn filter ->
-      with agg when not is_nil(agg) <- get_in(
+      with buckets when not is_nil(buckets) <- get_in(
         aggregations,
         [String.to_atom(filter.field), :buckets]
       )
@@ -33,10 +34,25 @@ defmodule Api.Documents.Mapping do
           %{
             name: Filters.get_filter_name(filter),
             label: filter.label,
-            values: Enum.map(agg, fn bucket -> map_bucket(bucket, filter.field) end)
+            values: build_values(buckets, filter, default_config)
           }
         end
     end
+  end
+
+  defp build_values(buckets, filter = %{ field: "resource.category" }, default_config) do
+    buckets = map_buckets(buckets, filter)
+    Tree.map_tree_list(default_config,
+      fn %{ name: name } ->
+        bucket = Enum.find(buckets, fn bucket -> bucket.value.name == name end)
+        if bucket, do: bucket, else: %{ value: %{ name: name, label: %{} }, count: 0 }
+      end
+    ) |> Tree.filter_tree_list(fn %{ count: count } -> count > 0 end)
+  end
+  defp build_values(buckets, filter, _), do: map_buckets(buckets, filter)
+
+  defp map_buckets(buckets, filter) do
+    Enum.map(buckets, fn bucket -> map_bucket(bucket, filter.field) end)
   end
 
   defp map_bucket(%{ doc_count: doc_count, key: key, data: %{ hits: %{ hits: [hit|_] } } }, field_name) do
@@ -48,7 +64,7 @@ defmodule Api.Documents.Mapping do
       count: doc_count
     }
   end
-  defp map_bucket(%{ doc_count: doc_count, key: key }, field_name) do
+  defp map_bucket(%{ doc_count: doc_count, key: key }, _) do
     %{
       value: %{
         name: key,
@@ -66,4 +82,5 @@ defmodule Api.Documents.Mapping do
   defp get_label(field = [_|_], value), do: Enum.find(field, &(&1["name"] == value))["label"]
   defp get_label(field = %{}, _), do: field["label"]
   defp get_label(field, _), do: field
+
 end

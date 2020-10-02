@@ -25,7 +25,7 @@ export interface ResultResource {
 
 export interface ResultFilter {
     name: string;
-    values: FilterBucket[];
+    values: (FilterBucket | FilterBucketTreeNode)[];
     label: I18nString;
 }
 
@@ -36,4 +36,10 @@ export interface FilterBucket {
         label: I18nString
     };
     count: number;
+}
+
+
+export interface FilterBucketTreeNode {
+    item: FilterBucket;
+    tree: FilterBucketTreeNode[];
 }

@@ -2,6 +2,7 @@ defmodule Api.Documents.Index do
   require Logger
   alias Api.Documents.Mapping
   alias Api.Documents.Query
+  alias Core.ProjectConfigLoader
 
   @max_geometries 10000
   @exists_geometries ["resource.geometry"]
@@ -22,7 +23,7 @@ defmodule Api.Documents.Index do
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
-    |> Mapping.map
+    |> Mapping.map(ProjectConfigLoader.get("default"))
   end
 
   def search_geometries q, filters, must_not, exists, readable_projects do
@@ -34,7 +35,7 @@ defmodule Api.Documents.Index do
     |> Query.only_fields(@fields_geometries)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
-    |> Mapping.map
+    |> Mapping.map(ProjectConfigLoader.get("default"))
   end
   
   defp build_post_atomize query do

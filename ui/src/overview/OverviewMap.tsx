@@ -6,7 +6,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source';
-import { ResultDocument, ResultFilter } from '../api/result';
+import { FilterBucket, ResultDocument, ResultFilter } from '../api/result';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
@@ -172,7 +172,9 @@ const createFeature = (document: any, filter: ResultFilter): Feature => ({
 
 const createFeatureLabel = (document: any, filter?: ResultFilter): string => {
 
-    const projectBucket = filter?.values.find(bucket => bucket.value.name === document.project);
+    const projectBucket = filter?.values.find(
+        (bucket: FilterBucket) => bucket.value.name === document.project
+    ) as FilterBucket;
 
     return document.resource.identifier + (
         projectBucket && projectBucket.count > 0
@@ -186,7 +188,9 @@ const filterDocuments = (documents: ResultDocument[], filter?: ResultFilter): an
 
     if (!filter) return documents;
 
-    return documents.filter(document => filter.values.map(bucket => bucket.value.name).includes(document.project));
+    return documents.filter(document => filter.values.map(
+        (bucket: FilterBucket) => bucket.value.name).includes(document.project)
+    );
 };
 
 

@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Card, Dropdown, ButtonGroup } from 'react-bootstrap';
-import { ResultFilter, FilterBucket } from '../api/result';
+import { ResultFilter, FilterBucket, FilterBucketTreeNode } from '../api/result';
 import { Link } from 'react-router-dom';
 import { mdiCloseCircle } from '@mdi/js';
 import { Icon } from '@mdi/react';
@@ -35,7 +35,7 @@ const renderFilter = (filter: ResultFilter, searchParams: string): ReactNode => 
             { renderFilterDropdownToggle(filter, params) }
             <Dropdown.Menu>
                 <Dropdown.Header><h3>{ getLabel(filter.name, filter.label) }</h3></Dropdown.Header>
-                { filter.values.map((bucket: FilterBucket) =>
+                { filter.values.map((bucket: any) =>
                     renderFilterValue(filter.name, bucket, params)) }
             </Dropdown.Menu>
         </Dropdown>
@@ -60,7 +60,28 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
             </Dropdown.Toggle>;
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
+const renderFilterValue = (key: string, bucket: FilterBucket | FilterBucketTreeNode,
+                           params: URLSearchParams): ReactNode => {
+
+    return key === 'resource.category.name'
+        ? renderCategoryFilterValue(key, bucket as FilterBucketTreeNode, params)
+        : renderDefaultFilterValue(key, bucket as FilterBucket, params);
+};
+
+
+const renderCategoryFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams): ReactNode =>
+    <Dropdown.Item
+        as={ Link }
+        key={ bucket.item.value.name }
+        style={ filterValueStyle }
+        to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
+        { getLabel(bucket.item.value.name, bucket.item.value.label) }
+        { renderCloseButton(params, key, bucket.item.value.name) }
+        <span className="float-right"><em>{ bucket.item.count }</em></span>
+    </Dropdown.Item>;
+
+
+const renderDefaultFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
     <Dropdown.Item
             as={ Link }
             key={ bucket.value.name }
