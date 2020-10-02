@@ -18,7 +18,7 @@ import ScrollableDocumentList from '../project/ScrollableDocumentList';
 export default function ProjectOverview(): ReactElement {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
-    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [documents, setDocuments] = useState<ResultDocument[]>(undefined);
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
@@ -52,16 +52,24 @@ export default function ProjectOverview(): ReactElement {
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
             <SearchBar />
-            <Filters filters={ filters } searchParams={ location.search } />
-            <ScrollableDocumentList searchParams={ location.search }
-                                    documents={ documents }
-                                    getChunk={ getChunk }></ScrollableDocumentList>
+            { location.search.length > 0 && documents && renderSidebar(filters, location, documents, getChunk) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
         </div>
     </>;
 }
+
+
+const renderSidebar = (filters: ResultFilter[], location: any, documents: ResultDocument[],
+                       getChunk: (offset: number) => void): ReactElement => (
+    <>
+        <Filters filters={ filters } searchParams={ location.search } />
+        <ScrollableDocumentList searchParams={ location.search }
+            documents={ documents }
+            getChunk={ getChunk }></ScrollableDocumentList>
+    </>
+);
 
 
 const renderError = (t: TFunction): ReactElement => (

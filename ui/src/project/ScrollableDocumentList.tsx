@@ -43,7 +43,7 @@ export default function ScrollableDocumentList(
 
 
 const renderEmptyResult = (t: TFunction): ReactElement => (
-    <div className="text-center mt-sm-5"><em>{ t('projectHome.noResults') }</em></div>
+    <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('projectHome.noResults') }</em></div>
 );
 
 

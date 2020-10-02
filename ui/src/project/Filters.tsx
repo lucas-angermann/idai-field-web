@@ -12,6 +12,8 @@ import { getLabel } from '../languages';
 export default function Filters({ filters, searchParams }
         : { filters: ResultFilter[], searchParams: string }): ReactElement {
 
+    if (!filters.find(filter => filter.values.length > 0)) return <></>;
+
     return (
         <Card>
             <Card.Body className="d-flex py-2 pl-1 pr-2 align-self-stretch">
