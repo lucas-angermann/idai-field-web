@@ -39,6 +39,8 @@ export default function OverviewMap({ documents, filter }
         if (!map || !documents?.length) return;
 
         const featureCollection = createFeatureCollection(documents, filter);
+        if (!featureCollection) return;
+
         const vectorLayer = getGeoJSONLayer(featureCollection);
         map.addLayer(vectorLayer);
 
@@ -145,10 +147,14 @@ const createFeatureCollection = (documents: any[], filter: ResultFilter): any =>
 
     if (!documents || documents.length === 0) return undefined;
 
+    const filteredDocuments = filterDocuments(documents, filter)
+        .filter(document => document.resource.geometry_wgs84);
+
+    if (filteredDocuments.length === 0) return undefined;
+
     return {
         type: 'FeatureCollection',
-        features: filterDocuments(documents, filter)
-            .filter(document => document.resource.geometry_wgs84)
+        features: filteredDocuments
             .map(document => createFeature(document, filter))
     };
 };
