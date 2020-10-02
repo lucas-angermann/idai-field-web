@@ -21,4 +21,18 @@ defmodule Core.Tree do
     end
   end
 
+  def map_tree_list(tree_list, map_function) do
+    Enum.map(
+      tree_list,
+      fn %{ item: item, trees: trees } -> %{ item: map_function.(item), trees: map_tree_list(trees, map_function) } end
+    )
+  end
+
+  def filter_tree_list(tree_list, filter_function) do
+    Enum.map(
+      tree_list,
+      fn %{ item: item, trees: trees } -> %{ item: item, trees: filter_tree_list(trees, filter_function) } end
+    ) |> Enum.filter(fn %{ item: item, trees: trees } -> filter_function.(item) || length(trees) > 0 end)
+  end
+
 end
