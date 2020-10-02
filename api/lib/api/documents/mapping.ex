@@ -47,7 +47,9 @@ defmodule Api.Documents.Mapping do
         bucket = Enum.find(buckets, fn bucket -> bucket.value.name == name end)
         %{ value: %{ name: name, label: label }, count: (if bucket, do: bucket.count, else: 0) }
       end
-    ) |> Tree.filter_tree_list(fn %{ count: count } -> count > 0 end)
+    )
+    |> Tree.filter_tree_list(fn %{ count: count } -> count > 0 end)
+    |> Enum.map(&add_children_count/1)
   end
   defp build_values(buckets, filter, _), do: map_buckets(buckets, filter)
 
@@ -77,6 +79,15 @@ defmodule Api.Documents.Mapping do
   defp map_document(%{ _source: document }) do
     document = Core.CorePropertiesAtomizing.format_document(document)
     put_in(document.resource.category, document.resource.category["name"])
+  end
+
+  defp add_children_count(tree_list_node) do
+    put_in(tree_list_node.item.count, tree_list_node.item.count + get_children_count(tree_list_node))
+  end
+
+  defp get_children_count(tree_list_node) do
+    Enum.map(tree_list_node.trees, fn tree -> tree.item.count end)
+    |> Enum.sum
   end
 
   defp get_label(field = [_|_], value), do: Enum.find(field, &(&1["name"] == value))["label"]
