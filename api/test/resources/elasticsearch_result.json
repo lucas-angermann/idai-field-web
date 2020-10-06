@@ -103,23 +103,23 @@
         ]
     },
     "aggregations": {
-        "field1": {
+        "resource.category": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 959,
             "buckets": [
                 {
-                    "key": "Value 1",
+                    "key": "Operation",
                     "doc_count": 22356,
                     "data": {
                         "hits": {
                             "hits": [
                                 {
                                     "_source": {
-                                        "field1": [{
-                                            "name": "Value 1",
+                                        "resource.category": [{
+                                            "name": "Operation",
                                             "label": {
-                                                "de": "Value 1 (Deutsch)",
-                                                "en": "Value 1 (English)"
+                                                "de": "Maßnahme",
+                                                "en": "Operation"
                                             }
                                         }]
                                     }
@@ -129,18 +129,18 @@
                     }
                 },
                 {
-                    "key": "Value 2",
+                    "key": "Find",
                     "doc_count": 1817,
                     "data": {
                         "hits": {
                             "hits": [
                                 {
                                     "_source": {
-                                        "field1": [{
-                                            "name": "Value 2",
+                                        "resource.category": [{
+                                            "name": "Find",
                                             "label": {
-                                                "de": "Value 2 (Deutsch)",
-                                                "en": "Value 2 (English)"
+                                                "de": "Fund",
+                                                "en": "Find"
                                             }
                                         }]
                                     }
@@ -151,7 +151,7 @@
                 }
             ]
         },
-        "field2": {
+        "project": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 2,
             "buckets": [
@@ -177,7 +177,9 @@
                     }
                 },
                 {
-                    "key": "Value 4",
+                    "key": "",
+
+
                     "doc_count": 867,
                     "data": {
                         "hits": {

@@ -17,12 +17,25 @@ defmodule Worker.Enricher.LabelsTest do
           "width" => [%{ "inputValue" => 10, "inputUnit" => "cm", "measurementPosition" => "Maximale Ausdehnung" }],
           "period" => %{ "value" => "Old Babylonian", "endValue" => "New Babylonian" },
           :id => "42",
-          :relations => %{ "liesWithin" => ["45"] }
+          :relations => %{
+            "liesWithin" => [%{
+              resource: %{
+                :id => "DEF",
+                :identifier => "Test resource 2",
+                :category => "Operation"
+              }
+            },
+            %{
+              resource: %{
+                :id => "GHI"
+              }, deleted: true
+            }]
+          }
         }
       }
     }
 
-    start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    start_supervised({ProjectConfigLoader, {"test/resources", ["test-project"]}})
     configuration = ProjectConfigLoader.get("test-project")
 
     result = Labels.add_labels(change, configuration)
@@ -70,7 +83,20 @@ defmodule Worker.Enricher.LabelsTest do
               }
             }
           },
-          relations: %{ liesWithin: ["45"] }
+          relations: %{
+            liesWithin: [%{
+              resource: %{
+                :id => "DEF",
+                :identifier => "Test resource 2",
+                :category => %{ name: "Operation", label: %{ de: "Maßnahme", en: "Operation" } }
+              }
+            },
+              %{
+                resource: %{
+                  :id => "GHI"
+                }, deleted: true
+              }]
+          }
         }
       }
     }
@@ -86,7 +112,7 @@ defmodule Worker.Enricher.LabelsTest do
           :category => "Operation",
           "non_existing" => ["Grün", "Blau"], # should not exist in result
           :id => "42",
-          :relations => %{ "liesWithin" => ["45"] }
+          :relations => %{}
         }
       }
     }
@@ -98,10 +124,10 @@ defmodule Worker.Enricher.LabelsTest do
     assert result == %{
              doc: %{
                resource: %{
-                 category: %{label: %{de: "Maßnahme", en: "Operation"}, name: "Operation"},
+                 category: %{ label: %{ de: "Maßnahme", en: "Operation" }, name: "Operation" },
                  id: "42",
                  identifier: "ABC",
-                 relations: %{liesWithin: ["45"]},
+                 relations: %{},
                  shortDescription: "Test resource"
                }
              }

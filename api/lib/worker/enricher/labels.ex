@@ -3,30 +3,43 @@ defmodule Worker.Enricher.Labels do
   alias Core.Utils
   alias Core.CategoryTreeList
 
-  @core_properties [:id, :identifier, :shortDescription, :relations, :geometry, :geometry_wgs84, :georeference,
+  @core_properties [:id, :identifier, :shortDescription, :geometry, :geometry_wgs84, :georeference,
     :gazId]
 
   def add_labels(change = %{ doc: %{ resource: resource } }, configuration) do
-    category_definition = CategoryTreeList.find_by_name(change.doc.resource.category, configuration)
+    put_in(change.doc.resource, add_labels_to_resource(resource, configuration))
+  end
+
+  defp add_labels_to_resource(resource, configuration) do
+    category_definition = CategoryTreeList.find_by_name(resource.category, configuration)
     if is_nil(category_definition) do
-      raise "No category definition found for category #{change.doc.resource.category}"
+      raise "No category definition found for category #{resource.category}"
     else
-      put_in(
-        change.doc.resource,
-        Enum.reduce(resource, %{}, add_labels_to_field(category_definition))
+        Enum.reduce(resource, %{}, add_labels_to_field(category_definition, configuration))
         |> Enum.into(%{})
         |> Utils.atomize
-      )
     end
   end
 
-  defp add_labels_to_field(category_definition) do
-    fn field, resource -> add_labels_to_field(resource, field, category_definition) end
+  defp add_labels_to_relation({ relationName, targets }, configuration) do
+    { relationName, Enum.map(targets, &add_labels_to_relation_target(&1, configuration)) }
   end
-  defp add_labels_to_field(resource, { :category, field_value }, category_definition) do
+
+  defp add_labels_to_relation_target(deleted_target = %{ deleted: true }, _), do: deleted_target
+  defp add_labels_to_relation_target(relation_target = %{ resource: resource }, configuration) do
+    put_in(relation_target.resource, add_labels_to_resource(resource, configuration))
+  end
+
+  defp add_labels_to_field(category_definition, category) do
+    fn field, resource -> add_labels_to_field(resource, field, category_definition, category) end
+  end
+  defp add_labels_to_field(resource, { :category, field_value }, category_definition, _) do
     put_in(resource[:category], %{ name: field_value, label: category_definition.label })
   end
-  defp add_labels_to_field(resource, { field_name, field_value }, category_definition) do
+  defp add_labels_to_field(resource, { :relations, relations }, _, configuration) do
+    put_in(resource[:relations], Enum.map(relations, &add_labels_to_relation(&1, configuration)) |> Enum.into(%{}))
+  end
+  defp add_labels_to_field(resource, { field_name, field_value }, category_definition, _) do
     cond do
       Enum.member?(@core_properties, field_name) -> put_in(resource, [field_name], field_value)
 
