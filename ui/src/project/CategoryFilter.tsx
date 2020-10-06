@@ -46,20 +46,21 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
             </Dropdown.Toggle>;
 
 
-const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams): ReactNode =>
+const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams, level: number = 1)
+        : ReactNode =>
     <>
         <Dropdown.Item
                 as={ Link }
                 key={ bucket.item.value.name }
-                style={ filterValueStyle }
+                style={ filterValueStyle(level) }
                 to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
-            <CategoryIcon category={ bucket.item.value.name } size="20" />
+            <CategoryIcon category={ bucket.item.value.name } size="30" />
             { getLabel(bucket.item.value.name, bucket.item.value.label) }
             { renderCloseButton(params, key, bucket.item.value.name) }
             <span className="float-right"><em>{ bucket.item.count }</em></span>
         </Dropdown.Item>
-        { console.log(bucket.trees) }
-        { bucket.trees && bucket.trees.map((bucket: FilterBucketTreeNode) => renderFilterValue(key, bucket, params)) }
+        { bucket.trees
+            && bucket.trees.map((bucket: FilterBucketTreeNode) => renderFilterValue(key, bucket, params, level + 1)) }
     </>;
 
 
@@ -73,6 +74,7 @@ const renderCloseButton = (params: URLSearchParams, key: string, value: string):
         </LinkButton>;
 
 
-const filterValueStyle: CSSProperties = {
-    width: '350px'
-};
+const filterValueStyle = (level: number): CSSProperties => ({
+    width: '350px',
+    paddingLeft: `${level * 1.5}em`
+});
