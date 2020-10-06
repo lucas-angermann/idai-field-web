@@ -1,13 +1,14 @@
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
-import { Dropdown, ButtonGroup, Col, Row } from 'react-bootstrap';
+import { Dropdown, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { deleteFilterFromParams, addFilterToParams } from '../api/query';
-import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result';
+import { FilterBucketTreeNode, ResultFilter } from '../api/result';
 import CategoryIcon from '../document/CategoryIcon';
 import { getLabel } from '../languages';
 import LinkButton from '../LinkButton';
+import FilterDropdown from './FilterDropdown';
 
 
 export default function CategoryFilter({ filter, searchParams }
@@ -17,33 +18,10 @@ export default function CategoryFilter({ filter, searchParams }
 
     const params = new URLSearchParams(searchParams);
 
-    return <>
-        <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
-            { renderFilterDropdownToggle(filter, params) }
-            <Dropdown.Menu>
-                <Dropdown.Header><h3>{ getLabel(filter.name, filter.label) }</h3></Dropdown.Header>
-                { filter.values.map((bucket: FilterBucketTreeNode) => renderFilterValue(filter.name, bucket, params)) }
-            </Dropdown.Menu>
-        </Dropdown>
-    </>;
+    return <FilterDropdown filter={ filter } params={ params }>
+        { filter.values.map((bucket: FilterBucketTreeNode) => renderFilterValue(filter.name, bucket, params)) }
+    </FilterDropdown>;
 }
-
-
-const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams): ReactNode =>
-    params.has(filter.name)
-        ?
-            <>
-                <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name) }
-                        style={ { flexGrow: 1 } }>
-                    { getLabel(filter.name, filter.label) }: <em>{ params.getAll(filter.name).join(', ') }</em>
-                    &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
-                </LinkButton>
-                <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
-                        style={ { maxWidth: '2.5rem' } }/>
-            </>
-        :   <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>
-                { getLabel(filter.name, filter.label) }
-            </Dropdown.Toggle>;
 
 
 const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams, level: number = 1)
