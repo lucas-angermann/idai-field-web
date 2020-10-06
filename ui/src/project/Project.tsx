@@ -27,7 +27,7 @@ export const CHUNK_SIZE = 50;
 
 export default function Project(): ReactElement {
 
-    const { projectId, documentId } = useParams();
+    const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
