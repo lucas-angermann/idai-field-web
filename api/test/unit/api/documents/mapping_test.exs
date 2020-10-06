@@ -1,6 +1,7 @@
 defmodule Api.Documents.MappingTest do
   import Core.Utils
   alias Api.Documents.Mapping
+  alias Core.ProjectConfigLoader
   use ExUnit.Case
   
   setup_all do
@@ -12,15 +13,17 @@ defmodule Api.Documents.MappingTest do
   
   # TODO: mock default_filters and test if labels are added to mapped result
   
-  test "init", %{result: result} do
-    mapped = Mapping.map result
+  test "init", %{ result: result } do
+    start_supervised({ProjectConfigLoader, {"resources/projects", ["default"]}})
+    configuration = ProjectConfigLoader.get("default")
+    mapped = Mapping.map(result, configuration)
     
     assert mapped.size == result.hits.total.value
     
-    aggregation2 = result.aggregations[:field2]
+    aggregation2 = result.aggregations[:"resource.category"]
     assert length(get_in(mapped, [:filters, Access.at(1), :values])) == length(aggregation2.buckets)
     
-    mapped_value = get_in(mapped.filters, [Access.at(1), :values, Access.at(0), :value, :name])
+    mapped_value = get_in(mapped.filters, [Access.at(1), :values, Access.at(0), :item, :value, :name])
     original_value = get_in(aggregation2.buckets, [Access.at(0), :key])
     assert mapped_value == original_value
     
