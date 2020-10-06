@@ -30,7 +30,7 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
             style={ filterValueStyle }
             to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
         { getLabel(bucket.value.name, bucket.value.label) }
-        <CloseButton params={ params } key={ key } value={ bucket.value.name } />
+        <CloseButton params={ params } filterKey={ key } value={ bucket.value.name } />
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;
 
