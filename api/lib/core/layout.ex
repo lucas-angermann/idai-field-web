@@ -5,7 +5,6 @@ defmodule Core.Layout do
 
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
-    |> put_in([:category], resource.category["name"])
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
   end
 

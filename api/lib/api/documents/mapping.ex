@@ -77,8 +77,7 @@ defmodule Api.Documents.Mapping do
   end
   
   defp map_document(%{ _source: document }) do
-    document = Core.CorePropertiesAtomizing.format_document(document)
-    put_in(document.resource.category, document.resource.category["name"])
+    Core.CorePropertiesAtomizing.format_document(document)
   end
 
   defp add_children_count(tree_list_node) do
