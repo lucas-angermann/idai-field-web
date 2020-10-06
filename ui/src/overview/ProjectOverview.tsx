@@ -11,7 +11,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { useLocation } from 'react-router-dom';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
-import Filters from '../project/Filters';
+import Filters from '../filter/Filters';
 import ScrollableDocumentList from '../project/ScrollableDocumentList';
 
 

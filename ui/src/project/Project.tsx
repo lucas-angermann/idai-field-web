@@ -16,7 +16,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
-import Filters from './Filters';
+import Filters from '../filter/Filters';
 import DocumentDetails from '../document/DocumentDetails';
 import { getUserInterfaceLanguage } from '../languages';
 
