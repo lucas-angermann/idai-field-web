@@ -1,5 +1,7 @@
 defmodule Worker.Services.ImageMagickTiling do
-
+  
+  # todo investigate: "convert: cache resources exhausted `/imageroot/wes/3440aa1a-013c-dba2-c38d-414b96dd5ef1.jpg' @ error/cache.c/OpenPixelCache/4083."
+  
   @imageroot "/imageroot"
   @required_imagemagick_version [6, 9]
   @required_delegates ["jp2", "png", "jpeg"]

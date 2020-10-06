@@ -5,8 +5,6 @@ defmodule Worker.Services.TilesCreator do
 
   @tile_size 256
 
-  # todo investigate: "convert: cache resources exhausted `/imageroot/wes/3440aa1a-013c-dba2-c38d-414b96dd5ef1.jpg' @ error/cache.c/OpenPixelCache/4083."
-
   def create_tiles({project, image_id, image_size}), do: create_tiles(project, image_id, image_size)
   def create_tiles(project, image_id, {width, height}) do
     unless ImageMagickTiling.exists?(project, image_id)
