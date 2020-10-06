@@ -33,7 +33,7 @@ defmodule Worker.Services.TilesCreator do
         {
           {
             current_size,
-            List.flatten(calc_template(current_size, tile_size))
+            calc_template(current_size, tile_size)
           },
           current_size / 2
         }
@@ -68,5 +68,6 @@ defmodule Worker.Services.TilesCreator do
         ]
       end
     )
+    |> List.flatten()
   end
 end
