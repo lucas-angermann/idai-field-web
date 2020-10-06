@@ -27,7 +27,12 @@ defmodule Worker.Enricher.Labels do
 
   defp add_labels_to_relation_target(deleted_target = %{ deleted: true }, _), do: deleted_target
   defp add_labels_to_relation_target(relation_target = %{ resource: resource }, configuration) do
-    put_in(relation_target.resource, add_labels_to_resource(resource, configuration))
+    if Map.has_key?(relation_target.resource, :relations) do
+      # Would not terminate then because of infinite mutual recursion
+      raise "Relation targets must not have :relations keys set"
+    else
+      put_in(relation_target.resource, add_labels_to_resource(resource, configuration))
+    end
   end
 
   defp add_labels_to_field(category_definition, category) do
