@@ -27,19 +27,21 @@ defmodule Worker.Services.TilesCreator do
   end
 
   defp create_template(image_size, tile_size) do
-    Stream.unfold({:continue, image_size}, fn {run, current_size} ->
-      if run != :continue, do: nil, else:
+    Stream.unfold(
+      image_size,
+      fn current_size ->
         {
           {
             current_size,
             List.flatten(calc_template(current_size, tile_size))
           },
-          {
-            if current_size < tile_size do :halt else :continue end,
-            current_size / 2
-          }
+          current_size / 2
         }
-    end) |> Enum.to_list() |> Enum.reverse() |> Enum.with_index() # todo try do the break with filter or something, we could determine if another iteration is to be done from the "outside"
+      end
+    )
+    |> Stream.take_while(fn {current_size, _} -> (current_size * 2) > tile_size end)
+    |> Enum.reverse()
+    |> Enum.with_index()
   end
 
   defp calc_template(current_size, tile_size) do
