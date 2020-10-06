@@ -1,4 +1,5 @@
 defmodule Core.Layout do
+  alias Core.Utils
 
   def to_layouted_resource(configuration, resource) do
     %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category["name"], configuration)
@@ -6,6 +7,7 @@ defmodule Core.Layout do
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
+    |> Utils.atomize
   end
 
   defp scan_group(resource) do

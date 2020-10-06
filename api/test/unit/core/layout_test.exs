@@ -36,7 +36,7 @@ defmodule Core.LayoutTest do
 
     assert layouted_resource == %{
       :id => "42",
-      :category => "Operation",
+      :category => %{ label: %{ de: "Maßnahme", en: "Operation" }, name: "Operation" },
       :groups => [%{
         name: "stem",
         fields: [
