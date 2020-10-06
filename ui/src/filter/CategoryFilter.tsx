@@ -33,7 +33,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
                 <Col xs={ 1 }><CategoryIcon category={ bucket.item.value.name } size="30" /></Col>
                 <Col style={ categoryLabelStyle }>
                     { getLabel(bucket.item.value.name, bucket.item.value.label) }
-                    <CloseButton params={ params } key={ key } value={ bucket.item.value.name } />
+                    <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
                 </Col>
                 <Col xs={ 1 }><span className="float-right"><em>{ bucket.item.count }</em></span></Col>
             </Row>
