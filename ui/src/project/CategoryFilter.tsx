@@ -1,15 +1,16 @@
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { CSSProperties, ReactNode, ReactElement } from 'react';
-import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
+import { Dropdown, ButtonGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { addFilterToParams, deleteFilterFromParams } from '../api/query';
-import { FilterBucket, ResultFilter } from '../api/result';
+import { deleteFilterFromParams, addFilterToParams } from '../api/query';
+import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result';
+import CategoryIcon from '../document/CategoryIcon';
 import { getLabel } from '../languages';
 import LinkButton from '../LinkButton';
 
 
-export default function SimpleFilter({ filter, searchParams }
+export default function CategoryFilter({ filter, searchParams }
         : { filter: ResultFilter, searchParams: string}): ReactElement {
 
     if (!filter.values.length) return null;
@@ -21,7 +22,7 @@ export default function SimpleFilter({ filter, searchParams }
             { renderFilterDropdownToggle(filter, params) }
             <Dropdown.Menu>
                 <Dropdown.Header><h3>{ getLabel(filter.name, filter.label) }</h3></Dropdown.Header>
-                { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params)) }
+                { filter.values.map((bucket: FilterBucketTreeNode) => renderFilterValue(filter.name, bucket, params)) }
             </Dropdown.Menu>
         </Dropdown>
     </>;
@@ -45,16 +46,21 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
             </Dropdown.Toggle>;
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
-    <Dropdown.Item
-            as={ Link }
-            key={ bucket.value.name }
-            style={ filterValueStyle }
-            to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
-        { getLabel(bucket.value.name, bucket.value.label) }
-        { renderCloseButton(params, key, bucket.value.name) }
-        <span className="float-right"><em>{ bucket.count }</em></span>
-    </Dropdown.Item>;
+const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams): ReactNode =>
+    <>
+        <Dropdown.Item
+                as={ Link }
+                key={ bucket.item.value.name }
+                style={ filterValueStyle }
+                to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
+            <CategoryIcon category={ bucket.item.value.name } size="20" />
+            { getLabel(bucket.item.value.name, bucket.item.value.label) }
+            { renderCloseButton(params, key, bucket.item.value.name) }
+            <span className="float-right"><em>{ bucket.item.count }</em></span>
+        </Dropdown.Item>
+        { console.log(bucket.trees) }
+        { bucket.trees && bucket.trees.map((bucket: FilterBucketTreeNode) => renderFilterValue(key, bucket, params)) }
+    </>;
 
 
 const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode =>

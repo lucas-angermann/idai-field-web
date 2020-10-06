@@ -41,5 +41,5 @@ export interface FilterBucket {
 
 export interface FilterBucketTreeNode {
     item: FilterBucket;
-    tree: FilterBucketTreeNode[];
+    trees: FilterBucketTreeNode[];
 }
