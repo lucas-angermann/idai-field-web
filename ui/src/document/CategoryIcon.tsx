@@ -1,14 +1,17 @@
 import React, { CSSProperties } from 'react';
 import { getColor, isColorTooBright } from '../categoryColors';
+import { LabeledValue } from '../api/document';
+import { getLabel } from '../languages';
 
 
-export default React.memo(function CategoryIcon({ category, size }: { category: string, size: string }) {
+export default React.memo(function CategoryIcon({ category, size }
+        : { category: LabeledValue, size: string }) {
 
-    const color = getColor(category);
+    const color = getColor(category.name);
 
     return <div style={ iconStyle(size, color) }>
         <span style={ characterStyle(color) }>
-            { category.substr(0, 1) }
+            { getLabel(category).substr(0, 1) }
         </span>
     </div>;
 });

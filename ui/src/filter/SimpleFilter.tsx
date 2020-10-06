@@ -16,11 +16,9 @@ export default function SimpleFilter({ filter, searchParams }
     const params = new URLSearchParams(searchParams);
 
     return <FilterDropdown filter={ filter } params={ params }>
-        { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params)) }         
+        { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params)) }
     </FilterDropdown>;
 }
-
-
 
 
 const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
@@ -29,7 +27,7 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
             key={ bucket.value.name }
             style={ filterValueStyle }
             to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
-        { getLabel(bucket.value.name, bucket.value.label) }
+        { getLabel(bucket.value) }
         <CloseButton params={ params } filterKey={ key } value={ bucket.value.name } />
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;

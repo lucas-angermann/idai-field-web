@@ -30,18 +30,18 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
                 style={ filterValueStyle(level) }
                 to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
             <Row>
-                <Col xs={ 1 }><CategoryIcon category={ bucket.item.value.name } size="30" /></Col>
+                <Col xs={ 1 }><CategoryIcon category={ bucket.item.value }
+                                            size="30" /></Col>
                 <Col style={ categoryLabelStyle }>
-                    { getLabel(bucket.item.value.name, bucket.item.value.label) }
+                    { getLabel(bucket.item.value) }
                     <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
                 </Col>
                 <Col xs={ 1 }><span className="float-right"><em>{ bucket.item.count }</em></span></Col>
             </Row>
         </Dropdown.Item>
         { bucket.trees
-            && bucket.trees.map((bucket: FilterBucketTreeNode) => renderFilterValue(key, bucket, params, level + 1)) }
+            && bucket.trees.map((b: FilterBucketTreeNode) => renderFilterValue(key, b, params, level + 1)) }
     </React.Fragment>;
-
 
 
 const filterValueStyle = (level: number): CSSProperties => ({

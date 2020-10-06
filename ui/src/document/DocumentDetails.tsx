@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { Document, FieldGroup, Field, Relation, getImages } from '../api/document';
+import { Document, FieldGroup, Field, Relation, getImages, LabeledValue } from '../api/document';
 import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
@@ -128,7 +128,7 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
         return Dimension.generateLabel(
             object, getDecimalValue, t,
             object.measurementPosition
-                ? getLabel(object.measurementPosition.name, object.measurementPosition.label)
+                ? getLabel(object.measurementPosition)
                 : undefined
         );
     } else if (Literature.isValid(object)) {
@@ -141,9 +141,9 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
 };
 
 
-const renderMultiLanguageText = (object: any, t: TFunction): ReactNode => {
+const renderMultiLanguageText = (object: LabeledValue, t: TFunction): ReactNode => {
 
-    const label: string = getLabel(object.name, object.label);
+    const label: string = getLabel(object);
 
     return object.label && getNumberOfUndisplayedLabels(object.label) > 0
         ? <OverlayTrigger trigger={ ['hover', 'focus'] } placement="right" overlay={ renderPopover(object, t) }>

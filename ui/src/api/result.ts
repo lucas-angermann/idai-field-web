@@ -1,4 +1,4 @@
-import { ChangeEvent, I18nString } from './document';
+import { ChangeEvent, I18nString, LabeledValue } from './document';
 
 export interface Result {
     size: number;
@@ -16,7 +16,7 @@ export interface ResultDocument {
 
 
 export interface ResultResource {
-    category: string;
+    category: LabeledValue;
     id: string;
     identifier: string;
     shortDescription: string;
@@ -31,10 +31,7 @@ export interface ResultFilter {
 
 
 export interface FilterBucket {
-    value: {
-        name: string;
-        label: I18nString
-    };
+    value: LabeledValue;
     count: number;
 }
 

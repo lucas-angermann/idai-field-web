@@ -17,7 +17,7 @@ export interface ChangeEvent {
 
 
 export interface Resource {
-    category: string;
+    category: LabeledValue;
     id: string;
     identifier: string;
     shortDescription: string;
@@ -38,6 +38,12 @@ export interface Field {
     label: I18nString;
     name: string;
     value: any;
+}
+
+
+export interface LabeledValue {
+    name: string;
+    label: I18nString;
 }
 
 

@@ -1,5 +1,5 @@
 import { set } from 'tsfun';
-import { I18nString } from './api/document';
+import { I18nString, LabeledValue } from './api/document';
 
 export const USER_INTERFACE_LANGUAGES = ['en', 'de'];
 
@@ -12,10 +12,10 @@ export function getUserInterfaceLanguage(): string {
 }
 
 
-export function getLabel(name: string, label: I18nString): string {
+export function getLabel(value: LabeledValue): string {
 
-    const language: string = LANGUAGES.find((lang: string) => label[lang]);
-    return language ? label[language] : name;
+    const language: string = LANGUAGES.find((lang: string) => value.label[lang]);
+    return language ? value.label[language] : value.name;
 }
 
 

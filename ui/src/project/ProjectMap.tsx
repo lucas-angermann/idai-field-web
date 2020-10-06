@@ -352,7 +352,7 @@ const createFeature = (document: any): Feature => ({
     properties: {
         id: document.resource.id,
         identifier: document.resource.identifier,
-        category: document.resource.category,
+        category: document.resource.category.name,
         project: document.project
     }
 });

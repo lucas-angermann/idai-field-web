@@ -21,7 +21,7 @@ export default React.memo(function DocumentTeaser(
         return (<div>{ t('documentTeaser.noTargetResource') } [{ document.resource.id }]</div>);
     }
 
-    const isImage = IMAGE_CATEGORIES.includes(document.resource.category);
+    const isImage = IMAGE_CATEGORIES.includes(document.resource.category.name);
     const linkUrl = isImage
         ? `/image/${document?.project ?? project}/${document.resource.id}`
         : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
@@ -33,7 +33,8 @@ export default React.memo(function DocumentTeaser(
             <div className={ `py-2 px-4 teaser-container teaser-${size}` }>
                 <Row>
                     <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
-                        <CategoryIcon size={ `${height}` } category={ document.resource.category } />
+                        <CategoryIcon size={ `${height}` }
+                                      category={ document.resource.category }/>
                     </Col>
                     <Col>
                         <Row>
