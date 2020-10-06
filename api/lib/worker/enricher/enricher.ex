@@ -15,8 +15,9 @@ defmodule Worker.Enricher.Enricher do
       |> Labels.add_labels(configuration)
       |> put_in([:doc, :project], project)
     rescue
-        Logger.error "Enrichment failed for resource #{change.doc.resource.id}: #{error.message}"
-        nil
+      error -> Logger.error "Enrichment failed for resource #{change.doc.resource.id}: "
+               <> "#{ if error.message do error.message else inspect(error) end }"
+      nil
     end
   end
 end
