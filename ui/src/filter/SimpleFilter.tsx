@@ -1,12 +1,10 @@
-import { mdiCloseCircle } from '@mdi/js';
-import Icon from '@mdi/react';
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { addFilterToParams, deleteFilterFromParams } from '../api/query';
+import { addFilterToParams } from '../api/query';
 import { FilterBucket, ResultFilter } from '../api/result';
 import { getLabel } from '../languages';
-import LinkButton from '../LinkButton';
+import CloseButton from './CloseButton';
 import FilterDropdown from './FilterDropdown';
 
 
@@ -32,19 +30,9 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
             style={ filterValueStyle }
             to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
         { getLabel(bucket.value.name, bucket.value.label) }
-        { renderCloseButton(params, key, bucket.value.name) }
+        <CloseButton params={ params } key={ key } value={ bucket.value.name } />
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;
-
-
-const renderCloseButton = (params: URLSearchParams, key: string, value: string): ReactNode =>
-    (params.has(key + '.name') && params.getAll(key + '.name').includes(value)) &&
-        <LinkButton
-                to={ '?' + deleteFilterFromParams(params, key, value) }
-                variant="link"
-                style={ { padding: 0, verticalAlign: 'baseline' } }>
-            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
-        </LinkButton>;
 
 
 const filterValueStyle: CSSProperties = {
