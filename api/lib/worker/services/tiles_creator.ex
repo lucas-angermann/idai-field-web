@@ -32,8 +32,8 @@ defmodule Worker.Services.TilesCreator do
       fn current_size ->
         {
           {
-            current_size,
-            calc_template(current_size, tile_size)
+            current_size,                          # our "rescale"
+            calc_template(current_size, tile_size) # our "entries"
           },
           current_size / 2
         }
@@ -41,7 +41,7 @@ defmodule Worker.Services.TilesCreator do
     )
     |> Stream.take_while(fn {current_size, _} -> (current_size * 2) > tile_size end)
     |> Enum.reverse()
-    |> Enum.with_index()
+    |> Enum.with_index()                           # index will be our "z"
   end
 
   defp calc_template(current_size, tile_size) do
