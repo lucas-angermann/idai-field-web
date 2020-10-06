@@ -15,8 +15,8 @@ export default function Filters({ filters, searchParams }
             <Card.Body className="d-flex py-2 pl-1 pr-2 align-self-stretch">
                 { filters.map((filter: ResultFilter) =>
                     filter.name === 'resource.category.name'
-                    ? <CategoryFilter filter={ filter } searchParams={ searchParams } />
-                    : <SimpleFilter filter={ filter } searchParams={ searchParams } />) }
+                    ? <CategoryFilter filter={ filter } searchParams={ searchParams } key={ filter.name } />
+                    : <SimpleFilter filter={ filter } searchParams={ searchParams } key={ filter.name } />) }
             </Card.Body>
         </Card>
     </>;

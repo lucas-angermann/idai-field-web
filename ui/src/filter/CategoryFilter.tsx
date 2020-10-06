@@ -24,10 +24,9 @@ export default function CategoryFilter({ filter, searchParams }
 
 const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams, level: number = 1)
         : ReactNode =>
-    <>
+    <React.Fragment key={ bucket.item.value.name }>
         <Dropdown.Item
                 as={ Link }
-                key={ bucket.item.value.name }
                 style={ filterValueStyle(level) }
                 to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
             <Row>
@@ -41,7 +40,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
         </Dropdown.Item>
         { bucket.trees
             && bucket.trees.map((bucket: FilterBucketTreeNode) => renderFilterValue(key, bucket, params, level + 1)) }
-    </>;
+    </React.Fragment>;
 
 
 
