@@ -73,13 +73,13 @@ defmodule Api.Documents.Query do
 
   defp build_aggregation(filter = %{ labeled_value: true }) do
     { filter.field, %{
-      terms: %{ field: "#{filter.field}.name" },
+      terms: %{ field: "#{filter.field}.name", size: filter.size },
       aggs: Map.new([{ :data, %{ top_hits: %{ size: 1, _source: ["#{filter.field}"] } } }])
     }}
   end
   defp build_aggregation(filter = %{ labeled_value: false }) do
     { filter.field, %{
-      terms: %{ field: "#{filter.field}" }
+      terms: %{ field: "#{filter.field}", size: filter.size }
     }}
   end
 end

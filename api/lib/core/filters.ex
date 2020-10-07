@@ -4,12 +4,14 @@ defmodule Api.Core.Filters do
     %{
       field: "project",
       label: %{ de: "Projekt", en: "Project" },
-      labeled_value: false
+      labeled_value: false,
+      size: 1000
     },
     %{
       field: "resource.category",
       label: %{ de: "Kategorie", en: "Category" },
-      labeled_value: true
+      labeled_value: true,
+      size: 1000
     }
   ]
 
