@@ -6,9 +6,12 @@ defmodule Api.Documents.Filter do
   def expand(nil, _), do: nil
   def expand(filters = [_|_], project_conf), do: Enum.map(filters, &(expand_filter(&1, project_conf)))
 
-  defp parse_filter_string(filter_string), do: String.split(filter_string, ":") |> List.to_tuple
+  defp parse_filter_string(filter_string) do
+    [field, value] = String.split(filter_string, ":")
+    {field, [value]}
+  end
 
-  defp expand_filter({"resource.category.name", parent_category}, project_conf) do
+  defp expand_filter({"resource.category.name", [parent_category]}, project_conf) do
     categories = [parent_category] ++
       with %{trees: child_categories_conf} <- Enum.find(project_conf, &(&1.item.name == parent_category))
       do
@@ -18,5 +21,5 @@ defmodule Api.Documents.Filter do
       end
     {"resource.category.name", categories}
   end
-  defp expand_filter({field, value}, _), do: {field, [value]}
+  defp expand_filter({field, value}, _), do: {field, value}
 end
