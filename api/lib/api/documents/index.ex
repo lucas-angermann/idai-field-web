@@ -16,11 +16,7 @@ defmodule Api.Documents.Index do
   end
 
   def search(q, size, from, filters, must_not, exists, readable_projects) do
-    filters = Filter.parse(filters)
-    project_conf = ProjectConfigLoader.get(get_project(filters) |> IO.inspect)
-    filters = Filter.expand(filters, project_conf)
-    must_not = must_not |> Filter.parse |> Filter.expand(project_conf)
-
+    {filters, must_not, project_conf} = preprocess(filters, must_not)
     Query.init(q, size, from)
     |> Query.track_total
     |> Query.add_aggregations()
@@ -33,11 +29,7 @@ defmodule Api.Documents.Index do
   end
 
   def search_geometries(q, filters, must_not, exists, readable_projects) do
-    filters = Filter.parse(filters)
-    project_conf = ProjectConfigLoader.get(get_project(filters))
-    filters = Filter.expand(filters, project_conf)
-    must_not = must_not |> Filter.parse |> Filter.expand(project_conf)
-
+    {filters, must_not, project_conf} = preprocess(filters, must_not)
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters)
     |> Query.add_must_not(must_not)
@@ -47,6 +39,14 @@ defmodule Api.Documents.Index do
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
     |> Mapping.map(project_conf)
+  end
+
+  defp preprocess(filters, must_not) do
+    filters = Filter.parse(filters)
+    project_conf = ProjectConfigLoader.get(get_project(filters))
+    filters = Filter.expand(filters, project_conf)
+    must_not = must_not |> Filter.parse |> Filter.expand(project_conf)
+    {filters, must_not, project_conf}
   end
 
   defp get_project(filters) do
