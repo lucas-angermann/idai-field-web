@@ -21,7 +21,7 @@ defmodule Api.Documents.Index do
     |> Query.track_total
     |> Query.add_aggregations()
     |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
-    |> Query.add_must_not(must_not |> Filter.parse)
+    |> Query.add_must_not(must_not |> Filter.parse |> Filter.expand(project_conf))
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
@@ -32,7 +32,7 @@ defmodule Api.Documents.Index do
     project_conf = ProjectConfigLoader.get("default")
     Query.init(q, @max_geometries)
     |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
-    |> Query.add_must_not(must_not |> Filter.parse)
+    |> Query.add_must_not(must_not |> Filter.parse |> Filter.expand(project_conf))
     |> Query.add_exists(exists)
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)

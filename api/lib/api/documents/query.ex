@@ -22,13 +22,13 @@ defmodule Api.Documents.Query do
 
   def add_filters(query, nil), do: query
   def add_filters(query, filters) do
-    filter = Enum.map(filters, &build_term_query/1)
+    filter = Enum.map(filters, &build_terms_query/1)
     update_in(query.query.bool.filter, &(&1 ++ filter))
   end
 
   def add_must_not(query, nil), do: query
   def add_must_not query, must_not do
-    put_in(query.query.bool.must_not, Enum.map(must_not, &build_term_query/1))
+    put_in(query.query.bool.must_not, Enum.map(must_not, &build_terms_query/1))
   end
 
   def add_exists(query, nil), do: query
@@ -63,8 +63,8 @@ defmodule Api.Documents.Query do
     }
   end
 
-  defp build_term_query({field, value}) do
-    %{ term: %{ field => value }}
+  defp build_terms_query({field, value}) do
+    %{ terms: %{ field => value }}
   end
 
   defp build_exists_query(field) do
