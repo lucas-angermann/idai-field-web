@@ -49,8 +49,12 @@ defmodule Api.Documents.Index do
     {filters, must_not, project_conf}
   end
 
+  defp get_project(nil), do: "default"
   defp get_project(filters) do
-    with [{"project", [project]}] <- filters, do: project, else: (_ -> "default")
+    case Enum.find(filters, fn {field, value} -> field == "project" end) do
+      {"project", [project]} -> project
+      _ -> "default"
+    end
   end
 
   defp build_post_atomize(query) do
