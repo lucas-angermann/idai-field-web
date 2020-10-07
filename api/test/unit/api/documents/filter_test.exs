@@ -9,9 +9,9 @@ defmodule Api.Documents.FilterTest do
     conf = ProjectConfigLoader.get("default")
 
     filters = [
-      {"resource.category.name", "Find"},
-      {"resource.category.name", "Layer"},
-      {"project", "test"}
+      {"resource.category.name", ["Find"]},
+      {"resource.category.name", ["Layer"]},
+      {"project", ["test"]}
     ]
 
     expanded_filters = Filter.expand(filters, conf)
