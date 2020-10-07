@@ -16,12 +16,16 @@ defmodule Api.Documents.Index do
   end
 
   def search q, size, from, filters, must_not, exists, readable_projects do
-    project_conf = ProjectConfigLoader.get("default")
+    filters = Filter.parse(filters)
+    project_conf = ProjectConfigLoader.get(get_project(filters) |> IO.inspect)
+    filters = Filter.expand(filters, project_conf)
+    must_not = must_not |> Filter.parse |> Filter.expand(project_conf)
+
     Query.init(q, size, from)
     |> Query.track_total
     |> Query.add_aggregations()
-    |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
-    |> Query.add_must_not(must_not |> Filter.parse |> Filter.expand(project_conf))
+    |> Query.add_filters(filters)
+    |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
@@ -29,10 +33,14 @@ defmodule Api.Documents.Index do
   end
 
   def search_geometries q, filters, must_not, exists, readable_projects do
-    project_conf = ProjectConfigLoader.get("default")
+    filters = Filter.parse(filters)
+    project_conf = ProjectConfigLoader.get(get_project(filters))
+    filters = Filter.expand(filters, project_conf)
+    must_not = must_not |> Filter.parse |> Filter.expand(project_conf)
+
     Query.init(q, @max_geometries)
-    |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
-    |> Query.add_must_not(must_not |> Filter.parse |> Filter.expand(project_conf))
+    |> Query.add_filters(filters)
+    |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
@@ -41,9 +49,12 @@ defmodule Api.Documents.Index do
     |> Mapping.map(project_conf)
   end
 
+  defp get_project filters do
+    with [{"project", [project]}] <- filters, do: project, else: (_ -> "default")
+  end
+
   defp build_post_atomize query do
     query
-    |> IO.inspect
     |> Query.build
     |> index_adapter().post_query
     |> Core.Utils.atomize_up_to(:_source)
