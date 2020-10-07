@@ -43,6 +43,7 @@ defmodule Api.Documents.Index do
 
   defp build_post_atomize query do
     query
+    |> IO.inspect
     |> Query.build
     |> index_adapter().post_query
     |> Core.Utils.atomize_up_to(:_source)
