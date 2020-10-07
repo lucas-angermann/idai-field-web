@@ -103,15 +103,16 @@ docker-compose.override.yml
 
     version: "3.7"
     
-    cantaloupe:
-        volumes:
-            - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
-            - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+    services:
+        cantaloupe:
+            volumes:
+                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
+                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
             
-    api:
-        volumes:
-            - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
-            - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+        api:    
+            volumes:
+                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
+                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
             
 ### Managing containers
             
