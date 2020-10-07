@@ -15,9 +15,9 @@ defmodule Worker.Enricher.Labels do
     if is_nil(category_definition) do
       raise "No category definition found for category #{resource.category}"
     else
-        Enum.reduce(resource, %{}, add_labels_to_field(category_definition, configuration))
-        |> Enum.into(%{})
-        |> Utils.atomize
+      Enum.reduce(resource, %{}, add_labels_to_field(category_definition, configuration))
+      |> Enum.into(%{})
+      |> Utils.atomize
     end
   end
 
