@@ -14,7 +14,7 @@ defmodule Api.Documents.Router do
       conn.params["q"] || "*",
       conn.params["size"] || 100,
       conn.params["from"] || 0,
-      Filter.parse(conn.params["filters"]),
+      Filter.parse(conn.params["filters"]) |> Filter.expand,
       Filter.parse(conn.params["not"]),
       conn.params["exists"],
       conn.private[:readable_projects]
@@ -24,7 +24,7 @@ defmodule Api.Documents.Router do
   get "/map" do
     send_json(conn, Index.search_geometries(
       conn.params["q"] || "*",
-      Filter.parse(conn.params["filters"]),
+      Filter.parse(conn.params["filters"]) |> Filter.expand,
       Filter.parse(conn.params["not"]),
       conn.params["exists"],
       conn.private[:readable_projects]
