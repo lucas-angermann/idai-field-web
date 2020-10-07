@@ -16,27 +16,29 @@ defmodule Api.Documents.Index do
   end
 
   def search q, size, from, filters, must_not, exists, readable_projects do
+    project_conf = ProjectConfigLoader.get("default")
     Query.init(q, size, from)
     |> Query.track_total
     |> Query.add_aggregations()
-    |> Query.add_filters(filters |> Filter.parse |> Filter.expand)
+    |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
     |> Query.add_must_not(must_not |> Filter.parse)
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
-    |> Mapping.map(ProjectConfigLoader.get("default"))
+    |> Mapping.map(project_conf)
   end
 
   def search_geometries q, filters, must_not, exists, readable_projects do
+    project_conf = ProjectConfigLoader.get("default")
     Query.init(q, @max_geometries)
-    |> Query.add_filters(filters |> Filter.parse |> Filter.expand)
+    |> Query.add_filters(filters |> Filter.parse |> Filter.expand(project_conf))
     |> Query.add_must_not(must_not |> Filter.parse)
     |> Query.add_exists(exists)
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
-    |> Mapping.map(ProjectConfigLoader.get("default"))
+    |> Mapping.map(project_conf)
   end
 
   defp build_post_atomize query do
