@@ -9,13 +9,13 @@ defmodule Api.Documents.Index do
   @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id", "project"]
 
-  def get id do
+  def get(id) do
     Query.init("_id:#{id}", 1)
-    |> build_post_atomize
-    |> Mapping.map_single
+    |> build_post_atomize()
+    |> Mapping.map_single()
   end
 
-  def search q, size, from, filters, must_not, exists, readable_projects do
+  def search(q, size, from, filters, must_not, exists, readable_projects) do
     filters = Filter.parse(filters)
     project_conf = ProjectConfigLoader.get(get_project(filters) |> IO.inspect)
     filters = Filter.expand(filters, project_conf)
@@ -32,7 +32,7 @@ defmodule Api.Documents.Index do
     |> Mapping.map(project_conf)
   end
 
-  def search_geometries q, filters, must_not, exists, readable_projects do
+  def search_geometries(q, filters, must_not, exists, readable_projects) do
     filters = Filter.parse(filters)
     project_conf = ProjectConfigLoader.get(get_project(filters))
     filters = Filter.expand(filters, project_conf)
@@ -49,18 +49,18 @@ defmodule Api.Documents.Index do
     |> Mapping.map(project_conf)
   end
 
-  defp get_project filters do
+  defp get_project(filters) do
     with [{"project", [project]}] <- filters, do: project, else: (_ -> "default")
   end
 
-  defp build_post_atomize query do
+  defp build_post_atomize(query) do
     query
     |> Query.build
     |> index_adapter().post_query
     |> Core.Utils.atomize_up_to(:_source)
   end
 
-  defp index_adapter do
+  defp index_adapter() do
     if Mix.env() == :test do
       Api.Documents.MockIndexAdapter
     else
