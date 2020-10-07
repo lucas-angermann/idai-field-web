@@ -13,6 +13,7 @@ defmodule Worker.Worker do
   def process(db) do
     pid = spawn_link fn -> process_db(db) end
     Logger.info "Spawned indexer #{inspect pid} for #{db}"
+    pid
   end
 
   def process_db(db) do

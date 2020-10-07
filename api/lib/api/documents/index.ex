@@ -15,6 +15,10 @@ defmodule Api.Documents.Index do
     |> Mapping.map_single()
   end
 
+  @doc """
+  filters  - pass nil to set no filters
+  must_not - pass nil to set no must_not filters
+  """
   def search(q, size, from, filters, must_not, exists, readable_projects) do
     {filters, must_not, project_conf} = preprocess(filters, must_not)
     Query.init(q, size, from)
@@ -51,7 +55,7 @@ defmodule Api.Documents.Index do
 
   defp get_project(nil), do: "default"
   defp get_project(filters) do
-    case Enum.find(filters, fn {field, value} -> field == "project" end) do
+    case Enum.find(filters, fn {field, _value} -> field == "project" end) do
       {"project", [project]} -> project
       _ -> "default"
     end

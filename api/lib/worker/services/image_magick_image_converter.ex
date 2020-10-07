@@ -38,7 +38,7 @@ defmodule Worker.Services.ImageMagickImageConverter do
   end
 
   defp img_path(project, image_id) do
-    "#{@imageroot}/#{project}/#{image_id}"
+    "#{@imageroot}/#{project}/#{image_id}" # todo use Path.
   end
 
   @doc """
