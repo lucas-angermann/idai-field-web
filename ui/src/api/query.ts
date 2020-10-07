@@ -43,9 +43,7 @@ export const buildProjectOverviewQueryTemplate = (from: number, size: number): Q
         from,
         not: [
             { field: 'resource.category.name', value: 'Project' },
-            { field: 'resource.category.name', value: 'Image' },
-            { field: 'resource.category.name', value: 'Photo' },
-            { field: 'resource.category.name', value: 'Drawing' }
+            { field: 'resource.category.name', value: 'Image' }
         ]
     };
 
@@ -64,9 +62,7 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
         ],
         not: [
             { field: 'resource.category.name', value: 'Project' },
-            { field: 'resource.category.name', value: 'Image' },
-            { field: 'resource.category.name', value: 'Photo' },
-            { field: 'resource.category.name', value: 'Drawing' }
+            { field: 'resource.category.name', value: 'Image' }
         ]
     };
 
