@@ -27,4 +27,6 @@ defmodule IdaiConsoleLogger do
   defp format_mfa({module, function, arity}) do
     "#{module}.#{function}/#{arity}"
   end
+  defp format_mfa(nil), do: "<no metadata>"
+
  end
