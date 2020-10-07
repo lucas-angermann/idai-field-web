@@ -1,12 +1,16 @@
-defmodule Worker.Services.ImageMagickTiling do
+defmodule Worker.Services.ImageMagickImageConverter do
   
   # todo investigate: "convert: cache resources exhausted `/imageroot/wes/3440aa1a-013c-dba2-c38d-414b96dd5ef1.jpg' @ error/cache.c/OpenPixelCache/4083."
-  
+
+  @im_cmd "convert"
   @imageroot "/imageroot"
   @required_imagemagick_version [6, 9]
   @required_delegates ["jp2", "png", "jpeg"]
-  @source_format_suffix "jp2"
+
   @intermediate_format_suffix "jpg"
+
+  # as we want to provide it with cantaloupe
+  @display_format_suffix "jp2"
 
   def required_version_matches(version, [required_major, required_minor]) do
     [major, minor, _] = String.split(version, ".")
@@ -20,7 +24,7 @@ defmodule Worker.Services.ImageMagickTiling do
   end
 
   def environment_ready() do
-    {result, result_status} = System.cmd("convert", ["--version"])
+    {result, result_status} = System.cmd(@im_cmd, ["--version"])
     lines = String.split(result, "\n")
     [delegates] = Enum.filter(lines, fn line -> String.starts_with?(line, "Delegates") end)
     [_, delegates] = String.split(delegates, ":")
@@ -37,8 +41,48 @@ defmodule Worker.Services.ImageMagickTiling do
     "#{@imageroot}/#{project}/#{image_id}"
   end
 
+  @doc """
+  Converts all files of all projects.
+  See &convert_files/1.
+  """
+  def convert_folders do
+    {:ok, projects} = File.ls @imageroot
+    projects
+    |> Enum.filter(&(File.dir?(Path.join(@imageroot, &1))))
+    |> Enum.map(&convert_files/1)
+  end
+
+  @doc """
+  Converts all files inside an image folder for a given project, as they come from the 'idai-field-client',
+  (which means scrambled image names without suffixes), and converts them to the format
+  which is currently in use to be delivered to the 'ui' by 'cantaloupe'.
+  """
+  def convert_files(project) do
+    project_dir = Path.join([@imageroot, project])
+    converted_dir = Path.join(project_dir, "converted")
+    File.mkdir converted_dir
+    {:ok, files} = File.ls project_dir
+    files
+    |> Enum.filter(&(not String.contains?(&1, ".")))
+    |> Enum.filter(fn file -> not File.dir?(Path.join(project_dir, file)) end)
+    |> Enum.map(&(convert_file(project_dir, converted_dir, &1)))
+  end
+
+  defp convert_file(project_dir, converted_dir, file) do
+    source_file = Path.join(project_dir, file)
+    File.copy source_file, Path.join(converted_dir, file)
+    System.cmd(
+      @im_cmd,
+      [
+        Path.absname(source_file),
+        "#{Path.absname(source_file)}.#{@display_format_suffix}"
+      ]
+    )
+    File.rm source_file
+  end
+
   def exists?(project, image_id) do
-    File.exists?("#{img_path(project, image_id)}.#{@source_format_suffix}")
+    File.exists?("#{img_path(project, image_id)}.#{@display_format_suffix}")
   end
 
   def rescale(project, image_id, rescale) do
@@ -47,9 +91,9 @@ defmodule Worker.Services.ImageMagickTiling do
       [
         "-p", "#{img_path(project, image_id)}"
       ],
-      "convert",
+      @im_cmd,
       [
-        "#{img_path(project, image_id)}.#{@source_format_suffix}",
+        "#{img_path(project, image_id)}.#{@display_format_suffix}",
         "-resize",
         "#{rescale}x#{rescale}",
         "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
@@ -68,11 +112,11 @@ defmodule Worker.Services.ImageMagickTiling do
          %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
 
     {mkdir_cmd, mkdir_args, crop_cmd, crop_args} = {
-      "mkdir",
+      "mkdir", # todo replace with File.
       [
         "-p", "#{img_path(project, image_id)}/#{z_index}/#{x_index}"
       ],
-      "convert",
+      @im_cmd,
       [
         "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}",
         "-quiet", # suppress 'convert: geometry does not contain image', some tiles simply will have no content with tiled rectangular images
