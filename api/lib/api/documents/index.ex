@@ -37,7 +37,7 @@ defmodule Api.Documents.Index do
     |> build_post_atomize
     |> Mapping.map(ProjectConfigLoader.get("default"))
   end
-  
+
   defp build_post_atomize query do
     query
     |> Query.build

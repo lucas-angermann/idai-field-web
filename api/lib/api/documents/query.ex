@@ -63,8 +63,7 @@ defmodule Api.Documents.Query do
     }
   end
 
-  defp build_term_query(field_and_value) do
-    [field, value] = String.split(field_and_value, ":")
+  defp build_term_query({field, value}) do
     %{ term: %{ field => value }}
   end
 

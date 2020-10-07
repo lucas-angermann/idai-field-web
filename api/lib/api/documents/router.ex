@@ -1,6 +1,7 @@
 defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Index
+  alias Api.Documents.Filter
   import Api.RouterUtils
   import Core.Layout
 
@@ -13,8 +14,8 @@ defmodule Api.Documents.Router do
       conn.params["q"] || "*",
       conn.params["size"] || 100,
       conn.params["from"] || 0,
-      conn.params["filters"],
-      conn.params["not"],
+      Filter.parse(conn.params["filters"]),
+      Filter.parse(conn.params["not"]),
       conn.params["exists"],
       conn.private[:readable_projects]
     ))
@@ -23,8 +24,8 @@ defmodule Api.Documents.Router do
   get "/map" do
     send_json(conn, Index.search_geometries(
       conn.params["q"] || "*",
-      conn.params["filters"],
-      conn.params["not"],
+      Filter.parse(conn.params["filters"]),
+      Filter.parse(conn.params["not"]),
       conn.params["exists"],
       conn.private[:readable_projects]
     ))
