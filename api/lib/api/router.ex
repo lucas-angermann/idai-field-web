@@ -1,6 +1,6 @@
 defmodule Api.Router do
   use Plug.Router
-  import Api.RouterUtils, only: [send_json: 2]
+  import RouterUtils, only: [send_json: 2]
 
   plug :match
 
@@ -16,17 +16,9 @@ defmodule Api.Router do
 
   forward("/api/images", to: Api.Images.Router)
 
-  post "/api/reindex" do
-    Task.async fn -> Worker.Worker.process() end
-    send_json(conn, %{ status: "ok", message: "indexing started"})
-  end
-
-  post "api/tiling" do
-    Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation() end
-    send_json(conn, %{ status: "ok", message: "tile generation started"})
-  end
-
   forward("/api/auth", to: Api.Auth.Router)
+
+  forward("/api/worker", to: Worker.Router)
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")

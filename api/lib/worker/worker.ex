@@ -8,13 +8,11 @@ defmodule Worker.Worker do
   alias Core.ProjectConfigLoader
 
   def process do
-
-    Indexer.update_mapping_template()
-
-    for db <- Core.Config.get(:couchdb_databases) do
-      pid = spawn_link fn -> process_db(db) end
-      Logger.info "Spawned indexer #{inspect pid} for #{db}"
-    end
+    for db <- Core.Config.get(:couchdb_databases), do: process(db)
+  end
+  def process(db) do
+    pid = spawn_link fn -> process_db(db) end
+    Logger.info "Spawned indexer #{inspect pid} for #{db}"
   end
 
   def process_db(db) do

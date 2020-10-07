@@ -19,7 +19,8 @@ Start elasticsearch, cantaloupe and the api web service with docker:
 
 Trigger indexing
 
-    $ curl -XPOST localhost:4000/api/reindex
+    $ curl -XPOST localhost:4000/api/worker/update_mapping
+    $ curl -XPOST localhost:4000/api/worker/reindex
     
 or alternatively generate test data
 

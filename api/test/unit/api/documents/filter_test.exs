@@ -1,5 +1,4 @@
 defmodule Api.Documents.FilterTest do
-  import Core.Utils
   alias Api.Documents.Filter
   alias Core.ProjectConfigLoader
   use ExUnit.Case
@@ -21,6 +20,5 @@ defmodule Api.Documents.FilterTest do
       |> (fn find -> Enum.map(find.trees, &(&1.item.name)) end).()
 
     assert Enum.all?(subcategories, &(&1 in expanded_categories))
-
   end
 end

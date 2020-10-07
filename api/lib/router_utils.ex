@@ -1,4 +1,4 @@
-defmodule Api.RouterUtils do
+defmodule RouterUtils do
   import Plug.Conn, only: [put_resp_content_type: 2, send_resp: 3]
 
   def send_json(conn, %{error: "bad_request"} = error) do

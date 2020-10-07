@@ -1,6 +1,6 @@
 defmodule Api.Auth.Router do
   use Plug.Router
-  import Api.RouterUtils, only: [send_json: 2]
+  import RouterUtils, only: [send_json: 2]
   alias Api.Auth.Bearer
   alias Api.Auth.Guardian
 

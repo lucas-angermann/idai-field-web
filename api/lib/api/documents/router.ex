@@ -1,7 +1,7 @@
 defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Index
-  import Api.RouterUtils
+  import RouterUtils
   import Core.Layout
 
   plug :match
