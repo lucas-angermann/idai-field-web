@@ -2,6 +2,7 @@ defmodule Api.Documents.Index do
   require Logger
   alias Api.Documents.Mapping
   alias Api.Documents.Query
+  alias Api.Documents.Filter
   alias Core.ProjectConfigLoader
 
   @max_geometries 10000
@@ -18,8 +19,8 @@ defmodule Api.Documents.Index do
     Query.init(q, size, from)
     |> Query.track_total
     |> Query.add_aggregations()
-    |> Query.add_filters(filters)
-    |> Query.add_must_not(must_not)
+    |> Query.add_filters(filters |> Filter.parse |> Filter.expand)
+    |> Query.add_must_not(must_not |> Filter.parse)
     |> Query.add_exists(exists)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
@@ -28,8 +29,8 @@ defmodule Api.Documents.Index do
 
   def search_geometries q, filters, must_not, exists, readable_projects do
     Query.init(q, @max_geometries)
-    |> Query.add_filters(filters)
-    |> Query.add_must_not(must_not)
+    |> Query.add_filters(filters |> Filter.parse |> Filter.expand)
+    |> Query.add_must_not(must_not |> Filter.parse)
     |> Query.add_exists(exists)
     |> Query.add_exists(@exists_geometries)
     |> Query.only_fields(@fields_geometries)
