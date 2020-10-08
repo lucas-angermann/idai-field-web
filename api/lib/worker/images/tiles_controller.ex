@@ -3,11 +3,11 @@ defmodule Worker.Images.TilesController do
   alias Core.Config
   alias Worker.Images.TilesCreator
 
-  def trigger_tile_calculation do
+  def make_tiles do
     projects = Config.get(:couchdb_databases)
-    trigger_tile_calculation(projects)
+    make_tiles(projects)
   end
-  def trigger_tile_calculation(projects) do
+  def make_tiles(projects) do
     entries = projects
     |> Enum.flat_map(&tiles_for_project/1)
     Enum.map(entries, &TilesCreator.create_tiles/1)

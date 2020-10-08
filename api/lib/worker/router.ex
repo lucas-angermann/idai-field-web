@@ -11,10 +11,8 @@ defmodule Worker.Router do
       pid = Worker.WorkerController.process(project)
       Process.monitor pid
       receive do
-        _ -> Logger.info "Convert images for '#{project}'"
-             Worker.Images.ImageMagickImageConverter.convert_files(project) # todo this should be done via a controller
-             Logger.info "Generate tiles for '#{project}'"
-             Worker.Images.TilesController.trigger_tile_calculation([project])
+        _ -> Worker.Images.ConversionController.convert_images_for_project(project)
+             Worker.Images.TilesController.make_tiles([project])
       end
     end
     send_json(conn, %{ status: "ok", message: "Start publishing '#{project}'"})
@@ -37,13 +35,13 @@ defmodule Worker.Router do
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling" do
-    Task.async fn -> Worker.Images.TilesController.trigger_tile_calculation() end
+    Task.async fn -> Worker.Images.TilesController.make_tiles() end
     send_json(conn, %{ status: "ok", message: "Tile generation started"})
   end
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling/:project" do
-    Task.async fn -> Worker.Images.TilesController.trigger_tile_calculation([project]) end
+    Task.async fn -> Worker.Images.TilesController.make_tiles([project]) end
     send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
   end
 
