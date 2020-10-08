@@ -6,8 +6,6 @@ defmodule Worker.Images.ImageMagickImageConverter do
   * and shell commands
   """
 
-  require Logger
-
   @im_cmd "convert"
   @imageroot "/imageroot"
   @required_imagemagick_version [6, 9]
@@ -48,20 +46,6 @@ defmodule Worker.Images.ImageMagickImageConverter do
   end
 
   @doc """
-  Converts all files of all projects.
-  See &convert_files/1.
-  """
-  def convert_folders do
-
-    # todo move to images_converter
-
-    {:ok, projects} = File.ls @imageroot
-    projects
-    |> Enum.filter(&(File.dir?(Path.join(@imageroot, &1))))
-    |> Enum.map(&convert_files/1)
-  end
-
-  @doc """
   Converts all files inside the image folder for a given project (there under 'sources'),
   as they come from the 'idai-field-client',
   (which means scrambled image names without suffixes), and converts them to the format
@@ -71,22 +55,19 @@ defmodule Worker.Images.ImageMagickImageConverter do
     project_dir = Path.join([@imageroot, project])
     sources_dir = Path.join(project_dir, "sources")
 
-    if (not File.dir?(sources_dir)) do
-      Logger.error "Sources dir does not exist for '#{project}'"
-    else
-      {:ok, files_and_folders} = File.ls sources_dir                             # files (and folders) in sources dir
-      files_and_folders
-      |> Enum.filter(&(not String.contains?(&1, ".")))                           # without file extension
-      |> Enum.filter(fn file -> not File.dir?(Path.join(sources_dir, file)) end) # only files
-      |> Enum.map(&(convert_file(sources_dir, project_dir, &1, @display_format_suffix)))
-    end
+    if (not sources_exist?(project)), do: raise "Sources do not exist for '#{project}'"
+
+    {:ok, files_and_folders} = File.ls sources_dir                             # files (and folders) in sources dir
+    files_and_folders
+    |> Enum.filter(&(not String.contains?(&1, ".")))                           # without file extension
+    |> Enum.filter(fn file -> not File.dir?(Path.join(sources_dir, file)) end) # only files
+    |> Enum.map(&(convert_file(sources_dir, project_dir, &1, @display_format_suffix)))
   end
 
   # Returns 0 if everything went fine
   defp convert_file(sources_dir, project_dir, file, display_format_suffix) do
     source_file_path = Path.absname(Path.join(sources_dir, file))
     target_file_path = Path.absname(Path.join(project_dir, [file, ".", display_format_suffix]))
-    Logger.info "Convert #{source_file_path} to #{target_file_path}"
     {_, status} = System.cmd(@im_cmd, [source_file_path, target_file_path])
     status
   end

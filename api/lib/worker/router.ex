@@ -12,9 +12,9 @@ defmodule Worker.Router do
       Process.monitor pid
       receive do
         _ -> Logger.info "Convert images for '#{project}'"
-             Worker.Images.ImageMagickImageConverter.convert_files(project)
+             Worker.Images.ImageMagickImageConverter.convert_files(project) # todo this should be done via a controller
              Logger.info "Generate tiles for '#{project}'"
-             Worker.Images.Tiles.trigger_tile_calculation([project])
+             Worker.Images.TilesController.trigger_tile_calculation([project])
       end
     end
     send_json(conn, %{ status: "ok", message: "Start publishing '#{project}'"})
