@@ -7,6 +7,7 @@ defmodule Worker.Enricher.Children do
   defp add_children_count(change = %{ doc: %{ resource: %{ id: id } } }, counts) do
     put_in(change, [:doc, :resource, :childrenCount], if counts[id] != nil do counts[id] else 0 end)
   end
+  defp add_children_count(change, _), do: change
 
   defp get_children_counts(changes) do
     Enum.reduce(changes, %{}, &update_count/2)
