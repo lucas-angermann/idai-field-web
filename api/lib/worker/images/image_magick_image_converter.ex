@@ -114,11 +114,10 @@ defmodule Worker.Images.ImageMagickImageConverter do
          z_index,
          %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
 
-    {mkdir_cmd, mkdir_args, crop_cmd, crop_args} = {
-      "mkdir", # todo replace with File.
-      [
-        "-p", "#{img_path(project, image_id)}/#{z_index}/#{x_index}"
-      ],
+    x_folder = Path.join [@imageroot, project, image_id, z_index, x_index]
+    File.mkdir_p x_folder
+
+    {cmd, args} = {
       @im_cmd,
       [
         "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}",
@@ -129,8 +128,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
         "#{img_path(project, image_id)}/#{z_index}/#{x_index}/#{y_index}.png"
       ]
     }
-    System.cmd(mkdir_cmd, mkdir_args)
-    {_, status} = System.cmd(crop_cmd, crop_args)
+    {_, status} = System.cmd(cmd, args)
     status
   end
 end
