@@ -1,4 +1,4 @@
-defmodule Worker.Worker do
+defmodule Worker.WorkerController do
   require Logger
 
   alias Worker.Indexer

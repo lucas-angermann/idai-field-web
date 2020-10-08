@@ -8,7 +8,7 @@ defmodule Worker.Router do
 
   post "/publish/:project" do
     Task.async fn ->
-      pid = Worker.Worker.process(project)
+      pid = Worker.WorkerController.process(project)
       Process.monitor pid
       receive do
         _ -> Logger.info "Convert images for '#{project}'"
@@ -26,12 +26,12 @@ defmodule Worker.Router do
   end
 
   post "/reindex" do
-    Task.async fn -> Worker.Worker.process() end
+    Task.async fn -> Worker.WorkerController.process() end
     send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
   end
 
   post "/reindex/:project" do
-    Task.async fn -> Worker.Worker.process(project) end
+    Task.async fn -> Worker.WorkerController.process(project) end
     send_json(conn, %{ status: "ok", message: "Start indexing '#{project}'"})
   end
 
