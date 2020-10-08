@@ -93,7 +93,6 @@ defmodule Worker.Images.ImageMagickImageConverter do
   def rescale(project, image_id, rescale) do
     source_img = Path.join([@imageroot, project, "sources", image_id])
     target_dir = Path.join([@imageroot, project, image_id])
-    File.mkdir_p target_dir
 
     {cmd, args} = {
       @im_cmd,
