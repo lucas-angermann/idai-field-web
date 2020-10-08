@@ -1,12 +1,12 @@
-import { mdiCloseCircle } from "@mdi/js";
-import Icon from "@mdi/react";
-import React, { ReactElement, ReactNode } from "react";
-import { ButtonGroup, Dropdown } from "react-bootstrap";
-import { LabeledValue } from "../api/document";
-import { deleteFilterFromParams } from "../api/query";
-import { FilterBucket, FilterBucketTreeNode, ResultFilter } from "../api/result";
-import { getLabel } from "../languages";
-import LinkButton from "../LinkButton";
+import { mdiCloseCircle } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { ReactElement, ReactNode } from 'react';
+import { ButtonGroup, Dropdown } from 'react-bootstrap';
+import { LabeledValue } from '../api/document';
+import { deleteFilterFromParams } from '../api/query';
+import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result';
+import { getLabel } from '../languages';
+import LinkButton from '../LinkButton';
 
 export default function FilterDropdown({ filter, params, children }
         : { filter: ResultFilter, params: URLSearchParams, children: ReactNode }): ReactElement {
