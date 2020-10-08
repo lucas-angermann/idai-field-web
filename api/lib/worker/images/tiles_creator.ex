@@ -15,7 +15,7 @@ defmodule Worker.Images.TilesCreator do
     else
       template = create_template(Enum.max([width, height]), @tile_size)
 
-      if (rescale_images(template, project, image_id) != 0) do
+      if (rescale_images(template, project, image_id) == false) do
         Logger.error("Could not rescale all images for '#{image_id}' in preparation of tiling. Skip tile generation")
       else
         generate_tiles(template, project, image_id)
@@ -34,9 +34,9 @@ defmodule Worker.Images.TilesCreator do
     end)
   end
 
-  # Returns 0 if everything went fine.
+  # Returns true if everything went fine.
   defp rescale_images(template, project, image_id) do
-    Enum.map(
+    (Enum.map(
       template,
       fn {{rescale, _entries}, _z} ->
         Logger.info "Rescale to #{floor(rescale)}"
@@ -44,7 +44,7 @@ defmodule Worker.Images.TilesCreator do
       end
     )
     |> Enum.filter(&(&1 != 0))
-    |> Enum.count
+    |> Enum.count) == 0
   end
 
   defp create_template(image_size, tile_size) do

@@ -64,12 +64,12 @@ defmodule Worker.Images.ImageMagickImageConverter do
     |> Enum.map(&(convert_file(sources_dir, project_dir, &1, @display_format_suffix)))
   end
 
-  # Returns 0 if everything went fine
+  # Returns true if everything went fine
   defp convert_file(sources_dir, project_dir, file, display_format_suffix) do
     source_file_path = Path.absname(Path.join(sources_dir, file))
     target_file_path = Path.absname(Path.join(project_dir, [file, ".", display_format_suffix]))
     {_, status} = System.cmd(@im_cmd, [source_file_path, target_file_path])
-    status
+    status == 0
   end
 
   def source_exists?(project, image_id) do
