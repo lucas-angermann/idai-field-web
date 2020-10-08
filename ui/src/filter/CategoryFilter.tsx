@@ -45,7 +45,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
 
 
 const filterValueStyle = (level: number): CSSProperties => ({
-    width: '350px',
+    width: '400px',
     paddingLeft: `${level * 1.2}em`
 });
 

@@ -1,10 +1,11 @@
 import { mdiCloseCircle } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { ReactElement, ReactNode } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { ButtonGroup, Dropdown } from 'react-bootstrap';
 import { LabeledValue } from '../api/document';
 import { deleteFilterFromParams } from '../api/query';
 import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result';
+import { SIDEBAR_WIDTH } from '../constants';
 import { getLabel } from '../languages';
 import LinkButton from '../LinkButton';
 
@@ -14,7 +15,7 @@ export default function FilterDropdown({ filter, params, children }
     return <>
         <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
             { renderFilterDropdownToggle(filter, params) }
-            <Dropdown.Menu>
+            <Dropdown.Menu style={ dropdownMenuStyles }>
                 <Dropdown.Header><h3>{ getLabel(filter) }</h3></Dropdown.Header>
                 { children }
             </Dropdown.Menu>
@@ -63,4 +64,10 @@ const getBucketValue = (bucket: FilterBucket | FilterBucketTreeNode): LabeledVal
 
     if ((bucket as FilterBucketTreeNode).item) bucket = (bucket as FilterBucketTreeNode).item;
     return (bucket as FilterBucket).value;
+};
+
+
+const dropdownMenuStyles: CSSProperties = {
+    maxHeight: `calc(100vh - 200px)`,
+    overflow: 'auto'
 };
