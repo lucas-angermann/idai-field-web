@@ -89,7 +89,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
   We convert from the original resources because it is faster than converting from jp2.
   """
   def rescale(project, image_id, rescale) do
-    source_img = Path.join([@imageroot, project, "converted", image_id])
+    source_img = Path.join([@imageroot, project, "sources", image_id])
     target_dir = Path.join([@imageroot, project, image_id])
     File.mkdir_p target_dir
 
