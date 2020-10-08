@@ -11,7 +11,7 @@ defmodule Worker.Enricher.Enricher do
   end
 
   defp process_changes(changes, project, get_for_id, configuration) do
-    Enum.map(changes, &process(&1, project, get_for_id, configuration))
+    Enum.map(changes, &process_change(&1, project, get_for_id, configuration))
   end
 
   defp process_change(change = %{ deleted: true }, _project, _get_for_id, _configuration), do: change
