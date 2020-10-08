@@ -16,7 +16,7 @@ defmodule Worker.Images.TilesCreator do
       template = create_template(Enum.max([width, height]), @tile_size)
 
       if (rescale_images(template, project, image_id) == false) do
-        Logger.error("Could not rescale all images for '#{image_id}' in preparation of tiling. Skip tile generation")
+        Logger.error "Could not rescale all images for '#{image_id}' in preparation of tiling. Skip tile generation"
       else
         generate_tiles(template, project, image_id)
         Logger.info "Successfully generated tiles for #{project}/#{image_id}"
