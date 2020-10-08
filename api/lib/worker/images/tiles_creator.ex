@@ -43,7 +43,7 @@ defmodule Worker.Images.TilesCreator do
         ImageMagickImageConverter.rescale(project, image_id, floor(rescale))
       end
     )
-    |> Enum.filter(&(&1 != 0))
+    |> Enum.filter(&(&1 != true))
     |> Enum.count) == 0
   end
 

@@ -82,7 +82,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
   end
 
   @doc """
-  Takes an image from the 'converted images directory'
+  Takes an image from the 'sources images directory'
   and puts it into the 'tiled directory' for that image.
   Adds a suffix.
 
@@ -103,7 +103,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
       ]
     }
     {_, status} = System.cmd(cmd, args)
-    status
+    status == 0
   end
 
   def crop(
