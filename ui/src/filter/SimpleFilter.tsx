@@ -34,5 +34,5 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
 
 
 const filterValueStyle: CSSProperties = {
-    width: '400px'
+    width: '365px',
 };
