@@ -38,6 +38,10 @@
                         "type": "geo_shape",
                         "coerce": true
                     },
+                    "childrenCount": {
+                        "type": "integer",
+                        "store": true
+                    },
                     "material": {
                         "properties": {
                             "name": {
