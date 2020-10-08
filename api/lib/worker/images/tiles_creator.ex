@@ -10,8 +10,7 @@ defmodule Worker.Images.TilesCreator do
     Logger.info "Start generating tiles for #{project}/#{image_id}"
     unless ImageMagickImageConverter.source_exists?(project, image_id)
     do
-      Logger.warn "Cannot generate tile for '#{image_id}' of '#{project}'. Source image not found in 'converted' folder. "
-                  <> "Conversions are expected to be done first, so that the originals should be there."
+      Logger.warn "Cannot generate tile for '#{image_id}' of '#{project}'. Source image not found in 'sources' folder"
     else
       template = create_template(Enum.max([width, height]), @tile_size)
 
