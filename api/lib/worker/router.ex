@@ -38,7 +38,13 @@ defmodule Worker.Router do
   # Prerequisite: Run reindex, run conversion
   post "/tiling" do
     Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation() end
-    send_json(conn, %{ status: "ok", message: "tile generation started"})
+    send_json(conn, %{ status: "ok", message: "Tile generation started"})
+  end
+
+  # Prerequisite: Run reindex, run conversion
+  post "/tiling/:project" do
+    Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation([project]) end
+    send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
   end
 
   post "/conversion" do
