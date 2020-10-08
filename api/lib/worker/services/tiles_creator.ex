@@ -7,21 +7,44 @@ defmodule Worker.Services.TilesCreator do
 
   def create_tiles({project, image_id, image_size}), do: create_tiles(project, image_id, image_size)
   def create_tiles(project, image_id, {width, height}) do
-    unless ImageMagickImageConverter.exists?(project, image_id)
+    Logger.info "Start generating tiles for #{project}/#{image_id}"
+    unless ImageMagickImageConverter.tile_source_exists?(project, image_id)
     do
-      Logger.error "Cannot generate tile for #{project}/#{image_id}. Source image not found."
+      Logger.warn "Cannot generate tile for '#{image_id}' of '#{project}'. Source image not found in 'converted' folder. "
+                  <> "Conversions are expected to be done first, so that the originals should be there."
     else
       template = create_template(Enum.max([width, height]), @tile_size)
-      Enum.map(template, fn {{rescale, entries}, z} ->
-        ImageMagickImageConverter.rescale(project, image_id, floor(rescale))
-        Enum.map(entries,
-          fn entry ->
-            ImageMagickImageConverter.crop(project, @tile_size, image_id, floor(rescale), z, entry)
-            nil
-          end)
-      end)
-      Logger.info "Successfully generated tiles for #{project}/#{image_id}."
+
+      if (rescale_images(template, project, image_id) != 0) do
+        Logger.error("Could not rescale all images for '#{image_id}' in preparation of tiling. Skip tile generation")
+      else
+        generate_tiles(template, project, image_id)
+        Logger.info "Successfully generated tiles for #{project}/#{image_id}"
+      end
     end
+  end
+
+  defp generate_tiles(template, project, image_id) do
+    Enum.map(template, fn {{rescale, entries}, z} ->
+      Enum.map(entries,
+        fn entry ->
+          ImageMagickImageConverter.crop(project, @tile_size, image_id, floor(rescale), z, entry)
+          nil
+        end)
+    end)
+  end
+
+  # Returns 0 if everything went fine.
+  defp rescale_images(template, project, image_id) do
+    Enum.map(
+      template,
+      fn {{rescale, _entries}, _z} ->
+        Logger.info "Rescale to #{floor(rescale)}"
+        ImageMagickImageConverter.rescale(project, image_id, floor(rescale))
+      end
+    )
+    |> Enum.filter(&(&1 != 0))
+    |> Enum.count
   end
 
   defp create_template(image_size, tile_size) do

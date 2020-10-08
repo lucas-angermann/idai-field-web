@@ -1,6 +1,4 @@
 defmodule Worker.Services.ImageMagickImageConverter do
-  
-  # todo investigate: "convert: cache resources exhausted `/imageroot/wes/3440aa1a-013c-dba2-c38d-414b96dd5ef1.jpg' @ error/cache.c/OpenPixelCache/4083."
 
   @im_cmd "convert"
   @imageroot "/imageroot"
@@ -81,26 +79,33 @@ defmodule Worker.Services.ImageMagickImageConverter do
     File.rm source_file
   end
 
-  def exists?(project, image_id) do
-    File.exists?("#{img_path(project, image_id)}.#{@display_format_suffix}")
+  def tile_source_exists?(project, image_id) do
+    File.exists?(Path.join([@imageroot, project, "converted", image_id]))
   end
 
+  @doc """
+  Takes an image from the 'converted images directory'
+  and puts it into the 'tiled directory' for that image.
+  Adds a suffix.
+
+  We convert from the original resources because it is faster than converting from jp2.
+  """
   def rescale(project, image_id, rescale) do
-    {mkdir_cmd, mkdir_args, rescale_cmd, rescale_args} = {
-      "mkdir",
-      [
-        "-p", "#{img_path(project, image_id)}"
-      ],
+    source_img = Path.join([@imageroot, project, "converted", image_id])
+    target_dir = Path.join([@imageroot, project, image_id])
+    File.mkdir_p target_dir
+
+    {cmd, args} = {
       @im_cmd,
       [
-        "#{img_path(project, image_id)}.#{@display_format_suffix}",
+        Path.absname(source_img),
         "-resize",
         "#{rescale}x#{rescale}",
         "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
       ]
     }
-    System.cmd(mkdir_cmd, mkdir_args)
-    System.cmd(rescale_cmd, rescale_args)
+    {_, status} = System.cmd(cmd, args)
+    status
   end
 
   def crop(
@@ -127,6 +132,7 @@ defmodule Worker.Services.ImageMagickImageConverter do
       ]
     }
     System.cmd(mkdir_cmd, mkdir_args)
-    System.cmd(crop_cmd, crop_args)
+    {_, status} = System.cmd(crop_cmd, crop_args)
+    status
   end
 end
