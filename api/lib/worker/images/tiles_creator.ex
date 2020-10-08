@@ -1,14 +1,14 @@
-defmodule Worker.Services.TilesCreator do
+defmodule Worker.Images.TilesCreator do
 
   require Logger
-  alias Worker.Services.ImageMagickImageConverter
+  alias Worker.Images.ImageMagickImageConverter
 
   @tile_size 256
 
   def create_tiles({project, image_id, image_size}), do: create_tiles(project, image_id, image_size)
   def create_tiles(project, image_id, {width, height}) do
     Logger.info "Start generating tiles for #{project}/#{image_id}"
-    unless ImageMagickImageConverter.tile_source_exists?(project, image_id)
+    unless ImageMagickImageConverter.source_exists?(project, image_id)
     do
       Logger.warn "Cannot generate tile for '#{image_id}' of '#{project}'. Source image not found in 'converted' folder. "
                   <> "Conversions are expected to be done first, so that the originals should be there."

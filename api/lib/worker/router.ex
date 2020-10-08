@@ -12,9 +12,9 @@ defmodule Worker.Router do
       Process.monitor pid
       receive do
         _ -> Logger.info "Convert images for '#{project}'"
-             Worker.Services.ImageMagickImageConverter.convert_files(project)
+             Worker.Images.ImageMagickImageConverter.convert_files(project)
              Logger.info "Generate tiles for '#{project}'"
-             Worker.Services.Tiles.trigger_tile_calculation([project])
+             Worker.Images.Tiles.trigger_tile_calculation([project])
       end
     end
     send_json(conn, %{ status: "ok", message: "Start publishing '#{project}'"})
@@ -37,23 +37,23 @@ defmodule Worker.Router do
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling" do
-    Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation() end
+    Task.async fn -> Worker.Images.TilesController.trigger_tile_calculation() end
     send_json(conn, %{ status: "ok", message: "Tile generation started"})
   end
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling/:project" do
-    Task.async fn -> Worker.Services.Tiles.trigger_tile_calculation([project]) end
+    Task.async fn -> Worker.Images.TilesController.trigger_tile_calculation([project]) end
     send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
   end
 
   post "/conversion" do
-    Task.async fn -> Worker.Services.ImageMagickImageConverter.convert_folders() end
+    Task.async fn -> Worker.Images.ConversionController.convert_images_for_all_projects() end
     send_json(conn, %{ status: "ok", message: "Started to convert all images of all projects"})
   end
 
   post "/conversion/:project" do
-    Task.async fn -> Worker.Services.ImageMagickImageConverter.convert_files(project) end
+    Task.async fn -> Worker.Images.ConversionController.convert_images_for_project(project) end
     send_json(conn, %{ status: "ok", message: "Started to convert all images of '#{project}'"})
   end
 end

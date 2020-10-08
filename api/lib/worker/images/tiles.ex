@@ -1,7 +1,7 @@
-defmodule Worker.Services.Tiles do
+defmodule Worker.Images.TilesController do
 
   alias Core.Config
-  alias Worker.Services.TilesCreator
+  alias Worker.Images.TilesCreator
 
   def trigger_tile_calculation do
     projects = Config.get(:couchdb_databases)
