@@ -91,19 +91,20 @@ defmodule Worker.Images.ImageMagickImageConverter do
   Returns true if everything went fine
   """
   def rescale(project, image_id, rescale) do
-    source_img = Path.join([@imageroot, project, "sources", image_id])
+    source_img_path = Path.absname(Path.join([@imageroot, project, "sources", image_id]))
     target_dir = Path.join([@imageroot, project, image_id])
-
+    File.mkdir_p target_dir # todo do in caller
+    
     {cmd, args} = {
       @im_cmd,
       [
-        Path.absname(source_img),
-        "-resize",
+        source_img_path,
+        "-scale",
         "#{rescale}x#{rescale}",
         "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
       ]
     }
-    {_, status} = System.cmd(cmd, args)
+    {_, status} = System.cmd cmd, args
     status == 0
   end
 
@@ -114,8 +115,16 @@ defmodule Worker.Images.ImageMagickImageConverter do
          rescale,
          z_index,
          %{x_index: x_index, y_index: y_index, x_pos: x_pos, y_pos: y_pos}) do
-
-    x_folder = Path.join [@imageroot, project, image_id, z_index, x_index]
+  
+    x_folder = Path.join(
+      [
+        @imageroot,
+        project,
+        image_id,
+        Integer.to_string(z_index),
+        Integer.to_string(x_index)
+      ]
+    )
     File.mkdir_p x_folder
 
     {cmd, args} = {
@@ -129,7 +138,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
         "#{img_path(project, image_id)}/#{z_index}/#{x_index}/#{y_index}.png"
       ]
     }
-    {_, status} = System.cmd(cmd, args)
+    {_, status} = System.cmd cmd, args
     status
   end
 end
