@@ -1,11 +1,9 @@
 defmodule Worker.Enricher.RelationsTest do
-
   use ExUnit.Case
   use Plug.Test
-
   alias Worker.Enricher.Relations
 
-  test "base" do
+  test "expand relations" do
     get =
       fn _ -> %{
                 resource: %{
@@ -31,5 +29,79 @@ defmodule Worker.Enricher.RelationsTest do
 
     assert targets == [
       %{ resource: %{category: "Feature", id: "1", identifier: "i1" }}]
+  end
+
+  test "add child_of relation for resource with liesWithin relation" do
+    %{ doc: %{ resource: %{ relations: relations } } } = Relations.add_child_of_relations(%{
+      doc: %{
+        resource: %{
+          id: "1",
+          identifier: "i1",
+          type: "Feature",
+          relations: %{
+            "liesWithin" => ["2"]
+          }
+        }
+      }
+    })
+
+    assert relations["isChildOf"] === ["2"]
+    assert relations["liesWithin"] === ["2"]
+  end
+
+  test "add child_of relation for resource with isRecordedIn relation" do
+    %{ doc: %{ resource: %{ relations: relations } } } = Relations.add_child_of_relations(%{
+      doc: %{
+        resource: %{
+          id: "1",
+          identifier: "i1",
+          type: "Feature",
+          relations: %{
+            "isRecordedIn" => ["2"]
+          }
+        }
+      }
+    })
+
+    assert relations["isChildOf"] === ["2"]
+    assert relations["isRecordedIn"] === ["2"]
+  end
+
+  test "add child_of relation for resource with liesWithin & isRecordedIn relation" do
+    %{ doc: %{ resource: %{ relations: relations } } } = Relations.add_child_of_relations(%{
+      doc: %{
+        resource: %{
+          id: "1",
+          identifier: "i1",
+          type: "Feature",
+          relations: %{
+            "isRecordedIn" => ["2"],
+            "liesWithin" => ["3"]
+          }
+        }
+      }
+    })
+
+    assert relations["isChildOf"] === ["3"]
+    assert relations["isRecordedIn"] === ["2"]
+    assert relations["liesWithin"] === ["3"]
+  end
+
+  test "do not add child_of relation for resource without liesWithin & isRecordedIn relation" do
+    %{ doc: %{ resource: %{ relations: relations } } } = Relations.add_child_of_relations(%{
+      doc: %{
+        resource: %{
+          id: "1",
+          identifier: "i1",
+          type: "Feature",
+          relations: %{
+            "isAbove" => ["2"]
+          }
+        }
+      }
+    })
+
+    assert !Map.has_key?(relations, "isChildOf")
+    assert relations["isAbove"] === ["2"]
   end
 end

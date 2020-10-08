@@ -21,7 +21,7 @@ defmodule Worker.Worker do
     IdaiFieldDb.fetch_changes(db)
     |> Enum.map(Mapper.process)
     |> log_finished("mapping", db)
-    |> Enum.map(Enricher.process(db, IdaiFieldDb.get_doc(db), configuration))
+    |> Enricher.process(db, IdaiFieldDb.get_doc(db), configuration)
     |> log_finished("enriching", db)
     |> Enum.map(Indexer.process(db))
     |> log_finished("indexing", db)

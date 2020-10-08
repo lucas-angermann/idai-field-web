@@ -3,8 +3,27 @@ defmodule Worker.Enricher.Relations do
 
   @result_document_properties [:shortDescription, :id, :type, :category, :identifier]
 
+  def add_child_of_relations(change = %{ doc: %{ resource: %{ relations: relations }}}) do
+    put_child_of_relation(change, get_child_of_relation_targets(relations))
+  end
+  def add_child_of_relations(change), do: change
+
   def expand(change = %{ doc: %{ resource: %{ relations: relations }}}, get_for_id) do
     put_in(change.doc.resource.relations, Enum.map(relations, &(expand_relation(&1, get_for_id))) |> Enum.into(%{}))
+  end
+  def expand(change, _), do: change
+
+  defp get_child_of_relation_targets(relations) do
+    case relations do
+      %{ "liesWithin" => targets } -> targets
+      %{ "isRecordedIn" => targets } -> targets
+      _ -> nil
+    end
+  end
+
+  defp put_child_of_relation(change, nil), do: change
+  defp put_child_of_relation(change = %{ doc: %{ resource: %{ relations: relations }}}, targets) do
+    put_in(change.doc.resource.relations, Map.put(relations, "isChildOf", targets))
   end
 
   defp expand_relation({ name, targets }, get_for_id) do

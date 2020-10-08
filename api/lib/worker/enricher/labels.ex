@@ -9,6 +9,7 @@ defmodule Worker.Enricher.Labels do
   def add_labels(change = %{ doc: %{ resource: resource } }, configuration) do
     put_in(change.doc.resource, add_labels_to_resource(resource, configuration))
   end
+  def add_labels(change, _), do: change
 
   defp add_labels_to_resource(resource, configuration) do
     category_definition = CategoryTreeList.find_by_name(resource.category, configuration)
