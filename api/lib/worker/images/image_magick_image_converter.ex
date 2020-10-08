@@ -87,6 +87,8 @@ defmodule Worker.Images.ImageMagickImageConverter do
   Adds a suffix.
 
   We convert from the original resources because it is faster than converting from jp2.
+
+  Returns true if everything went fine
   """
   def rescale(project, image_id, rescale) do
     source_img = Path.join([@imageroot, project, "sources", image_id])
