@@ -1,12 +1,12 @@
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Dropdown, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { addFilterToParams } from '../api/query';
 import { FilterBucketTreeNode, ResultFilter } from '../api/result';
 import CategoryIcon from '../document/CategoryIcon';
 import { getLabel } from '../languages';
 import CloseButton from './CloseButton';
 import FilterDropdown from './FilterDropdown';
+import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
 export default function CategoryFilter({ filter, searchParams }
@@ -28,13 +28,16 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
         <Dropdown.Item
                 as={ Link }
                 style={ filterValueStyle(level) }
-                to={ '?' + addFilterToParams(params, key, bucket.item.value.name) }>
+                to={ '?' + buildParamsForFilterValue(params, key, bucket.item.value.name) }>
             <Row>
                 <Col xs={ 1 }><CategoryIcon category={ bucket.item.value }
                                             size="30" /></Col>
                 <Col style={ categoryLabelStyle }>
                     { getLabel(bucket.item.value) }
-                    <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
+                    {
+                        isFilterValueInParams(params, key, bucket.item.value.name)
+                        && <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
+                    }
                 </Col>
                 <Col xs={ 1 }><span className="float-right"><em>{ bucket.item.count }</em></span></Col>
             </Row>

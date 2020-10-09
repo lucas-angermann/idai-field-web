@@ -5,7 +5,6 @@ import { ButtonGroup, Dropdown } from 'react-bootstrap';
 import { LabeledValue } from '../api/document';
 import { deleteFilterFromParams } from '../api/query';
 import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result';
-import { SIDEBAR_WIDTH } from '../constants';
 import { getLabel } from '../languages';
 import LinkButton from '../LinkButton';
 

@@ -7,11 +7,10 @@ import LinkButton from '../LinkButton';
 export default function CloseButton({ params, filterKey, value }
         : { params: URLSearchParams, filterKey: string, value: string }): ReactElement {
 
-    return (params.has(filterKey + '.name') && params.getAll(filterKey + '.name').includes(value)) &&
-        <LinkButton
-                to={ '?' + deleteFilterFromParams(params, filterKey, value) }
-                variant="link"
-                style={ { padding: 0, verticalAlign: 'baseline' } }>
-            <Icon path={ mdiCloseCircle } size={ 0.8 }/>
-        </LinkButton>;
+    return <LinkButton
+            to={ '?' + deleteFilterFromParams(params, filterKey, value) }
+            variant="link"
+            style={ { padding: 0, verticalAlign: 'baseline' } }>
+        <Icon path={ mdiCloseCircle } size={ 0.8 }/>
+    </LinkButton>;
 }

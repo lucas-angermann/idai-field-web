@@ -1,11 +1,11 @@
 import React, { CSSProperties, ReactNode, ReactElement } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { addFilterToParams } from '../api/query';
 import { FilterBucket, ResultFilter } from '../api/result';
 import { getLabel } from '../languages';
 import CloseButton from './CloseButton';
 import FilterDropdown from './FilterDropdown';
+import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
 export default function SimpleFilter({ filter, searchParams }
@@ -26,9 +26,12 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
             as={ Link }
             key={ bucket.value.name }
             style={ filterValueStyle }
-            to={ '?' + addFilterToParams(params, key, bucket.value.name) }>
+            to={ '?' + buildParamsForFilterValue(params, key, bucket.value.name) }>
         { getLabel(bucket.value) }
-        <CloseButton params={ params } filterKey={ key } value={ bucket.value.name } />
+        {
+            isFilterValueInParams(params, key, bucket.value.name)
+            && <CloseButton params={ params } filterKey={ key } value={ bucket.value.name } />
+        }
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;
 
