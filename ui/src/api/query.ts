@@ -2,10 +2,11 @@ const EXCLUDED_TYPES = ['Project', 'Image', 'TypeCatalog', 'Type'];
 
 
 export type Query = {
-    q: string,
+    q?: string,
     filters?: Filter[],
     not?: Filter[],
     exists?: string[],
+    parent?: string,
     size?: number,
     from?: number
 };
@@ -19,7 +20,7 @@ export type Filter = {
 
 export const buildBackendGetParams = (query: Query) => {
 
-    const queryParams = [['q', query.q]];
+    const queryParams = [['q', query.q && query.q.length > 0 ? query.q : '*']];
 
     if (query.filters) {
         queryParams.push(...query.filters.map((filter: Filter) => ['filters[]', `${filter.field}:${filter.value}`]));
@@ -30,6 +31,13 @@ export const buildBackendGetParams = (query: Query) => {
     if (query.exists) {
         queryParams.push(...query.exists.map((fieldName: string) => ['exists[]', `${fieldName}`]));
     }
+    if (query.q === undefined) {
+        if (query.parent) {
+            queryParams.push(['filters[]', `resource.relations.isChildOf:${query.parent}`]);
+        } else  {
+            queryParams.push(['not_exists[]', `resource.relations.isChildOf`]);
+        }
+    }
 
     if (query.size) queryParams.push(['size', query.size.toString()]);
     if (query.from) queryParams.push(['from', query.from.toString()]);
@@ -38,33 +46,21 @@ export const buildBackendGetParams = (query: Query) => {
 };
 
 
-export const buildProjectOverviewQueryTemplate = (from: number, size: number): Query => {
-
-    const query: Query = {
-        q: '*',
-        size,
-        from,
-        not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
-    };
-
-    return query;
-};
+export const buildProjectOverviewQueryTemplate = (from: number, size: number): Query => ({
+    size,
+    from,
+    not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
+});
 
 
-export const buildProjectQueryTemplate = (id: string, from: number, size: number): Query => {
-
-    const query: Query = {
-        q: '*',
-        size,
-        from,
-        filters: [
-            { field: 'project', value: id }
-        ],
-        not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
-    };
-
-    return query;
-};
+export const buildProjectQueryTemplate = (id: string, from: number, size: number): Query => ({
+    size,
+    from,
+    filters: [
+        { field: 'project', value: id }
+    ],
+    not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
+});
 
 
 export const parseFrontendGetParams = (searchParams: string, query: Query = { q: '*', filters: [] }): Query => {
@@ -72,7 +68,8 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { q:
     const newQuery = JSON.parse(JSON.stringify(query));
     const params = new URLSearchParams(searchParams);
 
-    if (params.has('q') && params.get('q')) newQuery.q = params.get('q');
+    if (params.has('q')) newQuery.q = params.get('q');
+    if (params.has('parent')) newQuery.parent = params.get('parent');
 
     const filters = Array.from(params.entries())
         .filter(([field, _]) => field !== 'q')

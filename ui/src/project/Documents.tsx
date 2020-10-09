@@ -5,6 +5,7 @@ import { TFunction } from 'i18next';
 import DocumentList from './DocumentList';
 import { ResultDocument } from '../api/result';
 import { CHUNK_SIZE } from './Project';
+import DocumentHierarchy from './DocumentHierarchy';
 
 
 interface ProjectHomeProps {
@@ -14,7 +15,7 @@ interface ProjectHomeProps {
 }
 
 
-export default function ScrollableDocumentList(
+export default function Documents(
     { documents, getChunk, searchParams = '' }: ProjectHomeProps)
     : ReactElement {
 
@@ -34,12 +35,20 @@ export default function ScrollableDocumentList(
     return (
         <Card onScroll={ onScroll } style={ listContainerStyle }>
             <Card.Body className="px-0 py-1">
-                <DocumentList documents={ documents } searchParams={ searchParams } />
+                { renderDocuments(documents, searchParams) }
                 { (!documents || documents.length === 0) && renderEmptyResult(t) }
             </Card.Body>
         </Card>
     );
 }
+
+
+const renderDocuments = (documents: ResultDocument[], searchParams: string): ReactElement => {
+
+    return searchParams && new URLSearchParams(searchParams).has('q')
+            ? <DocumentList documents={ documents } searchParams={ searchParams } />
+            : <DocumentHierarchy documents={ documents } />;
+};
 
 
 const renderEmptyResult = (t: TFunction): ReactElement => (

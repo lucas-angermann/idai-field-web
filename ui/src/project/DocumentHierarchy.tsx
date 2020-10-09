@@ -3,14 +3,14 @@ import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 
 
-export default function DocumentList({ documents, searchParams = '' }
-        : { documents: ResultDocument[], searchParams: string }): ReactElement {
+export default function DocumentHierarchy({ documents }
+        : { documents: ResultDocument[], searchParams?: string }): ReactElement {
 
     return (
         <div>
             { documents.map((document: ResultDocument) =>
                 <div style={ documentContainerStyle } key={ document.resource.id }>
-                    <DocumentTeaser document={ document } searchParams={ searchParams } />
+                    <DocumentTeaser document={ document } />
                 </div>
             )}
         </div>

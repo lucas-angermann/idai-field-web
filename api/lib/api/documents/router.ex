@@ -16,6 +16,7 @@ defmodule Api.Documents.Router do
       conn.params["filters"],
       conn.params["not"],
       conn.params["exists"],
+      conn.params["not_exists"],
       conn.private[:readable_projects]
     ))
   end
@@ -26,6 +27,7 @@ defmodule Api.Documents.Router do
       conn.params["filters"],
       conn.params["not"],
       conn.params["exists"],
+      conn.params["not_exists"],
       conn.private[:readable_projects]
     ))
   end

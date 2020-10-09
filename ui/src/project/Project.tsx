@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
-import ScrollableDocumentList from './ScrollableDocumentList';
+import Documents from './Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
@@ -90,7 +90,7 @@ export default function Project(): ReactElement {
             { renderTotal(total, document, projectId, location.search, t) }
             { document
                 ? <DocumentDetails document={ document } />
-                : <ScrollableDocumentList
+                : <Documents
                     searchParams={ location.search }
                     documents={ documents }
                     getChunk={ getChunk }/>
