@@ -40,8 +40,8 @@
 }
 
 .overview-map .ol-zoom {
-    top: 11px;
-    left: 425px;
+    bottom: 11px;
+    right: 11px;
 }
 
 .ol-attribution {
