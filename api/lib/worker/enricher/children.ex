@@ -13,8 +13,9 @@ defmodule Worker.Enricher.Children do
     Enum.reduce(changes, %{}, &update_count/2)
   end
 
-  defp update_count(%{ doc: %{ resource: %{ relations: %{ "isChildOf" => targets } } } }, count_map) do
-    Map.update(count_map, Enum.at(targets, 0), 1, fn value -> value + 1 end)
+  defp update_count(%{ doc: %{ resource: %{ relations: %{ isChildOf: [%{ resource: %{ id: target_id }}] } } } },
+         count_map) do
+    Map.update(count_map, target_id, 1, fn value -> value + 1 end)
   end
   defp update_count(_, count_map), do: count_map
 end

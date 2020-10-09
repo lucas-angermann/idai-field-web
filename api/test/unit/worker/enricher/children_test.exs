@@ -23,7 +23,7 @@ defmodule Worker.Enricher.ChildrenTest do
             identifier: "i2",
             type: "Feature",
             relations: %{
-              "isChildOf" => ["1"]
+              isChildOf: [%{ resource: %{ id: "1" } }]
             }
           }
         }
@@ -35,7 +35,7 @@ defmodule Worker.Enricher.ChildrenTest do
             identifier: "i3",
             type: "Feature",
             relations: %{
-              "isChildOf" => ["1"]
+              isChildOf: [%{ resource: %{ id: "1" } }]
             }
           }
         }
@@ -47,7 +47,7 @@ defmodule Worker.Enricher.ChildrenTest do
             identifier: "i4",
             type: "Find",
             relations: %{
-              "isChildOf" => ["3"]
+              isChildOf: [%{ resource: %{ id: "3" } }]
             }
           }
         }
