@@ -47,7 +47,7 @@ const renderDocuments = (documents: ResultDocument[], searchParams: string): Rea
 
     return searchParams && new URLSearchParams(searchParams).has('q')
             ? <DocumentList documents={ documents } searchParams={ searchParams } />
-            : <DocumentHierarchy documents={ documents } />;
+            : <DocumentHierarchy documents={ documents } searchParams={ searchParams } />;
 };
 
 

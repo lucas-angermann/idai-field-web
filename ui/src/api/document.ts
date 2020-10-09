@@ -23,6 +23,7 @@ export interface Resource {
     shortDescription: string;
     groups: FieldGroup[];
     geometry: Geometry;
+    childrenCount: number;
 }
 
 

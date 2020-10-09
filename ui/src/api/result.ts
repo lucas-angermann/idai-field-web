@@ -12,6 +12,7 @@ export interface ResultDocument {
     modified: ChangeEvent[];
     project: string;
     resource: ResultResource;
+    deleted?: boolean;
 }
 
 
@@ -20,6 +21,7 @@ export interface ResultResource {
     id: string;
     identifier: string;
     shortDescription: string;
+    childrenCount: number;
 }
 
 
