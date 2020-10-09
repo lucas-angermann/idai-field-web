@@ -16,27 +16,9 @@ defmodule Worker.Images.ImageMagickImageConverter do
   # as we want to provide it with cantaloupe
   @display_format_suffix "jp2"
 
-  def required_version_matches(version, [required_major, required_minor]) do
-    [major, minor, _] = String.split(version, ".")
-    {major, _} = Integer.parse major
-    {minor, _} = Integer.parse minor
-    major > required_major or (major == required_major and minor >= required_minor)
-  end
-
-  def required_delegates_present(delegates) do
-    Enum.empty?(@required_delegates -- delegates)
-  end
-
   def environment_ready() do
-    {result, result_status} = System.cmd(@im_cmd, ["--version"])
-    lines = String.split(result, "\n")
-    [delegates] = Enum.filter(lines, fn line -> String.starts_with?(line, "Delegates") end)
-    [_, delegates] = String.split(delegates, ":")
-    delegates = String.split(delegates)
-    [version] = Enum.filter(lines, fn line -> String.starts_with?(line, "Version") end)
-    [version] = Enum.filter(String.split(version), fn part -> String.match?(part, ~r/\d*\.\d\.\d/) end)
-
-    result_status == 0
+    {version, delegates, status} = get_im_version_and_delegates()
+    status == 0
     and required_version_matches(version, @required_imagemagick_version)
     and required_delegates_present(delegates)
   end
@@ -156,5 +138,27 @@ defmodule Worker.Images.ImageMagickImageConverter do
       {_, status} = System.cmd cmd, args
       status == 0
     end
+  end
+
+  defp required_version_matches(version, [required_major, required_minor]) do
+    [major, minor, _] = String.split(version, ".")
+    {major, _} = Integer.parse major
+    {minor, _} = Integer.parse minor
+    major > required_major or (major == required_major and minor >= required_minor)
+  end
+
+  defp required_delegates_present(delegates) do
+    Enum.empty?(@required_delegates -- delegates)
+  end
+
+  defp get_im_version_and_delegates() do
+    {result, result_status} = System.cmd(@im_cmd, ["--version"])
+    lines = String.split(result, "\n")
+    [delegates] = Enum.filter(lines, fn line -> String.starts_with?(line, "Delegates") end)
+    [_, delegates] = String.split(delegates, ":")
+    delegates = String.split(delegates)
+    [version] = Enum.filter(lines, fn line -> String.starts_with?(line, "Version") end)
+    [version] = Enum.filter(String.split(version), fn part -> String.match?(part, ~r/\d*\.\d\.\d/) end)
+    {version, delegates, result_status}
   end
 end
