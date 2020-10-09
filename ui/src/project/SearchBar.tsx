@@ -1,8 +1,8 @@
-import React, { useState, FormEvent, ReactElement, useEffect } from 'react';
+import React, { useState, FormEvent, ReactElement, useEffect, useRef } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import Icon from '@mdi/react';
-import { mdiMagnify } from '@mdi/js';
+import { mdiCloseCircle, mdiMagnify } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 import { parseFrontendGetParams } from '../api/query';
 
@@ -12,6 +12,7 @@ export default function SearchBar(): ReactElement {
     const history = useHistory();
     const { t } = useTranslation();
     const location = useLocation();
+    const input = useRef<HTMLInputElement>();
 
     useEffect(() => {
         setQueryString(parseQueryString(location.search));
@@ -24,6 +25,17 @@ export default function SearchBar(): ReactElement {
         history.push(`?q=${queryString}`);
     };
 
+    const resetQueryString = (): void => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('q')) {
+            params.delete('q');
+            history.push(`?${params}`);
+        } else {
+            setQueryString('');
+            input.current.value = '';
+        }
+    };
+
     return (
         <Card>
             <Form onSubmit={ submitSearch }>
@@ -33,8 +45,14 @@ export default function SearchBar(): ReactElement {
                         type="text"
                         placeholder={ t('searchBar.search') }
                         value={ queryString }
-                        onChange={ e => setQueryString(e.target.value) } />
+                        onChange={ e => setQueryString(e.target.value) }
+                        ref={ input } />
                     <InputGroup.Append>
+                        { queryString &&
+                            <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
+                                <Icon  path={ mdiCloseCircle } size={ 0.8 } />
+                            </Button>
+                        }
                         <Button variant="primary" type="submit">
                             <Icon path={ mdiMagnify } size={ 0.8 } />
                         </Button>

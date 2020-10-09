@@ -39,6 +39,10 @@ export default function ProjectOverview(): ReactElement {
                 setFilters(result.filters.filter(filter => filter.name !== 'project'));
                 setDocuments(result.documents);
             });
+        } else {
+            setProjectFilter(undefined);
+            setFilters([]);
+            setDocuments([]);
         }
     }, [location.search, loginData]);
 
