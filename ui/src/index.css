@@ -92,3 +92,7 @@ a:hover {
 .form-control {
   border-radius: 0;
 }
+
+input.form-control:focus[type=text] {
+  box-shadow: none;
+}
