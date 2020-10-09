@@ -28,7 +28,7 @@ defmodule Worker.Indexer do
     with {:ok, body} <- File.read("resources/elasticsearch-mapping.json"),
          {:ok, _} <- HTTPoison.put(get_template_url(), body, [{"Content-Type", "application/json"}])
     do
-      Logger.info "Succesfully updated index mapping template"
+      Logger.info "Successfully updated index mapping template"
     else
       err -> Logger.error "Updating index mapping failed: #{inspect err}"
     end
