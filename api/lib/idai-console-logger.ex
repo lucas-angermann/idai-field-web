@@ -3,7 +3,7 @@ defmodule IdaiConsoleLogger do
 
   def format(level, message, datetime, metadata) do
     mfa = Keyword.get metadata, :mfa
-    if level == :info do
+    if level == :info or level == :warn do
       "#{format_datetime(datetime)} #{format_level(level)} - #{message}\n"
     else
       "#{format_datetime(datetime)} #{format_level(level)} (#{format_mfa(mfa)}) - #{message}\n"

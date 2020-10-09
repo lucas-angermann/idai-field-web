@@ -28,7 +28,7 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import { Button } from 'react-bootstrap';
 
 
-export const FIT_OPTIONS = { padding: [ 20, 20, 20, SIDEBAR_WIDTH + 20 ], duration: 500 };
+export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 

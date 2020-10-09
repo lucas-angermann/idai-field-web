@@ -1,8 +1,8 @@
-import { mdiCloseCircle } from "@mdi/js";
-import Icon from "@mdi/react";
-import React, { ReactElement } from "react";
-import { deleteFilterFromParams } from "../api/query";
-import LinkButton from "../LinkButton";
+import { mdiCloseCircle } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { ReactElement } from 'react';
+import { deleteFilterFromParams } from '../api/query';
+import LinkButton from '../LinkButton';
 
 export default function CloseButton({ params, filterKey, value }
         : { params: URLSearchParams, filterKey: string, value: string }): ReactElement {

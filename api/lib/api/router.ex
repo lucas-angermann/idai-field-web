@@ -1,6 +1,8 @@
 defmodule Api.Router do
+# todo move this artifact to the top leve (let it be just 'Router')
+
+
   use Plug.Router
-  import RouterUtils, only: [send_json: 2]
 
   plug :match
 
