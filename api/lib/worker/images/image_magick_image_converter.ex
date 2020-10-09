@@ -94,20 +94,29 @@ defmodule Worker.Images.ImageMagickImageConverter do
     source_img_path = Path.absname(Path.join([@imageroot, project, "sources", image_id]))
     target_dir = Path.join([@imageroot, project, image_id])
     File.mkdir_p target_dir # todo do in caller
-    
-    {cmd, args} = {
-      @im_cmd,
-      [
-        source_img_path,
-        "-scale",
-        "#{rescale}x#{rescale}",
-        "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
-      ]
-    }
-    {_, status} = System.cmd cmd, args
-    status == 0
+
+    target_img_path = "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
+
+    if File.exists? target_img_path do
+      true # don't overwrite existing files
+    else
+      {cmd, args} = {
+        @im_cmd,
+        [
+          source_img_path,
+          "-scale",
+          "#{rescale}x#{rescale}",
+          target_img_path
+        ]
+      }
+      {_, status} = System.cmd cmd, args
+      status == 0
+    end
   end
 
+  @doc """
+  Returns true is everything went fine
+  """
   def crop(
          project,
          tile_size,
@@ -127,18 +136,25 @@ defmodule Worker.Images.ImageMagickImageConverter do
     )
     File.mkdir_p x_folder
 
-    {cmd, args} = {
-      @im_cmd,
-      [
-        "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}",
-        "-quiet", # suppress 'convert: geometry does not contain image', some tiles simply will have no content with tiled rectangular images
-        "-crop", "#{tile_size}x#{tile_size}+#{x_pos}+#{y_pos}",
-        "-background", "transparent",
-        "-extent", "#{tile_size}x#{tile_size}",
-        "#{img_path(project, image_id)}/#{z_index}/#{x_index}/#{y_index}.png"
-      ]
-    }
-    {_, status} = System.cmd cmd, args
-    status
+    source_img_path = "#{img_path(project, image_id)}/#{image_id}.#{rescale}.#{@intermediate_format_suffix}"
+    target_img_path = "#{img_path(project, image_id)}/#{z_index}/#{x_index}/#{y_index}.png"
+
+    if File.exists? target_img_path do
+      true # don't overwrite existing files
+    else
+      {cmd, args} = {
+        @im_cmd,
+        [
+          source_img_path,
+          "-quiet", # suppress 'convert: geometry does not contain image', some tiles simply will have no content with tiled rectangular images
+          "-crop", "#{tile_size}x#{tile_size}+#{x_pos}+#{y_pos}",
+          "-background", "transparent",
+          "-extent", "#{tile_size}x#{tile_size}",
+          target_img_path
+        ]
+      }
+      {_, status} = System.cmd cmd, args
+      status == 0
+    end
   end
 end
