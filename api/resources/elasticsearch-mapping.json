@@ -81,7 +81,16 @@
         },
         "dynamic_templates": [
             {
-                "relations": {
+                "relationsId": {
+                    "path_match": "resource.relations.*.resource.id",
+                    "mapping": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            {
+                "relationsIdentifier": {
                     "path_match": "resource.relations.*.resource.identifier",
                     "mapping": {
                         "type": "keyword",
