@@ -39,7 +39,9 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
                         && <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
                     }
                 </Col>
-                <Col xs={ 1 }><span className="float-right"><em>{ bucket.item.count }</em></span></Col>
+                <Col xs={ 1 } style={ { margin: '3px' } }>
+                    <span className="float-right"><em>{ bucket.item.count }</em></span>
+                </Col>
             </Row>
         </Dropdown.Item>
         { bucket.trees
