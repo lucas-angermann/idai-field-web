@@ -25,3 +25,7 @@
 .document-teaser .teaser-small .short-description {
     font-size: 11px;
 }
+
+.document-teaser .hierarchy-button:hover {
+    background-color: var(--main-bg-color-hover);
+}

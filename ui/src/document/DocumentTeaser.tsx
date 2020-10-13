@@ -31,11 +31,10 @@ export default React.memo(function DocumentTeaser(
         : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
 
     return (
-        <Row>
+        <Row className="no-gutters document-teaser">
             <Col>
                 <Link to={ linkUrl }
-                      style={ linkStyle }
-                      className="document-teaser">
+                      style={ linkStyle }>
                     <div className={ `py-2 px-4 teaser-container teaser-${size}` }>
                         <Row>
                             <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
@@ -64,10 +63,10 @@ export default React.memo(function DocumentTeaser(
                 </Link>
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
-                <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
+                <Col style={ { flex: `0 0 ${height}px` } } className="hierarchy-button">
                     <LinkButton to={ '?' + getHierarchyButtonSearchParams(searchParams, document.resource.id) }
-                                style={ linkStyle } variant={ 'link' }>
-                        <Icon path={ mdiMenuRight } size={ 0.8 }></Icon>
+                            style={ { height: '100%' } } variant={ 'link' }>
+                        <Icon path={ mdiMenuRight } size={ 1 }></Icon>
                     </LinkButton>
                 </Col>
             }
