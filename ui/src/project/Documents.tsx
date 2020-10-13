@@ -57,7 +57,7 @@ const renderEmptyResult = (t: TFunction): ReactElement => (
 
 
 const listContainerStyle: CSSProperties = {
-    overflow: 'auto',
+    overflowY: 'scroll',
     flexGrow: 1,
     flexShrink: 1
 };
