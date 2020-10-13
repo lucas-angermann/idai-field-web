@@ -37,6 +37,7 @@ export const buildBackendGetParams = (query: Query) => {
         } else  {
             queryParams.push(['not_exists[]', `resource.relations.isChildOf`]);
         }
+        queryParams.push(['sort', 'sort']);
     }
 
     if (query.size) queryParams.push(['size', query.size.toString()]);
