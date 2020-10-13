@@ -19,7 +19,7 @@ defmodule Api.Documents.Index do
   filters  - pass nil to set no filters
   must_not - pass nil to set no must_not filters
   """
-  def search(q, size, from, filters, must_not, exists, not_exists, readable_projects) do
+  def search(q, size, from, filters, must_not, exists, not_exists, sort, readable_projects) do
     {filters, must_not, project_conf} = preprocess(filters, must_not)
     Query.init(q, size, from)
     |> Query.track_total
@@ -28,6 +28,7 @@ defmodule Api.Documents.Index do
     |> Query.add_must_not(must_not)
     |> Query.add_exists(exists)
     |> Query.add_not_exists(not_exists)
+    |> Query.set_sort(sort)
     |> Query.set_readable_projects(readable_projects)
     |> build_post_atomize
     |> Mapping.map(project_conf)

@@ -48,6 +48,14 @@ defmodule Api.Documents.Query do
     put_in(query, [:_source], fields)
   end
 
+  def set_sort(query, nil), do: query
+  def set_sort(query, fields = [_|_]) do
+    put_in(query, [:sort], fields)
+  end
+  def set_sort(query, field) do
+    put_in(query, [:sort], field)
+  end
+
   def build(query) do
     Poison.encode!(query)
   end
