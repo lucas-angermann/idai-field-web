@@ -1,4 +1,5 @@
 defmodule Worker.Enricher.Enricher do
+  alias Worker.Enricher.Preprocess
   alias Worker.Enricher.Gazetteer
   alias Worker.Enricher.Relations
   alias Worker.Enricher.Labels
@@ -18,6 +19,7 @@ defmodule Worker.Enricher.Enricher do
   defp process_change(change, project, get_for_id, configuration) do
     try do
       change
+      |> Preprocess.add_sort_field
       |> Gazetteer.add_coordinates
       |> Relations.add_child_of_relations
       |> Relations.expand(get_for_id)
