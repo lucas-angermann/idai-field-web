@@ -14,7 +14,7 @@ defmodule Worker.Images.TilesController do
   end
 
   defp tiles_for_project(project) do
-    %{ documents: docs } = Api.Documents.Index.search "*", 10, 0, nil, nil, ["resource.georeference"], [project]
+    %{ documents: docs } = Api.Documents.Index.search("*", 10, 0, nil, nil, ["resource.georeference"], nil, nil, [project])
     Enum.map(docs, fn %{resource: %{ :id => id, "width" => width, "height" => height }} ->
       {project, id, {width, height}}
     end)
