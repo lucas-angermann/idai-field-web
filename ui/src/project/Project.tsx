@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode } from 'react';
+import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode, useCallback } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -74,11 +74,14 @@ export default function Project(): ReactElement {
             });
     }, [projectId, location.search, loginData]);
 
-    const getChunk = (offset: number): void => {
-        searchDocuments(projectId, location.search, offset, loginData.token).then(result => {
-            setDocuments(documents.concat(result.documents));
-        });
-    };
+    const getChunk = useCallback(
+        (offset: number): void => {
+            searchDocuments(projectId, location.search, offset, loginData.token).then(result => {
+                setDocuments(documents.concat(result.documents));
+            });
+        },
+        [projectId, location.search, loginData, documents]
+    );
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
