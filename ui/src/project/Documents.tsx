@@ -15,7 +15,7 @@ interface ProjectHomeProps {
 }
 
 
-export default function Documents(
+export default React.memo(function Documents(
     { documents, getChunk, searchParams = '' }: ProjectHomeProps)
     : ReactElement {
 
@@ -40,7 +40,7 @@ export default function Documents(
             </Card.Body>
         </Card>
     );
-}
+});
 
 
 const renderDocuments = (documents: ResultDocument[], searchParams: string): ReactElement => {
@@ -58,6 +58,7 @@ const renderEmptyResult = (t: TFunction): ReactElement => (
 
 const listContainerStyle: CSSProperties = {
     overflowY: 'scroll',
+    overflowX: 'hidden',
     flexGrow: 1,
     flexShrink: 1
 };

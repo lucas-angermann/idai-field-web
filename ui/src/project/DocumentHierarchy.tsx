@@ -1,19 +1,32 @@
-import React, { CSSProperties, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement, useRef } from 'react';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './document-hierarchy.css';
 
 
-export default function DocumentHierarchy({ documents, searchParams }
-        : { documents: ResultDocument[], searchParams?: string }): ReactElement {
+interface DocumentHierarchyProps {
+    documents: ResultDocument[];
+    searchParams?: string;
+}
 
-    const parentId = new URLSearchParams(searchParams).get('parent') ?? 'root';
+
+export default React.memo(function DocumentHierarchy({ documents, searchParams }
+        : DocumentHierarchyProps): ReactElement {
+
+    const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
+    const prevParent = useRef<string>();
+    
+    const docIds = documents.map(doc => doc.resource.id);
+    const backward = docIds.includes(prevParent.current);
+    prevParent.current = parent;
+    
+    const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
     return <>
-        <TransitionGroup component={ null }>
-            <CSSTransition key={ parentId } timeout={ 500 } className="document-list-transition">
-                <div>
+        <TransitionGroup className={ className }>
+            <CSSTransition key={ parent } timeout={ 500 }>
+                <div className="documents">
                     { documents.map((document: ResultDocument) =>
                         <div style={ documentContainerStyle } key={ document.resource.id }>
                             <DocumentTeaser document={ document } searchParams={ searchParams }
@@ -25,7 +38,10 @@ export default function DocumentHierarchy({ documents, searchParams }
             </CSSTransition>
         </TransitionGroup>
     </>;
-}
+}, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
+
+    return prevProps.documents === nextProps.documents;
+});
 
 
 const documentContainerStyle: CSSProperties = {
