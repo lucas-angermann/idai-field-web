@@ -77,10 +77,10 @@ export default function Project(): ReactElement {
     const getChunk = useCallback(
         (offset: number): void => {
             searchDocuments(projectId, location.search, offset, loginData.token).then(result => {
-                setDocuments(documents.concat(result.documents));
+                setDocuments((oldDocs) => oldDocs.concat(result.documents));
             });
         },
-        [projectId, location.search, loginData, documents]
+        [projectId, location.search, loginData]
     );
 
     return <>
