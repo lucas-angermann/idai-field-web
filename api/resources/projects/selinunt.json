@@ -478,7 +478,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -509,7 +510,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -576,7 +578,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -635,7 +638,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -900,7 +904,8 @@
                           "de": "Ziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -947,7 +952,8 @@
                           "de": "Wohnviertel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-context-default"
                   },
                   "name": "context",
                   "label": {
@@ -998,7 +1004,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -1037,7 +1044,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -1099,7 +1107,8 @@
                           "de": "Werkstatt"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingType-default"
                   },
                   "name": "buildingType",
                   "label": {
@@ -1216,7 +1225,8 @@
                           "de": "unspezifisches Mauerwerk"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingTechnique-default"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -1335,7 +1345,8 @@
                           "de": "Wohnbau"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingCategory-default"
                   },
                   "name": "buildingCategory",
                   "label": {
@@ -1528,7 +1539,8 @@
                       "römisches Theater",
                       "vierschiffig",
                       "zweischiffig"
-                    ]
+                    ],
+                    "id": "Building-buildingCategorySpecific-default"
                   },
                   "name": "buildingCategorySpecific",
                   "label": {
@@ -1591,7 +1603,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -1622,7 +1635,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -1807,7 +1821,8 @@
                           "de": "Spätklassisch"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-default-1"
                   },
                   "name": "period",
                   "label": {
@@ -2072,7 +2087,8 @@
                           "de": "Rammkernsondagen"
                         }
                       }
-                    }
+                    },
+                    "id": "Survey-researchMethod-Selinunt"
                   },
                   "name": "researchMethod",
                   "label": {
@@ -2313,7 +2329,8 @@
                       "de": "Naturraum"
                     }
                   }
-                }
+                },
+                "id": "Place-siteClassification-Selinunt"
               },
               "name": "siteClassification",
               "label": {
@@ -2396,7 +2413,8 @@
                       "de": "urbanes Gebäude"
                     }
                   }
-                }
+                },
+                "id": "Place-findspotClassification-default"
               },
               "name": "findspotClassification",
               "label": {
@@ -2810,7 +2828,8 @@
                       "de": "weiß"
                     }
                   }
-                }
+                },
+                "id": "colors-default-1"
               },
               "name": "color",
               "label": {
@@ -2926,7 +2945,8 @@
                       "de": "wannenförmig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureForm-default"
               },
               "name": "featureForm",
               "label": {
@@ -3036,7 +3056,8 @@
                       "de": "wellig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureBorders-default"
               },
               "name": "featureBorders",
               "label": {
@@ -3123,7 +3144,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -3154,7 +3176,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -3209,7 +3232,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -3407,7 +3431,8 @@
                       "it": "Recente"
                     }
                   }
-                }
+                },
+                "id": "periods-Selinunt-1"
               },
               "name": "period",
               "label": {
@@ -3721,7 +3746,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -3837,7 +3863,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -3947,7 +3974,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -4034,7 +4062,8 @@
                           "de": "Zusammensetzung"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-Selinunt"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -4138,7 +4167,8 @@
                           "de": "Geologisch gewachsener Boden"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-Selinunt"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -4242,7 +4272,8 @@
                           "de": "Organisches"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-Selinunt-1"
                   },
                   "name": "soilType",
                   "label": {
@@ -4298,7 +4329,8 @@
                           "de": "hart"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-consistency-Selinunt-1"
                   },
                   "name": "consistency",
                   "label": {
@@ -4336,7 +4368,8 @@
                           "de": "dunkel"
                         }
                       }
-                    }
+                    },
+                    "id": "colorsLightness-Selinunt-1"
                   },
                   "name": "layerColorLightness",
                   "label": {
@@ -4463,7 +4496,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-colors-Selinunt-1"
                   },
                   "name": "layerColor",
                   "label": {
@@ -4546,7 +4580,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryOrigin-Selinunt"
                   },
                   "name": "layerContentPotteryOrigin",
                   "label": {
@@ -4690,7 +4725,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryShape-Selinunt"
                   },
                   "name": "layerContentPotteryShape",
                   "label": {
@@ -4779,7 +4815,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryDecoration-Selinunt"
                   },
                   "name": "layerContentPotteryDecoration",
                   "label": {
@@ -4826,7 +4863,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentTerracotta-Selinunt"
                   },
                   "name": "layerContentTerracotta",
                   "label": {
@@ -4927,7 +4965,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentInorganic-Selinunt"
                   },
                   "name": "layerContentInorganic",
                   "label": {
@@ -5018,7 +5057,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentOrganic-Selinunt"
                   },
                   "name": "layerContentOrganic",
                   "label": {
@@ -5083,7 +5123,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentBuildingMaterial-Selinunt"
                   },
                   "name": "layerContentBuildingMaterial",
                   "label": {
@@ -5156,7 +5197,8 @@
                           "de": "In der Fläche: willkürlich"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Selinunt"
                   },
                   "name": "layerBorders",
                   "label": {
@@ -5193,7 +5235,8 @@
                           "de": "formlos"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Selinunt"
                   },
                   "name": "layerForm",
                   "label": {
@@ -5272,7 +5315,8 @@
                           "de": "Verputz"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-findComposition-Selinunt"
                   },
                   "name": "findComposition",
                   "label": {
@@ -5308,7 +5352,8 @@
                           "de": "Nicht gegraben"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-workflowOptions-Selinunt"
                   },
                   "name": "workflowOptions",
                   "label": {
@@ -5368,7 +5413,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -5399,7 +5445,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -5430,7 +5477,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -5485,7 +5533,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -5683,7 +5732,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -5998,7 +6048,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -6114,7 +6165,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -6224,7 +6276,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -6392,7 +6445,8 @@
                           "de": "Toniger Schluff"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-default"
                   },
                   "name": "soilType",
                   "label": {
@@ -6443,7 +6497,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -6482,7 +6537,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -6537,7 +6593,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -6601,7 +6658,8 @@
                           "de": "Ziegelgrab"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-graveType-Selinunt"
                   },
                   "name": "graveType",
                   "label": {
@@ -6662,7 +6720,8 @@
                       "bruchsteingemauertes Grab",
                       "quadergemauertes Grab",
                       "ziegelgemauertes Grab"
-                    ]
+                    ],
+                    "id": "Grave-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -6694,7 +6753,8 @@
                           "de": "Ziegelgemauert"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-tombBuilding-default"
                   },
                   "name": "tombBuilding",
                   "label": {
@@ -6826,7 +6886,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -6857,7 +6918,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -6912,7 +6974,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -7122,7 +7185,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -7437,7 +7501,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -7553,7 +7618,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -7663,7 +7729,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -7761,7 +7828,8 @@
                           "de": "Teil-Körperbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-graveFeature-default"
                   },
                   "name": "graveFeature",
                   "label": {
@@ -7823,7 +7891,8 @@
                           "de": "Wiedergängerbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-amountIndividuals-default"
                   },
                   "name": "amountIndividuals",
                   "label": {
@@ -7865,7 +7934,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positioningIndividuals-default"
                   },
                   "name": "positioningIndividuals",
                   "label": {
@@ -7907,7 +7977,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialCharacteristic-default"
                   },
                   "name": "burialCharacteristic",
                   "label": {
@@ -7954,7 +8025,8 @@
                           "de": "Röntgen"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialDocumentation-default"
                   },
                   "name": "burialDocumentation",
                   "label": {
@@ -8028,7 +8100,8 @@
                           "de": "ungleichmäßig"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionArms-default"
                   },
                   "name": "positionArms",
                   "label": {
@@ -8075,7 +8148,8 @@
                           "de": "gestreckt"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionLegs-default"
                   },
                   "name": "positionLegs",
                   "label": {
@@ -8177,7 +8251,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -8208,7 +8283,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -8263,7 +8339,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -8461,7 +8538,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -8776,7 +8854,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -8892,7 +8971,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -9002,7 +9082,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -9161,7 +9242,8 @@
                           "de": "Pfeiler"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-architectureClassification-Selinunt"
                   },
                   "name": "architectureClassification",
                   "label": {
@@ -9210,7 +9292,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -9249,7 +9332,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -9335,7 +9419,8 @@
                           "de": "mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-default"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -9431,7 +9516,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -9488,7 +9574,8 @@
                           "de": "sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-default"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -9561,7 +9648,8 @@
                           "de": "zweischalig mit Binderlagen"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-construction-Selinunt"
                   },
                   "name": "construction",
                   "label": {
@@ -9630,7 +9718,8 @@
                           "de": "Opus africanum"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-brickwork-Selinunt"
                   },
                   "name": "brickwork",
                   "label": {
@@ -9693,7 +9782,8 @@
                           "de": "unbehauen"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockTreatment-default"
                   },
                   "name": "blockTreatment",
                   "label": {
@@ -9732,7 +9822,8 @@
                           "de": "Werksteine"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockProcessing-default"
                   },
                   "name": "blockProcessing",
                   "label": {
@@ -9831,7 +9922,8 @@
                           "de": "Wandgestaltung"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallClassification-default"
                   },
                   "name": "wallClassification",
                   "label": {
@@ -9888,7 +9980,8 @@
                           "de": "Ziegelmauer"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallType-default"
                   },
                   "name": "wallType",
                   "label": {
@@ -9995,7 +10088,8 @@
                           "de": "Zement"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-architectureMaterial-Selinunt"
                   },
                   "name": "architectureMaterial",
                   "label": {
@@ -10032,7 +10126,8 @@
                           "de": "Unregelmäßig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-masonryLayerType-Selinunt"
                   },
                   "name": "architectureLayerType",
                   "label": {
@@ -10111,7 +10206,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-masonry-Selinunt"
                   },
                   "name": "architectureMasonry",
                   "label": {
@@ -10177,7 +10273,8 @@
                           "de": "Mischtechnik"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-masonryJoint-Selinunt"
                   },
                   "name": "masonryJoint",
                   "label": {
@@ -10208,7 +10305,8 @@
                           "de": "Bemalung"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-masonryCoating-Selinunt"
                   },
                   "name": "architectureMasonryCoating",
                   "label": {
@@ -10285,7 +10383,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-floorClassification-Selinunt"
                   },
                   "name": "floorClassification",
                   "label": {
@@ -10337,7 +10436,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -10368,7 +10468,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -10423,7 +10524,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -10482,7 +10584,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -10692,7 +10795,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -11006,7 +11110,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -11122,7 +11227,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -11232,7 +11338,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -11315,7 +11422,8 @@
                           "de": "Rammkernsondage"
                         }
                       }
-                    }
+                    },
+                    "id": "ProcessUnit-operationClassification-Selinunt"
                   },
                   "name": "operationClassification",
                   "label": {
@@ -11372,7 +11480,8 @@
                           "de": "NNW-SSO"
                         }
                       }
-                    }
+                    },
+                    "id": "ProcessUnit-operationOrientation-Selinunt"
                   },
                   "name": "operationOrientation",
                   "label": {
@@ -11408,7 +11517,8 @@
                           "de": "Vor-/Rücksprünge"
                         }
                       }
-                    }
+                    },
+                    "id": "ProcessUnit-operationHorizontalDescription-Selinunt"
                   },
                   "name": "operationHorizontalDescription",
                   "label": {
@@ -11444,7 +11554,8 @@
                           "de": "ein/mehrere Versprünge"
                         }
                       }
-                    }
+                    },
+                    "id": "ProcessUnit-operationVerticalDescription-Selinunt"
                   },
                   "name": "operationVerticalDescription",
                   "label": {
@@ -11485,7 +11596,8 @@
                           "de": "sehr schwierig"
                         }
                       }
-                    }
+                    },
+                    "id": "ProcessUnit-operationIdentifiability-Selinunt"
                   },
                   "name": "operationIdentifiability",
                   "label": {
@@ -11535,7 +11647,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -11566,7 +11679,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -11621,7 +11735,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -11819,7 +11934,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -12132,7 +12248,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -12248,7 +12365,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -12358,7 +12476,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -12445,7 +12564,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -12476,7 +12596,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -12531,7 +12652,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -12729,7 +12851,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -13039,7 +13162,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -13155,7 +13279,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -13265,7 +13390,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -13338,7 +13464,8 @@
                           "en": "vertical"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-interfaceClassification-Campidoglio"
                   },
                   "name": "interfaceClassification",
                   "label": {},
@@ -13367,7 +13494,8 @@
                           "en": "Imperceptible"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-breakSlopeTop-Campidoglio"
                   },
                   "name": "breakSlopeTop",
                   "label": {},
@@ -13406,7 +13534,8 @@
                           "en": "Mixed"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-sides-Campidoglio"
                   },
                   "name": "sides",
                   "label": {},
@@ -13435,7 +13564,8 @@
                           "en": "Imperceptible"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-breakSlopeTop-Campidoglio"
                   },
                   "name": "breakSlopeBase",
                   "label": {},
@@ -13474,7 +13604,8 @@
                           "en": "Uneven"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-base-Campidoglio"
                   },
                   "name": "base",
                   "label": {},
@@ -13526,7 +13657,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -13557,7 +13689,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -13612,7 +13745,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -13810,7 +13944,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -14037,7 +14172,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -14068,7 +14204,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -14278,7 +14415,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -14309,7 +14447,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -14540,7 +14679,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -14571,7 +14711,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -14903,7 +15044,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -14942,7 +15084,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -15018,7 +15161,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -15049,7 +15193,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -15080,7 +15225,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -15135,7 +15281,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -15289,7 +15436,8 @@
                       "de": "Spätklassisch"
                     }
                   }
-                }
+                },
+                "id": "periods-default-1"
               },
               "name": "period",
               "label": {
@@ -15562,7 +15710,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -15601,7 +15750,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -15670,7 +15820,8 @@
                       "de": "In situ"
                     }
                   }
-                }
+                },
+                "id": "Find-storagePlace-Selinunt"
               },
               "name": "storagePlace",
               "label": {
@@ -15772,7 +15923,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -15803,7 +15955,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -15834,7 +15987,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -15865,7 +16019,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionPerimeter",
               "label": {
@@ -15896,7 +16051,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionDiameter",
               "label": {
@@ -15927,7 +16083,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionThickness",
               "label": {
@@ -15958,7 +16115,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionOther",
               "label": {
@@ -16026,7 +16184,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -16175,7 +16334,8 @@
                       "it": "Recente"
                     }
                   }
-                }
+                },
+                "id": "periods-Selinunt-1"
               },
               "name": "period",
               "label": {
@@ -16447,7 +16607,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -16486,7 +16647,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -16555,7 +16717,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -16655,7 +16818,8 @@
                           "de": "Gebrauchskeramik (Grobe Ware)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-materialType-default"
                   },
                   "name": "materialType",
                   "label": {
@@ -16814,7 +16978,8 @@
                           "de": "Terra sigilata"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -17071,7 +17236,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselForm-Selinunt"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -17264,7 +17430,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -17341,7 +17508,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -17375,7 +17543,8 @@
                           "de": "in Form gepresst"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-Selinunt"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -17452,7 +17621,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -17506,7 +17676,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -17553,7 +17724,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -17602,7 +17774,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-clayStructure-default"
                   },
                   "name": "clayHardness",
                   "label": {
@@ -17716,7 +17889,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -17840,7 +18014,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -17964,7 +18139,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -18033,7 +18209,8 @@
                           "de": "abgerieben"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatQuality-Selinunt"
                   },
                   "name": "coatQuality",
                   "label": {
@@ -18069,7 +18246,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatInside",
                   "label": {
@@ -18183,7 +18361,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -18235,7 +18414,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatInsideType",
                   "label": {
@@ -18272,7 +18452,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatOutside",
                   "label": {
@@ -18386,7 +18567,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -18438,7 +18620,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatOutsideType",
                   "label": {
@@ -18535,7 +18718,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -18599,7 +18783,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -18748,7 +18933,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -18982,7 +19168,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -19221,7 +19408,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryOrigin-Selinunt"
                   },
                   "name": "potteryProvenance",
                   "label": {
@@ -19264,7 +19452,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-miniatureVesselForm-Selinunt"
                   },
                   "name": "miniatureVesselForm",
                   "label": {
@@ -19353,7 +19542,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryDecoration-Selinunt"
                   },
                   "name": "vesselDecorationOutside",
                   "label": {
@@ -19441,7 +19631,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-contentPotteryDecoration-Selinunt"
                   },
                   "name": "vesselDecorationInside",
                   "label": {
@@ -19467,7 +19658,8 @@
                           "de": "niedrig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayDensity-Selinunt"
                   },
                   "name": "clayDensity",
                   "label": {
@@ -19504,7 +19696,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryDiameterExternal",
                   "label": {
@@ -19532,7 +19725,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryDiameterInternal",
                   "label": {
@@ -19560,7 +19754,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryThickness",
                   "label": {
@@ -19588,7 +19783,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "pottyDiameterHandle",
                   "label": {
@@ -19616,7 +19812,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryDiameterFoot",
                   "label": {
@@ -19644,7 +19841,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryDiameterBase",
                   "label": {
@@ -19672,7 +19870,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryDiameterLid",
                   "label": {
@@ -19700,7 +19899,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryHeight",
                   "label": {
@@ -19728,7 +19928,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "potteryWidth",
                   "label": {
@@ -19796,7 +19997,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coat-Selinunt"
                   },
                   "name": "coatTypeOutside",
                   "label": {
@@ -19846,7 +20048,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coat-Selinunt"
                   },
                   "name": "coatTypeInside",
                   "label": {
@@ -19911,7 +20114,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -19942,7 +20146,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -19973,7 +20178,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -20004,7 +20210,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -20035,7 +20242,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -20066,7 +20274,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -20097,7 +20306,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -20165,7 +20375,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -20314,7 +20525,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -20587,7 +20799,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -20626,7 +20839,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -20695,7 +20909,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -20845,7 +21060,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -20899,7 +21115,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -20946,7 +21163,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -20985,7 +21203,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-clayStructure-default"
                   },
                   "name": "clayStructure",
                   "label": {
@@ -21099,7 +21318,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -21213,7 +21433,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -21275,7 +21496,8 @@
                           "de": "verwaschen"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -21311,7 +21533,8 @@
                           "de": "in Form gepresst"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-Selinunt"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -21348,7 +21571,8 @@
                           "de": "Stempel"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-decorationTechnique-Selinunt"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -21445,7 +21669,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -21539,7 +21764,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -21676,7 +21902,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -21900,7 +22127,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -22016,7 +22244,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -22130,7 +22359,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -22244,7 +22474,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -22367,7 +22598,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColor",
                   "label": {
@@ -22489,7 +22721,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColor",
                   "label": {
@@ -22612,7 +22845,8 @@
                           "de": "unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-architecturalDecorationType-Selinunt"
                   },
                   "name": "architecturalDecorationType",
                   "label": {
@@ -22658,7 +22892,8 @@
                           "de": "unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-architecturalScupltureType-Selinunt"
                   },
                   "name": "architecturalScupltureType",
                   "label": {
@@ -22749,7 +22984,8 @@
                           "de": "unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-toolType-Selinunt"
                   },
                   "name": "toolType",
                   "label": {
@@ -22796,7 +23032,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -22827,7 +23064,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -22858,7 +23096,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -22889,7 +23128,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -22920,7 +23160,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -22951,7 +23192,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -22982,7 +23224,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -23050,7 +23293,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -23199,7 +23443,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -23472,7 +23717,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -23511,7 +23757,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -23580,7 +23827,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -23730,7 +23978,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -23794,7 +24043,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -23831,7 +24081,8 @@
                           "de": "handgeformt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -23911,7 +24162,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickForm-Selinunt"
                   },
                   "name": "brickForm",
                   "label": {
@@ -23973,7 +24225,8 @@
                           "de": "Wandverkleidung"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickUsage-Selinunt"
                   },
                   "name": "brickUsage",
                   "label": {
@@ -24070,7 +24323,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -24186,7 +24440,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -24299,7 +24554,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -24361,7 +24617,8 @@
                           "de": "Stempel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-decorationTechnique-Selinunt"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -24487,7 +24744,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -24601,7 +24859,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -24693,7 +24952,8 @@
                           "de": "Ziegelbruch"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -24854,7 +25114,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColor",
                   "label": {
@@ -24905,7 +25166,8 @@
                           "de": "unklar"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-roofingSystem-Selinunt"
                   },
                   "name": "roofingSystem",
                   "label": {
@@ -25126,7 +25388,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -25167,7 +25430,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -25198,7 +25462,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -25229,7 +25494,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -25260,7 +25526,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -25291,7 +25558,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -25322,7 +25590,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -25353,7 +25622,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -25421,7 +25691,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -25570,7 +25841,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -25843,7 +26115,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -25882,7 +26155,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -25951,7 +26225,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -26061,7 +26336,8 @@
                           "de": "Tierknochen"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneType-default"
                   },
                   "name": "boneType",
                   "label": {
@@ -26128,7 +26404,8 @@
                           "de": "Ziegenartige (z. B. Schaf, Ziege)"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-species-default"
                   },
                   "name": "species",
                   "label": {
@@ -26257,7 +26534,8 @@
                           "de": "Zahn"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneClassification-default"
                   },
                   "name": "boneClassification",
                   "label": {
@@ -26306,7 +26584,8 @@
                       "III - um 550°C - Verfärbung etwa grau/blaugrau-milchig hellgrau",
                       "IV - 650°-750°C - Verfärbung etwa milchig weiß-mattweiß/kreideartig",
                       "V - ab 800°C - Verfärbung etwa altweiß/schmutzigweiß"
-                    ]
+                    ],
+                    "id": "Bone-burningGrade-default"
                   },
                   "name": "burningGrade",
                   "label": {
@@ -26408,7 +26687,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -26469,7 +26749,8 @@
                       "Juvenil (13-18/20)",
                       "Matur (40-60)",
                       "Senil (60 <)"
-                    ]
+                    ],
+                    "id": "Bone-biologicalAge-default"
                   },
                   "name": "biologicalAge",
                   "label": {
@@ -26499,7 +26780,8 @@
                           "de": "Weiblich"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-sex-default"
                   },
                   "name": "sex",
                   "label": {
@@ -26540,7 +26822,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -26571,7 +26854,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -26602,7 +26886,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -26633,7 +26918,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -26664,7 +26950,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -26695,7 +26982,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -26726,7 +27014,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -26794,7 +27083,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -26943,7 +27233,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -27218,7 +27509,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -27257,7 +27549,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -27326,7 +27619,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -27496,7 +27790,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -27612,7 +27907,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -27651,7 +27947,8 @@
                           "de": "versintert"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-transparency-default"
                   },
                   "name": "transparency",
                   "label": {
@@ -27760,7 +28057,8 @@
                           "de": "figürlicher Schliffdekor"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -27831,7 +28129,8 @@
                           "de": "gedreht (auf Drehscheibe)"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -27955,7 +28254,8 @@
                           "de": "Weinheber"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -28042,7 +28342,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -28206,7 +28507,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -28430,7 +28732,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -28471,7 +28774,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -28502,7 +28806,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -28533,7 +28838,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -28564,7 +28870,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -28595,7 +28902,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -28626,7 +28934,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -28657,7 +28966,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -28725,7 +29035,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -28874,7 +29185,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -29147,7 +29459,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -29186,7 +29499,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -29255,7 +29569,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -29375,7 +29690,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalMaterial-Selinunt"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -29472,7 +29788,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -29516,7 +29833,8 @@
                           "de": "Ziehtechnik"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -29583,7 +29901,8 @@
                           "de": "Vergoldung"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -29865,7 +30184,8 @@
                           "de": "Zierbeschlag"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -29952,7 +30272,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -30099,7 +30420,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -30323,7 +30645,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -30401,7 +30724,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalWeaponsArmor-Selinunt"
                   },
                   "name": "metalWeaponsArmor",
                   "label": {
@@ -30477,7 +30801,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalSchmuckTrachtbestandteile-Selinunt"
                   },
                   "name": "metalSchmuckTrachtbestandteile",
                   "label": {
@@ -30538,7 +30863,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalVesselParts-Selinunt"
                   },
                   "name": "metalVesselParts",
                   "label": {
@@ -30674,7 +31000,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalToolsEquipment-Selinunt"
                   },
                   "name": "metalToolsEquipment",
                   "label": {
@@ -30740,7 +31067,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalMiscellaneous-Selinunt"
                   },
                   "name": "metalMiscellaneous",
                   "label": {
@@ -30796,7 +31124,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -30827,7 +31156,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -30858,7 +31188,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -30889,7 +31220,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -30920,7 +31252,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -30951,7 +31284,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -30982,7 +31316,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -31050,7 +31385,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -31199,7 +31535,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -31472,7 +31809,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -31511,7 +31849,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -31580,7 +31919,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -31770,7 +32110,8 @@
                           "de": "Tuff"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-material-Selinunt"
                   },
                   "name": "material",
                   "label": {
@@ -31822,7 +32163,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -31893,7 +32235,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-color-Selinunt"
                   },
                   "name": "color",
                   "label": {
@@ -31992,7 +32335,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -32126,7 +32470,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-objectType-Selinunt"
                   },
                   "name": "objectType",
                   "label": {
@@ -32273,7 +32618,8 @@
                           "de": "Profilstück"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-architectureElement-Selinunt"
                   },
                   "name": "architectureElement",
                   "label": {
@@ -32332,7 +32678,8 @@
                           "de": "Sizilien"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-origin-default"
                   },
                   "name": "origin",
                   "label": {
@@ -32556,7 +32903,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -32627,7 +32975,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-decoration-Selinunt"
                   },
                   "name": "decoration",
                   "label": {
@@ -32674,7 +33023,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -32705,7 +33055,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -32736,7 +33087,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -32767,7 +33119,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -32798,7 +33151,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -32829,7 +33183,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -32860,7 +33215,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -32928,7 +33284,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -33077,7 +33434,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -33350,7 +33708,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -33389,7 +33748,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -33458,7 +33818,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -33563,7 +33924,8 @@
                           "de": "schwarz"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-color-default"
                   },
                   "name": "color",
                   "label": {
@@ -33687,7 +34049,8 @@
                           "de": "Zeder"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-typeOfWood-default"
                   },
                   "name": "typeOfWood",
                   "label": {
@@ -33801,7 +34164,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -33868,7 +34232,8 @@
                           "de": "Gespalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -34090,7 +34455,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -34184,7 +34550,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -34246,7 +34613,8 @@
                           "de": "Vergoldung/metallischer Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -34313,7 +34681,8 @@
                           "de": "nicht erhalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-paintCondition-default"
                   },
                   "name": "paintCondition",
                   "label": {
@@ -34352,7 +34721,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -34383,7 +34753,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -34414,7 +34785,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -34445,7 +34817,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -34476,7 +34849,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -34507,7 +34881,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -34538,7 +34913,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -34606,7 +34982,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -34755,7 +35132,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -35028,7 +35406,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -35067,7 +35446,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -35136,7 +35516,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -35291,7 +35672,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -35328,7 +35710,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -35447,7 +35830,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-provenance-Selinunt"
                   },
                   "name": "provenance",
                   "label": {
@@ -35526,7 +35910,8 @@
                           "de": "- 12 Uhr"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-stampPositioning-default"
                   },
                   "name": "stampPositioning",
                   "label": {
@@ -35606,7 +35991,8 @@
                           "de": "Unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-denomination-Selinunt"
                   },
                   "name": "denomination",
                   "label": {
@@ -35865,7 +36251,8 @@
                           "de": "Anderes"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mint-Selinunt"
                   },
                   "name": "mint",
                   "label": {
@@ -35930,7 +36317,8 @@
                           "de": "Valentianus III"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mintingRuler-default"
                   },
                   "name": "mintingRuler",
                   "label": {
@@ -35990,7 +36378,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -36021,7 +36410,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -36052,7 +36442,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -36083,7 +36474,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -36114,7 +36506,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -36145,7 +36538,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -36176,7 +36570,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -36244,7 +36639,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -36393,7 +36789,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -36666,7 +37063,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -36705,7 +37103,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -36774,7 +37173,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -36879,7 +37279,8 @@
                           "de": "Sand"
                         }
                       }
-                    }
+                    },
+                    "id": "PlasterFragment-plasterComponents-default"
                   },
                   "name": "plasterComponents",
                   "label": {
@@ -36993,7 +37394,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -37068,7 +37470,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -37099,7 +37502,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -37130,7 +37534,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -37161,7 +37566,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -37192,7 +37598,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -37223,7 +37630,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -37254,7 +37662,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -37322,7 +37731,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -37471,7 +37881,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -37744,7 +38155,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -37783,7 +38195,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -37852,7 +38265,8 @@
                           "de": "In situ"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Selinunt"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -37962,7 +38376,8 @@
                           "de": "Schneckenhaus (Gastropoda)"
                         }
                       }
-                    }
+                    },
+                    "id": "Mollusk-classification-default"
                   },
                   "name": "classification",
                   "label": {
@@ -38001,7 +38416,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -38032,7 +38448,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -38063,7 +38480,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -38094,7 +38512,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -38125,7 +38544,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -38156,7 +38576,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -38187,7 +38608,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -38255,7 +38677,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -38404,7 +38827,8 @@
                           "it": "Recente"
                         }
                       }
-                    }
+                    },
+                    "id": "periods-Selinunt-1"
                   },
                   "name": "period",
                   "label": {
@@ -38614,7 +39038,8 @@
                       "de": "Öffentliche Ausstattung"
                     }
                   }
-                }
+                },
+                "id": "Inscription-objectType-default"
               },
               "name": "objectType",
               "label": {
@@ -38663,7 +39088,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -38702,7 +39128,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -38798,7 +39225,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -38829,7 +39257,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -38983,7 +39412,8 @@
                       "de": "Spätklassisch"
                     }
                   }
-                }
+                },
+                "id": "periods-default-1"
               },
               "name": "period",
               "label": {
@@ -39427,7 +39857,8 @@
                           "de": "Transparentpapier"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingMaterial-default"
                   },
                   "name": "drawingMaterial",
                   "label": {
@@ -39467,7 +39898,8 @@
                           "de": "digital erstellt"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingTool-default"
                   },
                   "name": "drawingTool",
                   "label": {
@@ -39501,7 +39933,8 @@
                           "de": "Pantograf"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingType-default"
                   },
                   "name": "drawingType",
                   "label": {
@@ -39563,7 +39996,8 @@
                           "de": "1:5000"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-scale-default"
                   },
                   "name": "scale",
                   "label": {
@@ -39946,7 +40380,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -39977,7 +40412,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -40242,7 +40678,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -40273,7 +40710,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -40526,7 +40964,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -40557,7 +40996,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -40885,7 +41325,8 @@
                   "Eigenes Koordinatenbezugssystem",
                   "EPSG4326 (WGS 84)",
                   "EPSG3857 (WGS 84 Web Mercator)"
-                ]
+                ],
+                "id": "coordinate-reference-system-default-1"
               },
               "name": "coordinateReferenceSystem",
               "label": {
@@ -41023,7 +41464,8 @@
                       "en": "Traces"
                     }
                   }
-                }
+                },
+                "id": "TypeCatalog-criterion-default"
               },
               "name": "criterion",
               "label": {

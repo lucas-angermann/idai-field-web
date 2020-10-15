@@ -224,7 +224,8 @@
                       "en": "Historical building"
                     }
                   }
-                }
+                },
+                "id": "Place-siteClassification-SudanHeritage"
               },
               "name": "siteClassification",
               "label": {
@@ -306,7 +307,8 @@
                       "de": "urbanes Gebäude"
                     }
                   }
-                }
+                },
+                "id": "Place-findspotClassification-default"
               },
               "name": "findspotClassification",
               "label": {
@@ -467,7 +469,8 @@
                   "Christian",
                   "Islamic",
                   "Modern History"
-                ]
+                ],
+                "id": "period-SudanHeritage"
               },
               "name": "periodSudanHeritage",
               "label": {
@@ -1027,7 +1030,8 @@
                   "Eigenes Koordinatenbezugssystem",
                   "EPSG4326 (WGS 84)",
                   "EPSG3857 (WGS 84 Web Mercator)"
-                ]
+                ],
+                "id": "coordinate-reference-system-default-1"
               },
               "name": "coordinateReferenceSystem",
               "label": {
@@ -1165,7 +1169,8 @@
                       "en": "Traces"
                     }
                   }
-                }
+                },
+                "id": "TypeCatalog-criterion-default"
               },
               "name": "criterion",
               "label": {

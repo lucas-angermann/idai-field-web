@@ -494,7 +494,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -526,7 +527,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -595,7 +597,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -671,7 +674,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-Abbircella"
                   },
                   "name": "orientation",
                   "label": {
@@ -943,7 +947,8 @@
                           "de": "Ziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -991,7 +996,8 @@
                           "de": "Wohnviertel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-context-default"
                   },
                   "name": "context",
                   "label": {
@@ -1053,7 +1059,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -1108,7 +1115,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -1172,7 +1180,8 @@
                           "de": "Werkstatt"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingType-default"
                   },
                   "name": "buildingType",
                   "label": {
@@ -1290,7 +1299,8 @@
                           "de": "unspezifisches Mauerwerk"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingTechnique-default"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -1471,7 +1481,8 @@
                           "de": "Unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingCategory-Abbircella"
                   },
                   "name": "buildingCategory",
                   "label": {
@@ -1665,7 +1676,8 @@
                       "römisches Theater",
                       "vierschiffig",
                       "zweischiffig"
-                    ]
+                    ],
+                    "id": "Building-buildingCategorySpecific-default"
                   },
                   "name": "buildingCategorySpecific",
                   "label": {
@@ -1732,7 +1744,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -1764,7 +1777,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -1972,7 +1986,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -2267,7 +2282,8 @@
                           "de": "Seismik"
                         }
                       }
-                    }
+                    },
+                    "id": "Survey-researchMethod-Abbircella"
                   },
                   "name": "researchMethod",
                   "label": {
@@ -2471,7 +2487,8 @@
                       "de": "Siedlung"
                     }
                   }
-                }
+                },
+                "id": "Place-siteClassification-default"
               },
               "name": "siteClassification",
               "label": {
@@ -2553,7 +2570,8 @@
                       "de": "urbanes Gebäude"
                     }
                   }
-                }
+                },
+                "id": "Place-findspotClassification-default"
               },
               "name": "findspotClassification",
               "label": {
@@ -2899,7 +2917,8 @@
                   "Mittel",
                   "Schlecht",
                   "Unbekannt"
-                ]
+                ],
+                "id": "Feature-stratigraphicReliability-Abbircella"
               },
               "name": "stratigraphicReliability",
               "label": {
@@ -3056,7 +3075,8 @@
                       "de": "Weiß"
                     }
                   }
-                }
+                },
+                "id": "colors-Abbircella-1"
               },
               "name": "color",
               "label": {
@@ -3208,7 +3228,8 @@
                       "de": "Trichterförmig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureForm-Abbircella"
               },
               "name": "featureForm",
               "label": {
@@ -3354,7 +3375,8 @@
                       "de": "Wellig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureBorders-Abbircella"
               },
               "name": "featureBorders",
               "label": {
@@ -3453,7 +3475,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "photogrammetry",
               "label": {
@@ -3496,7 +3519,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "photographed",
               "label": {
@@ -3539,7 +3563,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "heights",
               "label": {
@@ -3582,7 +3607,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "sample",
               "label": {
@@ -3620,7 +3646,8 @@
                       "de": "Komposition"
                     }
                   }
-                }
+                },
+                "id": "Floor-distinguishingCriteria-Abbircella"
               },
               "name": "distinctionCriteria",
               "label": {
@@ -3696,7 +3723,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -3728,7 +3756,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -3784,7 +3813,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -4014,7 +4044,8 @@
                   "Phase VIII",
                   "Phase IX",
                   "Phase X"
-                ]
+                ],
+                "id": "periods-Abbircella-1"
               },
               "name": "period",
               "label": {
@@ -4269,7 +4300,8 @@
                       "Mittel",
                       "Schlecht",
                       "Unbekannt"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Abbircella"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -4426,7 +4458,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -4578,7 +4611,8 @@
                           "de": "Trichterförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Abbircella"
                   },
                   "name": "featureForm",
                   "label": {
@@ -4724,7 +4758,8 @@
                           "de": "Wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Abbircella"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -4823,7 +4858,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photogrammetry",
                   "label": {
@@ -4866,7 +4902,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -4909,7 +4946,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "heights",
                   "label": {
@@ -4952,7 +4990,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "sample",
                   "label": {
@@ -4990,7 +5029,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Abbircella"
                   },
                   "name": "distinctionCriteria",
                   "label": {
@@ -5066,7 +5106,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -5169,7 +5210,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-Abbircella"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -5325,7 +5367,8 @@
                           "de": "Mergel"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-Abbircella"
                   },
                   "name": "soilType",
                   "label": {
@@ -5520,7 +5563,8 @@
                           "de": "Pulverig"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-consistency-Abbircella"
                   },
                   "name": "consistency",
                   "label": {
@@ -5634,7 +5678,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -5666,7 +5711,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -5698,7 +5744,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -5754,7 +5801,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -5830,7 +5878,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-Abbircella"
                   },
                   "name": "orientation",
                   "label": {
@@ -6073,7 +6122,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -6329,7 +6379,8 @@
                       "Mittel",
                       "Schlecht",
                       "Unbekannt"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Abbircella"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -6486,7 +6537,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -6638,7 +6690,8 @@
                           "de": "Trichterförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Abbircella"
                   },
                   "name": "featureForm",
                   "label": {
@@ -6784,7 +6837,8 @@
                           "de": "Wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Abbircella"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -6883,7 +6937,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photogrammetry",
                   "label": {
@@ -6926,7 +6981,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -6969,7 +7025,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "heights",
                   "label": {
@@ -7012,7 +7069,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "sample",
                   "label": {
@@ -7050,7 +7108,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Abbircella"
                   },
                   "name": "distinctionCriteria",
                   "label": {
@@ -7143,7 +7202,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -7198,7 +7258,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -7296,7 +7357,8 @@
                           "de": "Mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-Abbircella"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -7421,7 +7483,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -7495,7 +7558,8 @@
                           "de": "Sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-Abbircella"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -7602,7 +7666,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-construction-Abbircella"
                   },
                   "name": "construction",
                   "label": {
@@ -7704,7 +7769,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-brickwork-Abbircella"
                   },
                   "name": "brickwork",
                   "label": {
@@ -7771,7 +7837,8 @@
                           "de": "Polierte Oberfläche"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockTreatment-Abbircella"
                   },
                   "name": "blockTreatment",
                   "label": {
@@ -7826,7 +7893,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockProcessing-Abbircella"
                   },
                   "name": "blockProcessing",
                   "label": {
@@ -7959,7 +8027,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallClassification-Abbircella"
                   },
                   "name": "wallClassification",
                   "label": {
@@ -8040,7 +8109,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallType-Abbircella"
                   },
                   "name": "wallType",
                   "label": {
@@ -8146,7 +8216,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-buildingTechnique-Abbircella"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -8236,7 +8307,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-walling-Abbircella"
                   },
                   "name": "walling",
                   "label": {
@@ -8289,7 +8361,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -8321,7 +8394,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -8377,7 +8451,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -8437,7 +8512,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -8680,7 +8756,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -8936,7 +9013,8 @@
                       "Mittel",
                       "Schlecht",
                       "Unbekannt"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Abbircella"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -9093,7 +9171,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -9245,7 +9324,8 @@
                           "de": "Trichterförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Abbircella"
                   },
                   "name": "featureForm",
                   "label": {
@@ -9391,7 +9471,8 @@
                           "de": "Wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Abbircella"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -9490,7 +9571,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photogrammetry",
                   "label": {
@@ -9533,7 +9615,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -9576,7 +9659,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "heights",
                   "label": {
@@ -9619,7 +9703,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "sample",
                   "label": {
@@ -9657,7 +9742,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Abbircella"
                   },
                   "name": "distinctionCriteria",
                   "label": {
@@ -9750,7 +9836,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -9805,7 +9892,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -10011,7 +10099,8 @@
                           "de": "Pulverig"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-consistency-Abbircella"
                   },
                   "name": "consistency",
                   "label": {
@@ -10054,7 +10143,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -10178,7 +10268,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -10307,7 +10398,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-floorClassification-Abbircella"
                   },
                   "name": "floorClassification",
                   "label": {
@@ -10409,7 +10501,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-Abbircella"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -10455,7 +10548,8 @@
                           "de": "Mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-Abbircella"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -10541,7 +10635,8 @@
                           "de": "Sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-Abbircella"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -10594,7 +10689,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -10626,7 +10722,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -10658,7 +10755,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -10690,7 +10788,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -10746,7 +10845,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -10822,7 +10922,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-Abbircella"
                   },
                   "name": "orientation",
                   "label": {
@@ -11065,7 +11166,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -11320,7 +11422,8 @@
                       "Mittel",
                       "Schlecht",
                       "Unbekannt"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Abbircella"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -11477,7 +11580,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -11629,7 +11733,8 @@
                           "de": "Trichterförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Abbircella"
                   },
                   "name": "featureForm",
                   "label": {
@@ -11775,7 +11880,8 @@
                           "de": "Wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Abbircella"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -11874,7 +11980,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photogrammetry",
                   "label": {
@@ -11917,7 +12024,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -11960,7 +12068,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "heights",
                   "label": {
@@ -12003,7 +12112,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "sample",
                   "label": {
@@ -12041,7 +12151,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Abbircella"
                   },
                   "name": "distinctionCriteria",
                   "label": {
@@ -12207,7 +12318,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Negative-negativeClassification-Abbircella"
                   },
                   "name": "otherClassification",
                   "label": {
@@ -12269,7 +12381,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -12301,7 +12414,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -12333,7 +12447,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -12389,7 +12504,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -12465,7 +12581,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-Abbircella"
                   },
                   "name": "orientation",
                   "label": {
@@ -12708,7 +12825,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -12962,7 +13080,8 @@
                       "Mittel",
                       "Schlecht",
                       "Unbekannt"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Abbircella"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -13119,7 +13238,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -13271,7 +13391,8 @@
                           "de": "Trichterförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Abbircella"
                   },
                   "name": "featureForm",
                   "label": {
@@ -13417,7 +13538,8 @@
                           "de": "Wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Abbircella"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -13516,7 +13638,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photogrammetry",
                   "label": {
@@ -13559,7 +13682,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -13602,7 +13726,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "heights",
                   "label": {
@@ -13645,7 +13770,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "sample",
                   "label": {
@@ -13683,7 +13809,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Abbircella"
                   },
                   "name": "distinctionCriteria",
                   "label": {
@@ -13853,7 +13980,8 @@
                           "de": "Polierte Oberfläche"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockTreatment-Abbircella"
                   },
                   "name": "blockTreatment",
                   "label": {
@@ -13926,7 +14054,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-buildingTechnique-Abbircella"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -13985,7 +14114,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -14037,7 +14167,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -14166,7 +14297,8 @@
                           "de": "Sturzauflager"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-constructionDetails-Abbircella"
                   },
                   "name": "constructionDetails",
                   "label": {
@@ -14208,7 +14340,8 @@
                           "de": "partiell ausgehöhlt"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-jointsCondition-Meninx"
                   },
                   "name": "jointsCondition",
                   "label": {
@@ -14265,7 +14398,8 @@
                           "de": "Weit"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-jointsType-Meninx"
                   },
                   "name": "jointsType",
                   "label": {
@@ -14292,7 +14426,8 @@
                           "de": "AC"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mark-default"
                   },
                   "name": "mark",
                   "label": {
@@ -14337,7 +14472,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "PlasterFragment-plasterComponents-Abbircella"
                   },
                   "name": "plasterComponents",
                   "label": {
@@ -14410,7 +14546,8 @@
                           "de": "Westen"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-wallOrientation-Abbircella"
                   },
                   "name": "wallOrientation",
                   "label": {
@@ -14483,7 +14620,8 @@
                           "de": "Westen"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-wallOrientation-Abbircella"
                   },
                   "name": "roomSide",
                   "label": {
@@ -14556,7 +14694,8 @@
                           "de": "Westen"
                         }
                       }
-                    }
+                    },
+                    "id": "Wall_surface-wallOrientation-Abbircella"
                   },
                   "name": "wallSide",
                   "label": {
@@ -14618,7 +14757,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -14650,7 +14790,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -14682,7 +14823,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -14714,7 +14856,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -14770,7 +14913,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -14846,7 +14990,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-Abbircella"
                   },
                   "name": "orientation",
                   "label": {
@@ -15089,7 +15234,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -15323,7 +15469,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -15355,7 +15502,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -15572,7 +15720,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -15604,7 +15753,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -15842,7 +15992,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -15874,7 +16025,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -16213,7 +16365,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -16252,7 +16405,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -16330,7 +16484,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -16362,7 +16517,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -16394,7 +16550,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -16450,7 +16607,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -16605,7 +16763,8 @@
                       "de": "Spätklassisch"
                     }
                   }
-                }
+                },
+                "id": "periods-default-1"
               },
               "name": "period",
               "label": {
@@ -16844,7 +17003,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "drawn",
               "label": {
@@ -16887,7 +17047,8 @@
                   "Ja",
                   "Nein",
                   "Nicht notwendig"
-                ]
+                ],
+                "id": "Feature-drawn-Abbircella"
               },
               "name": "photographed",
               "label": {
@@ -16985,7 +17146,8 @@
                   "Mittel",
                   "Schlecht",
                   "Sehr schlecht"
-                ]
+                ],
+                "id": "Architecture-condition-Abbircella"
               },
               "name": "condition",
               "label": {
@@ -17040,7 +17202,8 @@
                       "de": "Restauriert"
                     }
                   }
-                }
+                },
+                "id": "Architecture-conditionAmount-Abbircella"
               },
               "name": "conditionAmount",
               "label": {
@@ -17119,7 +17282,8 @@
                       "de": "Unbekannt"
                     }
                   }
-                }
+                },
+                "id": "Find-storagePlace-Abbircella"
               },
               "name": "storagePlace",
               "label": {
@@ -17199,7 +17363,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -17231,7 +17396,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -17263,7 +17429,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -17295,7 +17462,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionPerimeter",
               "label": {
@@ -17327,7 +17495,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionDiameter",
               "label": {
@@ -17359,7 +17528,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionThickness",
               "label": {
@@ -17391,7 +17561,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionOther",
               "label": {
@@ -17460,7 +17631,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -17636,7 +17808,8 @@
                   "Phase VIII",
                   "Phase IX",
                   "Phase X"
-                ]
+                ],
+                "id": "periods-Abbircella-1"
               },
               "name": "period",
               "label": {
@@ -17874,7 +18047,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -17917,7 +18091,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -18015,7 +18190,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -18070,7 +18246,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -18149,7 +18326,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -18227,7 +18405,8 @@
                           "de": "Gebrauchskeramik (Grobe Ware)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-materialType-default"
                   },
                   "name": "materialType",
                   "label": {
@@ -18436,7 +18615,8 @@
                           "de": "unbestimmt"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-potteryTypeSpecific-Meninx"
                   },
                   "name": "specificType",
                   "label": {
@@ -18568,7 +18748,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -18760,7 +18941,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -18837,7 +19019,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -18884,7 +19067,8 @@
                           "de": "nachgedreht (überdreht)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -18961,7 +19145,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -19015,7 +19200,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -19062,7 +19248,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -19126,7 +19313,8 @@
                           "de": "7-10 (Fensterglas wird geritzt, Stahl schlägt Funken)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayHardness-default"
                   },
                   "name": "clayHardness",
                   "label": {
@@ -19240,7 +19428,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -19364,7 +19553,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -19488,7 +19678,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -19547,7 +19738,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatInside",
                   "label": {
@@ -19661,7 +19853,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -19713,7 +19906,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatInsideType",
                   "label": {
@@ -19750,7 +19944,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatOutside",
                   "label": {
@@ -19864,7 +20059,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -19916,7 +20112,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatOutsideType",
                   "label": {
@@ -20013,7 +20210,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -20077,7 +20275,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -20226,7 +20425,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -20460,7 +20660,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -20659,7 +20860,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -20691,7 +20893,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -20723,7 +20926,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -20755,7 +20959,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -20787,7 +20992,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -20819,7 +21025,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -20851,7 +21058,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -20920,7 +21128,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -21096,7 +21305,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -21335,7 +21545,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -21378,7 +21589,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -21476,7 +21688,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -21531,7 +21744,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -21610,7 +21824,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -21738,7 +21953,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -21792,7 +22008,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -21839,7 +22056,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -21878,7 +22096,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-clayStructure-default"
                   },
                   "name": "clayStructure",
                   "label": {
@@ -21994,7 +22213,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -22108,7 +22328,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -22170,7 +22391,8 @@
                           "de": "verwaschen"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -22219,7 +22441,8 @@
                           "de": "nachgedreht (überdreht)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -22281,7 +22504,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -22378,7 +22602,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -22472,7 +22697,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -22609,7 +22835,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -22833,7 +23060,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -22950,7 +23178,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -23064,7 +23293,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -23178,7 +23408,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -23218,7 +23449,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -23250,7 +23482,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -23282,7 +23515,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -23314,7 +23548,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -23346,7 +23581,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -23378,7 +23614,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -23410,7 +23647,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -23479,7 +23717,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -23655,7 +23894,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -23894,7 +24134,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -23937,7 +24178,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -24035,7 +24277,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -24090,7 +24333,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -24169,7 +24413,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -24297,7 +24542,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -24361,7 +24607,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -24398,7 +24645,8 @@
                           "de": "handgeformt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -24485,7 +24733,8 @@
                           "de": "Wandziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickForm-default"
                   },
                   "name": "brickForm",
                   "label": {
@@ -24547,7 +24796,8 @@
                           "de": "Wandverkleidung"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickUsage-default"
                   },
                   "name": "brickUsage",
                   "label": {
@@ -24644,7 +24894,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -24760,7 +25011,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -24837,7 +25089,8 @@
                           "de": "Überzug/Glasur"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -24964,7 +25217,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -25078,7 +25332,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -25170,7 +25425,8 @@
                           "de": "Ziegelbruch"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -25394,7 +25650,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -25437,7 +25694,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -25469,7 +25727,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -25501,7 +25760,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -25533,7 +25793,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -25565,7 +25826,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -25597,7 +25859,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -25629,7 +25892,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -25698,7 +25962,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -25874,7 +26139,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -26113,7 +26379,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -26156,7 +26423,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -26254,7 +26522,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -26309,7 +26578,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -26388,7 +26658,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -26476,7 +26747,8 @@
                           "de": "Tierknochen"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneType-default"
                   },
                   "name": "boneType",
                   "label": {
@@ -26543,7 +26815,8 @@
                           "de": "Ziegenartige (z. B. Schaf, Ziege)"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-species-default"
                   },
                   "name": "species",
                   "label": {
@@ -26672,7 +26945,8 @@
                           "de": "Zahn"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneClassification-default"
                   },
                   "name": "boneClassification",
                   "label": {
@@ -26721,7 +26995,8 @@
                       "III - um 550°C - Verfärbung etwa grau/blaugrau-milchig hellgrau",
                       "IV - 650°-750°C - Verfärbung etwa milchig weiß-mattweiß/kreideartig",
                       "V - ab 800°C - Verfärbung etwa altweiß/schmutzigweiß"
-                    ]
+                    ],
+                    "id": "Bone-burningGrade-default"
                   },
                   "name": "burningGrade",
                   "label": {
@@ -26823,7 +27098,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -26884,7 +27160,8 @@
                       "Juvenil (13-18/20)",
                       "Matur (40-60)",
                       "Senil (60 <)"
-                    ]
+                    ],
+                    "id": "Bone-biologicalAge-default"
                   },
                   "name": "biologicalAge",
                   "label": {
@@ -26914,7 +27191,8 @@
                           "de": "Weiblich"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-sex-default"
                   },
                   "name": "sex",
                   "label": {
@@ -26956,7 +27234,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -26988,7 +27267,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -27020,7 +27300,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -27052,7 +27333,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -27084,7 +27366,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -27116,7 +27399,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -27148,7 +27432,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -27217,7 +27502,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -27393,7 +27679,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -27634,7 +27921,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -27677,7 +27965,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -27775,7 +28064,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -27830,7 +28120,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -27909,7 +28200,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -28057,7 +28349,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -28173,7 +28466,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -28212,7 +28506,8 @@
                           "de": "versintert"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-transparency-default"
                   },
                   "name": "transparency",
                   "label": {
@@ -28321,7 +28616,8 @@
                           "de": "figürlicher Schliffdekor"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -28392,7 +28688,8 @@
                           "de": "gedreht (auf Drehscheibe)"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -28516,7 +28813,8 @@
                           "de": "Weinheber"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -28603,7 +28901,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -28767,7 +29066,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -28991,7 +29291,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -29034,7 +29335,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -29066,7 +29368,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -29098,7 +29401,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -29130,7 +29434,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -29162,7 +29467,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -29194,7 +29500,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -29226,7 +29533,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -29295,7 +29603,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -29471,7 +29780,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -29710,7 +30020,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -29753,7 +30064,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -29851,7 +30163,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -29906,7 +30219,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -29985,7 +30299,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -30118,7 +30433,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -30215,7 +30531,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -30259,7 +30576,8 @@
                           "de": "Ziehtechnik"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -30326,7 +30644,8 @@
                           "de": "Vergoldung"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -30608,7 +30927,8 @@
                           "de": "Zierbeschlag"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -30695,7 +31015,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -30842,7 +31163,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -31066,7 +31388,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -31109,7 +31432,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -31141,7 +31465,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -31173,7 +31498,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -31205,7 +31531,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -31237,7 +31564,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -31269,7 +31597,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -31301,7 +31630,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -31370,7 +31700,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -31546,7 +31877,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -31785,7 +32117,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -31828,7 +32161,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -31926,7 +32260,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -31981,7 +32316,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -32060,7 +32396,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -32218,7 +32555,8 @@
                           "de": "Tuff"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -32270,7 +32608,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -32408,7 +32747,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -32507,7 +32847,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -32741,7 +33082,8 @@
                           "de": "Ölpresse"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -32843,7 +33185,8 @@
                           "de": "Wandverkleidung"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-architectureElement-default"
                   },
                   "name": "architectureElement",
                   "label": {
@@ -32902,7 +33245,8 @@
                           "de": "Sizilien"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-origin-default"
                   },
                   "name": "origin",
                   "label": {
@@ -33126,7 +33470,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -33169,7 +33514,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -33201,7 +33547,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -33233,7 +33580,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -33265,7 +33613,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -33297,7 +33646,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -33329,7 +33679,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -33361,7 +33712,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -33430,7 +33782,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -33606,7 +33959,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -33845,7 +34199,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -33888,7 +34243,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -33986,7 +34342,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -34041,7 +34398,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -34120,7 +34478,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -34203,7 +34562,8 @@
                           "de": "schwarz"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-color-default"
                   },
                   "name": "color",
                   "label": {
@@ -34327,7 +34687,8 @@
                           "de": "Zeder"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-typeOfWood-default"
                   },
                   "name": "typeOfWood",
                   "label": {
@@ -34441,7 +34802,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -34508,7 +34870,8 @@
                           "de": "Gespalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -34730,7 +35093,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -34825,7 +35189,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -34887,7 +35252,8 @@
                           "de": "Vergoldung/metallischer Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -34954,7 +35320,8 @@
                           "de": "nicht erhalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-paintCondition-default"
                   },
                   "name": "paintCondition",
                   "label": {
@@ -34994,7 +35361,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -35026,7 +35394,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -35058,7 +35427,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -35090,7 +35460,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -35122,7 +35493,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -35154,7 +35526,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -35186,7 +35559,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -35255,7 +35629,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -35431,7 +35806,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -35670,7 +36046,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -35713,7 +36090,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -35811,7 +36189,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -35866,7 +36245,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -35945,7 +36325,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -36078,7 +36459,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -36115,7 +36497,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -36374,7 +36757,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -36454,7 +36838,8 @@
                           "de": "- 12 Uhr"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-stampPositioning-default"
                   },
                   "name": "stampPositioning",
                   "label": {
@@ -36824,7 +37209,8 @@
                           "de": "Victoriatus"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-denomination-default"
                   },
                   "name": "denomination",
                   "label": {
@@ -38103,7 +38489,8 @@
                           "de": "Äetolien"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mint-default"
                   },
                   "name": "mint",
                   "label": {
@@ -38168,7 +38555,8 @@
                           "de": "Valentianus III"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mintingRuler-default"
                   },
                   "name": "mintingRuler",
                   "label": {
@@ -38211,7 +38599,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -38243,7 +38632,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -38275,7 +38665,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -38307,7 +38698,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -38339,7 +38731,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -38371,7 +38764,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -38403,7 +38797,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -38472,7 +38867,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -38648,7 +39044,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -38887,7 +39284,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -38930,7 +39328,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -39028,7 +39427,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -39083,7 +39483,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -39162,7 +39563,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -39258,7 +39660,8 @@
                           "de": "Sonstiges"
                         }
                       }
-                    }
+                    },
+                    "id": "PlasterFragment-plasterComponents-Abbircella"
                   },
                   "name": "plasterComponents",
                   "label": {
@@ -39416,7 +39819,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-1"
                   },
                   "name": "color",
                   "label": {
@@ -39488,7 +39892,8 @@
                           "de": "Mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-Abbircella"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -39561,7 +39966,8 @@
                           "de": "Sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-Abbircella"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -39683,7 +40089,8 @@
                           "de": "Weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-Abbircella-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -39736,7 +40143,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -39768,7 +40176,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -39800,7 +40209,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -39832,7 +40242,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -39864,7 +40275,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -39896,7 +40308,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -39928,7 +40341,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -39997,7 +40411,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -40173,7 +40588,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -40412,7 +40828,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "drawn",
                   "label": {
@@ -40455,7 +40872,8 @@
                       "Ja",
                       "Nein",
                       "Nicht notwendig"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Abbircella"
                   },
                   "name": "photographed",
                   "label": {
@@ -40553,7 +40971,8 @@
                       "Mittel",
                       "Schlecht",
                       "Sehr schlecht"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Abbircella"
                   },
                   "name": "condition",
                   "label": {
@@ -40608,7 +41027,8 @@
                           "de": "Restauriert"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Abbircella"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -40687,7 +41107,8 @@
                           "de": "Unbekannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Abbircella"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -40775,7 +41196,8 @@
                           "de": "Schneckenhaus (Gastropoda)"
                         }
                       }
-                    }
+                    },
+                    "id": "Mollusk-classification-default"
                   },
                   "name": "classification",
                   "label": {
@@ -40815,7 +41237,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -40847,7 +41270,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -40879,7 +41303,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -40911,7 +41336,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -40943,7 +41369,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -40975,7 +41402,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -41007,7 +41435,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -41076,7 +41505,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -41252,7 +41682,8 @@
                       "Phase VIII",
                       "Phase IX",
                       "Phase X"
-                    ]
+                    ],
+                    "id": "periods-Abbircella-1"
                   },
                   "name": "period",
                   "label": {
@@ -41489,7 +41920,8 @@
                       "de": "Öffentliche Ausstattung"
                     }
                   }
-                }
+                },
+                "id": "Inscription-objectType-Abbircella"
               },
               "name": "objectType",
               "label": {
@@ -41548,7 +41980,8 @@
                   "Mittel",
                   "Schlecht",
                   "Sehr schlecht"
-                ]
+                ],
+                "id": "Architecture-condition-Abbircella"
               },
               "name": "condition",
               "label": {
@@ -41602,7 +42035,8 @@
                       "de": "Restauriert"
                     }
                   }
-                }
+                },
+                "id": "Architecture-conditionAmount-Abbircella"
               },
               "name": "conditionAmount",
               "label": {
@@ -41699,7 +42133,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -41731,7 +42166,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -41907,7 +42343,8 @@
                   "Phase VIII",
                   "Phase IX",
                   "Phase X"
-                ]
+                ],
+                "id": "periods-Abbircella-1"
               },
               "name": "period",
               "label": {
@@ -42109,7 +42546,8 @@
                       "de": "Pollenanalyse"
                     }
                   }
-                }
+                },
+                "id": "Sample-sampleType-Abbircella"
               },
               "name": "sampleType",
               "label": {
@@ -42251,7 +42689,8 @@
                       "de": "Sonstiges"
                     }
                   }
-                }
+                },
+                "id": "Sample-sampleMaterial-Abbircella"
               },
               "name": "sampleMaterial",
               "label": {
@@ -42762,7 +43201,8 @@
                           "de": "Transparentpapier"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingMaterial-default"
                   },
                   "name": "drawingMaterial",
                   "label": {
@@ -42802,7 +43242,8 @@
                           "de": "digital erstellt"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingTool-default"
                   },
                   "name": "drawingTool",
                   "label": {
@@ -42836,7 +43277,8 @@
                           "de": "Pantograf"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingType-default"
                   },
                   "name": "drawingType",
                   "label": {
@@ -42898,7 +43340,8 @@
                           "de": "1:5000"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-scale-default"
                   },
                   "name": "scale",
                   "label": {
@@ -43291,7 +43734,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -43323,7 +43767,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -43597,7 +44042,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -43629,7 +44075,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -43890,7 +44337,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -43922,7 +44370,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -44255,7 +44704,8 @@
                   "Eigenes Koordinatenbezugssystem",
                   "EPSG4326 (WGS 84)",
                   "EPSG3857 (WGS 84 Web Mercator)"
-                ]
+                ],
+                "id": "coordinate-reference-system-default-1"
               },
               "name": "coordinateReferenceSystem",
               "label": {
@@ -44393,7 +44843,8 @@
                       "en": "Traces"
                     }
                   }
-                }
+                },
+                "id": "TypeCatalog-criterion-default"
               },
               "name": "criterion",
               "label": {

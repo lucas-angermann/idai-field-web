@@ -478,7 +478,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -509,7 +510,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -576,7 +578,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -635,7 +638,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -900,7 +904,8 @@
                           "de": "Ziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -947,7 +952,8 @@
                           "de": "Wohnviertel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-context-default"
                   },
                   "name": "context",
                   "label": {
@@ -998,7 +1004,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -1037,7 +1044,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -1099,7 +1107,8 @@
                           "de": "Werkstatt"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingType-default"
                   },
                   "name": "buildingType",
                   "label": {
@@ -1216,7 +1225,8 @@
                           "de": "unspezifisches Mauerwerk"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingTechnique-default"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -1335,7 +1345,8 @@
                           "de": "Wohnbau"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingCategory-default"
                   },
                   "name": "buildingCategory",
                   "label": {
@@ -1528,7 +1539,8 @@
                       "römisches Theater",
                       "vierschiffig",
                       "zweischiffig"
-                    ]
+                    ],
+                    "id": "Building-buildingCategorySpecific-default"
                   },
                   "name": "buildingCategorySpecific",
                   "label": {
@@ -1591,7 +1603,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -1622,7 +1635,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -1761,7 +1775,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -2029,7 +2044,8 @@
                           "de": "Seismik"
                         }
                       }
-                    }
+                    },
+                    "id": "Survey-researchMethod-default"
                   },
                   "name": "researchMethod",
                   "label": {
@@ -2229,7 +2245,8 @@
                       "de": "Siedlung"
                     }
                   }
-                }
+                },
+                "id": "Place-siteClassification-default"
               },
               "name": "siteClassification",
               "label": {
@@ -2311,7 +2328,8 @@
                       "de": "urbanes Gebäude"
                     }
                   }
-                }
+                },
+                "id": "Place-findspotClassification-default"
               },
               "name": "findspotClassification",
               "label": {
@@ -2642,7 +2660,8 @@
                   "medium",
                   "bad",
                   "unknown"
-                ]
+                ],
+                "id": "Feature-stratigraphicReliability-Campidoglio"
               },
               "name": "stratigraphicReliability",
               "label": {
@@ -2755,7 +2774,8 @@
                       "de": "weiß"
                     }
                   }
-                }
+                },
+                "id": "colors-default-1"
               },
               "name": "color",
               "label": {
@@ -2870,7 +2890,8 @@
                       "it": "Irregolare"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureForm-Campidoglio"
               },
               "name": "featureForm",
               "label": {
@@ -2996,7 +3017,8 @@
                       "it": "Ondulati"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureBorders-Campidoglio"
               },
               "name": "featureBorders",
               "label": {
@@ -3056,7 +3078,8 @@
                       "en": "unknown"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureCondition-Campidoglio"
               },
               "name": "featureCondition",
               "label": {
@@ -3101,7 +3124,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "drawn",
               "label": {
@@ -3137,7 +3161,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "photographed",
               "label": {
@@ -3173,7 +3198,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "heights",
               "label": {
@@ -3235,7 +3261,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -3266,7 +3293,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -3321,7 +3349,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -3478,7 +3507,8 @@
                   "Republican / Repubblicano",
                   "Imperial / Età imperiale",
                   "Late antique / Tardo antico"
-                ]
+                ],
+                "id": "periods-campidoglio-and-castiglione-1"
               },
               "name": "period",
               "label": {
@@ -3719,7 +3749,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -3832,7 +3863,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -3947,7 +3979,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -4073,7 +4106,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -4133,7 +4167,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -4178,7 +4213,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -4214,7 +4250,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -4250,7 +4287,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -4318,7 +4356,8 @@
                           "it": "Composizione"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Campidoglio"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -4392,7 +4431,8 @@
                           "it": "Livellamento"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-Campidoglio"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -4554,7 +4594,8 @@
                       "Clayely loam / medio impasto argilloso",
                       "Loam / medio impasto / Lehm",
                       "Marl / marna / Mergel"
-                    ]
+                    ],
+                    "id": "Layer-soilType-Campidoglio"
                   },
                   "name": "soilType",
                   "label": {
@@ -4638,7 +4679,8 @@
                       "Very soft / molto morbido",
                       "Friable / friabile",
                       "Plastic / plastico"
-                    ]
+                    ],
+                    "id": "Floor-consistency-Campidoglio"
                   },
                   "name": "consistency",
                   "label": {
@@ -4787,7 +4829,8 @@
                           "en": "Stone"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerFinds-Campidoglio"
                   },
                   "name": "layerFinds",
                   "label": {
@@ -4850,7 +4893,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -4881,7 +4925,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -4912,7 +4957,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -4967,7 +5013,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -5124,7 +5171,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -5366,7 +5414,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -5479,7 +5528,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -5594,7 +5644,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -5720,7 +5771,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -5780,7 +5832,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -5825,7 +5878,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -5861,7 +5915,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -5897,7 +5952,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -6040,7 +6096,8 @@
                           "de": "Toniger Schluff"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-default"
                   },
                   "name": "soilType",
                   "label": {
@@ -6091,7 +6148,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -6130,7 +6188,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -6185,7 +6244,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -6319,7 +6379,8 @@
                           "de": "Ziegelplattengrab"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-graveType-default"
                   },
                   "name": "graveType",
                   "label": {
@@ -6380,7 +6441,8 @@
                       "bruchsteingemauertes Grab",
                       "quadergemauertes Grab",
                       "ziegelgemauertes Grab"
-                    ]
+                    ],
+                    "id": "Grave-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -6412,7 +6474,8 @@
                           "de": "Ziegelgemauert"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-tombBuilding-default"
                   },
                   "name": "tombBuilding",
                   "label": {
@@ -6534,7 +6597,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -6565,7 +6629,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -6620,7 +6685,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -6789,7 +6855,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -7031,7 +7098,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -7144,7 +7212,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -7259,7 +7328,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -7385,7 +7455,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -7445,7 +7516,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -7490,7 +7562,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -7526,7 +7599,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -7562,7 +7636,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -7635,7 +7710,8 @@
                           "de": "Teil-Körperbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-graveFeature-default"
                   },
                   "name": "graveFeature",
                   "label": {
@@ -7697,7 +7773,8 @@
                           "de": "Wiedergängerbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-amountIndividuals-default"
                   },
                   "name": "amountIndividuals",
                   "label": {
@@ -7739,7 +7816,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positioningIndividuals-default"
                   },
                   "name": "positioningIndividuals",
                   "label": {
@@ -7781,7 +7859,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialCharacteristic-default"
                   },
                   "name": "burialCharacteristic",
                   "label": {
@@ -7828,7 +7907,8 @@
                           "de": "Röntgen"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialDocumentation-default"
                   },
                   "name": "burialDocumentation",
                   "label": {
@@ -7902,7 +7982,8 @@
                           "de": "ungleichmäßig"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionArms-default"
                   },
                   "name": "positionArms",
                   "label": {
@@ -7949,7 +8030,8 @@
                           "de": "gestreckt"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionLegs-default"
                   },
                   "name": "positionLegs",
                   "label": {
@@ -8050,7 +8132,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -8081,7 +8164,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -8136,7 +8220,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -8293,7 +8378,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -8535,7 +8621,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -8648,7 +8735,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -8763,7 +8851,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -8889,7 +8978,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -8949,7 +9039,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -8994,7 +9085,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -9030,7 +9122,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -9066,7 +9159,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -9141,7 +9235,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -9190,7 +9285,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -9276,7 +9372,8 @@
                           "de": "mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-default"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -9372,7 +9469,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -9429,7 +9527,8 @@
                           "de": "sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-default"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -9510,7 +9609,8 @@
                           "de": "zweischalig mit Binderlagen"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-construction-default"
                   },
                   "name": "construction",
                   "label": {
@@ -9588,7 +9688,8 @@
                           "de": "Märkischer Verband"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-brickwork-default"
                   },
                   "name": "brickwork",
                   "label": {
@@ -9647,7 +9748,8 @@
                           "it": "Superficie lisciata"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockTreatment-Campidoglio"
                   },
                   "name": "blockTreatment",
                   "label": {
@@ -9686,7 +9788,8 @@
                           "de": "Werksteine"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockProcessing-default"
                   },
                   "name": "blockProcessing",
                   "label": {
@@ -9785,7 +9888,8 @@
                           "de": "Wandgestaltung"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallClassification-default"
                   },
                   "name": "wallClassification",
                   "label": {
@@ -9842,7 +9946,8 @@
                           "de": "Ziegelmauer"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallType-default"
                   },
                   "name": "wallType",
                   "label": {
@@ -9906,7 +10011,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-buildingTechnique-Campidoglio"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -9988,7 +10094,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-walling-Campidoglio"
                   },
                   "name": "walling",
                   "label": {
@@ -10028,7 +10135,8 @@
                           "it": "Morsetti"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-bindingAgent-Campidoglio"
                   },
                   "name": "bindingAgent",
                   "label": {
@@ -10111,7 +10219,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -10142,7 +10251,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -10197,7 +10307,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -10256,7 +10367,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -10425,7 +10537,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -10667,7 +10780,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -10780,7 +10894,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -10895,7 +11010,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -11021,7 +11137,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -11081,7 +11198,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -11126,7 +11244,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -11162,7 +11281,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -11198,7 +11318,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -11273,7 +11394,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -11322,7 +11444,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -11417,7 +11540,8 @@
                       "Very soft / molto morbido",
                       "Friable / friabile",
                       "Plastic / plastico"
-                    ]
+                    ],
+                    "id": "Floor-consistency-Campidoglio"
                   },
                   "name": "consistency",
                   "label": {
@@ -11464,7 +11588,8 @@
                           "it": "Composizione"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-distinguishingCriteria-Campidoglio"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -11553,7 +11678,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-floorClassification-Campidoglio"
                   },
                   "name": "floorClassification",
                   "label": {
@@ -11590,7 +11716,8 @@
                           "de": "Planierschicht"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-default"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -11627,7 +11754,8 @@
                           "de": "mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-default"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -11691,7 +11819,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -11722,7 +11851,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -11777,7 +11907,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -11934,7 +12065,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -12173,7 +12305,8 @@
                       "medium",
                       "bad",
                       "unknown"
-                    ]
+                    ],
+                    "id": "Feature-stratigraphicReliability-Campidoglio"
                   },
                   "name": "stratigraphicReliability",
                   "label": {
@@ -12286,7 +12419,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -12401,7 +12535,8 @@
                           "it": "Irregolare"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-Campidoglio"
                   },
                   "name": "featureForm",
                   "label": {
@@ -12527,7 +12662,8 @@
                           "it": "Ondulati"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-Campidoglio"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -12587,7 +12723,8 @@
                           "en": "unknown"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureCondition-Campidoglio"
                   },
                   "name": "featureCondition",
                   "label": {
@@ -12632,7 +12769,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -12668,7 +12806,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -12704,7 +12843,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "heights",
                   "label": {
@@ -12752,7 +12892,8 @@
                           "en": "vertical"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-interfaceClassification-Campidoglio"
                   },
                   "name": "interfaceClassification",
                   "label": {
@@ -12783,7 +12924,8 @@
                           "en": "Imperceptible"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-breakSlopeTop-Campidoglio"
                   },
                   "name": "breakSlopeTop",
                   "label": {
@@ -12824,7 +12966,8 @@
                           "en": "Mixed"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-sides-Campidoglio"
                   },
                   "name": "sides",
                   "label": {
@@ -12855,7 +12998,8 @@
                           "en": "Imperceptible"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-breakSlopeTop-Campidoglio"
                   },
                   "name": "breakSlopeBase",
                   "label": {
@@ -12896,7 +13040,8 @@
                           "en": "Uneven"
                         }
                       }
-                    }
+                    },
+                    "id": "Interface-base-Campidoglio"
                   },
                   "name": "base",
                   "label": {
@@ -12952,7 +13097,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -12983,7 +13129,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -13038,7 +13185,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -13195,7 +13343,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -13421,7 +13570,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -13452,7 +13602,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -13662,7 +13813,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -13693,7 +13845,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -13924,7 +14077,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -13955,7 +14109,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -14287,7 +14442,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -14326,7 +14482,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -14402,7 +14559,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -14433,7 +14591,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -14464,7 +14623,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -14519,7 +14679,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -14627,7 +14788,8 @@
                   "Republican / Repubblicano",
                   "Imperial / Età imperiale",
                   "Late antique / Tardo antico"
-                ]
+                ],
+                "id": "periods-campidoglio-and-castiglione-1"
               },
               "name": "period",
               "label": {
@@ -14840,7 +15002,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "hasRestoration",
               "label": {
@@ -14879,7 +15042,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "drawn",
               "label": {
@@ -14915,7 +15079,8 @@
                   "Yes",
                   "No",
                   "Not necessary"
-                ]
+                ],
+                "id": "Feature-drawn-Campidoglio"
               },
               "name": "photographed",
               "label": {
@@ -15004,7 +15169,8 @@
                   "Medium / medie",
                   "Bad / cattive",
                   "Very bad / molto cattive"
-                ]
+                ],
+                "id": "Architecture-condition-Campidoglio"
               },
               "name": "condition",
               "label": {
@@ -15053,7 +15219,8 @@
                       "it": "Restaurato"
                     }
                   }
-                }
+                },
+                "id": "Architecture-conditionAmount-Campidoglio"
               },
               "name": "conditionAmount",
               "label": {
@@ -15132,7 +15299,8 @@
                       "en": "Laboratory"
                     }
                   }
-                }
+                },
+                "id": "Find-storagePlace-Campidoglio"
               },
               "name": "storagePlace",
               "label": {
@@ -15207,7 +15375,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -15238,7 +15407,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -15269,7 +15439,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -15300,7 +15471,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionPerimeter",
               "label": {
@@ -15331,7 +15503,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionDiameter",
               "label": {
@@ -15362,7 +15535,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionThickness",
               "label": {
@@ -15393,7 +15567,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionOther",
               "label": {
@@ -15461,7 +15636,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -15569,7 +15745,8 @@
                   "Republican / Repubblicano",
                   "Imperial / Età imperiale",
                   "Late antique / Tardo antico"
-                ]
+                ],
+                "id": "periods-campidoglio-and-castiglione-1"
               },
               "name": "period",
               "label": {
@@ -15781,7 +15958,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -15820,7 +15998,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -15856,7 +16035,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -15945,7 +16125,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -15994,7 +16175,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -16073,7 +16255,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -16148,7 +16331,8 @@
                           "it": "Ceramica grezza"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-materialType-Campidoglio"
                   },
                   "name": "materialType",
                   "label": {
@@ -16389,7 +16573,8 @@
                           "it": "Ceramica comune"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-specificType-Campidoglio"
                   },
                   "name": "specificType",
                   "label": {
@@ -16553,7 +16738,8 @@
                           "it": "Forma indeterminata"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselForm-Campidoglio"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -16745,7 +16931,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -16830,7 +17017,8 @@
                           "it": "Bruciata o esposta A cottura secondaria"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturing-Campidoglio"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -16881,7 +17069,8 @@
                           "it": "A mano"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-Campidoglio"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -16958,7 +17147,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -17012,7 +17202,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -17059,7 +17250,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -17108,7 +17300,8 @@
                           "it": "6-10 (durissimo, non scalfibile con lama di coltello)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayHardness-Campidoglio"
                   },
                   "name": "clayHardness",
                   "label": {
@@ -17239,7 +17432,8 @@
                           "it": "Bianco"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayColorBreak-Campidoglio"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -17380,7 +17574,8 @@
                           "it": "Bianco"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayColorBreak-Campidoglio"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -17521,7 +17716,8 @@
                           "it": "Bianco"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayColorBreak-Campidoglio"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -17580,7 +17776,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatInside",
                   "label": {
@@ -17711,7 +17908,8 @@
                           "it": "Bianco"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayColorBreak-Campidoglio"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -17763,7 +17961,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatInsideType",
                   "label": {
@@ -17800,7 +17999,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatOutside",
                   "label": {
@@ -17931,7 +18131,8 @@
                           "it": "Bianco"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayColorBreak-Campidoglio"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -17983,7 +18184,8 @@
                           "de": "Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInsideType-default"
                   },
                   "name": "coatOutsideType",
                   "label": {
@@ -18080,7 +18282,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -18134,7 +18337,8 @@
                           "it": "A rilievo con matrice o stampo"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-Campidoglio"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -18485,7 +18689,8 @@
                           "it": "Non chiaro o indeterminabile"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-objectType-Campidoglio"
                   },
                   "name": "objectType",
                   "label": {
@@ -18719,7 +18924,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -18947,7 +19153,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -18978,7 +19185,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -19009,7 +19217,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -19040,7 +19249,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -19071,7 +19281,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -19102,7 +19313,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -19133,7 +19345,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -19201,7 +19414,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -19309,7 +19523,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -19522,7 +19737,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -19561,7 +19777,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -19597,7 +19814,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -19686,7 +19904,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -19735,7 +19954,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -19814,7 +20034,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -19937,7 +20158,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -19991,7 +20213,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -20038,7 +20261,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -20077,7 +20301,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-clayStructure-default"
                   },
                   "name": "clayStructure",
                   "label": {
@@ -20193,7 +20418,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -20307,7 +20533,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -20369,7 +20596,8 @@
                           "de": "verwaschen"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -20418,7 +20646,8 @@
                           "de": "nachgedreht (überdreht)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -20480,7 +20709,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -20577,7 +20807,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -20671,7 +20902,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -20808,7 +21040,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -21032,7 +21265,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -21148,7 +21382,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -21262,7 +21497,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -21376,7 +21612,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -21415,7 +21652,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -21446,7 +21684,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -21477,7 +21716,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -21508,7 +21748,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -21539,7 +21780,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -21570,7 +21812,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -21601,7 +21844,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -21669,7 +21913,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -21777,7 +22022,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -21990,7 +22236,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -22029,7 +22276,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -22065,7 +22313,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -22154,7 +22403,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -22203,7 +22453,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -22282,7 +22533,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -22405,7 +22657,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -22469,7 +22722,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -22510,7 +22764,8 @@
                           "it": "Seccato all'aria"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturingMethod-Campidoglio"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -22593,7 +22848,8 @@
                           "it": "Indefinibile"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickForm-Campidoglio"
                   },
                   "name": "brickForm",
                   "label": {
@@ -22676,7 +22932,8 @@
                           "it": "Indefinibile"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickUsage-Campidoglio"
                   },
                   "name": "brickUsage",
                   "label": {
@@ -22729,7 +22986,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-formDescription-Campidoglio"
                   },
                   "name": "formDescription",
                   "label": {
@@ -22854,7 +23112,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -22898,7 +23157,8 @@
                           "it": "Tracce di aratro"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-surfaceCondition-Campidoglio"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -22979,7 +23239,8 @@
                           "it": "Graffiti"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-decorationTechnique-Campidoglio"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -23045,7 +23306,8 @@
                           "it": "Sottile"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-coatQuality-Campidoglio"
                   },
                   "name": "coatQuality",
                   "label": {
@@ -23158,7 +23420,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -23281,7 +23544,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -23343,7 +23607,8 @@
                           "it": "Non conservata"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-coatCondition-Campidoglio"
                   },
                   "name": "coatCondition",
                   "label": {
@@ -23434,7 +23699,8 @@
                           "de": "Ziegelbruch"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -23705,7 +23971,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -23746,7 +24013,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -23777,7 +24045,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -23808,7 +24077,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -23839,7 +24109,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -23870,7 +24141,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -23901,7 +24173,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -23932,7 +24205,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -24000,7 +24274,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -24108,7 +24383,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -24321,7 +24597,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -24360,7 +24637,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -24396,7 +24674,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -24485,7 +24764,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -24534,7 +24814,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -24613,7 +24894,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -24696,7 +24978,8 @@
                           "de": "Tierknochen"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneType-default"
                   },
                   "name": "boneType",
                   "label": {
@@ -24763,7 +25046,8 @@
                           "de": "Ziegenartige (z. B. Schaf, Ziege)"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-species-default"
                   },
                   "name": "species",
                   "label": {
@@ -24892,7 +25176,8 @@
                           "de": "Zahn"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneClassification-default"
                   },
                   "name": "boneClassification",
                   "label": {
@@ -24941,7 +25226,8 @@
                       "III - um 550°C - Verfärbung etwa grau/blaugrau-milchig hellgrau",
                       "IV - 650°-750°C - Verfärbung etwa milchig weiß-mattweiß/kreideartig",
                       "V - ab 800°C - Verfärbung etwa altweiß/schmutzigweiß"
-                    ]
+                    ],
+                    "id": "Bone-burningGrade-default"
                   },
                   "name": "burningGrade",
                   "label": {
@@ -25043,7 +25329,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -25104,7 +25391,8 @@
                       "Juvenil (13-18/20)",
                       "Matur (40-60)",
                       "Senil (60 <)"
-                    ]
+                    ],
+                    "id": "Bone-biologicalAge-default"
                   },
                   "name": "biologicalAge",
                   "label": {
@@ -25134,7 +25422,8 @@
                           "de": "Weiblich"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-sex-default"
                   },
                   "name": "sex",
                   "label": {
@@ -25175,7 +25464,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -25206,7 +25496,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -25237,7 +25528,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -25268,7 +25560,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -25299,7 +25592,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -25330,7 +25624,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -25361,7 +25656,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -25429,7 +25725,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -25537,7 +25834,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -25752,7 +26050,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -25791,7 +26090,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -25827,7 +26127,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -25916,7 +26217,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -25965,7 +26267,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -26044,7 +26347,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -26187,7 +26491,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -26303,7 +26608,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -26342,7 +26648,8 @@
                           "de": "versintert"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-transparency-default"
                   },
                   "name": "transparency",
                   "label": {
@@ -26451,7 +26758,8 @@
                           "de": "figürlicher Schliffdekor"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -26522,7 +26830,8 @@
                           "de": "gedreht (auf Drehscheibe)"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -26646,7 +26955,8 @@
                           "de": "Weinheber"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -26733,7 +27043,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -26897,7 +27208,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -27121,7 +27433,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -27162,7 +27475,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -27193,7 +27507,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -27224,7 +27539,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -27255,7 +27571,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -27286,7 +27603,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -27317,7 +27635,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -27348,7 +27667,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -27416,7 +27736,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -27524,7 +27845,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -27737,7 +28059,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -27776,7 +28099,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -27812,7 +28136,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -27901,7 +28226,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -27950,7 +28276,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -28029,7 +28356,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -28169,7 +28497,8 @@
                           "it": "Stagno"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-metalMaterial-Campidoglio"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -28278,7 +28607,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -28328,7 +28658,8 @@
                           "it": "A stampo"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-manufacturingMethod-Campidoglio"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -28434,7 +28765,8 @@
                           "it": "Superficie intagliata"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-decorationTechnique-Campidoglio"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -28773,7 +29105,8 @@
                           "it": "Non chiaro o indeterminabile"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-objectType-Campidoglio"
                   },
                   "name": "objectType",
                   "label": {
@@ -28937,7 +29270,8 @@
                           "it": "Forma indeterminata"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselForm-Campidoglio"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -29084,7 +29418,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -29308,7 +29643,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -29349,7 +29685,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -29380,7 +29717,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -29411,7 +29749,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -29442,7 +29781,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -29473,7 +29813,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -29504,7 +29845,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -29535,7 +29877,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -29603,7 +29946,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -29711,7 +30055,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -29924,7 +30269,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -29963,7 +30309,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -29999,7 +30346,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -30088,7 +30436,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -30137,7 +30486,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -30216,7 +30566,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -30398,7 +30749,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-material-Campidoglio"
                   },
                   "name": "material",
                   "label": {
@@ -30450,7 +30802,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -30518,7 +30871,8 @@
                           "it": "Parzialmente incompiuto"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-decorationTechnique-Campidoglio"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -30588,7 +30942,8 @@
                           "it": "Non conservata"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-coatCondition-Campidoglio"
                   },
                   "name": "paintCondition",
                   "label": {
@@ -30713,7 +31068,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -30812,7 +31168,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -30939,7 +31296,8 @@
                           "it": "Non chiaro o Indefinibile"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-objectType-Campidoglio"
                   },
                   "name": "objectType",
                   "label": {
@@ -30974,7 +31332,8 @@
                           "it": "Incerto"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-usedAsSpolia-Campidoglio"
                   },
                   "name": "usedAsSpolia",
                   "label": {
@@ -31089,7 +31448,8 @@
                           "it": "Altro"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-architectureElement-Campidoglio"
                   },
                   "name": "architectureElement",
                   "label": {
@@ -31148,7 +31508,8 @@
                           "de": "Sizilien"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-origin-default"
                   },
                   "name": "origin",
                   "label": {
@@ -31372,7 +31733,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -31413,7 +31775,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -31444,7 +31807,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -31475,7 +31839,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -31506,7 +31871,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -31537,7 +31903,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -31568,7 +31935,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -31599,7 +31967,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -31667,7 +32036,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -31775,7 +32145,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -31988,7 +32359,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -32027,7 +32399,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -32063,7 +32436,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -32152,7 +32526,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -32201,7 +32576,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -32280,7 +32656,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -32358,7 +32735,8 @@
                           "de": "schwarz"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-color-default"
                   },
                   "name": "color",
                   "label": {
@@ -32482,7 +32860,8 @@
                           "de": "Zeder"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-typeOfWood-default"
                   },
                   "name": "typeOfWood",
                   "label": {
@@ -32596,7 +32975,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -32663,7 +33043,8 @@
                           "de": "Gespalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -32885,7 +33266,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -32979,7 +33361,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -33041,7 +33424,8 @@
                           "de": "Vergoldung/metallischer Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -33108,7 +33492,8 @@
                           "de": "nicht erhalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-paintCondition-default"
                   },
                   "name": "paintCondition",
                   "label": {
@@ -33147,7 +33532,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -33178,7 +33564,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -33209,7 +33596,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -33240,7 +33628,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -33271,7 +33660,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -33302,7 +33692,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -33333,7 +33724,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -33401,7 +33793,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -33509,7 +33902,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -33722,7 +34116,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -33761,7 +34156,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -33797,7 +34193,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -33886,7 +34283,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -33935,7 +34333,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -34014,7 +34413,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -34142,7 +34542,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -34179,7 +34580,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -34438,7 +34840,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -34517,7 +34920,8 @@
                           "de": "- 12 Uhr"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-stampPositioning-default"
                   },
                   "name": "stampPositioning",
                   "label": {
@@ -34887,7 +35291,8 @@
                           "de": "Victoriatus"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-denomination-default"
                   },
                   "name": "denomination",
                   "label": {
@@ -36166,7 +36571,8 @@
                           "de": "Äetolien"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mint-default"
                   },
                   "name": "mint",
                   "label": {
@@ -36231,7 +36637,8 @@
                           "de": "Valentianus III"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mintingRuler-default"
                   },
                   "name": "mintingRuler",
                   "label": {
@@ -36273,7 +36680,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -36304,7 +36712,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -36335,7 +36744,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -36366,7 +36776,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -36397,7 +36808,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -36428,7 +36840,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -36459,7 +36872,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -36527,7 +36941,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -36635,7 +37050,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -36848,7 +37264,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -36887,7 +37304,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -36923,7 +37341,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -37012,7 +37431,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -37061,7 +37481,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -37140,7 +37561,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -37218,7 +37640,8 @@
                           "de": "Sand"
                         }
                       }
-                    }
+                    },
+                    "id": "PlasterFragment-plasterComponents-default"
                   },
                   "name": "plasterComponents",
                   "label": {
@@ -37332,7 +37755,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -37407,7 +37831,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -37438,7 +37863,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -37469,7 +37895,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -37500,7 +37927,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -37531,7 +37959,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -37562,7 +37991,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -37593,7 +38023,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -37661,7 +38092,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -37769,7 +38201,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -37982,7 +38415,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "hasRestoration",
                   "label": {
@@ -38021,7 +38455,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "drawn",
                   "label": {
@@ -38057,7 +38492,8 @@
                       "Yes",
                       "No",
                       "Not necessary"
-                    ]
+                    ],
+                    "id": "Feature-drawn-Campidoglio"
                   },
                   "name": "photographed",
                   "label": {
@@ -38146,7 +38582,8 @@
                       "Medium / medie",
                       "Bad / cattive",
                       "Very bad / molto cattive"
-                    ]
+                    ],
+                    "id": "Architecture-condition-Campidoglio"
                   },
                   "name": "condition",
                   "label": {
@@ -38195,7 +38632,8 @@
                           "it": "Restaurato"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-conditionAmount-Campidoglio"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -38274,7 +38712,8 @@
                           "en": "Laboratory"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-Campidoglio"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -38357,7 +38796,8 @@
                           "de": "Schneckenhaus (Gastropoda)"
                         }
                       }
-                    }
+                    },
+                    "id": "Mollusk-classification-default"
                   },
                   "name": "classification",
                   "label": {
@@ -38396,7 +38836,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -38427,7 +38868,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -38458,7 +38900,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -38489,7 +38932,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -38520,7 +38964,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -38551,7 +38996,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -38582,7 +39028,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -38650,7 +39097,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -38758,7 +39206,8 @@
                       "Republican / Repubblicano",
                       "Imperial / Età imperiale",
                       "Late antique / Tardo antico"
-                    ]
+                    ],
+                    "id": "periods-campidoglio-and-castiglione-1"
                   },
                   "name": "period",
                   "label": {
@@ -38968,7 +39417,8 @@
                       "de": "Öffentliche Ausstattung"
                     }
                   }
-                }
+                },
+                "id": "Inscription-objectType-default"
               },
               "name": "objectType",
               "label": {
@@ -39017,7 +39467,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -39056,7 +39507,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -39152,7 +39604,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -39183,7 +39636,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -39291,7 +39745,8 @@
                   "Republican / Repubblicano",
                   "Imperial / Età imperiale",
                   "Late antique / Tardo antico"
-                ]
+                ],
+                "id": "periods-campidoglio-and-castiglione-1"
               },
               "name": "period",
               "label": {
@@ -39515,7 +39970,8 @@
                       "en": "Micromorphology"
                     }
                   }
-                }
+                },
+                "id": "Sample-sampleType-Campidoglio"
               },
               "name": "sampleType",
               "label": {
@@ -39614,7 +40070,8 @@
                       "en": "Discarded"
                     }
                   }
-                }
+                },
+                "id": "Sample-sampleState-Campidoglio"
               },
               "name": "sampleState",
               "label": {
@@ -40090,7 +40547,8 @@
                           "de": "Transparentpapier"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingMaterial-default"
                   },
                   "name": "drawingMaterial",
                   "label": {
@@ -40130,7 +40588,8 @@
                           "de": "digital erstellt"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingTool-default"
                   },
                   "name": "drawingTool",
                   "label": {
@@ -40164,7 +40623,8 @@
                           "de": "Pantograf"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingType-default"
                   },
                   "name": "drawingType",
                   "label": {
@@ -40226,7 +40686,8 @@
                           "de": "1:5000"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-scale-default"
                   },
                   "name": "scale",
                   "label": {
@@ -40609,7 +41070,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -40640,7 +41102,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -40905,7 +41368,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -40936,7 +41400,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -41189,7 +41654,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -41220,7 +41686,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -41548,7 +42015,8 @@
                   "Eigenes Koordinatenbezugssystem",
                   "EPSG4326 (WGS 84)",
                   "EPSG3857 (WGS 84 Web Mercator)"
-                ]
+                ],
+                "id": "coordinate-reference-system-default-1"
               },
               "name": "coordinateReferenceSystem",
               "label": {
@@ -41686,7 +42154,8 @@
                       "en": "Traces"
                     }
                   }
-                }
+                },
+                "id": "TypeCatalog-criterion-default"
               },
               "name": "criterion",
               "label": {

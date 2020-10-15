@@ -478,7 +478,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -509,7 +510,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -576,7 +578,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -635,7 +638,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -920,7 +924,8 @@
                           "de": "Ziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -967,7 +972,8 @@
                           "de": "Wohnviertel"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-context-default"
                   },
                   "name": "context",
                   "label": {
@@ -1018,7 +1024,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -1057,7 +1064,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -1119,7 +1127,8 @@
                           "de": "Werkstatt"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingType-default"
                   },
                   "name": "buildingType",
                   "label": {
@@ -1236,7 +1245,8 @@
                           "de": "unspezifisches Mauerwerk"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingTechnique-default"
                   },
                   "name": "buildingTechnique",
                   "label": {
@@ -1355,7 +1365,8 @@
                           "de": "Wohnbau"
                         }
                       }
-                    }
+                    },
+                    "id": "Building-buildingCategory-default"
                   },
                   "name": "buildingCategory",
                   "label": {
@@ -1548,7 +1559,8 @@
                       "römisches Theater",
                       "vierschiffig",
                       "zweischiffig"
-                    ]
+                    ],
+                    "id": "Building-buildingCategorySpecific-default"
                   },
                   "name": "buildingCategorySpecific",
                   "label": {
@@ -1611,7 +1623,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -1642,7 +1655,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -1776,7 +1790,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -2044,7 +2059,8 @@
                           "de": "Seismik"
                         }
                       }
-                    }
+                    },
+                    "id": "Survey-researchMethod-default"
                   },
                   "name": "researchMethod",
                   "label": {
@@ -2264,7 +2280,8 @@
                       "de": "Siedlung"
                     }
                   }
-                }
+                },
+                "id": "Place-siteClassification-default"
               },
               "name": "siteClassification",
               "label": {
@@ -2346,7 +2363,8 @@
                       "de": "urbanes Gebäude"
                     }
                   }
-                }
+                },
+                "id": "Place-findspotClassification-default"
               },
               "name": "findspotClassification",
               "label": {
@@ -2748,7 +2766,8 @@
                       "de": "weiß"
                     }
                   }
-                }
+                },
+                "id": "colors-default-1"
               },
               "name": "color",
               "label": {
@@ -2864,7 +2883,8 @@
                       "de": "wannenförmig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureForm-default"
               },
               "name": "featureForm",
               "label": {
@@ -2973,7 +2993,8 @@
                       "de": "wellig"
                     }
                   }
-                }
+                },
+                "id": "Feature-featureBorders-default"
               },
               "name": "featureBorders",
               "label": {
@@ -3057,7 +3078,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -3088,7 +3110,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -3119,7 +3142,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -3174,7 +3198,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -3326,7 +3351,8 @@
                   "Mamlukisch",
                   "Osmanisch",
                   "Modern"
-                ]
+                ],
+                "id": "periods-gadara"
               },
               "name": "period",
               "label": {
@@ -3638,7 +3664,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -3754,7 +3781,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -3863,7 +3891,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -3948,7 +3977,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -3987,7 +4017,8 @@
                           "de": "Planierschicht"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-default"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -4121,7 +4152,8 @@
                           "de": "Toniger Schluff"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-default"
                   },
                   "name": "soilType",
                   "label": {
@@ -4260,7 +4292,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-consistency-default"
                   },
                   "name": "consistency",
                   "label": {
@@ -4311,7 +4344,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -4342,7 +4376,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -4373,7 +4408,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -4404,7 +4440,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -4459,7 +4496,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -4611,7 +4649,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -4924,7 +4963,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -5040,7 +5080,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -5149,7 +5190,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -5314,7 +5356,8 @@
                           "de": "Toniger Schluff"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-soilType-default"
                   },
                   "name": "soilType",
                   "label": {
@@ -5365,7 +5408,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -5404,7 +5448,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -5459,7 +5504,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -5593,7 +5639,8 @@
                           "de": "Ziegelplattengrab"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-graveType-default"
                   },
                   "name": "graveType",
                   "label": {
@@ -5654,7 +5701,8 @@
                       "bruchsteingemauertes Grab",
                       "quadergemauertes Grab",
                       "ziegelgemauertes Grab"
-                    ]
+                    ],
+                    "id": "Grave-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -5686,7 +5734,8 @@
                           "de": "Ziegelgemauert"
                         }
                       }
-                    }
+                    },
+                    "id": "Grave-tombBuilding-default"
                   },
                   "name": "tombBuilding",
                   "label": {
@@ -5808,7 +5857,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -5839,7 +5889,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -5870,7 +5921,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -5925,7 +5977,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -6089,7 +6142,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -6402,7 +6456,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -6518,7 +6573,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -6627,7 +6683,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -6722,7 +6779,8 @@
                           "de": "Teil-Körperbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-graveFeature-default"
                   },
                   "name": "graveFeature",
                   "label": {
@@ -6784,7 +6842,8 @@
                           "de": "Wiedergängerbestattung"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-amountIndividuals-default"
                   },
                   "name": "amountIndividuals",
                   "label": {
@@ -6826,7 +6885,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positioningIndividuals-default"
                   },
                   "name": "positioningIndividuals",
                   "label": {
@@ -6868,7 +6928,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialCharacteristic-default"
                   },
                   "name": "burialCharacteristic",
                   "label": {
@@ -6915,7 +6976,8 @@
                           "de": "Röntgen"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-burialDocumentation-default"
                   },
                   "name": "burialDocumentation",
                   "label": {
@@ -6989,7 +7051,8 @@
                           "de": "ungleichmäßig"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionArms-default"
                   },
                   "name": "positionArms",
                   "label": {
@@ -7036,7 +7099,8 @@
                           "de": "gestreckt"
                         }
                       }
-                    }
+                    },
+                    "id": "Burial-positionLegs-default"
                   },
                   "name": "positionLegs",
                   "label": {
@@ -7137,7 +7201,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -7168,7 +7233,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -7199,7 +7265,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -7254,7 +7321,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -7406,7 +7474,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -7719,7 +7788,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -7835,7 +7905,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -7944,7 +8015,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -8036,7 +8108,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -8075,7 +8148,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -8161,7 +8235,8 @@
                           "de": "mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-default"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -8257,7 +8332,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-2"
                   },
                   "name": "mortarColor",
                   "label": {
@@ -8314,7 +8390,8 @@
                           "de": "sandig"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarConsistency-default"
                   },
                   "name": "mortarConsistency",
                   "label": {
@@ -8395,7 +8472,8 @@
                           "de": "zweischalig mit Binderlagen"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-construction-default"
                   },
                   "name": "construction",
                   "label": {
@@ -8473,7 +8551,8 @@
                           "de": "Märkischer Verband"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-brickwork-default"
                   },
                   "name": "brickwork",
                   "label": {
@@ -8535,7 +8614,8 @@
                           "de": "unbehauen"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockTreatment-default"
                   },
                   "name": "blockTreatment",
                   "label": {
@@ -8574,7 +8654,8 @@
                           "de": "Werksteine"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-blockProcessing-default"
                   },
                   "name": "blockProcessing",
                   "label": {
@@ -8673,7 +8754,8 @@
                           "de": "Wandgestaltung"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallClassification-default"
                   },
                   "name": "wallClassification",
                   "label": {
@@ -8730,7 +8812,8 @@
                           "de": "Ziegelmauer"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-wallType-default"
                   },
                   "name": "wallType",
                   "label": {
@@ -8783,7 +8866,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -8814,7 +8898,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -8845,7 +8930,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -8900,7 +8986,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -8959,7 +9046,8 @@
                           "de": "WSW-ONO"
                         }
                       }
-                    }
+                    },
+                    "id": "orientation-default-1"
                   },
                   "name": "orientation",
                   "label": {
@@ -9123,7 +9211,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -9436,7 +9525,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -9552,7 +9642,8 @@
                           "de": "wannenförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureForm-default"
                   },
                   "name": "featureForm",
                   "label": {
@@ -9661,7 +9752,8 @@
                           "de": "wellig"
                         }
                       }
-                    }
+                    },
+                    "id": "Feature-featureBorders-default"
                   },
                   "name": "featureBorders",
                   "label": {
@@ -9753,7 +9845,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -9792,7 +9885,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -9942,7 +10036,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-consistency-default"
                   },
                   "name": "consistency",
                   "label": {
@@ -9984,7 +10079,8 @@
                           "de": "Komposition"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-distinguishingCriteria-default"
                   },
                   "name": "distinguishingCriteria",
                   "label": {
@@ -10053,7 +10149,8 @@
                           "de": "Ziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Floor-floorClassification-default"
                   },
                   "name": "floorClassification",
                   "label": {
@@ -10090,7 +10187,8 @@
                           "de": "Planierschicht"
                         }
                       }
-                    }
+                    },
+                    "id": "Layer-layerClassification-default"
                   },
                   "name": "layerClassification",
                   "label": {
@@ -10127,7 +10225,8 @@
                           "de": "mittel"
                         }
                       }
-                    }
+                    },
+                    "id": "Architecture-mortarBinder-default"
                   },
                   "name": "mortarBinder",
                   "label": {
@@ -10180,7 +10279,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -10211,7 +10311,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -10242,7 +10343,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -10297,7 +10399,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -10449,7 +10552,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -10676,7 +10780,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -10707,7 +10812,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -10917,7 +11023,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -10948,7 +11055,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -11179,7 +11287,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -11210,7 +11319,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -11542,7 +11652,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -11581,7 +11692,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -11657,7 +11769,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -11688,7 +11801,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -11719,7 +11833,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -11774,7 +11889,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -11877,7 +11993,8 @@
                   "Mamlukisch",
                   "Osmanisch",
                   "Modern"
-                ]
+                ],
+                "id": "periods-gadara"
               },
               "name": "period",
               "label": {
@@ -12150,7 +12267,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -12189,7 +12307,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -12283,7 +12402,8 @@
                       "de": "Staatsbesitz"
                     }
                   }
-                }
+                },
+                "id": "Find-storagePlace-default"
               },
               "name": "storagePlace",
               "label": {
@@ -12361,7 +12481,8 @@
                       "de": "Tüte"
                     }
                   }
-                }
+                },
+                "id": "Find-amountDescription-gadara"
               },
               "name": "amountDescription",
               "label": {},
@@ -12397,7 +12518,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -12428,7 +12550,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -12459,7 +12582,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -12490,7 +12614,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionPerimeter",
               "label": {
@@ -12521,7 +12646,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionDiameter",
               "label": {
@@ -12552,7 +12678,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionThickness",
               "label": {
@@ -12583,7 +12710,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionOther",
               "label": {
@@ -12651,7 +12779,8 @@
                       "en": "Lower edge"
                     }
                   }
-                }
+                },
+                "id": "position-values-edge-default"
               },
               "name": "dimensionVerticalExtent",
               "label": {
@@ -12754,7 +12883,8 @@
                   "Mamlukisch",
                   "Osmanisch",
                   "Modern"
-                ]
+                ],
+                "id": "periods-gadara"
               },
               "name": "period",
               "label": {
@@ -13026,7 +13156,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -13065,7 +13196,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -13159,7 +13291,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -13237,7 +13370,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -13287,7 +13421,8 @@
                       "GK",
                       "TK",
                       "KK"
-                    ]
+                    ],
+                    "id": "Pottery-materialType-gadara"
                   },
                   "name": "materialType",
                   "label": {
@@ -13386,7 +13521,8 @@
                       "T",
                       "P",
                       "Ks"
-                    ]
+                    ],
+                    "id": "Pottery-specificType-gadara"
                   },
                   "name": "specificType",
                   "label": {
@@ -13525,7 +13661,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -13717,7 +13854,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -13794,7 +13932,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -13841,7 +13980,8 @@
                           "de": "nachgedreht (überdreht)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -13918,7 +14058,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -13972,7 +14113,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -14019,7 +14161,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -14083,7 +14226,8 @@
                           "de": "7-10 (Fensterglas wird geritzt, Stahl schlägt Funken)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-clayHardness-default"
                   },
                   "name": "clayHardness",
                   "label": {
@@ -14197,7 +14341,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -14321,7 +14466,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -14445,7 +14591,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -14504,7 +14651,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatInside",
                   "label": {
@@ -14621,7 +14769,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatColor-gadara"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -14673,7 +14822,8 @@
                           "de": "Verstrichen"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatTpe-gadara"
                   },
                   "name": "coatInsideType",
                   "label": {
@@ -14710,7 +14860,8 @@
                           "de": "Tongrundig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatInside-default"
                   },
                   "name": "coatOutside",
                   "label": {
@@ -14827,7 +14978,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatColor-gadara"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -14879,7 +15031,8 @@
                           "de": "Verstrichen"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-coatTpe-gadara"
                   },
                   "name": "coatOutsideType",
                   "label": {
@@ -14976,7 +15129,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -15040,7 +15194,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -15189,7 +15344,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -15423,7 +15579,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -15648,7 +15805,8 @@
                       "D",
                       "VAR",
                       "KOMP"
-                    ]
+                    ],
+                    "id": "Pottery-vesselpart-gadara"
                   },
                   "name": "vesselpart",
                   "label": {},
@@ -16024,7 +16182,8 @@
                       "RB",
                       "REDQ",
                       "REDQ calc."
-                    ]
+                    ],
+                    "id": "Pottery-potteryTypeSpecific-gadara"
                   },
                   "name": "potteryTypeSpecific",
                   "label": {},
@@ -16067,7 +16226,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -16098,7 +16258,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -16129,7 +16290,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -16160,7 +16322,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -16191,7 +16354,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -16222,7 +16386,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -16253,7 +16418,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -16321,7 +16487,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -16424,7 +16591,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -16697,7 +16865,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -16736,7 +16905,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -16830,7 +17000,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -16908,7 +17079,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -16992,7 +17164,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -17046,7 +17219,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -17093,7 +17267,8 @@
                           "de": "sehr grob"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperParticles-default"
                   },
                   "name": "temperParticles",
                   "label": {
@@ -17132,7 +17307,8 @@
                           "de": "weich"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-clayStructure-default"
                   },
                   "name": "clayStructure",
                   "label": {
@@ -17248,7 +17424,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -17362,7 +17539,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -17424,7 +17602,8 @@
                           "de": "verwaschen"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -17473,7 +17652,8 @@
                           "de": "nachgedreht (überdreht)"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -17535,7 +17715,8 @@
                           "de": "Warzendekor"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -17632,7 +17813,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -17726,7 +17908,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -17863,7 +18046,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Terracotta-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -18087,7 +18271,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -18203,7 +18388,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorBreak",
                   "label": {
@@ -18317,7 +18503,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorInside",
                   "label": {
@@ -18431,7 +18618,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -18470,7 +18658,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -18501,7 +18690,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -18532,7 +18722,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -18563,7 +18754,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -18594,7 +18786,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -18625,7 +18818,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -18656,7 +18850,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -18724,7 +18919,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -18827,7 +19023,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -19100,7 +19297,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -19139,7 +19337,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -19233,7 +19432,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -19311,7 +19511,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -19395,7 +19596,8 @@
                           "de": "Vulkanische Partikel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-temper-default"
                   },
                   "name": "temper",
                   "label": {
@@ -19459,7 +19661,8 @@
                           "de": "Weich gebrannt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturing-default"
                   },
                   "name": "manufacturing",
                   "label": {
@@ -19496,7 +19699,8 @@
                           "de": "handgeformt"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -19583,7 +19787,8 @@
                           "de": "Wandziegel"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickForm-default"
                   },
                   "name": "brickForm",
                   "label": {
@@ -19645,7 +19850,8 @@
                           "de": "Wandverkleidung"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-brickUsage-default"
                   },
                   "name": "brickUsage",
                   "label": {
@@ -19742,7 +19948,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -19858,7 +20065,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "clayColorOutside",
                   "label": {
@@ -19935,7 +20143,8 @@
                           "de": "Überzug/Glasur"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -20062,7 +20271,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorOutside",
                   "label": {
@@ -20176,7 +20386,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "coatColorInside",
                   "label": {
@@ -20268,7 +20479,8 @@
                           "de": "Ziegelbruch"
                         }
                       }
-                    }
+                    },
+                    "id": "Brick-specificType-default"
                   },
                   "name": "specificType",
                   "label": {
@@ -20492,7 +20704,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -20533,7 +20746,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -20564,7 +20778,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -20595,7 +20810,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -20626,7 +20842,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -20657,7 +20874,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -20688,7 +20906,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -20719,7 +20938,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -20787,7 +21007,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -20890,7 +21111,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -21163,7 +21385,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -21202,7 +21425,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -21296,7 +21520,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -21374,7 +21599,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -21418,7 +21644,8 @@
                           "de": "Tierknochen"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneType-default"
                   },
                   "name": "boneType",
                   "label": {
@@ -21485,7 +21712,8 @@
                           "de": "Ziegenartige (z. B. Schaf, Ziege)"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-species-default"
                   },
                   "name": "species",
                   "label": {
@@ -21904,7 +22132,8 @@
                           "de": "Vertebra thoracica 8"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-boneClassification-Meninx"
                   },
                   "name": "boneClassification",
                   "label": {
@@ -21953,7 +22182,8 @@
                       "III - um 550°C - Verfärbung etwa grau/blaugrau-milchig hellgrau",
                       "IV - 650°-750°C - Verfärbung etwa milchig weiß-mattweiß/kreideartig",
                       "V - ab 800°C - Verfärbung etwa altweiß/schmutzigweiß"
-                    ]
+                    ],
+                    "id": "Bone-burningGrade-default"
                   },
                   "name": "burningGrade",
                   "label": {
@@ -22055,7 +22285,8 @@
                           "de": "Werkzeug"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -22116,7 +22347,8 @@
                       "Juvenil (13-18/20)",
                       "Matur (40-60)",
                       "Senil (60 <)"
-                    ]
+                    ],
+                    "id": "Bone-biologicalAge-default"
                   },
                   "name": "biologicalAge",
                   "label": {
@@ -22151,7 +22383,8 @@
                           "de": "Männlich oder Kastrat"
                         }
                       }
-                    }
+                    },
+                    "id": "Bone-sex-Meninx"
                   },
                   "name": "sex",
                   "label": {
@@ -22192,7 +22425,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -22223,7 +22457,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -22254,7 +22489,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -22285,7 +22521,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -22316,7 +22553,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -22347,7 +22585,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -22378,7 +22617,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -22446,7 +22686,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -22549,7 +22790,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -22824,7 +23066,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -22863,7 +23106,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -22957,7 +23201,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -23035,7 +23280,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -23139,7 +23385,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -23255,7 +23502,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -23294,7 +23542,8 @@
                           "de": "versintert"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-transparency-default"
                   },
                   "name": "transparency",
                   "label": {
@@ -23403,7 +23652,8 @@
                           "de": "figürlicher Schliffdekor"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -23474,7 +23724,8 @@
                           "de": "gedreht (auf Drehscheibe)"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -23598,7 +23849,8 @@
                           "de": "Weinheber"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -23685,7 +23937,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -23849,7 +24102,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -24073,7 +24327,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -24114,7 +24369,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -24145,7 +24401,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -24176,7 +24433,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -24207,7 +24465,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -24238,7 +24497,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -24269,7 +24529,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -24300,7 +24561,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -24368,7 +24630,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -24471,7 +24734,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -24744,7 +25008,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -24783,7 +25048,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -24877,7 +25143,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -24955,7 +25222,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -25044,7 +25312,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -25141,7 +25410,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -25185,7 +25455,8 @@
                           "de": "Ziehtechnik"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -25252,7 +25523,8 @@
                           "de": "Vergoldung"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -25534,7 +25806,8 @@
                           "de": "Zierbeschlag"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -25621,7 +25894,8 @@
                           "de": "Vorratsgefäß"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-vesselForm-default"
                   },
                   "name": "vesselForm",
                   "label": {
@@ -25768,7 +26042,8 @@
                           "de": "zylindrische Flasche"
                         }
                       }
-                    }
+                    },
+                    "id": "Metal-vesselFormSpecific-default"
                   },
                   "name": "vesselFormSpecific",
                   "label": {
@@ -25992,7 +26267,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -26033,7 +26309,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -26064,7 +26341,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -26095,7 +26373,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -26126,7 +26405,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -26157,7 +26437,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -26188,7 +26469,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -26219,7 +26501,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -26287,7 +26570,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -26390,7 +26674,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -26663,7 +26948,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -26702,7 +26988,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -26796,7 +27083,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -26874,7 +27162,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -26988,7 +27277,8 @@
                           "de": "Tuff"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-material-default"
                   },
                   "name": "material",
                   "label": {
@@ -27040,7 +27330,8 @@
                           "de": "Wenig"
                         }
                       }
-                    }
+                    },
+                    "id": "Pottery-temperAmount-default"
                   },
                   "name": "temperAmount",
                   "label": {
@@ -27178,7 +27469,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -27277,7 +27569,8 @@
                           "de": "zylinderförmig"
                         }
                       }
-                    }
+                    },
+                    "id": "glass-formDescription-default"
                   },
                   "name": "formDescription",
                   "label": {
@@ -27511,7 +27804,8 @@
                           "de": "Ölpresse"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -27613,7 +27907,8 @@
                           "de": "Wandverkleidung"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-architectureElement-default"
                   },
                   "name": "architectureElement",
                   "label": {
@@ -27672,7 +27967,8 @@
                           "de": "Sizilien"
                         }
                       }
-                    }
+                    },
+                    "id": "Stone-origin-default"
                   },
                   "name": "origin",
                   "label": {
@@ -27896,7 +28192,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -27937,7 +28234,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -27968,7 +28266,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -27999,7 +28298,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -28030,7 +28330,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -28061,7 +28362,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -28092,7 +28394,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -28123,7 +28426,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -28191,7 +28495,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -28294,7 +28599,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -28567,7 +28873,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -28606,7 +28913,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -28700,7 +29008,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -28778,7 +29087,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -28817,7 +29127,8 @@
                           "de": "schwarz"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-color-default"
                   },
                   "name": "color",
                   "label": {
@@ -28941,7 +29252,8 @@
                           "de": "Zeder"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-typeOfWood-default"
                   },
                   "name": "typeOfWood",
                   "label": {
@@ -29055,7 +29367,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-objectType-default"
                   },
                   "name": "objectType",
                   "label": {
@@ -29122,7 +29435,8 @@
                           "de": "Gespalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -29344,7 +29658,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -29438,7 +29753,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-surfaceCondition-default"
                   },
                   "name": "surfaceCondition",
                   "label": {
@@ -29500,7 +29816,8 @@
                           "de": "Vergoldung/metallischer Überzug"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-decorationTechnique-default"
                   },
                   "name": "decorationTechnique",
                   "label": {
@@ -29567,7 +29884,8 @@
                           "de": "nicht erhalten"
                         }
                       }
-                    }
+                    },
+                    "id": "Wood-paintCondition-default"
                   },
                   "name": "paintCondition",
                   "label": {
@@ -29606,7 +29924,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -29637,7 +29956,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -29668,7 +29988,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -29699,7 +30020,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -29730,7 +30052,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -29761,7 +30084,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -29792,7 +30116,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -29860,7 +30185,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -29963,7 +30289,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -30236,7 +30563,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -30275,7 +30603,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -30369,7 +30698,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -30447,7 +30777,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -30536,7 +30867,8 @@
                           "de": "Zinn"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-metalMaterial-default"
                   },
                   "name": "metalMaterial",
                   "label": {
@@ -30573,7 +30905,8 @@
                           "de": "Unsicher bzw. unbestimmbar"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-manufacturingMethod-default"
                   },
                   "name": "manufacturingMethod",
                   "label": {
@@ -30832,7 +31165,8 @@
                           "de": "Südägäis"
                         }
                       }
-                    }
+                    },
+                    "id": "provenance-default-1"
                   },
                   "name": "provenance",
                   "label": {
@@ -30911,7 +31245,8 @@
                           "de": "- 12 Uhr"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-stampPositioning-default"
                   },
                   "name": "stampPositioning",
                   "label": {
@@ -31281,7 +31616,8 @@
                           "de": "Victoriatus"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-denomination-default"
                   },
                   "name": "denomination",
                   "label": {
@@ -32560,7 +32896,8 @@
                           "de": "Äetolien"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mint-default"
                   },
                   "name": "mint",
                   "label": {
@@ -32625,7 +32962,8 @@
                           "de": "Valentianus III"
                         }
                       }
-                    }
+                    },
+                    "id": "Coin-mintingRuler-default"
                   },
                   "name": "mintingRuler",
                   "label": {
@@ -32667,7 +33005,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -32698,7 +33037,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -32729,7 +33069,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -32760,7 +33101,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -32791,7 +33133,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -32822,7 +33165,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -32853,7 +33197,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -32921,7 +33266,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -33024,7 +33370,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -33297,7 +33644,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -33336,7 +33684,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -33430,7 +33779,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -33508,7 +33858,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -33547,7 +33898,8 @@
                           "de": "Sand"
                         }
                       }
-                    }
+                    },
+                    "id": "PlasterFragment-plasterComponents-default"
                   },
                   "name": "plasterComponents",
                   "label": {
@@ -33661,7 +34013,8 @@
                           "de": "weiß"
                         }
                       }
-                    }
+                    },
+                    "id": "colors-default-1"
                   },
                   "name": "color",
                   "label": {
@@ -33743,7 +34096,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -33774,7 +34128,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -33805,7 +34160,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -33836,7 +34192,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -33867,7 +34224,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -33898,7 +34256,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -33929,7 +34288,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -33997,7 +34357,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -34100,7 +34461,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -34373,7 +34735,8 @@
                       "mittel",
                       "schlecht",
                       "sehr schlecht"
-                    ]
+                    ],
+                    "id": "Building-condition-default"
                   },
                   "name": "condition",
                   "label": {
@@ -34412,7 +34775,8 @@
                       "Fragmentarisch",
                       "Vollständig",
                       "Vollständig zerstört"
-                    ]
+                    ],
+                    "id": "Building-conditionAmount-default"
                   },
                   "name": "conditionAmount",
                   "label": {
@@ -34506,7 +34870,8 @@
                           "de": "Staatsbesitz"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-storagePlace-default"
                   },
                   "name": "storagePlace",
                   "label": {
@@ -34584,7 +34949,8 @@
                           "de": "Tüte"
                         }
                       }
-                    }
+                    },
+                    "id": "Find-amountDescription-gadara"
                   },
                   "name": "amountDescription",
                   "label": {},
@@ -34628,7 +34994,8 @@
                           "de": "Schneckenhaus (Gastropoda)"
                         }
                       }
-                    }
+                    },
+                    "id": "Mollusk-classification-default"
                   },
                   "name": "classification",
                   "label": {
@@ -34667,7 +35034,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionHeight",
                   "label": {
@@ -34698,7 +35066,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionLength",
                   "label": {
@@ -34729,7 +35098,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionWidth",
                   "label": {
@@ -34760,7 +35130,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionPerimeter",
                   "label": {
@@ -34791,7 +35162,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionDiameter",
                   "label": {
@@ -34822,7 +35194,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionThickness",
                   "label": {
@@ -34853,7 +35226,8 @@
                           "en": "Minimum expansion"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-expansion-default"
                   },
                   "name": "dimensionOther",
                   "label": {
@@ -34921,7 +35295,8 @@
                           "en": "Lower edge"
                         }
                       }
-                    }
+                    },
+                    "id": "position-values-edge-default"
                   },
                   "name": "dimensionVerticalExtent",
                   "label": {
@@ -35024,7 +35399,8 @@
                       "Mamlukisch",
                       "Osmanisch",
                       "Modern"
-                    ]
+                    ],
+                    "id": "periods-gadara"
                   },
                   "name": "period",
                   "label": {
@@ -35234,7 +35610,8 @@
                       "de": "Öffentliche Ausstattung"
                     }
                   }
-                }
+                },
+                "id": "Inscription-objectType-default"
               },
               "name": "objectType",
               "label": {
@@ -35283,7 +35660,8 @@
                   "mittel",
                   "schlecht",
                   "sehr schlecht"
-                ]
+                ],
+                "id": "Building-condition-default"
               },
               "name": "condition",
               "label": {
@@ -35322,7 +35700,8 @@
                   "Fragmentarisch",
                   "Vollständig",
                   "Vollständig zerstört"
-                ]
+                ],
+                "id": "Building-conditionAmount-default"
               },
               "name": "conditionAmount",
               "label": {
@@ -35418,7 +35797,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionHeight",
               "label": {
@@ -35449,7 +35829,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -35552,7 +35933,8 @@
                   "Mamlukisch",
                   "Osmanisch",
                   "Modern"
-                ]
+                ],
+                "id": "periods-gadara"
               },
               "name": "period",
               "label": {
@@ -35996,7 +36378,8 @@
                           "de": "Transparentpapier"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingMaterial-default"
                   },
                   "name": "drawingMaterial",
                   "label": {
@@ -36036,7 +36419,8 @@
                           "de": "digital erstellt"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingTool-default"
                   },
                   "name": "drawingTool",
                   "label": {
@@ -36070,7 +36454,8 @@
                           "de": "Pantograf"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-drawingType-default"
                   },
                   "name": "drawingType",
                   "label": {
@@ -36132,7 +36517,8 @@
                           "de": "1:5000"
                         }
                       }
-                    }
+                    },
+                    "id": "Drawing-scale-default"
                   },
                   "name": "scale",
                   "label": {
@@ -36515,7 +36901,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -36546,7 +36933,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -36811,7 +37199,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -36842,7 +37231,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -37095,7 +37485,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionLength",
               "label": {
@@ -37126,7 +37517,8 @@
                       "en": "Minimum expansion"
                     }
                   }
-                }
+                },
+                "id": "position-values-expansion-default"
               },
               "name": "dimensionWidth",
               "label": {
@@ -37454,7 +37846,8 @@
                   "Eigenes Koordinatenbezugssystem",
                   "EPSG4326 (WGS 84)",
                   "EPSG3857 (WGS 84 Web Mercator)"
-                ]
+                ],
+                "id": "coordinate-reference-system-default-1"
               },
               "name": "coordinateReferenceSystem",
               "label": {
@@ -37592,7 +37985,8 @@
                       "en": "Traces"
                     }
                   }
-                }
+                },
+                "id": "TypeCatalog-criterion-default"
               },
               "name": "criterion",
               "label": {
