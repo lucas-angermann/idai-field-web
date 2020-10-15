@@ -78,27 +78,30 @@ defmodule Api.Statistics.Valuelists do
   defp get_filters(fields), do: Enum.reduce(fields, [], fn field, filters -> filters ++ get_filter(field) end)
 
   defp get_filter(field = %{ inputType: "dropdownRange" }) do
-    [%{
-      field: "resource.#{field.name}.value",
-      label: %{},
-      labeled_value: true,
-      size: 100000
-    },
-    %{
-      field: "resource.#{field.name}.endValue",
-      label: %{},
-      labeled_value: true,
-      size: 100000
-    }
-  ]
+    [
+      %{
+        field: "resource.#{field.name}.value",
+        label: %{},
+        labeled_value: true,
+        size: 100000
+      },
+      %{
+        field: "resource.#{field.name}.endValue",
+        label: %{},
+        labeled_value: true,
+        size: 100000
+      }
+    ]
   end
   defp get_filter(field) do
-    [%{
-      field: "resource.#{field.name}",
-      label: %{},
-      labeled_value: true,
-      size: 100000
-    }]
+    [
+      %{
+        field: "resource.#{field.name}",
+        label: %{},
+        labeled_value: true,
+        size: 100000
+      }
+    ]
   end
 
   defp build_post_atomize(query) do
