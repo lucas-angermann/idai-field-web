@@ -15,10 +15,11 @@ defmodule Worker.Mapper do
     |> convert_period
   end
 
-  defp rename_type_to_category(change) do
+  defp rename_type_to_category(change = %{ doc: %{ resource: %{ type: type } }}) do
     {category, new_change} = pop_in(change[:doc][:resource][:type])
     put_in(new_change, [:doc, :resource, :category], category)
   end
+  defp rename_type_to_category(change), do: change
   
   defp convert_period(change = %{ doc: %{ resource: resource }}) do
     if resource["period"] == nil or is_map(resource["period"]) do
