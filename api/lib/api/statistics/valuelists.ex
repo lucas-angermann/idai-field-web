@@ -49,11 +49,11 @@ defmodule Api.Statistics.Valuelists do
 
     if Map.has_key?(result_map, field_definition.valuelist.id) do
       result_map = update_in(result_map[field_definition.valuelist.id].count, fn count -> count + get_total_count(aggregation) end)
-      update_in(result_map[field_definition.valuelist.id].values, fn values -> update_values(aggregation, values) end)
+      update_in(result_map[field_definition.valuelist.id].values, fn values -> update_values(aggregation, values, field_definition) end)
     else
       Map.put(result_map, field_definition.valuelist.id, %{
         count: get_total_count(aggregation),
-        values: get_values(aggregation)
+        values: get_values(aggregation, field_definition)
       })
     end
   end
@@ -63,15 +63,23 @@ defmodule Api.Statistics.Valuelists do
     |> Enum.sum
   end
 
-  defp get_values(%{ values: buckets }) do
-    Enum.reduce(buckets, %{}, fn bucket, map -> Map.put(map, bucket.value.name, %{ count: bucket.count }) end)
+  defp get_values(%{ values: buckets }, field_definition) do
+    Enum.reduce(Map.keys(field_definition.valuelist["values"]), %{}, fn value, map ->
+      bucket = Enum.find(buckets, fn b -> b.value.name == value end)
+      Map.put(map, value, %{ count: if bucket do bucket.count else 0 end })
+    end)
   end
 
-  defp update_values(%{ values: buckets }, value_map) do
-    Enum.reduce(buckets, value_map, fn bucket, map ->
-      Map.update(map, bucket.value.name, %{ count: bucket.count }, fn previous ->
-        Map.put(previous, :count, previous.count + bucket.count)
-      end)
+  defp update_values(%{ values: buckets }, value_map, field_definition) do
+    Enum.reduce(Map.keys(field_definition.valuelist["values"]), value_map, fn value, map ->
+      bucket = Enum.find(buckets, fn b -> b.value.name == value end)
+      if bucket do
+        Map.update(map, value, %{ count: bucket.count }, fn previous ->
+          Map.put(previous, :count, previous.count + bucket.count)
+        end)
+      else
+        map
+      end
     end)
   end
 
