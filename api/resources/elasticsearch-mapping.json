@@ -41,22 +41,6 @@
                     "childrenCount": {
                         "type": "integer",
                         "store": true
-                    },
-                    "material": {
-                        "properties": {
-                            "name": {
-                                "type": "keyword",
-                                "store": true
-                            }
-                        }
-                    },
-                    "color": {
-                        "properties": {
-                            "name": {
-                                "type": "keyword",
-                                "store": true
-                            }
-                        }
                     }
                 }
             },
@@ -95,6 +79,15 @@
             {
                 "relationsIdentifier": {
                     "path_match": "resource.relations.*.resource.identifier",
+                    "mapping": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            {
+                "names": {
+                    "path_match": "resource.*.name",
                     "mapping": {
                         "type": "keyword",
                         "store": true
