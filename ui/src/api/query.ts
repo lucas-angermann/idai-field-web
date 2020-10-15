@@ -38,10 +38,12 @@ export const buildBackendGetParams = (query: Query) => {
             queryParams.push(['not_exists[]', `resource.relations.isChildOf`]);
         }
         queryParams.push(['sort', 'sort']);
+        queryParams.push(['size', '1000']);
+        queryParams.push(['from', '0']);
+    } else {
+        if (query.size) queryParams.push(['size', query.size.toString()]);
+        if (query.from) queryParams.push(['from', query.from.toString()]);
     }
-
-    if (query.size) queryParams.push(['size', query.size.toString()]);
-    if (query.from) queryParams.push(['from', query.from.toString()]);
 
     return queryParams.map(([k, v]) => `${k}=${v}`).join('&');
 };

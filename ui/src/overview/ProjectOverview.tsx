@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
-import Documents from '../project/Documents';
+import ScrollableDocumentList from '../project/ScrollableDocumentList';
 
 
 export default function ProjectOverview(): ReactElement {
@@ -69,9 +69,9 @@ const renderSidebar = (filters: ResultFilter[], location: any, documents: Result
                        getChunk: (offset: number) => void): ReactElement => (
     <>
         <Filters filters={ filters } searchParams={ location.search } />
-        <Documents searchParams={ location.search }
+        <ScrollableDocumentList searchParams={ location.search }
             documents={ documents }
-            getChunk={ getChunk }></Documents>
+            getChunk={ getChunk }></ScrollableDocumentList>
     </>
 );
 

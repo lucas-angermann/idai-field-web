@@ -3,6 +3,7 @@ import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './document-hierarchy.css';
+import { Card } from 'react-bootstrap';
 
 
 interface DocumentHierarchyProps {
@@ -24,24 +25,36 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
     return <>
-        <TransitionGroup className={ className }>
-            <CSSTransition key={ parent } timeout={ 500 }>
-                <div className="documents">
-                    { documents.map((document: ResultDocument) =>
-                        <div style={ documentContainerStyle } key={ document.resource.id }>
-                            <DocumentTeaser document={ document } searchParams={ searchParams }
-                                            showHierarchyButton={ true } />
+       <Card style={ listContainerStyle }>
+            <Card.Body className="px-0 py-1">
+                <TransitionGroup className={ className }>
+                    <CSSTransition key={ parent } timeout={ 500 }>
+                        <div className="documents">
+                            { documents.map((document: ResultDocument) =>
+                                <div style={ documentContainerStyle } key={ document.resource.id }>
+                                    <DocumentTeaser document={ document } searchParams={ searchParams }
+                                                    showHierarchyButton={ true } />
 
+                                </div>
+                        )}
                         </div>
-                )}
-                </div>
-            </CSSTransition>
-        </TransitionGroup>
+                    </CSSTransition>
+                </TransitionGroup>
+            </Card.Body>
+        </Card>
     </>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
     return prevProps.documents === nextProps.documents;
 });
+
+
+const listContainerStyle: CSSProperties = {
+    overflowY: 'scroll',
+    overflowX: 'hidden',
+    flexGrow: 1,
+    flexShrink: 1
+};
 
 
 const documentContainerStyle: CSSProperties = {

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
-import Documents from './Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
@@ -19,6 +18,8 @@ import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from '../filter/Filters';
 import DocumentDetails from '../document/DocumentDetails';
 import { getUserInterfaceLanguage } from '../languages';
+import ScrollableDocumentList from './ScrollableDocumentList';
+import DocumentHierarchy from './DocumentHierarchy';
 
 
 const MAX_SIZE = 10000;
@@ -93,10 +94,10 @@ export default function Project(): ReactElement {
             { renderTotal(total, document, projectId, location.search, t) }
             { document
                 ? <DocumentDetails document={ document } />
-                : <Documents
-                    searchParams={ location.search }
-                    documents={ documents }
-                    getChunk={ getChunk }/>
+                : location.search && new URLSearchParams(location.search).has('q')
+                    ? <ScrollableDocumentList documents={ documents } getChunk={ getChunk }
+                            searchParams={ location.search } />
+                    : <DocumentHierarchy documents={ documents } searchParams={ location.search } />
             }
         </div>
         <div key="results">
