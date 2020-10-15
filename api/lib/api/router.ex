@@ -15,11 +15,9 @@ defmodule Api.Router do
   plug :dispatch
 
   forward("/api/documents", to: Api.Documents.Router)
-
   forward("/api/images", to: Api.Images.Router)
-
   forward("/api/auth", to: Api.Auth.Router)
-
+  forward("/api/statistics", to: Api.Statistics.Router)
   forward("/api/worker", to: Worker.Router)
 
   match _ do

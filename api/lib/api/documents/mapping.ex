@@ -8,21 +8,22 @@ defmodule Api.Documents.Mapping do
     |> Core.CorePropertiesAtomizing.format_document
   end
 
-  def map(elasticsearch_result, default_config) do
+  def map(elasticsearch_result, default_config), do: map(elasticsearch_result, default_config, Filters.get_filters())
+  def map(elasticsearch_result, default_config, filters) do
     %{
       size: elasticsearch_result.hits.total.value,
       documents: elasticsearch_result.hits.hits
                  |> Enum.map(&map_document/1)
     }
-    |> map_aggregations(elasticsearch_result, default_config)
+    |> map_aggregations(elasticsearch_result, default_config, filters)
   end
   
-  defp map_aggregations(result, %{ aggregations: aggregations }, default_config) do
-    filters = Enum.map(Filters.get_filters(), map_aggregation(aggregations, default_config))
+  defp map_aggregations(result, %{ aggregations: aggregations }, default_config, filters) do
+    filters = Enum.map(filters, map_aggregation(aggregations, default_config))
               |> Enum.reject(&is_nil/1)
     put_in(result, [:filters], filters)
   end
-  defp map_aggregations(result, _, _), do: result
+  defp map_aggregations(result, _, _, _), do: result
 
   defp map_aggregation(aggregations, default_config) do
     fn filter ->

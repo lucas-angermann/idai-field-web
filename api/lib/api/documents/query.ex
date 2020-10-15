@@ -10,8 +10,9 @@ defmodule Api.Documents.Query do
     put_in(query, [:track_total_hits], true)
   end
 
-  def add_aggregations(query) do
-    Map.put(query, :aggs, Enum.map(Filters.get_filters(), &build_aggregation/1) |> Enum.into(%{}))
+  def add_aggregations(query), do: add_aggregations(query, Filters.get_filters())
+  def add_aggregations(query, filters) do
+    Map.put(query, :aggs, Enum.map(filters, &build_aggregation/1) |> Enum.into(%{}))
   end
 
   def set_readable_projects(query, readable_projects) do
