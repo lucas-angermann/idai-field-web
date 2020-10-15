@@ -41,7 +41,10 @@ defmodule Api.Statistics.Valuelists do
   end
 
   defp add_to_result_map(aggregation, result_map, fields) do
-    field_name = String.replace(aggregation.name, "resource.", "") |> String.replace(".name", "")
+    field_name = String.replace(aggregation.name, "resource.", "")
+                 |> String.replace(".name", "")
+                 |> String.replace(".value", "")
+                 |> String.replace(".endValue", "")
     field_definition = Enum.find(fields, fn f -> f.name == field_name end)
 
     if Map.has_key?(result_map, field_definition.valuelist.id) do
@@ -72,15 +75,30 @@ defmodule Api.Statistics.Valuelists do
     end)
   end
 
-  defp get_filters(fields), do: Enum.map(fields, &get_filter/1)
+  defp get_filters(fields), do: Enum.reduce(fields, [], fn field, filters -> filters ++ get_filter(field) end)
 
-  defp get_filter(field) do
+  defp get_filter(field = %{ inputType: "dropdownRange" }) do
+    [%{
+      field: "resource.#{field.name}.value",
+      label: %{},
+      labeled_value: true,
+      size: 100000
+    },
     %{
-      field: "resource.#{field.name}",
+      field: "resource.#{field.name}.endValue",
       label: %{},
       labeled_value: true,
       size: 100000
     }
+  ]
+  end
+  defp get_filter(field) do
+    [%{
+      field: "resource.#{field.name}",
+      label: %{},
+      labeled_value: true,
+      size: 100000
+    }]
   end
 
   defp build_post_atomize(query) do
