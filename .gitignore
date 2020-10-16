@@ -2,6 +2,7 @@
 *.iml
 
 data/elasticsearch/
+data/cantaloupe/
 
 TODO
 
