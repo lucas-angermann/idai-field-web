@@ -11,7 +11,10 @@ defmodule Api.Statistics.Router do
     valuelists = ValuelistsCollector.get_for_all
     result = %{
       valuelists: valuelists,
-      overlapping: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists)
+      overlapping: %{
+        total: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists, false),
+        used: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists, true),
+      }
      }
     send_json(conn, result)
   end
@@ -20,7 +23,10 @@ defmodule Api.Statistics.Router do
     valuelists = ValuelistsCollector.get_for_project(project_name)
     result = %{
       valuelists: valuelists,
-      overlapping: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists, project_name)
+      overlapping: %{
+        total: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists, project_name, false),
+        used: ValuelistsAnalyzer.find_overlapping_valuelists(valuelists, project_name, true)
+      }
     }
     send_json(conn, result)
   end
