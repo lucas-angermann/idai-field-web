@@ -1,4 +1,4 @@
-defmodule Api.Statistics.Valuelists do
+defmodule Api.Statistics.ValuelistsCollector do
   alias Core.ProjectConfigLoader
   alias Core.Config
   alias Api.Documents.Query
