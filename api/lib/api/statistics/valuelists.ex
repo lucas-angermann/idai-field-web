@@ -1,13 +1,29 @@
 defmodule Api.Statistics.Valuelists do
   alias Core.ProjectConfigLoader
+  alias Core.Config
   alias Api.Documents.Query
   alias Api.Documents.Mapping
   require Logger
+
+  def get_for_all() do
+    Enum.map(Config.get(:couchdb_databases), &get_for_project/1)
+    |> Enum.reduce(%{}, &merge_statistics/2)
+  end
 
   def get_for_project(project_name) do
     config = ProjectConfigLoader.get(project_name)
     get_category_map(config)
     |> Enum.reduce(%{}, &search_for_category(&1, &2, config, project_name))
+  end
+
+  defp merge_statistics(project_statistics, total_statistics) do
+    Map.merge(total_statistics, project_statistics, fn _, total_s, project_s ->
+      Map.put(total_s, :total, Map.merge(total_s.total, project_s.total))
+      |> Map.put(:values, Enum.map(Map.keys(total_s.values), fn key ->
+          { key, Map.merge(total_s.values[key], project_s.values[key]) }
+        end) |> Enum.into(%{})
+      )
+    end)
   end
 
   defp get_category_map(config) do
@@ -34,13 +50,13 @@ defmodule Api.Statistics.Valuelists do
     |> Mapping.map(config, filters)
 
     if Map.has_key?(result, :filters) do
-      Enum.reduce(result.filters, result_map, &add_to_result_map(&1, &2, fields))
+      Enum.reduce(result.filters, result_map, &add_to_result_map(&1, &2, fields, project_name))
     else
       result_map
     end
   end
 
-  defp add_to_result_map(aggregation, result_map, fields) do
+  defp add_to_result_map(aggregation, result_map, fields, project_name) do
     field_name = String.replace(aggregation.name, "resource.", "")
                  |> String.replace(".name", "")
                  |> String.replace(".value", "")
@@ -48,12 +64,12 @@ defmodule Api.Statistics.Valuelists do
     field_definition = Enum.find(fields, fn f -> f.name == field_name end)
 
     if Map.has_key?(result_map, field_definition.valuelist.id) do
-      result_map = update_in(result_map[field_definition.valuelist.id].count, fn count -> count + get_total_count(aggregation) end)
-      update_in(result_map[field_definition.valuelist.id].values, fn values -> update_values(aggregation, values, field_definition) end)
+      result_map = update_in(result_map[field_definition.valuelist.id].total[project_name], fn count -> count + get_total_count(aggregation) end)
+      update_in(result_map[field_definition.valuelist.id].values, fn values -> update_values(aggregation, values, field_definition, project_name) end)
     else
       Map.put(result_map, field_definition.valuelist.id, %{
-        count: get_total_count(aggregation),
-        values: get_values(aggregation, field_definition)
+        total: %{ "#{project_name}" => get_total_count(aggregation) },
+        values: get_values(aggregation, field_definition, project_name)
       })
     end
   end
@@ -63,19 +79,19 @@ defmodule Api.Statistics.Valuelists do
     |> Enum.sum
   end
 
-  defp get_values(%{ values: buckets }, field_definition) do
+  defp get_values(%{ values: buckets }, field_definition, project_name) do
     Enum.reduce(Map.keys(field_definition.valuelist["values"]), %{}, fn value, map ->
       bucket = Enum.find(buckets, fn b -> b.value.name == value end)
-      Map.put(map, value, %{ count: if bucket do bucket.count else 0 end })
+      Map.put(map, value, %{ "#{project_name}" => if bucket do bucket.count else 0 end })
     end)
   end
 
-  defp update_values(%{ values: buckets }, value_map, field_definition) do
+  defp update_values(%{ values: buckets }, value_map, field_definition, project_name) do
     Enum.reduce(Map.keys(field_definition.valuelist["values"]), value_map, fn value, map ->
       bucket = Enum.find(buckets, fn b -> b.value.name == value end)
       if bucket do
-        Map.update(map, value, %{ count: bucket.count }, fn previous ->
-          Map.put(previous, :count, previous.count + bucket.count)
+        Map.update(map, value, %{ "#{project_name}" => bucket.count }, fn previous ->
+          Map.put(previous, project_name, previous[project_name] + bucket.count)
         end)
       else
         map
