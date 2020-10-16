@@ -24,22 +24,15 @@
     border-color: #adadad !important;
 }
 
-.btn-link {
-    text-align: left;
-}
-
 .btn-link,
 .btn-link:active,
 .btn-link:focus {
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--main-link-color);
 }
 
-.btn-link.active {
-    color: var(--main-link-color-hover);
-}
-
+.btn-link.active,
 .btn-link:hover {
-    color: rgba(0, 0, 0, 0.9) !important;
+    color: var(--main-link-color-hover);
 }
 
 .btn {

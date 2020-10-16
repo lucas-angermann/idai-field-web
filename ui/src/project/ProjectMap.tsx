@@ -135,7 +135,7 @@ const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayer
         setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <>
-        <div style={ layerSelectorStyle }>
+        <div style={ layerSelectorStyle } className="layer-controls">
             <ul className="list-group">
                 { tileLayers.map(renderLayerControl(map, visibleTileLayers, setVisibleTileLayers)) }
             </ul>
