@@ -1,5 +1,6 @@
-import React, { useState, useEffect, CSSProperties, useContext, ReactElement, ReactNode, useCallback } from 'react';
-import { useParams, useLocation, Link } from 'react-router-dom';
+import React, { useState, useEffect, CSSProperties, useContext, ReactElement, useCallback } from 'react';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { History } from 'history';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
@@ -7,7 +8,7 @@ import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card } from 'react-bootstrap';
+import { Spinner, Card, Button } from 'react-bootstrap';
 import { ResultDocument, Result, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { LoginContext } from '../App';
@@ -30,6 +31,7 @@ export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
+    const history = useHistory();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -91,13 +93,21 @@ export default function Project(): ReactElement {
             }
             <SearchBar />
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
-            { renderTotal(total, document, projectId, location.search, t) }
             { document
-                ? <DocumentDetails document={ document } />
+                ? <>
+                    { renderBackButton(history, t) }
+                    <DocumentDetails document={ document } />
+                </>
                 : location.search && new URLSearchParams(location.search).has('q')
-                    ? <ScrollableDocumentList documents={ documents } getChunk={ getChunk }
+                    ? <>
+                        { renderTotal(total, document, projectId, location.search, t) }
+                        <ScrollableDocumentList documents={ documents } getChunk={ getChunk }
                             searchParams={ location.search } />
-                    : <DocumentHierarchy documents={ documents } searchParams={ location.search } />
+                    </>
+                    : <>
+                        { new URLSearchParams(location.search).has('parent') && renderBackButton(history, t) }
+                        <DocumentHierarchy documents={ documents } searchParams={ location.search } />
+                    </>
             }
         </div>
         <div key="results">
@@ -117,29 +127,30 @@ export default function Project(): ReactElement {
 }
 
 
-const renderTotal = (total: number, document: Document, projectId: string, searchParams, t: TFunction): ReactNode => {
+const renderTotal = (total: number, document: Document, projectId: string, searchParams, t: TFunction)
+        : ReactElement => {
 
     if (!total) return null;
 
-    const content = (
-        <span>
+    return <>
+        <Card body={ true }>
             { t('project.total') }
             <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
             { t('project.resources') }
-        </span>
-    );
-    return (
-        <Card>
-            <Card.Body>
-                { document
-                    ? <Link to={ `/project/${projectId}${searchParams}`}>
-                        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { content }
-                      </Link>
-                    : content
-                }
-            </Card.Body>
         </Card>
-    );
+    </>;
+};
+
+
+const renderBackButton = (history: History, t: TFunction): ReactElement => {
+
+    return <>
+        <Card body={ true }>
+            <Button variant="link" className="p-0" onClick={ () => history.goBack() }>
+                <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.back') }
+            </Button>
+        </Card>
+    </>;
 };
 
 

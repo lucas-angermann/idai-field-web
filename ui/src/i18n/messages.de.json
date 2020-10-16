@@ -32,7 +32,8 @@
   },
   "project": {
     "total": "Insgesamt",
-    "resources": "Ressourcen"
+    "resources": "Ressourcen",
+    "back": "Zurück"
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend not available!"
