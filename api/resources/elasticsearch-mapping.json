@@ -2,6 +2,9 @@
     "index_patterns": [
         "idai-field_*"
     ],
+    "settings": {
+        "index.mapping.total_fields.limit": 10000
+    },
     "mappings": {
         "properties": {
             "resource": {
