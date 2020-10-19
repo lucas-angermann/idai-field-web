@@ -11,6 +11,37 @@ defmodule Api.Statistics.ValuelistsAnalyzer do
     |> Enum.into(%{})
   end
 
+  def get_number_of_configured_valuelists(valuelists, used_valuelists_only, non_default_only) do
+    Enum.reduce(Config.get(:couchdb_databases), %{}, fn project_name, result ->
+      Map.put(result, project_name, get_number_of_configured_valuelists(
+        valuelists, project_name, used_valuelists_only, non_default_only
+      ))
+    end)
+  end
+  def get_number_of_configured_valuelists(valuelists, project_name, used_valuelists_only, non_default_only) do
+    Enum.filter(valuelists, fn { valuelist_name, valuelist } ->
+      Map.has_key?(valuelist.total, project_name)
+        && (!used_valuelists_only || valuelist.total[project_name] > 0)
+        && (!non_default_only || !String.contains?(valuelist_name, "default"))
+    end)
+    |> length
+  end
+
+  def get_number_of_valuelists(valuelists, non_default_only) do
+    Enum.filter(valuelists, fn { valuelist_name, valuelist } ->
+      !non_default_only || !String.contains?(valuelist_name, "default")
+    end)
+    |> length
+  end
+
+  def get_shared_valuelists_names(valuelists, non_default_only) do
+    Enum.filter(valuelists, fn { valuelist_name, valuelist } ->
+      (!non_default_only || !String.contains?(valuelist_name, "default"))
+      && length(Map.keys(valuelist.total)) > 1
+    end)
+    |> Enum.map(fn { valuelist_name, _ } -> valuelist_name end)
+  end
+
   defp add_to_overlapping_info({ valuelist_name, valuelist }, overlapping_info, project_name, valuelists,
          used_values_only) do
     overlapping = find_overlapping_valuelists(valuelist_name, valuelist, project_name, valuelists, used_values_only)
