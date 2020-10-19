@@ -1,0 +1,40 @@
+.document-list-transition .documents {
+    position: absolute;
+    width: 100%;
+}
+
+.document-list-transition .enter {
+    transform: translateX(100%);
+}
+
+.document-list-transition.backward .enter {
+    transform: translateX(-100%);
+}
+
+.document-list-transition .enter-active {
+    transform: translateX(0);
+    transition: transform 500ms;
+}
+
+.document-list-transition.backward .enter-active {
+    transform: translateX(0);
+    transition: transform 500ms;
+}
+
+.document-list-transition .exit {
+    transform: translateX(0);
+}
+
+.document-list-transition.backward .exit {
+    transform: translateX(0);
+}
+
+.document-list-transition .exit-active {
+    transform: translateX(-100%);
+    transition: transform 500ms;
+}
+
+.document-list-transition.backward .exit-active {
+    transform: translateX(100%);
+    transition: transform 500ms;
+}

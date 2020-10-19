@@ -29,3 +29,18 @@
 .document-teaser .hierarchy-button:hover {
     background-color: var(--main-bg-color-hover);
 }
+
+.document-teaser .btn-link,
+.document-teaser .btn-link:active,
+.document-teaser .btn-link:focus {
+    text-align: left;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.document-teaser .btn-link.active {
+    color: var(--main-link-color-hover);
+}
+
+.document-teaser .btn-link:hover {
+    color: rgba(0, 0, 0, 0.9) !important;
+}
