@@ -6,7 +6,7 @@ defmodule Api.Statistics.ValuelistsCollector do
   require Logger
 
   def get_for_all() do
-    Enum.map(Config.get(:couchdb_databases), &get_for_project/1)
+    Enum.map(Config.get(:projects), &get_for_project/1)
     |> Enum.reduce(%{}, &merge_statistics/2)
   end
 

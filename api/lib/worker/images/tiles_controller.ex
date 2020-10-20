@@ -4,7 +4,7 @@ defmodule Worker.Images.TilesController do
   alias Worker.Images.TilesCreator
 
   def make_tiles do
-    projects = Config.get(:couchdb_databases)
+    projects = Config.get(:projects)
     make_tiles(projects)
   end
   def make_tiles(projects) do

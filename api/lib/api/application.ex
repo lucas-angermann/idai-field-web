@@ -17,7 +17,7 @@ defmodule Api.Application do
           [
             {
               if Mix.env() == :test do "test/resources" else "resources/projects" end,
-              Core.Config.get(:couchdb_databases)
+              Core.Config.get(:projects)
             }
           ]
         }

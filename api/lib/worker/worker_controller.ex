@@ -8,7 +8,7 @@ defmodule Worker.WorkerController do
   alias Core.ProjectConfigLoader
 
   def process do
-    for db <- Core.Config.get(:couchdb_databases), do: process(db)
+    for db <- Core.Config.get(:projects), do: process(db)
   end
   def process(db) do
     pid = spawn_link fn -> process_db(db) end

@@ -2,7 +2,7 @@ defmodule Api.Statistics.ValuelistsAnalyzer do
   alias Core.Config
 
   def find_overlapping_valuelists(valuelists, used_values_only) do
-    Enum.reduce(Config.get(:couchdb_databases), %{}, fn project_name, result ->
+    Enum.reduce(Config.get(:projects), %{}, fn project_name, result ->
       Map.put(result, project_name, find_overlapping_valuelists(valuelists, project_name, used_values_only))
     end)
   end
@@ -12,7 +12,7 @@ defmodule Api.Statistics.ValuelistsAnalyzer do
   end
 
   def get_number_of_configured_valuelists(valuelists, used_valuelists_only, non_default_only) do
-    Enum.reduce(Config.get(:couchdb_databases), %{}, fn project_name, result ->
+    Enum.reduce(Config.get(:projects), %{}, fn project_name, result ->
       Map.put(result, project_name, get_number_of_configured_valuelists(
         valuelists, project_name, used_valuelists_only, non_default_only
       ))

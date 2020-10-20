@@ -3,7 +3,7 @@ import Config
 config :logger, level: :error
 
 config :api,
-  couchdb_databases: ["a", "b"],
+  projects: ["a", "b"],
   image_dir: "test/resources/images",
 
   default_filters: [

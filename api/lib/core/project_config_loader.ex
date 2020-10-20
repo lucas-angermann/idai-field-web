@@ -2,14 +2,14 @@ defmodule Core.ProjectConfigLoader do
   require Logger
   use Agent
 
-  def start_link({project_config_dir_name, database_names}) do
+  def start_link({project_config_dir_name, projects}) do
     
-    databases = (database_names || Core.Config.get(:couchdb_databases)) ++ ["default"]
+    projects = (projects || Core.Config.get(:projects)) ++ ["default"]
     
-    configs = for database <- databases, into: %{} do
+    configs = for project <- projects, into: %{} do
       {
-        database,
-        load(project_config_dir_name, database)
+        project,
+        load(project_config_dir_name, project)
       }
     end
     Agent.start_link(fn -> configs end, name: __MODULE__)

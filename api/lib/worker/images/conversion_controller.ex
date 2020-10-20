@@ -18,7 +18,7 @@ defmodule Worker.Images.ConversionController do
   end
 
   def convert_images_for_all_projects do
-    projects = Config.get(:couchdb_databases)
+    projects = Config.get(:projects)
     for project <- projects do
       log_start_project project
       if sources_exist? project do
