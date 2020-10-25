@@ -1,9 +1,10 @@
 defmodule Worker.Router do
   require Logger
   use Plug.Router
-  import RouterUtils, only: [send_json: 2]
+  import RouterUtils, only: [send_json: 2, send_unauthorized: 1]
 
   plug :match
+  plug Api.Auth.AdminRightsPlug
   plug :dispatch
 
   post "/publish/:project" do

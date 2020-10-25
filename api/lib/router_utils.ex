@@ -1,5 +1,5 @@
 defmodule RouterUtils do
-  import Plug.Conn, only: [put_resp_content_type: 2, send_resp: 3]
+  import Plug.Conn, only: [put_resp_content_type: 2, send_resp: 3, get_req_header: 2]
 
   def send_json(conn, %{error: "bad_request"} = error) do
     conn
@@ -46,5 +46,16 @@ defmodule RouterUtils do
   def access_for_project_allowed readable_projects, project do
 
     if project in readable_projects, do: :ok, else: :unauthorized_access
+  end
+
+  def get_rights conn do
+    rights = (conn
+              |> get_req_header("authorization")
+              |> List.first
+              |> Api.Auth.Bearer.get_user_for_bearer)
+    {
+      rights.readable_projects,
+      rights.is_admin
+    }
   end
 end

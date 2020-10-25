@@ -5,7 +5,7 @@ defmodule Api.Documents.Router do
   import Core.Layout
 
   plug :match
-  plug Api.Documents.ReadableProjectsPlug
+  plug Api.Auth.ReadableProjectsPlug
   plug :dispatch
 
   get "/" do

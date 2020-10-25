@@ -5,6 +5,7 @@ defmodule Api.Statistics.Router do
   alias Api.Statistics.ValuelistsAnalyzer
 
   plug :match
+  plug Api.Auth.AdminRightsPlug # todo review if is_admin is the precondition, or rather readable_projects. if the latter, than we use ReadableProjectsPlug
   plug :dispatch
 
   get "/valuelists" do
