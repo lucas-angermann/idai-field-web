@@ -6,13 +6,20 @@ defmodule Api.Documents.ReadableProjectsPlug do
   end
   
   def call(conn, _opts) do
-    put_private(conn, :readable_projects, get_readable_projects(conn))
+    {readable_projects, is_admin} = get_rights(conn)
+    conn
+    |> put_private(:is_admin, is_admin)
+    |> put_private(:readable_projects, readable_projects)
   end
 
-  defp get_readable_projects conn do
-    (conn
+  defp get_rights conn do
+    rights = (conn
      |> get_req_header("authorization")
      |> List.first
-     |> Api.Auth.Bearer.get_user_for_bearer).readable_projects
+     |> Api.Auth.Bearer.get_user_for_bearer)
+    {
+      rights.readable_projects,
+      rights.is_admin
+    }
   end
 end
