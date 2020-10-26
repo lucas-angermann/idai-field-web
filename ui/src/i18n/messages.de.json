@@ -43,8 +43,8 @@
     "noTargetResource": "Zielressource nicht vorhanden"
   },
   "download": {
-    "download": "iDAI.field herunterladen",
-    "downloadInfo": "Hier können Sie die aktuelle Version von iDAI.field herunterladen.",
+    "download": "Desktopanwendung herunterladen",
+    "downloadInfo": "Hier können Sie die aktuelle Version der iDAI.field-Desktopanwendung herunterladen.",
     "packageInfo": "Es werden Pakete für Windows, macOS und Linux zur Verfügung gestellt.",
     "currentVersion": "Aktuelle Version:",
     "allVersions": "Alle Versionen...",
