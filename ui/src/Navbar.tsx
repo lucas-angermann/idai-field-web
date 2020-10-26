@@ -1,6 +1,6 @@
 import React, { CSSProperties, useContext, ReactElement } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
-import { useLocation, Link } from 'react-router-dom';
+import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { LoginContext } from './App';
@@ -12,6 +12,7 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
     const location = useLocation();
     const loginData = useContext(LoginContext);
+    const history = useHistory();
     const { t } = useTranslation();
 
     return (
@@ -21,12 +22,15 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                 <Nav.Link as="span">
                     <Link to="/">{ t('navbar.projects') }</Link>
                 </Nav.Link>
-                <Nav.Link as="span">
-                    <Link to="/download">{ t('navbar.download') }</Link>
-                </Nav.Link>
-                <Nav.Link as="span">
-                    <Link to="/manual">{ t('navbar.manual') }</Link>
-                </Nav.Link>
+                <NavDropdown id="desktop-dropdown" as="span" title={ t('navbar.desktop') }
+                        style={ dropdownStyle }>
+                    <NavDropdown.Item onClick={ () => history.push('/download') }>
+                        { t('navbar.download') }
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={ () => history.push('/manual') }>
+                        { t('navbar.manual') }
+                    </NavDropdown.Item>
+                </NavDropdown>
             </Nav>
             <LanguageButton/>
             { renderLogin(loginData, onLogout, t) }
@@ -47,3 +51,6 @@ const navbarStyle: CSSProperties = {
     backgroundImage: 'linear-gradient(to right, rgba(106,164,184,0.95) 0%, #557ebb 100%)'
 };
 
+const dropdownStyle: CSSProperties = {
+    zIndex: 1001
+};

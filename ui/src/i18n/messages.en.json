@@ -1,6 +1,7 @@
 {
   "navbar": {
     "projects": "Projects",
+    "desktop": "Desktop",
     "download": "Download",
     "manual": "Manual",
     "login": "Login",
