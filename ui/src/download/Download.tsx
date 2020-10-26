@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub } from '@mdi/js';
+import { mdiApple, mdiMicrosoftWindows, mdiDownload, mdiGithub, mdiLinux } from '@mdi/js';
 import './Download.css';
 import { NAVBAR_HEIGHT } from '../constants';
 
@@ -102,9 +102,15 @@ const getDownloadSection = (latestVersion: string, t: TFunction): ReactNode => {
                     <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
                 </a>
                 <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
-                + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2">
+                + latestVersion + '-MacOS.dmg' } className="btn btn-primary my-2 mr-1">
                     <Icon path={ mdiApple } size={ 0.8 } className="apple-icon"/>
                     { t('download.macOS') }
+                    <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
+                </a>
+                <a href={ 'https://github.com/dainst/idai-field/releases/download/v' + latestVersion + '/iDAI.field-'
+                + latestVersion + '-Linux.AppImage' } className="btn btn-primary my-2">
+                    <Icon path={ mdiLinux } size={ 0.8 } className="linux-icon"/>
+                    { t('download.linux') }
                     <Icon path={ mdiDownload } size={ 0.8 } className="download-icon"/>
                 </a>
             </p>

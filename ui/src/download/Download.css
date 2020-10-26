@@ -18,6 +18,7 @@
 
 .download-view .apple-icon,
 .download-view .windows-icon,
+.download-view .linux-icon,
 .download-view .github-icon {
     position: relative;
     margin-right: 4px;
@@ -28,7 +29,8 @@
 }
 
 .download-view .github-icon,
-.download-view .windows-icon {
+.download-view .windows-icon,
+.download-view .linux-icon {
     bottom: 1px;
 }
 

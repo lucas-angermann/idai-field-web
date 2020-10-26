@@ -45,12 +45,13 @@
   "download": {
     "download": "iDAI.field herunterladen",
     "downloadInfo": "Hier können Sie die aktuelle Version von iDAI.field herunterladen.",
-    "packageInfo": "Es werden Pakete für macOS und Windows zur Verfügung gestellt.",
+    "packageInfo": "Es werden Pakete für Windows, macOS und Linux zur Verfügung gestellt.",
     "currentVersion": "Aktuelle Version:",
     "allVersions": "Alle Versionen...",
     "sourceCode": "Quellcode auf GitHub",
-    "windows": "Download für Windows",
-    "macOS": "Download für macOS",
+    "windows": "Windows (.exe)",
+    "macOS": "macOS (.dmg)",
+    "linux": "Linux (.AppImage)",
     "slides": {
       "metadataEditor": "Metadaten-Editor",
       "geodataEditor": "Geodaten-Editor",
