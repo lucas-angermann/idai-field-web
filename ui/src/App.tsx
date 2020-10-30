@@ -11,6 +11,7 @@ import Navbar from './Navbar';
 import LoginForm from './LoginForm';
 import ImageView from './image/ImageView';
 import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './login';
+import Contact from './Contact';
 
 
 export const LoginContext = React.createContext(ANONYMOUS_USER);
@@ -43,6 +44,8 @@ export default function App(): ReactElement {
                         <Route path="/download" component={ Download } />
 
                         <Route path="/manual" component={ Manual } />
+
+                        <Route path="/contact" component={ Contact } />
 
                         <Route path="/login">
                             <LoginForm onLogin={ setLoginData } />

@@ -31,6 +31,9 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                         { t('navbar.manual') }
                     </NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Link as="span">
+                    <Link to="/contact">{ t('navbar.contact') }</Link>
+                </Nav.Link>
             </Nav>
             <LanguageButton/>
             { renderLogin(loginData, onLogout, t) }

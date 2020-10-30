@@ -4,6 +4,7 @@
     "desktop": "Desktop",
     "download": "Download",
     "manual": "Handbuch",
+    "contact": "Kontakt",
     "login": "Login",
     "loggedInAs": "Eingeloggt als:",
     "logOut": "Ausloggen",
@@ -59,6 +60,17 @@
       "synchronization": "Synchronisation",
       "tableView": "Tabellenansicht",
       "nesting": "Hierarchisierung"
+    }
+  },
+  "contact": {
+    "mailingList": {
+      "heading": "Mailingliste",
+      "info": "Bei Fragen und Anmerkungen zur Verwendung von iDAI.field in Ihrem Projekt sowie zum Austausch mit anderen Nutzer*innen wenden Sie sich gern an die iDAI.field-Mailingliste:",
+      "subscription": "Abonnement der Mailingliste"
+    },
+    "errorReports": {
+      "heading": "Fehlermeldungen",
+      "info": "Sollten Ihnen bei der Verwendung der Web- oder Desktopanwendung Fehler auffallen, melden Sie sie bitte an:"
     }
   },
   "resourceRedirect": {
