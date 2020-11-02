@@ -47,6 +47,7 @@ export default function ProjectMap({ document, documents, project }
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
     const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
     const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
+    const [mapClickFunction, setMapClickFunction] = useState<() => any>(null);
  
     useEffect(() => {
         const newMap = createMap();
@@ -74,8 +75,11 @@ export default function ProjectMap({ document, documents, project }
     useEffect(() => {
 
         if (!map) return;
+        if (mapClickFunction) map.un('click', mapClickFunction);
 
-        map.on('click', handleMapClick(history, location.search));
+        const newMapClickFunction = handleMapClick(history, location.search);
+        setMapClickFunction(() => newMapClickFunction);
+        map.on('click', newMapClickFunction);
     }, [map, history, location.search]);
 
     useEffect(() => {
@@ -210,7 +214,7 @@ const handleMapClick = (history: History, searchParams: string)
                 }
             }
             const { id, project } = smallestFeature.getProperties();
-            history.push(`/project/${project}/${id}`, searchParams);
+            history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
         }
     };
 };
@@ -224,14 +228,12 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
         features: new GeoJSON().readFeatures(featureCollection),
     });
 
-    const vectorLayer = new VectorLayer({
+    return new VectorLayer({
         source: vectorSource,
         style: getStyle,
         updateWhileAnimating: true,
         zIndex: 1000
     });
-
-    return vectorLayer;
 };
 
 
