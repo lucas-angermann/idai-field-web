@@ -1,6 +1,6 @@
 import { Geometry } from 'geojson';
-import Document from '../document/Document';
 import { ResultDocument } from './result';
+
 
 export interface Document {
     created: ChangeEvent;

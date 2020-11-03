@@ -3,7 +3,6 @@ import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import Modal from 'react-modal';
 import ProjectOverview from './overview/ProjectOverview';
 import Download from './download/Download';
-import Document from './document/Document';
 import Project from './project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
@@ -34,9 +33,6 @@ export default function App(): ReactElement {
 
                         <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                         <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
-
-                        <Route path="/document/:id" component={ Document } />
-                        <Redirect from="/documents/:id" to="/document/:id" />
 
                         <Route path="/project/:projectId/:documentId?" component={ Project } />
                         <Redirect from="/projects/:id" to="/project/:id" />
