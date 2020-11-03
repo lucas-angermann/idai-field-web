@@ -100,9 +100,10 @@ export default function ProjectMap({ document, documents, project }
     useEffect(() => {
 
         if (map && vectorLayer && document?.resource?.geometry) {
-
             const feature = (vectorLayer.getSource() as VectorSource<Geometry>)
                 .getFeatureById(document.resource.id);
+            if (!feature) return;
+
             select.getFeatures().clear();
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
