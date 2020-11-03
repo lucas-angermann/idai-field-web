@@ -42,6 +42,9 @@ export default function Project(): ReactElement {
     const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation();
 
+    let parentId: string;
+    let waitForDocument: Promise<any> = new Promise(resolve => resolve());
+
     useEffect(() => {
 
         get(projectId, loginData.token).then(setProjectDocument);
@@ -49,8 +52,15 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        documentId ? get(documentId, loginData.token)
-            .then(setDocument) : setDocument(null);
+        if (documentId) {
+            waitForDocument = get(documentId, loginData.token);
+            waitForDocument.then(doc => {
+                setDocument(doc);
+                parentId = doc?.resource.parent;
+            });
+        } else {
+            setDocument(null);
+        }
     }, [documentId, loginData]);
 
     useEffect(() => {
@@ -61,20 +71,25 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        searchDocuments(projectId, location.search, 0, loginData.token).then(result => {
-            setDocuments(result.documents);
-            setTotal(result.size);
+        waitForDocument.then(() => {
+            searchDocuments(projectId, location.search, 0, loginData.token, parentId)
+                .then(result => {
+                    setDocuments(result.documents);
+                    setTotal(result.size);
+                });
         });
     }, [projectId, location.search, loginData]);
 
     useEffect(() => {
 
-        setLoading(true);
-        searchMapDocuments(projectId, location.search, loginData.token)
-            .then(result => {
-                setMapDocuments(result.documents);
-                setLoading(false);
-            });
+        waitForDocument.then(() => {
+            setLoading(true);
+            searchMapDocuments(projectId, location.search, loginData.token, parentId)
+                .then(result => {
+                    setMapDocuments(result.documents);
+                    setLoading(false);
+                });
+        });
     }, [projectId, location.search, loginData]);
 
     const getChunk = useCallback(
@@ -172,16 +187,18 @@ const initFilters = async (id: string, searchParams: string, token: string): Pro
 };
 
 
-const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
+const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
+                               parentId?: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE), parentId);
     return search(query, token);
 };
 
 
-const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
+const searchMapDocuments = async (id: string, searchParams: string, token: string,
+                                  parentId?: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE), parentId);
     return mapSearch(query, token);
 };
 

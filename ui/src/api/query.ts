@@ -66,13 +66,19 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 });
 
 
-export const parseFrontendGetParams = (searchParams: string, query: Query = { q: '*', filters: [] }): Query => {
+export const parseFrontendGetParams = (searchParams: string, query: Query = { q: '*', filters: [] },
+                                       parentId?: string): Query => {
 
     const newQuery = JSON.parse(JSON.stringify(query));
     const params = new URLSearchParams(searchParams);
 
     if (params.has('q')) newQuery.q = params.get('q');
-    if (params.has('parent')) newQuery.parent = params.get('parent');
+
+    if (parentId) {
+        newQuery.parent = parentId;
+    } else if (params.has('parent')) {
+        newQuery.parent = params.get('parent');
+    }
 
     const filters = Array.from(params.entries())
         .filter(([field, _]) => field !== 'q' && field !== 'parent')
