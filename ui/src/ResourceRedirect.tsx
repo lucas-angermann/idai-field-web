@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { search } from './api/documents';
 import { useTranslation } from 'react-i18next';
+import { search } from './api/documents';
 
 export default function ResourceRedirect(): ReactElement {
 
@@ -14,7 +14,7 @@ export default function ResourceRedirect(): ReactElement {
     }, [project, identifier]);
 
     return id
-        ? <Redirect to={ `/documents/${id}` } />
+        ? <Redirect to={ `/project/${project}/${id}` } />
         : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
 }
 
