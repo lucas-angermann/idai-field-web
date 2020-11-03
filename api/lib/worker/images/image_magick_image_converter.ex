@@ -86,7 +86,7 @@ defmodule Worker.Images.ImageMagickImageConverter do
         @im_cmd,
         [
           source_img_path,
-          "-scale",
+          "-scale", # instead -resize, to prevent cache-resources-exhausted; cranking up resource limits did not work
           "#{rescale}x#{rescale}",
           target_img_path
         ]
