@@ -8,7 +8,10 @@ defmodule Core.LayoutTest do
 
     resource = %{
       :id => "42",
-      :relations => %{ "liesWithin" => ["45"] },
+      :relations => %{
+        "liesWithin" => [%{ "resource" => %{ "id" => "45" } }],
+        "isChildOf" => [%{ "resource" => %{ "id" => "45" } }]
+      },
       :category => %{ "name" => "Operation", "label" => %{ "de" => "Maßnahme", "en" => "Operation" } },
       "color" => [
         %{ "name" => "Grün", "label" => %{ "de" => "Grün", "en" => "Green" } },
@@ -37,6 +40,7 @@ defmodule Core.LayoutTest do
     assert layouted_resource == %{
       :id => "42",
       :category => %{ label: %{ de: "Maßnahme", en: "Operation" }, name: "Operation" },
+      :parent => "45",
       :groups => [%{
         name: "stem",
         fields: [
@@ -86,7 +90,7 @@ defmodule Core.LayoutTest do
         relations: [
           %{
             name: "liesWithin",
-            targets: ["45"],
+            targets: [%{ resource: %{ id: "45" } }],
             label: %{
               de: "Liegt in",
               en: "Lies within"
