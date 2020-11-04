@@ -66,7 +66,7 @@ export default function ProjectMap({ document, documents, project }
             if (mounted) {
                 setTileLayers(newTileLayers);
                 newTileLayers.forEach(layer => map.addLayer(layer));
-                setVisibleTileLayers(newTileLayers.map(layer => layer.get('document').resource.id));
+                setVisibleTileLayers([]);
             }
         });
 
@@ -278,7 +278,7 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
                 return getImageUrl(document.project, path , tileSize[0], tileSize[1], loginData.token, 'png');
             }
         }),
-        visible: true,
+        visible: false,
         extent
     });
     
