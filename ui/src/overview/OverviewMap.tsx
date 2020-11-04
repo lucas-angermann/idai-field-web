@@ -19,6 +19,8 @@ import './overview-map.css';
 
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
+const MAX_LABEL_LENGTH = 25;
+
 
 export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
@@ -164,8 +166,8 @@ const createFeature = (document: any, filter: ResultFilter): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry_wgs84,
     properties: {
-       identifier: document.resource.identifier,
-       label: createFeatureLabel(document, filter)
+        identifier: document.resource.identifier,
+        label: createFeatureLabel(document, filter)
     }
 });
 
@@ -176,7 +178,12 @@ const createFeatureLabel = (document: any, filter?: ResultFilter): string => {
         (bucket: FilterBucket) => bucket.value.name === document.project
     ) as FilterBucket;
 
-    return document.resource.identifier + (
+    const baseLabel: string = document.resource.shortDescription
+            && document.resource.shortDescription.length <= MAX_LABEL_LENGTH
+        ? document.resource.shortDescription
+        : document.resource.identifier;
+
+    return baseLabel + (
         projectBucket && projectBucket.count > 0
             ? ` (${projectBucket.count})`
             : ''
