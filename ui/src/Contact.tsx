@@ -16,7 +16,7 @@ export default function Contact(): ReactElement {
             <p style={ paragraphStyle }>{ t('contact.mailingList.info')}</p>
             <p style={ linkStyle }><a href={ 'mailto:' + MAILING_LIST }>{ MAILING_LIST }</a></p>
             <p style={ linkStyle }>
-                <a href="https://lists.fu-berlin.de/listinfo/idaifield2-user" target="_blank">
+                <a href="https://lists.fu-berlin.de/listinfo/idaifield2-user" target="_blank" rel="noopener noreferrer">
                     { t('contact.mailingList.subscription') }
                 </a>
             </p>
