@@ -1,20 +1,20 @@
 import React, { CSSProperties, useEffect, ReactElement, useState } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
-import { NAVBAR_HEIGHT } from '../constants';
 import { useLocation } from 'react-router-dom';
+import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Vector as VectorLayer } from 'ol/layer';
 import { Vector as VectorSource } from 'ol/source';
-import { FilterBucket, ResultDocument, ResultFilter } from '../api/result';
-import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
-import { Feature as OlFeature, MapBrowserEvent } from 'ol';
-import { Attribution, defaults as defaultControls } from 'ol/control';
-import './overview-map.css';
-import olms from 'ol-mapbox-style';
 import { Geometry } from 'ol/geom';
+import { Attribution, defaults as defaultControls } from 'ol/control';
+import GeoJSON from 'ol/format/GeoJSON';
+import olms from 'ol-mapbox-style';
+import { FilterBucket, ResultDocument, ResultFilter } from '../api/result';
 import { FIT_OPTIONS } from '../project/ProjectMap';
+import { NAVBAR_HEIGHT } from '../constants';
+import './overview-map.css';
 
 
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
