@@ -35,6 +35,7 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
 
+/* eslint-disable react-hooks/exhaustive-deps */
 export default function ProjectMap({ document, documents, project }
         : { document: Document, documents: ResultDocument[], project: string }): ReactElement {
 
@@ -116,6 +117,7 @@ export default function ProjectMap({ document, documents, project }
         { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
+/* eslint-enable react-hooks/exhaustive-deps */
 
 
 const createMap = (): Map => {

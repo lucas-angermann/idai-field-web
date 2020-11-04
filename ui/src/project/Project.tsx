@@ -26,7 +26,7 @@ import DocumentHierarchy from './DocumentHierarchy';
 const MAX_SIZE = 10000;
 export const CHUNK_SIZE = 50;
 
-
+/* eslint-disable react-hooks/exhaustive-deps */
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
@@ -138,8 +138,8 @@ export default function Project(): ReactElement {
                 project={ projectId } />
         </div>
     </>;
-
 }
+/* eslint-enable react-hooks/exhaustive-deps */
 
 
 const renderTotal = (total: number, document: Document, projectId: string, searchParams, t: TFunction)
