@@ -23,6 +23,7 @@ export interface ResultResource {
     shortDescription: string;
     childrenCount: number;
     parentId: string;
+    grandparentId: string;
 }
 
 

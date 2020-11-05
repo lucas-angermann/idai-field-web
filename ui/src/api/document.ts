@@ -25,6 +25,7 @@ export interface Resource {
     geometry: Geometry;
     childrenCount: number;
     parentId: string;
+    grandparentId: string;
 }
 
 

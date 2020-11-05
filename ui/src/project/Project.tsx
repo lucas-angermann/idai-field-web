@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties, useContext, ReactElement, useCallback } from 'react';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
-import { History } from 'history';
+import { useParams, useLocation } from 'react-router-dom';
+import { Spinner, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
@@ -8,7 +8,6 @@ import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
-import { Spinner, Card, Button } from 'react-bootstrap';
 import { ResultDocument, Result, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { LoginContext } from '../App';
@@ -21,6 +20,7 @@ import DocumentDetails from '../document/DocumentDetails';
 import { getUserInterfaceLanguage } from '../languages';
 import ScrollableDocumentList from './ScrollableDocumentList';
 import DocumentHierarchy from './DocumentHierarchy';
+import LinkButton from '../LinkButton';
 
 
 const MAX_SIZE = 10000;
@@ -31,7 +31,6 @@ export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
-    const history = useHistory();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -42,7 +41,7 @@ export default function Project(): ReactElement {
     const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation();
 
-    let parentId: string;
+    let parentId: string | undefined;
     let waitForDocument: Promise<any> = new Promise(resolve => resolve());
 
     useEffect(() => {
@@ -110,7 +109,7 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
             { document
                 ? <>
-                    { renderBackButton(history, t) }
+                    { renderBackButton(t, projectId, location.search, documents, document) }
                     <DocumentDetails document={ document } />
                 </>
                 : location.search && new URLSearchParams(location.search).has('q')
@@ -120,7 +119,8 @@ export default function Project(): ReactElement {
                             searchParams={ location.search } />
                     </>
                     : <>
-                        { new URLSearchParams(location.search).has('parent') && renderBackButton(history, t) }
+                        { new URLSearchParams(location.search).has('parent')
+                            && renderBackButton(t, projectId, location.search, documents, document) }
                         <DocumentHierarchy documents={ documents } searchParams={ location.search } />
                     </>
             }
@@ -157,15 +157,39 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
 };
 
 
-const renderBackButton = (history: History, t: TFunction): ReactElement => {
+const renderBackButton = (t: TFunction, projectId: string, locationSearch: string, documents: ResultDocument[],
+                          document?: Document): ReactElement => {
 
     return <>
         <Card body={ true }>
-            <Button variant="link" className="p-0" onClick={ () => history.goBack() }>
+            <LinkButton variant="link" to={ getBackButtonLinkUrl(projectId, locationSearch, documents, document) }>
                 <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.back') }
-            </Button>
+            </LinkButton>
         </Card>
     </>;
+};
+
+
+const getBackButtonLinkUrl = (projectId: string, locationSearch: string, documents: ResultDocument[],
+                              document?: Document): string => {
+
+    let url: string = `/project/${projectId}`;
+    if (document) {
+        if (locationSearch.length > 0) {
+            url += locationSearch;
+        } else if (document?.resource.parentId) {
+            url += `?parent=${document.resource.parentId}`;
+        }
+    } else {
+        if (locationSearch.includes('q')) {
+            url += locationSearch;
+        } else {
+            const grandparentId: string = getGrandparentId(documents);
+            if (grandparentId) url += `?parent=${grandparentId}`;
+        }
+    }
+
+    return url;
 };
 
 
@@ -200,6 +224,14 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE), parentId);
     return mapSearch(query, token);
+};
+
+
+const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
+
+    if (documents.length === 0) return undefined;
+
+    return documents[0].resource.grandparentId;
 };
 
 
