@@ -384,7 +384,8 @@ const createFeature = (document: any): Feature => ({
 
 
 const mapStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    backgroundColor: '#d3d3cf'
 };
 
 const layerControlsButtonStyle: CSSProperties = {
