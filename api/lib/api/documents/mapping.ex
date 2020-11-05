@@ -82,10 +82,15 @@ defmodule Api.Documents.Mapping do
   defp map_document(document) do
     Core.CorePropertiesAtomizing.format_document(document)
     |> add_parent_id
+    |> add_grandparent_id
   end
 
   defp add_parent_id(document) do
     put_in(document, [:resource, :parentId], Resource.get_parent_id(document.resource))
+  end
+
+  defp add_grandparent_id(document) do
+    put_in(document, [:resource, :grandparentId], Resource.get_grandparent_id(document.resource))
   end
 
   defp add_children_count(tree_list_node) do

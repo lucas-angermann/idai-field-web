@@ -27,13 +27,27 @@
                         },
                         "relations": {
                             "liesWithin": [
-                                { "resource": { "id": "b0e90175-bcea-9dae-0724-5cb8702e0318" } }
+                                {
+                                    "resource": {
+                                        "id": "b0e90175-bcea-9dae-0724-5cb8702e0318",
+                                        "parentId": "d3638687-3492-d567-7fc8-9c4799137af0"
+                                    }
+                                }
                             ],
                             "isRecordedIn": [
-                                { "resource": { "id": "2667b1a9-6935-2ef4-1c19-d7f37de25cac" } }
+                                {
+                                    "resource": {
+                                        "id": "2667b1a9-6935-2ef4-1c19-d7f37de25cac"
+                                    }
+                                }
                             ],
                             "isChildOf":[
-                                { "resource": { "id": "b0e90175-bcea-9dae-0724-5cb8702e0318" } }
+                                {
+                                    "resource": {
+                                        "id": "b0e90175-bcea-9dae-0724-5cb8702e0318",
+                                        "parentId": "d3638687-3492-d567-7fc8-9c4799137af0"
+                                    }
+                                }
                             ]
                         },
                         "identifier": "TES17.116.046a",
@@ -64,11 +78,21 @@
                         "shortDescription": "Quadrant ohne einen zugeordneten Grabungsplatz",
                         "relations": {
                             "liesWithin": [
-                                { "resource": { "id": "19ef31fa-0d08-31d4-72c8-176150710819" } }
+                                {
+                                    "resource": {
+                                        "id": "19ef31fa-0d08-31d4-72c8-176150710819",
+                                        "parentId": "d3638687-3492-d567-7fc8-9c4799137af0"
+                                    }
+                                }
                             ],
                             "isRecordedIn": [],
                             "isChildOf": [
-                                { "resource": { "id": "19ef31fa-0d08-31d4-72c8-176150710819" } }
+                                {
+                                    "resource": {
+                                        "id": "19ef31fa-0d08-31d4-72c8-176150710819",
+                                        "parentId": "d3638687-3492-d567-7fc8-9c4799137af0"
+                                    }
+                                }
                             ]
                         },
                         "identifier": "TES4999-5004",

@@ -1,7 +1,7 @@
 defmodule Worker.Enricher.Relations do
   require Logger
 
-  @result_document_properties [:shortDescription, :id, :type, :category, :identifier]
+  @result_document_properties [:shortDescription, :id, :type, :category, :identifier, :parentId]
 
   def add_child_of_relations(change = %{ doc: %{ resource: %{ relations: relations }}}) do
     put_child_of_relation(change, get_child_of_relation_targets(relations))
@@ -39,11 +39,20 @@ defmodule Worker.Enricher.Relations do
   end
 
   defp map_resource(resource) do
-    result = %{ resource: Map.take(resource, @result_document_properties) }
+    result = %{ resource: Map.take(add_parent_id(resource), @result_document_properties) }
     result = if Map.has_key?(result.resource, :type) do
       {category, result} = pop_in(result.resource[:type])
       put_in(result, [:resource, :category], category)
     end
     result
+  end
+
+  defp add_parent_id(resource) do
+    child_of_targets = get_child_of_relation_targets(resource.relations)
+    if child_of_targets != nil do
+      put_in(resource, [:parentId], Enum.at(child_of_targets, 0))
+    else
+      resource
+    end
   end
 end

@@ -9,8 +9,8 @@ defmodule Core.LayoutTest do
     resource = %{
       :id => "42",
       :relations => %{
-        "liesWithin" => [%{ "resource" => %{ "id" => "45" } }],
-        "isChildOf" => [%{ "resource" => %{ "id" => "45" } }]
+        "liesWithin" => [%{ "resource" => %{ "id" => "45", "parentId" => "40" } }],
+        "isChildOf" => [%{ "resource" => %{ "id" => "45", "parentId" => "40" } }]
       },
       :category => %{ "name" => "Operation", "label" => %{ "de" => "Maßnahme", "en" => "Operation" } },
       "color" => [
@@ -41,6 +41,7 @@ defmodule Core.LayoutTest do
       :id => "42",
       :category => %{ label: %{ de: "Maßnahme", en: "Operation" }, name: "Operation" },
       :parentId => "45",
+      :grandparentId => "40",
       :groups => [%{
         name: "stem",
         fields: [
@@ -90,7 +91,7 @@ defmodule Core.LayoutTest do
         relations: [
           %{
             name: "liesWithin",
-            targets: [%{ resource: %{ id: "45" } }],
+            targets: [%{ resource: %{ id: "45", parentId: "40" } }],
             label: %{
               de: "Liegt in",
               en: "Lies within"

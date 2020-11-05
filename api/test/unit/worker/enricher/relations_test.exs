@@ -10,6 +10,9 @@ defmodule Worker.Enricher.RelationsTest do
                   id: "1",
                   identifier: "i1",
                   type: "Feature",
+                  relations: %{
+                    "isRecordedIn" => ["0"]
+                  }
                 }
               }
       end
@@ -28,7 +31,7 @@ defmodule Worker.Enricher.RelationsTest do
     }, get)
 
     assert targets == [
-      %{ resource: %{category: "Feature", id: "1", identifier: "i1" }}]
+      %{ resource: %{ category: "Feature", id: "1", identifier: "i1", parentId: "0" }}]
   end
 
   test "add child_of relation for resource with liesWithin relation" do
