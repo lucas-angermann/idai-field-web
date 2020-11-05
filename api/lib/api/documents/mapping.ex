@@ -1,11 +1,13 @@
 defmodule Api.Documents.Mapping do
   alias Api.Core.Filters
   alias Core.Tree
+  alias Core.Resource
   
   def map_single elasticsearch_result do
     elasticsearch_result
     |> get_in([:hits, :hits, Access.at(0), :_source])
     |> Core.CorePropertiesAtomizing.format_document
+    |> add_parent
   end
 
   def map(elasticsearch_result, default_config), do: map(elasticsearch_result, default_config, Filters.get_filters())
@@ -79,6 +81,7 @@ defmodule Api.Documents.Mapping do
   
   defp map_document(%{ _source: document }) do
     Core.CorePropertiesAtomizing.format_document(document)
+    |> add_parent
   end
 
   defp add_children_count(tree_list_node) do
@@ -93,5 +96,9 @@ defmodule Api.Documents.Mapping do
   defp get_label(field = [_|_], value), do: Enum.find(field, &(&1["name"] == value))["label"]
   defp get_label(field = %{}, _), do: field["label"]
   defp get_label(field, _), do: field
+
+  defp add_parent(document) do
+    put_in(document, [:resource, :parent], Resource.get_parent_id(document.resource))
+  end
 
 end

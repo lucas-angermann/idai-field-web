@@ -27,10 +27,13 @@
                         },
                         "relations": {
                             "liesWithin": [
-                                "b0e90175-bcea-9dae-0724-5cb8702e0318"
+                                { "resource": { "id": "b0e90175-bcea-9dae-0724-5cb8702e0318" } }
                             ],
                             "isRecordedIn": [
-                                "2667b1a9-6935-2ef4-1c19-d7f37de25cac"
+                                { "resource": { "id": "2667b1a9-6935-2ef4-1c19-d7f37de25cac" } }
+                            ],
+                            "isChildOf":[
+                                { "resource": { "id": "b0e90175-bcea-9dae-0724-5cb8702e0318" } }
                             ]
                         },
                         "identifier": "TES17.116.046a",
@@ -61,9 +64,12 @@
                         "shortDescription": "Quadrant ohne einen zugeordneten Grabungsplatz",
                         "relations": {
                             "liesWithin": [
-                                "19ef31fa-0d08-31d4-72c8-176150710819"
+                                { "resource": { "id": "19ef31fa-0d08-31d4-72c8-176150710819" } }
                             ],
-                            "isRecordedIn": []
+                            "isRecordedIn": [],
+                            "isChildOf": [
+                                { "resource": { "id": "19ef31fa-0d08-31d4-72c8-176150710819" } }
+                            ]
                         },
                         "identifier": "TES4999-5004",
                         "id": "01eb730f-b62b-1057-2606-9bee5f60e627",
