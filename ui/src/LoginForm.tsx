@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from 'react';
+import React, { useState, ReactElement, CSSProperties } from 'react';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { postLogin, persistLogin, LoginData } from './login';
@@ -31,7 +31,7 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
             <Row>
                 <Col>
                     { loginFailed && <Alert variant="danger">{ t('login.wrongUserNameOrPassword') }</Alert> }
-                    <Card>
+                    <Card style={ cardStyle }>
                         <Card.Body>
                             <Form onSubmit={ handleSubmit }>
                                 <Form.Group controlId="formBasicEmail">
@@ -64,5 +64,10 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
             </Row>
         </Container>
     );
+};
 
-}
+
+const cardStyle: CSSProperties = {
+
+    backgroundColor: 'transparent'
+};
