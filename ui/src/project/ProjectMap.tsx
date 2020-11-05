@@ -57,6 +57,12 @@ export default function ProjectMap({ document, documents, project }
         setMap(newMap);
         setSelect(createSelect(newMap));
 
+        newMap.on('pointermove', event => {
+            newMap.getTargetElement().style.cursor = event.map.getFeaturesAtPixel(event.pixel).length > 0
+                ? 'pointer'
+                : '';
+        });
+
         return () => newMap ?? newMap.setTarget(null);
     }, []);
 
@@ -340,6 +346,7 @@ const getSelectStyle = (feature: OlFeature) => {
 
 
 const getColorForCategory = (category: string, opacity: number): string => {
+
     const rgb = hexToRgb(getColor(category));
     return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
 };
