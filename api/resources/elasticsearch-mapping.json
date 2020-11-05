@@ -80,6 +80,15 @@
                 }
             },
             {
+                "relationsParentId": {
+                    "path_match": "resource.relations.*.resource.parentId",
+                    "mapping": {
+                        "type": "keyword",
+                        "store": true
+                    }
+                }
+            },
+            {
                 "relationsIdentifier": {
                     "path_match": "resource.relations.*.resource.identifier",
                     "mapping": {
