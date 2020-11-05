@@ -22,6 +22,7 @@ export interface ResultResource {
     identifier: string;
     shortDescription: string;
     childrenCount: number;
+    parentId: string;
 }
 
 
