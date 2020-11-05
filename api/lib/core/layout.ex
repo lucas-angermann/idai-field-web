@@ -1,12 +1,13 @@
 defmodule Core.Layout do
   alias Core.Utils
+  alias Core.Resource
 
   def to_layouted_resource(configuration, resource) do
     %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category["name"], configuration)
 
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
-    |> put_in([:parent], get_parent(resource))
+    |> put_in([:parent], Resource.get_parent_id(resource))
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
     |> Utils.atomize
   end
@@ -49,8 +50,5 @@ defmodule Core.Layout do
         }]
     end
   end
-
-  defp get_parent(%{ relations: %{ "isChildOf" => [%{ "resource" => %{ "id" => id } }|_] } }), do: id
-  defp get_parent(_), do: nil
 
 end
