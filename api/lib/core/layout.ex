@@ -7,7 +7,7 @@ defmodule Core.Layout do
 
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
-    |> put_in([:parent], Resource.get_parent_id(resource))
+    |> put_in([:parentId], Resource.get_parent_id(resource))
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
     |> Utils.atomize
   end

@@ -33,9 +33,9 @@ defmodule Api.Documents.MappingTest do
     original_key = get_in(result.hits.hits, [Access.at(0), :_source, "resource", "identifier"])
     assert mapped_identifier == original_key
 
-    mapped_parent = get_in(mapped.documents, [Access.at(0), :resource, :parent])
-    original_is_child_of = get_in(result.hits.hits,
+    mapped_parent_id = get_in(mapped.documents, [Access.at(0), :resource, :parentId])
+    original_parent_id = get_in(result.hits.hits,
       [Access.at(0), :_source, "resource", "relations", "isChildOf", Access.at(0), "resource", "id"])
-    assert mapped_parent == original_is_child_of
+    assert mapped_parent_id == original_parent_id
   end
 end

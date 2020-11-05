@@ -2,7 +2,7 @@ defmodule Core.CorePropertiesAtomizing do
 
   import Core.Utils
 
-  @core_properties [:groups, :relations, :shortDescription, :id, :type, :category, :identifier, :geometry, :gazId, :georeference, :parent]
+  @core_properties [:groups, :relations, :shortDescription, :id, :type, :category, :identifier, :geometry, :gazId, :georeference, :parentId]
 
   def get_core_properties(), do: @core_properties
 
