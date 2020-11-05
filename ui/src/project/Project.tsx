@@ -21,6 +21,7 @@ import { getUserInterfaceLanguage } from '../languages';
 import ScrollableDocumentList from './ScrollableDocumentList';
 import DocumentHierarchy from './DocumentHierarchy';
 import LinkButton from '../LinkButton';
+import { getBackUrl } from './navigation';
 
 
 const MAX_SIZE = 10000;
@@ -162,34 +163,11 @@ const renderBackButton = (t: TFunction, projectId: string, locationSearch: strin
 
     return <>
         <Card body={ true }>
-            <LinkButton variant="link" to={ getBackButtonLinkUrl(projectId, locationSearch, documents, document) }>
+            <LinkButton variant="link" to={ getBackUrl(projectId, locationSearch, documents, document) }>
                 <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.back') }
             </LinkButton>
         </Card>
     </>;
-};
-
-
-const getBackButtonLinkUrl = (projectId: string, locationSearch: string, documents: ResultDocument[],
-                              document?: Document): string => {
-
-    let url: string = `/project/${projectId}`;
-    if (document) {
-        if (locationSearch.length > 0) {
-            url += locationSearch;
-        } else if (document?.resource.parentId) {
-            url += `?parent=${document.resource.parentId}`;
-        }
-    } else {
-        if (locationSearch.includes('q')) {
-            url += locationSearch;
-        } else {
-            const grandparentId: string = getGrandparentId(documents);
-            if (grandparentId) url += `?parent=${grandparentId}`;
-        }
-    }
-
-    return url;
 };
 
 
@@ -224,14 +202,6 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE), parentId);
     return mapSearch(query, token);
-};
-
-
-const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
-
-    if (documents.length === 0) return undefined;
-
-    return documents[0].resource.grandparentId;
 };
 
 
