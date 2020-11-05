@@ -61,11 +61,13 @@ const scrollToChapter = (chapter: Chapter,
 
 const chapterNavigationStyle: CSSProperties = {
     position: 'absolute',
-    width: CHAPTER_NAVIGATION_WIDTH + 'px'
+    width: CHAPTER_NAVIGATION_WIDTH + 'px',
+    marginTop: '5px'
 };
 
 
 const getChapterStyle = (isActiveChapter: boolean): CSSProperties => ({
     cursor: 'pointer',
-    color: isActiveChapter ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.5)'
+    color: isActiveChapter ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.5)',
+    textAlign: 'left'
 });
