@@ -26,6 +26,7 @@ import { get, search } from '../api/documents';
 import { getImageUrl } from '../api/image';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
+import { getBackUrl } from './navigation';
 
 
 export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
@@ -51,6 +52,7 @@ export default function ProjectMap({ document, documents, project }
     const [mapClickFunction, setMapClickFunction] = useState<() => any>(null);
  
     useEffect(() => {
+
         const newMap = createMap();
         setMap(newMap);
         setSelect(createSelect(newMap));
@@ -78,10 +80,10 @@ export default function ProjectMap({ document, documents, project }
         if (!map) return;
         if (mapClickFunction) map.un('click', mapClickFunction);
 
-        const newMapClickFunction = handleMapClick(history, location.search);
+        const newMapClickFunction = handleMapClick(history, location.search, document);
         setMapClickFunction(() => newMapClickFunction);
         map.on('click', newMapClickFunction);
-    }, [map, history, location.search]);
+    }, [map, history, document, location.search]);
 
     useEffect(() => {
 
@@ -100,14 +102,18 @@ export default function ProjectMap({ document, documents, project }
 
     useEffect(() => {
 
-        if (map && vectorLayer && document?.resource?.geometry) {
+        if (!map || !vectorLayer) return;
+        select.getFeatures().clear();
+
+        if (document?.resource?.geometry) {
             const feature = (vectorLayer.getSource() as VectorSource<Geometry>)
                 .getFeatureById(document.resource.id);
             if (!feature) return;
 
-            select.getFeatures().clear();
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
+        } else {
+            map.getView().fit((vectorLayer.getSource() as VectorSource<Geometry>).getExtent(), FIT_OPTIONS);
         }
     }, [map, document, vectorLayer, select]);
 
@@ -194,7 +200,7 @@ const createSelect = (map: Map): Select => {
 };
 
 
-const handleMapClick = (history: History, searchParams: string)
+const handleMapClick = (history: History, searchParams: string, selectedDocument?: Document)
         : ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
@@ -218,6 +224,8 @@ const handleMapClick = (history: History, searchParams: string)
             }
             const { id, project } = smallestFeature.getProperties();
             history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
+        } else if (selectedDocument) {
+            history.push(getBackUrl(selectedDocument.project, searchParams, undefined, selectedDocument));
         }
     };
 };
