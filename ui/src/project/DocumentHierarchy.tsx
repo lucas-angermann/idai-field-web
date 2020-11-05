@@ -26,7 +26,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
 
     return <>
        <Card style={ listContainerStyle }>
-            <Card.Body className="px-0 py-1">
+            <Card.Body className="px-0 py-0">
                 <TransitionGroup className={ className }>
                     <CSSTransition key={ parent } timeout={ 500 }>
                         <div className="documents">

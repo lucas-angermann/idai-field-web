@@ -33,7 +33,7 @@ export default React.memo(function ScrollableDocumentList(
 
     return (
         <Card onScroll={ onScroll } style={ listContainerStyle }>
-            <Card.Body className="px-0 py-1">
+            <Card.Body className="px-0 py-0">
                 { renderDocuments(documents, searchParams) }
                 { (!documents || documents.length === 0) && renderEmptyResult(t) }
             </Card.Body>
