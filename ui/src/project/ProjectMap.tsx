@@ -56,12 +56,7 @@ export default function ProjectMap({ document, documents, project }
         const newMap = createMap();
         setMap(newMap);
         setSelect(createSelect(newMap));
-
-        newMap.on('pointermove', event => {
-            newMap.getTargetElement().style.cursor = event.map.getFeaturesAtPixel(event.pixel).length > 0
-                ? 'pointer'
-                : '';
-        });
+        configureCursor(newMap);
 
         return () => newMap ?? newMap.setTarget(null);
     }, []);
@@ -234,6 +229,16 @@ const handleMapClick = (history: History, searchParams: string, selectedDocument
             history.push(getBackUrl(selectedDocument.project, searchParams, undefined, selectedDocument));
         }
     };
+};
+
+
+const configureCursor = (map: Map) => {
+
+    map.on('pointermove', event => {
+        map.getTargetElement().style.cursor = map.getFeaturesAtPixel(event.pixel).length > 0
+            ? 'pointer'
+            : '';
+    });
 };
 
 
