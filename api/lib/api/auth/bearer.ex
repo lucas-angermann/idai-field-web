@@ -1,6 +1,5 @@
 defmodule Api.Auth.Bearer do
   alias Core.Config
-  alias Api.Auth.Rights
   alias Api.Auth.Guardian
 
   @anonymous "anonymous"
