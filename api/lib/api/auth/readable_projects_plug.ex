@@ -8,7 +8,7 @@ defmodule Api.Auth.ReadableProjectsPlug do
   end
   
   def call(conn, _opts) do
-    {readable_projects, is_admin} = get_rights(conn)
+    { readable_projects, _ } = get_rights(conn)
     conn
     |> put_private(:readable_projects, readable_projects)
   end
