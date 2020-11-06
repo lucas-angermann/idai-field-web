@@ -44,7 +44,7 @@
     "noTargetResource": "Target resource not found"
   },
   "download": {
-    "download": "Download the desktop application",
+    "download": "Download the iDAI.field desktop application",
     "packageInfo": "There are packages for Windows, macOS and Linux available.",
     "currentVersion": "Current Version:",
     "allVersions": "All versions...",
