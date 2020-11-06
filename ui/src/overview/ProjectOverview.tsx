@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext, ReactElement, CSSProperties } from 'react';
 import { Alert } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import OverviewMap from './OverviewMap';
@@ -8,7 +9,6 @@ import { Result, ResultDocument, ResultFilter } from '../api/result';
 import { LoginContext } from '../App';
 import SearchBar from '../project/SearchBar';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
-import { useLocation } from 'react-router-dom';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
@@ -71,7 +71,7 @@ const renderSidebar = (filters: ResultFilter[], location: any, documents: Result
         <Filters filters={ filters } searchParams={ location.search } />
         <ScrollableDocumentList searchParams={ location.search }
             documents={ documents }
-            getChunk={ getChunk }></ScrollableDocumentList>
+            getChunk={ getChunk } />
     </>
 );
 
@@ -84,7 +84,7 @@ const renderError = (t: TFunction): ReactElement => (
 
 
 const renderMap = (projectDocuments: ResultDocument[], projectFilter: ResultFilter): ReactElement =>
-    <OverviewMap documents={ projectDocuments } filter={ projectFilter }></OverviewMap>;
+    <OverviewMap documents={ projectDocuments } filter={ projectFilter } />;
 
 
 const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
