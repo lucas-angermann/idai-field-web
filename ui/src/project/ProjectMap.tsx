@@ -50,15 +50,22 @@ export default function ProjectMap({ document, documents, project }
     const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
     const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
     const [mapClickFunction, setMapClickFunction] = useState<() => any>(null);
- 
+    const [layerControlsCloseClickFunction] = useState<(event: any) => void>(
+        () => getLayerControlsCloseClickFunction(setLayerControlsVisible)
+    );
+
     useEffect(() => {
 
         const newMap = createMap();
         setMap(newMap);
         setSelect(createSelect(newMap));
         configureCursor(newMap);
+        addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
 
-        return () => newMap ?? newMap.setTarget(null);
+        return () => {
+            if (newMap) newMap.setTarget(null);
+            removeLayerControlsCloseEventListener(layerControlsCloseClickFunction);
+        };
     }, []);
 
     useEffect(() => {
@@ -91,7 +98,7 @@ export default function ProjectMap({ document, documents, project }
         if (!map || !documents?.length) return;
 
         const featureCollection = createFeatureCollection(documents);
-        
+
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
@@ -138,7 +145,7 @@ const createMap = (): Map => {
 
 const renderLayerControlsButton = (layerControlsVisible: boolean,
         setLayerControlsVisible: React.Dispatch<React.SetStateAction<boolean>>): ReactElement => <>
-    <Button variant="primary" style={ layerControlsButtonStyle }
+    <Button id="layer-controls-button" variant="primary" style={ layerControlsButtonStyle }
             onClick={ () => setLayerControlsVisible(!layerControlsVisible)}>
         <Icon path={ mdiLayers } size={ 0.8 } />
     </Button>
@@ -149,7 +156,7 @@ const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayer
         setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <>
-        <div style={ layerSelectorStyle } className="layer-controls">
+        <div id="layer-controls" style={ layerSelectorStyle } className="layer-controls">
             <ul className="list-group">
                 { tileLayers.map(renderLayerControl(map, visibleTileLayers, setVisibleTileLayers)) }
             </ul>
@@ -300,9 +307,9 @@ const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
         visible: false,
         extent
     });
-    
+
     layer.set('document', document);
-    
+
     return layer;
 };
 
@@ -381,6 +388,37 @@ const createFeature = (document: any): Feature => ({
         project: document.project
     }
 });
+
+
+const addLayerControlsCloseEventListener = (eventListener: (event: any) => void) => {
+
+    document.addEventListener('click', eventListener);
+};
+
+
+const removeLayerControlsCloseEventListener = (eventListener: (event: any) => void) => {
+
+    document.removeEventListener('click', eventListener);
+};
+
+
+const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: boolean) => void) => {
+
+    return event => {
+
+        let element: any = event.target;
+        let insideLayerControls: boolean = false;
+        while (element) {
+            if (element.id.startsWith('layer-controls')) {
+                insideLayerControls = true;
+                break;
+            } else {
+                element = element.parentElement;
+            }
+        }
+        if (!insideLayerControls) setLayerControlsVisible(false);
+    };
+};
 
 
 const mapStyle: CSSProperties = {
