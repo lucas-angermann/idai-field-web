@@ -104,7 +104,8 @@ export default function Project(): ReactElement {
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
             { projectDocument
-                && <Card><Card.Body><DocumentTeaser document={ projectDocument } /></Card.Body></Card>
+                && <Card><Card.Body><DocumentTeaser document={ projectDocument }
+                                                    searchParams={ location.search } /></Card.Body></Card>
             }
             <SearchBar />
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
