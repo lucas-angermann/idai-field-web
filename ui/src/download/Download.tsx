@@ -90,8 +90,7 @@ const getDownloadSection = (latestVersion: string, t: TFunction): ReactNode => {
     return (
         <div style={ downloadContainerStyle }>
             <hr className="m-5"/>
-            <h1>{ t('download.download') }</h1>
-            <p className="lead text-muted">{ t('download.downloadInfo') }</p>
+            <h3>{ t('download.download') }</h3>
             <p>{ t('download.packageInfo') }</p>
             <p>{ t('download.currentVersion') } <strong>{ latestVersion }</strong></p>
             <p>
