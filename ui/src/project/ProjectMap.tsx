@@ -22,7 +22,7 @@ import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 import { LoginContext } from '../App';
 import { LoginData } from '../login';
-import { get, search } from '../api/documents';
+import { search } from '../api/documents';
 import { getImageUrl } from '../api/image';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
 import './project-map.css';
