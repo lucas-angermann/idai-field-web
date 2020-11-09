@@ -70,6 +70,7 @@ export default function ProjectMap({ document, documents, project }
 
     useEffect(() => {
 
+        if (!map) return;
         let mounted = true;
 
         getTileLayers(project, loginData).then((newTileLayers) => {
