@@ -24,22 +24,18 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
     return <>
-       <Card style={ listContainerStyle }>
-            <Card.Body className="px-0 py-0">
-                <TransitionGroup className={ className }>
-                    <CSSTransition key={ parent } timeout={ 500 }>
-                        <div className="documents">
-                            { documents.map((document: ResultDocument) =>
-                                <div style={ documentContainerStyle } key={ document.resource.id }>
-                                    <DocumentTeaser document={ document } searchParams={ searchParams }
-                                                    showHierarchyButton={ true } />
-                                </div>
-                            ) }
+        <TransitionGroup className={ className }>
+            <CSSTransition key={ parent } timeout={ 500 }>
+                <div className="documents">
+                    { documents.map((document: ResultDocument) =>
+                        <div style={ documentContainerStyle } key={ document.resource.id }>
+                            <DocumentTeaser document={ document } searchParams={ searchParams }
+                                            showHierarchyButton={ true } />
                         </div>
-                    </CSSTransition>
-                </TransitionGroup>
-            </Card.Body>
-        </Card>
+                )}
+                </div>
+            </CSSTransition>
+        </TransitionGroup>
     </>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
@@ -51,14 +47,6 @@ const getGrandparent = (documents: ResultDocument[]): string => {
 
     const grandparent = documents.length > 0 ? documents[0].resource.grandparentId : null;
     return grandparent ?? 'root';
-};
-
-
-const listContainerStyle: CSSProperties = {
-    overflowY: 'scroll',
-    overflowX: 'hidden',
-    flexGrow: 1,
-    flexShrink: 1
 };
 
 

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
+import Documents from './Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';
@@ -16,12 +17,10 @@ import SearchBar from './SearchBar';
 import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from '../filter/Filters';
-import DocumentDetails from '../document/DocumentDetails';
 import { getUserInterfaceLanguage } from '../languages';
-import ScrollableDocumentList from './ScrollableDocumentList';
-import DocumentHierarchy from './DocumentHierarchy';
 import LinkButton from '../LinkButton';
 import { getBackUrl } from './navigation';
+import DocumentDetails from '../document/DocumentDetails';
 
 
 const MAX_SIZE = 10000;
@@ -114,17 +113,20 @@ export default function Project(): ReactElement {
                     { renderBackButton(t, projectId, location.search, documents, document) }
                     <DocumentDetails document={ document } />
                 </>
-                : location.search && new URLSearchParams(location.search).has('q')
-                    ? <>
-                        { renderTotal(total, document, projectId, location.search, t) }
-                        <ScrollableDocumentList documents={ documents } getChunk={ getChunk }
-                            searchParams={ location.search } />
-                    </>
-                    : <>
-                        { new URLSearchParams(location.search).has('parent')
-                            && renderBackButton(t, projectId, location.search, documents, document) }
-                        <DocumentHierarchy documents={ documents } searchParams={ location.search } />
-                    </>
+                : <>
+                    {
+                        location.search && new URLSearchParams(location.search).has('q')
+                            && renderTotal(total, document, projectId, location.search, t)
+                    }
+                    {
+                        new URLSearchParams(location.search).has('parent')
+                            && renderBackButton(t, projectId, location.search, documents, document)
+                    }
+                    <Documents
+                        searchParams={ location.search }
+                        documents={ documents }
+                        getChunk={ getChunk }/>
+                </>
             }
         </div>
         <div key="results">

@@ -12,7 +12,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
-import ScrollableDocumentList from '../project/ScrollableDocumentList';
+import Documents from '../project/Documents';
 
 
 export default function ProjectOverview(): ReactElement {
@@ -69,7 +69,7 @@ const renderSidebar = (filters: ResultFilter[], location: any, documents: Result
                        getChunk: (offset: number) => void): ReactElement => (
     <>
         <Filters filters={ filters } searchParams={ location.search } />
-        <ScrollableDocumentList searchParams={ location.search }
+        <Documents searchParams={ location.search }
             documents={ documents }
             getChunk={ getChunk } />
     </>
