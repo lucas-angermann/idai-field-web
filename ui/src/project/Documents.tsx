@@ -38,9 +38,9 @@ export default React.memo(function Documents(
     }, [searchParams]);
 
     return (
-        <Card onScroll={ onScroll } style={ listContainerStyle }>
+        <Card className="documents-card" style={ listContainerStyle }>
             <Card.Body className="px-0 py-1">
-                { renderDocuments(documents, searchParams) }
+                { renderDocuments(documents, searchParams, onScroll) }
                 { (!documents || documents.length === 0) && renderEmptyResult(t) }
             </Card.Body>
         </Card>
@@ -48,11 +48,12 @@ export default React.memo(function Documents(
 });
 
 
-const renderDocuments = (documents: ResultDocument[], searchParams: string): ReactElement => {
+const renderDocuments = (documents: ResultDocument[], searchParams: string,
+                         onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
     return searchParams && new URLSearchParams(searchParams).has('q')
-            ? <DocumentList documents={ documents } searchParams={ searchParams } />
-            : <DocumentHierarchy documents={ documents } searchParams={ searchParams } />;
+            ? <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll }/>
+            : <DocumentHierarchy documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll }/>;
 };
 
 

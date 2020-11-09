@@ -10,3 +10,12 @@
 .sidebar .card .form-control {
   border: 0;
 }
+
+.documents-card {
+    overflow: hidden !important;
+}
+
+.documents-card .documents {
+    height: 100%;
+    overflow: visible scroll;
+}

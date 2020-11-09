@@ -13,6 +13,7 @@ import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../ap
 import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
 import Documents from '../project/Documents';
+import './project-overview.css';
 
 
 export default function ProjectOverview(): ReactElement {
@@ -67,12 +68,12 @@ export default function ProjectOverview(): ReactElement {
 
 const renderSidebar = (filters: ResultFilter[], location: any, documents: ResultDocument[],
                        getChunk: (offset: number) => void): ReactElement => (
-    <>
+    <div className="project-overview-sidebar">
         <Filters filters={ filters } searchParams={ location.search } />
         <Documents searchParams={ location.search }
             documents={ documents }
             getChunk={ getChunk } />
-    </>
+    </div>
 );
 
 
@@ -99,7 +100,7 @@ const searchDocuments = async (searchParams: string, from: number, token: string
 
 
 const leftSidebarStyle: CSSProperties = {
-    maxHeight: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
+    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     width: `${SIDEBAR_WIDTH}px`,
     position: 'absolute',
     top: NAVBAR_HEIGHT,
