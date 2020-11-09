@@ -1,6 +1,5 @@
 import React, { CSSProperties, ReactElement, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Card } from 'react-bootstrap';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 import './document-hierarchy.css';
