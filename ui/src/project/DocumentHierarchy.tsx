@@ -1,9 +1,9 @@
 import React, { CSSProperties, ReactElement, useRef } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Card } from 'react-bootstrap';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './document-hierarchy.css';
-import { Card } from 'react-bootstrap';
 
 
 interface DocumentHierarchyProps {
@@ -34,9 +34,8 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
                                 <div style={ documentContainerStyle } key={ document.resource.id }>
                                     <DocumentTeaser document={ document } searchParams={ searchParams }
                                                     showHierarchyButton={ true } />
-
                                 </div>
-                        )}
+                            ) }
                         </div>
                     </CSSTransition>
                 </TransitionGroup>
