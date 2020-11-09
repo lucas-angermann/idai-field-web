@@ -6,3 +6,7 @@
     flex-grow: 0 !important;
     flex-shrink: 0 !important;
 }
+
+.project-overview-sidebar .card:first-child {
+    margin: 0 0 10px 0;
+}
