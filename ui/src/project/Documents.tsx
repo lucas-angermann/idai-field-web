@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties, ReactElement } from 'react';
+import React, { useState, CSSProperties, ReactElement, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -31,6 +31,11 @@ export default React.memo(function Documents(
             setOffset(newOffset);
         }
     };
+
+    useEffect(() => {
+
+        setOffset(0);
+    }, [searchParams]);
 
     return (
         <Card onScroll={ onScroll } style={ listContainerStyle }>
