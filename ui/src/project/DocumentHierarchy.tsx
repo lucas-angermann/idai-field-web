@@ -16,11 +16,10 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
         : DocumentHierarchyProps): ReactElement {
 
     const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
-    const prevParent = useRef<string>();
-    
-    const docIds = documents.map(doc => doc.resource.id);
-    const backward = docIds.includes(prevParent.current);
-    prevParent.current = parent;
+    const prevGrandparent = useRef<string>();
+
+    const backward = parent === prevGrandparent.current;
+    prevGrandparent.current = getGrandparent(documents);
     
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
@@ -46,6 +45,13 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
 
     return prevProps.documents === nextProps.documents;
 });
+
+
+const getGrandparent = (documents: ResultDocument[]): string => {
+
+    const grandparent = documents.length > 0 ? documents[0].resource.grandparentId : null;
+    return grandparent ?? 'root';
+};
 
 
 const listContainerStyle: CSSProperties = {
