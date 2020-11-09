@@ -13,7 +13,7 @@ export const getResolutions = (
 
     const result = [];
     const layerWidth = extent[2] - extent[0];
-    const imageWidth = document.resource.groups[1].fields[1].value;
+    const imageWidth = document.resource.width;
     
     let scale = 1;
     while (tileSize < imageWidth / scale) {

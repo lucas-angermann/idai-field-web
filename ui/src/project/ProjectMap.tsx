@@ -270,18 +270,19 @@ const getTileLayers = async (project: string, loginData: LoginData): Promise<Til
     (await getTileLayerDocuments(project, loginData)).map(doc => getTileLayer(doc, loginData));
 
 
-const getTileLayerDocuments = async (project: string, loginData: LoginData): Promise<Document[]> => {
+const getTileLayerDocuments = async (project: string, loginData: LoginData): Promise<ResultDocument[]> => {
 
     const result = await search({
         q: '*',
         exists: ['resource.georeference'],
         filters: [{ field: 'project', value: project }]
     }, loginData.token);
-    return Promise.all(result.documents.map((doc: ResultDocument) => get(doc.resource.id, loginData.token)));
+
+    return result.documents;
 };
 
 
-const getTileLayer = (document: Document, loginData: LoginData): TileLayer => {
+const getTileLayer = (document: ResultDocument, loginData: LoginData): TileLayer => {
 
     const tileSize: [number, number] = [256, 256];
     const pathTemplate = `${document.resource.id}/{z}/{x}/{y}.png`;
