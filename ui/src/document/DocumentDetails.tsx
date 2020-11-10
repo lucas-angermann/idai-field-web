@@ -78,7 +78,7 @@ const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): Reac
 const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
 
     const fieldElements = fields
-        .filter(field => field.name !== 'geometry' && field.name !== 'id')
+        .filter(field => field.name !== 'geometry' && field.name !== 'georeference' && field.name !== 'id')
         .map(field => [
             <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
