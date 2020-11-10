@@ -16,13 +16,15 @@ export default function DocumentDetails({ document }: { document: Document }): R
 
     const { t } = useTranslation();
 
+    const images: ResultDocument[] = getImages(document);
+
     return (
         <Card style={ cardStyle }>
             <Card.Header className="px-2 py-3">
                 { renderHeader(document) }
             </Card.Header>
             <Card.Body>
-                { renderImages(getImages(document), document.project)}
+                { images && renderImages(images, document.project)}
                 { renderGroups(document, t) }
             </Card.Body>
         </Card>
