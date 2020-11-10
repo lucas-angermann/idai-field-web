@@ -1,4 +1,4 @@
-.document-teaser .teaser-container:hover {
+.document-teaser .teaser-container.link:hover {
     background-color: var(--main-bg-color-hover);
 }
 

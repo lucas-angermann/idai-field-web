@@ -13,10 +13,11 @@ const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
-            project = 'undefined', showHierarchyButton = false }
+            project = 'undefined', showHierarchyButton = false,
+            asLink = true }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
             /* on rendering relation targets, the project is not part of the document*/
-            project?: string, showHierarchyButton?: boolean}): ReactElement {
+            project?: string, showHierarchyButton?: boolean, asLink?: boolean }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -33,34 +34,10 @@ export default React.memo(function DocumentTeaser(
     return (
         <Row className="no-gutters document-teaser">
             <Col>
-                <Link to={ linkUrl }
-                      style={ linkStyle }>
-                    <div className={ `py-2 px-4 teaser-container teaser-${size}` }>
-                        <Row>
-                            <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
-                                <CategoryIcon size={ `${height}` }
-                                              category={ document.resource.category }/>
-                            </Col>
-                            <Col>
-                                <Row>
-                                    <Col className="p-0">
-                                        { document.resource.shortDescription
-                                            ? <h4 className="m-0">{ document.resource.identifier }</h4>
-                                            : <h3 className="my-2">{ document.resource.identifier }</h3>
-                                        }
-                                    </Col>
-                                </Row>
-                                { document.resource.shortDescription &&
-                                <Row>
-                                    <Col className="p-0 text-muted short-description">
-                                        { document.resource.shortDescription }
-                                    </Col>
-                                </Row>
-                                }
-                            </Col>
-                        </Row>
-                    </div>
-                </Link>
+                { asLink
+                    ? <Link to={ linkUrl } style={ linkStyle }>{ renderTeaser(document, size, height, asLink) }</Link>
+                    : renderTeaser(document, size, height, asLink)
+                }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
                 <Col style={ { flex: `0 0 ${height}px` } } className="hierarchy-button">
@@ -73,6 +50,36 @@ export default React.memo(function DocumentTeaser(
         </Row>
     );
 });
+
+
+const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean) => (
+
+    <div className={ `py-2 px-4 teaser-container teaser-${size} ${asLink ? 'link' : ''}` }>
+        <Row>
+            <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
+                <CategoryIcon size={ `${height}` }
+                              category={ document.resource.category }/>
+            </Col>
+            <Col>
+                <Row>
+                    <Col className="p-0">
+                        { document.resource.shortDescription
+                            ? <h4 className="m-0">{ document.resource.identifier }</h4>
+                            : <h3 className="my-2">{ document.resource.identifier }</h3>
+                        }
+                    </Col>
+                </Row>
+                { document.resource.shortDescription &&
+                <Row>
+                    <Col className="p-0 text-muted short-description">
+                        { document.resource.shortDescription }
+                    </Col>
+                </Row>
+                }
+            </Col>
+        </Row>
+    </div>
+);
 
 
 const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {

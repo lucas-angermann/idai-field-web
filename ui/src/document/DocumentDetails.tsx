@@ -34,7 +34,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
 
 const renderHeader = (document: Document): ReactElement => (
     <div>
-        <DocumentTeaser project={ document.project } document={ document }/>
+        <DocumentTeaser project={ document.project } document={ document } asLink={ false } />
     </div>
 );
 
