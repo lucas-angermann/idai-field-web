@@ -81,8 +81,8 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        setLoading(true);
         waitForDocument.then(() => {
-            setLoading(true);
             searchMapDocuments(projectId, location.search, loginData.token, parentId)
                 .then(result => {
                     setMapDocuments(result.documents);
