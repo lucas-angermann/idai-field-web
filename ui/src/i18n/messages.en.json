@@ -29,13 +29,11 @@
   "projectMap": {
     "noResources": "The search results do not include any resources linked to geodata."
   },
-  "projectHome": {
-    "noResults": "No results"
-  },
   "project": {
     "total": "Total of",
     "resources": "resources",
-    "back": "back"
+    "back": "back",
+    "noResults": "No results"
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend nicht erreichbar!"
