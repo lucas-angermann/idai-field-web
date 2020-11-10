@@ -9,6 +9,7 @@ import DocumentTeaser from './DocumentTeaser';
 import Image from '../image/Image';
 import { ResultDocument } from '../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
+import './document-details.css';
 
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
@@ -37,7 +38,7 @@ const renderHeader = (document: Document): ReactElement => (
 
 
 const renderImages = (images: ResultDocument[], project: string): ReactNode =>
-    <Carousel interval={ null }>
+    <Carousel className="document-details-carousel" interval={ null }>
         { images?.map(renderImage(project)) }
     </Carousel>;
 
