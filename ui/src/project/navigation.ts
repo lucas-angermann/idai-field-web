@@ -1,5 +1,7 @@
+import { TFunction } from 'i18next';
 import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
+
 
 export const getBackUrl = (projectId: string, locationSearch: string, documents?: ResultDocument[],
                            document?: Document): string => {
@@ -21,6 +23,20 @@ export const getBackUrl = (projectId: string, locationSearch: string, documents?
     }
 
     return url;
+};
+
+
+export const getBackButtonLabel = (t: TFunction, locationSearch: string, document?: Document): string => {
+
+    if (document) {
+        if (locationSearch.includes('q')) {
+            return t('project.backButton.searchResults');
+        } else {
+            return t('project.backButton.context');
+        }
+    } else {
+        return t('project.backButton.previousHierarchyLevel');
+    }
 };
 
 

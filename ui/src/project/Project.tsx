@@ -19,7 +19,7 @@ import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import LinkButton from '../LinkButton';
-import { getBackUrl } from './navigation';
+import { getBackButtonLabel, getBackUrl } from './navigation';
 import DocumentDetails from '../document/DocumentDetails';
 
 
@@ -167,7 +167,7 @@ const renderBackButton = (t: TFunction, projectId: string, locationSearch: strin
     return <>
         <Card body={ true }>
             <LinkButton variant="link" to={ getBackUrl(projectId, locationSearch, documents, document) }>
-                <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.back') }
+                <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { getBackButtonLabel(t, locationSearch, document) }
             </LinkButton>
         </Card>
     </>;

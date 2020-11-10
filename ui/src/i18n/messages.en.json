@@ -32,7 +32,11 @@
   "project": {
     "total": "Total of",
     "resources": "resources",
-    "back": "back",
+    "backButton": {
+      "context": "Resource context",
+      "previousHierarchyLevel": "Previous hierarchy level",
+      "searchResults": "Back to search results"
+    },
     "noResults": "No results"
   },
   "projectOverview": {
