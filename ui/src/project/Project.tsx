@@ -35,7 +35,7 @@ export default function Project(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
-    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [total, setTotal] = useState<number>();
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

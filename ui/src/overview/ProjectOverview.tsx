@@ -19,7 +19,7 @@ import './project-overview.css';
 export default function ProjectOverview(): ReactElement {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
-    const [documents, setDocuments] = useState<ResultDocument[]>(undefined);
+    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
@@ -43,7 +43,7 @@ export default function ProjectOverview(): ReactElement {
         } else {
             setProjectFilter(undefined);
             setFilters([]);
-            setDocuments([]);
+            setDocuments(null);
         }
     }, [location.search, loginData]);
 

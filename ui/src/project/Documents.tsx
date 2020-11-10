@@ -9,7 +9,7 @@ import DocumentHierarchy from './DocumentHierarchy';
 
 
 interface ProjectHomeProps {
-    documents: ResultDocument[];
+    documents: ResultDocument[] | null;
     searchParams: string;
     getChunk: (offset: number) => void;
 }
@@ -40,8 +40,8 @@ export default React.memo(function Documents(
     return (
         <Card className="documents-card" style={ listContainerStyle }>
             <Card.Body className="px-0 py-0">
-                { renderDocuments(documents, searchParams, onScroll) }
-                { (!documents || documents.length === 0) && renderEmptyResult(t) }
+                { documents && renderDocuments(documents, searchParams, onScroll) }
+                { (documents && documents.length === 0) && renderEmptyResult(t) }
             </Card.Body>
         </Card>
     );
