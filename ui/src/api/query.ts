@@ -64,7 +64,7 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 });
 
 
-export const parseFrontendGetParams = (searchParams: string, query: Query = { q: '*', filters: [] },
+export const parseFrontendGetParams = (searchParams: string, query: Query = { filters: [] },
                                        parentId?: string): Query => {
 
     const newQuery = JSON.parse(JSON.stringify(query));

@@ -8,7 +8,7 @@ import { parseFrontendGetParams } from '../api/query';
 
 export default function SearchBar(): ReactElement {
 
-    const [queryString, setQueryString] = useState('');
+    const [queryString, setQueryString] = useState(undefined);
     const history = useHistory();
     const { t } = useTranslation();
     const location = useLocation();
@@ -22,7 +22,7 @@ export default function SearchBar(): ReactElement {
     const submitSearch = (e: FormEvent): void => {
 
         e.preventDefault();
-        history.push(`?q=${queryString}`);
+        history.push(`?q=${queryString ?? '*'}`);
     };
 
     const resetQueryString = (): void => {
@@ -31,7 +31,7 @@ export default function SearchBar(): ReactElement {
             params.delete('q');
             history.push(`?${params}`);
         } else {
-            setQueryString('');
+            setQueryString(undefined);
             input.current.value = '';
         }
     };
@@ -44,13 +44,13 @@ export default function SearchBar(): ReactElement {
                         autoFocus={ true }
                         type="text"
                         placeholder={ t('searchBar.search') }
-                        value={ queryString }
+                        value={ queryString ?? '' }
                         onChange={ e => setQueryString(e.target.value) }
                         ref={ input } />
                     <InputGroup.Append>
-                        { queryString &&
+                        { queryString !== undefined &&
                             <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
-                                <Icon  path={ mdiCloseCircle } size={ 0.8 } />
+                                <Icon path={ mdiCloseCircle } size={ 0.8 } />
                             </Button>
                         }
                         <Button variant="primary" type="submit">
