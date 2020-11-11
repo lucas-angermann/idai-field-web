@@ -70,7 +70,7 @@ const renderSidebar = (filters: ResultFilter[], location: any, documents: Result
                        getChunk: (offset: number) => void): ReactElement => (
     <div className="project-overview-sidebar">
         <Filters filters={ filters } searchParams={ location.search } />
-        <Documents searchParams={ location.search }
+        <Documents searchParams={ location.search + '&r=overview' }
             documents={ documents }
             getChunk={ getChunk } />
     </div>

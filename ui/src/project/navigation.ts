@@ -6,15 +6,26 @@ import { Document } from '../api/document';
 export const getBackUrl = (projectId: string, locationSearch: string, documents?: ResultDocument[],
                            document?: Document): string => {
 
-    let url: string = `/project/${projectId}`;
+    const searchParams = new URLSearchParams(locationSearch);
+
+    let url: string = '';
+
+    if (searchParams.has('q') && searchParams.get('r') === 'overview') {
+        url = '/';
+    } else {
+        url = `/project/${projectId}`;
+    }
+
+    searchParams.delete('r');
+
     if (document) {
         if (locationSearch.length > 0) {
-            url += locationSearch;
+            url += `?${searchParams.toString()}`;
         } else if (document?.resource.parentId) {
             url += `?parent=${document.resource.parentId}`;
         }
     } else {
-        if (locationSearch.includes('q')) {
+        if (searchParams.has('q')) {
             url += locationSearch;
         } else if (documents) {
             const grandparentId: string = getGrandparentId(documents);
