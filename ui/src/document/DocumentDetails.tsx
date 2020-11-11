@@ -11,6 +11,8 @@ import { ResultDocument } from '../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 import './document-details.css';
 
+const HIDDEN_FIELDS = ['id', 'geometry', 'georeference', 'originalFilename'];
+
 
 export default function DocumentDetails({ document }: { document: Document }): ReactElement {
 
@@ -78,8 +80,7 @@ const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): Reac
 const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
 
     const fieldElements = fields
-        .filter(field => field.name !== 'geometry' && field.name !== 'georeference' && field.name !== 'id'
-            && field.name !== 'originalFilename')
+        .filter(field => !HIDDEN_FIELDS.includes(field.name))
         .map(field => [
             <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
