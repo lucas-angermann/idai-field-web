@@ -25,8 +25,8 @@ import { LoginData } from '../login';
 import { search } from '../api/documents';
 import { getImageUrl } from '../api/image';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
+import { getMapDeselectionUrl } from './NavigationButtons';
 import './project-map.css';
-import { getBackUrl } from './navigation';
 
 
 export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
@@ -234,7 +234,7 @@ const handleMapClick = (history: History, searchParams: string, selectedDocument
             const { id, project } = smallestFeature.getProperties();
             history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
         } else if (selectedDocument) {
-            history.push(getBackUrl(selectedDocument.project, searchParams, undefined, selectedDocument));
+            history.push(getMapDeselectionUrl(selectedDocument.project, searchParams, selectedDocument));
         }
     };
 };

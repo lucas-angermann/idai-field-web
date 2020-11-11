@@ -35,7 +35,8 @@
     "backButton": {
       "context": "Kontext der Ressource",
       "previousHierarchyLevel": "Vorherige Hierarchieebene",
-      "searchResults": "Zurück zu den Suchergebnissen"
+      "searchResults": "Suchergebnisse im Projekt",
+      "overviewSearchResults": "Gesamte Suchergebnisse"
     },
     "noResults": "Keine Ergebnisse"
   },

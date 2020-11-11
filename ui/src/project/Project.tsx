@@ -4,7 +4,7 @@ import { Spinner, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
+import { mdiInformation } from '@mdi/js';
 import Documents from './Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -18,9 +18,8 @@ import './project.css';
 import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
-import LinkButton from '../LinkButton';
-import { getBackButtonLabel, getBackUrl } from './navigation';
 import DocumentDetails from '../document/DocumentDetails';
+import NavigationButtons from './NavigationButtons';
 
 
 const MAX_SIZE = 10000;
@@ -110,7 +109,9 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
             { document
                 ? <>
-                    { renderBackButton(t, projectId, location.search, documents, document) }
+                    <NavigationButtons projectId={ projectId }
+                                       locationSearch={ location.search }
+                                       document={ document } />
                     <DocumentDetails document={ document } />
                 </>
                 : <>
@@ -120,7 +121,9 @@ export default function Project(): ReactElement {
                     }
                     {
                         new URLSearchParams(location.search).has('parent')
-                            && renderBackButton(t, projectId, location.search, documents, document)
+                            && <NavigationButtons projectId={ projectId }
+                                locationSearch={ location.search }
+                                documents={ documents } />
                     }
                     <Documents
                         searchParams={ location.search }
@@ -155,17 +158,6 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-    </Card>;
-};
-
-
-const renderBackButton = (t: TFunction, projectId: string, locationSearch: string, documents: ResultDocument[],
-                          document?: Document): ReactElement => {
-
-    return <Card body={ true }>
-        <LinkButton variant="link" to={ getBackUrl(projectId, locationSearch, documents, document) }>
-            <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { getBackButtonLabel(t, locationSearch, document) }
-        </LinkButton>
     </Card>;
 };
 
