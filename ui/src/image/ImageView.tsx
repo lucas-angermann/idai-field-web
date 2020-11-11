@@ -1,6 +1,6 @@
 import React, { CSSProperties, useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { Map } from 'react-leaflet';
+import { Map, ZoomControl } from 'react-leaflet';
 import { Card } from 'react-bootstrap';
 import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,10 @@ export default function ImageView() {
                 <Map style={ mapStyle }
                         center={ [0, 0] }
                         crs={ L.CRS.Simple }
-                        zoom={ 0 }>
+                        zoom={ 0 }
+                        zoomControl={ false }
+                        attributionControl={ false }>
+                    <ZoomControl position="bottomright" />
                     <IiifImageLayer url={ url } />
                 </Map>
             </div>
