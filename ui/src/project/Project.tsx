@@ -151,37 +151,31 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
 
     if (!total) return null;
 
-    return <>
-        <Card body={ true }>
-            { t('project.total') }
-            <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
-            { t('project.resources') }
-        </Card>
-    </>;
+    return <Card body={ true }>
+        { t('project.total') }
+        <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
+        { t('project.resources') }
+    </Card>;
 };
 
 
 const renderBackButton = (t: TFunction, projectId: string, locationSearch: string, documents: ResultDocument[],
                           document?: Document): ReactElement => {
 
-    return <>
-        <Card body={ true }>
-            <LinkButton variant="link" to={ getBackUrl(projectId, locationSearch, documents, document) }>
-                <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { getBackButtonLabel(t, locationSearch, document) }
-            </LinkButton>
-        </Card>
-    </>;
+    return <Card body={ true }>
+        <LinkButton variant="link" to={ getBackUrl(projectId, locationSearch, documents, document) }>
+            <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { getBackButtonLabel(t, locationSearch, document) }
+        </LinkButton>
+    </Card>;
 };
 
 
 const renderEmptyResult = (t: TFunction): ReactElement => {
 
-    return <>
-        <div className="alert alert-info" style={ emptyResultStyle }>
-            <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
-            { t('projectMap.noResources') }
-        </div>
-    </>;
+    return <div className="alert alert-info" style={ emptyResultStyle }>
+        <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
+        { t('projectMap.noResources') }
+    </div>;
 };
 
 
