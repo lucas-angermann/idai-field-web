@@ -74,7 +74,7 @@ const makeUrl = (project: string, id: string, token?: string) => {
 
 const containerStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
+    width: `calc(100vw - ${SIDEBAR_WIDTH + 20}px)`,
     display: 'flex',
     position: 'absolute',
     left: `${SIDEBAR_WIDTH + 20}px`,
