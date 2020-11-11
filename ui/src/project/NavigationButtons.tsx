@@ -32,7 +32,7 @@ export const renderOverviewSearchResultsButton = (t: TFunction, locationSearch: 
     searchParams.delete('r');
 
     return <LinkButton variant="link" to={ `/?${searchParams.toString()}` }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.backButton.overviewSearchResults') }
+        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.overviewSearchResults') }
     </LinkButton>;
 };
 
@@ -41,7 +41,7 @@ export const renderProjectSearchResultsButton = (t: TFunction, projectId: string
                                                  locationSearch: string): ReactElement => {
 
     return <LinkButton variant="link" to={ getProjectSearchResultsUrl(projectId, locationSearch) }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.backButton.searchResults') }
+        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.searchResults') }
     </LinkButton>;
 };
 
@@ -50,7 +50,7 @@ export const renderContextButton = (t: TFunction, projectId: string, locationSea
                                     document: Document): ReactElement => {
 
     return <LinkButton variant="link" to={ getContextUrl(projectId, locationSearch, document) }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.backButton.context') }
+        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.context') }
     </LinkButton>;
 };
 
@@ -67,7 +67,7 @@ export const renderPreviousHierarchyLevelButton = (t: TFunction, projectId: stri
     }
 
     return <LinkButton variant="link" to={ url }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.backButton.previousHierarchyLevel') }
+        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.previousHierarchyLevel') }
     </LinkButton>;
 };
 

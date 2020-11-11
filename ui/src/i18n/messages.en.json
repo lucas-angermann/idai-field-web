@@ -32,7 +32,7 @@
   "project": {
     "total": "Total of",
     "resources": "resources",
-    "backButton": {
+    "navigationButtons": {
       "context": "Resource context",
       "previousHierarchyLevel": "Previous hierarchy level",
       "searchResults": "Back to search results",
