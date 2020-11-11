@@ -45,6 +45,9 @@
   "documentTeaser": {
     "noTargetResource": "Target resource not found"
   },
+  "image": {
+    "back": "Back"
+  },
   "download": {
     "download": "Download the iDAI.field desktop application",
     "packageInfo": "There are packages for Windows, macOS and Linux available.",

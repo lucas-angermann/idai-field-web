@@ -45,6 +45,9 @@
   "documentTeaser": {
     "noTargetResource": "Zielressource nicht vorhanden"
   },
+  "image": {
+    "back": "Zurück"
+  },
   "download": {
     "download": "iDAI.field-Desktopanwendung herunterladen",
     "packageInfo": "Es werden Pakete für Windows, macOS und Linux zur Verfügung gestellt.",
