@@ -85,7 +85,7 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
             <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
             <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
         ]);
-    return <dl>{ fieldElements }</dl>;
+    return <dl style={ listStyle }>{ fieldElements }</dl>;
 };
 
 
@@ -103,7 +103,7 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
                 </ul>
             </dd>
         ]);
-    return <dl>{ relationElements }</dl>;
+    return <dl style={ listStyle }>{ relationElements }</dl>;
 };
 
 
@@ -224,4 +224,9 @@ const multiLanguageTextStyle: CSSProperties = {
     display: 'inline-block',
     textDecorationLine: 'underline',
     textDecorationStyle: 'dotted'
+};
+
+
+const listStyle: CSSProperties = {
+    marginBottom: '0'
 };
