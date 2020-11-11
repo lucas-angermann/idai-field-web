@@ -48,7 +48,7 @@ export default function SearchBar(): ReactElement {
                         onChange={ e => setQueryString(e.target.value) }
                         ref={ input } />
                     <InputGroup.Append>
-                        { queryString !== undefined &&
+                        { isResetQueryButtonVisible(location.search) &&
                             <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
                                 <Icon path={ mdiCloseCircle } size={ 0.8 } />
                             </Button>
@@ -68,4 +68,10 @@ const parseQueryString = (locationSearch: string): string => {
 
     const queryString = parseFrontendGetParams(locationSearch).q;
     return queryString === '*' ? '' : queryString;
+};
+
+
+const isResetQueryButtonVisible = (locationSearch: string): boolean => {
+
+    return new URLSearchParams(locationSearch).has('q');
 };
