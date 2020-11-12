@@ -33,7 +33,7 @@
     "total": "Total of",
     "resources": "resources",
     "navigationButtons": {
-      "context": "Resource context",
+      "context": "Show in context",
       "previousHierarchyLevel": "Previous hierarchy level",
       "searchResults": "Back to search results",
       "overviewSearchResults": "Overall search results"

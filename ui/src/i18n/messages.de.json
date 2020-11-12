@@ -33,7 +33,7 @@
     "total": "Insgesamt",
     "resources": "Ressourcen",
     "navigationButtons": {
-      "context": "Kontext der Ressource",
+      "context": "Im Kontext anzeigen",
       "previousHierarchyLevel": "Vorherige Hierarchieebene",
       "searchResults": "Suchergebnisse im Projekt",
       "overviewSearchResults": "Gesamte Suchergebnisse"
