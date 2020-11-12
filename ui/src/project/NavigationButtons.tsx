@@ -66,7 +66,17 @@ export const renderContextButton = (t: TFunction, projectId: string, locationSea
 export const renderPreviousHierarchyLevelButton = (t: TFunction, projectId: string, locationSearch: string,
                                                    documents?: ResultDocument[]): ReactElement => {
 
+    return <LinkButton variant="link" to={ getPreviousHierarchyLevelUrl(projectId, locationSearch, documents) }>
+        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.previousHierarchyLevel') }
+    </LinkButton>;
+};
+
+
+export const getPreviousHierarchyLevelUrl = (projectId: string, locationSearch: string,
+                                             documents?: ResultDocument[]): string => {
+
     let url: string = `/project/${projectId}`;
+
     if (new URLSearchParams(locationSearch).has('q')) {
         url += locationSearch;
     } else if (documents) {
@@ -74,9 +84,7 @@ export const renderPreviousHierarchyLevelButton = (t: TFunction, projectId: stri
         if (grandparentId) url += `?parent=${grandparentId}`;
     }
 
-    return <LinkButton variant="link" to={ url }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.previousHierarchyLevel') }
-    </LinkButton>;
+    return url;
 };
 
 
