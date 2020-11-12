@@ -38,3 +38,19 @@
     transform: translateX(100%);
     transition: transform 500ms;
 }
+
+.document-hierarchy {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.document-hierarchy .btn-link:hover {
+    background-color: var(--main-bg-color-hover);
+}
+
+.document-hierarchy .btn-link,
+.document-hierarchy .btn-link:active,
+.document-hierarchy .btn-link:focus {
+    color: rgba(0, 0, 0, 0.5);
+}

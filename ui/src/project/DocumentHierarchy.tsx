@@ -31,7 +31,7 @@ export default React.memo(function DocumentHierarchy(
     return <>
         <TransitionGroup className={ className } style={ { height: '100%' } } >
             <CSSTransition key={ parent } timeout={ 500 }>
-                <div style={ { height: '100%', position: 'absolute', width: '100%' } }>
+                <div className="document-hierarchy">
                     <LinkButton to={ getPreviousHierarchyLevelUrl(getProjectId(documents), searchParams, documents) }
                                 style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
                         <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
