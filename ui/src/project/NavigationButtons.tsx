@@ -7,6 +7,7 @@ import { mdiArrowLeftCircle } from '@mdi/js';
 import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 import LinkButton from '../LinkButton';
+import DocumentTeaser from '../document/DocumentTeaser';
 
 
 export default function NavigationButtons({ projectId, locationSearch, documents, document }
@@ -16,8 +17,10 @@ export default function NavigationButtons({ projectId, locationSearch, documents
     const { t } = useTranslation();
 
     const searchParams = new URLSearchParams(locationSearch);
+    const parentDocument = getParentDocument(documents);
 
     return <Card body={ true }>
+        { parentDocument && <DocumentTeaser document={ parentDocument } asLink={ false } /> }
         { document && searchParams.has('q') && searchParams.get('r') === 'overview'
             && renderOverviewSearchResultsButton(t, locationSearch) }
         { document && searchParams.has('q') && renderProjectSearchResultsButton(t, projectId, locationSearch) }
@@ -105,4 +108,13 @@ const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
     if (documents.length === 0) return undefined;
 
     return documents[0].resource.grandparentId;
+};
+
+
+const getParentDocument = (documents: ResultDocument[]): ResultDocument | undefined => {
+
+    if (!documents || documents.length === 0) return undefined;
+
+    const relations = documents[0].resource.relations?.isChildOf;
+    if (relations?.length > 0) return relations[0];
 };

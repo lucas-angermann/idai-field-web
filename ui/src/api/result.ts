@@ -24,6 +24,7 @@ export interface ResultResource {
     childrenCount: number;
     parentId: string;
     grandparentId: string;
+    relations?: { [relationName: string]: ResultDocument[] };
 }
 
 
