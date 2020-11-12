@@ -15,7 +15,6 @@ import { LoginContext } from '../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import SearchBar from './SearchBar';
 import './project.css';
-import DocumentTeaser from '../document/DocumentTeaser';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import DocumentDetails from '../document/DocumentDetails';
@@ -101,15 +100,11 @@ export default function Project(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            { projectDocument
-                && <Card><Card.Body><DocumentTeaser document={ projectDocument }
-                                                    searchParams={ location.search } /></Card.Body></Card>
-            }
             <SearchBar />
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
             { document
                 ? <>
-                    <NavigationButtons projectId={ projectId }
+                    <NavigationButtons projectDocument={ projectDocument }
                                        locationSearch={ location.search }
                                        document={ document } />
                     <DocumentDetails document={ document } />
@@ -120,8 +115,8 @@ export default function Project(): ReactElement {
                             && renderTotal(total, document, projectId, location.search, t)
                     }
                     {
-                        new URLSearchParams(location.search).has('parent')
-                            && <NavigationButtons projectId={ projectId }
+                        !new URLSearchParams(location.search).has('q')
+                            && <NavigationButtons projectDocument={ projectDocument }
                                 locationSearch={ location.search }
                                 documents={ documents } />
                     }

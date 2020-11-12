@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { TFunction } from 'i18next';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -10,22 +10,27 @@ import LinkButton from '../LinkButton';
 import DocumentTeaser from '../document/DocumentTeaser';
 
 
-export default function NavigationButtons({ projectId, locationSearch, documents, document }
-        : { projectId: string, locationSearch: string, documents?: ResultDocument[],
-            document?: Document }  ): ReactElement {
+export default function NavigationButtons({ projectDocument, locationSearch, documents, document }
+        : { projectDocument: Document, locationSearch: string, documents?: ResultDocument[],
+            document?: Document }): ReactElement {
 
+    const [parentDocument, setParentDocument] = useState<ResultDocument>(null);
     const { t } = useTranslation();
 
     const searchParams = new URLSearchParams(locationSearch);
-    const parentDocument = getParentDocument(documents);
 
-    return <Card body={ true }>
+    useEffect(() => {
+        setParentDocument(getParentDocument(projectDocument, locationSearch, documents));
+    }, [projectDocument, documents]);
+
+    return projectDocument && <Card body={ true }>
         { parentDocument && <DocumentTeaser document={ parentDocument } asLink={ false } /> }
         { document && searchParams.has('q') && searchParams.get('r') === 'overview'
             && renderOverviewSearchResultsButton(t, locationSearch) }
-        { document && searchParams.has('q') && renderProjectSearchResultsButton(t, projectId, locationSearch) }
-        { document && renderContextButton(t, projectId, locationSearch, document) }
-        { !document && renderPreviousHierarchyLevelButton(t, projectId, locationSearch, documents) }
+        { document && searchParams.has('q')
+            && renderProjectSearchResultsButton(t, projectDocument.resource.id, locationSearch) }
+        { document && renderContextButton(t, projectDocument.resource.id, locationSearch, document) }
+        { !document && renderPreviousHierarchyLevelButton(t, projectDocument.resource.id, locationSearch, documents) }
     </Card>;
 }
 
@@ -111,10 +116,11 @@ const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
 };
 
 
-const getParentDocument = (documents: ResultDocument[]): ResultDocument | undefined => {
+const getParentDocument = (projectDocument: Document, locationSearch: string,
+                           documents?: ResultDocument[]): ResultDocument | undefined => {
 
-    if (!documents || documents.length === 0) return undefined;
+    if (!documents || documents.length === 0 || new URLSearchParams(locationSearch).has('q')) return undefined;
 
     const relations = documents[0].resource.relations?.isChildOf;
-    if (relations?.length > 0) return relations[0];
+    return relations?.length > 0 ? relations[0] : projectDocument;
 };
