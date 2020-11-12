@@ -30,7 +30,6 @@ export default function NavigationButtons({ projectDocument, locationSearch, doc
         { document && searchParams.has('q')
             && renderProjectSearchResultsButton(t, projectDocument.resource.id, locationSearch) }
         { document && renderContextButton(t, projectDocument.resource.id, locationSearch, document) }
-        { !document && renderPreviousHierarchyLevelButton(t, projectDocument.resource.id, locationSearch, documents) }
     </Card>;
 }
 
@@ -59,15 +58,6 @@ export const renderContextButton = (t: TFunction, projectId: string, locationSea
 
     return <LinkButton variant="link" to={ getContextUrl(projectId, locationSearch, document) }>
         <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.context') }
-    </LinkButton>;
-};
-
-
-export const renderPreviousHierarchyLevelButton = (t: TFunction, projectId: string, locationSearch: string,
-                                                   documents?: ResultDocument[]): ReactElement => {
-
-    return <LinkButton variant="link" to={ getPreviousHierarchyLevelUrl(projectId, locationSearch, documents) }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.previousHierarchyLevel') }
     </LinkButton>;
 };
 

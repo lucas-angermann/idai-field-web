@@ -34,7 +34,6 @@
     "resources": "resources",
     "navigationButtons": {
       "context": "Show in context",
-      "previousHierarchyLevel": "Previous hierarchy level",
       "searchResults": "Back to search results",
       "overviewSearchResults": "Overall search results"
     },
