@@ -39,10 +39,19 @@
     transition: transform 500ms;
 }
 
+.document-list-transition .exit-active .btn-link {
+    background-color: white !important;
+    color: transparent !important;
+}
+
 .document-hierarchy {
     position: absolute;
     height: 100%;
     width: 100%;
+}
+
+.document-hierarchy {
+    transition: color 0.25s;
 }
 
 .document-hierarchy .btn-link:hover {
