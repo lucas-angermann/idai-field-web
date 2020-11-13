@@ -32,11 +32,15 @@ export default React.memo(function DocumentHierarchy(
         <TransitionGroup className={ className } style={ { height: '100%' } } >
             <CSSTransition key={ parent } timeout={ 500 }>
                 <div className="document-hierarchy">
-                    <LinkButton to={ getPreviousHierarchyLevelUrl(getProjectId(documents), searchParams, documents) }
+                    {
+                        parent !== 'root' &&
+                        <LinkButton
+                                to={ getPreviousHierarchyLevelUrl(getProjectId(documents), searchParams, documents)}
                                 style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
-                        <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
-                    </LinkButton>
-                    <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
+                            <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
+                        </LinkButton>
+                    }
+                    <div className="documents" style={ getDocumentsStyle(parent) } onScroll={ scrollFunction }>
                         { documents.map((document: ResultDocument) =>
                             <div style={ documentContainerStyle } key={ document.resource.id }>
                                 <DocumentTeaser document={ document } searchParams={ searchParams }
@@ -80,8 +84,11 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 };
 
 
-const documentsStyle: CSSProperties = {
-    width: 'calc(100% - 25px)',
-    position: 'absolute',
-    left: '25px'
+const getDocumentsStyle = (parent: string): CSSProperties => {
+
+    return {
+        width: (parent === 'root') ? '100%' : 'calc(100% - 25px)',
+        position: 'absolute',
+        left: (parent === 'root') ? 0 : '25px'
+    };
 };
