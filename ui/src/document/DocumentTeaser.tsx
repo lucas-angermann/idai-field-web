@@ -14,10 +14,10 @@ const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project = 'undefined', showHierarchyButton = false,
-            asLink = true }
+            asLink = true, limitHeight = false }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
             /* on rendering relation targets, the project is not part of the document*/
-            project?: string, showHierarchyButton?: boolean, asLink?: boolean }): ReactElement {
+            project?: string, showHierarchyButton?: boolean, asLink?: boolean, limitHeight?: boolean }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -35,8 +35,10 @@ export default React.memo(function DocumentTeaser(
         <Row className="no-gutters document-teaser">
             <Col>
                 { asLink
-                    ? <Link to={ linkUrl } style={ linkStyle }>{ renderTeaser(document, size, height, asLink) }</Link>
-                    : renderTeaser(document, size, height, asLink)
+                    ? <Link to={ linkUrl } style={ linkStyle }>
+                        { renderTeaser(document, size, height, asLink, limitHeight) }
+                    </Link>
+                    : renderTeaser(document, size, height, asLink, limitHeight)
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
@@ -52,7 +54,8 @@ export default React.memo(function DocumentTeaser(
 });
 
 
-const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean) => (
+const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean,
+                      limitHeight: boolean) => (
 
     <div className={ `py-2 px-4 teaser-container teaser-${size} ${asLink ? 'link' : ''}` }>
         <Row>
@@ -62,7 +65,7 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
             </Col>
             <Col>
                 <Row>
-                    <Col className="p-0">
+                    <Col className={ 'p-0' + (limitHeight ? ' limit-height' : '') }>
                         { document.resource.shortDescription
                             ? <h4 className="m-0">{ document.resource.identifier }</h4>
                             : <h3 className="my-2">{ document.resource.identifier }</h3>
@@ -71,7 +74,7 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                 </Row>
                 { document.resource.shortDescription &&
                 <Row>
-                    <Col className="p-0 text-muted short-description">
+                    <Col className={ 'p-0 text-muted short-description' + (limitHeight ? ' limit-height' : '') }>
                         { document.resource.shortDescription }
                     </Col>
                 </Row>

@@ -23,8 +23,8 @@ export default function NavigationButtons({ projectDocument, locationSearch, doc
         setParentDocument(getParentDocument(projectDocument, locationSearch, documents));
     }, [projectDocument, documents]);
 
-    return projectDocument && <Card body={ true }>
-        { parentDocument && <DocumentTeaser document={ parentDocument } asLink={ false } /> }
+    return projectDocument && <Card body={ true } style={ { height: '98px'} }>
+        { parentDocument && <DocumentTeaser document={ parentDocument } asLink={ false } limitHeight={ true }/> }
         { document && searchParams.has('q') && searchParams.get('r') === 'overview'
             && renderOverviewSearchResultsButton(t, locationSearch) }
         { document && searchParams.has('q')
