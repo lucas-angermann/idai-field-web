@@ -8,6 +8,7 @@ import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 import LinkButton from '../LinkButton';
 import DocumentTeaser from '../document/DocumentTeaser';
+import './navigation-buttons.css';
 
 
 export default function NavigationButtons({ projectDocument, locationSearch, documents, document }
@@ -23,7 +24,7 @@ export default function NavigationButtons({ projectDocument, locationSearch, doc
         setParentDocument(getParentDocument(projectDocument, locationSearch, documents));
     }, [projectDocument, locationSearch, documents]);
 
-    return projectDocument && <Card body={ true } style={ { height: '98px'} }>
+    return projectDocument && <Card body={ true } className="hierarchy-parent">
         { parentDocument && <DocumentTeaser document={ parentDocument } project={ projectDocument.resource.id }
                                             limitHeight={ true }/> }
         { document && searchParams.has('q') && searchParams.get('r') === 'overview'

@@ -1,0 +1,7 @@
+.hierarchy-parent {
+    height: 78px;
+}
+
+.hierarchy-parent .card-body {
+    padding: 10px;
+}
