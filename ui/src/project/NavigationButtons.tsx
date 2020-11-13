@@ -21,7 +21,7 @@ export default function NavigationButtons({ projectDocument, locationSearch, doc
 
     useEffect(() => {
         setParentDocument(getParentDocument(projectDocument, locationSearch, documents));
-    }, [projectDocument, documents]);
+    }, [projectDocument, locationSearch, documents]);
 
     return projectDocument && <Card body={ true } style={ { height: '98px'} }>
         { parentDocument && <DocumentTeaser document={ parentDocument } project={ projectDocument.resource.id }
