@@ -11,7 +11,7 @@ import { Document } from '../api/document';
 import './documents.css';
 
 
-interface ProjectHomeProps {
+interface DocumentProperties {
     documents: ResultDocument[] | null;
     projectDocument?: Document;
     searchParams: string;
@@ -21,7 +21,7 @@ interface ProjectHomeProps {
 
 export default React.memo(function Documents(
     { documents, projectDocument, getChunk,
-        searchParams = '' }: ProjectHomeProps): ReactElement {
+        searchParams = '' }: DocumentProperties): ReactElement {
 
     const [offset, setOffset] = useState(0);
     const [parentDocument, setParentDocument] = useState<ResultDocument>(null);
