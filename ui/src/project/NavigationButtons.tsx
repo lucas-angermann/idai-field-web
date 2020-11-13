@@ -65,8 +65,7 @@ export const getPreviousHierarchyLevelUrl = (projectId: string, documents: Resul
 };
 
 
-export const getMapDeselectionUrl = (projectId: string, locationSearch: string,
-                                     document: Document): string => {
+export const getMapDeselectionUrl = (projectId: string, locationSearch: string, document: Document): string => {
 
     return new URLSearchParams(locationSearch).has('q')
         ? getProjectSearchResultsUrl(projectId, locationSearch)
@@ -74,7 +73,7 @@ export const getMapDeselectionUrl = (projectId: string, locationSearch: string,
 };
 
 
-const getContextUrl = (projectId: string, locationSearch: string, document: Document): string => {
+export const getContextUrl = (projectId: string, locationSearch: string, document: Document): string => {
 
     const parentId: string = new URLSearchParams(locationSearch).get('parent') ?? document.resource.parentId;
 

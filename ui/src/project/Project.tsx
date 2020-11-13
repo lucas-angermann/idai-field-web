@@ -18,7 +18,7 @@ import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import DocumentDetails from '../document/DocumentDetails';
-import NavigationButtons from './NavigationButtons';
+import NavigationButtons, { getContextUrl } from './NavigationButtons';
 
 
 const MAX_SIZE = 10000;
@@ -107,7 +107,8 @@ export default function Project(): ReactElement {
                     <NavigationButtons projectDocument={ projectDocument }
                                        locationSearch={ location.search }
                                        document={ document } />
-                    <DocumentDetails document={ document } />
+                    <DocumentDetails document={ document }
+                                     backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 </>
                 : <>
                     {

@@ -14,7 +14,8 @@ import './document-details.css';
 const HIDDEN_FIELDS = ['id', 'geometry', 'georeference', 'originalFilename'];
 
 
-export default function DocumentDetails({ document }: { document: Document }): ReactElement {
+export default function DocumentDetails({ document, backButtonUrl }
+        : { document: Document, backButtonUrl?: string }): ReactElement {
 
     const { t } = useTranslation();
 
@@ -23,7 +24,7 @@ export default function DocumentDetails({ document }: { document: Document }): R
     return (
         <Card style={ cardStyle }>
             <Card.Header className="px-2 py-3">
-                { renderHeader(document) }
+                { renderHeader(document, backButtonUrl) }
             </Card.Header>
             <Card.Body>
                 { images && renderImages(images, document) }
@@ -34,9 +35,10 @@ export default function DocumentDetails({ document }: { document: Document }): R
 }
 
 
-const renderHeader = (document: Document): ReactElement => (
+const renderHeader = (document: Document, backButtonUrl?: string): ReactElement => (
     <div>
-        <DocumentTeaser project={ document.project } document={ document } asLink={ false } />
+        <DocumentTeaser project={ document.project } document={ document } backButtonUrl={ backButtonUrl }
+                        asLink={ false } />
     </div>
 );
 

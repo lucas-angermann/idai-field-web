@@ -1,19 +1,14 @@
 import React, { CSSProperties, useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Map, ZoomControl } from 'react-leaflet';
-import { Card } from 'react-bootstrap';
-import { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
-import Icon from '@mdi/react';
-import { mdiArrowLeftCircle } from '@mdi/js';
 import IiifImageLayer from './IiifImageLayer';
 import DocumentDetails from '../document/DocumentDetails';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { LoginContext } from '../App';
 import { Document } from '../api/document';
 import { get } from '../api/documents';
-import LinkButton from '../LinkButton';
 
 
 export default function ImageView() {
@@ -39,8 +34,9 @@ export default function ImageView() {
     return (
         <>
             <div style={ leftSidebarStyle } className="sidebar">
-                { comingFrom && renderBackButton(project, comingFrom, t) }
-                { document && <DocumentDetails document={ document }></DocumentDetails> }
+                { document &&
+                    <DocumentDetails document={ document }
+                                     backButtonUrl={ comingFrom ? `/project/${project}/${comingFrom}` : undefined } /> }
             </div>
             <div style={ containerStyle }>
                 <Map style={ mapStyle }
@@ -56,15 +52,6 @@ export default function ImageView() {
         </>
     );
 }
-
-
-const renderBackButton = (projectId: string, resourceId: string, t: TFunction) => (
-    <Card body={ true }>
-        <LinkButton variant="link" to={ `/project/${projectId}/${resourceId}` }>
-            <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('image.back') }
-        </LinkButton>
-    </Card>
-);
 
 
 const makeUrl = (project: string, id: string, token?: string) => {
