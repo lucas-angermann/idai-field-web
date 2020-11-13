@@ -78,7 +78,7 @@ const documentContainerStyle: CSSProperties = {
 
 const previousHierarchyLevelButtonStyle: CSSProperties = {
     height: '100%',
-    width: '25px',
+    width: '30px',
     padding: 0,
     float: 'left'
 };
@@ -87,8 +87,8 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 const getDocumentsStyle = (parent: string): CSSProperties => {
 
     return {
-        width: (parent === 'root') ? '100%' : 'calc(100% - 25px)',
+        width: (parent === 'root') ? '100%' : 'calc(100% - 30px)',
         position: 'absolute',
-        left: (parent === 'root') ? 0 : '25px'
+        left: (parent === 'root') ? 0 : '30px'
     };
 };
