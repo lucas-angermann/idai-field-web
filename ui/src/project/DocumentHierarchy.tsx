@@ -6,7 +6,7 @@ import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 import './document-hierarchy.css';
 import LinkButton from '../LinkButton';
-import { getPreviousHierarchyLevelUrl } from './NavigationButtons';
+import { getPreviousHierarchyLevelUrl } from './navigation';
 
 
 interface DocumentHierarchyProps {

@@ -18,7 +18,8 @@ import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import DocumentDetails from '../document/DocumentDetails';
-import NavigationButtons, { getContextUrl } from './NavigationButtons';
+import NavigationButtons from './NavigationButtons';
+import { getContextUrl } from './navigation';
 
 
 const MAX_SIZE = 10000;

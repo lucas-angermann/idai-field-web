@@ -25,7 +25,7 @@ import { LoginData } from '../login';
 import { search } from '../api/documents';
 import { getImageUrl } from '../api/image';
 import { getTileLayerExtent, getResolutions } from './tileLayer';
-import { getMapDeselectionUrl } from './NavigationButtons';
+import { getMapDeselectionUrl } from './navigation';
 import './project-map.css';
 
 
