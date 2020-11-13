@@ -33,7 +33,6 @@
     "total": "Insgesamt",
     "resources": "Ressourcen",
     "navigationButtons": {
-      "context": "Im Kontext anzeigen",
       "searchResults": "Suchergebnisse im Projekt",
       "overviewSearchResults": "Gesamte Suchergebnisse"
     },

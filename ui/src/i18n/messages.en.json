@@ -33,7 +33,6 @@
     "total": "Total of",
     "resources": "resources",
     "navigationButtons": {
-      "context": "Show in context",
       "searchResults": "Back to search results",
       "overviewSearchResults": "Overall search results"
     },
