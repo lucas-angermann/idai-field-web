@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { TFunction } from 'i18next';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -7,31 +7,21 @@ import { mdiArrowLeftCircle } from '@mdi/js';
 import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 import LinkButton from '../LinkButton';
-import DocumentTeaser from '../document/DocumentTeaser';
-import './navigation-buttons.css';
 
 
 export default function NavigationButtons({ projectDocument, locationSearch, documents, document }
         : { projectDocument: Document, locationSearch: string, documents?: ResultDocument[],
-            document?: Document }): ReactElement {
+            document: Document }): ReactElement {
 
-    const [parentDocument, setParentDocument] = useState<ResultDocument>(null);
     const { t } = useTranslation();
-
     const searchParams = new URLSearchParams(locationSearch);
 
-    useEffect(() => {
-        setParentDocument(getParentDocument(projectDocument, locationSearch, documents));
-    }, [projectDocument, locationSearch, documents]);
-
-    return projectDocument && <Card body={ true } className="hierarchy-parent">
-        { parentDocument && <DocumentTeaser document={ parentDocument } project={ projectDocument.resource.id }
-                                            limitHeight={ true }/> }
-        { document && searchParams.has('q') && searchParams.get('r') === 'overview'
+    return projectDocument && <Card body={ true }>
+        { searchParams.has('q') && searchParams.get('r') === 'overview'
             && renderOverviewSearchResultsButton(t, locationSearch) }
-        { document && searchParams.has('q')
+        { searchParams.has('q')
             && renderProjectSearchResultsButton(t, projectDocument.resource.id, locationSearch) }
-        { document && renderContextButton(t, projectDocument.resource.id, locationSearch, document) }
+        { renderContextButton(t, projectDocument.resource.id, locationSearch, document) }
     </Card>;
 }
 
@@ -113,14 +103,4 @@ const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
     if (documents.length === 0) return undefined;
 
     return documents[0].resource.grandparentId;
-};
-
-
-const getParentDocument = (projectDocument: Document, locationSearch: string,
-                           documents?: ResultDocument[]): ResultDocument | undefined => {
-
-    if (!documents || documents.length === 0 || new URLSearchParams(locationSearch).has('q')) return undefined;
-
-    const relations = documents[0].resource.relations?.isChildOf;
-    return relations?.length > 0 ? relations[0] : projectDocument;
 };
