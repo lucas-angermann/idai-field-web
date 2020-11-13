@@ -54,17 +54,12 @@ export const renderContextButton = (t: TFunction, projectId: string, locationSea
 };
 
 
-export const getPreviousHierarchyLevelUrl = (projectId: string, locationSearch: string,
-                                             documents?: ResultDocument[]): string => {
+export const getPreviousHierarchyLevelUrl = (projectId: string, documents: ResultDocument[]): string => {
+
+    const grandparentId: string = getGrandparentId(documents);
 
     let url: string = `/project/${projectId}`;
-
-    if (new URLSearchParams(locationSearch).has('q')) {
-        url += locationSearch;
-    } else if (documents) {
-        const grandparentId: string = getGrandparentId(documents);
-        if (grandparentId) url += `?parent=${grandparentId}`;
-    }
+    if (grandparentId) url += `?parent=${grandparentId}`;
 
     return url;
 };
