@@ -81,11 +81,14 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
 
     const fieldElements = fields
         .filter(field => !HIDDEN_FIELDS.includes(field.name))
-        .map(field => [
-            <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
-            <dd key={ `${field.name}_dd`}>{ renderFieldValue(field.value, t) }</dd>
-        ]);
-    return <dl style={ listStyle }>{ fieldElements }</dl>;
+        .map(field => {
+            const valueElements = renderFieldValue(field.value, t);
+            return valueElements ? [
+                <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
+                <dd key={ `${field.name}_dd`}>{ valueElements }</dd>
+            ] : undefined;
+        });
+    return fieldElements ? <dl style={ listStyle }>{ fieldElements }</dl> : <></>;
 };
 
 
@@ -122,7 +125,7 @@ const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
         : renderFieldValue(values[0], t);
 
 
-const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
+const renderFieldValueObject = (object: any, t: TFunction): ReactNode | undefined => {
 
     if (object.label && object.name) {
         return renderMultiLanguageText(object, t);
@@ -142,7 +145,8 @@ const renderFieldValueObject = (object: any, t: TFunction): ReactNode => {
     } else if (OptionalRange.isValid(object)) {
         return renderOptionalRange(object, t);
     } else {
-        return renderObjectFields(object, t);
+        console.warn('Failed to render field value:', object);
+        return undefined;
     }
 };
 
@@ -177,16 +181,6 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small"/></li>;
-
-
-const renderObjectFields = (object: any, t: TFunction): ReactNode => {
-
-    const listItems = Object.keys(object).map(key =>
-        <li key={ key }><strong>{ key }:</strong> { renderFieldValue(object[key], t) }</li>
-    );
-
-    return <ul>{ listItems }</ul>;
-};
 
 
 const renderPopover = (object: any, t: TFunction): any => {
