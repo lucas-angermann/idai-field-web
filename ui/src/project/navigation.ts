@@ -23,7 +23,9 @@ export const getMapDeselectionUrl = (projectId: string, locationSearch: string, 
 
 export const getContextUrl = (projectId: string, locationSearch: string, document: Document): string => {
 
-    const parentId: string = new URLSearchParams(locationSearch).get('parent') ?? document.resource.parentId;
+    const parentId: string = new URLSearchParams(locationSearch).get('r') === 'children'
+        ? (document.resource.category.name === 'Project' ? undefined : document.resource.id)
+        : document.resource.parentId;
 
     return `/project/${projectId}` + (parentId
         ? `?parent=${parentId}`

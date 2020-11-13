@@ -35,7 +35,7 @@ export default React.memo(function DocumentHierarchy(
                     {
                         parent !== 'root' &&
                         <LinkButton
-                                to={ getPreviousHierarchyLevelUrl(getProjectId(documents), documents)}
+                                to={ getPreviousHierarchyLevelUrl(getProjectId(documents), documents) }
                                 style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
                         </LinkButton>

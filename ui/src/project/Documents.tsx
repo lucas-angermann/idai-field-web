@@ -52,7 +52,7 @@ export default React.memo(function Documents(
             && <Card body={ true } className="hierarchy-parent">
                 <DocumentTeaser document={ parentDocument }
                                 project={ projectDocument.resource.id }
-                                limitHeight={ true }/>
+                                hierarchyHeader={ true }/>
             </Card>
         }
         <Card className="documents-card" style={ listContainerStyle }>

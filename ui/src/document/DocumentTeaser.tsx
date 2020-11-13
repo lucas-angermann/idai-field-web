@@ -14,11 +14,11 @@ const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project = 'undefined', showHierarchyButton = false,
-            backButtonUrl, asLink = true, limitHeight = false }
+            backButtonUrl, asLink = true, hierarchyHeader = false }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
             /* on rendering relation targets, the project is not part of the document*/
             project?: string, showHierarchyButton?: boolean, backButtonUrl?: string,
-            asLink?: boolean, limitHeight?: boolean }): ReactElement {
+            asLink?: boolean, hierarchyHeader?: boolean }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -26,6 +26,8 @@ export default React.memo(function DocumentTeaser(
     if (document.deleted) {
         return (<div>{ t('documentTeaser.noTargetResource') } [{ document.resource.id }]</div>);
     }
+
+    if (hierarchyHeader) searchParams += (searchParams.length > 0) ? '&r=children' : '?r=children';
 
     const isImage = IMAGE_CATEGORIES.includes(document.resource.category.name);
     const linkUrl = isImage
@@ -44,9 +46,9 @@ export default React.memo(function DocumentTeaser(
             <Col>
                 { asLink
                     ? <Link to={ linkUrl } style={ linkStyle }>
-                        { renderTeaser(document, size, height, asLink, limitHeight) }
+                        { renderTeaser(document, size, height, asLink, hierarchyHeader) }
                     </Link>
-                    : renderTeaser(document, size, height, asLink, limitHeight)
+                    : renderTeaser(document, size, height, asLink, hierarchyHeader)
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
