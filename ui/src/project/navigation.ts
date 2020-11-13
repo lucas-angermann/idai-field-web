@@ -40,6 +40,15 @@ export const getProjectSearchResultsUrl = (projectId: string, locationSearch: st
 };
 
 
+export const getSearchResultsUrl = (locationSearch: string, projectId?: string): string => {
+
+    const searchParams = new URLSearchParams(locationSearch);
+    searchParams.delete('r');
+
+    return (projectId ? `/project/${projectId}` : '') + `/?${searchParams.toString()}`;
+};
+
+
 const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
 
     if (documents.length === 0) return undefined;

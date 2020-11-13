@@ -32,10 +32,7 @@
   "project": {
     "total": "Insgesamt",
     "resources": "Ressourcen",
-    "navigationButtons": {
-      "searchResults": "Suchergebnisse im Projekt",
-      "overviewSearchResults": "Gesamte Suchergebnisse"
-    },
+    "backToSearchResults": "Zurück zu den Suchergebnissen",
     "noResults": "Keine Ergebnisse"
   },
   "projectOverview": {
