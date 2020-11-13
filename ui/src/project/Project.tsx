@@ -100,7 +100,7 @@ export default function Project(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar />
+            <SearchBar onSubmit={ () => setDocument(null) }/>
             <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
             { document
                 ? <>
