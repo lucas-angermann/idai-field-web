@@ -74,13 +74,14 @@ const documentContainerStyle: CSSProperties = {
 
 const previousHierarchyLevelButtonStyle: CSSProperties = {
     height: '100%',
-    width: '50px',
+    width: '25px',
+    padding: 0,
     float: 'left'
 };
 
 
 const documentsStyle: CSSProperties = {
-    width: 'calc(100% - 50px)',
+    width: 'calc(100% - 25px)',
     position: 'absolute',
-    left: '50px'
+    left: '25px'
 };
