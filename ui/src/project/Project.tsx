@@ -114,15 +114,10 @@ export default function Project(): ReactElement {
                         location.search && new URLSearchParams(location.search).has('q')
                             && renderTotal(total, document, projectId, location.search, t)
                     }
-                    {
-                        !new URLSearchParams(location.search).has('q')
-                            && <NavigationButtons projectDocument={ projectDocument }
-                                locationSearch={ location.search }
-                                documents={ documents } />
-                    }
                     <Documents
                         searchParams={ location.search }
                         documents={ documents }
+                        projectDocument={ projectDocument }
                         getChunk={ getChunk }/>
                 </>
             }
