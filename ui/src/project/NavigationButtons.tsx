@@ -21,7 +21,6 @@ export default function NavigationButtons({ projectDocument, locationSearch, doc
             && renderOverviewSearchResultsButton(t, locationSearch) }
         { searchParams.has('q')
             && renderProjectSearchResultsButton(t, projectDocument.resource.id, locationSearch) }
-        { renderContextButton(t, projectDocument.resource.id, locationSearch, document) }
     </Card>;
 }
 
@@ -41,15 +40,6 @@ export const renderProjectSearchResultsButton = (t: TFunction, projectId: string
 
     return <LinkButton variant="link" to={ getProjectSearchResultsUrl(projectId, locationSearch) }>
         <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.searchResults') }
-    </LinkButton>;
-};
-
-
-export const renderContextButton = (t: TFunction, projectId: string, locationSearch: string,
-                                    document: Document): ReactElement => {
-
-    return <LinkButton variant="link" to={ getContextUrl(projectId, locationSearch, document) }>
-        <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.navigationButtons.context') }
     </LinkButton>;
 };
 
