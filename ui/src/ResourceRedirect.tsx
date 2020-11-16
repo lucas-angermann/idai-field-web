@@ -26,4 +26,4 @@ const getId = async (project: string, identifier: string): Promise<string> => {
 };
 
 const getQueryString = (project: string, identifier: string) =>
-    `resource.project:${project} and resource.identifier:${identifier}`;
+    `resource.project:${project} and resource.identifier:"${identifier}"`;
