@@ -35,8 +35,21 @@
     font-size: 11px;
 }
 
+.document-teaser .teaser-button {
+    width: 30px;
+}
+
 .document-teaser .teaser-button:hover {
     background-color: var(--main-bg-color-hover);
+}
+
+.document-teaser .teaser-button button {
+    width: 30px;
+    padding: 0;
+}
+
+.document-teaser .teaser-button button svg {
+    width: 30px !important;
 }
 
 .document-teaser .btn-link,
