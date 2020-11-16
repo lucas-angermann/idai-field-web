@@ -28,7 +28,7 @@ defmodule Core.Layout do
     fn config_item ->
       targets = resource.relations[config_item.name]
 
-      unless targets, do: [], else:
+      unless targets && length(targets) > 0, do: [], else:
         [%{
           name: config_item.name,
           label: config_item.label,
