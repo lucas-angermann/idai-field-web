@@ -55,5 +55,6 @@ const filterValueStyle = (level: number): CSSProperties => ({
 });
 
 const categoryLabelStyle: CSSProperties = {
-    margin: '3px 10px'
+    margin: '3px 10px',
+    whiteSpace: 'normal'
 };

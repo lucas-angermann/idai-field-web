@@ -6,6 +6,7 @@ import { mdiCloseCircle, mdiMagnify } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 import { parseFrontendGetParams } from '../api/query';
 
+
 export default function SearchBar({ onSubmit }: { onSubmit?: () => void }): ReactElement {
 
     const [queryString, setQueryString] = useState(undefined);
