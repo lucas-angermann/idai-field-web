@@ -8,14 +8,14 @@ defmodule Worker.Mapper do
     put_in(change.id, id)
     |> rename_type_to_category
   end
-  def process(change = %{deleted: true}), do: change
+  def process(change = %{ deleted: true }), do: change
   def process(change) do
     change
     |> rename_type_to_category
     |> convert_period
   end
 
-  defp rename_type_to_category(change = %{ doc: %{ resource: %{ type: type } }}) do
+  defp rename_type_to_category(change = %{ doc: %{ resource: %{ type: _ } }}) do
     {category, new_change} = pop_in(change[:doc][:resource][:type])
     put_in(new_change, [:doc, :resource, :category], category)
   end
