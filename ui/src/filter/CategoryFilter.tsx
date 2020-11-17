@@ -16,7 +16,7 @@ export default function CategoryFilter({ filter, searchParams, projectId }
 
     const params = new URLSearchParams(searchParams);
 
-    return <FilterDropdown filter={ filter } params={ params }>
+    return <FilterDropdown filter={ filter } params={ params } projectId={ projectId }>
         { filter.values.map((bucket: FilterBucketTreeNode) =>
             renderFilterValue(filter.name, bucket, params, projectId))
         }
@@ -39,7 +39,8 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
                     { getLabel(bucket.item.value) }
                     {
                         isFilterValueInParams(params, key, bucket.item.value.name)
-                        && <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name } />
+                        && <CloseButton params={ params } filterKey={ key } value={ bucket.item.value.name }
+                                        projectId={ projectId } />
                     }
                 </Col>
                 <Col xs={ 1 } style={ { margin: '3px' } }>

@@ -15,7 +15,7 @@ export default function SimpleFilter({ filter, searchParams, projectId }
 
     const params = new URLSearchParams(searchParams);
 
-    return <FilterDropdown filter={ filter } params={ params }>
+    return <FilterDropdown filter={ filter } params={ params } projectId={ projectId }>
         { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params, projectId)) }
     </FilterDropdown>;
 }
@@ -27,12 +27,13 @@ const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchP
             as={ Link }
             key={ bucket.value.name }
             style={ filterValueStyle }
-            to={ (projectId ? `/project/${projectId}` : '/')
+            to={ (projectId ? `/project/${projectId}?` : '/?')
                 + buildParamsForFilterValue(params, key, bucket.value.name) }>
         { getLabel(bucket.value) }
         {
             isFilterValueInParams(params, key, bucket.value.name)
-            && <CloseButton params={ params } filterKey={ key } value={ bucket.value.name } />
+            && <CloseButton params={ params } filterKey={ key } value={ bucket.value.name }
+                            projectId={ projectId } />
         }
         <span className="float-right"><em>{ bucket.count }</em></span>
     </Dropdown.Item>;

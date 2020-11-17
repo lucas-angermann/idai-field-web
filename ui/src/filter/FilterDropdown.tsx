@@ -8,12 +8,13 @@ import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../api/result'
 import { getLabel } from '../languages';
 import LinkButton from '../LinkButton';
 
-export default function FilterDropdown({ filter, params, children }
-        : { filter: ResultFilter, params: URLSearchParams, children: ReactNode }): ReactElement {
+
+export default function FilterDropdown({ filter, params, children, projectId }
+        : { filter: ResultFilter, params: URLSearchParams, children: ReactNode, projectId?: string }): ReactElement {
 
     return <>
         <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
-            { renderFilterDropdownToggle(filter, params) }
+            { renderFilterDropdownToggle(filter, params, projectId) }
             <Dropdown.Menu style={ dropdownMenuStyles }>
                 <Dropdown.Header><h3>{ getLabel(filter) }</h3></Dropdown.Header>
                 { children }
@@ -23,12 +24,13 @@ export default function FilterDropdown({ filter, params, children }
 }
 
 
-const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams): ReactNode =>
+const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams, projectId?: string): ReactNode =>
     params.has(filter.name)
         ?
             <>
-                <LinkButton to={ '?' + deleteFilterFromParams(params, filter.name) }
-                        style={ { flexGrow: 1 } }>
+                <LinkButton style={ { flexGrow: 1 } }
+                            to={ (projectId ? `/project/${projectId}?` : '/?')
+                                + deleteFilterFromParams(params, filter.name) }>
                     { getLabel(filter) }: <em>{ getLabelForFilterParam(filter, params) }</em>
                     &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
                 </LinkButton>

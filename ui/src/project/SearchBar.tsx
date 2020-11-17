@@ -31,7 +31,7 @@ export default function SearchBar({ projectId, onSubmit }
         const params = new URLSearchParams(location.search);
         if (params.has('q')) {
             params.delete('q');
-            history.push(`?${params}`);
+            history.push((projectId ? `/project/${projectId}` : '/') + `?${params}`);
         } else {
             setQueryString(undefined);
             input.current.value = '';
