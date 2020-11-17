@@ -4,7 +4,7 @@ import { Spinner, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiArrowLeftCircle, mdiInformation } from '@mdi/js';
+import { mdiInformation } from '@mdi/js';
 import Documents from './Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -18,8 +18,7 @@ import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import DocumentDetails from '../document/DocumentDetails';
-import { getContextUrl, getSearchResultsUrl } from './navigation';
-import LinkButton from '../LinkButton';
+import { getContextUrl } from './navigation';
 
 
 const MAX_SIZE = 10000;
@@ -106,13 +105,9 @@ export default function Project(): ReactElement {
                      searchParams={ location.search }
                      projectId={ projectId } />
             { document
-                ? <>
-                    { projectDocument && new URLSearchParams(location.search).has('q')
-                        && renderBackToSearchResultsLink(projectDocument, location.search, t) }
-                    <DocumentDetails document={ document }
+                ? <DocumentDetails document={ document }
                                      searchParams={ location.search }
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
-                </>
                 : <>
                     {
                         location.search && new URLSearchParams(location.search).has('q')
@@ -162,22 +157,6 @@ const renderEmptyResult = (t: TFunction): ReactElement => {
         <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
         { t('projectMap.noResources') }
     </div>;
-};
-
-
-const renderBackToSearchResultsLink = (projectDocument: Document, locationSearch: string,
-                                       t: TFunction): ReactElement => {
-
-    const searchParams = new URLSearchParams(locationSearch);
-
-    return <Card body={ true }>
-        { searchParams.has('q') && searchParams.get('r') === 'overview' }
-        <LinkButton variant="link" to={ getSearchResultsUrl(
-            locationSearch, searchParams.get('r') === 'overview' ? undefined : projectDocument.resource.id
-        ) }>
-            <Icon path={ mdiArrowLeftCircle } size={ 0.8 } /> { t('project.backToSearchResults') }
-        </LinkButton>
-    </Card>;
 };
 
 
