@@ -42,7 +42,7 @@ export default React.memo(function DocumentHierarchy(
                     }
                     <div className="documents" style={ getDocumentsStyle(parent) } onScroll={ scrollFunction }>
                         { documents.map((document: ResultDocument) =>
-                            <div style={ documentContainerStyle } key={ document.resource.id }>
+                            <div style={ getDocumentContainerStyle(parent) } key={ document.resource.id }>
                                 <DocumentTeaser document={ document } searchParams={ searchParams }
                                                 showHierarchyButton={ true } />
                             </div>
@@ -71,8 +71,12 @@ const getProjectId = (documents: ResultDocument[]): string => {
 };
 
 
-const documentContainerStyle: CSSProperties = {
-    borderBottom: '1px solid var(--main-bg-color)'
+const getDocumentContainerStyle = (parent: string): CSSProperties => {
+
+    const style: CSSProperties = { borderBottom: '1px solid var(--main-bg-color)' };
+    if (parent === 'root') style.paddingLeft = '30px';
+
+    return style;
 };
 
 
