@@ -12,6 +12,7 @@ import LinkButton from '../LinkButton';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
+
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project, showHierarchyButton = false,
@@ -94,6 +95,7 @@ const renderBackButton = (height: number, locationSearch: string, backButtonUrl:
                           projectId?: string): ReactElement => {
 
     const searchParams = new URLSearchParams(locationSearch);
+    const overviewSearch = searchParams.get('r') === 'overview';
     searchParams.delete('r');
 
     return searchParams.has('q')
@@ -103,9 +105,9 @@ const renderBackButton = (height: number, locationSearch: string, backButtonUrl:
                              className="teaser-button">
                 <Icon path={ mdiMenuUp } size={ 1 }></Icon>
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
-                <Dropdown.Item href={ (projectId ? `/project/${projectId}?` : '/?') + searchParams.toString() }>
+                <Dropdown.Item href={ (overviewSearch ? '/?' : `/project/${projectId}?`)
+                        + searchParams.toString() }>
                     { t('project.backToSearchResults') }
                 </Dropdown.Item>
                 <Dropdown.Item href={ backButtonUrl }>
