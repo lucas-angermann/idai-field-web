@@ -37,7 +37,7 @@ export default React.memo(function DocumentTeaser(
     return (
         <Row className="no-gutters document-teaser">
             { backButtonUrl &&
-                <Col style={ { flex: `0 0 30px` } } className="teaser-button">
+                <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
                     <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
                         <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
                     </LinkButton>
@@ -52,7 +52,7 @@ export default React.memo(function DocumentTeaser(
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
-                <Col style={ { flex: `0 0 30px` } } className="teaser-button">
+                <Col style={ { flex: `0 0 30px` } } className="teaser-button hierarchy-button">
                     <LinkButton to={ '?' + getHierarchyButtonSearchParams(searchParams, document.resource.id) }
                             style={ { height: '100%' } } variant={ 'link' }>
                         <Icon path={ mdiMenuRight } size={ 1 }></Icon>
