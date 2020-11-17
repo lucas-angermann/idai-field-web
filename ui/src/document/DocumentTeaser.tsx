@@ -1,8 +1,8 @@
 import React, { CSSProperties, ReactElement } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
-import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
+import { mdiMenuRight, mdiMenuUp } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
@@ -13,7 +13,7 @@ const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
-            project = 'undefined', showHierarchyButton = false,
+            project, showHierarchyButton = false,
             backButtonUrl, asLink = true, hierarchyHeader = false }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
             /* on rendering relation targets, the project is not part of the document*/
@@ -36,13 +36,7 @@ export default React.memo(function DocumentTeaser(
 
     return (
         <Row className="no-gutters document-teaser">
-            { backButtonUrl &&
-                <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
-                    <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
-                        <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
-                    </LinkButton>
-                </Col>
-            }
+            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, project) }
             <Col>
                 { asLink
                     ? <Link to={ linkUrl } style={ linkStyle }>
@@ -93,6 +87,35 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
         </Row>
     </div>
 );
+
+
+const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string,
+                          projectId?: string): ReactElement => {
+
+    const searchParams = new URLSearchParams(locationSearch);
+    searchParams.delete('r');
+
+    return searchParams.has('q')
+        ? <Dropdown>
+            <Dropdown.Toggle variant="link" id="back-button-toggle"
+                             style={ { flex: `0 0 ${height}px` } }
+                             className="teaser-button">
+                <Icon path={ mdiMenuUp } size={ 1 }></Icon>
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                <Dropdown.Item href={ backButtonUrl }>Im Kontext anzeigen</Dropdown.Item>
+                <Dropdown.Item href={ (projectId ? `/project/${projectId}?` : '/?') + searchParams.toString() }>
+                    Zurück zu den Suchergebnissen
+                </Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+        : <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
+            <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
+                <Icon path={ mdiMenuUp } size={ 1 }></Icon>
+            </LinkButton>
+        </Col>;
+};
 
 
 const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {

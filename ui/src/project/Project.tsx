@@ -110,6 +110,7 @@ export default function Project(): ReactElement {
                     { projectDocument && new URLSearchParams(location.search).has('q')
                         && renderBackToSearchResultsLink(projectDocument, location.search, t) }
                     <DocumentDetails document={ document }
+                                     searchParams={ location.search }
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 </>
                 : <>

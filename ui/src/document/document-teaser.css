@@ -66,3 +66,11 @@
 .document-teaser .btn-link:hover {
     color: rgba(0, 0, 0, 0.9) !important;
 }
+
+.document-teaser .dropdown-toggle {
+    height: 100%;
+}
+
+.document-teaser .dropdown-toggle::after {
+    display: none;
+}

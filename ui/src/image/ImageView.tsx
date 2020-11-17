@@ -36,6 +36,7 @@ export default function ImageView() {
             <div style={ leftSidebarStyle } className="sidebar">
                 { document &&
                     <DocumentDetails document={ document }
+                                     searchParams={ location.search }
                                      backButtonUrl={ comingFrom ? `/project/${project}/${comingFrom}` : undefined } /> }
             </div>
             <div style={ containerStyle }>
