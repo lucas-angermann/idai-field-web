@@ -9,26 +9,29 @@ import FilterDropdown from './FilterDropdown';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
-export default function CategoryFilter({ filter, searchParams }
-        : { filter: ResultFilter, searchParams: string}): ReactElement {
+export default function CategoryFilter({ filter, searchParams, projectId }
+        : { filter: ResultFilter, searchParams: string, projectId?: string }): ReactElement {
 
     if (!filter.values.length) return null;
 
     const params = new URLSearchParams(searchParams);
 
     return <FilterDropdown filter={ filter } params={ params }>
-        { filter.values.map((bucket: FilterBucketTreeNode) => renderFilterValue(filter.name, bucket, params)) }
+        { filter.values.map((bucket: FilterBucketTreeNode) =>
+            renderFilterValue(filter.name, bucket, params, projectId))
+        }
     </FilterDropdown>;
 }
 
 
-const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams, level: number = 1)
-        : ReactNode =>
+const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams,
+                           projectId?: string, level: number = 1): ReactNode =>
     <React.Fragment key={ bucket.item.value.name }>
         <Dropdown.Item
                 as={ Link }
                 style={ filterValueStyle(level) }
-                to={ '?' + buildParamsForFilterValue(params, key, bucket.item.value.name) }>
+                to={ (projectId ? `/project/${projectId}?` : '/?')
+                    + buildParamsForFilterValue(params, key, bucket.item.value.name) }>
             <Row>
                 <Col xs={ 1 }><CategoryIcon category={ bucket.item.value }
                                             size="30" /></Col>
@@ -44,8 +47,9 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
                 </Col>
             </Row>
         </Dropdown.Item>
-        { bucket.trees
-            && bucket.trees.map((b: FilterBucketTreeNode) => renderFilterValue(key, b, params, level + 1)) }
+        { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
+                renderFilterValue(key, b, params, projectId, level + 1))
+        }
     </React.Fragment>;
 
 

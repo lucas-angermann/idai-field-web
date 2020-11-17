@@ -8,25 +8,27 @@ import FilterDropdown from './FilterDropdown';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
-export default function SimpleFilter({ filter, searchParams }
-        : { filter: ResultFilter, searchParams: string}): ReactElement {
+export default function SimpleFilter({ filter, searchParams, projectId }
+        : { filter: ResultFilter, searchParams: string, projectId?: string }): ReactElement {
 
     if (!filter.values.length) return null;
 
     const params = new URLSearchParams(searchParams);
 
     return <FilterDropdown filter={ filter } params={ params }>
-        { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params)) }
+        { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params, projectId)) }
     </FilterDropdown>;
 }
 
 
-const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams): ReactNode =>
+const renderFilterValue = (key: string, bucket: FilterBucket, params: URLSearchParams,
+                           projectId?: string): ReactNode =>
     <Dropdown.Item
             as={ Link }
             key={ bucket.value.name }
             style={ filterValueStyle }
-            to={ '?' + buildParamsForFilterValue(params, key, bucket.value.name) }>
+            to={ (projectId ? `/project/${projectId}` : '/')
+                + buildParamsForFilterValue(params, key, bucket.value.name) }>
         { getLabel(bucket.value) }
         {
             isFilterValueInParams(params, key, bucket.value.name)

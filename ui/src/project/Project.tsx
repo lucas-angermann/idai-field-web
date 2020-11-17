@@ -101,8 +101,10 @@ export default function Project(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar onSubmit={ () => setDocument(null) }/>
-            <Filters filters={ filters.filter(filter => filter.name !== 'project') } searchParams={ location.search } />
+            <SearchBar projectId={ projectId }/>
+            <Filters filters={ filters.filter(filter => filter.name !== 'project') }
+                     searchParams={ location.search }
+                     projectId={ projectId } />
             { document
                 ? <>
                     { projectDocument && new URLSearchParams(location.search).has('q')

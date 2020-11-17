@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { parseFrontendGetParams } from '../api/query';
 
 
-export default function SearchBar({ onSubmit }: { onSubmit?: () => void }): ReactElement {
+export default function SearchBar({ projectId, onSubmit }
+        : { projectId?: string, onSubmit?: () => void }): ReactElement {
 
     const [queryString, setQueryString] = useState(undefined);
     const history = useHistory();
@@ -21,9 +22,8 @@ export default function SearchBar({ onSubmit }: { onSubmit?: () => void }): Reac
 
     
     const submitSearch = (e: FormEvent): void => {
-
         e.preventDefault();
-        history.push(`?q=${queryString ?? '*'}`);
+        history.push((projectId ? `/project/${projectId}` : '/') + `?q=${queryString ?? '*'}`);
         if (onSubmit) onSubmit();
     };
 
