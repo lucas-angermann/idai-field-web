@@ -26,7 +26,7 @@ export default function DocumentDetails({ document, backButtonUrl }
             <Card.Header className="px-2 py-3">
                 { renderHeader(document, backButtonUrl) }
             </Card.Header>
-            <Card.Body>
+            <Card.Body style={ cardBodyStyle }>
                 { images && renderImages(images, document) }
                 { renderGroups(document, t) }
             </Card.Body>
@@ -210,9 +210,15 @@ const getDecimalValue = (value: number): string => {
 
 
 const cardStyle: CSSProperties = {
-    overflow: 'auto',
+    overflow: 'hidden',
     flexGrow: 1,
     flexShrink: 1
+};
+
+
+const cardBodyStyle: CSSProperties = {
+    height: 'calc(100% - 94px)',
+    overflow: 'auto'
 };
 
 
