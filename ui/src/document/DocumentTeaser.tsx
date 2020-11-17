@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiMenuRight, mdiMenuUp } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../api/result';
 import './document-teaser.css';
@@ -36,7 +37,7 @@ export default React.memo(function DocumentTeaser(
 
     return (
         <Row className="no-gutters document-teaser">
-            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, project) }
+            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, project) }
             <Col>
                 { asLink
                     ? <Link to={ linkUrl } style={ linkStyle }>
@@ -89,7 +90,7 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
 );
 
 
-const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string,
+const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string, t: TFunction,
                           projectId?: string): ReactElement => {
 
     const searchParams = new URLSearchParams(locationSearch);
@@ -104,9 +105,11 @@ const renderBackButton = (height: number, locationSearch: string, backButtonUrl:
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href={ backButtonUrl }>Im Kontext anzeigen</Dropdown.Item>
                 <Dropdown.Item href={ (projectId ? `/project/${projectId}?` : '/?') + searchParams.toString() }>
-                    Zurück zu den Suchergebnissen
+                    { t('project.backToSearchResults') }
+                </Dropdown.Item>
+                <Dropdown.Item href={ backButtonUrl }>
+                    { t('project.viewInContext') }
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
