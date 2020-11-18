@@ -1,19 +1,33 @@
-import React, { CSSProperties, useContext, ReactElement } from 'react';
+import React, { CSSProperties, useContext, ReactElement, useEffect, useState } from 'react';
 import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
+import Icon from '@mdi/react';
+import { mdiMenuRight } from '@mdi/js';
 import { LoginContext } from './App';
 import { LoginData } from './login';
 import LanguageButton from './LanguageButton';
+import { get } from './api/documents';
+import { Document } from './api/document';
+import './navbar.css';
 
 
 export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
+    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
     const loginData = useContext(LoginContext);
     const history = useHistory();
     const { t } = useTranslation();
+
+
+    useEffect(() => {
+
+        const projectId: string | undefined = getProjectId(location);
+        if (projectId) get(projectId, loginData.token).then(setProjectDocument);
+    }, [location, loginData]);
+
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
@@ -22,6 +36,16 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                 <Nav.Link as="span">
                     <Link to="/">{ t('navbar.projects') }</Link>
                 </Nav.Link>
+                {
+                    projectDocument && <>
+                        <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
+                        <Nav.Link as="span">
+                            <Link to={ `/project/${projectDocument.resource.id}` }>
+                                { projectDocument.resource.identifier }
+                            </Link>
+                        </Nav.Link>
+                    </>
+                }
                 <NavDropdown id="desktop-dropdown" as="span" title={ t('navbar.desktop') }
                         style={ dropdownStyle }>
                     <NavDropdown.Item onClick={ () => history.push('/download') }>
@@ -50,10 +74,20 @@ const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): 
         </Navbar.Text>;
 
 
+const getProjectId = (location: any): string | undefined => {
+
+    return location.pathname.includes('/project/')
+        ? location.pathname.replace('/project/', '')
+        : undefined;
+};
+
+
 const navbarStyle: CSSProperties = {
     backgroundImage: 'linear-gradient(to right, rgba(106,164,184,0.95) 0%, #557ebb 100%)'
 };
 
+
 const dropdownStyle: CSSProperties = {
     zIndex: 1001
 };
+
