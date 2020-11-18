@@ -40,9 +40,10 @@ export default React.memo(function DocumentHierarchy(
                             <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
                         </LinkButton>
                     }
-                    <div className="documents" style={ getDocumentsStyle(parent) } onScroll={ scrollFunction }>
+                    { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle }></div> }
+                    <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
                         { documents.map((document: ResultDocument) =>
-                            <div style={ getDocumentContainerStyle(parent) } key={ document.resource.id }>
+                            <div style={ documentContainerStyle } key={ document.resource.id }>
                                 <DocumentTeaser document={ document } searchParams={ searchParams }
                                                 showHierarchyButton={ true } />
                             </div>
@@ -71,12 +72,8 @@ const getProjectId = (documents: ResultDocument[]): string => {
 };
 
 
-const getDocumentContainerStyle = (parent: string): CSSProperties => {
-
-    const style: CSSProperties = { borderBottom: '1px solid var(--main-bg-color)' };
-    if (parent === 'root') style.paddingLeft = '30px';
-
-    return style;
+const documentContainerStyle: CSSProperties = {
+    borderBottom: '1px solid var(--main-bg-color)'
 };
 
 
@@ -88,11 +85,8 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 };
 
 
-const getDocumentsStyle = (parent: string): CSSProperties => {
-
-    return {
-        width: (parent === 'root') ? '100%' : 'calc(100% - 30px)',
-        position: 'absolute',
-        left: (parent === 'root') ? 0 : '30px'
-    };
+const documentsStyle: CSSProperties = {
+    width: 'calc(100% - 30px)',
+    position: 'absolute',
+    left: '30px'
 };
