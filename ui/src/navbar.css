@@ -6,5 +6,5 @@
 
 .active-navitem,
 .active-navitem > a {
-    color: rgba(255, 255, 255, .75) !important;
+    color: white !important;
 }
