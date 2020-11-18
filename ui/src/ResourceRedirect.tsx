@@ -14,18 +14,20 @@ export default function ResourceRedirect(): ReactElement {
 
     useEffect (() => {
         getId(project, identifier, loginData.token).then(setId);
-    }, [project, identifier]);
+    }, [project, identifier, loginData]);
 
     return id
         ? <Redirect to={ `/project/${project}/${id}` } />
         : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
 }
 
+
 const getId = async (project: string, identifier: string, token: string): Promise<string> => {
 
     const result = await search({ filters: getFilters(project, identifier) }, token);
     return result.documents[0].resource.id;
 };
+
 
 const getFilters = (project: string, identifier: string) => [
     { field: 'project', value: project },
