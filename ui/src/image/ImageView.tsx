@@ -1,7 +1,6 @@
 import React, { CSSProperties, useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Map, ZoomControl } from 'react-leaflet';
-import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
 import IiifImageLayer from './IiifImageLayer';
 import DocumentDetails from '../document/DocumentDetails';
@@ -19,7 +18,6 @@ export default function ImageView() {
     const [document, setDocument] = useState<Document>(null);
     const [comingFrom, setComingFrom] = useState<string>(null);
     const loginData = useContext(LoginContext);
-    const { t } = useTranslation();
 
     useEffect(() => {
         setUrl(makeUrl(project, id, loginData.token));
