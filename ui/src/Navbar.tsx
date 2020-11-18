@@ -29,26 +29,36 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
     }, [location, loginData]);
 
 
+    const getNavItemClass = (route: string) => getCurrentRoute(location, projectDocument) === route
+        ? 'active-navitem'
+        : '';
+
+
     return (
         <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
-                    <Link to="/">{ t('navbar.projects') }</Link>
+                    <Link to="/" className={ getNavItemClass('overview') }>
+                        { t('navbar.projects') }
+                    </Link>
                 </Nav.Link>
                 {
                     projectDocument && <>
                         <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
                         <Nav.Link as="span">
-                            <Link to={ `/project/${projectDocument.resource.id}` }>
+                            <Link to={ `/project/${projectDocument.resource.id}` }
+                                  className={ getNavItemClass('project') }>
                                 { projectDocument.resource.identifier }
                             </Link>
                         </Nav.Link>
                     </>
                 }
-                <NavDropdown id="desktop-dropdown" as="span" title={ t('navbar.desktop') }
+                <NavDropdown id="desktop-dropdown" as="span"
+                             className={ getNavItemClass('desktop') }
+                             title={ t('navbar.desktop') }
                         style={ dropdownStyle }>
-                    <NavDropdown.Item onClick={ () => history.push('/download') }>
+                    <NavDropdown.Item onClick={ () => history.push('/download') } >
                         { t('navbar.download') }
                     </NavDropdown.Item>
                     <NavDropdown.Item onClick={ () => history.push('/manual') }>
@@ -56,7 +66,9 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                     </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link as="span">
-                    <Link to="/contact">{ t('navbar.contact') }</Link>
+                    <Link to="/contact" className={ getNavItemClass('contact') }>
+                        { t('navbar.contact') }
+                    </Link>
                 </Nav.Link>
             </Nav>
             <LanguageButton/>
@@ -76,9 +88,26 @@ const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): 
 
 const getProjectId = (location: any): string | undefined => {
 
-    return location.pathname.includes('/project/')
+    return location.pathname.startsWith('/project/')
         ? location.pathname.split('/')[2]
         : undefined;
+};
+
+
+const getCurrentRoute = (location: any, projectDocument?: Document): string => {
+
+    if (projectDocument && location.pathname.startsWith('/project/')
+            && location.pathname.split('/')[2] === projectDocument.resource.id) {
+        return 'project';
+    } else if (location.pathname.startsWith('/download') || location.pathname.startsWith('/manual')) {
+        return 'desktop';
+    } else if (location.pathname.startsWith('/contact')) {
+        return 'contact';
+    } else if (location.pathname.startsWith('/login')) {
+        return 'login';
+    } else {
+        return 'overview';
+    }
 };
 
 

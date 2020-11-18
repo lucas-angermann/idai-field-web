@@ -3,3 +3,8 @@
     top: 8px;
     color: rgba(255, 255, 255, 0.5);
 }
+
+.active-navitem,
+.active-navitem > a {
+    color: rgba(255, 255, 255, .75) !important;
+}
