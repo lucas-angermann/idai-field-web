@@ -77,7 +77,7 @@ const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): 
 const getProjectId = (location: any): string | undefined => {
 
     return location.pathname.includes('/project/')
-        ? location.pathname.replace('/project/', '')
+        ? location.pathname.split('/')[2]
         : undefined;
 };
 
