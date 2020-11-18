@@ -1,6 +1,8 @@
 .navbar-project-arrow {
     position: relative;
-    top: 8px;
+    top: 9px;
+    left: -6px;
+    margin-right: -12px;
     color: rgba(255, 255, 255, 0.5);
 }
 
