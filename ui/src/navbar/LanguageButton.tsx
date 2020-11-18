@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-modal';
 import Icon from '@mdi/react';
 import { mdiClose, mdiEarth } from '@mdi/js';
-import { getUserInterfaceLanguage, LANGUAGES, USER_INTERFACE_LANGUAGES } from './languages';
+import { getUserInterfaceLanguage, LANGUAGES, USER_INTERFACE_LANGUAGES } from '../languages';
 
 
 export default (): ReactElement => {

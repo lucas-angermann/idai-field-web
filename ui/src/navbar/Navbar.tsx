@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiMenuRight } from '@mdi/js';
-import { LoginContext } from './App';
-import { LoginData } from './login';
+import { LoginContext } from '../App';
+import { LoginData } from '../login';
 import LanguageButton from './LanguageButton';
-import { get } from './api/documents';
-import { Document } from './api/document';
+import { get } from '../api/documents';
+import { Document } from '../api/document';
 import './navbar.css';
 
 

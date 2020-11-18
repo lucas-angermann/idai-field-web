@@ -6,7 +6,7 @@ import Download from './download/Download';
 import Project from './project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './manual/Manual';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
 import LoginForm from './LoginForm';
 import ImageView from './image/ImageView';
 import { ANONYMOUS_USER, getPersistedLogin, forgetLogin, LoginData } from './login';
