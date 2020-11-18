@@ -54,10 +54,12 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                         </Nav.Link>
                     </>
                 }
+            </Nav>
+            <Nav className="justify-content-end">
                 <NavDropdown id="desktop-dropdown" as="span"
                              className={ getNavItemClass('desktop') }
                              title={ t('navbar.desktop') }
-                        style={ dropdownStyle }>
+                             style={ dropdownStyle }>
                     <NavDropdown.Item onClick={ () => history.push('/download') } >
                         { t('navbar.download') }
                     </NavDropdown.Item>

@@ -52,7 +52,7 @@ const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: bool
 
 
 const languageButtonStyle: CSSProperties = {
-    marginRight: '10px'
+    marginRight: '7px'
 };
 
 
