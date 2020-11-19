@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useRef } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Icon from '@mdi/react';
 import { mdiMenuLeft } from '@mdi/js';
@@ -7,35 +7,51 @@ import { ResultDocument } from '../api/result';
 import './document-hierarchy.css';
 import LinkButton from '../LinkButton';
 import { getPreviousHierarchyLevelUrl } from './navigation';
+import { Card } from 'react-bootstrap';
+import { Document } from '../api/document';
 
 
 interface DocumentHierarchyProps {
     documents: ResultDocument[];
+    projectDocument: Document;
     searchParams?: string;
     scrollFunction: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
 export default React.memo(function DocumentHierarchy(
-        { documents, searchParams, scrollFunction }
+        { documents, projectDocument, searchParams, scrollFunction }
         : DocumentHierarchyProps): ReactElement {
 
     const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
+    const [parentDocument, setParentDocument] = useState<ResultDocument>(null);
     const prevGrandparent = useRef<string>();
 
     const backward = parent === prevGrandparent.current;
     prevGrandparent.current = getGrandparent(documents);
+
+    useEffect(() => {
+
+        setParentDocument(getParentDocument(projectDocument, searchParams, documents));
+    }, [projectDocument, searchParams, documents]);
     
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
     return <>
+        { parentDocument && !new URLSearchParams(searchParams).has('q')
+        && <Card body={ true } className="hierarchy-parent">
+            <DocumentTeaser document={ parentDocument }
+                            project={ projectDocument.resource.id }
+                            hierarchyHeader={ true }/>
+        </Card>
+        }
         <TransitionGroup className={ className } style={ { height: '100%' } } >
             <CSSTransition key={ parent } timeout={ 500 }>
                 <div className="document-hierarchy">
                     {
                         parent !== 'root' &&
                         <LinkButton
-                                to={ getPreviousHierarchyLevelUrl(getProjectId(documents), documents) }
+                                to={ getPreviousHierarchyLevelUrl(projectDocument.resource.id, documents) }
                                 style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
                         </LinkButton>
@@ -66,9 +82,13 @@ const getGrandparent = (documents: ResultDocument[]): string => {
 };
 
 
-const getProjectId = (documents: ResultDocument[]): string => {
+const getParentDocument = (projectDocument: Document, searchParams: string,
+                           documents?: ResultDocument[]): ResultDocument | undefined => {
 
-    return documents.length > 0 ? documents[0].project : null;
+    if (!documents || documents.length === 0 || new URLSearchParams(searchParams).has('q')) return undefined;
+
+    const relations = documents[0].resource.relations?.isChildOf;
+    return relations?.length > 0 ? relations[0] : projectDocument;
 };
 
 
