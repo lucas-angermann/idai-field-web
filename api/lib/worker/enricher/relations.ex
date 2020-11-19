@@ -43,6 +43,8 @@ defmodule Worker.Enricher.Relations do
     result = if Map.has_key?(result.resource, :type) do
       {category, result} = pop_in(result.resource[:type])
       put_in(result, [:resource, :category], category)
+    else
+      result
     end
     result
   end
