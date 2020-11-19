@@ -28,7 +28,7 @@ export default React.memo(function DocumentHierarchy(
     const prevGrandparent = useRef<string>();
 
     const backward = parent === prevGrandparent.current;
-    prevGrandparent.current = getGrandparent(documents);
+    if (parentDocument && parentDocument.resource.id === parent) prevGrandparent.current = getGrandparent(documents);
 
     useEffect(() => {
 
