@@ -73,7 +73,7 @@ export default React.memo(function DocumentHierarchy(
     ) : <></>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
-    return prevProps.documents === nextProps.documents;
+    return prevProps.documents === nextProps.documents && prevProps.projectDocument === nextProps.projectDocument;
 });
 
 
