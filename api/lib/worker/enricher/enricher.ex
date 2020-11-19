@@ -27,7 +27,7 @@ defmodule Worker.Enricher.Enricher do
       |> put_in([:doc, :project], project)
     rescue
       error -> Logger.error "Enrichment failed for resource #{change.doc.resource.id}: "
-               <> "#{ if Map.has_key(error, :message) do error.message else inspect(error) end }"
+               <> "#{ if Map.has_key?(error, :message) do error.message else inspect(error) end }"
       nil
     end
   end
