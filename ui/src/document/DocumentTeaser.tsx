@@ -74,8 +74,8 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                 <Row>
                     <Col className={ 'p-0' + (limitHeight ? ' limit-height' : '') }>
                         { document.resource.shortDescription
-                            ? <h4 className="m-0">{ document.resource.identifier }</h4>
-                            : <h3 className="my-2">{ document.resource.identifier }</h3>
+                            ? <h4 className="m-0" style={ identifierStyle }>{ document.resource.identifier }</h4>
+                            : <h3 className="my-2" style={ identifierStyle }>{ document.resource.identifier }</h3>
                         }
                     </Col>
                 </Row>
@@ -136,4 +136,9 @@ const getHierarchyButtonSearchParams = (searchParams: string | undefined, docume
 const linkStyle: CSSProperties = {
     textDecoration: 'none',
     color: 'black'
+};
+
+
+const identifierStyle: CSSProperties = {
+    wordBreak: 'break-word'
 };
