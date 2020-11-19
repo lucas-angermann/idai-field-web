@@ -101,6 +101,7 @@ const documentContainerStyle: CSSProperties = {
 
 const previousHierarchyLevelButtonStyle: CSSProperties = {
     height: '100%',
+    maxHeight: 'calc(100vh - 265px)',
     width: '30px',
     padding: 0,
     float: 'left'
