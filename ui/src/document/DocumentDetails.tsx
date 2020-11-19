@@ -14,8 +14,10 @@ import './document-details.css';
 const HIDDEN_FIELDS = ['id', 'geometry', 'georeference', 'originalFilename'];
 
 
-export default function DocumentDetails({ document, searchParams, backButtonUrl }
-        : { document: Document, searchParams: string, backButtonUrl?: string }): ReactElement {
+export default function DocumentDetails({ document, searchParams, isImageDocument= false,
+                                          backButtonUrl }
+        : { document: Document, searchParams: string, isImageDocument?: boolean,
+            backButtonUrl?: string }): ReactElement {
 
     const { t } = useTranslation();
 
@@ -24,7 +26,7 @@ export default function DocumentDetails({ document, searchParams, backButtonUrl 
     return (
         <Card style={ cardStyle }>
             <Card.Header className="px-2 py-3">
-                { renderHeader(document, searchParams, backButtonUrl) }
+                { renderHeader(document, searchParams, isImageDocument, backButtonUrl) }
             </Card.Header>
             <Card.Body style={ cardBodyStyle }>
                 { images && renderImages(images, document) }
@@ -35,10 +37,11 @@ export default function DocumentDetails({ document, searchParams, backButtonUrl 
 }
 
 
-const renderHeader = (document: Document, searchParams: string, backButtonUrl?: string): ReactElement => (
+const renderHeader = (document: Document, searchParams: string, isImageDocument: boolean,
+                      backButtonUrl?: string): ReactElement => (
     <div>
         <DocumentTeaser project={ document.project } document={ document } searchParams={ searchParams }
-                        backButtonUrl={ backButtonUrl } asLink={ false } />
+                        backButtonUrl={ backButtonUrl } asLink={ false } imageHeader={ isImageDocument }/>
     </div>
 );
 

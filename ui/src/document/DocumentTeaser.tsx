@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
-import { mdiMenuRight, mdiMenuUp } from '@mdi/js';
+import { mdiMenuLeft, mdiMenuRight, mdiMenuUp } from '@mdi/js';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import CategoryIcon from './CategoryIcon';
@@ -16,11 +16,12 @@ const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project, showHierarchyButton = false,
-            backButtonUrl, asLink = true, hierarchyHeader = false }
+            backButtonUrl, asLink = true, hierarchyHeader = false,
+            imageHeader = false }
         : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
             /* on rendering relation targets, the project is not part of the document*/
             project?: string, showHierarchyButton?: boolean, backButtonUrl?: string,
-            asLink?: boolean, hierarchyHeader?: boolean }): ReactElement {
+            asLink?: boolean, hierarchyHeader?: boolean, imageHeader?: boolean }): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -38,7 +39,7 @@ export default React.memo(function DocumentTeaser(
 
     return (
         <Row className="no-gutters document-teaser">
-            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, project) }
+            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
                 { asLink
                     ? <Link to={ linkUrl } style={ linkStyle }>
@@ -92,7 +93,7 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
 
 
 const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string, t: TFunction,
-                          projectId?: string): ReactElement => {
+                          imageHeader: boolean, projectId?: string): ReactElement => {
 
     const searchParams = new URLSearchParams(locationSearch);
     const overviewSearch = searchParams.get('r') === 'overview';
@@ -117,7 +118,7 @@ const renderBackButton = (height: number, locationSearch: string, backButtonUrl:
         </Dropdown>
         : <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
             <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
-                <Icon path={ mdiMenuUp } size={ 1 }></Icon>
+                <Icon path={ imageHeader ? mdiMenuLeft : mdiMenuUp } size={ 1 }></Icon>
             </LinkButton>
         </Col>;
 };

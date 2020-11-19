@@ -35,6 +35,7 @@ export default function ImageView() {
                 { document &&
                     <DocumentDetails document={ document }
                                      searchParams={ location.search }
+                                     isImageDocument={ true }
                                      backButtonUrl={ comingFrom ? `/project/${project}/${comingFrom}` : undefined } /> }
             </div>
             <div style={ containerStyle }>
