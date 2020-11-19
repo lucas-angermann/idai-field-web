@@ -16,21 +16,27 @@ defmodule Core.ProjectConfigLoader do
   end
   def start_link(_), do: start_link({nil, nil})
 
-  def get(project_name), do: Agent.get(__MODULE__, fn configs -> configs[project_name]  end)
+  def get(project_name), do: Agent.get(__MODULE__, fn configs ->
+    if configs[project_name] != nil do
+      configs[project_name]
+    else
+      configs["default"]
+    end
+  end)
 
   defp load(config_dir, project_name) do
     
     file_name = config_dir <> "/" <> project_name <> ".json"
     
-    Logger.info "Load Project Configuration from #{file_name}"
+    Logger.info "Loading project configuration from #{file_name}"
     with {:ok, body} <- File.read(file_name),
          {:ok, json} <- Poison.decode(body)
     do
       Core.Utils.atomize(json, [:values])
     else
       _ ->
-        IO.puts "Could not load Project Configuration from #{file_name}"
-        %{}
+        Logger.info "No configuration found for project #{project_name}, using default configuration"
+        nil
     end
   end
 end
