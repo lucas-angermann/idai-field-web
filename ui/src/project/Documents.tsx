@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties, ReactElement, useEffect } from 'react';
+import React, { useState, ReactElement, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -41,12 +41,8 @@ export default React.memo(function Documents(
     }, [searchParams]);
 
     return <>
-        <Card className="documents-card" style={ listContainerStyle }>
-            <Card.Body className="px-0 py-0">
-                { documents && renderDocuments(documents, projectDocument, searchParams, onScroll) }
-                { (documents && documents.length === 0) && renderEmptyResult(t) }
-            </Card.Body>
-        </Card>
+        { documents && renderDocuments(documents, projectDocument, searchParams, onScroll) }
+        { (documents && documents.length === 0) && renderEmptyResult(t) }
     </>;
 });
 
@@ -62,13 +58,9 @@ const renderDocuments = (documents: ResultDocument[], projectDocument: Document,
 
 
 const renderEmptyResult = (t: TFunction): ReactElement => (
-    <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
+    <Card className="documents-card">
+        <Card.Body className="px-0 py-0">
+            <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
+        </Card.Body>
+    </Card>
 );
-
-
-const listContainerStyle: CSSProperties = {
-    overflowY: 'scroll',
-    overflowX: 'hidden',
-    flexGrow: 1,
-    flexShrink: 1
-};

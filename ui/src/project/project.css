@@ -12,10 +12,16 @@
 }
 
 .documents-card {
-    overflow: hidden !important;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .documents-card .documents {
     height: 100%;
     overflow: visible scroll;
+}
+
+.sidebar .documents {
+    max-height: calc(100vh - 255px);
 }

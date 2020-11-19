@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactElement, useEffect, useRef, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Card } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiMenuLeft } from '@mdi/js';
 import DocumentTeaser from '../document/DocumentTeaser';
@@ -7,7 +8,6 @@ import { ResultDocument } from '../api/result';
 import './document-hierarchy.css';
 import LinkButton from '../LinkButton';
 import { getPreviousHierarchyLevelUrl } from './navigation';
-import { Card } from 'react-bootstrap';
 import { Document } from '../api/document';
 
 
@@ -37,38 +37,40 @@ export default React.memo(function DocumentHierarchy(
     
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
-    return <>
-        { parentDocument && !new URLSearchParams(searchParams).has('q')
-        && <Card body={ true } className="hierarchy-parent">
-            <DocumentTeaser document={ parentDocument }
-                            project={ projectDocument.resource.id }
-                            hierarchyHeader={ true }/>
-        </Card>
-        }
-        <TransitionGroup className={ className } style={ { height: '100%' } } >
-            <CSSTransition key={ parent } timeout={ 500 }>
-                <div className="document-hierarchy">
-                    {
-                        parent !== 'root' &&
-                        <LinkButton
-                                to={ getPreviousHierarchyLevelUrl(projectDocument.resource.id, documents) }
-                                style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
-                            <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
-                        </LinkButton>
-                    }
-                    { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle }></div> }
-                    <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
-                        { documents.map((document: ResultDocument) =>
-                            <div style={ documentContainerStyle } key={ document.resource.id }>
-                                <DocumentTeaser document={ document } searchParams={ searchParams }
-                                                showHierarchyButton={ true } />
+    return projectDocument && parentDocument ? (
+        <Card className="documents-card">
+            <Card.Header className="hierarchy-parent">
+                 <DocumentTeaser document={ parentDocument }
+                                 project={ projectDocument.resource.id }
+                                 hierarchyHeader={ true }/>
+            </Card.Header>
+            <Card.Body className="px-0 py-0">
+                <TransitionGroup className={ className } style={ { height: '100%' } } >
+                    <CSSTransition key={ parent } timeout={ 500 }>
+                        <div className="document-hierarchy">
+                            {
+                                parent !== 'root' &&
+                                <LinkButton
+                                        to={ getPreviousHierarchyLevelUrl(projectDocument.resource.id, documents) }
+                                        style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
+                                    <Icon path={ mdiMenuLeft } size={ 1 } />
+                                </LinkButton>
+                            }
+                            { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
+                            <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
+                                { documents.map((document: ResultDocument) =>
+                                    <div style={ documentContainerStyle } key={ document.resource.id }>
+                                        <DocumentTeaser document={ document } searchParams={ searchParams }
+                                                        showHierarchyButton={ true } />
+                                    </div>
+                            )}
                             </div>
-                    )}
-                    </div>
-                </div>
-            </CSSTransition>
-        </TransitionGroup>
-    </>;
+                        </div>
+                    </CSSTransition>
+                </TransitionGroup>
+            </Card.Body>
+        </Card>
+    ) : <></>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
     return prevProps.documents === nextProps.documents;
