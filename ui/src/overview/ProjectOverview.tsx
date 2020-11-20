@@ -7,7 +7,7 @@ import OverviewMap from './OverviewMap';
 import { search } from '../api/documents';
 import { Result, ResultDocument, ResultFilter } from '../api/result';
 import { LoginContext } from '../App';
-import SearchBar from '../project/SearchBar';
+import SearchBar from '../search/SearchBar';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';

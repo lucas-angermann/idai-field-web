@@ -13,7 +13,7 @@ import { ResultDocument, Result, ResultFilter } from '../api/result';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { LoginContext } from '../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
-import SearchBar from './SearchBar';
+import SearchBar from '../search/SearchBar';
 import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
