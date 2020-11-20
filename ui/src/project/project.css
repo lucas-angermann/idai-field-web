@@ -19,7 +19,7 @@
 
 .documents-card .documents {
     height: 100%;
-    overflow: visible scroll;
+    overflow: hidden scroll;
 }
 
 .sidebar .documents {
