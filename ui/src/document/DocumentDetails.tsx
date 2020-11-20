@@ -25,7 +25,7 @@ export default function DocumentDetails({ document, searchParams, isImageDocumen
 
     return (
         <Card style={ cardStyle }>
-            <Card.Header className="px-2 py-3">
+            <Card.Header style={ cardHeaderStyle }>
                 { renderHeader(document, searchParams, isImageDocument, backButtonUrl) }
             </Card.Header>
             <Card.Body style={ cardBodyStyle }>
@@ -216,6 +216,11 @@ const cardStyle: CSSProperties = {
     overflow: 'hidden',
     flexGrow: 1,
     flexShrink: 1
+};
+
+
+const cardHeaderStyle: CSSProperties = {
+    padding: '12px'
 };
 
 
