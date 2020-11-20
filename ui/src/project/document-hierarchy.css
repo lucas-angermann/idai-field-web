@@ -63,3 +63,8 @@
 .document-hierarchy .btn-link:focus {
     color: rgba(0, 0, 0, 0.5);
 }
+
+.hierarchy-parent .document-teaser {
+    margin-left: -8px;
+    margin-right: -8px;
+}

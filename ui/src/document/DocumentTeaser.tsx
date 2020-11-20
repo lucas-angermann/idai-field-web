@@ -38,7 +38,7 @@ export default React.memo(function DocumentTeaser(
         : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
 
     return (
-        <Row className="no-gutters document-teaser" style={ teaserStyle }>
+        <Row className="no-gutters document-teaser">
             { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
                 { asLink
@@ -130,12 +130,6 @@ const getHierarchyButtonSearchParams = (searchParams: string | undefined, docume
     params.set('parent', documentId);
 
     return params.toString();
-};
-
-
-const teaserStyle: CSSProperties = {
-    marginLeft: '-8px',
-    marginRight: '-8px'
 };
 
 
