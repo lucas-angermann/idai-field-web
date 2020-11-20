@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import DocumentList from './DocumentList';
 import { ResultDocument } from '../api/result';
-import { CHUNK_SIZE } from './Project';
+import { CHUNK_SIZE } from '../project/Project';
 import DocumentHierarchy from './DocumentHierarchy';
 import { Document } from '../api/document';
 import './documents.css';

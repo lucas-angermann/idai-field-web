@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiInformation } from '@mdi/js';
-import Documents from './Documents';
+import Documents from '../documents/Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
 import { Document } from '../api/document';

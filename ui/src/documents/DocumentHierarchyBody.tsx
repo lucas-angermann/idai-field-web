@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiMenuLeft } from '@mdi/js';
 import LinkButton from '../LinkButton';
-import { getPreviousHierarchyLevelUrl } from './navigation';
+import { getPreviousHierarchyLevelUrl } from '../project/navigation';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 

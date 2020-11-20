@@ -12,7 +12,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../constants';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../api/query';
 import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
-import Documents from '../project/Documents';
+import Documents from '../documents/Documents';
 import './project-overview.css';
 
 
