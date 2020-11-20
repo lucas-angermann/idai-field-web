@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import DocumentTeaser from '../document/DocumentTeaser';
+import React, { ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
+import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../api/result';
 import { Document } from '../api/document';
 
@@ -8,16 +8,9 @@ import { Document } from '../api/document';
 export default function DocumentHierarchyHeader({ projectDocument, documents, searchParams }
         : { projectDocument: Document, documents: ResultDocument[], searchParams: string } ): ReactElement {
 
-    const [parentDocument, setParentDocument] = useState<ResultDocument>(null);
-
-    useEffect(() => {
-
-        setParentDocument(getParentDocument(projectDocument, searchParams, documents));
-    }, [projectDocument, searchParams, documents]);
-
-    return parentDocument
+    return projectDocument
         ? <Card.Header className="hierarchy-parent">
-            <DocumentTeaser document={ parentDocument }
+            <DocumentTeaser document={ getParentDocument(projectDocument, searchParams, documents) }
                             project={ projectDocument.resource.id }
                             hierarchyHeader={ true } />
         </Card.Header>
