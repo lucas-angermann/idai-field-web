@@ -1,14 +1,14 @@
 import React, { useState, ReactElement, CSSProperties } from 'react';
-import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { postLogin, persistLogin, LoginData } from './login';
+import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { postLogin, persistLogin, LoginData } from './login';
+
 
 export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }): ReactElement {
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const [shouldPersistLogin, setShouldPersistLogin] = useState(false);
     const [loginFailed, setLoginFailed] = useState(false);
     const history = useHistory();
     const { t } = useTranslation();
@@ -18,7 +18,7 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
         e.preventDefault();
         const loginData = await postLogin(user, password);
         if (loginData) {
-            if (shouldPersistLogin) persistLogin(loginData);
+            persistLogin(loginData);
             onLogin(loginData);
             history.push('/');
         } else {
@@ -47,12 +47,6 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
                                         type="password"
                                         placeholder={ t('login.password') }
                                         onChange={ e => setPassword(e.target.value) } />
-                                </Form.Group>
-                                <Form.Group controlId="formBasicCheckbox">
-                                    <Form.Check
-                                        type="checkbox"
-                                        label={ t('login.stayLoggedIn') }
-                                        onChange={ e => setShouldPersistLogin(e.target.value) }/>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     { t('login.logIn') }
