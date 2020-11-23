@@ -74,14 +74,15 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                 <Row>
                     <Col className={ 'p-0' + (limitHeight ? ' limit-height' : '') }>
                         { document.resource.shortDescription
-                            ? <h4 className="m-0" style={ identifierStyle }>{ document.resource.identifier }</h4>
-                            : <h3 className="my-2" style={ identifierStyle }>{ document.resource.identifier }</h3>
+                            ? <h4 className="m-0" style={ textStyle }>{ document.resource.identifier }</h4>
+                            : <h3 className="my-2" style={ textStyle }>{ document.resource.identifier }</h3>
                         }
                     </Col>
                 </Row>
                 { document.resource.shortDescription &&
                 <Row>
-                    <Col className={ 'p-0 text-muted short-description' + (limitHeight ? ' limit-height' : '') }>
+                    <Col className={ 'p-0 text-muted short-description' + (limitHeight ? ' limit-height' : '') }
+                         style={ textStyle }>
                         { document.resource.shortDescription }
                     </Col>
                 </Row>
@@ -139,6 +140,6 @@ const linkStyle: CSSProperties = {
 };
 
 
-const identifierStyle: CSSProperties = {
+const textStyle: CSSProperties = {
     wordBreak: 'break-word'
 };
