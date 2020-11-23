@@ -11,7 +11,7 @@ export default function DocumentList({ documents, searchParams = '', scrollFunct
     return documents.length > 0 ? (
         <Card className="documents-card">
             <Card.Body className="px-0 py-0">
-                <div className="documents" onScroll={ scrollFunction }>
+                <div className="documents" style={ documentsStyle} onScroll={ scrollFunction }>
                     { documents.map((document: ResultDocument) =>
                         <div style={ documentContainerStyle } key={ document.resource.id }>
                             <DocumentTeaser document={ document } searchParams={ searchParams } />
@@ -22,6 +22,11 @@ export default function DocumentList({ documents, searchParams = '', scrollFunct
         </Card>
     ) : <></>;
 }
+
+
+const documentsStyle: CSSProperties = {
+    maxHeight: 'calc(100vh - 255px)'
+};
 
 
 const documentContainerStyle: CSSProperties = {

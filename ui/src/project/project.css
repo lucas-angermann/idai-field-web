@@ -21,7 +21,3 @@
     height: 100%;
     overflow: hidden scroll;
 }
-
-.sidebar .documents {
-    max-height: calc(100vh - 265px);
-}

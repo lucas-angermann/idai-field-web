@@ -88,6 +88,7 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 
 const documentsStyle: CSSProperties = {
     width: 'calc(100% - 30px)',
+    maxHeight: 'calc(100vh - 265px)',
     position: 'absolute',
     left: '30px'
 };
