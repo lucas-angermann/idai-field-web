@@ -106,7 +106,7 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
         .map(relation => [
             <dt key={ `${relation.name}_dt`}>{ renderMultiLanguageText(relation, t) }</dt>,
             <dd key={ `${relation.name}_dd`}>
-                <ul className="list-unstyled">
+                <ul className="list-unstyled" style={ listStyle }>
                     { relation.targets.map(doc => renderDocumentLink(project, doc)) }
                 </ul>
             </dd>
