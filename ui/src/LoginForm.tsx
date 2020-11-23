@@ -30,7 +30,9 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
         <Container>
             <Row>
                 <Col>
-                    { loginFailed && <Alert variant="danger">{ t('login.wrongUserNameOrPassword') }</Alert> }
+                    { loginFailed && <Alert variant="danger" style={ alertStyle }>
+                        { t('login.wrongUserNameOrPassword') }
+                    </Alert> }
                     <Card style={ cardStyle }>
                         <Card.Body>
                             <Form onSubmit={ handleSubmit }>
@@ -58,10 +60,16 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
             </Row>
         </Container>
     );
-};
+}
 
 
 const cardStyle: CSSProperties = {
 
     backgroundColor: 'transparent'
+};
+
+
+const alertStyle: CSSProperties = {
+
+    marginTop: '20px'
 };
