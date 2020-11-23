@@ -11,7 +11,7 @@ import { ResultDocument } from '../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 import './document-details.css';
 
-const HIDDEN_FIELDS = ['id', 'geometry', 'georeference', 'originalFilename'];
+const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
 
 
 export default function DocumentDetails({ document, searchParams, isImageDocument= false,
