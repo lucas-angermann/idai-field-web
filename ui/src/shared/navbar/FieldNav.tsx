@@ -1,19 +1,17 @@
-import React, { CSSProperties, useContext, ReactElement, useEffect, useState } from 'react';
-import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
+import React, { ReactElement , Fragment, useState, useContext, useEffect } from 'react';
+import { Nav, NavDropdown } from 'react-bootstrap';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
+import { Document } from '../../api/document';
 import Icon from '@mdi/react';
 import { mdiMenuRight } from '@mdi/js';
-import { LoginContext } from '../../App';
-import { LoginData } from '../../login';
-import LanguageButton from './LanguageButton';
+import { dropdownStyle } from './styles';
 import { get } from '../../api/documents';
-import { Document } from '../../api/document';
-import './navbar.css';
+import { getNavItemClass } from './Navbar';
+import { LoginContext } from '../../App';
 
 
-export default ({ onLogout , title}: { onLogout: () => void , title: ReactElement}): ReactElement => {
+export default (): ReactElement => {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
@@ -27,21 +25,14 @@ export default ({ onLogout , title}: { onLogout: () => void , title: ReactElemen
         if (projectId) get(projectId, loginData.token).then(setProjectDocument);
     }, [location, loginData]);
 
-    useEffect(() => {
+    const NavItemClass = (route: string) => getNavItemClass(route, getCurrentRoute(location, projectDocument));
 
-        setProjectDocument(null);
-    }, [loginData]);
-
-    const getNavItemClass = (route: string) => getCurrentRoute(location, projectDocument) === route
-        ? 'active-navitem'
-        : '';
 
     return (
-        <Navbar variant="dark" style={ navbarStyle }>
-            <Navbar.Brand href="/">{ title }</Navbar.Brand>
+        <Fragment>
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
-                    <Link to="/" className={ getNavItemClass('overview') }>
+                    <Link to="/" className={ NavItemClass('overview') }>
                         { t('navbar.projects') }
                     </Link>
                 </Nav.Link>
@@ -50,7 +41,7 @@ export default ({ onLogout , title}: { onLogout: () => void , title: ReactElemen
                         <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
                         <Nav.Link as="span">
                             <Link to={ `/project/${projectDocument.resource.id}` }
-                                  className={ getNavItemClass('project') }>
+                                  className={ NavItemClass('project') }>
                                 { projectDocument.resource.identifier }
                             </Link>
                         </Nav.Link>
@@ -59,7 +50,7 @@ export default ({ onLogout , title}: { onLogout: () => void , title: ReactElemen
             </Nav>
             <Nav className="justify-content-end">
                 <NavDropdown id="desktop-dropdown" as="span"
-                             className={ getNavItemClass('desktop') }
+                             className={ NavItemClass('desktop') }
                              title={ t('navbar.desktop') }
                              style={ dropdownStyle }>
                     <NavDropdown.Item onClick={ () => history.push('/download') } >
@@ -70,7 +61,7 @@ export default ({ onLogout , title}: { onLogout: () => void , title: ReactElemen
                     </NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link as="span">
-                    <Link to="/contact" className={ getNavItemClass('contact') }>
+                    <Link to="/contact" className={ NavItemClass('contact') }>
                         { t('navbar.contact') }
                     </Link>
                 </Nav.Link>
@@ -104,7 +95,6 @@ const getProjectId = (location: any): string | undefined => {
         : undefined;
 };
 
-
 const getCurrentRoute = (location: any, projectDocument?: Document): string => {
 
     if (projectDocument && location.pathname.startsWith('/project/')
@@ -120,14 +110,3 @@ const getCurrentRoute = (location: any, projectDocument?: Document): string => {
         return 'overview';
     }
 };
-
-
-const navbarStyle: CSSProperties = {
-    backgroundImage: 'linear-gradient(to right, rgba(106,164,184,0.95) 0%, #557ebb 100%)'
-};
-
-
-const dropdownStyle: CSSProperties = {
-    zIndex: 1001
-};
-

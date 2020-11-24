@@ -9,6 +9,7 @@ import Navbar from './shared/navbar/Navbar';
 import LoginForm from './shared/loginform/LoginForm';
 import ImageView from './shared/image/ImageView';
 import Contact from './shared/contact/Contact';
+import { AppNames } from './apps';
 
 import { doLogout } from './logout';
 import { getPersistedLogin } from './login';
@@ -21,7 +22,7 @@ export default function Field(): ReactElement {
         <Fragment>
             <Navbar
                 onLogout={ doLogout(setLoginData)}
-                title={ <Fragment> iDAI.<strong>field</strong></Fragment> }/>
+                app={  AppNames.iDAIField}/>
             <Switch>
                 <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                 <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />

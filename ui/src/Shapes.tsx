@@ -3,6 +3,7 @@ import Navbar from './shared/navbar/Navbar';
 
 import { doLogout } from './logout';
 import { getPersistedLogin } from './login';
+import { AppNames } from './apps';
 
 export default function Shapes(): ReactElement {
     const [loginData, setLoginData] = useState(getPersistedLogin());
@@ -11,7 +12,7 @@ export default function Shapes(): ReactElement {
         <Fragment>
             <Navbar
                 onLogout={ doLogout(setLoginData)}
-                title={ <Fragment>iDAI.<strong>shapes</strong></Fragment>}/>
+                app={ AppNames.iDAIShapes}/>
             <h1>iDAI Shapes</h1>
         </Fragment>
     );
