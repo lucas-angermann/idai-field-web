@@ -75,5 +75,7 @@ const parseQueryString = (locationSearch: string): string => {
 
 const isResetQueryButtonVisible = (locationSearch: string): boolean => {
 
-    return new URLSearchParams(locationSearch).has('q');
+    const q: string | undefined = new URLSearchParams(locationSearch).get('q');
+
+    return q && q.length > 0 && q !== '*';
 };
