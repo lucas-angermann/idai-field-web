@@ -228,7 +228,7 @@ const hierarchyButtonStyle: CSSProperties = {
     position: 'absolute',
     right: '13px',
     bottom: '13px',
-    width: '35px',
-    height: '35px',
-    padding: '0 0 1px 1px'
+    width: '45px',
+    height: '38px',
+    paddingTop: '3px'
 };
