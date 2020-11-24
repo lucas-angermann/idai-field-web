@@ -26,6 +26,8 @@ export default React.memo(function DocumentTeaser(
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
 
+    if (!document) return <></>;
+
     if (document.deleted) {
         return (<div>{ t('documentTeaser.noTargetResource') } [{ document.resource.id }]</div>);
     }
