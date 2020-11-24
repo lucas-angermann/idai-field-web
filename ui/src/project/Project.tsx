@@ -148,7 +148,7 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
         <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }>
-            <Icon path={ mdiFileTree } size={ 0.8 }></Icon>
+            <Icon path={ mdiFileTree } size={ 0.7 } />
         </LinkButton>
     </Card>;
 };
@@ -219,5 +219,8 @@ const emptyResultStyle: CSSProperties = {
 const hierarchyButtonStyle: CSSProperties = {
     position: 'absolute',
     right: '13px',
-    bottom: '13px'
+    bottom: '13px',
+    width: '35px',
+    height: '35px',
+    padding: '0 0 1px 1px'
 };
