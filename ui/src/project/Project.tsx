@@ -4,7 +4,7 @@ import { Spinner, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
-import { mdiInformation } from '@mdi/js';
+import { mdiFileTree, mdiInformation } from '@mdi/js';
 import Documents from '../documents/Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../api/documents';
@@ -19,6 +19,7 @@ import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../languages';
 import DocumentDetails from '../document/DocumentDetails';
 import { getContextUrl } from './navigation';
+import LinkButton from '../LinkButton';
 
 
 const MAX_SIZE = 10000;
@@ -138,8 +139,8 @@ export default function Project(): ReactElement {
 /* eslint-enable react-hooks/exhaustive-deps */
 
 
-const renderTotal = (total: number, document: Document, projectId: string, searchParams, t: TFunction)
-        : ReactElement => {
+const renderTotal = (total: number, document: Document, projectId: string, searchParams,
+                     t: TFunction): ReactElement => {
 
     if (!total) return null;
 
@@ -147,6 +148,9 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
+        <LinkButton to={ `/project/${projectId}` } style={ hierarchyButtonStyle }>
+            <Icon path={ mdiFileTree } size={ 0.8 }></Icon>
+        </LinkButton>
     </Card>;
 };
 
@@ -210,4 +214,11 @@ const emptyResultStyle: CSSProperties = {
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), 10px)`,
     zIndex: 1
+};
+
+
+const hierarchyButtonStyle: CSSProperties = {
+    position: 'absolute',
+    right: '13px',
+    bottom: '13px'
 };
