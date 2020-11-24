@@ -69,6 +69,11 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        if (!new URLSearchParams(location.search).has('parent')) {
+            setDocuments(null);
+            setTotal(null);
+        }
+
         waitForDocument.then(() => {
             searchDocuments(projectId, location.search, 0, loginData.token, parentId)
                 .then(result => {
@@ -112,7 +117,7 @@ export default function Project(): ReactElement {
                 : <>
                     {
                         (!location.search || !new URLSearchParams(location.search).has('parent'))
-                            && renderTotal(total, document, projectId, t)
+                            && renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
@@ -139,7 +144,8 @@ export default function Project(): ReactElement {
 /* eslint-enable react-hooks/exhaustive-deps */
 
 
-const renderTotal = (total: number, document: Document, projectId: string, t: TFunction): ReactElement => {
+const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
+                     setDocuments: (documents: ResultDocument[]) => void): ReactElement => {
 
     if (!total) return null;
 
@@ -147,9 +153,11 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-        <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }>
-            <Icon path={ mdiFileTree } size={ 0.7 } />
-        </LinkButton>
+        <div onClick={ () => setDocuments(null) }>
+            <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }>
+                <Icon path={ mdiFileTree } size={ 0.7 } />
+            </LinkButton>
+        </div>
     </Card>;
 };
 
