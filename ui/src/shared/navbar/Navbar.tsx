@@ -13,7 +13,7 @@ import { Document } from '../../api/document';
 import './navbar.css';
 
 
-export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
+export default ({ onLogout , title}: { onLogout: () => void , title: ReactElement}): ReactElement => {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
@@ -38,7 +38,7 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
-            <Navbar.Brand href="/">iDAI.<strong>field</strong></Navbar.Brand>
+            <Navbar.Brand href="/">{ title }</Navbar.Brand>
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
                     <Link to="/" className={ getNavItemClass('overview') }>
