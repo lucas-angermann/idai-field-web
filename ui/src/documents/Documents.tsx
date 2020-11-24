@@ -50,10 +50,10 @@ export default React.memo(function Documents(
 const renderDocuments = (documents: ResultDocument[], projectDocument: Document, searchParams: string,
                          onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
-    return searchParams && new URLSearchParams(searchParams).has('q')
-            ? <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll }/>
-            : <DocumentHierarchy documents={ documents } projectDocument={ projectDocument }
-                                 searchParams={ searchParams } scrollFunction={ onScroll }/>;
+    return searchParams && new URLSearchParams(searchParams).has('parent')
+            ? <DocumentHierarchy documents={ documents } projectDocument={ projectDocument }
+                                 searchParams={ searchParams } scrollFunction={ onScroll }/>
+            : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll }/>;
 };
 
 

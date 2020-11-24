@@ -32,7 +32,7 @@ export const buildBackendGetParams = (query: Query) => {
         queryParams.push(...query.exists.map((fieldName: string) => ['exists[]', `${fieldName}`]));
     }
     if (query.q === undefined) {
-        if (query.parent) {
+        if (query.parent && query.parent !== 'root') {
             queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
         } else  {
             queryParams.push(['not_exists[]', `resource.relations.isChildOf`]);
@@ -70,7 +70,11 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { fi
     const newQuery = JSON.parse(JSON.stringify(query));
     const params = new URLSearchParams(searchParams);
 
-    if (params.has('q')) newQuery.q = params.get('q');
+    if (params.has('q')) {
+        newQuery.q = params.get('q');
+    } else if (!params.has('parent')) {
+        newQuery.q = '*';
+    }
 
     if (parentId) {
         newQuery.parent = parentId;

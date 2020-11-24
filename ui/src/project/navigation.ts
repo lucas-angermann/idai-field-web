@@ -4,12 +4,7 @@ import { Document } from '../api/document';
 
 export const getPreviousHierarchyLevelUrl = (projectId: string, documents: ResultDocument[]): string => {
 
-    const grandparentId: string = getGrandparentId(documents);
-
-    let url: string = `/project/${projectId}`;
-    if (grandparentId) url += `?parent=${grandparentId}`;
-
-    return url;
+    return `/project/${projectId}?parent=${getGrandparentId(documents) ?? 'root'}`;
 };
 
 
@@ -27,9 +22,7 @@ export const getContextUrl = (projectId: string, locationSearch: string, documen
         ? (document.resource.category.name === 'Project' ? undefined : document.resource.id)
         : document.resource.parentId;
 
-    return `/project/${projectId}` + (parentId
-        ? `?parent=${parentId}`
-        : '');
+    return `/project/${projectId}?parent=${parentId ?? 'root'}`;
 };
 
 

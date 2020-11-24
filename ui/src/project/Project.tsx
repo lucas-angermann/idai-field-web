@@ -111,8 +111,8 @@ export default function Project(): ReactElement {
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 : <>
                     {
-                        location.search && new URLSearchParams(location.search).has('q')
-                            && renderTotal(total, document, projectId, location.search, t)
+                        (!location.search || !new URLSearchParams(location.search).has('parent'))
+                            && renderTotal(total, document, projectId, t)
                     }
                     <Documents
                         searchParams={ location.search }
@@ -139,8 +139,7 @@ export default function Project(): ReactElement {
 /* eslint-enable react-hooks/exhaustive-deps */
 
 
-const renderTotal = (total: number, document: Document, projectId: string, searchParams,
-                     t: TFunction): ReactElement => {
+const renderTotal = (total: number, document: Document, projectId: string, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
@@ -148,7 +147,7 @@ const renderTotal = (total: number, document: Document, projectId: string, searc
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-        <LinkButton to={ `/project/${projectId}` } style={ hierarchyButtonStyle }>
+        <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }>
             <Icon path={ mdiFileTree } size={ 0.8 }></Icon>
         </LinkButton>
     </Card>;
