@@ -9,16 +9,20 @@ import LanguageButton from './LanguageButton';
 import './navbar.css';
 import { navbarStyle } from './styles';
 import FieldNav from './FieldNav';
-import { AppNames } from '../../apps';
+import { AppNames, getActiveApp } from '../../apps';
 import ShapesNav from './ShapesNav';
+import { shapesBasepath } from '../../constants';
 
-export default ({ onLogout, app }: { onLogout: () => void , app: AppNames}): ReactElement => {
+export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
+    const app = getActiveApp();
 
     return (
             < Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href="/">{ renderBrand(app === AppNames.iDAIField ? 'field' : 'shapes')}</Navbar.Brand>
+            <Navbar.Brand href={ app === AppNames.iDAIField ? '/' : shapesBasepath}>
+                { renderBrand(app === AppNames.iDAIField ? 'field' : 'shapes')}
+            </Navbar.Brand>
             { app === AppNames.iDAIField ?
             < FieldNav /> : <ShapesNav />
             }

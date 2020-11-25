@@ -20,9 +20,7 @@ export default function Field(): ReactElement {
 
     return (
         <Fragment>
-            <Navbar
-                onLogout={ doLogout(setLoginData)}
-                app={  AppNames.iDAIField}/>
+            <Navbar onLogout={ doLogout(setLoginData)}/>
             <Switch>
                 <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                 <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />

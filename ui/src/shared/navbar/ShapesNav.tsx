@@ -1,11 +1,10 @@
 import React, { ReactElement, Fragment } from 'react';
 import { Nav } from 'react-bootstrap';
-import { Link , useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { shapesBasepath } from '../../constants';
 
-
-const ShapesNav: React.FunctionComponent = (props) => {
-    const basepath = '/idaishapes';
-    const createEntry = (name: string, route: string) => createNavEntry(name, `${basepath}${route}`);
+export default function ShapesNav(): ReactElement {
+    const createEntry = (name: string, route: string) => createNavEntry(name, `${shapesBasepath}${route}`);
 
     return (
         <Fragment>
@@ -18,9 +17,7 @@ const ShapesNav: React.FunctionComponent = (props) => {
             </Nav>
    </Fragment>
     );
-};
-
-export default ShapesNav;
+}
 
 
 const createNavEntry = (name: string, route: string): ReactElement => (
