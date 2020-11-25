@@ -53,7 +53,7 @@ export default function Project(): ReactElement {
         if (documentId) {
             waitForDocument = get(documentId, loginData.token);
             waitForDocument.then(doc => {
-                parentId = doc?.resource.parentId;
+                parentId = doc?.resource.parentId ?? 'root';
                 setDocument(doc);
             });
         } else {
