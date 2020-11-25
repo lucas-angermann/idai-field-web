@@ -1,8 +1,10 @@
-.hierarchy-parent {
-    height: 78px;
-    padding-bottom: 68px;
+.documents-card {
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
 }
 
-.hierarchy-parent .card-body {
-    padding: 10px;
+.documents-card .documents {
+    height: 100%;
+    overflow: hidden scroll;
 }

@@ -16,7 +16,6 @@
     width: 26px;
     height: 26px;
     line-height: 26px;
-    display: block;
     text-align: center;
     text-decoration: none;
     color: black;
@@ -26,8 +25,6 @@
     background-repeat: no-repeat;
     padding: 0;
 }
-
-
 
 .project-map .ol-control button:first-child {
     border-top-left-radius: 4px;

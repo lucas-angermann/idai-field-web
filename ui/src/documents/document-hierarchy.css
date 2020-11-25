@@ -64,6 +64,15 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.hierarchy-parent {
+    height: 78px;
+    padding-bottom: 68px;
+}
+
+.hierarchy-parent .card-body {
+    padding: 10px;
+}
+
 .hierarchy-parent .document-teaser {
     margin-left: -8px;
     margin-right: -8px;
