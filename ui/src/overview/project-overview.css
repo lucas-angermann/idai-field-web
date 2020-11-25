@@ -1,5 +1,5 @@
 .project-overview-sidebar .documents {
-    max-height: calc(100vh - 189px);
+    max-height: calc(100vh - 189px) !important;
 }
 
 .project-overview-sidebar .documents-card {
