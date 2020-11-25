@@ -72,14 +72,15 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { fi
 
     if (params.has('q')) {
         newQuery.q = params.get('q');
-    } else if (!params.has('parent')) {
+    } else if (!parentId && !params.has('parent')) {
         newQuery.q = '*';
     }
 
-    if (parentId) {
-        newQuery.parent = parentId;
-    } else if (params.has('parent')) {
+    if (params.has('parent')) {
         newQuery.parent = params.get('parent');
+    }
+    else if (parentId) {
+        newQuery.parent = parentId;
     }
 
     const filters = Array.from(params.entries())
