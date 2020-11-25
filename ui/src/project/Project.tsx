@@ -69,11 +69,6 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        if (!new URLSearchParams(location.search).has('parent')) {
-            setDocuments(null);
-            setTotal(null);
-        }
-
         waitForDocument.then(() => {
             searchDocuments(projectId, location.search, 0, loginData.token, parentId)
                 .then(result => {
@@ -106,7 +101,8 @@ export default function Project(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar projectId={ projectId }/>
+            <SearchBar projectId={ projectId }
+                       onSubmit={ () => { setDocuments(null); setTotal(null); } } />
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ location.search }
                      projectId={ projectId } />
