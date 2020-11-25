@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties, useContext, ReactElement, useCallback } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { Spinner, Card } from 'react-bootstrap';
+import { Spinner, Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
@@ -153,11 +153,10 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-        <div onClick={ () => setDocuments(null) }>
-            <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }>
+            <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }
+                        tooltip={ renderHierarchyButtonTooltip(t) }>
                 <Icon path={ mdiFileTree } size={ 0.7 } />
             </LinkButton>
-        </div>
     </Card>;
 };
 
@@ -168,6 +167,14 @@ const renderEmptyResult = (t: TFunction): ReactElement => {
         <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
         { t('projectMap.noResources') }
     </div>;
+};
+
+
+const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
+
+    return <Tooltip id="hierarchy-button-tooltip">
+        { t('project.hierarchyView') }
+    </Tooltip>;
 };
 
 

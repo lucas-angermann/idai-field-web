@@ -33,7 +33,8 @@
     "resources": "resources",
     "backToSearchResults": "Back to search results",
     "viewInContext": "View in context",
-    "noResults": "No results"
+    "noResults": "No results",
+    "hierarchyView": "Hierarchy view"
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend nicht erreichbar!"
