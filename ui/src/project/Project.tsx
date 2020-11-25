@@ -151,7 +151,7 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
         { t('project.resources') }
         <div onClick={ () => setDocuments(null) }>
             <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }
-                        tooltip={ renderHierarchyButtonTooltip(t) }>
+                        variant={ 'secondary' } tooltip={ renderHierarchyButtonTooltip(t) }>
                 <Icon path={ mdiFileTree } size={ 0.7 } />
             </LinkButton>
         </div>
