@@ -25,16 +25,17 @@
   "searchBar": {
     "search": "Suche"
   },
-  "projectMap": {
-    "noResources": "Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind."
-  },
   "project": {
     "total": "Insgesamt",
     "resources": "Ressourcen",
     "backToSearchResults": "Zurück zu den Suchergebnissen",
     "viewInContext": "Im Kontext anzeigen",
     "noResults": "Keine Ergebnisse",
-    "hierarchyView": "Hierarchische Ansicht"
+    "hierarchyView": "Hierarchische Ansicht",
+    "noGeometries": {
+      "search": "Im Suchergebnis befinden sich keine Ressourcen, die mit Geodaten verknüpft sind.",
+      "hierarchy": "Auf dieser Ebene der Projekthierarchie befinden sich keine Ressourcen, die mit Geodaten verknüpft sind."
+    }
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend not available!"

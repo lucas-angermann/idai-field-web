@@ -129,7 +129,7 @@ export default function Project(): ReactElement {
                     <Spinner animation="border" variant="secondary" />
                 </div>
             }
-            { !mapDocuments?.length && !loading && renderEmptyResult(t) }
+            { !mapDocuments?.length && !loading && renderEmptyResult(t, location.search) }
             <ProjectMap
                 document={ document }
                 documents={ mapDocuments }
@@ -159,11 +159,14 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
 };
 
 
-const renderEmptyResult = (t: TFunction): ReactElement => {
+const renderEmptyResult = (t: TFunction, searchParams: string): ReactElement => {
 
     return <div className="alert alert-info" style={ emptyResultStyle }>
         <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
-        { t('projectMap.noResources') }
+        { (!searchParams || !new URLSearchParams(searchParams).has('parent'))
+            ? t('project.noGeometries.search')
+            : t('project.noGeometries.hierarchy')
+        }
     </div>;
 };
 
