@@ -112,8 +112,7 @@ export default function Project(): ReactElement {
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 : <>
                     {
-                        (!location.search || !new URLSearchParams(location.search).has('parent'))
-                            && renderTotal(total, document, projectId, t, setDocuments)
+                        !isInHierarchyMode(location.search) && renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
@@ -163,10 +162,7 @@ const renderEmptyResult = (t: TFunction, searchParams: string): ReactElement => 
 
     return <div className="alert alert-info" style={ emptyResultStyle }>
         <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
-        { (!searchParams || !new URLSearchParams(searchParams).has('parent'))
-            ? t('project.noGeometries.search')
-            : t('project.noGeometries.hierarchy')
-        }
+        { t('project.noGeometries.' + (isInHierarchyMode(searchParams) ? 'hierarchy' : 'search')) }
     </div>;
 };
 
@@ -199,6 +195,12 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 
     const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE), parentId);
     return mapSearch(query, token);
+};
+
+
+const isInHierarchyMode = (searchParams: string): boolean => {
+
+    return searchParams && new URLSearchParams(searchParams).has('parent');
 };
 
 
