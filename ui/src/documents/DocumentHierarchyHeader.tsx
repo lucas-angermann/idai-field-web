@@ -11,7 +11,7 @@ export default function DocumentHierarchyHeader({ projectDocument, documents, se
     return projectDocument
         ? <Card.Header className="hierarchy-parent">
             <DocumentTeaser document={ getParentDocument(projectDocument, searchParams, documents) }
-                            project={ projectDocument.resource.id }
+                            project={ projectDocument.resource.id } searchParams={ searchParams }
                             hierarchyHeader={ true } />
         </Card.Header>
         : <></>;

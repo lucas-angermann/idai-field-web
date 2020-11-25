@@ -54,7 +54,6 @@ export default function Project(): ReactElement {
             waitForDocument = get(documentId, loginData.token);
             waitForDocument.then(doc => {
                 setDocument(doc);
-                parentId = doc?.resource.parentId;
             });
         } else {
             setDocument(null);
