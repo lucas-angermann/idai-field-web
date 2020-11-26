@@ -21,13 +21,11 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
     const history = useHistory();
     const { t } = useTranslation();
 
-
     useEffect(() => {
 
         const projectId: string | undefined = getProjectId(location);
         if (projectId) get(projectId, loginData.token).then(setProjectDocument);
     }, [location, loginData]);
-
 
     const getNavItemClass = (route: string) => getCurrentRoute(location, projectDocument) === route
         ? 'active-navitem'
@@ -74,18 +72,25 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
                 </Nav.Link>
             </Nav>
             <LanguageButton/>
-            { renderLogin(loginData, onLogout, t) }
+            { renderLogin(loginData, history, onLogout, t) }
         </Navbar>
     );
 };
 
 
-const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): ReactElement =>
+const renderLogin = (loginData: LoginData, history: any, onLogout: () => void, t: TFunction): ReactElement =>
     loginData.user === 'anonymous'
         ? <Navbar.Text className="mr-sm-2"><Link to="/login">{ t('navbar.login') }</Link></Navbar.Text>
         : <Navbar.Text>{ t('navbar.loggedInAs') } { loginData.user }
-            <Button variant="link" onClick={ onLogout }>{ t('navbar.logOut') }</Button>
+            <Button variant="link" onClick={ () => logOut(history, onLogout) }>{ t('navbar.logOut') }</Button>
         </Navbar.Text>;
+
+
+const logOut = (history: any, onLogout: () => void) => {
+
+    onLogout();
+    history.push('/');
+};
 
 
 const getProjectId = (location: any): string | undefined => {
