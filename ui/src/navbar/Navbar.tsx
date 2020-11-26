@@ -27,10 +27,14 @@ export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
         if (projectId) get(projectId, loginData.token).then(setProjectDocument);
     }, [location, loginData]);
 
+    useEffect(() => {
+
+        setProjectDocument(null);
+    }, [loginData]);
+
     const getNavItemClass = (route: string) => getCurrentRoute(location, projectDocument) === route
         ? 'active-navitem'
         : '';
-
 
     return (
         <Navbar variant="dark" style={ navbarStyle }>
