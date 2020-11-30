@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { shapesBasepath } from './constants';
 
 export enum AppNames {

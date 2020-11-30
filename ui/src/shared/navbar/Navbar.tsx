@@ -1,6 +1,6 @@
 import React, {  useContext, ReactElement,  Fragment } from 'react';
 import { Navbar,  Button } from 'react-bootstrap';
-import {  useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { LoginContext } from '../../App';
