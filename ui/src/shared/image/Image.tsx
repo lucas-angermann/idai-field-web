@@ -1,9 +1,7 @@
 import React, { ReactElement, CSSProperties, useState, useEffect, useContext } from 'react';
-import { mdiEmoticonSad } from '@mdi/js';
-import Icon from '@mdi/react';
 import { LoginContext } from '../../App';
 import { fetchImage } from '../../api/image';
-
+import NotFoundImage from './NotFoundImage';
 
 interface ImageProps {
     project: string;
@@ -44,11 +42,7 @@ export default React.memo(function Image({ project, id, maxWidth, maxHeight }: I
 
     return imgUrl
         ? <img src={ imgUrl } style={ imageStyle } alt={ id }/>
-        : error
-            && <div style={ errorStyle }>
-                <Icon path={ mdiEmoticonSad } color="#ffffff" size={ 1.5 }></Icon><br/>
-                image not found
-               </div>;
+        : error && <NotFoundImage />;
 });
 
 const imageStyle: CSSProperties = {
@@ -58,14 +52,4 @@ const imageStyle: CSSProperties = {
     margin: 'auto',
     backgroundColor: '#ccc',
     color: '#fff'
-};
-
-const errorStyle: CSSProperties = {
-    height: '100%',
-    width: '100%',
-    margin: 'auto',
-    backgroundColor: '#ccc',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '20%'
 };
