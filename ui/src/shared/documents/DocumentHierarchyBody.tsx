@@ -3,8 +3,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Card } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiMenuLeft } from '@mdi/js';
-import LinkButton from '../../shared/linkbutton/LinkButton';
-import { getPreviousHierarchyLevelUrl } from '../project/navigation';
+import LinkButton from '../linkbutton/LinkButton';
+import { getPreviousHierarchyLevelUrl } from '../../idai_field/project/navigation';
 import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../../api/result';
 

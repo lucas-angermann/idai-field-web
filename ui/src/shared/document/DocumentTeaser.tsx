@@ -8,7 +8,7 @@ import { TFunction } from 'i18next';
 import CategoryIcon from './CategoryIcon';
 import { ResultDocument } from '../../api/result';
 import './document-teaser.css';
-import LinkButton from '../../shared/linkbutton/LinkButton';
+import LinkButton from '../linkbutton/LinkButton';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 

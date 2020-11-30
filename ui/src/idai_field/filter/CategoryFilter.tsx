@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Dropdown, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FilterBucketTreeNode, ResultFilter } from '../../api/result';
-import CategoryIcon from '../document/CategoryIcon';
+import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../languages';
 import CloseButton from './CloseButton';
 import FilterDropdown from './FilterDropdown';

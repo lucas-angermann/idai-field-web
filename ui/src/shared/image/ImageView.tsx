@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Map, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 import IiifImageLayer from './IiifImageLayer';
-import DocumentDetails from '../../idai_field/document/DocumentDetails';
+import DocumentDetails from '../document/DocumentDetails';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { LoginContext } from '../../App';
 import { Document } from '../../api/document';

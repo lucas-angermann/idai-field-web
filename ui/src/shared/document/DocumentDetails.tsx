@@ -6,7 +6,7 @@ import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import { Document, FieldGroup, Field, Relation, getImages, LabeledValue } from '../../api/document';
 import DocumentTeaser from './DocumentTeaser';
-import Image from '../../shared/image/Image';
+import Image from '../image/Image';
 import { ResultDocument } from '../../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../../languages';
 import './document-details.css';

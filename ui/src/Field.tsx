@@ -1,15 +1,14 @@
 import React, { useState, Fragment, ReactElement } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ProjectOverview from './idai_field/overview/ProjectOverview';
-import Download from './shared/download/Download';
+import Download from './idai_field/download/Download';
 import Project from './idai_field/project/Project';
 import ResourceRedirect from './ResourceRedirect';
 import Manual from './idai_field/manual/Manual';
 import Navbar from './shared/navbar/Navbar';
 import LoginForm from './shared/loginform/LoginForm';
 import ImageView from './shared/image/ImageView';
-import Contact from './shared/contact/Contact';
-import { AppNames } from './apps';
+import Contact from './idai_field/contact/Contact';
 
 import { doLogout } from './logout';
 import { getPersistedLogin } from './login';
