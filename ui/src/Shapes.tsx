@@ -3,8 +3,8 @@ import { Redirect, Route, Switch } from 'react-router';
 import Navbar from './shared/navbar/Navbar';
 import { doLogout } from './logout';
 import { getPersistedLogin } from './login';
-import { AppNames } from './apps';
 import { shapesBasepath } from './constants';
+import BrowseSelect from './idai_shapes/browseselect/BrowseSelect';
 
 export default function Shapes(): ReactElement {
     const [loginData, setLoginData] = useState(getPersistedLogin());
@@ -13,7 +13,7 @@ export default function Shapes(): ReactElement {
         <Fragment>
             <Navbar onLogout={ doLogout(setLoginData)} />
             <Switch>
-                <Route path={ `${shapesBasepath}/browseSelect`} render ={ () => <h1>Browse and Select</h1>} />
+                <Route path={ `${shapesBasepath}/browseSelect/:documentId?`} component={ BrowseSelect} />
                 <Redirect from={ `${shapesBasepath}`} exact to={ `${shapesBasepath}/browseSelect` } />
                 <Route render={ () => <p>Nobody here</p>} />
             </Switch>
