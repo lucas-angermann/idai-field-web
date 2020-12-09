@@ -14,6 +14,7 @@ import { CHUNK_SIZE } from '../project/Project';
 import Filters from '../filter/Filters';
 import Documents from '../../shared/documents/Documents';
 import './project-overview.css';
+import { EXCLUDED_TYPES_FIELD } from '../constants';
 
 
 export default function ProjectOverview(): ReactElement {
@@ -94,7 +95,8 @@ const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
 
 const searchDocuments = async (searchParams: string, from: number, token: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectOverviewQueryTemplate(from, CHUNK_SIZE));
+    const query = parseFrontendGetParams(searchParams,
+        buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD));
     return search(query, token);
 };
 

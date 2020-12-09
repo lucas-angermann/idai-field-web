@@ -1,4 +1,3 @@
-const EXCLUDED_TYPES = ['Project', 'Image', 'TypeCatalog', 'Type'];
 
 
 export type Query = {
@@ -47,20 +46,20 @@ export const buildBackendGetParams = (query: Query) => {
 };
 
 
-export const buildProjectOverviewQueryTemplate = (from: number, size: number): Query => ({
+export const buildProjectOverviewQueryTemplate = (from: number, size: number, excludedTypes: string[]): Query => ({
     size,
     from,
-    not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
+    not: excludedTypes.map(type => ({ field: 'resource.category.name', value: type }))
 });
 
 
-export const buildProjectQueryTemplate = (id: string, from: number, size: number): Query => ({
+export const buildProjectQueryTemplate = (id: string, from: number, size: number, excludedTypes: string[]): Query => ({
     size,
     from,
     filters: [
         { field: 'project', value: id }
     ],
-    not: EXCLUDED_TYPES.map(type => ({ field: 'resource.category.name', value: type }))
+    not: excludedTypes.map(type => ({ field: 'resource.category.name', value: type }))
 });
 
 

@@ -177,7 +177,7 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0));
+    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD));
     return search(query, token);
 };
 
@@ -185,7 +185,8 @@ const initFilters = async (id: string, searchParams: string, token: string): Pro
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
                                parentId?: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE), parentId);
+    const query = parseFrontendGetParams(searchParams,
+        buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD), parentId);
     return search(query, token);
 };
 
@@ -193,7 +194,8 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 const searchMapDocuments = async (id: string, searchParams: string, token: string,
                                   parentId?: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, MAX_SIZE), parentId);
+    const query = parseFrontendGetParams(searchParams,
+        buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD), parentId);
     return mapSearch(query, token);
 };
 

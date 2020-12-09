@@ -11,6 +11,7 @@ import DocumentDetails from '../../shared/document/DocumentDetails';
 import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
 import { shapesBasepath } from '../../constants';
 import DocumentHierarNav, { HierarItem } from '../../shared/documents/DocumentHierarNav';
+import { EXCLUDED_TYPES_SHAPES } from '../constants'
 const CHUNK_SIZE = 50;
 
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -87,6 +88,7 @@ export default function BrowseSelect(): ReactElement {
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
                                parentId?: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, from, CHUNK_SIZE), parentId);
+    const query = parseFrontendGetParams(searchParams,
+        buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_SHAPES), parentId);
     return search(query, token);
 };
