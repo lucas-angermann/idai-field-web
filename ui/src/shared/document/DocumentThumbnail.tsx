@@ -11,7 +11,7 @@ interface DocumentThumbnailProps {
     imageUrl: string;
 }
 
-export default function DocumentThumbnail({ document, linkUrl, imageUrl }: DocumentThumbnailProps):
+export default React.memo(function DocumentThumbnail({ document, linkUrl, imageUrl }: DocumentThumbnailProps):
     ReactElement {
     
     return (
@@ -25,4 +25,4 @@ export default function DocumentThumbnail({ document, linkUrl, imageUrl }: Docum
             </Card>
         </Link>
     );
-  }
+  });
