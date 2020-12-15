@@ -24,7 +24,7 @@ export default function ResourceRedirect(): ReactElement {
 
 const getId = async (project: string, identifier: string, token: string): Promise<string> => {
 
-    const result = await search({ filters: getFilters(project, identifier) }, token);
+    const result = await search({ filters: getFilters(project, identifier), q: '' }, token);
     return result.documents[0].resource.id;
 };
 
