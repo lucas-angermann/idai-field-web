@@ -11,7 +11,7 @@ import DocumentDetails from '../../shared/document/DocumentDetails';
 import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
 import { shapesBasepath } from '../../constants';
 import DocumentHierarNav, { HierarItem } from '../../shared/documents/DocumentHierarNav';
-import { EXCLUDED_TYPES_SHAPES } from '../constants'
+import { EXCLUDED_TYPES_SHAPES } from '../constants';
 const CHUNK_SIZE = 50;
 
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -59,7 +59,7 @@ export default function BrowseSelect(): ReactElement {
     useEffect(() => {
 
         waitForDocument.then(() => {
-            searchDocuments(projectId, location.search, 0, loginData.token, parentId)
+            searchDocuments(projectId, location.search, 0, loginData.token, parentId === undefined ? 'root' : parentId)
                 .then(result => {
                     setDocuments(result.documents);
                 });

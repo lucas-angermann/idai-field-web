@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiFileTree, mdiInformation } from '@mdi/js';
-import Documents from '../documents/Documents';
+import Documents from '../../shared/documents/Documents';
 import ProjectMap from './ProjectMap';
 import { get, mapSearch, search } from '../../api/documents';
 import { Document } from '../../api/document';
@@ -17,9 +17,10 @@ import SearchBar from '../../shared/search/SearchBar';
 import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../../languages';
-import DocumentDetails from '../document/DocumentDetails';
+import DocumentDetails from '../../shared/document/DocumentDetails'
+import { EXCLUDED_TYPES_FIELD } from '../constants';
 import { getContextUrl } from './navigation';
-import LinkButton from '../LinkButton';
+import LinkButton from '../../shared/linkbutton/LinkButton';
 
 
 const MAX_SIZE = 10000;

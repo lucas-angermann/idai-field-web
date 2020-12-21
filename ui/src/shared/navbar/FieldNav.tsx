@@ -66,25 +66,8 @@ export default (): ReactElement => {
                     </Link>
                 </Nav.Link>
             </Nav>
-            <LanguageButton/>
-            { renderLogin(loginData, history, onLogout, t) }
-        </Navbar>
+        </Fragment>
     );
-};
-
-
-const renderLogin = (loginData: LoginData, history: any, onLogout: () => void, t: TFunction): ReactElement =>
-    loginData.user === 'anonymous'
-        ? <Navbar.Text className="mr-sm-2"><Link to="/login">{ t('navbar.login') }</Link></Navbar.Text>
-        : <Navbar.Text>{ t('navbar.loggedInAs') } { loginData.user }
-            <Button variant="link" onClick={ () => logOut(history, onLogout) }>{ t('navbar.logOut') }</Button>
-        </Navbar.Text>;
-
-
-const logOut = (history: any, onLogout: () => void) => {
-
-    onLogout();
-    history.push('/');
 };
 
 
