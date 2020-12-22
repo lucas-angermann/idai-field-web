@@ -46,4 +46,48 @@ defmodule Api.Documents.Router do
       _ -> IO.puts "other error"
     end
   end
+
+  # TODO under construction
+  get "/predecessors/:id" do
+    with doc = %{ project: project } <- Index.get(id),
+         :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
+    do
+      collection = Stream.unfold(
+        doc,
+        fn current_doc ->
+          case current_doc do
+            nil -> nil
+            current_doc ->
+              if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil do
+                parent_key = current_doc.resource.parentId
+                parent = Index.get(parent_key)
+                {current_doc, parent}
+              else
+                {current_doc, nil}
+              end
+          end
+        end
+      )
+      |>Enum.to_list()
+
+      send_json(conn,
+        %{
+          results: Enum.map(
+            collection,
+            fn item ->
+              %{
+                id: item.resource.id,
+                identifier: item.resource.identifier,
+                category: item.resource.category["name"],
+                liesWithin: item.resource.parentId
+              }
+            end
+          ) |> Enum.reverse
+        })
+    else
+      nil -> send_not_found(conn)
+      :unauthorized_access -> send_unauthorized(conn)
+      _ -> IO.puts "other error"
+    end
+  end
 end
