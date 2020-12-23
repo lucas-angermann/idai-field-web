@@ -79,7 +79,7 @@ defmodule Api.Documents.Router do
                 id: item.resource.id,
                 identifier: item.resource.identifier,
                 category: item.resource.category["name"],
-                liesWithin: item.resource.parentId
+                isChildOf: item.resource.parentId
               }
             end
           ) |> Enum.reverse
