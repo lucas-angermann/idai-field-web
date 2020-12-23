@@ -9,8 +9,8 @@ defmodule Core.LayoutTest do
     resource = %{
       :id => "42",
       :relations => %{
-        "liesWithin" => [%{ "resource" => %{ "id" => "45", "parentId" => "40" } }],
-        "isChildOf" => [%{ "resource" => %{ "id" => "45", "parentId" => "40" } }]
+        liesWithin: [%{ resource: %{ id: "45", parentId: "40" } }],
+        isChildOf: [%{ resource: %{ id: "45", parentId: "40" } }]
       },
       :category => %{ "name" => "Operation", "label" => %{ "de" => "Maßnahme", "en" => "Operation" } },
       "color" => [
@@ -35,7 +35,7 @@ defmodule Core.LayoutTest do
     start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
     configuration = ProjectConfigLoader.get("test-project")
 
-    layouted_resource = Layout.to_layouted_resource(configuration, resource)
+    layouted_resource = Layout.to_layouted_resource(configuration, resource )
 
     assert layouted_resource == %{
       :id => "42",

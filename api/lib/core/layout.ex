@@ -10,7 +10,7 @@ defmodule Core.Layout do
     |> put_in([:parentId], Resource.get_parent_id(resource))
     |> put_in([:grandparentId], Resource.get_grandparent_id(resource))
     |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
-    |> Utils.atomize
+    |> Utils.atomize # TODO why this?
   end
 
   defp scan_group(resource) do
@@ -26,7 +26,7 @@ defmodule Core.Layout do
 
   defp scan_relation(resource) do
     fn config_item ->
-      targets = resource.relations[config_item.name]
+      targets = resource.relations[String.to_atom(config_item.name)]
 
       unless targets && length(targets) > 0, do: [], else:
         [%{
@@ -51,5 +51,4 @@ defmodule Core.Layout do
         }]
     end
   end
-
 end

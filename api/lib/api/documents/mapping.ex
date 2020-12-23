@@ -105,5 +105,4 @@ defmodule Api.Documents.Mapping do
   defp get_label(field = [_|_], value), do: Enum.find(field, &(&1["name"] == value))["label"]
   defp get_label(field = %{}, _), do: field["label"]
   defp get_label(field, _), do: field
-
 end
