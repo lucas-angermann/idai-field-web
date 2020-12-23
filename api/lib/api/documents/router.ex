@@ -47,38 +47,43 @@ defmodule Api.Documents.Router do
     end
   end
 
-  # TODO under construction
   get "/predecessors/:id" do
     with doc = %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
     do
-      entries = Stream.unfold(
-        doc,
-        fn nil -> nil
-           current_doc ->
-           {
-             current_doc,
-             (if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil, do:
-               Index.get(current_doc.resource.parentId))
-           }
-        end
+      send_json(conn,
+        %{
+          results: fetch_entries(doc)
+                   |> Enum.map(
+                        fn entry -> %{
+                                     id: entry.resource.id,
+                                     identifier: entry.resource.identifier,
+                                     category: entry.resource.category["name"],
+                                     isChildOf: entry.resource.parentId
+                                   }
+                        end
+                      )
+                   |> Enum.reverse()
+        }
       )
-      |> Enum.map(
-           fn item -> %{
-                        id: item.resource.id,
-                        identifier: item.resource.identifier,
-                        category: item.resource.category["name"],
-                        isChildOf: item.resource.parentId
-                      }
-           end
-         )
-      |> Enum.reverse()
-
-      send_json(conn, %{ results: entries })
     else
       nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
       _ -> IO.puts "other error"
     end
+  end
+
+  defp fetch_entries(doc) do
+    Stream.unfold(
+      doc,
+      fn nil -> nil
+        current_doc ->
+          {
+            current_doc,
+            (if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil, do:
+              Index.get(current_doc.resource.parentId))
+          }
+      end
+    )
   end
 end
