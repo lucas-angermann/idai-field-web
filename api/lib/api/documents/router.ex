@@ -54,18 +54,13 @@ defmodule Api.Documents.Router do
     do
       collection = Stream.unfold(
         doc,
-        fn current_doc ->
-          case current_doc do
-            nil -> nil
-            current_doc ->
-              if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil do
-                parent_key = current_doc.resource.parentId
-                parent = Index.get(parent_key)
-                {current_doc, parent}
-              else
-                {current_doc, nil}
-              end
-          end
+        fn nil -> nil
+           current_doc ->
+           {
+             current_doc,
+             (if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil, do:
+               Index.get(current_doc.resource.parentId))
+           }
         end
       )
       |>Enum.to_list()
