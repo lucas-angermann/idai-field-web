@@ -52,7 +52,7 @@ defmodule Api.Documents.Router do
     with doc = %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
     do
-      collection = Stream.unfold(
+      entries = Stream.unfold(
         doc,
         fn nil -> nil
            current_doc ->
@@ -63,22 +63,18 @@ defmodule Api.Documents.Router do
            }
         end
       )
-      |>Enum.to_list()
+      |> Enum.map(
+           fn item -> %{
+                        id: item.resource.id,
+                        identifier: item.resource.identifier,
+                        category: item.resource.category["name"],
+                        isChildOf: item.resource.parentId
+                      }
+           end
+         )
+      |> Enum.reverse()
 
-      send_json(conn,
-        %{
-          results: Enum.map(
-            collection,
-            fn item ->
-              %{
-                id: item.resource.id,
-                identifier: item.resource.identifier,
-                category: item.resource.category["name"],
-                isChildOf: item.resource.parentId
-              }
-            end
-          ) |> Enum.reverse
-        })
+      send_json(conn, %{ results: entries })
     else
       nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
