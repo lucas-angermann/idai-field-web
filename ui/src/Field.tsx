@@ -1,4 +1,4 @@
-import React, { useState, Fragment, ReactElement } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ProjectOverview from './idai_field/overview/ProjectOverview';
 import Download from './idai_field/download/Download';
@@ -9,16 +9,16 @@ import Navbar from './shared/navbar/Navbar';
 import LoginForm from './shared/loginform/LoginForm';
 import ImageView from './shared/image/ImageView';
 import Contact from './idai_field/contact/Contact';
-
 import { doLogout } from './logout';
 import { getPersistedLogin } from './login';
+import { LoginContext } from './App';
 
 export default function Field(): ReactElement {
 
     const [loginData, setLoginData] = useState(getPersistedLogin());
 
     return (
-        <Fragment>
+        <LoginContext.Provider value={ loginData}>
             <Navbar onLogout={ doLogout(setLoginData)}/>
             <Switch>
                 <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
@@ -41,6 +41,6 @@ export default function Field(): ReactElement {
 
                 <Route path="/" component={ ProjectOverview } />
             </Switch>
-        </Fragment>
+        </LoginContext.Provider>
     );
 }
