@@ -7,11 +7,11 @@ import Icon from '@mdi/react';
 import { mdiMenuRight } from '@mdi/js';
 import { dropdownStyle } from './styles';
 import { get } from '../../api/documents';
-import { getNavItemClass } from './Navbar';
+import { getNavItemClass } from './NavbarHoc';
 import { LoginContext } from '../../App';
+import NavbarHoc, { NavBarProps } from './NavbarHoc';
 
-
-export default (): ReactElement => {
+export default ({ onLogout}: NavBarProps): ReactElement => {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
@@ -29,44 +29,46 @@ export default (): ReactElement => {
 
 
     return (
-        <>
-            <Nav activeKey={ location.pathname } className="mr-auto">
-                <Nav.Link as="span">
-                    <Link to="/" className={ NavItemClass('overview') }>
-                        { t('navbar.projects') }
-                    </Link>
-                </Nav.Link>
-                {
-                    projectDocument && <>
-                        <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
-                        <Nav.Link as="span">
-                            <Link to={ `/project/${projectDocument.resource.id}` }
-                                  className={ NavItemClass('project') }>
-                                { projectDocument.resource.identifier }
-                            </Link>
-                        </Nav.Link>
-                    </>
-                }
-            </Nav>
-            <Nav className="justify-content-end">
-                <NavDropdown id="desktop-dropdown" as="span"
-                             className={ NavItemClass('desktop') }
-                             title={ t('navbar.desktop') }
-                             style={ dropdownStyle }>
-                    <NavDropdown.Item onClick={ () => history.push('/download') } >
-                        { t('navbar.download') }
-                    </NavDropdown.Item>
-                    <NavDropdown.Item onClick={ () => history.push('/manual') }>
-                        { t('navbar.manual') }
-                    </NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link as="span">
-                    <Link to="/contact" className={ NavItemClass('contact') }>
-                        { t('navbar.contact') }
-                    </Link>
-                </Nav.Link>
-            </Nav>
-        </>
+        <NavbarHoc onLogout={ onLogout} basepath= "/" brand= "field">
+            <>
+                <Nav activeKey={ location.pathname } className="mr-auto">
+                    <Nav.Link as="span">
+                        <Link to="/" className={ NavItemClass('overview') }>
+                            { t('navbar.projects') }
+                        </Link>
+                    </Nav.Link>
+                    {
+                        projectDocument && <>
+                            <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
+                            <Nav.Link as="span">
+                                <Link to={ `/project/${projectDocument.resource.id}` }
+                                    className={ NavItemClass('project') }>
+                                    { projectDocument.resource.identifier }
+                                </Link>
+                            </Nav.Link>
+                        </>
+                    }
+                </Nav>
+                <Nav className="justify-content-end">
+                    <NavDropdown id="desktop-dropdown" as="span"
+                                className={ NavItemClass('desktop') }
+                                title={ t('navbar.desktop') }
+                                style={ dropdownStyle }>
+                        <NavDropdown.Item onClick={ () => history.push('/download') } >
+                            { t('navbar.download') }
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={ () => history.push('/manual') }>
+                            { t('navbar.manual') }
+                        </NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link as="span">
+                        <Link to="/contact" className={ NavItemClass('contact') }>
+                            { t('navbar.contact') }
+                        </Link>
+                    </Nav.Link>
+                </Nav>
+            </>
+        </NavbarHoc>
     );
 };
 

@@ -5,7 +5,7 @@ import Download from './download/Download';
 import Project from './project/Project';
 import ResourceRedirect from '../ResourceRedirect';
 import Manual from './manual/Manual';
-import Navbar from '../shared/navbar/Navbar';
+import FieldNav from '../shared/navbar/FieldNav';
 import LoginForm from '../shared/loginform/LoginForm';
 import ImageView from '../shared/image/ImageView';
 import Contact from './contact/Contact';
@@ -19,7 +19,7 @@ export default function Field(): ReactElement {
 
     return (
         <LoginContext.Provider value={ loginData}>
-            <Navbar onLogout={ doLogout(setLoginData)}/>
+            <FieldNav onLogout={ doLogout(setLoginData)}/>
             <Switch>
                 <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                 <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />

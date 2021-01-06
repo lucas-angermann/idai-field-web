@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import Navbar from '../shared/navbar/Navbar';
+import ShapesNav from '../shared/navbar/ShapesNav';
 import { doLogout } from '../logout';
 import { getPersistedLogin } from '../login';
 import { shapesBasepath } from '../constants';
@@ -12,7 +12,7 @@ export default function Shapes(): ReactElement {
 
     return (
         <LoginContext.Provider value={ loginData}>
-            <Navbar onLogout={ doLogout(setLoginData)} />
+            <ShapesNav onLogout={ doLogout(setLoginData)} />
             <Switch>
                 <Route path={ `${shapesBasepath}/browseSelect/:documentId?`} component={ BrowseSelect} />
                 <Redirect from={ `${shapesBasepath}`} exact to={ `${shapesBasepath}/browseSelect` } />

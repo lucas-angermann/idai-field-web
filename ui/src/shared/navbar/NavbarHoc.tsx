@@ -8,24 +8,26 @@ import { LoginData } from '../../login';
 import LanguageButton from './LanguageButton';
 import './navbar.css';
 import { navbarStyle } from './styles';
-import FieldNav from './FieldNav';
-import { AppNames, getActiveApp } from '../../apps';
-import ShapesNav from './ShapesNav';
-import { shapesBasepath } from '../../constants';
 
-export default ({ onLogout }: { onLogout: () => void }): ReactElement => {
+export interface NavBarProps {
+    onLogout: () => void;
+    basepath?: string;
+    brand?: string;
+    children?: JSX.Element;
+}
+
+
+export default ({ onLogout, basepath, brand, children }: NavBarProps): ReactElement => {
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
-    const app = getActiveApp();
 
     return (
-            < Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href={ app === AppNames.iDAIField ? '/' : shapesBasepath}>
-                { renderBrand(app === AppNames.iDAIField ? 'field' : 'shapes')}
+        < Navbar variant = "dark" style = { navbarStyle } >
+            <Navbar.Brand href={ basepath}>
+                { renderBrand(brand)}
             </Navbar.Brand>
-            { app === AppNames.iDAIField ?
-            < FieldNav /> : <ShapesNav />
-            }
+            { children}
+       
             <LanguageButton/>
             { renderLogin(loginData, onLogout, t) }
         </Navbar>
