@@ -1,5 +1,4 @@
 defmodule Core.CorePropertiesAtomizing do
-
   import Core.Utils
 
   @core_properties [:groups, :relations, :shortDescription, :id, :type, :category, :identifier, :geometry, :gazId,
@@ -30,8 +29,8 @@ defmodule Core.CorePropertiesAtomizing do
     |> Enum.map(&(update_in(&1, [:doc], fn doc -> format_document(doc) end)))
   end
 
-  defp update_relations(document) do
-    if not Map.has_key?(document.resource, :relations), do: document, else:
+  defp update_relations(document = %{ resource: resource }) do
+    if not Map.has_key?(resource, :relations), do: document, else:
       document
       |> update_in([:resource, :relations],
            fn rel -> for {k, v} <- rel, into: %{} do
@@ -43,4 +42,5 @@ defmodule Core.CorePropertiesAtomizing do
            end
          )
   end
+  defp update_relations(document), do: document
 end
