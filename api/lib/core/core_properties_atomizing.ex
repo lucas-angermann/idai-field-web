@@ -16,7 +16,7 @@ defmodule Core.CorePropertiesAtomizing do
   supports nested documents, when relation targets are documents themselves
   """
   def format_document(document) do
-    document = document
+    document
     |> atomize([:resource])
     |> atomize([:resource] ++ @core_properties, true)
     |> update_relations
@@ -44,6 +44,6 @@ defmodule Core.CorePropertiesAtomizing do
   end
   defp update_relations(document), do: document
 
-  defp format_relation_target(target_document = %{ resource: resource }), do: format_document(target_document)
+  defp format_relation_target(target_document = %{ resource: _ }), do: format_document(target_document)
   defp format_relation_target(target_identifier), do: target_identifier
 end
