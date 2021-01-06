@@ -1,17 +1,17 @@
 import React, { useState, ReactElement } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ProjectOverview from './idai_field/overview/ProjectOverview';
-import Download from './idai_field/download/Download';
-import Project from './idai_field/project/Project';
-import ResourceRedirect from './ResourceRedirect';
-import Manual from './idai_field/manual/Manual';
-import Navbar from './shared/navbar/Navbar';
-import LoginForm from './shared/loginform/LoginForm';
-import ImageView from './shared/image/ImageView';
-import Contact from './idai_field/contact/Contact';
-import { doLogout } from './logout';
-import { getPersistedLogin } from './login';
-import { LoginContext } from './App';
+import ProjectOverview from './overview/ProjectOverview';
+import Download from './download/Download';
+import Project from './project/Project';
+import ResourceRedirect from '../ResourceRedirect';
+import Manual from './manual/Manual';
+import Navbar from '../shared/navbar/Navbar';
+import LoginForm from '../shared/loginform/LoginForm';
+import ImageView from '../shared/image/ImageView';
+import Contact from './contact/Contact';
+import { doLogout } from '../logout';
+import { getPersistedLogin } from '../login';
+import { LoginContext } from '../App';
 
 export default function Field(): ReactElement {
 

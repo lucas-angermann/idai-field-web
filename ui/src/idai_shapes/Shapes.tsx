@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import Navbar from './shared/navbar/Navbar';
-import { doLogout } from './logout';
-import { getPersistedLogin } from './login';
-import { shapesBasepath } from './constants';
-import BrowseSelect from './idai_shapes/browseselect/BrowseSelect';
-import { LoginContext } from './App';
+import Navbar from '../shared/navbar/Navbar';
+import { doLogout } from '../logout';
+import { getPersistedLogin } from '../login';
+import { shapesBasepath } from '../constants';
+import BrowseSelect from './browseselect/BrowseSelect';
+import { LoginContext } from '../App';
 
 export default function Shapes(): ReactElement {
     const [loginData, setLoginData] = useState(getPersistedLogin());

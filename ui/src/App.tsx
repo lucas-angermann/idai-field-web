@@ -2,8 +2,8 @@ import React, {  ReactElement, useEffect } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import { ANONYMOUS_USER } from './login';
-import Field from './Field';
-import Shapes from './Shapes';
+import Field from './idai_field/Field';
+import Shapes from './idai_shapes/Shapes';
 
 
 export const LoginContext = React.createContext(ANONYMOUS_USER);
