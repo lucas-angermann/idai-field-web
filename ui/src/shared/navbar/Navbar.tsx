@@ -1,4 +1,4 @@
-import React, {  useContext, ReactElement,  Fragment } from 'react';
+import React, {  useContext, ReactElement } from 'react';
 import { Navbar,  Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -45,7 +45,7 @@ export const getNavItemClass = (route: string, currentRoute: string) =>
         : '';
 
 const renderBrand = (name: string) => (
-    <Fragment>
+    <>
         iDAI.<strong>{ name}</strong>
-    </Fragment>
+    </>
 );

@@ -38,7 +38,7 @@ const getLinkUrl = (searchParams: string, document: ResultDocument): string => {
 const renderDocuments = (documents: ResultDocument[], searchParams: string,
         selectedItem: (id: string, identifier: string, url: string, parentId: string | null) => void): ReactElement => {
     return (
-        <Fragment>
+        <>
         {
         documents.map((document: ResultDocument) => {
             const linkUrl = getLinkUrl(searchParams, document);
@@ -58,7 +58,7 @@ const renderDocuments = (documents: ResultDocument[], searchParams: string,
             }
         )
         }
-        </Fragment>
+        </>
     );
 };
 

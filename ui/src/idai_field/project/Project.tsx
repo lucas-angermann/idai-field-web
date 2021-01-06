@@ -17,7 +17,7 @@ import SearchBar from '../../shared/search/SearchBar';
 import './project.css';
 import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../../languages';
-import DocumentDetails from '../../shared/document/DocumentDetails'
+import DocumentDetails from '../../shared/document/DocumentDetails';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import { getContextUrl } from './navigation';
 import LinkButton from '../../shared/linkbutton/LinkButton';
@@ -42,7 +42,7 @@ export default function Project(): ReactElement {
     const { t } = useTranslation();
 
     let parentId: string | undefined;
-    let waitForDocument: Promise<any> = new Promise(resolve => resolve());
+    let waitForDocument: Promise<void | any> = new Promise<void>(resolve => resolve());
 
     useEffect(() => {
 

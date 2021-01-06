@@ -1,4 +1,4 @@
-import React, { ReactElement , Fragment, useState, useContext, useEffect } from 'react';
+import React, { ReactElement, useState, useContext, useEffect } from 'react';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { useLocation, useHistory, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ export default (): ReactElement => {
 
 
     return (
-        <Fragment>
+        <>
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
                     <Link to="/" className={ NavItemClass('overview') }>
@@ -66,7 +66,7 @@ export default (): ReactElement => {
                     </Link>
                 </Nav.Link>
             </Nav>
-        </Fragment>
+        </>
     );
 };
 

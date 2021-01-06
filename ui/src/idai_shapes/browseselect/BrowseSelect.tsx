@@ -1,4 +1,4 @@
-import React, { ReactElement, Fragment, useState, useContext, useEffect } from 'react';
+import React, { ReactElement, useState, useContext, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
 import { LoginContext } from '../../App';
@@ -10,7 +10,7 @@ import { Document } from '../../api/document';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
 import { shapesBasepath } from '../../constants';
-import DocumentHierarNav, { HierarItem } from '../../shared/documents/DocumentHierarNav';
+import DocumentHierarNav, { HierarchyItem } from '../../shared/documents/DocumentHierarNav';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 const CHUNK_SIZE = 50;
 
@@ -25,23 +25,22 @@ export default function BrowseSelect(): ReactElement {
     const projectId = 'idaishapes';
 
     const root = 'Catalogs';
-    const [hierarchy, setHierarchy] = useState<HierarItem[]>([]);
+    const [hierarchy, setHierarchy] = useState<HierarchyItem[]>([]);
     
     useEffect(() => {
+
         if (!documentId) {
             const index = hierarchy.findIndex(item => item.id === location.search.split('=')[1]);
-            const newHierar = hierarchy.slice(0, index + 1);
-            setHierarchy([...newHierar]);
+            const newHierarchy = hierarchy.slice(0, index + 1);
+            setHierarchy([...newHierarchy]);
         }
     }, [document, documentId, location]);
  
-    const selectedItemHandler = (id: string, identifier: string, url: string, parent: string | null): void => {
+    const selectedItemHandler = (id: string, identifier: string, url: string, parent: string | null): void =>
         setHierarchy(hierarchy.concat({ url, id, name: identifier }));
 
-    };
-
     let parentId: string | undefined;
-    let waitForDocument: Promise<any> = new Promise(resolve => resolve());
+    let waitForDocument: Promise<void | any> = new Promise<void>(resolve => resolve());
     
     useEffect(() => {
 
@@ -68,7 +67,7 @@ export default function BrowseSelect(): ReactElement {
 
     
     return (
-        <Fragment>
+        <>
             <DocumentHierarNav hierarchy={ [{ name: root, url: shapesBasepath }, ...hierarchy]}/>
             { document
                 ? <DocumentDetails document={ document }
@@ -81,10 +80,11 @@ export default function BrowseSelect(): ReactElement {
                     selectedItem={ selectedItemHandler}
                 />
             }
-        </Fragment>
+        </>
     );
 }
-       
+  
+
 const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
                                parentId?: string): Promise<Result> => {
 

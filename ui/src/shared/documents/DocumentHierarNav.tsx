@@ -5,14 +5,14 @@ import { mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import './document-hierar-nav.css';
 
-export interface HierarItem  {
+export interface HierarchyItem  {
     name: string;
     url: string;
     id?: string;
 }
 
 interface DocumentHierarNavProps {
-    hierarchy: HierarItem[];
+    hierarchy: HierarchyItem[];
 }
 
 export default function DocumentHierarNav({ hierarchy}: DocumentHierarNavProps): ReactElement {
