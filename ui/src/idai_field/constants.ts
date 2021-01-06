@@ -1,0 +1,1 @@
+export const EXCLUDED_TYPES_FIELD = ['Project', 'Image', 'TypeCatalog', 'Type'];
