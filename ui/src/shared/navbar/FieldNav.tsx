@@ -1,15 +1,14 @@
-import React, { ReactElement, useState, useContext, useEffect } from 'react';
-import { Nav, NavDropdown } from 'react-bootstrap';
-import { useLocation, useHistory, Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { Document } from '../../api/document';
-import Icon from '@mdi/react';
 import { mdiMenuRight } from '@mdi/js';
-import { dropdownStyle } from './styles';
+import Icon from '@mdi/react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import { Nav, NavDropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Document } from '../../api/document';
 import { get } from '../../api/documents';
-import { getNavItemClass } from './NavbarHoc';
 import { LoginContext } from '../../App';
-import NavbarHoc, { NavBarProps } from './NavbarHoc';
+import NavbarHoc, { getNavItemClass, NavBarProps } from './NavbarHoc';
+import { dropdownStyle } from './styles';
 
 export default ({ onLogout}: NavBarProps): ReactElement => {
 
@@ -29,7 +28,7 @@ export default ({ onLogout}: NavBarProps): ReactElement => {
 
 
     return (
-        <NavbarHoc onLogout={ onLogout} basepath= "/" brand= "field">
+        <NavbarHoc onLogout={ onLogout } brand= "field">
             <>
                 <Nav activeKey={ location.pathname } className="mr-auto">
                     <Nav.Link as="span">

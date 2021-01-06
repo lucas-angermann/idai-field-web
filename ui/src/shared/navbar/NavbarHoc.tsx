@@ -1,8 +1,8 @@
-import React, {  useContext, ReactElement } from 'react';
-import { Navbar,  Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
+import React, { ReactElement, useContext } from 'react';
+import { Button, Navbar } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { LoginContext } from '../../App';
 import { LoginData } from '../../login';
 import LanguageButton from './LanguageButton';
@@ -11,19 +11,18 @@ import { navbarStyle } from './styles';
 
 export interface NavBarProps {
     onLogout: () => void;
-    basepath?: string;
     brand?: string;
     children?: JSX.Element;
 }
 
 
-export default ({ onLogout, basepath, brand, children }: NavBarProps): ReactElement => {
+export default ({ onLogout, brand, children }: NavBarProps): ReactElement => {
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
     return (
         < Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href={ basepath}>
+            <Navbar.Brand href='/'>
                 { renderBrand(brand)}
             </Navbar.Brand>
             { children}

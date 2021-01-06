@@ -1,10 +1,9 @@
+import { TFunction } from 'i18next';
 import React, { Fragment, ReactElement } from 'react';
-import { Row, Card } from 'react-bootstrap';
+import { Card, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
-import { TFunction } from 'i18next';
-import { useTranslation } from 'react-i18next';
-import { shapesBasepath } from '../../constants';
 
 interface ShapesHierarchy {
     documents: ResultDocument[];
@@ -29,9 +28,9 @@ export function ShapesHierarchy({ documents, searchParams, selectedItem }: Shape
 
 const getLinkUrl = (searchParams: string, document: ResultDocument): string => {
     if (document.resource.childrenCount > 0) {
-        return `${shapesBasepath}/browseSelect?${getHierarchySearchParams(searchParams, document.resource.id)}`;
+        return `browseSelect?${getHierarchySearchParams(searchParams, document.resource.id)}`;
     } else {
-        return `${shapesBasepath}/browseSelect/${document?.project}/${document.resource.id}${searchParams}`;
+        return `browseSelect/${document?.project}/${document.resource.id}${searchParams}`;
     }
 };
 

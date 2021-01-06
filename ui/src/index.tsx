@@ -16,7 +16,7 @@ Modal.setAppElement('#root');
 
 const getSubdomain = (): string => {
 
-    const levels = window.location.host.split(".");
+    const levels = window.location.host.split('.');
 
     if (levels.length >= 3) return levels[0];
     else return null;

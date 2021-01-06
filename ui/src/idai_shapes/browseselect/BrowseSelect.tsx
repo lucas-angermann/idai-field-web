@@ -1,17 +1,16 @@
-import React, { ReactElement, useState, useContext, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { Document } from '../../api/document';
+import { get, search } from '../../api/documents';
+import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { Result, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import { getContextUrl } from '../../idai_field/project/navigation';
-import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
-import { ResultDocument, Result } from '../../api/result';
-import { get,  search } from '../../api/documents';
-import { Document } from '../../api/document';
 import DocumentDetails from '../../shared/document/DocumentDetails';
-import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
-import { shapesBasepath } from '../../constants';
 import DocumentHierarNav, { HierarchyItem } from '../../shared/documents/DocumentHierarNav';
+import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
+
 const CHUNK_SIZE = 50;
 
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -68,7 +67,7 @@ export default function BrowseSelect(): ReactElement {
     
     return (
         <>
-            <DocumentHierarNav hierarchy={ [{ name: root, url: shapesBasepath }, ...hierarchy]}/>
+            <DocumentHierarNav hierarchy={ [{ name: root, url: '' }, ...hierarchy]}/>
             { document
                 ? <DocumentDetails document={ document }
                                      searchParams={ location.search }
