@@ -23,6 +23,11 @@ Trigger indexing
     $ curl -XPOST localhost:4000/api/worker/reindex
     $ curl -XPOST localhost:4000/api/worker/conversion # if one has images from the client
     $ curl -XPOST localhost:4000/api/worker/tiling     # if there are georeferenced images
+
+Note that admin rights are needed in order to use the worker endpoints.
+So either use HTTP basic auth to login in with a user that has `admin: true`
+or add `%{ name: "anonymous", admin: true }` to api/config/dev.exs in order
+to grant admins rights without login for development purposes.
     
 or alternatively generate test data
 

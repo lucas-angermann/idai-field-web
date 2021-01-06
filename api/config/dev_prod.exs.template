@@ -19,7 +19,7 @@ config :api, Api.Auth.Guardian,
 
 config :api, Api.Auth,
   users: [
-    %{ name: "user-1", pass: "pass-1" }
+    %{ name: "user-1", pass: "pass-1", admin: true }
   ],
   readable_projects: %{
     "user-1" => ["a", "b", "c", "d"],
