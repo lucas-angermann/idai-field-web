@@ -33,14 +33,17 @@ defmodule Core.CorePropertiesAtomizing do
     if not Map.has_key?(resource, :relations), do: document, else:
       document
       |> update_in([:resource, :relations],
-           fn rel -> for {k, v} <- rel, into: %{} do
-                       {
-                         (if is_atom(k), do: k, else: String.to_atom(k)),
-                         (if is_list(v), do: Enum.map(v, &format_document/1), else: v)
-                       }
-                     end
+         fn rel -> for {k, v} <- rel, into: %{} do
+             {
+               (if is_atom(k), do: k, else: String.to_atom(k)),
+               (if is_list(v), do: Enum.map(v, &format_relation_target/1), else: v)
+             }
            end
-         )
+         end
+       )
   end
   defp update_relations(document), do: document
+
+  defp format_relation_target(target = %{ resource: resource }), do: format_document(target)
+  defp format_relation_target(target), do: target
 end
