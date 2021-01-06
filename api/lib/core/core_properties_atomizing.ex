@@ -44,6 +44,6 @@ defmodule Core.CorePropertiesAtomizing do
   end
   defp update_relations(document), do: document
 
-  defp format_relation_target(target = %{ resource: resource }), do: format_document(target)
-  defp format_relation_target(target), do: target
+  defp format_relation_target(target_document = %{ resource: resource }), do: format_document(target_document)
+  defp format_relation_target(target_identifier), do: target_identifier
 end
