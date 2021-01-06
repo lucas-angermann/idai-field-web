@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { LoginContext } from '../App';
@@ -11,6 +11,11 @@ import BrowseSelect from './browseselect/BrowseSelect';
 export default function Shapes(): ReactElement {
     
     const [loginData, setLoginData] = useState(getPersistedLogin());
+
+    useEffect(() => {
+
+        document.title = 'iDAI.shapes'
+    }, []);
 
     return (
         <BrowserRouter>

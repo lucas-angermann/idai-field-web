@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
@@ -16,6 +16,11 @@ import Project from './project/Project';
 export default function Field(): ReactElement {
 
     const [loginData, setLoginData] = useState(getPersistedLogin());
+
+    useEffect(() => {
+
+        document.title = 'iDAI.field'
+    }, []);
 
     return (
         <BrowserRouter>
