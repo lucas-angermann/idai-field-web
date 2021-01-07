@@ -3,14 +3,14 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavbarHoc, { NavBarProps } from './NavbarHoc';
 
-export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
+export default function ShapesNav({ onLogout, baseUrl }: NavBarProps): ReactElement {
 
-    const createEntry = (name: string, route: string) => createNavEntry(name, route);
+    const createEntry = (name: string, route: string) => createNavEntry(name, `${baseUrl}/${route}`);
 
     return (
         <NavbarHoc onLogout={ onLogout } brand= "shapes">
             <Nav className="mr-auto">
-                { createEntry('Browse & Select', 'browseSelect') }
+                { createEntry('Browse & Select', '') }
                 { createEntry('Find', 'find') }
                 { createEntry('Export', 'export') }
                 { createEntry('Edit', 'edit') }

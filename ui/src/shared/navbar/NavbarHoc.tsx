@@ -13,6 +13,7 @@ export interface NavBarProps {
     onLogout: () => void;
     brand?: string;
     children?: JSX.Element;
+    baseUrl?: string;
 }
 
 
