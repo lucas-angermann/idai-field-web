@@ -14,6 +14,7 @@ module.exports = {
     },
     extends: [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "plugin:@typescript-eslint/recommended",
     ],
     plugins: [
@@ -27,6 +28,7 @@ module.exports = {
             }
         ],
         "@typescript-eslint/semi": [ "warn", "always" ],
+        "@typescript-eslint/no-inferrable-types": 0,
         "prefer-arrow/prefer-arrow-functions": [
             "error",
             {
