@@ -77,7 +77,6 @@ services:
 volumes:
   elasticsearch-data:
   idai-field-web_images:
-    external: true
 
 networks:
   web:
