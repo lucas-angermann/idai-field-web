@@ -3,5 +3,8 @@
     "editor.rulers": [
         120
     ],
-    "elixirLS.projectDir": "api"
+    "elixirLS.projectDir": "api",
+    "eslint.workingDirectories": [
+        "ui"
+    ]
 }
