@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Field from './idai_field/Field';
 import Shapes from './idai_shapes/Shapes';
 import { ANONYMOUS_USER } from './login';
@@ -14,7 +14,8 @@ export default function App(): ReactElement {
         <div>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/idaishapes" component={ Shapes }/>
+                    <Redirect from="/idaishapes" to="/idaishapes/" exact strict />
+                    <Route path="/idaishapes/" component={ Shapes } strict />
                     <Route component={ Field } />
                 </Switch>
             </BrowserRouter>

@@ -10,7 +10,7 @@ import { LoginContext } from '../../App';
 import NavbarHoc, { getNavItemClass, NavBarProps } from './NavbarHoc';
 import { dropdownStyle } from './styles';
 
-export default ({ onLogout}: NavBarProps): ReactElement => {
+export default ({ onLogout }: NavBarProps): ReactElement => {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();

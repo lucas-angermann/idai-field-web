@@ -28,9 +28,9 @@ export function ShapesHierarchy({ documents, searchParams, selectedItem }: Shape
 
 const getLinkUrl = (searchParams: string, document: ResultDocument): string => {
     if (document.resource.childrenCount > 0) {
-        return `browseSelect?${getHierarchySearchParams(searchParams, document.resource.id)}`;
+        return `./?${getHierarchySearchParams(searchParams, document.resource.id)}`;
     } else {
-        return `browseSelect/${document?.project}/${document.resource.id}${searchParams}`;
+        return `./${document.resource.id}${searchParams}`;
     }
 };
 

@@ -16,14 +16,12 @@ export default function Shapes({ match }: { match?: any }): ReactElement {
         document.title = 'iDAI.shapes';
     }, []);
 
-    const baseUrl = match?.url || '';
-
     return (
         <BrowserRouter>
             <LoginContext.Provider value={ loginData }>
-                <ShapesNav onLogout={ doLogout(setLoginData) } baseUrl={ baseUrl }/>
+                <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
-                    <Route path={ `${baseUrl}/:documentId?` } component={ BrowseSelect } />
+                    <Route path=":documentId?" component={ BrowseSelect } />
                 </Switch>
             </LoginContext.Provider>
         </BrowserRouter>

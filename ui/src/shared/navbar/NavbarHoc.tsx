@@ -13,17 +13,17 @@ export interface NavBarProps {
     onLogout: () => void;
     brand?: string;
     children?: JSX.Element;
-    baseUrl?: string;
 }
 
 
 export default ({ onLogout, brand, children }: NavBarProps): ReactElement => {
+    
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
     return (
         <Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href="/">
+            <Navbar.Brand href="./">
                 { renderBrand(brand) }
             </Navbar.Brand>
             { children }
