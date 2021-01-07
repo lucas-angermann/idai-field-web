@@ -10,7 +10,7 @@ import { LoginContext } from '../../App';
 import NavbarHoc, { getNavItemClass, NavBarProps } from './NavbarHoc';
 import { dropdownStyle } from './styles';
 
-export default ({ onLogout }: NavBarProps): ReactElement => {
+export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
@@ -69,7 +69,7 @@ export default ({ onLogout }: NavBarProps): ReactElement => {
             </>
         </NavbarHoc>
     );
-};
+}
 
 
 const getProjectId = (location: any): string | undefined => {

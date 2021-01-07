@@ -16,7 +16,7 @@ export interface NavBarProps {
 }
 
 
-export default ({ onLogout, brand, children }: NavBarProps): ReactElement => {
+export default function NavbarHoc({ onLogout, brand, children }: NavBarProps): ReactElement {
     
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
@@ -31,7 +31,7 @@ export default ({ onLogout, brand, children }: NavBarProps): ReactElement => {
             { renderLogin(loginData, onLogout, t) }
         </Navbar>
     );
-};
+}
 
 const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): ReactElement =>
     loginData.user === 'anonymous'

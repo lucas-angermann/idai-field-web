@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
 import NotFoundImage from '../image/NotFoundImage';
 
@@ -11,6 +11,8 @@ interface DocumentThumbnailProps {
     imageUrl: string;
 }
 
+
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentThumbnail({ document, linkUrl, imageUrl }: DocumentThumbnailProps):
     ReactElement {
     

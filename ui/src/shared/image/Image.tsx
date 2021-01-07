@@ -1,6 +1,6 @@
-import React, { ReactElement, CSSProperties, useState, useEffect, useContext } from 'react';
-import { LoginContext } from '../../App';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { fetchImage } from '../../api/image';
+import { LoginContext } from '../../App';
 import NotFoundImage from './NotFoundImage';
 
 interface ImageProps {
@@ -11,6 +11,7 @@ interface ImageProps {
 }
 
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function Image({ project, id, maxWidth, maxHeight }: ImageProps): ReactElement {
 
     const [imgUrl, setImgUrl] = useState<string>();
@@ -47,7 +48,7 @@ export default React.memo(function Image({ project, id, maxWidth, maxHeight }: I
 
 const imageStyle: CSSProperties = {
     display: 'block',
-    maxHeight: `100%`,
+    maxHeight: '100%',
     maxWidth: '100%',
     margin: 'auto',
     backgroundColor: '#ccc',

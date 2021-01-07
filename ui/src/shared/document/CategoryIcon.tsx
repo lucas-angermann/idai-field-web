@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
-import { getColor, isColorTooBright } from '../../categoryColors';
 import { LabeledValue } from '../../api/document';
+import { getColor, isColorTooBright } from '../../categoryColors';
 import { getLabel } from '../../languages';
 
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function CategoryIcon({ category, size }
         : { category: LabeledValue, size: string }) {
 
@@ -24,7 +25,7 @@ const iconStyle = (size: string, color: string): CSSProperties => ({
     lineHeight: `${size}px`,
     backgroundColor: color,
     display: 'inline-block',
-    fontFamily: `'Open Sans', sans-serif`,
+    fontFamily: '\'Open Sans\', sans-serif',
     fontWeight: 'lighter',
     borderRadius: '50%',
     textAlign: 'center',

@@ -1,12 +1,12 @@
-import React, { useState, ReactElement, useEffect } from 'react';
+import { TFunction } from 'i18next';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
-import DocumentList from './DocumentList';
+import { Document } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { CHUNK_SIZE } from '../../idai_field/project/Project';
 import DocumentHierarchy from './DocumentHierarchy';
-import { Document } from '../../api/document';
+import DocumentList from './DocumentList';
 import './documents.css';
 
 
@@ -18,6 +18,7 @@ interface DocumentProperties {
 }
 
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function Documents(
     { documents, projectDocument, getChunk,
         searchParams = '' }: DocumentProperties): ReactElement {

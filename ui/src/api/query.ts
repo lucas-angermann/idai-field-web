@@ -17,7 +17,7 @@ export type Filter = {
 };
 
 
-export const buildBackendGetParams = (query: Query) => {
+export const buildBackendGetParams = (query: Query): string => {
 
     const queryParams = [['q', query.q && query.q.length > 0 ? query.q : '*']];
 
@@ -34,7 +34,7 @@ export const buildBackendGetParams = (query: Query) => {
         if (query.parent && query.parent !== 'root') {
             queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
         } else  {
-            queryParams.push(['not_exists[]', `resource.relations.isChildOf`]);
+            queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
         }
         queryParams.push(['sort', 'sort']);
     }

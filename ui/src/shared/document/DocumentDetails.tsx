@@ -1,15 +1,15 @@
-import React, { CSSProperties, ReactNode, ReactElement } from 'react';
-import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { Document, FieldGroup, Field, Relation, getImages, LabeledValue } from '../../api/document';
-import DocumentTeaser from './DocumentTeaser';
-import Image from '../image/Image';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
+import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Document, Field, FieldGroup, getImages, LabeledValue, Relation } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../../languages';
+import Image from '../image/Image';
 import './document-details.css';
+import DocumentTeaser from './DocumentTeaser';
 
 const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
 
@@ -52,6 +52,7 @@ const renderImages = (images: ResultDocument[], document: Document): ReactNode =
     </Carousel>;
 
 
+// eslint-disable-next-line react/display-name
 const renderImage = (document: Document) => (imageDoc: ResultDocument): ReactNode => {
 
     return (
@@ -71,6 +72,7 @@ const renderGroups = (document: Document, t: TFunction): ReactNode => {
 };
 
 
+// eslint-disable-next-line react/display-name
 const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): ReactNode => {
 
     return (

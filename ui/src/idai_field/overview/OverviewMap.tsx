@@ -1,19 +1,19 @@
-import React, { CSSProperties, useEffect, ReactElement, useState } from 'react';
 import { Feature, FeatureCollection } from 'geojson';
-import { useLocation } from 'react-router-dom';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import { Vector as VectorLayer } from 'ol/layer';
-import { Vector as VectorSource } from 'ol/source';
-import { Fill, Icon, Stroke, Style, Text }  from 'ol/style';
-import { Geometry } from 'ol/geom';
+import olms from 'ol-mapbox-style';
 import { Attribution, defaults as defaultControls } from 'ol/control';
 import GeoJSON from 'ol/format/GeoJSON';
-import olms from 'ol-mapbox-style';
+import { Geometry } from 'ol/geom';
+import { Vector as VectorLayer } from 'ol/layer';
+import Map from 'ol/Map';
+import { Vector as VectorSource } from 'ol/source';
+import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
+import View from 'ol/View';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FilterBucket, ResultDocument, ResultFilter } from '../../api/result';
-import { FIT_OPTIONS } from '../project/ProjectMap';
 import { NAVBAR_HEIGHT } from '../../constants';
+import { FIT_OPTIONS } from '../project/ProjectMap';
 import './overview-map.css';
 
 
@@ -113,7 +113,10 @@ const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
     if (!featureCollection) return;
 
     const vectorSource = new VectorSource({
-        features: new GeoJSON().readFeatures(featureCollection, { dataProjection: 'EPSG:4326', featureProjection: 'EPSG:3857' })
+        features: new GeoJSON().readFeatures(featureCollection, {
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+        })
     });
 
     const vectorLayer = new VectorLayer({

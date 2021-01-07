@@ -1,32 +1,32 @@
-import React, { CSSProperties, ReactElement, useEffect, useState, useContext } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import Icon from '@mdi/react';
 import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
-import { History } from 'history';
+import Icon from '@mdi/react';
 import { Feature, FeatureCollection } from 'geojson';
+import { History } from 'history';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import { Vector as VectorSource, TileImage } from 'ol/source';
-import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import { Circle as CircleStyle, Fill, Stroke, Style }  from 'ol/style';
+import { never } from 'ol/events/condition';
+import GeoJSON from 'ol/format/GeoJSON';
 import { Geometry, Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import Map from 'ol/Map';
+import { TileImage, Vector as VectorSource } from 'ol/source';
+import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
-import GeoJSON from 'ol/format/GeoJSON';
-import { never } from 'ol/events/condition';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import { getColor, hexToRgb } from '../../categoryColors';
-import { ResultDocument } from '../../api/result';
+import View from 'ol/View';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { LoginContext } from '../../App';
-import { LoginData } from '../../login';
 import { search } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
-import { getTileLayerExtent, getResolutions } from './tileLayer';
+import { ResultDocument } from '../../api/result';
+import { LoginContext } from '../../App';
+import { getColor, hexToRgb } from '../../categoryColors';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import { LoginData } from '../../login';
 import { getMapDeselectionUrl } from './navigation';
 import './project-map.css';
+import { getResolutions, getTileLayerExtent } from './tileLayer';
 
 
 export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
@@ -165,7 +165,7 @@ const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayer
     </>;
 };
 
-
+/* eslint-disable react/display-name */
 const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTileLayers: VisibleTileLayersSetter) =>
         (tileLayer: TileLayer): ReactElement => {
 
@@ -187,6 +187,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTil
         </li>
     );
 };
+/* eslint-enable react/display-name */
 
 
 const toggleLayer = (tileLayer: TileLayer,

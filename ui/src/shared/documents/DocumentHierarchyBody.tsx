@@ -1,12 +1,12 @@
-import React, { CSSProperties, ReactElement, useRef } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Card } from 'react-bootstrap';
-import Icon from '@mdi/react';
 import { mdiMenuLeft } from '@mdi/js';
-import LinkButton from '../linkbutton/LinkButton';
+import Icon from '@mdi/react';
+import React, { CSSProperties, ReactElement, useRef } from 'react';
+import { Card } from 'react-bootstrap';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { ResultDocument } from '../../api/result';
 import { getPreviousHierarchyLevelUrl } from '../../idai_field/project/navigation';
 import DocumentTeaser from '../document/DocumentTeaser';
-import { ResultDocument } from '../../api/result';
+import LinkButton from '../linkbutton/LinkButton';
 
 
 interface DocumentHierarchyBodyProps {
@@ -16,6 +16,7 @@ interface DocumentHierarchyBodyProps {
 }
 
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentHierarchyBody({ documents, searchParams, scrollFunction }
         : DocumentHierarchyBodyProps): ReactElement {
 

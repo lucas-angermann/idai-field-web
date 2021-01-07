@@ -1,14 +1,14 @@
-import React, { CSSProperties, ReactElement, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
-import { Button } from 'react-bootstrap';
-import Modal from 'react-modal';
-import Icon from '@mdi/react';
 import { mdiClose, mdiEarth } from '@mdi/js';
+import Icon from '@mdi/react';
+import { TFunction } from 'i18next';
+import React, { CSSProperties, ReactElement, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import Modal from 'react-modal';
 import { getUserInterfaceLanguage, LANGUAGES, USER_INTERFACE_LANGUAGES } from '../../languages';
 
 
-export default (): ReactElement => {
+export default function LanguageButton(): ReactElement {
 
     const [modalOpened, setModalOpened] = useState(false);
     const { t } = useTranslation();
@@ -19,7 +19,7 @@ export default (): ReactElement => {
         </Button>
         { renderLanguageModal(modalOpened, setModalOpened, t) }
     </>;
-};
+}
 
 
 const renderLanguageModal = (modalOpened: boolean, setModalOpened: (opened: boolean) => void,

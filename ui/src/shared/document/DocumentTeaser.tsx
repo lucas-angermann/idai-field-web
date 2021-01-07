@@ -1,18 +1,19 @@
-import React, { CSSProperties, ReactElement } from 'react';
-import { Row, Col, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Icon from '@mdi/react';
 import { mdiMenuLeft, mdiMenuRight, mdiMenuUp } from '@mdi/js';
-import { useTranslation } from 'react-i18next';
+import Icon from '@mdi/react';
 import { TFunction } from 'i18next';
-import CategoryIcon from './CategoryIcon';
+import React, { CSSProperties, ReactElement } from 'react';
+import { Col, Dropdown, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
-import './document-teaser.css';
 import LinkButton from '../linkbutton/LinkButton';
+import CategoryIcon from './CategoryIcon';
+import './document-teaser.css';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
 
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project, showHierarchyButton = false,
@@ -51,7 +52,7 @@ export default React.memo(function DocumentTeaser(
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
-                <Col style={ { flex: `0 0 30px` } } className="teaser-button hierarchy-button">
+                <Col style={ { flex: '0 0 30px' } } className="teaser-button hierarchy-button">
                     <LinkButton to={ '?' + getHierarchyButtonSearchParams(searchParams, document.resource.id) }
                             style={ { height: '100%' } } variant={ 'link' }>
                         <Icon path={ mdiMenuRight } size={ 1 }></Icon>

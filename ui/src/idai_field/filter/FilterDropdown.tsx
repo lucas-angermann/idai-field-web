@@ -69,6 +69,6 @@ const getBucketValue = (bucket: FilterBucket | FilterBucketTreeNode): LabeledVal
 
 
 const dropdownMenuStyles: CSSProperties = {
-    maxHeight: `calc(100vh - 200px)`,
+    maxHeight: 'calc(100vh - 200px)',
     overflow: 'auto'
 };

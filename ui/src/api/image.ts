@@ -12,5 +12,5 @@ export const fetchImage = async (project: string,
 
 
 export const getImageUrl = (project: string, path: string, maxWidth: number,
-        maxHeight: number, token: string, format: string = 'jpg') =>
+        maxHeight: number, token: string, format = 'jpg'): string =>
     `/api/images/${project}/${encodeURIComponent(path)}/${token}/full/!${maxWidth},${maxHeight}/0/default.${format}`;
