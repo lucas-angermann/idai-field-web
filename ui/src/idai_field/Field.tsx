@@ -19,7 +19,7 @@ export default function Field(): ReactElement {
 
     useEffect(() => {
 
-        document.title = 'iDAI.field'
+        document.title = 'iDAI.field';
     }, []);
 
     return (
