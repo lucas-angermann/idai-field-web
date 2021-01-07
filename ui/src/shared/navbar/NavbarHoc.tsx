@@ -22,12 +22,11 @@ export default ({ onLogout, brand, children }: NavBarProps): ReactElement => {
     const { t } = useTranslation();
 
     return (
-        < Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href='/'>
-                { renderBrand(brand)}
+        <Navbar variant = "dark" style = { navbarStyle } >
+            <Navbar.Brand href="/">
+                { renderBrand(brand) }
             </Navbar.Brand>
-            { children}
-       
+            { children }
             <LanguageButton/>
             { renderLogin(loginData, onLogout, t) }
         </Navbar>
@@ -48,6 +47,6 @@ export const getNavItemClass = (route: string, currentRoute: string) =>
 
 const renderBrand = (name: string) => (
     <>
-        iDAI.<strong>{ name}</strong>
+        iDAI.<strong>{ name }</strong>
     </>
 );
