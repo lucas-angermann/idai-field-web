@@ -45,6 +45,8 @@ module.exports = {
             }
         ],
         "quotes": [ "warn", "single" ],
-        "jsx-quotes": [ "warn", "prefer-double" ]
+        "jsx-quotes": [ "warn", "prefer-double" ],
+        "object-curly-spacing": ["warn", "always"],
+        "no-multi-spaces": ["warn"]
     }
 };
