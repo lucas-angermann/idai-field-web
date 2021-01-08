@@ -13,17 +13,18 @@ export interface NavBarProps {
     onLogout: () => void;
     brand?: string;
     children?: JSX.Element;
+    brandUrl?: string;
 }
 
 
-export default function NavbarHoc({ onLogout, brand, children }: NavBarProps): ReactElement {
+export default function NavbarHoc({ onLogout, brand, children, brandUrl='./' }: NavBarProps): ReactElement {
     
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
     return (
         <Navbar variant = "dark" style = { navbarStyle } >
-            <Navbar.Brand href="./">
+            <Navbar.Brand href={ brandUrl }>
                 { renderBrand(brand) }
             </Navbar.Brand>
             { children }

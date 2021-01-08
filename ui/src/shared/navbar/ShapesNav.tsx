@@ -8,7 +8,7 @@ export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
     const createEntry = (name: string, route: string) => createNavEntry(name, route);
 
     return (
-        <NavbarHoc onLogout={ onLogout } brand= "shapes">
+        <NavbarHoc onLogout={ onLogout } brand= "shapes" brandUrl= "/idaishapes">
             <Nav className="mr-auto">
                 { createEntry('Browse & Select', './') }
                 { createEntry('Find', 'find') }
