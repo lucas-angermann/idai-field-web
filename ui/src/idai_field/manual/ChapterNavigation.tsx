@@ -1,13 +1,13 @@
-import React, { CSSProperties, ElementRef, ReactElement } from 'react';
-import { Chapter } from './Manual';
+import React, { CSSProperties, ReactElement, RefObject } from 'react';
 import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
+import { Chapter } from './Manual';
 
 
 interface ChapterNavigationProps {
     chapters: Chapter[];
     activeChapter: Chapter;
     setActiveChapter: (activeChapter: Chapter) => void;
-    manualElementRef: ElementRef<any>;
+    manualElementRef: RefObject<HTMLDivElement>;
 }
 
 
@@ -31,7 +31,7 @@ export default function ChapterNavigation(
 const getChapterElement = (chapter: Chapter,
                            isActiveChapter: boolean,
                            setActiveChapter: (chapter: Chapter) => void,
-                           manualElementRef: ElementRef<any>): ReactElement => {
+                           manualElementRef: RefObject<HTMLDivElement>): ReactElement => {
 
     return (
         <li key={ chapter.id } className="nav nav-pills flex-column">
@@ -47,7 +47,7 @@ const getChapterElement = (chapter: Chapter,
 
 const scrollToChapter = (chapter: Chapter,
                          setActiveChapter: (chapter: Chapter) => void,
-                         manualElementRef: ElementRef<any>): void => {
+                         manualElementRef: RefObject<HTMLDivElement>): void => {
 
     setActiveChapter(chapter);
 

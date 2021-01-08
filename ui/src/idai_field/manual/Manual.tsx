@@ -1,7 +1,7 @@
-import React, { ElementRef, useEffect, useRef, useState, ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import ChapterNavigation from './ChapterNavigation';
-import MarkdownViewer from './MarkdownViewer';
 import { loadManual } from './loadManual';
+import MarkdownViewer from './MarkdownViewer';
 
 
 const URL: string = 'https://raw.githubusercontent.com/dainst/idai-field/master/src/manual';
@@ -19,7 +19,7 @@ export default function Manual(): ReactElement {
     const [chapters, setChapters] = useState([]);
     const [activeChapter, setActiveChapter] = useState(undefined);
 
-    const manualElementRef: ElementRef<any> = useRef(null);
+    const manualElementRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         loadManual(URL).then(result => {

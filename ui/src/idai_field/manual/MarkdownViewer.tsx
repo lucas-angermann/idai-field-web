@@ -1,16 +1,16 @@
-import React, { CSSProperties, ElementRef, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement, RefObject } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Chapter } from './Manual';
-import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
-import './MarkdownViewer.css';
 import { NAVBAR_HEIGHT } from '../../constants';
+import { CHAPTER_NAVIGATION_WIDTH, PADDING } from './constants';
+import { Chapter } from './Manual';
+import './MarkdownViewer.css';
 
 
 interface MarkdownViewerProps {
     markdown: string;
     chapters: Chapter[];
     setActiveChapter: (activeChapter: Chapter) => void;
-    manualElementRef: ElementRef<any>;
+    manualElementRef: RefObject<HTMLDivElement>;
 }
 
 
