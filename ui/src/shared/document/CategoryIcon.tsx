@@ -4,7 +4,6 @@ import { getColor, isColorTooBright } from '../../categoryColors';
 import { getLabel } from '../../languages';
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function CategoryIcon({ category, size }
         : { category: LabeledValue, size: string }) {
 

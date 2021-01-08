@@ -12,7 +12,6 @@ interface DocumentThumbnailProps {
 }
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentThumbnail({ document, linkUrl, imageUrl }: DocumentThumbnailProps):
     ReactElement {
     

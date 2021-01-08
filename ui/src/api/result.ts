@@ -1,3 +1,4 @@
+import { ImageGeoreference } from 'idai-components-2';
 import { ChangeEvent, I18nString, LabeledValue } from './document';
 
 export interface Result {
@@ -25,6 +26,8 @@ export interface ResultResource {
     parentId: string;
     grandparentId: string;
     relations?: { [relationName: string]: ResultDocument[] };
+    georeference?: ImageGeoreference;
+    width?: number;
 }
 
 

@@ -16,7 +16,6 @@ interface DocumentHierarchyBodyProps {
 }
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentHierarchyBody({ documents, searchParams, scrollFunction }
         : DocumentHierarchyBodyProps): ReactElement {
 

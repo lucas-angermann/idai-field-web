@@ -17,43 +17,34 @@ module.exports = {
         "plugin:react-hooks/recommended",
         "plugin:@typescript-eslint/recommended",
     ],
-    plugins: [
-        "eslint-plugin-prefer-arrow"
-    ],
     rules: {
         "@typescript-eslint/array-type": [
-            "error",
+            "warn",
             {
                 "default": "array"
             }
         ],
         "@typescript-eslint/semi": [ "warn", "always" ],
         "@typescript-eslint/no-inferrable-types": 0,
-        "prefer-arrow/prefer-arrow-functions": [
-            "error",
-            {
-                "allowStandaloneDeclarations": true
-            }
-        ],
         "max-len": [
-            "error",
+            "warn",
             {
                 "code": 120
             }
         ],
         "no-trailing-spaces": [
-            "error",
+            "warn",
             {
                 "skipBlankLines": true
             }
         ],
         "no-multiple-empty-lines": [
-            "error",
+            "warn",
             {
                 "max": 2
             }
         ],
-        "quotes": [ "error", "single" ],
-        "jsx-quotes": [ "error", "prefer-double" ]
+        "quotes": [ "warn", "single" ],
+        "jsx-quotes": [ "warn", "prefer-double" ]
     }
 };

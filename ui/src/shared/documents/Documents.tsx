@@ -18,7 +18,6 @@ interface DocumentProperties {
 }
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function Documents(
     { documents, projectDocument, getChunk,
         searchParams = '' }: DocumentProperties): ReactElement {

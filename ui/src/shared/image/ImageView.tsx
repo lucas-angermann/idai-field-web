@@ -1,18 +1,18 @@
-import React, { CSSProperties, useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { Map, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
-import IiifImageLayer from './IiifImageLayer';
-import DocumentDetails from '../document/DocumentDetails';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import { LoginContext } from '../../App';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import { Map, ZoomControl } from 'react-leaflet';
+import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
+import { LoginContext } from '../../App';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import DocumentDetails from '../document/DocumentDetails';
+import IiifImageLayer from './IiifImageLayer';
 
 
-export default function ImageView() {
+export default function ImageView(): ReactElement {
 
-    const { project, id } = useParams();
+    const { project, id } = useParams<{ project: string, id: string }>();
     const location = useLocation();
     const [url, setUrl] = useState<string>(makeUrl(project, id));
     const [document, setDocument] = useState<Document>(null);

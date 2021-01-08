@@ -11,7 +11,6 @@ interface ImageProps {
 }
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function Image({ project, id, maxWidth, maxHeight }: ImageProps): ReactElement {
 
     const [imgUrl, setImgUrl] = useState<string>();

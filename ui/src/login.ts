@@ -30,11 +30,11 @@ export const postLogin = async (user: string, password: string): Promise<LoginDa
 };
 
 
-export const persistLogin = (loginData: LoginData) =>
+export const persistLogin = (loginData: LoginData): void =>
     localStorage.setItem('loginData', JSON.stringify(loginData));
 
 
-export const forgetLogin = () => localStorage.removeItem('loginData');
+export const forgetLogin = (): void => localStorage.removeItem('loginData');
 
 
 export const getPersistedLogin = (): LoginData => {

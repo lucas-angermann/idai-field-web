@@ -40,7 +40,7 @@ const renderLogin = (loginData: LoginData, onLogout: () => void, t: TFunction): 
             <Button variant="link" onClick={ onLogout }>{ t('navbar.logOut') }</Button>
         </Navbar.Text>;
 
-export const getNavItemClass = (route: string, currentRoute: string) =>
+export const getNavItemClass = (route: string, currentRoute: string): string =>
     currentRoute === route
         ? 'active-navitem'
         : '';

@@ -13,7 +13,6 @@ import './document-teaser.css';
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project, showHierarchyButton = false,

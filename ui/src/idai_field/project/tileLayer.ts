@@ -1,4 +1,6 @@
-export const getTileLayerExtent = (document: any): [number, number, number, number] => [
+import { ResultDocument } from '../../api/result';
+
+export const getTileLayerExtent = (document: ResultDocument): [number, number, number, number] => [
     document.resource.georeference.bottomLeftCoordinates[1],
     document.resource.georeference.bottomLeftCoordinates[0],
     document.resource.georeference.topRightCoordinates[1],
@@ -9,7 +11,7 @@ export const getTileLayerExtent = (document: any): [number, number, number, numb
 export const getResolutions = (
         extent: [number, number, number, number],
         tileSize: number,
-        document: any): number[] => {
+        document: ResultDocument): number[] => {
 
     const result = [];
     const layerWidth = extent[2] - extent[0];

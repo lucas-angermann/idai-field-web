@@ -1,5 +1,6 @@
 import { mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
+import { Location } from 'history';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Nav, NavDropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -72,14 +73,15 @@ export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
 }
 
 
-const getProjectId = (location: any): string | undefined => {
+const getProjectId = (location: Location): string | undefined => {
 
     return location.pathname.startsWith('/project/')
         ? location.pathname.split('/')[2]
         : undefined;
 };
 
-const getCurrentRoute = (location: any, projectDocument?: Document): string => {
+
+const getCurrentRoute = (location: Location, projectDocument?: Document): string => {
 
     if (projectDocument && location.pathname.startsWith('/project/')
             && location.pathname.split('/')[2] === projectDocument.resource.id) {

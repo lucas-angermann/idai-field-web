@@ -52,8 +52,7 @@ const renderImages = (images: ResultDocument[], document: Document): ReactNode =
     </Carousel>;
 
 
-// eslint-disable-next-line react/display-name
-const renderImage = (document: Document) => (imageDoc: ResultDocument): ReactNode => {
+const renderImage = (document: Document) => function CarouselImage(imageDoc: ResultDocument): ReactNode {
 
     return (
         <Carousel.Item key={ imageDoc.resource.id }>
@@ -72,8 +71,7 @@ const renderGroups = (document: Document, t: TFunction): ReactNode => {
 };
 
 
-// eslint-disable-next-line react/display-name
-const renderGroup = (t: TFunction, project: string) => (group: FieldGroup): ReactNode => {
+const renderGroup = (t: TFunction, project: string) => function FieldGroupRow(group: FieldGroup): ReactNode {
 
     return (
         <div key={ `${group.name}_group` }>
