@@ -1,3 +1,4 @@
+import { Geometry } from 'geojson';
 import { ImageGeoreference } from 'idai-components-2';
 import { ChangeEvent, I18nString, LabeledValue } from './document';
 
@@ -27,6 +28,8 @@ export interface ResultResource {
     grandparentId: string;
     relations?: { [relationName: string]: ResultDocument[] };
     georeference?: ImageGeoreference;
+    geometry: Geometry;
+    geometry_wgs84?: Geometry;
     width?: number;
 }
 

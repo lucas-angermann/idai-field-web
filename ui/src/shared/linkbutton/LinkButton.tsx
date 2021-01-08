@@ -1,6 +1,7 @@
-import React, { ReactNode, CSSProperties, MouseEvent, ReactElement } from 'react';
-import { useHistory } from 'react-router-dom';
+import { History } from 'history';
+import React, { CSSProperties, MouseEvent, ReactElement, ReactNode } from 'react';
 import { Button, OverlayTrigger } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 
 interface LinkButtonProps {
@@ -28,7 +29,7 @@ export default function LinkButton(properties: LinkButtonProps): ReactElement {
 
 
 const renderButton = ({ to, children, style, size, variant = 'primary' }: LinkButtonProps,
-                      history: any) => {
+                      history: History) => {
 
     return <Button onClick={ (e: MouseEvent) => { e.preventDefault(); history.push(to); } }
             style={ style }

@@ -1,26 +1,26 @@
-import React, { useState, useEffect, CSSProperties, useContext, ReactElement, useCallback } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import { Spinner, Card, Tooltip } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
-import Icon from '@mdi/react';
 import { mdiFileTree, mdiInformation } from '@mdi/js';
-import Documents from '../../shared/documents/Documents';
-import ProjectMap from './ProjectMap';
-import { get, mapSearch, search } from '../../api/documents';
+import Icon from '@mdi/react';
+import { TFunction } from 'i18next';
+import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import { Card, Spinner, Tooltip } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { ResultDocument, Result, ResultFilter } from '../../api/result';
+import { get, mapSearch, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { LoginContext } from '../../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import SearchBar from '../../shared/search/SearchBar';
-import './project.css';
-import Filters from '../filter/Filters';
 import { getUserInterfaceLanguage } from '../../languages';
 import DocumentDetails from '../../shared/document/DocumentDetails';
-import { EXCLUDED_TYPES_FIELD } from '../constants';
-import { getContextUrl } from './navigation';
+import Documents from '../../shared/documents/Documents';
 import LinkButton from '../../shared/linkbutton/LinkButton';
+import SearchBar from '../../shared/search/SearchBar';
+import { EXCLUDED_TYPES_FIELD } from '../constants';
+import Filters from '../filter/Filters';
+import { getContextUrl } from './navigation';
+import './project.css';
+import ProjectMap from './ProjectMap';
 
 
 const MAX_SIZE = 10000;
@@ -42,7 +42,7 @@ export default function Project(): ReactElement {
     const { t } = useTranslation();
 
     let parentId: string | undefined;
-    let waitForDocument: Promise<void | any> = new Promise<void>(resolve => resolve());
+    let waitForDocument: Promise<Document> = new Promise<Document>(resolve => resolve(null));
 
     useEffect(() => {
 

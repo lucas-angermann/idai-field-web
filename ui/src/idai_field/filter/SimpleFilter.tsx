@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, ReactElement } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FilterBucket, ResultFilter } from '../../api/result';
@@ -16,7 +16,7 @@ export default function SimpleFilter({ filter, searchParams, projectId }
     const params = new URLSearchParams(searchParams);
 
     return <FilterDropdown filter={ filter } params={ params } projectId={ projectId }>
-        { filter.values.map((bucket: any) => renderFilterValue(filter.name, bucket, params, projectId)) }
+        { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, params, projectId)) }
     </FilterDropdown>;
 }
 

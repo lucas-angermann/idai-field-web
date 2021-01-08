@@ -1,8 +1,8 @@
-import React, { useState, ReactElement, CSSProperties } from 'react';
-import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import React, { CSSProperties, FormEvent, ReactElement, useState } from 'react';
+import { Alert, Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { postLogin, persistLogin, LoginData } from '../../login';
+import { useHistory } from 'react-router-dom';
+import { LoginData, persistLogin, postLogin } from '../../login';
 
 
 export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }): ReactElement {
@@ -13,7 +13,7 @@ export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void
     const history = useHistory();
     const { t } = useTranslation();
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent) => {
 
         e.preventDefault();
         const loginData = await postLogin(user, password);
