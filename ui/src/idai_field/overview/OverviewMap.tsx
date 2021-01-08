@@ -148,7 +148,7 @@ const getStyle = (feature: OlFeature): Style => {
     });
 };
 
-const createFeatureCollection = (documents: any[], filter: ResultFilter): any => {
+const createFeatureCollection = (documents: ResultDocument[], filter: ResultFilter): FeatureCollection => {
 
     if (!documents || documents.length === 0) return undefined;
 
@@ -165,7 +165,7 @@ const createFeatureCollection = (documents: any[], filter: ResultFilter): any =>
 };
 
 
-const createFeature = (document: any, filter: ResultFilter): Feature => ({
+const createFeature = (document: ResultDocument, filter: ResultFilter): Feature => ({
     type: 'Feature',
     geometry: document.resource.geometry_wgs84,
     properties: {
@@ -175,7 +175,7 @@ const createFeature = (document: any, filter: ResultFilter): Feature => ({
 });
 
 
-const createFeatureLabel = (document: any, filter?: ResultFilter): string => {
+const createFeatureLabel = (document: ResultDocument, filter?: ResultFilter): string => {
 
     const projectBucket = filter?.values.find(
         (bucket: FilterBucket) => bucket.value.name === document.project
@@ -194,7 +194,7 @@ const createFeatureLabel = (document: any, filter?: ResultFilter): string => {
 };
 
 
-const filterDocuments = (documents: ResultDocument[], filter?: ResultFilter): any[] => {
+const filterDocuments = (documents: ResultDocument[], filter?: ResultFilter): ResultDocument[] => {
 
     if (!filter) return documents;
 

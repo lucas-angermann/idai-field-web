@@ -1,20 +1,21 @@
-import React, { useEffect, useState, useContext, ReactElement, CSSProperties } from 'react';
-import { Alert } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Location } from 'history';
 import { TFunction } from 'i18next';
-import OverviewMap from './OverviewMap';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import { Alert } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { search } from '../../api/documents';
+import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { LoginContext } from '../../App';
-import SearchBar from '../../shared/search/SearchBar';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
-import { CHUNK_SIZE } from '../project/Project';
-import Filters from '../filter/Filters';
 import Documents from '../../shared/documents/Documents';
-import './project-overview.css';
+import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
+import Filters from '../filter/Filters';
+import { CHUNK_SIZE } from '../project/Project';
+import OverviewMap from './OverviewMap';
+import './project-overview.css';
 
 
 export default function ProjectOverview(): ReactElement {
@@ -67,7 +68,7 @@ export default function ProjectOverview(): ReactElement {
 }
 
 
-const renderSidebar = (filters: ResultFilter[], location: any, documents: ResultDocument[],
+const renderSidebar = (filters: ResultFilter[], location: Location, documents: ResultDocument[],
                        getChunk: (offset: number) => void): ReactElement => (
     <div className="project-overview-sidebar">
         <Filters filters={ filters } searchParams={ location.search } />
