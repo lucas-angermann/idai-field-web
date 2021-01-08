@@ -13,7 +13,7 @@ import { EXCLUDED_TYPES_SHAPES } from '../constants';
 
 const CHUNK_SIZE = 50;
 
-/* eslint-disable react-hooks/exhaustive-deps */
+
 export default function BrowseSelect(): ReactElement {
 
     const {  documentId } = useParams<{ documentId: string }>();
