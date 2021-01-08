@@ -74,16 +74,14 @@ defmodule Api.Documents.Router do
   end
 
   defp fetch_entries(doc) do
-    Stream.unfold(
-      doc,
-      fn nil -> nil
-        current_doc ->
-          {
-            current_doc,
-            (if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil, do:
-              Index.get(current_doc.resource.parentId))
-          }
-      end
-    )
+    Stream.unfold(doc, fn
+      nil -> nil
+      current_doc -> {
+        current_doc |> IO.inspect,
+        if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil do
+          Index.get(current_doc.resource.parentId)
+        end
+      }
+    end)
   end
 end

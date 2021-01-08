@@ -2,7 +2,7 @@ defmodule Api.Documents.Mapping do
   alias Api.Core.Filters
   alias Core.Tree
   alias Core.Resource
-  
+
   def map_single elasticsearch_result do
     elasticsearch_result
     |> get_in([:hits, :hits, Access.at(0), :_source])
@@ -18,7 +18,7 @@ defmodule Api.Documents.Mapping do
     }
     |> map_aggregations(elasticsearch_result, default_config, filters)
   end
-  
+
   defp map_aggregations(result, %{ aggregations: aggregations }, default_config, filters) do
     filters = Enum.map(filters, map_aggregation(aggregations, default_config))
               |> Enum.reject(&is_nil/1)
@@ -77,7 +77,7 @@ defmodule Api.Documents.Mapping do
       count: doc_count
     }
   end
-  
+
   defp map_document(%{ _source: document }), do: map_document(document)
   defp map_document(document) do
     Core.CorePropertiesAtomizing.format_document(document)
