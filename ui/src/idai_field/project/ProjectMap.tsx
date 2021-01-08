@@ -49,8 +49,8 @@ export default function ProjectMap({ document, documents, project }
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
     const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
     const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
-    const [mapClickFunction, setMapClickFunction] = useState<() => any>(null);
-    const [layerControlsCloseClickFunction] = useState<(event: any) => void>(
+    const [mapClickFunction, setMapClickFunction] = useState<() => (_: MapBrowserEvent) => void>(null);
+    const [layerControlsCloseClickFunction] = useState<(event: MouseEvent) => void>(
         () => getLayerControlsCloseClickFunction(setLayerControlsVisible)
     );
 
@@ -367,7 +367,7 @@ const getColorForCategory = (category: string, opacity: number): string => {
 };
 
 
-const createFeatureCollection = (documents: any[]): any => {
+const createFeatureCollection = (documents: ResultDocument[]): FeatureCollection => {
 
     if (documents.length === 0) return undefined;
 
@@ -380,7 +380,7 @@ const createFeatureCollection = (documents: any[]): any => {
 };
 
 
-const createFeature = (document: any): Feature => ({
+const createFeature = (document: ResultDocument): Feature => ({
     type: 'Feature',
     id: document.resource.id,
     geometry: document.resource.geometry,
@@ -393,13 +393,13 @@ const createFeature = (document: any): Feature => ({
 });
 
 
-const addLayerControlsCloseEventListener = (eventListener: (event: any) => void) => {
+const addLayerControlsCloseEventListener = (eventListener: EventListener) => {
 
     document.addEventListener('click', eventListener);
 };
 
 
-const removeLayerControlsCloseEventListener = (eventListener: (event: any) => void) => {
+const removeLayerControlsCloseEventListener = (eventListener: EventListener) => {
 
     document.removeEventListener('click', eventListener);
 };
@@ -407,9 +407,9 @@ const removeLayerControlsCloseEventListener = (eventListener: (event: any) => vo
 
 const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: boolean) => void) => {
 
-    return event => {
+    return (event: MouseEvent) => {
 
-        let element: any = event.target;
+        let element = event.target as Element;
         let insideLayerControls: boolean = false;
         while (element) {
             if (element.id.startsWith('layer-controls')) {
