@@ -26,13 +26,8 @@ export function ShapesHierarchy({ documents, searchParams, selectedItem }: Shape
     }
 }
 
-const getLinkUrl = (searchParams: string, document: ResultDocument): string => {
-    if (document.resource.childrenCount > 0) {
-        return `./?${getHierarchySearchParams(searchParams, document.resource.id)}`;
-    } else {
-        return `./${document.resource.id}${searchParams}`;
-    }
-};
+const getLinkUrl = (document: ResultDocument): string => `${document.resource.id}`;
+
 
 const renderDocuments = (documents: ResultDocument[], searchParams: string,
         selectedItem: (id: string, identifier: string, url: string, parentId: string | null) => void): ReactElement => {
@@ -40,7 +35,7 @@ const renderDocuments = (documents: ResultDocument[], searchParams: string,
         <>
         {
         documents.map((document: ResultDocument) => {
-            const linkUrl = getLinkUrl(searchParams, document);
+            const linkUrl = getLinkUrl(document);
             return (
                 <div onClick={ () => selectedItem(
                     document.resource.id,
@@ -61,6 +56,7 @@ const renderDocuments = (documents: ResultDocument[], searchParams: string,
     );
 };
 
+
 const renderEmptyResult = (t: TFunction): ReactElement => (
     <Card className="documents-card">
         <Card.Body className="px-0 py-0">
@@ -68,11 +64,3 @@ const renderEmptyResult = (t: TFunction): ReactElement => (
         </Card.Body>
     </Card>
 );
-
-const getHierarchySearchParams = (searchParams: string | undefined, documentId: string) => {
-
-    const params = new URLSearchParams(searchParams);
-    params.set('parent', documentId);
-
-    return params.toString();
-};
