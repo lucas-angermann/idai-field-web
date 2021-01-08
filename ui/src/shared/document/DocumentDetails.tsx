@@ -4,7 +4,10 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Document, Field, FieldGroup, getImages, LabeledValue, Relation } from '../../api/document';
+import {
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    OptionalRangeWithLabeledValues, Relation
+} from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { getLabel, getNumberOfUndisplayedLabels } from '../../languages';
 import Image from '../image/Image';
@@ -115,7 +118,7 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
 };
 
 
-const renderFieldValue = (value: any, t: TFunction): ReactNode => {
+const renderFieldValue = (value: FieldValue, t: TFunction): ReactNode => {
 
     if (Array.isArray(value)) return renderFieldValueArray(value, t);
     if (typeof value === 'object') return renderFieldValueObject(value, t);
@@ -124,31 +127,30 @@ const renderFieldValue = (value: any, t: TFunction): ReactNode => {
 };
 
 
-const renderFieldValueArray = (values: any[], t: TFunction): ReactNode =>
+const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
     values.length > 1
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value, t) }</li>) }</ul>
         : renderFieldValue(values[0], t);
 
 
-const renderFieldValueObject = (object: any, t: TFunction): ReactNode | undefined => {
+const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
-    if (object.label && object.name) {
-        return renderMultiLanguageText(object, t);
-    } else if (object.label) {
-      return object.label;
-    } else if (Dating.isValid(object, { permissive: true })) {
-        return Dating.generateLabel(object, t);
-    } else if (Dimension.isValid(object)) {
+    if ((object as LabeledValue).label && (object as LabeledValue).name) {
+        return renderMultiLanguageText(object as LabeledValue, t);
+    } else if ((object as LabeledValue).label) {
+      return (object as LabeledValue).label;
+    } else if (Dating.isValid(object as Dating, { permissive: true })) {
+        return Dating.generateLabel(object as Dating, t);
+    } else if (Dimension.isValid(object as Dimension)) {
+        const labeledPosition = (object as DimensionWithLabeledMeasurementPosition).measurementPosition;
         return Dimension.generateLabel(
-            object, getDecimalValue, t,
-            object.measurementPosition
-                ? getLabel(object.measurementPosition)
-                : undefined
+            object as Dimension, getDecimalValue, t,
+            labeledPosition ? getLabel(labeledPosition) : undefined
         );
-    } else if (Literature.isValid(object)) {
-        return Literature.generateLabel(object, t);
-    } else if (OptionalRange.isValid(object)) {
-        return renderOptionalRange(object, t);
+    } else if (Literature.isValid(object as Literature)) {
+        return Literature.generateLabel(object as Literature, t);
+    } else if (OptionalRange.isValid(object as OptionalRange)) {
+        return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
     } else {
         console.warn('Failed to render field value:', object);
         return undefined;
@@ -168,7 +170,7 @@ const renderMultiLanguageText = (object: LabeledValue, t: TFunction): ReactNode 
 };
 
 
-const renderOptionalRange = (optionalRange: any, t: TFunction): ReactNode => {
+const renderOptionalRange = (optionalRange: OptionalRangeWithLabeledValues, t: TFunction): ReactNode => {
 
     return optionalRange.endValue
         ? <div>
@@ -188,7 +190,7 @@ const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small"/></li>;
 
 
-const renderPopover = (object: any, t: TFunction): any => {
+const renderPopover = (object: LabeledValue, t: TFunction): ReactElement => {
 
     return (
         <Popover id={ 'popover-' + object.name }>

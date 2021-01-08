@@ -1,4 +1,5 @@
 import { Geometry } from 'geojson';
+import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import { ResultDocument } from './result';
 
 
@@ -36,11 +37,34 @@ export interface FieldGroup {
 }
 
 
+export interface DimensionWithLabeledMeasurementPosition extends Omit<Dimension, 'measurementPosition'> {
+    measurementPosition?: LabeledValue;
+}
+
+
+export interface OptionalRangeWithLabeledValues extends Omit<Dimension, 'value' | 'endValue'> {
+    value: LabeledValue;
+    endValue?: LabeledValue;
+}
+
+
+export type FieldValue =
+    string
+    | LabeledValue
+    | Dimension
+    | DimensionWithLabeledMeasurementPosition
+    | Dating
+    | Literature
+    | OptionalRange
+    | OptionalRangeWithLabeledValues
+    | FieldValue[];
+
+
 export interface Field {
     description: I18nString;
     label: I18nString;
     name: string;
-    value: any;
+    value: FieldValue;
 }
 
 
