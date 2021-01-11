@@ -52,7 +52,7 @@ export default function BrowseSelect(): ReactElement {
 
     return (
         <Row>
-            <Col>
+            <Col className="col-4 ml-2 mt-3">
                 { document
                     && <DocumentDetails document={ document }
                                         searchParams={ location.search }
