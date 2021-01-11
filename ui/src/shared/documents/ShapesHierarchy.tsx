@@ -15,7 +15,7 @@ export function ShapesHierarchy({ documents, searchParams, selectedItem }: Shape
     const { t } = useTranslation();
     if (documents !== null) {
         return (
-            <Row  className="mx-1">
+            <Row className="mx-1">
                 { documents && documents.length === 0 ?
                     renderEmptyResult(t) : renderDocuments(documents, searchParams, selectedItem)
                 }

@@ -61,7 +61,7 @@ const renderImage = (document: Document) => function CarouselImage(imageDoc: Res
         <Carousel.Item key={ imageDoc.resource.id }>
             <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${document.resource.id}` }
                     className="d-block mb-2">
-                <Image project={ document.project } id={ imageDoc.resource.id }  maxWidth={ 380 } maxHeight={ 350 }/>
+                <Image project={ document.project } id={ imageDoc.resource.id } maxWidth={ 380 } maxHeight={ 350 }/>
             </Link>
         </Carousel.Item>
     );

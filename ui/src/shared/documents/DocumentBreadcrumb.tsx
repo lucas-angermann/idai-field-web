@@ -5,7 +5,7 @@ import { mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import './document-hierar-nav.css';
 
-export interface BreadcrumbItem  {
+export interface BreadcrumbItem {
     identifier: string;
     url: string;
     id?: string;
@@ -15,7 +15,7 @@ interface DocumentBreadcrumbProps {
     breadcrumbs: BreadcrumbItem[];
 }
 
-export default function DocumentBreadcrumb({ breadcrumbs}: DocumentBreadcrumbProps): ReactElement {
+export default function DocumentBreadcrumb({ breadcrumbs }: DocumentBreadcrumbProps): ReactElement {
     return (
         <Row className="ml-3">
             { breadcrumbs.map((item, index) => (
