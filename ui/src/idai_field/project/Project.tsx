@@ -15,6 +15,7 @@ import { getUserInterfaceLanguage } from '../../languages';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import Documents from '../../shared/documents/Documents';
 import LinkButton from '../../shared/linkbutton/LinkButton';
+import { NotFound } from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
@@ -33,6 +34,7 @@ export default function Project(): ReactElement {
     const location = useLocation();
     const loginData = useContext(LoginContext);
     const [document, setDocument] = useState<Document>(null);
+    const [notFound, setNotFound] = useState<boolean>(false);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
@@ -46,7 +48,9 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        get(projectId, loginData.token).then(setProjectDocument);
+        get(projectId, loginData.token)
+            .then(setProjectDocument)
+            .catch(() => setNotFound(true));
     }, [projectId, loginData]);
 
     useEffect(() => {
@@ -99,6 +103,8 @@ export default function Project(): ReactElement {
         },
         [projectId, location.search, loginData]
     );
+
+    if (notFound) return <NotFound />;
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
