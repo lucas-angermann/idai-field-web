@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Redirect, useParams } from 'react-router-dom';
 import { search } from '../api/documents';
 import { LoginContext } from '../App';
+import { NotFound } from '../shared/NotFound';
 
 
 export default function ResourceRedirect(): ReactElement {
@@ -21,7 +22,7 @@ export default function ResourceRedirect(): ReactElement {
     }, [project, identifier, loginData]);
 
     return error
-        ? <div>Resource not found</div>
+        ? <NotFound />
         : id
             ? <Redirect to={ `/project/${project}/${id}` } />
             : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
