@@ -17,7 +17,7 @@ const CHUNK_SIZE = 50;
 
 export default function BrowseSelect(): ReactElement {
 
-    const {  documentId } = useParams<{ documentId: string }>();
+    const { documentId } = useParams<{ documentId: string }>();
     const [document, setDocument] = useState<Document>(null);
     const loginData = useContext(LoginContext);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
