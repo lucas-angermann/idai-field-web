@@ -26,20 +26,19 @@ export default function FilterDropdown({ filter, params, children, projectId }
 
 const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams, projectId?: string): ReactNode =>
     params.has(filter.name)
-        ?
-            <>
-                <LinkButton style={ { flexGrow: 1 } }
-                            to={ (projectId ? `/project/${projectId}?` : '/?')
-                                + deleteFilterFromParams(params, filter.name) }>
-                    { getLabel(filter) }: <em>{ getLabelForFilterParam(filter, params) }</em>
-                    &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
-                </LinkButton>
-                <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
-                        style={ { maxWidth: '2.5rem' } }/>
-            </>
-        :   <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>
-                { getLabel(filter) }
-            </Dropdown.Toggle>;
+        ? <>
+            <LinkButton style={ { flexGrow: 1 } }
+                        to={ (projectId ? `/project/${projectId}?` : '/?')
+                            + deleteFilterFromParams(params, filter.name) }>
+                { getLabel(filter) }: <em>{ getLabelForFilterParam(filter, params) }</em>
+                &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
+            </LinkButton>
+            <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
+                    style={ { maxWidth: '2.5rem' } }/>
+        </>
+        : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>
+            { getLabel(filter) }
+        </Dropdown.Toggle>;
 
 
 const getLabelForFilterParam = (filter: ResultFilter, params: URLSearchParams): string => {

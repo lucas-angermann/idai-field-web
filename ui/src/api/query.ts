@@ -33,7 +33,7 @@ export const buildBackendGetParams = (query: Query): string => {
     if (query.q === undefined) {
         if (query.parent && query.parent !== 'root') {
             queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
-        } else  {
+        } else {
             queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
         }
         queryParams.push(['sort', 'sort']);
