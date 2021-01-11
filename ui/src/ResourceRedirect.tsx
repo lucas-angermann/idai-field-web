@@ -1,31 +1,42 @@
-import React, { useState, useEffect, ReactElement, useContext } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Redirect, useParams } from 'react-router-dom';
 import { search } from './api/documents';
 import { LoginContext } from './App';
 
 
 export default function ResourceRedirect(): ReactElement {
 
-    const { project, identifier } = useParams();
-    const [id, setId] = useState(null);
+    const { project, identifier } = useParams<{ project: string, identifier: string }>();
+    const [id, setId] = useState<string>(null);
+    const [error, setError] = useState<string>(null);
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
     useEffect (() => {
-        getId(project, identifier, loginData.token).then(setId);
+        
+        getId(project, identifier, loginData.token)
+            .then(setId)
+            .catch(setError);
     }, [project, identifier, loginData]);
 
-    return id
-        ? <Redirect to={ `/project/${project}/${id}` } />
-        : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
+    return error
+        ? <div>Resource not found</div>
+        : id
+            ? <Redirect to={ `/project/${project}/${id}` } />
+            : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
 }
 
 
 const getId = async (project: string, identifier: string, token: string): Promise<string> => {
 
     const result = await search({ filters: getFilters(project, identifier), q: '' }, token);
-    return result.documents[0].resource.id;
+
+    if (result.documents.length > 0) {
+        return result.documents[0].resource.id;
+    } else {
+        throw 'Not found';
+    }
 };
 
 
