@@ -60,7 +60,7 @@ export default function Project(): ReactElement {
             waitForDocument.then(doc => {
                 parentId = doc?.resource.parentId ?? 'root';
                 setDocument(doc);
-            });
+            }).catch(() => setNotFound(true));
         } else {
             setDocument(null);
         }
