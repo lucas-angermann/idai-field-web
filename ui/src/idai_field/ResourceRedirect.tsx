@@ -17,7 +17,7 @@ export default function ResourceRedirect(): ReactElement {
     useEffect (() => {
         
         getId(project, identifier, loginData.token)
-            .then(setId)
+            .then((resultId: string) => resultId ? setId(resultId) : setError('Not found'))
             .catch(setError);
     }, [project, identifier, loginData]);
 
