@@ -1,8 +1,8 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect, useParams } from 'react-router-dom';
-import { search } from './api/documents';
-import { LoginContext } from './App';
+import { search } from '../api/documents';
+import { LoginContext } from '../App';
 
 
 export default function ResourceRedirect(): ReactElement {

@@ -3,7 +3,6 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
-import ResourceRedirect from '../ResourceRedirect';
 import ImageView from '../shared/image/ImageView';
 import LoginForm from '../shared/loginform/LoginForm';
 import FieldNav from '../shared/navbar/FieldNav';
@@ -12,6 +11,7 @@ import Download from './download/Download';
 import Manual from './manual/Manual';
 import ProjectOverview from './overview/ProjectOverview';
 import Project from './project/Project';
+import ResourceRedirect from './ResourceRedirect';
 
 export default function Field(): ReactElement {
 
