@@ -26,7 +26,7 @@ defmodule Api.MixProject do
       {:poison, "~> 3.0"},
       {:plug, "~> 1.6"},
       {:plug_cowboy, "~> 2.0"},
-      {:httpoison, "~> 1.6.2"},
+      {:httpoison, "~> 1.7.0"},
       {:cowboy, "~> 2.4"},
       {:remix, "~> 0.0.1", only: :dev},
       {:guardian, "~> 2.0"}
