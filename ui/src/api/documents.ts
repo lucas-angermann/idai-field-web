@@ -1,5 +1,5 @@
 import { Document } from './document';
-import { buildBackendGetParams, Query } from './query';
+import { buildBackendGetParams, Query, parseFrontendGetParams, buildProjectQueryTemplate } from './query';
 import { PredecessorResult, Result } from './result';
 import { getHeaders } from './utils';
 
@@ -33,4 +33,18 @@ export const predecessors = async (id: string, token: string): Promise<Predecess
     const response = await fetch(uri, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
+};
+
+export const searchDocuments = async (
+    id: string,
+    searchParams: string,
+    from: number,
+    token: string,
+    chunkSize: number,
+    exluded_types: string[],
+    parentId?: string): Promise<Result> => {
+
+    const query = parseFrontendGetParams(searchParams,
+        buildProjectQueryTemplate(id, from, chunkSize, exluded_types), parentId);
+    return search(query, token);
 };

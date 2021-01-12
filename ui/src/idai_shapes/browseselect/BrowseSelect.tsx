@@ -1,9 +1,8 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, search, predecessors } from '../../api/documents';
-import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
-import { Result, ResultDocument } from '../../api/result';
+import { get, searchDocuments, predecessors } from '../../api/documents';
+import { ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
@@ -38,14 +37,18 @@ export default function BrowseSelect(): ReactElement {
         if (documentId) {
             get(documentId, loginData.token)
                 .then(doc => setDocument(doc))
-                .then(() => searchDocuments(projectId, location.search, 0, loginData.token, parentId))
+                .then(() => searchDocuments(
+                    projectId, location.search, 0, loginData.token,
+                    CHUNK_SIZE, EXCLUDED_TYPES_SHAPES,parentId))
                 .then(result => setDocuments(result.documents))
                 .then(() => predecessors(documentId, loginData.token))
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
         } else {
             setDocument(null);
             setBreadcrumb([]);
-            searchDocuments(projectId, location.search, 0, loginData.token, parentId)
+            searchDocuments(
+                projectId, location.search, 0, loginData.token,
+                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES, parentId)
                 .then(res => setDocuments(res.documents));
         }
     }, [documentId, loginData, location.search]);
@@ -74,15 +77,6 @@ export default function BrowseSelect(): ReactElement {
     );
 }
   
-
-const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
-                               parentId?: string): Promise<Result> => {
-
-    const query = parseFrontendGetParams(searchParams,
-        buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_SHAPES), parentId);
-    return search(query, token);
-};
-
 
 const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbItem[] => predecessors.map(predec => {
     return {
