@@ -27,12 +27,13 @@ import ProjectMap from './ProjectMap';
 const MAX_SIZE = 10000;
 export const CHUNK_SIZE = 50;
 
-/* eslint-disable react-hooks/exhaustive-deps */
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
     const loginData = useContext(LoginContext);
+    const { t } = useTranslation();
+
     const [document, setDocument] = useState<Document>(null);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
@@ -41,10 +42,6 @@ export default function Project(): ReactElement {
     const [total, setTotal] = useState<number>();
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const { t } = useTranslation();
-
-    let parentId: string | undefined;
-    let waitForDocument: Promise<Document> = new Promise<Document>(resolve => resolve(null));
 
     useEffect(() => {
 
@@ -56,11 +53,9 @@ export default function Project(): ReactElement {
     useEffect(() => {
 
         if (documentId) {
-            waitForDocument = get(documentId, loginData.token);
-            waitForDocument.then(doc => {
-                parentId = doc?.resource.parentId ?? 'root';
-                setDocument(doc);
-            }).catch(() => setNotFound(true));
+            get(documentId, loginData.token)
+                .then(setDocument)
+                .catch(() => setNotFound(true));
         } else {
             setDocument(null);
         }
@@ -74,26 +69,19 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        waitForDocument.then(() => {
-            searchDocuments(projectId, location.search, 0, loginData.token, parentId)
-                .then(result => {
-                    setDocuments(result.documents);
-                    setTotal(result.size);
-                });
-        });
-    }, [projectId, location.search, loginData]);
+        searchDocuments(projectId, location.search, 0, loginData.token)
+            .then(result => {
+                setDocuments(result.documents);
+                setTotal(result.size);
+            });
 
-    useEffect(() => {
-
-        setLoading(true);
-        waitForDocument.then(() => {
-            searchMapDocuments(projectId, location.search, loginData.token, parentId)
-                .then(result => {
-                    setMapDocuments(result.documents);
-                    setLoading(false);
-                });
-        });
-    }, [projectId, location.search, loginData]);
+        searchMapDocuments(projectId, location.search, loginData.token)
+            .then(result => {
+                setMapDocuments(result.documents);
+                setLoading(false);
+            });
+        
+    }, [document, projectId, location.search, loginData]);
 
     const getChunk = useCallback(
         (offset: number): void => {
@@ -143,7 +131,6 @@ export default function Project(): ReactElement {
         </div>
     </>;
 }
-/* eslint-enable react-hooks/exhaustive-deps */
 
 
 const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
@@ -184,25 +171,24 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams, buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD));
+    let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
+    query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
 };
 
 
-const searchDocuments = async (id: string, searchParams: string, from: number, token: string,
-                               parentId?: string): Promise<Result> => {
+const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams,
-        buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD), parentId);
+    let query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
+    query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
 };
 
 
-const searchMapDocuments = async (id: string, searchParams: string, token: string,
-                                  parentId?: string): Promise<Result> => {
+const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
-    const query = parseFrontendGetParams(searchParams,
-        buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD), parentId);
+    let query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    query = parseFrontendGetParams(searchParams, query);
     return mapSearch(query, token);
 };
 
