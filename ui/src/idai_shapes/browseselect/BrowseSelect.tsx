@@ -54,24 +54,25 @@ export default function BrowseSelect(): ReactElement {
 
 
     return (
-        <Row>
-            <Col className="col-4 ml-2 mt-3">
-                { document
-                    && <DocumentDetails document={ document }
-                                        searchParams={ location.search }
-                                        />
-                }
-            </Col>
-            <Col>
-                <DocumentBreadcrumb breadcrumbs={ [{ identifier: root, url: './' }, ...breadcrumbs]}/>
+        <>
+            <DocumentBreadcrumb breadcrumbs={ [{ identifier: root, url: './' }, ...breadcrumbs]}/>
+            <Row>
+                <Col className="col-4 ml-2">
+                    { document
+                        && <DocumentDetails document={ document }
+                                            searchParams={ location.search }
+                                            />
+                    }
+                </Col>
+                <Col className="mt-2">
                     <DocumentsGrid
                         documents={ documents}
                         searchParams={ location.search}
                         selectedItem={ selectedItemHandler}
                     />
-            </Col>
-        </Row>
-    
+                </Col>
+            </Row>
+        </>
     );
 }
   
