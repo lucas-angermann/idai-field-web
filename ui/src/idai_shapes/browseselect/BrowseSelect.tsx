@@ -10,7 +10,6 @@ import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import { Predecessor } from '../../api/result';
 import { Row, Col } from 'react-bootstrap';
-import SearchBar from '../../shared/search/SearchBar';
 
 const CHUNK_SIZE = 50;
 
@@ -57,7 +56,6 @@ export default function BrowseSelect(): ReactElement {
     return (
         <Row>
             <Col className="col-4 ml-2 mt-3">
-                < SearchBar projectId={projectId} basepath={ projectId }/>
                 { document
                     && <DocumentDetails document={ document }
                                         searchParams={ location.search }
