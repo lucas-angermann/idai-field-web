@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
 
-interface ShapesHierarchy {
+interface DocumentsGrid {
     documents: ResultDocument[];
     searchParams?: string;
     selectedItem: (id: string, identifier: string, url: string, parentId: string | null) => void;
 }
 
-export function ShapesHierarchy({ documents, searchParams, selectedItem }: ShapesHierarchy): ReactElement {
+export function DocumentsGrid({ documents, searchParams, selectedItem }: DocumentsGrid): ReactElement {
     const { t } = useTranslation();
     if (documents !== null) {
         return (

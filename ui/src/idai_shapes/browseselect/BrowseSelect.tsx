@@ -7,7 +7,7 @@ import { Result, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
-import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
+import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import { Predecessor } from '../../api/result';
 import { Row, Col } from 'react-bootstrap';
@@ -63,7 +63,7 @@ export default function BrowseSelect(): ReactElement {
             </Col>
             <Col>
                 <DocumentBreadcrumb breadcrumbs={ [{ identifier: root, url: './' }, ...breadcrumbs]}/>
-                    <ShapesHierarchy
+                    <DocumentsGrid
                         documents={ documents}
                         searchParams={ location.search}
                         selectedItem={ selectedItemHandler}
