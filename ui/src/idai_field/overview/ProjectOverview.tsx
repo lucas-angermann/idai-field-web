@@ -19,23 +19,26 @@ import './project-overview.css';
 
 
 export default function ProjectOverview(): ReactElement {
+    
+    const location = useLocation();
+    const loginData = useContext(LoginContext);
+    const { t } = useTranslation();
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
-    const location = useLocation();
-    const loginData = useContext(LoginContext);
-    const { t } = useTranslation();
 
     useEffect (() => {
+        
         getProjectDocuments(loginData.token)
             .then(setProjectDocuments)
             .catch(err => setError(err));
     }, [loginData]);
 
     useEffect (() => {
+
         if (location.search.length > 0) {
             searchDocuments(location.search, 0, loginData.token).then(result => {
                 setProjectFilter(result.filters.find(filter => filter.name === 'project'));
@@ -52,7 +55,7 @@ export default function ProjectOverview(): ReactElement {
     const getChunk = (offset: number): void => {
 
         searchDocuments(location.search, offset, loginData.token).then(result => {
-            setDocuments(documents.concat(result.documents));
+            setDocuments(oldDocuments => oldDocuments.concat(result.documents));
         });
     };
 
