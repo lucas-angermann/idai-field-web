@@ -22,7 +22,7 @@ export default function Home(): ReactElement {
         searchDocuments(projectId, '',0, loginData.token,
             50, EXCLUDED_TYPES_SHAPES, parentId)
             .then(result => setDocuments(result.documents));
-    }, []);
+    }, [loginData]);
 
     return (
         <div className="d-flex align-items-center flex-column mt-2">
