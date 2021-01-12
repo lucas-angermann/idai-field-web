@@ -77,7 +77,7 @@ defmodule Api.Documents.Router do
     Stream.unfold(doc, fn
       nil -> nil
       current_doc -> {
-        current_doc |> IO.inspect,
+        current_doc,
         if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil do
           Index.get(current_doc.resource.parentId)
         end
