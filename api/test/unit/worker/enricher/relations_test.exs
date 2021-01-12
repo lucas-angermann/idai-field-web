@@ -11,20 +11,20 @@ defmodule Worker.Enricher.RelationsTest do
                   identifier: "i1",
                   type: "Feature",
                   relations: %{
-                    "isRecordedIn" => ["0"]
+                    isRecordedIn: ["0"]
                   }
                 }
               }
       end
 
-    %{ doc: %{ resource: %{ relations: %{ "isAbove" => targets } }}} = Relations.expand(%{
+    %{ doc: %{ resource: %{ relations: %{ isAbove: targets } }}} = Relations.expand(%{
       doc: %{
         resource: %{
           id: "2",
           identifier: "i2",
           type: "Feature",
           relations: %{
-            "isAbove" => ["1"]
+            isAbove: ["1"]
           }
         }
       }
@@ -42,14 +42,14 @@ defmodule Worker.Enricher.RelationsTest do
           identifier: "i1",
           type: "Feature",
           relations: %{
-            "liesWithin" => ["2"]
+            liesWithin: ["2"]
           }
         }
       }
     })
 
-    assert relations["isChildOf"] === ["2"]
-    assert relations["liesWithin"] === ["2"]
+    assert relations.isChildOf === ["2"]
+    assert relations.liesWithin === ["2"]
   end
 
   test "add child_of relation for resource with isRecordedIn relation" do
@@ -60,14 +60,14 @@ defmodule Worker.Enricher.RelationsTest do
           identifier: "i1",
           type: "Feature",
           relations: %{
-            "isRecordedIn" => ["2"]
+            isRecordedIn: ["2"]
           }
         }
       }
     })
 
-    assert relations["isChildOf"] === ["2"]
-    assert relations["isRecordedIn"] === ["2"]
+    assert relations.isChildOf === ["2"]
+    assert relations.isRecordedIn === ["2"]
   end
 
   test "add child_of relation for resource with liesWithin & isRecordedIn relation" do
@@ -78,16 +78,16 @@ defmodule Worker.Enricher.RelationsTest do
           identifier: "i1",
           type: "Feature",
           relations: %{
-            "isRecordedIn" => ["2"],
-            "liesWithin" => ["3"]
+            isRecordedIn: ["2"],
+            liesWithin: ["3"]
           }
         }
       }
     })
 
-    assert relations["isChildOf"] === ["3"]
-    assert relations["isRecordedIn"] === ["2"]
-    assert relations["liesWithin"] === ["3"]
+    assert relations.isChildOf === ["3"]
+    assert relations.isRecordedIn === ["2"]
+    assert relations.liesWithin === ["3"]
   end
 
   test "do not add child_of relation for resource without liesWithin & isRecordedIn relation" do
@@ -98,13 +98,13 @@ defmodule Worker.Enricher.RelationsTest do
           identifier: "i1",
           type: "Feature",
           relations: %{
-            "isAbove" => ["2"]
+            isAbove: ["2"]
           }
         }
       }
     })
 
-    assert !Map.has_key?(relations, "isChildOf")
-    assert relations["isAbove"] === ["2"]
+    assert !Map.has_key?(relations, :isChildOf)
+    assert relations.isAbove === ["2"]
   end
 end

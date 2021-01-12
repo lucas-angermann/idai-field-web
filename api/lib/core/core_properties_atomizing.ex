@@ -31,8 +31,7 @@ defmodule Core.CorePropertiesAtomizing do
 
   defp update_relations(document = %{ resource: resource }) do
     if not Map.has_key?(resource, :relations), do: document, else:
-      document
-      |> update_in([:resource, :relations],
+      a=update_in(document, [:resource, :relations],
          fn rel -> for {k, v} <- rel, into: %{} do
              {
                (if is_atom(k), do: k, else: String.to_atom(k)),
@@ -44,6 +43,6 @@ defmodule Core.CorePropertiesAtomizing do
   end
   defp update_relations(document), do: document
 
-  defp format_relation_target(target_document = %{ resource: _ }), do: format_document(target_document)
+  defp format_relation_target(target_document = %{ "resource" => _ }), do: format_document(target_document)
   defp format_relation_target(target_identifier), do: target_identifier
 end
