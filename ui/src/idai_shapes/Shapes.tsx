@@ -7,6 +7,7 @@ import { doLogout } from '../logout';
 import ShapesNav from '../shared/navbar/ShapesNav';
 import BrowseSelect from './browseselect/BrowseSelect';
 import { useRouteMatch } from 'react-router-dom';
+import Home from './Home/Home';
 
 export default function Shapes(): ReactElement {
     
@@ -26,6 +27,7 @@ export default function Shapes(): ReactElement {
             <LoginContext.Provider value={ loginData }>
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
+                    <Route path= {baseUrl} exact component={ Home } />
                     <Route path={ `${baseUrl}:documentId?` } component={ BrowseSelect } />
                 </Switch>
             </LoginContext.Provider>
