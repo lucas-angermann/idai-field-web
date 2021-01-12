@@ -13,7 +13,7 @@ import { TileImage, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import View from 'ol/View';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
@@ -36,23 +36,21 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
 
-/* eslint-disable react-hooks/exhaustive-deps */
 export default function ProjectMap({ document, documents, project }
         : { document: Document, documents: ResultDocument[], project: string }): ReactElement {
 
     const history = useHistory();
     const location = useLocation();
     const loginData = useContext(LoginContext);
+
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
     const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
     const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
-    const [mapClickFunction, setMapClickFunction] = useState<() => (_: MapBrowserEvent) => void>(null);
-    const [layerControlsCloseClickFunction] = useState<(event: MouseEvent) => void>(
-        () => getLayerControlsCloseClickFunction(setLayerControlsVisible)
-    );
+    
+    const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
 
     useEffect(() => {
 
@@ -60,6 +58,8 @@ export default function ProjectMap({ document, documents, project }
         setMap(newMap);
         setSelect(createSelect(newMap));
         configureCursor(newMap);
+
+        const layerControlsCloseClickFunction = () => getLayerControlsCloseClickFunction(setLayerControlsVisible);
         addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
 
         return () => {
@@ -87,11 +87,10 @@ export default function ProjectMap({ document, documents, project }
     useEffect(() => {
 
         if (!map) return;
-        if (mapClickFunction) map.un('click', mapClickFunction);
+        if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        const newMapClickFunction = handleMapClick(history, location.search, document);
-        setMapClickFunction(() => newMapClickFunction);
-        map.on('click', newMapClickFunction);
+        mapClickFunction.current = handleMapClick(history, location.search, document);
+        map.on('click', mapClickFunction.current);
     }, [map, history, document, location.search]);
 
     useEffect(() => {
@@ -132,7 +131,6 @@ export default function ProjectMap({ document, documents, project }
         { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
-/* eslint-enable react-hooks/exhaustive-deps */
 
 
 const createMap = (): Map => {
