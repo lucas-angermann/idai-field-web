@@ -11,6 +11,7 @@ import { ShapesHierarchy } from '../../shared/documents/ShapesHierarchy';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import { Predecessor } from '../../api/result';
 import { Row, Col } from 'react-bootstrap';
+import SearchBar from '../../shared/search/SearchBar';
 
 const CHUNK_SIZE = 50;
 
@@ -37,22 +38,23 @@ export default function BrowseSelect(): ReactElement {
         if (documentId) {
             get(documentId, loginData.token)
                 .then(doc => setDocument(doc))
-                .then(() => searchDocuments(projectId, '', 0, loginData.token, parentId))
+                .then(() => searchDocuments(projectId, location.search, 0, loginData.token, parentId))
                 .then(result => setDocuments(result.documents))
                 .then(() => predecessors(documentId, loginData.token))
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
         } else {
             setDocument(null);
             setBreadcrumb([]);
-            searchDocuments(projectId, '', 0, loginData.token, parentId)
+            searchDocuments(projectId, location.search, 0, loginData.token, parentId)
                 .then(res => setDocuments(res.documents));
         }
-    }, [documentId, loginData]);
+    }, [documentId, loginData, location.search]);
 
 
     return (
         <Row>
             <Col className="col-4 ml-2 mt-3">
+                < SearchBar projectId={projectId} basepath={ projectId }/>
                 { document
                     && <DocumentDetails document={ document }
                                         searchParams={ location.search }
