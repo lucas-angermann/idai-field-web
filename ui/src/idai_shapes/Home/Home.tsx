@@ -5,11 +5,9 @@ import { ResultDocument } from '../../api/result';
 import { searchDocuments } from '../../api/documents';
 import { LoginContext } from '../../App';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
-import { Row } from 'react-bootstrap';
+import Icon from '@mdi/react';
+import { mdiPencilOutline, mdiInboxArrowUp } from '@mdi/js';
 
-// interface HomeProps {
-
-// }
 
 export default function Home(): ReactElement {
 
@@ -35,7 +33,17 @@ export default function Home(): ReactElement {
 }
 
 const functionBar = (): ReactElement => (
-    <Row>
-        <p>Suchen durch</p>
-    </Row>
-)
+    <div className="d-flex justify-content-around">
+        <div className="p-1">
+            <p>Suchen durch</p>
+        </div>
+        <div className="d-flex p-1">
+            <Icon path={ mdiPencilOutline } size={ 0.9 } />
+            <p>Zeichnen einer Form</p>
+        </div>
+        <div className="d-flex p-1">
+            <Icon path={ mdiInboxArrowUp } size = {0.9} />
+            <p>Upload einer Bilddatei</p>
+        </div>
+    </div>
+);
