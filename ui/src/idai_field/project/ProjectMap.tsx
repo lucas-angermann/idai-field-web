@@ -5,7 +5,7 @@ import { History } from 'history';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import { never } from 'ol/events/condition';
 import GeoJSON from 'ol/format/GeoJSON';
-import { Geometry, Polygon } from 'ol/geom';
+import { Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import Map from 'ol/Map';
@@ -103,7 +103,7 @@ export default function ProjectMap({ document, documents, project }
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
 
-        map.getView().fit((newVectorLayer.getSource() as VectorSource<Geometry>).getExtent(),
+        map.getView().fit((newVectorLayer.getSource()).getExtent(),
             { padding: FIT_OPTIONS.padding });
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
@@ -114,14 +114,14 @@ export default function ProjectMap({ document, documents, project }
         select.getFeatures().clear();
 
         if (document?.resource?.geometry) {
-            const feature = (vectorLayer.getSource() as VectorSource<Geometry>)
+            const feature = (vectorLayer.getSource())
                 .getFeatureById(document.resource.id);
             if (!feature) return;
 
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
         } else {
-            map.getView().fit((vectorLayer.getSource() as VectorSource<Geometry>).getExtent(), FIT_OPTIONS);
+            map.getView().fit((vectorLayer.getSource()).getExtent(), FIT_OPTIONS);
         }
     }, [map, document, vectorLayer, select]);
 
