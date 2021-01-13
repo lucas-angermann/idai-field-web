@@ -1,12 +1,12 @@
-import React, { ReactElement, useState, useEffect, useContext } from 'react';
+import { mdiInboxArrowUp, mdiPencilOutline } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import { searchDocuments } from '../../api/documents';
+import { ResultDocument } from '../../api/result';
+import { LoginContext } from '../../App';
 import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
 import SearchBar from '../../shared/search/SearchBar';
-import { ResultDocument } from '../../api/result';
-import { searchDocuments } from '../../api/documents';
-import { LoginContext } from '../../App';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
-import Icon from '@mdi/react';
-import { mdiPencilOutline, mdiInboxArrowUp } from '@mdi/js';
 
 
 export default function Home(): ReactElement {
@@ -25,7 +25,7 @@ export default function Home(): ReactElement {
     return (
         <div className="d-flex align-items-center flex-column mt-2">
             <h1>iDai.shapes</h1>
-            < SearchBar projectId="idaishapes" basepath="idaishapes/idaishapes" />
+            < SearchBar basepath="idaishapes/idaishapes" />
             { renderFunctionBar() }
             <DocumentsGrid documents={ documents } searchParams="" selectedItem={ ()=> 0}/>
         </div>
