@@ -8,6 +8,7 @@ import ShapesNav from '../shared/navbar/ShapesNav';
 import BrowseSelect from './browseselect/BrowseSelect';
 import { useRouteMatch } from 'react-router-dom';
 import Home from './Home/Home';
+import NotFound from '../shared/NotFound';
 
 export default function Shapes(): ReactElement {
     
@@ -29,6 +30,7 @@ export default function Shapes(): ReactElement {
                 <Switch>
                     <Route path= {baseUrl} exact component={ Home } />
                     <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
+                    <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>
         </BrowserRouter>
