@@ -7,15 +7,16 @@ import DocumentThumbnail from '../document/DocumentThumbnail';
 
 interface DocumentsGrid {
     documents: ResultDocument[];
+    getLinkUrl: (id: string) => string;
 }
 
-export function DocumentsGrid({ documents }: DocumentsGrid): ReactElement {
+export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGrid): ReactElement {
     const { t } = useTranslation();
     if (documents !== null) {
         return (
             <Row className="mx-1">
                 { documents && documents.length === 0 ?
-                    renderEmptyResult(t) : renderDocuments(documents)
+                    renderEmptyResult(t) : renderDocuments(documents, getLinkUrl)
                 }
             </Row>
         );
@@ -24,15 +25,13 @@ export function DocumentsGrid({ documents }: DocumentsGrid): ReactElement {
     }
 }
 
-const getLinkUrl = (document: ResultDocument): string => `${document.resource.id}`;
 
-
-const renderDocuments = (documents: ResultDocument[]): ReactElement => {
+const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) => string): ReactElement => {
     return (
         <>
         {
         documents.map((document: ResultDocument) => {
-            const linkUrl = getLinkUrl(document);
+            const linkUrl = getLinkUrl(document.resource.id);
             return (
                 <div key={ document.resource.id} >
                     <DocumentThumbnail

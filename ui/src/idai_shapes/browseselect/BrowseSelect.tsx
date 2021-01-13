@@ -60,7 +60,8 @@ export default function BrowseSelect(): ReactElement {
                     }
                 </Col>
                 <Col className="mt-2">
-                    <DocumentsGrid documents={ documents} />
+                    <DocumentsGrid documents={ documents}
+                        getLinkUrl={ (id: string): string => id } />
                 </Col>
             </Row>
         </>

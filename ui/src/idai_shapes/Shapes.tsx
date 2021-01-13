@@ -28,7 +28,7 @@ export default function Shapes(): ReactElement {
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
                     <Route path= {baseUrl} exact component={ Home } />
-                    <Route path={ `${baseUrl}:documentId?` } component={ BrowseSelect } />
+                    <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
                 </Switch>
             </LoginContext.Provider>
         </BrowserRouter>

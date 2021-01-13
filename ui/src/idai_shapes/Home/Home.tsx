@@ -22,12 +22,14 @@ export default function Home(): ReactElement {
             .then(result => setDocuments(result.documents));
     }, [loginData]);
 
+    const getDocumentLink = (id: string): string => `document/${id}`;
+
     return (
         <div className="d-flex align-items-center flex-column mt-2">
             <h1>iDai.shapes</h1>
             < SearchBar basepath="idaishapes/idaishapes" />
             { renderFunctionBar() }
-            <DocumentsGrid documents={ documents } />
+            <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
         </div>
     );
 }
