@@ -15,7 +15,7 @@ import { getUserInterfaceLanguage } from '../../languages';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import Documents from '../../shared/documents/Documents';
 import LinkButton from '../../shared/linkbutton/LinkButton';
-import { NotFound } from '../../shared/NotFound';
+import NotFound from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';

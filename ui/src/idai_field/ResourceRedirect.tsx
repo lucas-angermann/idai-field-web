@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Redirect, useParams } from 'react-router-dom';
 import { search } from '../api/documents';
 import { LoginContext } from '../App';
-import { NotFound } from '../shared/NotFound';
+import NotFound from '../shared/NotFound';
 
 
 export default function ResourceRedirect(): ReactElement {
