@@ -29,7 +29,7 @@ export default function Shapes(): ReactElement {
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
                     <Route path= {baseUrl} exact component={ Home } />
-                    <Redirect exact from={`${baseUrl}document`} to= {baseUrl} /> 
+                    <Redirect exact from={`${baseUrl}document`} to= {baseUrl} />
                     <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
                     <Route component={ NotFound } />
                 </Switch>
