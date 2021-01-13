@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
@@ -29,6 +29,7 @@ export default function Shapes(): ReactElement {
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
                     <Route path= {baseUrl} exact component={ Home } />
+                    <Redirect exact from={`${baseUrl}document`} to= {baseUrl} /> 
                     <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
                     <Route component={ NotFound } />
                 </Switch>
