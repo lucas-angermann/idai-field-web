@@ -43,8 +43,8 @@ export const searchDocuments = async (
     chunkSize: number,
     exluded_types: string[],
     parentId?: string): Promise<Result> => {
-
-    const query = parseFrontendGetParams(searchParams,
-        buildProjectQueryTemplate(id, from, chunkSize, exluded_types), parentId);
+    
+    let query = buildProjectQueryTemplate(id, from, chunkSize, exluded_types);
+    query = parseFrontendGetParams(searchParams,query, parentId);
     return search(query, token);
 };
