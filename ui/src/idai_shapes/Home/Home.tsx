@@ -26,13 +26,13 @@ export default function Home(): ReactElement {
         <div className="d-flex align-items-center flex-column mt-2">
             <h1>iDai.shapes</h1>
             < SearchBar projectId="idaishapes" basepath="idaishapes/idaishapes" />
-            { functionBar() }
+            { renderFunctionBar() }
             <DocumentsGrid documents={ documents } searchParams="" selectedItem={ ()=> 0}/>
         </div>
     );
 }
 
-const functionBar = (): ReactElement => (
+const renderFunctionBar = (): ReactElement => (
     <div className="d-flex justify-content-around">
         <div className="p-1">
             <p>Suchen durch</p>
