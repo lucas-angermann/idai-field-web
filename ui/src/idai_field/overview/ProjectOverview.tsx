@@ -61,7 +61,7 @@ export default function ProjectOverview(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar />
+            <SearchBar basepath="/" />
             { location.search.length > 0 && documents && renderSidebar(filters, location, documents, getChunk) }
         </div>
         <div>

@@ -1,14 +1,14 @@
-import React, { useState, FormEvent, ReactElement, useEffect, useRef } from 'react';
-import { Card, Form, Button, InputGroup } from 'react-bootstrap';
-import { useHistory, useLocation } from 'react-router-dom';
-import Icon from '@mdi/react';
 import { mdiCloseCircle, mdiMagnify } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
+import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useHistory, useLocation } from 'react-router-dom';
 import { parseFrontendGetParams } from '../../api/query';
 
 
-export default function SearchBar({ projectId, onSubmit, basepath= 'project' }
-        : { projectId?: string, onSubmit?: () => void, basepath?: string }): ReactElement {
+export default function SearchBar({ projectId, onSubmit, basepath }
+        : { projectId?: string, onSubmit?: () => void, basepath: string }): ReactElement {
 
     const [queryString, setQueryString] = useState(undefined);
     const history = useHistory();
@@ -23,7 +23,7 @@ export default function SearchBar({ projectId, onSubmit, basepath= 'project' }
     
     const submitSearch = (e: FormEvent): void => {
         e.preventDefault();
-        history.push((projectId ? `/${basepath}` : '/') + `?q=${queryString ?? '*'}`);
+        history.push(`${basepath}?q=${queryString ?? '*'}`);
         if (onSubmit) onSubmit();
     };
 
@@ -31,7 +31,7 @@ export default function SearchBar({ projectId, onSubmit, basepath= 'project' }
         const params = new URLSearchParams(location.search);
         if (params.has('q')) {
             params.delete('q');
-            history.push((projectId ? `/${basepath}/` : '/') + `?${params}`);
+            history.push(`${basepath}?${params}`);
         } else {
             setQueryString(undefined);
             input.current.value = '';
