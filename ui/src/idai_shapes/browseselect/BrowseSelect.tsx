@@ -23,7 +23,6 @@ export default function BrowseSelect(): ReactElement {
     const location = useLocation();
     const projectId = 'idaishapes';
 
-    const root = 'Catalogs';
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
     
 
@@ -51,7 +50,7 @@ export default function BrowseSelect(): ReactElement {
 
     return (
         <>
-            <DocumentBreadcrumb breadcrumbs={ [{ identifier: root, url: './' }, ...breadcrumbs]}/>
+            <DocumentBreadcrumb breadcrumbs={ breadcrumbs } />
             <Row>
                 <Col className="col-4 ml-2">
                     { document
