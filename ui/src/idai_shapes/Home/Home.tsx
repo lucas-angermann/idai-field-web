@@ -25,7 +25,7 @@ export default function Home(): ReactElement {
     return (
         <div className="d-flex align-items-center flex-column mt-2">
             <h1>iDai.shapes</h1>
-            < SearchBar basepath="idaishapes" />
+            < SearchBar projectId="idaishapes" basepath="idaishapes/idaishapes" />
             { functionBar() }
             <DocumentsGrid documents={ documents } searchParams="" selectedItem={ ()=> 0}/>
         </div>
