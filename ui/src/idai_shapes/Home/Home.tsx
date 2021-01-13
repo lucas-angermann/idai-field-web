@@ -27,7 +27,7 @@ export default function Home(): ReactElement {
             <h1>iDai.shapes</h1>
             < SearchBar basepath="idaishapes/idaishapes" />
             { renderFunctionBar() }
-            <DocumentsGrid documents={ documents } searchParams="" selectedItem={ ()=> 0}/>
+            <DocumentsGrid documents={ documents } />
         </div>
     );
 }

@@ -26,11 +26,7 @@ export default function BrowseSelect(): ReactElement {
     const root = 'Catalogs';
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
     
- 
-    const selectedItemHandler = (id: string, identifier: string, url: string): void =>
-        setBreadcrumb(breadcrumbs.concat({ url, id, identifier }));
 
-    
     useEffect(() => {
         const parentId = documentId === undefined ? 'root' : documentId;
         if (documentId) {
@@ -65,11 +61,7 @@ export default function BrowseSelect(): ReactElement {
                     }
                 </Col>
                 <Col className="mt-2">
-                    <DocumentsGrid
-                        documents={ documents}
-                        searchParams={ location.search}
-                        selectedItem={ selectedItemHandler}
-                    />
+                    <DocumentsGrid documents={ documents} />
                 </Col>
             </Row>
         </>
