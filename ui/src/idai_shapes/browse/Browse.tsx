@@ -9,12 +9,12 @@ import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import { DocumentGrid } from '../../shared/documents/DocumentGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
-import './browse-select.css';
+import './browse.css';
 
 const CHUNK_SIZE = 50;
 
 
-export default function BrowseSelect(): ReactElement {
+export default function Browse(): ReactElement {
 
     const { documentId } = useParams<{ documentId: string }>();
     const [document, setDocument] = useState<Document>(null);

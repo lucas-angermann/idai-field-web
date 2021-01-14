@@ -6,8 +6,8 @@ import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
 import ShapesNav from '../shared/navbar/ShapesNav';
 import NotFound from '../shared/NotFound';
-import BrowseSelect from './browseselect/BrowseSelect';
-import Home from './Home/Home';
+import BrowseSelect from './browse/Browse';
+import Home from './home/Home';
 
 export default function Shapes(): ReactElement {
     
