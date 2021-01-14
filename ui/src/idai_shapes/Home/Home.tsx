@@ -1,12 +1,14 @@
 import { mdiInboxArrowUp, mdiPencilOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { searchDocuments } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
+import './home.css';
 
 
 export default function Home(): ReactElement {
@@ -25,12 +27,17 @@ export default function Home(): ReactElement {
     const getDocumentLink = (id: string): string => `document/${id}`;
 
     return (
-        <div className="d-flex align-items-center flex-column mt-2">
-            <h1>iDai.shapes</h1>
-            < SearchBar basepath="document/" />
-            { renderFunctionBar() }
-            <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
-        </div>
+        <Container>
+            <div className="search-container">
+                <h1>iDAI.<b>shapes</b></h1>
+                < SearchBar basepath="document/" />
+                { renderFunctionBar() }
+            </div>
+            <div>
+                <h2>Catalogs:</h2>
+                <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
+            </div>
+        </Container>
     );
 }
 
