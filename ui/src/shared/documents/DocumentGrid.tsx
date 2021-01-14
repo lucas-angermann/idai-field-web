@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
 import React, { ReactElement, ReactNode } from 'react';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
@@ -18,7 +18,7 @@ export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProp
     
     if (documents) {
         return (
-            <Row>
+            <Row noGutters>
                 { documents.length === 0
                     ? renderEmptyResult(t)
                     : renderDocuments(documents, getLinkUrl)
@@ -36,12 +36,12 @@ const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) =
 
 
 const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => string): ReactElement =>
-    <div key={ document.resource.id }>
+    <Col md={ 3 } key={ document.resource.id }>
         <DocumentThumbnail
             document={ document }
             linkUrl={ getLinkUrl(document.resource.id) }
             imageUrl="" />
-    </div>;
+    </Col>;
 
 
 const renderEmptyResult = (t: TFunction): ReactElement =>
