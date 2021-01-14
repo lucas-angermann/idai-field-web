@@ -8,6 +8,7 @@ import NotFound from '../shared/NotFound';
 import Browse from './browse/Browse';
 import Home from './home/Home';
 import ShapesNav from './navbar/ShapesNav';
+import Draw from './draw/Draw';
 
 
 export default function Shapes(): ReactElement {
