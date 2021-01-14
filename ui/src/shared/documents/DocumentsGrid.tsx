@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
 
-interface DocumentsGrid {
+interface DocumentsGridProps {
     documents: ResultDocument[];
     getLinkUrl: (id: string) => string;
 }
 
-export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGrid): ReactElement {
+export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGridProps): ReactElement {
     
     const { t } = useTranslation();
     if (documents !== null) {
