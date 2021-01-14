@@ -1,12 +1,19 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NavbarHoc, { NavBarProps } from './NavbarHoc';
+import SearchBar from '../../shared/search/SearchBar';
 
 
 export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
 
     const renderEntry = (name: string, route: string) => renderNavEntry(name, route);
+    const location = useLocation();
+    const [showSearchBar, setSearchBar] = useState<boolean>(false);
+
+    useEffect(() => {
+        setSearchBar(window.location.pathname !== '/idaishapes/');
+    }, [location]);
 
     return (
         <NavbarHoc onLogout={ onLogout } brand= "shapes" brandUrl= "/idaishapes">
@@ -16,6 +23,7 @@ export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
                 { renderEntry('Export', 'export') }
                 { renderEntry('Edit', 'edit') }
                 { renderEntry('Mining', 'mining') }
+                { showSearchBar && < SearchBar basepath="/idaishapes/document/" /> }
             </Nav>
         </NavbarHoc>
     );
