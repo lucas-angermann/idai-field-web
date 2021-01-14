@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import NavbarHoc, { NavBarProps } from '../../shared/navbar/NavbarHoc';
 import SearchBar from '../../shared/search/SearchBar';
-import NavbarHoc, { NavBarProps } from './NavbarHoc';
 
 
 export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {

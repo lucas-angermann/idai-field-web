@@ -8,8 +8,8 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
 import { LoginContext } from '../../App';
-import NavbarHoc, { getNavItemClass, NavBarProps } from './NavbarHoc';
-import { dropdownStyle } from './styles';
+import NavbarHoc, { getNavItemClass, NavBarProps } from '../../shared/navbar/NavbarHoc';
+import { dropdownStyle } from '../../shared/navbar/styles';
 
 export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
 

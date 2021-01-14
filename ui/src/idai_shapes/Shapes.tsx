@@ -4,10 +4,10 @@ import { BrowserRouter, useRouteMatch } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
-import ShapesNav from '../shared/navbar/ShapesNav';
 import NotFound from '../shared/NotFound';
 import Browse from './browse/Browse';
 import Home from './home/Home';
+import ShapesNav from './navbar/ShapesNav';
 
 export default function Shapes(): ReactElement {
     
