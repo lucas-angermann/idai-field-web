@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import React, { Fragment, ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { Card, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
@@ -15,41 +15,33 @@ interface DocumentGridProps {
 export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProps): ReactElement {
     
     const { t } = useTranslation();
-    if (documents !== null) {
+    
+    if (documents) {
         return (
             <Row>
-                { documents && documents.length === 0 ?
-                    renderEmptyResult(t) : renderDocuments(documents, getLinkUrl)
+                { documents.length === 0
+                    ? renderEmptyResult(t)
+                    : renderDocuments(documents, getLinkUrl)
                 }
             </Row>
         );
     } else {
-        return <Fragment />;
+        return null;
     }
 }
 
 
-const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) => string): ReactElement => {
+const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) => string): ReactNode =>
+    documents.map((document) => renderDocument(document, getLinkUrl));
 
-    return (
-        <>
-        {
-        documents.map((document: ResultDocument) => {
-            const linkUrl = getLinkUrl(document.resource.id);
-            return (
-                <div key={ document.resource.id }>
-                    <DocumentThumbnail
-                        document={ document }
-                        linkUrl={ linkUrl }
-                        imageUrl="" />
-                </div>
-            );
-            }
-        )
-        }
-        </>
-    );
-};
+
+const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => string): ReactElement =>
+    <div key={ document.resource.id }>
+        <DocumentThumbnail
+            document={ document }
+            linkUrl={ getLinkUrl(document.resource.id) }
+            imageUrl="" />
+    </div>;
 
 
 const renderEmptyResult = (t: TFunction): ReactElement =>
