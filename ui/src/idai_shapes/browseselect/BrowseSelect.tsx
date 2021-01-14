@@ -2,7 +2,7 @@ import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, predecessors, searchDocuments } from '../../api/documents';
+import { get, getPredecessors, searchDocuments } from '../../api/documents';
 import { Predecessor, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentDetails from '../../shared/document/DocumentDetails';
@@ -35,7 +35,7 @@ export default function BrowseSelect(): ReactElement {
                     projectId, location.search, 0, loginData.token,
                     CHUNK_SIZE, EXCLUDED_TYPES_SHAPES,parentId))
                 .then(result => setDocuments(result.documents))
-                .then(() => predecessors(documentId, loginData.token))
+                .then(() => getPredecessors(documentId, loginData.token))
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
         } else {
             setDocument(null);

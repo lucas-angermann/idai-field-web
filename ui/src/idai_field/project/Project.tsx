@@ -6,7 +6,7 @@ import { Card, Spinner, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, mapSearch, search, searchDocuments } from '../../api/documents';
+import { get, search, searchDocuments, searchMap } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { LoginContext } from '../../App';
@@ -179,7 +179,7 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 
     let query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
-    return mapSearch(query, token);
+    return searchMap(query, token);
 };
 
 

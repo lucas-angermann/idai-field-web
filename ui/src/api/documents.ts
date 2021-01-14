@@ -1,5 +1,5 @@
 import { Document } from './document';
-import { buildBackendGetParams, Query, parseFrontendGetParams, buildProjectQueryTemplate } from './query';
+import { buildBackendGetParams, buildProjectQueryTemplate, parseFrontendGetParams, Query } from './query';
 import { PredecessorResult, Result } from './result';
 import { getHeaders } from './utils';
 
@@ -20,14 +20,14 @@ export const search = async (query: Query, token: string): Promise<Result> => {
 };
 
 
-export const mapSearch = async (query: Query, token: string): Promise<Result> => {
+export const searchMap = async (query: Query, token: string): Promise<Result> => {
 
     const uri = `/api/documents/map?${buildBackendGetParams(query)}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     return response.json();
 };
 
-export const predecessors = async (id: string, token: string): Promise<PredecessorResult> => {
+export const getPredecessors = async (id: string, token: string): Promise<PredecessorResult> => {
     
     const uri = `/api/documents/predecessors/${id}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
