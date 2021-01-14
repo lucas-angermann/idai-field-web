@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { searchDocuments } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
-import { DocumentGrid } from '../../shared/documents/DocumentGrid';
+import DocumentGrid from '../../shared/documents/DocumentGrid';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import './home.css';

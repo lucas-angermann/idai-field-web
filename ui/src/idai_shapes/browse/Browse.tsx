@@ -8,7 +8,7 @@ import { LoginContext } from '../../App';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
-import { DocumentGrid } from '../../shared/documents/DocumentGrid';
+import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import './browse.css';
 

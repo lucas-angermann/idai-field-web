@@ -12,7 +12,7 @@ interface DocumentGridProps {
 }
 
 
-export function DocumentGrid({ documents, getLinkUrl }: DocumentGridProps): ReactElement {
+export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProps): ReactElement {
     
     const { t } = useTranslation();
     if (documents !== null) {
