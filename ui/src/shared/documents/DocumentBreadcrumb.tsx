@@ -15,7 +15,8 @@ interface DocumentBreadcrumbProps {
 
 export default function DocumentBreadcrumb({ breadcrumbs }: DocumentBreadcrumbProps): ReactElement {
 
-    breadcrumbs[breadcrumbs.length - 1].active = true;
+    if(breadcrumbs.length > 0)
+        breadcrumbs[breadcrumbs.length - 1].active = true;
 
     return (
         <Row>
