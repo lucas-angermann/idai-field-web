@@ -3,25 +3,26 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import NavbarHoc, { NavBarProps } from './NavbarHoc';
 
+
 export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
 
-    const createEntry = (name: string, route: string) => createNavEntry(name, route);
+    const renderEntry = (name: string, route: string) => renderNavEntry(name, route);
 
     return (
         <NavbarHoc onLogout={ onLogout } brand= "shapes" brandUrl= "/idaishapes">
             <Nav className="mr-auto">
-                { createEntry('Browse & Select', './') }
-                { createEntry('Find', 'find') }
-                { createEntry('Export', 'export') }
-                { createEntry('Edit', 'edit') }
-                { createEntry('Mining', 'mining') }
+                { renderEntry('Browse & Select', './') }
+                { renderEntry('Find', 'find') }
+                { renderEntry('Export', 'export') }
+                { renderEntry('Edit', 'edit') }
+                { renderEntry('Mining', 'mining') }
             </Nav>
         </NavbarHoc>
     );
 }
 
 
-const createNavEntry = (name: string, route: string): ReactElement => (
+const renderNavEntry = (name: string, route: string): ReactElement => (
     <Nav.Link as="span">
         <Link to={ route }>
             { name }
