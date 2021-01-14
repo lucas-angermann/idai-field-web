@@ -1,7 +1,7 @@
 import { mdiInboxArrowUp, mdiPencilOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { searchDocuments } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
@@ -27,17 +27,25 @@ export default function Home(): ReactElement {
     const getDocumentLink = (id: string): string => `document/${id}`;
 
     return (
-        <Container>
-            <div className="search-container">
-                <h1>iDAI.<b>shapes</b></h1>
-                < SearchBar basepath="document/" />
-                { renderFunctionBar() }
-            </div>
-            <div>
-                <h2>Catalogs:</h2>
-                <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
-            </div>
-        </Container>
+        <>
+            <Container fluid className="shapes-home p-0">
+                <div className="search-background">
+                    <div className="search-container">
+                        <h1>iDAI.<b>shapes</b></h1>
+                        < SearchBar basepath="document/" />
+                        { renderFunctionBar() }
+                    </div>
+                </div>
+            </Container>
+            <Container>
+                <Row className="catalog">
+                    <Col>
+                        <h1 className="my-5">Catalogs:</h1>
+                        <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
+                    </Col>
+                </Row>
+            </Container>
+        </>
     );
 }
 
