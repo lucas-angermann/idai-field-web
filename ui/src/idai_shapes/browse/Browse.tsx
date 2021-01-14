@@ -1,10 +1,11 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, searchDocuments } from '../../api/documents';
 import { Predecessor, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
+import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import { DocumentGrid } from '../../shared/documents/DocumentGrid';
@@ -53,11 +54,11 @@ export default function Browse(): ReactElement {
             <DocumentBreadcrumb breadcrumbs={ breadcrumbs } />
             <Row>
                 { document &&
-                <Col className="col-4 sidebar">
-                     <DocumentDetails document={ document } searchParams={ location.search } />
-                </Col>
+                    <Col className="col-4 sidebar">
+                        <DocumentDetails document={ document } searchParams={ location.search } />
+                    </Col>
                 }
-                <Col>
+                <Col style={ documentGridStyle }>
                     <DocumentGrid documents={ documents }
                         getLinkUrl={ (id: string): string => id } />
                 </Col>
@@ -74,3 +75,9 @@ const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbI
         url: predec.id,
     };
 });
+
+
+const documentGridStyle: CSSProperties = {
+    height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT) + 'px)',
+    overflowY: 'auto'
+};
