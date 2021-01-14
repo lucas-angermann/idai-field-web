@@ -50,7 +50,7 @@ export default function SearchBar({ onSubmit, basepath }
                     ref={ input } />
                 <InputGroup.Append>
                     { isResetQueryButtonVisible(location.search) &&
-                        <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
+                        <Button variant="link" onClick={ resetQueryString }>
                             <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
                     }
