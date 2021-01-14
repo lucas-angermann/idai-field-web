@@ -64,6 +64,9 @@
       "quotes": [ "warn", "single" ],
       "jsx-quotes": [ "warn", "prefer-double" ],
       "object-curly-spacing": ["warn", "always"],
+      "react/jsx-curly-spacing": ["warn", "always"],
+      "react/jsx-tag-spacing": ["warn"],
+      "react/jsx-equals-spacing": ["warn"],
       "no-multi-spaces": ["warn"]
     }
   },
