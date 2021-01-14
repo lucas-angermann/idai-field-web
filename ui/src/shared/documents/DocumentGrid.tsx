@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
-import React, { ReactElement, ReactNode } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
+import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
@@ -18,12 +18,12 @@ export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProp
     
     if (documents) {
         return (
-            <Row noGutters>
+            <div className="d-flex flex-wrap">
                 { documents.length === 0
                     ? renderEmptyResult(t)
                     : renderDocuments(documents, getLinkUrl)
                 }
-            </Row>
+            </div>
         );
     } else {
         return null;
@@ -36,12 +36,12 @@ const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) =
 
 
 const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => string): ReactElement =>
-    <Col md={ 3 } key={ document.resource.id }>
+    <div key={ document.resource.id } style={ documentBoxStyle } className="p-1 mr-2 mb-2">
         <DocumentThumbnail
             document={ document }
             linkUrl={ getLinkUrl(document.resource.id) }
             imageUrl="" />
-    </Col>;
+    </div>;
 
 
 const renderEmptyResult = (t: TFunction): ReactElement =>
@@ -50,3 +50,10 @@ const renderEmptyResult = (t: TFunction): ReactElement =>
             <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
         </Card.Body>
     </Card>;
+
+
+const documentBoxStyle: CSSProperties = {
+    width: '230px',
+    height: '230px',
+    backgroundColor: '#fff'
+};

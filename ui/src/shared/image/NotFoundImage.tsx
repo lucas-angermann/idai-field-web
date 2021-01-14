@@ -14,7 +14,6 @@ export default function NotFoundImage() : ReactElement {
 
 
 const errorStyle: CSSProperties = {
-    height: '100%',
     width: '100%',
     margin: 'auto',
     backgroundColor: '#ccc',
