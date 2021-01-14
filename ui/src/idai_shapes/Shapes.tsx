@@ -6,7 +6,7 @@ import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
 import ShapesNav from '../shared/navbar/ShapesNav';
 import NotFound from '../shared/NotFound';
-import BrowseSelect from './browse/Browse';
+import Browse from './browse/Browse';
 import Home from './home/Home';
 
 export default function Shapes(): ReactElement {
@@ -28,7 +28,7 @@ export default function Shapes(): ReactElement {
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
                     <Route path={ baseUrl } exact component={ Home } />
-                    <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
+                    <Route path={ `${baseUrl}document/:documentId?` } component={ Browse } />
                     <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>
