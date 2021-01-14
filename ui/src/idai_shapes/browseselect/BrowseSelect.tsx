@@ -52,13 +52,11 @@ export default function BrowseSelect(): ReactElement {
         <>
             <DocumentBreadcrumb breadcrumbs={ breadcrumbs } />
             <Row>
+                { document &&
                 <Col className="col-4 ml-2">
-                    { document
-                        && <DocumentDetails document={ document }
-                                            searchParams={ location.search }
-                                            />
-                    }
+                     <DocumentDetails document={ document } searchParams={ location.search } />
                 </Col>
+                }
                 <Col className="mt-2">
                     <DocumentsGrid documents={ documents}
                         getLinkUrl={ (id: string): string => id } />
