@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement, ReactNode, useContext } from 'react';
 import { Button, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { navbarStyle } from './styles';
 export interface BaseNavProps {
     onLogout: () => void;
     brand?: string;
-    children?: JSX.Element;
+    children?: ReactNode;
     brandUrl?: string;
 }
 
