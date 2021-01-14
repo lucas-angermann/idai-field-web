@@ -1,14 +1,12 @@
-import React, { ReactElement, Fragment } from 'react';
-import { Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { mdiMenuRight } from '@mdi/js';
-import Icon from '@mdi/react';
+import React, { ReactElement } from 'react';
+import { Breadcrumb, Col, Row } from 'react-bootstrap';
 import './document-hierar-nav.css';
 
 export interface BreadcrumbItem {
     identifier: string;
     url: string;
     id?: string;
+    active?: boolean;
 }
 
 interface DocumentBreadcrumbProps {
@@ -16,16 +14,21 @@ interface DocumentBreadcrumbProps {
 }
 
 export default function DocumentBreadcrumb({ breadcrumbs }: DocumentBreadcrumbProps): ReactElement {
+
+    breadcrumbs[breadcrumbs.length - 1].active = true;
+
     return (
-        <Row className="ml-3">
-            { breadcrumbs.map((item, index) => (
-                <Fragment key={ `hierar_${item.id}` }>
-                    { index > 0 && item.identifier !== '' ?
-                        <Icon path={ mdiMenuRight} size={ 1} className="navigation-arrow"></Icon> : null
-                    }
-                    <Link to={ item.url}>{ item.identifier}</Link>
-                </Fragment> ))
-            }
+        <Row>
+            <Col>
+                <Breadcrumb>
+                    { breadcrumbs.map(renderBreadcrumbItem) }
+                </Breadcrumb>
+            </Col>
         </Row>
     );
 }
+
+const renderBreadcrumbItem = (item: BreadcrumbItem): ReactElement =>
+    <Breadcrumb.Item key={ `hierar_${item.id}` } href={ item.url } active={ item.active }>
+        { item.identifier }
+    </Breadcrumb.Item>;
