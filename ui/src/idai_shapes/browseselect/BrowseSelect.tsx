@@ -7,7 +7,7 @@ import { Predecessor, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
-import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
+import { DocumentGrid } from '../../shared/documents/DocumentGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import './browse-select.css';
 
@@ -58,7 +58,7 @@ export default function BrowseSelect(): ReactElement {
                 </Col>
                 }
                 <Col>
-                    <DocumentsGrid documents={ documents }
+                    <DocumentGrid documents={ documents }
                         getLinkUrl={ (id: string): string => id } />
                 </Col>
             </Row>
