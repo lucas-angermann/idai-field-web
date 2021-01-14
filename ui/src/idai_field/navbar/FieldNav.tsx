@@ -8,10 +8,10 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
 import { LoginContext } from '../../App';
-import NavbarHoc, { getNavItemClass, NavBarProps } from '../../shared/navbar/NavbarHoc';
+import BaseNav, { BaseNavProps, getNavItemClass } from '../../shared/navbar/BaseNav';
 import { dropdownStyle } from '../../shared/navbar/styles';
 
-export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
+export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
 
     const [projectDocument, setProjectDocument] = useState<Document>(null);
     const location = useLocation();
@@ -29,7 +29,7 @@ export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
 
 
     return (
-        <NavbarHoc onLogout={ onLogout } brand="field">
+        <BaseNav onLogout={ onLogout } brand="field">
             <>
                 <Nav activeKey={ location.pathname } className="mr-auto">
                     <Nav.Link as="span">
@@ -68,7 +68,7 @@ export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
                     </Nav.Link>
                 </Nav>
             </>
-        </NavbarHoc>
+        </BaseNav>
     );
 }
 

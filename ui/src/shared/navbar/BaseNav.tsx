@@ -9,7 +9,7 @@ import LanguageButton from './LanguageButton';
 import './navbar.css';
 import { navbarStyle } from './styles';
 
-export interface NavBarProps {
+export interface BaseNavProps {
     onLogout: () => void;
     brand?: string;
     children?: JSX.Element;
@@ -17,7 +17,7 @@ export interface NavBarProps {
 }
 
 
-export default function NavbarHoc({ onLogout, brand, children, brandUrl='./' }: NavBarProps): ReactElement {
+export default function BaseNav({ onLogout, brand, children, brandUrl='./' }: BaseNavProps): ReactElement {
     
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
