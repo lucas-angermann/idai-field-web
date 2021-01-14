@@ -42,12 +42,12 @@ export default function Home(): ReactElement {
                 <Row className="catalog">
                     <Col>
                         <h1 className="my-5">Catalogs:</h1>
-                        <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
+                        <DocumentsGrid documents={ documents} getLinkUrl= { getDocumentLink }/>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="text-right">
-                        <Link to="document">Show all catalogs ...</Link>
+                        <Link to="document/">Show all catalogs ...</Link>
                     </Col>
                 </Row>
             </Container>
