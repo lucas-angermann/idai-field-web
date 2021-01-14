@@ -33,7 +33,7 @@ export default function Home(): ReactElement {
                 <div className="search-background">
                     <div className="search-container">
                         <h1>iDAI.<b>shapes</b></h1>
-                        < SearchBar basepath="document/" />
+                        <SearchBar basepath="document/" />
                         { renderFunctionBar() }
                     </div>
                 </div>

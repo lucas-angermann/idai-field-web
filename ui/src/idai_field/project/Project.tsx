@@ -92,8 +92,10 @@ export default function Project(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar onSubmit={ () => { setDocuments(null); setTotal(null); } }
+            <Card>
+                <SearchBar onSubmit={ () => { setDocuments(null); setTotal(null); } }
                        basepath={ `/project/${projectId}` } />
+            </Card>
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ location.search }
                      projectId={ projectId } />

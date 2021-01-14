@@ -1,7 +1,7 @@
 import { Location } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { search } from '../../api/documents';
@@ -61,7 +61,9 @@ export default function ProjectOverview(): ReactElement {
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
-            <SearchBar basepath="/" />
+            <Card>
+                <SearchBar basepath="/" />
+            </Card>
             { location.search.length > 0 && documents && renderSidebar(filters, location, documents, getChunk) }
         </div>
         <div>

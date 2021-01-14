@@ -1,7 +1,7 @@
 import { mdiCloseCircle, mdiMagnify } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
-import { Button, Card, Form, InputGroup } from 'react-bootstrap';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
 import { parseFrontendGetParams } from '../../api/query';
@@ -39,29 +39,27 @@ export default function SearchBar({ onSubmit, basepath }
     };
 
     return (
-        <Card>
-            <Form onSubmit={ submitSearch }>
-                <InputGroup>
-                    <Form.Control
-                        autoFocus={ true }
-                        type="text"
-                        placeholder={ t('searchBar.search') }
-                        value={ queryString ?? '' }
-                        onChange={ e => setQueryString(e.target.value) }
-                        ref={ input } />
-                    <InputGroup.Append>
-                        { isResetQueryButtonVisible(location.search) &&
-                            <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
-                                <Icon path={ mdiCloseCircle } size={ 0.8 } />
-                            </Button>
-                        }
-                        <Button variant="primary" type="submit">
-                            <Icon path={ mdiMagnify } size={ 0.8 } />
+        <Form onSubmit={ submitSearch }>
+            <InputGroup>
+                <Form.Control
+                    autoFocus={ true }
+                    type="text"
+                    placeholder={ t('searchBar.search') }
+                    value={ queryString ?? '' }
+                    onChange={ e => setQueryString(e.target.value) }
+                    ref={ input } />
+                <InputGroup.Append>
+                    { isResetQueryButtonVisible(location.search) &&
+                        <Button variant="link" onClick={ resetQueryString } style={ { paddingTop: '4px' } }>
+                            <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
-                    </InputGroup.Append>
-                </InputGroup>
-            </Form>
-        </Card>
+                    }
+                    <Button variant="primary" type="submit">
+                        <Icon path={ mdiMagnify } size={ 0.8 } />
+                    </Button>
+                </InputGroup.Append>
+            </InputGroup>
+        </Form>
     );
 }
 
