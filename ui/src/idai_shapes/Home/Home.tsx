@@ -2,6 +2,7 @@ import { mdiInboxArrowUp, mdiPencilOutline } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { searchDocuments } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
@@ -42,6 +43,11 @@ export default function Home(): ReactElement {
                     <Col>
                         <h1 className="my-5">Catalogs:</h1>
                         <DocumentsGrid documents={ documents } getLinkUrl= { getDocumentLink }/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="text-right">
+                        <Link to="document">Show all catalogs ...</Link>
                     </Col>
                 </Row>
             </Container>
