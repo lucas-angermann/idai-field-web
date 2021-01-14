@@ -1,15 +1,15 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, searchDocuments, predecessors } from '../../api/documents';
-import { ResultDocument } from '../../api/result';
+import { get, predecessors, searchDocuments } from '../../api/documents';
+import { Predecessor, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import { DocumentsGrid } from '../../shared/documents/DocumentsGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
-import { Predecessor } from '../../api/result';
-import { Row, Col } from 'react-bootstrap';
+import './browse-select.css';
 
 const CHUNK_SIZE = 50;
 
@@ -49,20 +49,20 @@ export default function BrowseSelect(): ReactElement {
 
 
     return (
-        <>
+        <Container fluid className="browse-select">
             <DocumentBreadcrumb breadcrumbs={ breadcrumbs } />
             <Row>
                 { document &&
-                <Col className="col-4 ml-2">
+                <Col className="col-4 sidebar">
                      <DocumentDetails document={ document } searchParams={ location.search } />
                 </Col>
                 }
-                <Col className="mt-2">
+                <Col>
                     <DocumentsGrid documents={ documents}
                         getLinkUrl={ (id: string): string => id } />
                 </Col>
             </Row>
-        </>
+        </Container>
     );
 }
   
@@ -74,4 +74,3 @@ const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbI
         url: predec.id,
     };
 });
-

@@ -11,10 +11,11 @@ interface DocumentsGrid {
 }
 
 export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGrid): ReactElement {
+    
     const { t } = useTranslation();
     if (documents !== null) {
         return (
-            <Row className="mx-1">
+            <Row>
                 { documents && documents.length === 0 ?
                     renderEmptyResult(t) : renderDocuments(documents, getLinkUrl)
                 }
@@ -27,6 +28,7 @@ export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGrid): ReactEl
 
 
 const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) => string): ReactElement => {
+
     return (
         <>
         {
@@ -48,10 +50,9 @@ const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) =
 };
 
 
-const renderEmptyResult = (t: TFunction): ReactElement => (
+const renderEmptyResult = (t: TFunction): ReactElement =>
     <Card className="documents-card">
         <Card.Body className="px-0 py-0">
             <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
         </Card.Body>
-    </Card>
-);
+    </Card>;

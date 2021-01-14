@@ -17,7 +17,7 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
     
     return (
       <Link to={ linkUrl}>
-            <Card className="m-2">
+            <Card className="mx-2 my-0 mb-2">
                 { imageUrl === '' ?
                    <NotFoundImage /> :
                     <Card.Img variant="top" src={ imageUrl} />
