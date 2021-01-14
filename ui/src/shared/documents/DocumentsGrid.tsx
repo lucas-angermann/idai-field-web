@@ -22,7 +22,7 @@ export function DocumentsGrid({ documents, getLinkUrl }: DocumentsGrid): ReactEl
             </Row>
         );
     } else {
-        return <Fragment/>;
+        return <Fragment />;
     }
 }
 
@@ -35,10 +35,10 @@ const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) =
         documents.map((document: ResultDocument) => {
             const linkUrl = getLinkUrl(document.resource.id);
             return (
-                <div key={ document.resource.id} >
+                <div key={ document.resource.id }>
                     <DocumentThumbnail
-                        document={ document}
-                        linkUrl={ linkUrl}
+                        document={ document }
+                        linkUrl={ linkUrl }
                         imageUrl="" />
                 </div>
             );

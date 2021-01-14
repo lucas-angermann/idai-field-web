@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
-import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../../api/result';
+import DocumentTeaser from '../document/DocumentTeaser';
 
 
 export default function DocumentList({ documents, searchParams = '', scrollFunction }
@@ -11,7 +11,7 @@ export default function DocumentList({ documents, searchParams = '', scrollFunct
     return documents.length > 0 ? (
         <Card className="documents-card">
             <Card.Body className="px-0 py-0">
-                <div className="documents" style={ documentsStyle} onScroll={ scrollFunction }>
+                <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
                     { documents.map((document: ResultDocument) =>
                         <div style={ documentContainerStyle } key={ document.resource.id }>
                             <DocumentTeaser document={ document } searchParams={ searchParams } />

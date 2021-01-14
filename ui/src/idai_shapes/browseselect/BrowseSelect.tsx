@@ -58,7 +58,7 @@ export default function BrowseSelect(): ReactElement {
                 </Col>
                 }
                 <Col>
-                    <DocumentsGrid documents={ documents}
+                    <DocumentsGrid documents={ documents }
                         getLinkUrl={ (id: string): string => id } />
                 </Col>
             </Row>

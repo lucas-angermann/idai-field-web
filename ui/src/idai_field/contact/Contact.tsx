@@ -20,7 +20,7 @@ export default function Contact(): ReactElement {
                     { t('contact.mailingList.subscription') }
                 </a>
             </p>
-            <hr className="m-5"/>
+            <hr className="m-5" />
             <h3 style={ headingStyle }>{ t('contact.errorReports.heading') }</h3>
             <p style={ paragraphStyle }>{ t('contact.errorReports.info')}</p>
             <p style={ linkStyle }><a href={ 'mailto:' + ERROR_REPORTS_MAIL }>{ ERROR_REPORTS_MAIL }</a></p>

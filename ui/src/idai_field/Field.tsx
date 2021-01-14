@@ -24,8 +24,8 @@ export default function Field(): ReactElement {
 
     return (
         <BrowserRouter>
-            <LoginContext.Provider value={ loginData}>
-                <FieldNav onLogout={ doLogout(setLoginData)}/>
+            <LoginContext.Provider value={ loginData }>
+                <FieldNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
                     <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                     <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />

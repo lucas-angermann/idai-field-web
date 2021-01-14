@@ -15,7 +15,7 @@ export default function ShapesNav({ onLogout }: NavBarProps): ReactElement {
     }, [location]);
 
     return (
-        <NavbarHoc onLogout={ onLogout } brand= "shapes" brandUrl= "/idaishapes">
+        <NavbarHoc onLogout={ onLogout } brand="shapes" brandUrl="/idaishapes">
             <Nav className="mr-auto">
                 { showSearchBar && <SearchBar basepath="/idaishapes/document/" /> }
             </Nav>

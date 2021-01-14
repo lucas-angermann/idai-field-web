@@ -34,7 +34,7 @@ const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParam
                 &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />
             </LinkButton>
             <Dropdown.Toggle split id={ `filter-dropdown-${filter.name}` }
-                    style={ { maxWidth: '2.5rem' } }/>
+                    style={ { maxWidth: '2.5rem' } } />
         </>
         : <Dropdown.Toggle id={ `filter-dropdown-${filter.name}` }>
             { getLabel(filter) }

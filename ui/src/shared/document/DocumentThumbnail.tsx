@@ -16,11 +16,11 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
     ReactElement {
     
     return (
-      <Link to={ linkUrl}>
+      <Link to={ linkUrl }>
             <Card className="mx-2 my-0 mb-2">
                 { imageUrl === '' ?
                    <NotFoundImage /> :
-                    <Card.Img variant="top" src={ imageUrl} />
+                    <Card.Img variant="top" src={ imageUrl } />
                 }
                 <Card.Text className="p-2">{ document.resource.identifier}</Card.Text>
             </Card>

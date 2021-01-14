@@ -145,7 +145,7 @@ const createMap = (): Map => {
 const renderLayerControlsButton = (layerControlsVisible: boolean,
         setLayerControlsVisible: React.Dispatch<React.SetStateAction<boolean>>): ReactElement => <>
     <Button id="layer-controls-button" variant="primary" style={ layerControlsButtonStyle }
-            onClick={ () => setLayerControlsVisible(!layerControlsVisible)}>
+            onClick={ () => setLayerControlsVisible(!layerControlsVisible) }>
         <Icon path={ mdiLayers } size={ 0.8 } />
     </Button>
 </>;

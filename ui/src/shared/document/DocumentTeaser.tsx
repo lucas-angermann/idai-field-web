@@ -70,7 +70,7 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
         <Row>
             <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
                 <CategoryIcon size={ `${height}` }
-                              category={ document.resource.category }/>
+                              category={ document.resource.category } />
             </Col>
             <Col>
                 <Row>

@@ -29,7 +29,7 @@ export default function FieldNav({ onLogout }: NavBarProps): ReactElement {
 
 
     return (
-        <NavbarHoc onLogout={ onLogout } brand= "field">
+        <NavbarHoc onLogout={ onLogout } brand="field">
             <>
                 <Nav activeKey={ location.pathname } className="mr-auto">
                     <Nav.Link as="span">

@@ -44,7 +44,7 @@ const renderHeader = (document: Document, searchParams: string, isImageDocument:
                       backButtonUrl?: string): ReactElement => (
     <div>
         <DocumentTeaser project={ document.project } document={ document } searchParams={ searchParams }
-                        backButtonUrl={ backButtonUrl } asLink={ false } imageHeader={ isImageDocument }/>
+                        backButtonUrl={ backButtonUrl } asLink={ false } imageHeader={ isImageDocument } />
     </div>
 );
 
@@ -61,7 +61,7 @@ const renderImage = (document: Document) => function CarouselImage(imageDoc: Res
         <Carousel.Item key={ imageDoc.resource.id }>
             <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${document.resource.id}` }
                     className="d-block mb-2">
-                <Image project={ document.project } id={ imageDoc.resource.id } maxWidth={ 380 } maxHeight={ 350 }/>
+                <Image project={ document.project } id={ imageDoc.resource.id } maxWidth={ 380 } maxHeight={ 350 } />
             </Link>
         </Carousel.Item>
     );
@@ -92,8 +92,8 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
         .map(field => {
             const valueElements = renderFieldValue(field.value, t);
             return valueElements ? [
-                <dt key={ `${field.name}_dt`}>{ renderMultiLanguageText(field, t) }</dt>,
-                <dd key={ `${field.name}_dd`}>{ valueElements }</dd>
+                <dt key={ `${field.name}_dt` }>{ renderMultiLanguageText(field, t) }</dt>,
+                <dd key={ `${field.name}_dd` }>{ valueElements }</dd>
             ] : undefined;
         });
     return fieldElements ? <dl style={ listStyle }>{ fieldElements }</dl> : <></>;
@@ -107,8 +107,8 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
     const relationElements = relations
         .filter(relation => relation.name !== 'isDepictedIn')
         .map(relation => [
-            <dt key={ `${relation.name}_dt`}>{ renderMultiLanguageText(relation, t) }</dt>,
-            <dd key={ `${relation.name}_dd`}>
+            <dt key={ `${relation.name}_dt` }>{ renderMultiLanguageText(relation, t) }</dt>,
+            <dd key={ `${relation.name}_dd` }>
                 <ul className="list-unstyled" style={ listStyle }>
                     { relation.targets.map(doc => renderDocumentLink(project, doc)) }
                 </ul>
@@ -187,7 +187,7 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 
 const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small"/></li>;
+    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small" /></li>;
 
 
 const renderPopover = (object: LabeledValue, t: TFunction): ReactElement => {

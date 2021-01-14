@@ -1,14 +1,13 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useRouteMatch } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
 import ShapesNav from '../shared/navbar/ShapesNav';
-import BrowseSelect from './browseselect/BrowseSelect';
-import { useRouteMatch } from 'react-router-dom';
-import Home from './Home/Home';
 import NotFound from '../shared/NotFound';
+import BrowseSelect from './browseselect/BrowseSelect';
+import Home from './Home/Home';
 
 export default function Shapes(): ReactElement {
     
@@ -28,7 +27,7 @@ export default function Shapes(): ReactElement {
             <LoginContext.Provider value={ loginData }>
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
-                    <Route path= {baseUrl} exact component={ Home } />
+                    <Route path={ baseUrl } exact component={ Home } />
                     <Route path={ `${baseUrl}document/:documentId?` } component={ BrowseSelect } />
                     <Route component={ NotFound } />
                 </Switch>

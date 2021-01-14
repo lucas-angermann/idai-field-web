@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
-import { ResultDocument } from '../../api/result';
 import { Document } from '../../api/document';
-import DocumentHierarchyHeader from './DocumentHierarchyHeader';
-import DocumentHierarchyBody from './DocumentHierarchyBody';
+import { ResultDocument } from '../../api/result';
 import './document-hierarchy.css';
+import DocumentHierarchyBody from './DocumentHierarchyBody';
+import DocumentHierarchyHeader from './DocumentHierarchyHeader';
 
 
 export default function DocumentHierarchy(
@@ -19,7 +19,7 @@ export default function DocumentHierarchy(
                                      searchParams={ searchParams } />
             <DocumentHierarchyBody documents={ documents }
                                    searchParams={ searchParams }
-                                   scrollFunction={ scrollFunction }/>
+                                   scrollFunction={ scrollFunction } />
         </Card>
         : <></>);
 }

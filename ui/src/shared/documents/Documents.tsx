@@ -52,8 +52,8 @@ const renderDocuments = (documents: ResultDocument[], projectDocument: Document,
 
     return searchParams && new URLSearchParams(searchParams).has('parent')
             ? <DocumentHierarchy documents={ documents } projectDocument={ projectDocument }
-                                 searchParams={ searchParams } scrollFunction={ onScroll }/>
-            : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll }/>;
+                                 searchParams={ searchParams } scrollFunction={ onScroll } />
+            : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll } />;
 };
 
 

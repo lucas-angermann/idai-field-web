@@ -12,6 +12,6 @@ export default function CloseButton({ params, filterKey, value, projectId }
         to={ (projectId ? `/project/${projectId}?` : '/?') + deleteFilterFromParams(params, filterKey, value) }
         variant="link"
         style={ { padding: 0, verticalAlign: 'baseline' } }>
-        <Icon path={ mdiCloseCircle } size={ 0.8 }/>
+        <Icon path={ mdiCloseCircle } size={ 0.8 } />
     </LinkButton>;
 }

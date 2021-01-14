@@ -41,7 +41,7 @@ export default React.memo(function Image({ project, id, maxWidth, maxHeight }: I
     }, [project, id, loginData, maxWidth, maxHeight]);
 
     return imgUrl
-        ? <img src={ imgUrl } style={ imageStyle } alt={ id }/>
+        ? <img src={ imgUrl } style={ imageStyle } alt={ id } />
         : error && <NotFoundImage />;
 });
 

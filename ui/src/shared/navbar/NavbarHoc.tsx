@@ -23,12 +23,12 @@ export default function NavbarHoc({ onLogout, brand, children, brandUrl='./' }: 
     const { t } = useTranslation();
 
     return (
-        <Navbar variant = "dark" style = { navbarStyle } >
+        <Navbar variant="dark" style={ navbarStyle }>
             <Navbar.Brand href={ brandUrl }>
                 { renderBrand(brand) }
             </Navbar.Brand>
             { children }
-            <LanguageButton/>
+            <LanguageButton />
             { renderLogin(loginData, onLogout, t) }
         </Navbar>
     );

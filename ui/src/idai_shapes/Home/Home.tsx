@@ -42,7 +42,7 @@ export default function Home(): ReactElement {
                 <Row className="catalog">
                     <Col>
                         <h1 className="my-5">Catalogs:</h1>
-                        <DocumentsGrid documents={ documents} getLinkUrl= { getDocumentLink }/>
+                        <DocumentsGrid documents={ documents } getLinkUrl={ getDocumentLink } />
                     </Col>
                 </Row>
                 <Row>
@@ -65,7 +65,7 @@ const renderFunctionBar = (): ReactElement => (
             <p>Zeichnen einer Form</p>
         </div>
         <div className="d-flex p-1">
-            <Icon path={ mdiInboxArrowUp } size = {0.9} />
+            <Icon path={ mdiInboxArrowUp } size={ 0.9 } />
             <p>Upload einer Bilddatei</p>
         </div>
     </div>

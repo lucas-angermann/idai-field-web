@@ -36,7 +36,7 @@ const getId = async (project: string, identifier: string, token: string): Promis
     if (result.documents.length > 0) {
         return result.documents[0].resource.id;
     } else {
-        throw 'Not found';
+        throw new Error('Not found');
     }
 };
 
