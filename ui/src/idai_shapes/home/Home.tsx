@@ -73,7 +73,7 @@ const searchCatalogDocuments = async (token: string): Promise<Result> => {
 
 
 const renderFunctionBar = (): ReactElement => (
-    <div className="d-flex justify-content-around">
+    <div className="d-flex justify-content-around mt-2">
         <div className="p-1">
             <p>Suchen durch</p>
         </div>

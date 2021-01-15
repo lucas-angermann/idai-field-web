@@ -45,7 +45,7 @@ const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => st
 
 
 const renderEmptyResult = (t: TFunction): ReactElement =>
-    <Card className="documents-card">
+    <Card className="documents-card m-0">
         <Card.Body className="px-0 py-0">
             <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
         </Card.Body>
