@@ -28,7 +28,9 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
                         : <NotFoundImage />
                     }
                 </div>
-                <div className="p-1" style={ labelStyle }>{ document.resource.identifier }</div>
+                <div className="p-1" title={ document.resource.identifier } style={ labelStyle }>
+                    { document.resource.identifier }
+                </div>
             </div>
         </Link>
     );
@@ -55,5 +57,8 @@ const imageStyle: CSSProperties = {
 };
 
 const labelStyle: CSSProperties = {
-    height: `${LABEL_HEIGHT}px`
+    height: `${LABEL_HEIGHT}px`,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
 };
