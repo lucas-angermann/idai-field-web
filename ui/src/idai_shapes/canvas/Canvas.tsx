@@ -25,7 +25,8 @@ export default function Canvas():ReactElement {
                     brushRadius={ brushRadius }
                     canvasWidth={ 512 }
                     canvasHeight={ 512 }
-                    brushColor="black" />
+                    brushColor="black"
+                    hideGrid />
             </Row>
             <Row>
                 <Button variant="primary" size="lg" className="mr-2 mt-2" onClick={ findHandler } >
