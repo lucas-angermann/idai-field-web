@@ -27,14 +27,13 @@ export default function Browse(): ReactElement {
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
     const [offset, setOffset] = useState<number>(0);
-    
 
     useEffect(() => {
 
         if (documentId) {
             get(documentId, loginData.token)
                 .then(doc => setDocument(doc))
-                .then(() => searchDocuments(location.search, 0, loginData.token, documentId))
+                .then(() => getChildren(documentId, 0, loginData.token))
                 .then(result => setDocuments(result.documents))
                 .then(() => getPredecessors(documentId, loginData.token))
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
@@ -58,11 +57,11 @@ export default function Browse(): ReactElement {
 
     const getChunk = useCallback((newOffset: number): void => {
 
-        searchDocuments(location.search, newOffset, loginData.token, documentId)
-            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
-        },
-        [documentId, location.search, loginData]
-    );
+        const promise = documentId
+            ? getChildren(documentId, newOffset, loginData.token)
+            : searchDocuments(location.search, newOffset, loginData.token);
+        promise.then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
+    }, [documentId, location.search, loginData]);
 
 
     return (
@@ -87,31 +86,31 @@ export default function Browse(): ReactElement {
 }
 
 
-const searchDocuments = async (
-        searchParams: string,
-        from: number,
-        token: string,
-        parentId?: string): Promise<Result> => {
-    
-    let query: Query = {
-        size: CHUNK_SIZE,
-        from,
-        filters: [
-            { field: 'project', value: SHAPES_PROJECT_ID },
-            { field: 'resource.category.name', value: 'Type' }
-        ]
-    };
+const getChildren = async (parentId: string, from: number, token: string) => {
 
-    query = parseFrontendGetParams(searchParams, query);
-    
-    if (parentId) {
-        query.q = undefined;
-        query.parent = parentId;
-        query.sort = 'sort';
-    }
-
+    const query: Query = getQueryTemplate(from);
+    query.parent = parentId;
+    query.sort = 'sort';
     return search(query, token);
 };
+
+
+const searchDocuments = async (searchParams: string, from: number, token: string): Promise<Result> => {
+    
+    let query: Query = getQueryTemplate(from);
+    query = parseFrontendGetParams(searchParams, query);
+    return search(query, token);
+};
+
+
+const getQueryTemplate = (from: number): Query => ({
+    size: CHUNK_SIZE,
+    from,
+    filters: [
+        { field: 'project', value: SHAPES_PROJECT_ID },
+        { field: 'resource.category.name', value: 'Type' }
+    ]
+});
   
 
 const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbItem[] => predecessors.map(predec => {
