@@ -2,19 +2,19 @@ import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect,
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, getPredecessors, searchDocuments } from '../../api/documents';
-import { Predecessor, ResultDocument } from '../../api/result';
+import { get, getPredecessors, search } from '../../api/documents';
+import { parseFrontendGetParams, Query } from '../../api/query';
+import { Predecessor, Result, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
-import { EXCLUDED_TYPES_SHAPES } from '../constants';
+import { SHAPES_PROJECT_ID } from '../constants';
 import './browse.css';
 
 
 const CHUNK_SIZE = 50;
-const SHAPES_PROJECT_ID = 'idaishapes';
 
 
 export default function Browse(): ReactElement {
@@ -30,24 +30,19 @@ export default function Browse(): ReactElement {
     
 
     useEffect(() => {
-        
-        const parentId = documentId === undefined ? 'root' : documentId;
+
         if (documentId) {
             get(documentId, loginData.token)
                 .then(doc => setDocument(doc))
-                .then(() => searchDocuments(
-                    SHAPES_PROJECT_ID, location.search, 0, loginData.token,
-                    CHUNK_SIZE, EXCLUDED_TYPES_SHAPES,parentId))
+                .then(() => searchDocuments(location.search, 0, loginData.token, documentId))
                 .then(result => setDocuments(result.documents))
                 .then(() => getPredecessors(documentId, loginData.token))
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
         } else {
             setDocument(null);
             setBreadcrumb([]);
-            searchDocuments(
-                SHAPES_PROJECT_ID, location.search, 0, loginData.token,
-                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES, parentId
-            ).then(res => setDocuments(res.documents));
+            searchDocuments(location.search, 0, loginData.token)
+                .then(res => setDocuments(res.documents));
         }
     }, [documentId, loginData, location.search]);
 
@@ -63,12 +58,10 @@ export default function Browse(): ReactElement {
 
     const getChunk = useCallback((newOffset: number): void => {
 
-            searchDocuments(
-                SHAPES_PROJECT_ID, location.search, newOffset, loginData.token,
-                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES
-            ).then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
+        searchDocuments(location.search, newOffset, loginData.token, documentId)
+            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
         },
-        [location.search, loginData]
+        [documentId, location.search, loginData]
     );
 
 
@@ -92,6 +85,33 @@ export default function Browse(): ReactElement {
         </Container>
     );
 }
+
+
+const searchDocuments = async (
+        searchParams: string,
+        from: number,
+        token: string,
+        parentId?: string): Promise<Result> => {
+    
+    let query: Query = {
+        size: CHUNK_SIZE,
+        from,
+        filters: [
+            { field: 'project', value: SHAPES_PROJECT_ID },
+            { field: 'resource.category.name', value: 'Type' }
+        ]
+    };
+
+    query = parseFrontendGetParams(searchParams, query);
+    
+    if (parentId) {
+        query.q = undefined;
+        query.parent = parentId;
+        query.sort = 'sort';
+    }
+
+    return search(query, token);
+};
   
 
 const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbItem[] => predecessors.map(predec => {

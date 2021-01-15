@@ -9,6 +9,7 @@ import Browse from './browse/Browse';
 import Home from './home/Home';
 import ShapesNav from './navbar/ShapesNav';
 
+
 export default function Shapes(): ReactElement {
     
     const [loginData, setLoginData] = useState(getPersistedLogin());

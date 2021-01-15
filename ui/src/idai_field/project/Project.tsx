@@ -6,7 +6,7 @@ import { Card, Spinner, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, search, searchDocuments, searchMap } from '../../api/documents';
+import { get, search, searchMap } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { LoginContext } from '../../App';
@@ -66,7 +66,7 @@ export default function Project(): ReactElement {
         initFilters(projectId, location.search, loginData.token)
             .then(result => setFilters(result.filters));
 
-        searchDocuments(projectId, location.search, 0, loginData.token, CHUNK_SIZE, EXCLUDED_TYPES_FIELD)
+        searchDocuments(projectId, location.search, 0, loginData.token)
             .then(result => {
                 setDocuments(result.documents);
                 setTotal(result.size);
@@ -82,7 +82,7 @@ export default function Project(): ReactElement {
 
     const getChunk = useCallback(
         (offset: number): void => {
-            searchDocuments(projectId, location.search, offset, loginData.token, CHUNK_SIZE, EXCLUDED_TYPES_FIELD)
+            searchDocuments(projectId, location.search, offset, loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
         },
         [projectId, location.search, loginData]
@@ -170,6 +170,13 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
 
     let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
+    query = parseFrontendGetParams(searchParams, query);
+    return search(query, token);
+};
+
+const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
+    
+    let query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
 };

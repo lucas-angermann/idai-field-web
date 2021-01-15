@@ -3,25 +3,26 @@ import Icon from '@mdi/react';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { searchDocuments } from '../../api/documents';
-import { ResultDocument } from '../../api/result';
+import { search } from '../../api/documents';
+import { Query } from '../../api/query';
+import { Result, ResultDocument } from '../../api/result';
 import { LoginContext } from '../../App';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import SearchBar from '../../shared/search/SearchBar';
-import { EXCLUDED_TYPES_SHAPES } from '../constants';
+import { SHAPES_PROJECT_ID } from '../constants';
 import './home.css';
+
+
+const NUM_CATALOGS = 6;
 
 
 export default function Home(): ReactElement {
 
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const loginData = useContext(LoginContext);
-    const projectId = 'idaishapes';
 
     useEffect(() => {
-        const parentId = 'root';
-        searchDocuments(projectId, '',0, loginData.token,
-            50, EXCLUDED_TYPES_SHAPES, parentId)
+        searchCatalogDocuments(loginData.token)
             .then(result => setDocuments(result.documents));
     }, [loginData]);
 
@@ -54,6 +55,22 @@ export default function Home(): ReactElement {
         </>
     );
 }
+
+
+const searchCatalogDocuments = async (token: string): Promise<Result> => {
+    
+    const query: Query = {
+        size: NUM_CATALOGS,
+        filters: [
+            { field: 'project', value: SHAPES_PROJECT_ID },
+            { field: 'resource.category.name', value: 'TypeCatalog' }
+        ],
+        parent: 'root'
+    };
+    
+    return search(query, token);
+};
+
 
 const renderFunctionBar = (): ReactElement => (
     <div className="d-flex justify-content-around">

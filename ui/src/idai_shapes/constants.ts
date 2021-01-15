@@ -1,1 +1,1 @@
-export const EXCLUDED_TYPES_SHAPES = ['Project', 'Image', 'Trench', 'Find'];
+export const SHAPES_PROJECT_ID = 'idaishapes';

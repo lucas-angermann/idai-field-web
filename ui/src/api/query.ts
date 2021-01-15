@@ -1,5 +1,3 @@
-
-
 export type Query = {
     q?: string,
     filters?: Filter[],
@@ -7,7 +5,8 @@ export type Query = {
     exists?: string[],
     parent?: string,
     size?: number,
-    from?: number
+    from?: number,
+    sort?: string
 };
 
 
@@ -36,11 +35,11 @@ export const buildBackendGetParams = (query: Query): string => {
         } else {
             queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
         }
-        queryParams.push(['sort', 'sort']);
     }
 
     if (query.size) queryParams.push(['size', query.size.toString()]);
     if (query.from) queryParams.push(['from', query.from.toString()]);
+    if (query.sort) queryParams.push(['sort', query.sort]);
 
     return queryParams.map(([k, v]) => `${k}=${v}`).join('&');
 };
@@ -63,23 +62,19 @@ export const buildProjectQueryTemplate = (id: string, from: number, size: number
 });
 
 
-export const parseFrontendGetParams = (searchParams: string, query: Query = { filters: [] },
-                                       parentId?: string): Query => {
+export const parseFrontendGetParams = (searchParams: string, query: Query = { filters: [] }): Query => {
 
     const newQuery = JSON.parse(JSON.stringify(query));
     const params = new URLSearchParams(searchParams);
 
     if (params.has('q')) {
         newQuery.q = params.get('q');
-    } else if (!parentId && !params.has('parent')) {
+    } else if (!params.has('parent')) {
         newQuery.q = '*';
     }
 
     if (params.has('parent')) {
         newQuery.parent = params.get('parent');
-    }
-    else if (parentId) {
-        newQuery.parent = parentId;
     }
 
     const filters = Array.from(params.entries())
