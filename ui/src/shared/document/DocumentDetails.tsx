@@ -17,10 +17,10 @@ import DocumentTeaser from './DocumentTeaser';
 const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
 
 
-export default function DocumentDetails({ document, searchParams, isImageDocument= false,
-                                          backButtonUrl }
+export default function DocumentDetails({ document, searchParams, isImageDocument=false,
+                                          backButtonUrl, skipRelations=false }
         : { document: Document, searchParams: string, isImageDocument?: boolean,
-            backButtonUrl?: string }): ReactElement {
+            backButtonUrl?: string, skipRelations?: boolean }): ReactElement {
 
     const { t } = useTranslation();
 
@@ -33,7 +33,7 @@ export default function DocumentDetails({ document, searchParams, isImageDocumen
             </Card.Header>
             <Card.Body style={ cardBodyStyle }>
                 { images && renderImages(images, document) }
-                { renderGroups(document, t) }
+                { renderGroups(document, t, skipRelations) }
             </Card.Body>
         </Card>
     );
@@ -68,18 +68,19 @@ const renderImage = (document: Document) => function CarouselImage(imageDoc: Res
 };
 
 
-const renderGroups = (document: Document, t: TFunction): ReactNode => {
+const renderGroups = (document: Document, t: TFunction, skipRelations: boolean): ReactNode => {
 
-    return document.resource.groups.map(renderGroup(t, document.project));
+    return document.resource.groups.map(renderGroup(t, document.project, skipRelations));
 };
 
 
-const renderGroup = (t: TFunction, project: string) => function FieldGroupRow(group: FieldGroup): ReactNode {
+const renderGroup = (t: TFunction, project: string, skipRelations: boolean) =>
+    function FieldGroupRow(group: FieldGroup): ReactNode {
 
     return (
         <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields, t) }
-            { renderRelationList(group.relations, project, t) }
+            { skipRelations || renderRelationList(group.relations, project, t) }
         </div>
     );
 };

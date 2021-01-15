@@ -55,7 +55,10 @@ export default function Browse(): ReactElement {
             <Row>
                 { document &&
                     <Col className="col-4 sidebar">
-                        <DocumentDetails document={ document } searchParams={ location.search } />
+                        <DocumentDetails
+                            document={ document }
+                            searchParams={ location.search }
+                            skipRelations={ true } />
                     </Col>
                 }
                 <Col style={ documentGridStyle }>
