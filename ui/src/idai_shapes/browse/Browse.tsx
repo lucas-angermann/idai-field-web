@@ -32,10 +32,10 @@ export default function Browse(): ReactElement {
 
         if (documentId) {
             get(documentId, loginData.token)
-                .then(doc => setDocument(doc))
-                .then(() => getChildren(documentId, 0, loginData.token))
-                .then(result => setDocuments(result.documents))
-                .then(() => getPredecessors(documentId, loginData.token))
+                .then(doc => setDocument(doc));
+            getChildren(documentId, 0, loginData.token)
+                .then(result => setDocuments(result.documents));
+            getPredecessors(documentId, loginData.token)
                 .then(result => setBreadcrumb(predecessorsToBreadcrumbItems(result.results)));
         } else {
             setDocument(null);
