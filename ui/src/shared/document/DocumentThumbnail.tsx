@@ -4,6 +4,9 @@ import { ResultDocument } from '../../api/result';
 import NotFoundImage from '../image/NotFoundImage';
 
 
+const LABEL_HEIGHT = 30;
+
+
 interface DocumentThumbnailProps {
     document: ResultDocument;
     linkUrl: string;
@@ -19,11 +22,13 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
             <div style={ outerStyle }>
                 <div style={ innerStyle }>
                     { imageUrl
-                        ? <img alt={ document.resource.identifier } src={ imageUrl } />
+                        ? <img src={ imageUrl }
+                            alt={ document.resource.identifier }
+                            style={ imageStyle } />
                         : <NotFoundImage />
                     }
                 </div>
-                <div className="p-1">{ document.resource.identifier }</div>
+                <div className="p-1" style={ labelStyle }>{ document.resource.identifier }</div>
             </div>
         </Link>
     );
@@ -39,7 +44,16 @@ const outerStyle: CSSProperties = {
 const innerStyle: CSSProperties = {
     flexGrow: 1,
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
-    margin: 'auto'
+    alignItems: 'center',
+    height: `calc(100% - ${LABEL_HEIGHT}px)`
+};
+
+const imageStyle: CSSProperties = {
+    maxWidth: '100%',
+    height: '100%'
+};
+
+const labelStyle: CSSProperties = {
+    height: `${LABEL_HEIGHT}px`
 };
