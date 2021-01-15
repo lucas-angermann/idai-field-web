@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
@@ -12,28 +12,31 @@ import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { EXCLUDED_TYPES_SHAPES } from '../constants';
 import './browse.css';
 
+
 const CHUNK_SIZE = 50;
+const SHAPES_PROJECT_ID = 'idaishapes';
 
 
 export default function Browse(): ReactElement {
 
     const { documentId } = useParams<{ documentId: string }>();
-    const [document, setDocument] = useState<Document>(null);
     const loginData = useContext(LoginContext);
-    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const location = useLocation();
-    const projectId = 'idaishapes';
 
+    const [document, setDocument] = useState<Document>(null);
+    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
+    const [offset, setOffset] = useState<number>(0);
     
 
     useEffect(() => {
+        
         const parentId = documentId === undefined ? 'root' : documentId;
         if (documentId) {
             get(documentId, loginData.token)
                 .then(doc => setDocument(doc))
                 .then(() => searchDocuments(
-                    projectId, location.search, 0, loginData.token,
+                    SHAPES_PROJECT_ID, location.search, 0, loginData.token,
                     CHUNK_SIZE, EXCLUDED_TYPES_SHAPES,parentId))
                 .then(result => setDocuments(result.documents))
                 .then(() => getPredecessors(documentId, loginData.token))
@@ -42,11 +45,31 @@ export default function Browse(): ReactElement {
             setDocument(null);
             setBreadcrumb([]);
             searchDocuments(
-                projectId, location.search, 0, loginData.token,
-                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES, parentId)
-                .then(res => setDocuments(res.documents));
+                SHAPES_PROJECT_ID, location.search, 0, loginData.token,
+                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES, parentId
+            ).then(res => setDocuments(res.documents));
         }
     }, [documentId, loginData, location.search]);
+
+    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
+
+        const el = e.currentTarget;
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            const newOffset = offset + CHUNK_SIZE;
+            getChunk(newOffset);
+            setOffset(newOffset);
+        }
+    };
+
+    const getChunk = useCallback((newOffset: number): void => {
+
+            searchDocuments(
+                SHAPES_PROJECT_ID, location.search, newOffset, loginData.token,
+                CHUNK_SIZE, EXCLUDED_TYPES_SHAPES
+            ).then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
+        },
+        [location.search, loginData]
+    );
 
 
     return (
@@ -61,7 +84,7 @@ export default function Browse(): ReactElement {
                             skipRelations={ true } />
                     </Col>
                 }
-                <Col style={ documentGridStyle }>
+                <Col style={ documentGridStyle } onScroll={ onScroll }>
                     <DocumentGrid documents={ documents }
                         getLinkUrl={ (id: string): string => id } />
                 </Col>
