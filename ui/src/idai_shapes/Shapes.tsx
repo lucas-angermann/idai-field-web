@@ -4,6 +4,7 @@ import { BrowserRouter, useRouteMatch } from 'react-router-dom';
 import { LoginContext } from '../App';
 import { getPersistedLogin } from '../login';
 import { doLogout } from '../logout';
+import LoginForm from '../shared/loginform/LoginForm';
 import NotFound from '../shared/NotFound';
 import Browse from './browse/Browse';
 import Home from './home/Home';
@@ -34,6 +35,9 @@ export default function Shapes(): ReactElement {
                 <Switch>
                     <Route path={ baseUrl } exact component={ Home } />
                     <Route path={ `${baseUrl}document/:documentId?` } component={ Browse } />
+                    <Route path={ '/login' }>
+                        <LoginForm onLogin={ setLoginData } />
+                    </Route>
                     <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>
