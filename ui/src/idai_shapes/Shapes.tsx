@@ -13,15 +13,19 @@ import ShapesNav from './navbar/ShapesNav';
 export default function Shapes(): ReactElement {
     
     const [loginData, setLoginData] = useState(getPersistedLogin());
-    const match = useRouteMatch();
-
 
     useEffect(() => {
 
         document.title = 'iDAI.shapes';
     }, []);
 
-    const baseUrl = match.path || '/';
+    let baseUrl = '/';
+    try {
+        const match = useRouteMatch();
+        baseUrl = match.path;
+    } catch(e) {
+        // component is root component -> eat error
+    }
 
     return (
         <BrowserRouter>
