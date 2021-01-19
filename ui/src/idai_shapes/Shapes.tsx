@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
-import { BrowserRouter, useRouteMatch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { getPersistedLogin, LoginContext } from '../login';
 import { doLogout } from '../logout';
 import LoginForm from '../shared/loginform/LoginForm';
@@ -19,21 +19,13 @@ export default function Shapes(): ReactElement {
         document.title = 'iDAI.shapes';
     }, []);
 
-    let baseUrl = '/';
-    try {
-        const match = useRouteMatch();
-        baseUrl = match.path;
-    } catch(e) {
-        // component is root component -> eat error
-    }
-
     return (
         <BrowserRouter>
             <LoginContext.Provider value={ loginData }>
                 <ShapesNav onLogout={ doLogout(setLoginData) } />
                 <Switch>
-                    <Route path={ baseUrl } exact component={ Home } />
-                    <Route path={ `${baseUrl}document/:documentId?` } component={ Browse } />
+                    <Route path={ '/' } exact component={ Home } />
+                    <Route path={ '/document/:documentId?' } component={ Browse } />
                     <Route path={ '/login' }>
                         <LoginForm onLogin={ setLoginData } />
                     </Route>

@@ -11,13 +11,13 @@ export default function ShapesNav({ onLogout }: BaseNavProps): ReactElement {
     const [showSearchBar, setSearchBar] = useState<boolean>(false);
 
     useEffect(() => {
-        setSearchBar(window.location.pathname !== '/idaishapes/');
+        setSearchBar(window.location.pathname !== '/');
     }, [location]);
 
     return (
-        <BaseNav onLogout={ onLogout } brand="shapes" brandUrl="/idaishapes">
+        <BaseNav onLogout={ onLogout } brand="shapes" brandUrl="/">
             <Nav className="mr-auto">
-                { showSearchBar && <SearchBar basepath="/idaishapes/document/" /> }
+                { showSearchBar && <SearchBar basepath="/document/" /> }
             </Nav>
         </BaseNav>
     );
