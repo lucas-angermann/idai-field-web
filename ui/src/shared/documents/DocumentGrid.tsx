@@ -6,6 +6,10 @@ import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
 
 
+const MAX_IMG_WIDTH = 230;
+const MAX_IMG_HEIGHT = 230;
+
+
 interface DocumentGridProps {
     documents: ResultDocument[];
     getLinkUrl: (id: string) => string;
@@ -40,7 +44,8 @@ const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => st
         <DocumentThumbnail
             document={ document }
             linkUrl={ getLinkUrl(document.resource.id) }
-            imageUrl="" />
+            maxWidth={ MAX_IMG_WIDTH }
+            maxHeight={ MAX_IMG_HEIGHT } />
     </div>;
 
 
@@ -53,7 +58,7 @@ const renderEmptyResult = (t: TFunction): ReactElement =>
 
 
 const documentBoxStyle: CSSProperties = {
-    width: '230px',
-    height: '230px',
+    width: `${MAX_IMG_WIDTH}px`,
+    height: `${MAX_IMG_HEIGHT}px`,
     backgroundColor: '#fff'
 };

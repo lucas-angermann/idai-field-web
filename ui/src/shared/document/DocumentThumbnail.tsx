@@ -1,6 +1,7 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
+import Image from '../image/Image';
 import NotFoundImage from '../image/NotFoundImage';
 
 
@@ -10,21 +11,25 @@ const LABEL_HEIGHT = 30;
 interface DocumentThumbnailProps {
     document: ResultDocument;
     linkUrl: string;
-    imageUrl: string;
+    maxWidth: number;
+    maxHeight: number;
 }
 
 
-export default React.memo(function DocumentThumbnail({ document, linkUrl, imageUrl }: DocumentThumbnailProps)
+export default React.memo(function DocumentThumbnail({ document, linkUrl, maxWidth, maxHeight }: DocumentThumbnailProps)
     : ReactElement {
+
+    const imageId = getImageId(document);
     
     return (
         <Link to={ linkUrl }>
             <div style={ outerStyle }>
                 <div style={ innerStyle }>
-                    { imageUrl
-                        ? <img src={ imageUrl }
-                            alt={ document.resource.identifier }
-                            style={ imageStyle } />
+                    { imageId
+                        ? <Image
+                            project={ document.project }
+                            id={ imageId }
+                            maxWidth={ maxWidth } maxHeight={ maxHeight } />
                         : <NotFoundImage />
                     }
                 </div>
@@ -35,6 +40,9 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
         </Link>
     );
 });
+
+
+const getImageId = (document: ResultDocument): string => document.resource.relations.isDepictedIn?.[0].resource.id;
 
 
 const outerStyle: CSSProperties = {
