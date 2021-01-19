@@ -59,11 +59,6 @@ const innerStyle: CSSProperties = {
     height: `calc(100% - ${LABEL_HEIGHT}px)`
 };
 
-const imageStyle: CSSProperties = {
-    maxWidth: '100%',
-    height: '100%'
-};
-
 const labelStyle: CSSProperties = {
     height: `${LABEL_HEIGHT}px`,
     whiteSpace: 'nowrap',
