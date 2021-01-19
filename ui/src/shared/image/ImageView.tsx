@@ -4,8 +4,8 @@ import { Map, ZoomControl } from 'react-leaflet';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
-import { LoginContext } from '../../App';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import { LoginContext } from '../../login';
 import DocumentDetails from '../document/DocumentDetails';
 import IiifImageLayer from './IiifImageLayer';
 

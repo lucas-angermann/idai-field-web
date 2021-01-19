@@ -1,8 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter, useRouteMatch } from 'react-router-dom';
-import { LoginContext } from '../App';
-import { getPersistedLogin } from '../login';
+import { getPersistedLogin, LoginContext } from '../login';
 import { doLogout } from '../logout';
 import LoginForm from '../shared/loginform/LoginForm';
 import NotFound from '../shared/NotFound';

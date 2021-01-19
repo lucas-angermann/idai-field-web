@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
-import { LoginContext } from '../../App';
+import { LoginContext } from '../../login';
 import BaseNav, { BaseNavProps, getNavItemClass } from '../../shared/navbar/BaseNav';
 import { dropdownStyle } from '../../shared/navbar/styles';
 

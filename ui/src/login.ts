@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface LoginData {
     user: string;
     token: string;
@@ -43,3 +45,6 @@ export const getPersistedLogin = (): LoginData => {
     if (!loginDataValue) return ANONYMOUS_USER;
     return JSON.parse(loginDataValue);
 };
+
+
+export const LoginContext = React.createContext(ANONYMOUS_USER);

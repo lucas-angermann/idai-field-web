@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { LoginContext } from '../App';
-import { getPersistedLogin } from '../login';
+import { getPersistedLogin, LoginContext } from '../login';
 import { doLogout } from '../logout';
 import ImageView from '../shared/image/ImageView';
 import LoginForm from '../shared/loginform/LoginForm';
