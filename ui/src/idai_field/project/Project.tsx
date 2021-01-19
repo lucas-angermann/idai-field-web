@@ -27,6 +27,7 @@ import ProjectMap from './ProjectMap';
 const MAX_SIZE = 10000;
 export const CHUNK_SIZE = 50;
 
+
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();

@@ -75,10 +75,11 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { fi
 
     if (params.has('parent')) {
         newQuery.parent = params.get('parent');
+        newQuery.sort = 'sort';
     }
 
     const filters = Array.from(params.entries())
-        .filter(([field]) => field !== 'q' && field !== 'r' && field !== 'parent')
+        .filter(([field]) => field !== 'q' && field !== 'r' && field !== 'parent' && field !== 'sort')
         .map(([field, value]) => ({ field, value }));
     
     if (!newQuery.filters) newQuery.filters = [];
