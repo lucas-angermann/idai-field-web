@@ -1,5 +1,5 @@
 import { set } from 'tsfun';
-import { I18nString, LabeledValue } from './api/document';
+import { I18nString, LabeledValue } from '../api/document';
 
 export const USER_INTERFACE_LANGUAGES = ['en', 'de'];
 

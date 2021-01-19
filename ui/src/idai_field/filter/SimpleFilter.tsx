@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FilterBucket, ResultFilter } from '../../api/result';
-import { getLabel } from '../../languages';
+import { getLabel } from '../../shared/languages';
 import CloseButton from './CloseButton';
 import FilterDropdown from './FilterDropdown';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';

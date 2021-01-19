@@ -6,10 +6,10 @@ import { get, getPredecessors, search } from '../../api/documents';
 import { parseFrontendGetParams, Query } from '../../api/query';
 import { Predecessor, Result, ResultDocument } from '../../api/result';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
-import { LoginContext } from '../../login';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
+import { LoginContext } from '../../shared/login';
 import { SHAPES_PROJECT_ID } from '../constants';
 import './browse.css';
 

@@ -9,8 +9,8 @@ import {
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
 import { ResultDocument } from '../../api/result';
-import { getLabel, getNumberOfUndisplayedLabels } from '../../languages';
 import Image from '../image/Image';
+import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 import './document-details.css';
 import DocumentTeaser from './DocumentTeaser';
 

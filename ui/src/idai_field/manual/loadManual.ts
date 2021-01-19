@@ -1,6 +1,6 @@
 import { flow } from 'tsfun';
+import { getUserInterfaceLanguage } from '../../shared/languages';
 import { Chapter } from './Manual';
-import { getUserInterfaceLanguage } from '../../languages';
 
 
 export const loadManual = async (url: string): Promise<{ markdown: string, chapters: Chapter[] }> => {

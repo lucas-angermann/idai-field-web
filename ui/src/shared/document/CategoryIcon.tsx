@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { LabeledValue } from '../../api/document';
-import { getColor, isColorTooBright } from '../../categoryColors';
-import { getLabel } from '../../languages';
+import { getColor, isColorTooBright } from '../categoryColors';
+import { getLabel } from '../languages';
 
 
 export default React.memo(function CategoryIcon({ category, size }

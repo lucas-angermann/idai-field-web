@@ -5,7 +5,7 @@ import { ButtonGroup, Dropdown } from 'react-bootstrap';
 import { LabeledValue } from '../../api/document';
 import { deleteFilterFromParams } from '../../api/query';
 import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../../api/result';
-import { getLabel } from '../../languages';
+import { getLabel } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
 
 

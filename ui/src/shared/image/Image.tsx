@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { fetchImage } from '../../api/image';
-import { LoginContext } from '../../login';
+import { LoginContext } from '../login';
 import NotFoundImage from './NotFoundImage';
 
 interface ImageProps {

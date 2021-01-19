@@ -3,7 +3,7 @@ import React, { ReactElement, ReactNode, useContext } from 'react';
 import { Button, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { LoginContext, LoginData } from '../../login';
+import { LoginContext, LoginData } from '../login';
 import LanguageButton from './LanguageButton';
 import './navbar.css';
 import { navbarStyle } from './styles';

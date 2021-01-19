@@ -2,7 +2,7 @@ import React, { CSSProperties, FormEvent, ReactElement, useState } from 'react';
 import { Alert, Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { LoginData, persistLogin, postLogin } from '../../login';
+import { LoginData, persistLogin, postLogin } from '../login';
 
 
 export default function LoginForm({ onLogin }: { onLogin: (_: LoginData) => void }): ReactElement {

@@ -5,7 +5,7 @@ import React, { CSSProperties, ReactElement, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Modal from 'react-modal';
-import { getUserInterfaceLanguage, LANGUAGES, USER_INTERFACE_LANGUAGES } from '../../languages';
+import { getUserInterfaceLanguage, LANGUAGES, USER_INTERFACE_LANGUAGES } from '../languages';
 
 
 export default function LanguageButton(): ReactElement {
