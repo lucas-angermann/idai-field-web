@@ -45,6 +45,12 @@ Start the web UI:
 
 Visit `http://localhost:3001`.
 
+In order to run iDAI.shapes use
+
+    $ npm run start-shapes
+
+and visit  `http://localhost:3002`.
+
 ## Development
 
 ### Components
