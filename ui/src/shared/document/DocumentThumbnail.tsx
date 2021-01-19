@@ -18,7 +18,7 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, imageU
     : ReactElement {
     
     return (
-        <Link to={ linkUrl }>
+        <Link to={ { pathname: linkUrl } } target={ linkUrl.startsWith('http') ? '_blank' : '' }>
             <div style={ outerStyle }>
                 <div style={ innerStyle }>
                     { imageUrl

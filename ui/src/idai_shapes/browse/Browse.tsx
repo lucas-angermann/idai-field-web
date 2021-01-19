@@ -11,6 +11,7 @@ import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/Docum
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { LoginContext } from '../../shared/login';
 import { SHAPES_PROJECT_ID } from '../constants';
+import LinkedFinds from './LinkedFinds';
 import './browse.css';
 
 
@@ -78,8 +79,11 @@ export default function Browse(): ReactElement {
                 }
                 <Col style={ documentGridStyle } onScroll={ onScroll }>
                     <DocumentGrid documents={ documents }
-                        getLinkUrl={ (id: string): string => id } />
+                        getLinkUrl={ (document: ResultDocument): string => document.resource.id } />
                 </Col>
+                { document && document.resource.category.name === 'Type' &&
+                    <LinkedFinds type={document}></LinkedFinds>
+                }
             </Row>
         </Container>
     );

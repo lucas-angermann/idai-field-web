@@ -27,6 +27,7 @@ export const searchMap = async (query: Query, token: string): Promise<Result> =>
     return response.json();
 };
 
+
 export const getPredecessors = async (id: string, token: string): Promise<PredecessorResult> => {
     
     const uri = `/api/documents/predecessors/${id}`;

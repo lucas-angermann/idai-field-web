@@ -26,7 +26,7 @@ export default function Home(): ReactElement {
             .then(result => setDocuments(result.documents));
     }, [loginData]);
 
-    const getDocumentLink = (id: string): string => `document/${id}`;
+    const getDocumentLink = (document: ResultDocument): string => `document/${document.resource.id}`;
 
     return (
         <>

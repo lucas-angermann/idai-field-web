@@ -8,7 +8,7 @@ import DocumentThumbnail from '../document/DocumentThumbnail';
 
 interface DocumentGridProps {
     documents: ResultDocument[];
-    getLinkUrl: (id: string) => string;
+    getLinkUrl: (document: ResultDocument) => string;
 }
 
 
@@ -31,15 +31,15 @@ export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProp
 }
 
 
-const renderDocuments = (documents: ResultDocument[], getLinkUrl: (id: string) => string): ReactNode =>
+const renderDocuments = (documents: ResultDocument[], getLinkUrl: (document: ResultDocument) => string): ReactNode =>
     documents.map((document) => renderDocument(document, getLinkUrl));
 
 
-const renderDocument = (document: ResultDocument, getLinkUrl: (id: string) => string): ReactElement =>
+const renderDocument = (document: ResultDocument, getLinkUrl: (document: ResultDocument) => string): ReactElement =>
     <div key={ document.resource.id } style={ documentBoxStyle } className="p-1 mr-2 mb-2">
         <DocumentThumbnail
             document={ document }
-            linkUrl={ getLinkUrl(document.resource.id) }
+            linkUrl={ getLinkUrl(document) }
             imageUrl="" />
     </div>;
 
