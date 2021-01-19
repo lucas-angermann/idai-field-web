@@ -46,5 +46,10 @@ export const getPersistedLogin = (): LoginData => {
     return JSON.parse(loginDataValue);
 };
 
+export const doLogout = (setLoginData: (_: LoginData) => void) => (): void => {
+    forgetLogin();
+    setLoginData(ANONYMOUS_USER);
+};
+
 
 export const LoginContext = React.createContext(ANONYMOUS_USER);
