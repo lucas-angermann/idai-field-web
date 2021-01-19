@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { I18nextProvider } from 'react-i18next';
 import Modal from 'react-modal';
-import App from './App';
 import './buttons.css';
 import i18n from './i18n/i18n';
 import Field from './idai_field/Field';
@@ -24,11 +23,9 @@ const getSubdomain = (): string => {
 
 // Run only shapes or field if subdomain is set, otherwise App wraps both
 const subdomain = getSubdomain();
-const app = (subdomain === 'shapes')
+const app = (subdomain === 'shapes' || process.env.REACT_APP_MAIN === 'shapes')
             ? <Shapes />
-            : (subdomain === 'field')
-              ? <Field />
-              : <App />;
+            : <Field />;
 
 ReactDOM.render(
     <I18nextProvider i18n={ i18n }>
