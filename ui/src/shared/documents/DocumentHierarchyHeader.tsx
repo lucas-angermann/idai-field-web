@@ -1,28 +1,24 @@
 import React, { ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
-import DocumentTeaser from '../document/DocumentTeaser';
 import { ResultDocument } from '../../api/result';
-import { Document } from '../../api/document';
+import DocumentTeaser from '../document/DocumentTeaser';
 
 
-export default function DocumentHierarchyHeader({ projectDocument, documents, searchParams }
-        : { projectDocument: Document, documents: ResultDocument[], searchParams: string } ): ReactElement {
+export default function DocumentHierarchyHeader({ documents, searchParams }
+        : { documents: ResultDocument[], searchParams: string } ): ReactElement {
 
-    return projectDocument
+    const firstDoc = documents?.[0];
+    const project = firstDoc?.project;
+
+    return documents.length
         ? <Card.Header className="hierarchy-parent">
-            <DocumentTeaser document={ getParentDocument(projectDocument, searchParams, documents) }
-                            project={ projectDocument.resource.id } searchParams={ searchParams }
-                            hierarchyHeader={ true } />
+            <DocumentTeaser project={ project } searchParams={ searchParams }
+                document={ getParentDocument(firstDoc) }
+                hierarchyHeader={ true } />
         </Card.Header>
         : <></>;
 }
 
 
-const getParentDocument = (projectDocument: Document, searchParams: string,
-                           documents?: ResultDocument[]): ResultDocument | undefined => {
-
-    if (!documents || documents.length === 0 || new URLSearchParams(searchParams).has('q')) return undefined;
-
-    const relations = documents[0].resource.relations?.isChildOf;
-    return relations?.length > 0 ? relations[0] : projectDocument;
-};
+const getParentDocument = (doc: ResultDocument): ResultDocument | undefined =>
+    doc.resource.relations?.isChildOf[0];

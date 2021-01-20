@@ -51,7 +51,7 @@ const renderDocuments = (documents: ResultDocument[], projectDocument: Document,
                          onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
     return searchParams && new URLSearchParams(searchParams).has('parent')
-            ? <DocumentHierarchy documents={ documents } projectDocument={ projectDocument }
+            ? <DocumentHierarchy documents={ documents }
                                  searchParams={ searchParams } scrollFunction={ onScroll } />
             : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll } />;
 };
