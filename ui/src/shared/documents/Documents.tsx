@@ -10,7 +10,7 @@ import DocumentList from './DocumentList';
 import './documents.css';
 
 
-interface DocumentProperties {
+interface DocumentsProperties {
     documents: ResultDocument[] | null;
     projectDocument?: Document;
     searchParams: string;
@@ -20,7 +20,7 @@ interface DocumentProperties {
 
 export default React.memo(function Documents(
     { documents, projectDocument, getChunk,
-        searchParams = '' }: DocumentProperties): ReactElement {
+        searchParams = '' }: DocumentsProperties): ReactElement {
 
     const [offset, setOffset] = useState(0);
     const { t } = useTranslation();
