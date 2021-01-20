@@ -12,11 +12,10 @@ import LinkButton from '../linkbutton/LinkButton';
 interface DocumentHierarchyBodyProps {
     documents: ResultDocument[];
     searchParams?: string;
-    scrollFunction: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
-export default React.memo(function DocumentHierarchyBody({ documents, searchParams, scrollFunction }
+export default React.memo(function DocumentHierarchyBody({ documents, searchParams }
         : DocumentHierarchyBodyProps): ReactElement {
 
     const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
@@ -41,7 +40,7 @@ export default React.memo(function DocumentHierarchyBody({ documents, searchPara
                         </LinkButton>
                     }
                     { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
-                    <div className="documents" style={ documentsStyle } onScroll={ scrollFunction }>
+                    <div className="documents" style={ documentsStyle }>
                         { documents.map((document: ResultDocument) =>
                             <div style={ documentContainerStyle } key={ document.resource.id }>
                                 <DocumentTeaser document={ document } searchParams={ searchParams }

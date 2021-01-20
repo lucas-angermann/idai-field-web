@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Document } from '../../api/document';
@@ -50,10 +50,12 @@ export default React.memo(function Documents(
 const renderDocuments = (documents: ResultDocument[], projectDocument: Document, searchParams: string,
                          onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
-    return searchParams && new URLSearchParams(searchParams).has('parent')
+    return <Card className="documents-card" onScroll={ onScroll } style={ containerStyle }>
+        { searchParams && new URLSearchParams(searchParams).has('parent')
             ? <DocumentHierarchy documents={ documents }
-                                 searchParams={ searchParams } scrollFunction={ onScroll } />
-            : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll } />;
+                                 searchParams={ searchParams } />
+            : <DocumentList documents={ documents } searchParams={ searchParams } /> }
+    </Card>;
 };
 
 
@@ -64,3 +66,8 @@ const renderEmptyResult = (t: TFunction): ReactElement => (
         </Card.Body>
     </Card>
 );
+
+
+const containerStyle: CSSProperties = {
+    maxHeight: 'calc(100vh - 255px)'
+};

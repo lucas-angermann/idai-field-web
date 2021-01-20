@@ -1,10 +1,5 @@
 .documents-card {
-    overflow: hidden;
+    overflow: hidden scroll;
     flex-grow: 1;
     flex-shrink: 1;
-}
-
-.documents-card .documents {
-    height: 100%;
-    overflow: hidden scroll;
 }
