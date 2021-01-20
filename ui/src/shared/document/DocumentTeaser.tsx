@@ -9,6 +9,7 @@ import { ResultDocument } from '../../api/result';
 import LinkButton from '../linkbutton/LinkButton';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
+import CONFIGURATION from '../../configuration.json';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
@@ -34,17 +35,20 @@ export default React.memo(function DocumentTeaser(
 
     if (hierarchyHeader) searchParams += (searchParams.length > 0) ? '&r=children' : '?r=children';
 
-    const isImage = IMAGE_CATEGORIES.includes(document.resource.category.name);
-    const linkUrl = isImage
+    const linkUrl = isImage(document)
         ? `/image/${document?.project ?? project}/${document.resource.id}`
-        : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
+        : isType(document)
+            ? `${CONFIGURATION.shapesUrl}/document/${document.resource.id}`
+            : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
 
     return (
         <Row className="no-gutters document-teaser">
             { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
                 { asLink
-                    ? <Link to={ linkUrl } style={ linkStyle }>
+                    ? <Link to={ { pathname: linkUrl } }
+                            target={ isType(document) ? '_blank' : '' }
+                            style={ linkStyle } >
                         { renderTeaser(document, size, height, asLink, hierarchyHeader) }
                     </Link>
                     : renderTeaser(document, size, height, asLink, hierarchyHeader)
@@ -133,6 +137,18 @@ const getHierarchyButtonSearchParams = (searchParams: string | undefined, docume
     params.set('parent', documentId);
 
     return params.toString();
+};
+
+
+const isImage = (document: ResultDocument): boolean => {
+
+    return IMAGE_CATEGORIES.includes(document.resource.category.name);
+};
+
+
+const isType = (document: ResultDocument): boolean => {
+
+    return document.resource.category.name === 'Type';
 };
 
 

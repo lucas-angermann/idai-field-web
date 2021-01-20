@@ -4,10 +4,8 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
-    OptionalRangeWithLabeledValues, Relation
-} from '../../api/document';
+import { DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    OptionalRangeWithLabeledValues, Relation } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import Image from '../image/Image';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
