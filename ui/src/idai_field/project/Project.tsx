@@ -22,6 +22,7 @@ import Filters from '../filter/Filters';
 import { getContextUrl } from './navigation';
 import './project.css';
 import ProjectMap from './ProjectMap';
+import ProjectSidebar from './ProjectSidebar';
 
 
 const MAX_SIZE = 10000;
@@ -92,7 +93,7 @@ export default function Project(): ReactElement {
     if (notFound) return <NotFound />;
 
     return <>
-        <div style={ leftSidebarStyle } className="sidebar">
+        <ProjectSidebar>
             <Card>
                 <SearchBar onSubmit={ () => { setDocuments(null); setTotal(null); } }
                        basepath={ `/project/${projectId}` } />
@@ -115,7 +116,7 @@ export default function Project(): ReactElement {
                         getChunk={ getChunk } />
                 </>
             }
-        </div>
+        </ProjectSidebar>
         <div key="results">
             { loading &&
                 <div style={ spinnerContainerStyle }>
@@ -194,18 +195,6 @@ const searchMapDocuments = async (id: string, searchParams: string, token: strin
 const isInHierarchyMode = (searchParams: string): boolean => {
 
     return searchParams && new URLSearchParams(searchParams).has('parent');
-};
-
-
-const leftSidebarStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: `${SIDEBAR_WIDTH}px`,
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    left: '10px',
-    zIndex: 1000,
-    display: 'flex',
-    flexDirection: 'column'
 };
 
 
