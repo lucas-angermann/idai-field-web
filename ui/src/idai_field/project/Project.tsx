@@ -33,20 +33,12 @@ export default function Project(): ReactElement {
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
-    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocument, setMapDocument] = useState<Document>(null);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
-
-    useEffect(() => {
-
-        get(projectId, loginData.token)
-            .then(setProjectDocument)
-            .catch(() => setNotFound(true));
-    }, [projectId, loginData]);
 
     useEffect(() => {
 
