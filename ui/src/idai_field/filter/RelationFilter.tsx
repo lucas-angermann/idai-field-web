@@ -34,7 +34,9 @@ export default function RelationFilter({ relationName, resourceId, params, proje
                     <div>{ t(`filters.relations.${relationName}`) }:</div>
                     <div>{ document.resource.identifier }</div>
                 </div>
-                &nbsp; <Icon path={ mdiCloseCircle } style={ iconStyle } size={ 0.7 } />
+                <span style={ iconStyle }>
+                    <Icon path={ mdiCloseCircle } size={ 0.7 } />
+                </span>
             </LinkButton>
         </ButtonGroup>
         : <></>;
@@ -58,5 +60,6 @@ const labelStyle: CSSProperties = {
 
 const iconStyle: CSSProperties = {
     position: 'relative',
-    top: '3px'
+    top: '3px',
+    left: '3px'
 };
