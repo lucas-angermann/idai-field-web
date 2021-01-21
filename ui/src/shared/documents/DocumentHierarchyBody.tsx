@@ -89,4 +89,5 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 
 
 const documentsStyle: CSSProperties = {
+    flexGrow: 1
 };
