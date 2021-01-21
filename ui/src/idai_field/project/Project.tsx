@@ -20,7 +20,6 @@ import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getContextUrl } from './navigation';
-import './project.css';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 

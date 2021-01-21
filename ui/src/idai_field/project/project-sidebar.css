@@ -1,6 +1,5 @@
 .project-sidebar .card {
     margin: 0 0 10px;
-    flex-shrink: 0;
 }
 
 .project-sidebar .card:first-child {

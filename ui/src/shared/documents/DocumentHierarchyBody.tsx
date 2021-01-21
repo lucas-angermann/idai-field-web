@@ -28,7 +28,7 @@ export default React.memo(function DocumentHierarchyBody({ documents, searchPara
 
 
     return <Card.Body className="px-0 py-0">
-        <TransitionGroup className={ className } style={ { height: '100%' } } >
+        <TransitionGroup className={ className } style={ groupStyle } >
             <CSSTransition key={ parent } timeout={ 500 }>
                 <div className="document-hierarchy">
                     {
@@ -73,6 +73,12 @@ const getProjectId = (documents: ResultDocument[]): string => {
 
 const documentContainerStyle: CSSProperties = {
     borderBottom: '1px solid var(--main-bg-color)'
+};
+
+
+const groupStyle: CSSProperties = {
+    height: '100%',
+    position: 'relative'
 };
 
 
