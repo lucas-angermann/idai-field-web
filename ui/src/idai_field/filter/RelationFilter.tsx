@@ -24,7 +24,7 @@ export default function RelationFilter({ relationName, resourceId, params, proje
     }, [resourceId, loginData]);
 
     return document
-        ? <ButtonGroup size="sm">
+        ? <ButtonGroup size="sm" style={ buttonGroupStyle }>
             <LinkButton variant="primary" style={ buttonStyle }
                         to={ (projectId ? `/project/${projectId}?` : '/?')
                             + deleteFilterFromParams(params,
@@ -41,6 +41,11 @@ export default function RelationFilter({ relationName, resourceId, params, proje
         </ButtonGroup>
         : <></>;
 }
+
+
+const buttonGroupStyle: CSSProperties = {
+    paddingLeft: '10px'
+};
 
 
 const buttonStyle: CSSProperties = {
