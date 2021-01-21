@@ -72,14 +72,17 @@ export default function Project(): ReactElement {
                 setDocuments(result.documents);
                 setTotal(result.size);
             });
+    }, [projectId, location.search, loginData]);
+
+    useEffect(() => {
 
         setLoading(true);
-        searchMapDocuments(projectId, location.search, loginData.token)
+        searchMapDocuments(projectId, loginData.token)
             .then(result => {
                 setMapDocuments(result.documents);
                 setLoading(false);
             });
-    }, [projectId, location.search, loginData]);
+    }, [projectId, loginData]);
 
     const getChunk = useCallback(
         (offset: number): void => {
@@ -183,10 +186,10 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 };
 
 
-const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
+const searchMapDocuments = async (id: string, token: string): Promise<Result> => {
 
-    let query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
-    query = parseFrontendGetParams(searchParams, query);
+    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    console.log({ query });
     return searchMap(query, token);
 };
 
