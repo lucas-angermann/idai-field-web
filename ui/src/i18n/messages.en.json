@@ -43,6 +43,11 @@
   "documentTeaser": {
     "noTargetResource": "Target resource not found"
   },
+  "filters": {
+    "relations": {
+      "isInstanceOf": "Instance of type"
+    }
+  },
   "image": {
     "back": "Back"
   },

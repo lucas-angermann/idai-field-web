@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { ResultFilter } from '../../api/result';
 import CategoryFilter from './CategoryFilter';
 import SimpleFilter from './SimpleFilter';
+import RelationFilters from './RelationFilters';
 
 
 export default function Filters({ filters, searchParams, projectId }
@@ -19,6 +20,7 @@ export default function Filters({ filters, searchParams, projectId }
                                       key={ filter.name } />
                     : <SimpleFilter filter={ filter } searchParams={ searchParams } projectId={ projectId }
                                     key={ filter.name } />) }
+                <RelationFilters searchParams={ searchParams }/>
             </Card.Body>
         </Card>
     </>;

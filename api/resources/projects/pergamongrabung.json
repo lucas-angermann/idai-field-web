@@ -1068,18 +1068,6 @@
                   "description": {}
                 },
                 {
-                  "inputType": "boolean",
-                  "source": "library",
-                  "name": "hasRestoration",
-                  "label": {
-                    "de": "Restaurierung",
-                    "en": "Restoration"
-                  },
-                  "description": {
-                    "de": "Wurden Maßnahmen zur Restaurierung und Konservierung unternommen?"
-                  }
-                },
-                {
                   "inputType": "radio",
                   "source": "library",
                   "valuelist": {
@@ -31113,16 +31101,6 @@
                   "label": {
                     "de": "Menge der Einschlüsse",
                     "en": "Number of inclusions"
-                  },
-                  "description": {}
-                },
-                {
-                  "inputType": "input",
-                  "source": "library",
-                  "name": "treatment",
-                  "label": {
-                    "de": "Bearbeitungsspuren",
-                    "en": "Traces of surface treatment"
                   },
                   "description": {}
                 },
