@@ -1,15 +1,14 @@
-import { mdiFileTree, mdiInformation } from '@mdi/js';
+import { mdiFileTree } from '@mdi/js';
 import Icon from '@mdi/react';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Card, Spinner, Tooltip } from 'react-bootstrap';
+import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, search, searchMap } from '../../api/documents';
+import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import Documents from '../../shared/documents/Documents';
 import { getUserInterfaceLanguage } from '../../shared/languages';
@@ -24,7 +23,6 @@ import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
 
-const MAX_SIZE = 10000;
 export const CHUNK_SIZE = 50;
 
 
@@ -39,11 +37,9 @@ export default function Project(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocument, setMapDocument] = useState<Document>(null);
-    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
-    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
 
@@ -88,16 +84,6 @@ export default function Project(): ReactElement {
             });
     }, [projectId, location.search, loginData]);
 
-    useEffect(() => {
-
-        setLoading(true);
-        searchMapDocuments(projectId, loginData.token)
-            .then(result => {
-                setMapDocuments(result.documents);
-                setLoading(false);
-            });
-    }, [projectId, loginData]);
-
     const getChunk = useCallback(
         (offset: number): void => {
             searchDocuments(projectId, location.search, offset, loginData.token)
@@ -133,18 +119,7 @@ export default function Project(): ReactElement {
                 </>
             }
         </ProjectSidebar>
-        <div key="results">
-            { loading &&
-                <div style={ spinnerContainerStyle }>
-                    <Spinner animation="border" variant="secondary" />
-                </div>
-            }
-            { !mapDocuments?.length && !loading && renderEmptyResult(t, location.search) }
-            <ProjectMap
-                document={ mapDocument }
-                documents={ mapDocuments }
-                project={ projectId } />
-        </div>
+        <ProjectMap selectedDocument={ mapDocument } project={ projectId } />
     </>;
 }
 
@@ -165,15 +140,6 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
             </LinkButton>
         </div>
     </Card>;
-};
-
-
-const renderEmptyResult = (t: TFunction, searchParams: string): ReactElement => {
-
-    return <div className="alert alert-info" style={ emptyResultStyle }>
-        <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
-        { t('project.noGeometries.' + (isInHierarchyMode(searchParams) ? 'hierarchy' : 'search')) }
-    </div>;
 };
 
 
@@ -200,35 +166,9 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 };
 
 
-const searchMapDocuments = async (id: string, token: string): Promise<Result> => {
-
-    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
-    console.log({ query });
-    return searchMap(query, token);
-};
-
-
 const isInHierarchyMode = (searchParams: string): boolean => {
 
     return searchParams && new URLSearchParams(searchParams).has('parent');
-};
-
-
-const spinnerContainerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
-    zIndex: 1
-};
-
-
-const emptyResultStyle: CSSProperties = {
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), 10px)`,
-    zIndex: 1
 };
 
 
