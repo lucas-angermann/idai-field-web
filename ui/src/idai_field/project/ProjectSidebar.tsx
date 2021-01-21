@@ -1,10 +1,11 @@
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import './project-sidebar.css';
 
 
 export default function ProjectSidebar({ children }: { children: ReactNode }): ReactElement {
 
-    return <div style={ sidebarStyle } className="sidebar">{ children }</div>;
+    return <div style={ sidebarStyle } className="project-sidebar">{ children }</div>;
 }
 
 
