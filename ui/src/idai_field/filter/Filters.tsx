@@ -20,7 +20,7 @@ export default function Filters({ filters, searchParams, projectId }
                                       key={ filter.name } />
                     : <SimpleFilter filter={ filter } searchParams={ searchParams } projectId={ projectId }
                                     key={ filter.name } />) }
-                <RelationFilters searchParams={ searchParams }/>
+                <RelationFilters searchParams={ searchParams } projectId={ projectId } />
             </Card.Body>
         </Card>
     </>;

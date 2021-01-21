@@ -5,7 +5,8 @@ import RelationFilter from './RelationFilter';
 const FILTER_RELATIONS = ['isInstanceOf'];
 
 
-export default function RelationFilters({ searchParams }: { searchParams: string }): ReactElement {
+export default function RelationFilters({ searchParams, projectId }
+        : { searchParams: string, projectId: string }): ReactElement {
 
     const params = new URLSearchParams(searchParams);
 
@@ -15,7 +16,9 @@ export default function RelationFilters({ searchParams }: { searchParams: string
                 .filter(relationName => hasRelationFilter(params, relationName))
                 .map(relationName => <RelationFilter key={ relationName }
                                                      relationName={ relationName }
-                                                     resourceId={ getResourceId(params, relationName) } />)
+                                                     resourceId={ getResourceId(params, relationName) }
+                                                     params={ params }
+                                                     projectId={ projectId } />)
         }
     </>
 }
