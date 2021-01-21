@@ -21,4 +21,4 @@ export default function DocumentHierarchyHeader({ documents, searchParams }
 
 
 const getParentDocument = (doc: ResultDocument): ResultDocument | undefined =>
-    doc.resource.relations?.isChildOf[0];
+    doc.resource.relations?.isChildOf?.[0];
