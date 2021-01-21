@@ -114,7 +114,6 @@ export default function Project(): ReactElement {
                     <Documents
                         searchParams={ location.search }
                         documents={ documents }
-                        projectDocument={ projectDocument }
                         getChunk={ getChunk } />
                 </>
             }

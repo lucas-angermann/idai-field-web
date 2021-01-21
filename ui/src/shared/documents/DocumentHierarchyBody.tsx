@@ -84,14 +84,9 @@ const groupStyle: CSSProperties = {
 
 const previousHierarchyLevelButtonStyle: CSSProperties = {
     height: '100%',
-    width: '30px',
-    padding: 0,
-    float: 'left'
+    padding: 0
 };
 
 
 const documentsStyle: CSSProperties = {
-    width: 'calc(100% - 30px)',
-    position: 'absolute',
-    left: '30px'
 };
