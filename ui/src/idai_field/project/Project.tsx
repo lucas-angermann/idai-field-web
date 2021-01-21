@@ -35,13 +35,14 @@ export default function Project(): ReactElement {
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
-    const [document, setDocument] = useState<Document>(null);
-    const [notFound, setNotFound] = useState<boolean>(false);
     const [projectDocument, setProjectDocument] = useState<Document>(null);
-    const [filters, setFilters] = useState<ResultFilter[]>([]);
-    const [documents, setDocuments] = useState<ResultDocument[]>(null);
-    const [total, setTotal] = useState<number>();
+    const [document, setDocument] = useState<Document>(null);
+    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [mapDocument, setMapDocument] = useState<Document>(null);
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
+    const [notFound, setNotFound] = useState<boolean>(false);
+    const [filters, setFilters] = useState<ResultFilter[]>([]);
+    const [total, setTotal] = useState<number>();
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -61,6 +62,19 @@ export default function Project(): ReactElement {
             setDocument(null);
         }
     }, [documentId, loginData]);
+
+    useEffect(() => {
+
+        const parent = new URLSearchParams(location.search).get('parent');
+
+        if (document) {
+            setMapDocument(document);
+        } else if (parent && parent !== 'root') {
+            get(parent, loginData.token).then(setMapDocument);
+        } else {
+            setMapDocument(null);
+        }
+    }, [location.search, document, loginData]);
 
     useEffect(() => {
 
@@ -127,7 +141,7 @@ export default function Project(): ReactElement {
             }
             { !mapDocuments?.length && !loading && renderEmptyResult(t, location.search) }
             <ProjectMap
-                document={ document }
+                document={ mapDocument }
                 documents={ mapDocuments }
                 project={ projectId } />
         </div>
