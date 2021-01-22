@@ -1,10 +1,11 @@
 import { mdiFileTree } from '@mdi/js';
 import Icon from '@mdi/react';
+import { History } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
@@ -18,7 +19,7 @@ import NotFound from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
-import { getContextUrl } from './navigation';
+import { getContextUrl, getMapDeselectionUrl } from './navigation';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -30,6 +31,7 @@ export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
+    const history = useHistory();
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
@@ -110,9 +112,15 @@ export default function Project(): ReactElement {
                 </>
             }
         </ProjectSidebar>
-        <ProjectMap selectedDocument={ mapDocument } project={ projectId } />
+        <ProjectMap selectedDocument={ mapDocument }
+            project={ projectId }
+            onDeselectFeature={ () => deselectFeature(document, location.search, history) } />
     </>;
 }
+
+
+const deselectFeature = (document: Document, searchParams: string, history: History): void =>
+    document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
 const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,

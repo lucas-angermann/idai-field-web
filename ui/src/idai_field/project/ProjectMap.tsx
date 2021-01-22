@@ -25,7 +25,6 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { LoginContext, LoginData } from '../../shared/login';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
-import { getMapDeselectionUrl } from './navigation';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
@@ -39,8 +38,8 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
 
-export default function ProjectMap({ selectedDocument, project }
-        : { selectedDocument: Document, project: string }): ReactElement {
+export default function ProjectMap({ selectedDocument, project, onDeselectFeature }
+        : { selectedDocument: Document, project: string, onDeselectFeature: () => void }): ReactElement {
 
     const history = useHistory();
     const location = useLocation();
@@ -59,16 +58,6 @@ export default function ProjectMap({ selectedDocument, project }
 
     useEffect(() => {
 
-        setLoading(true);
-        searchDocuments(project, loginData.token)
-            .then(result => {
-                setDocuments(result.documents);
-                setLoading(false);
-            });
-    }, [project, loginData]);
-
-    useEffect(() => {
-
         const newMap = createMap();
         setMap(newMap);
         setSelect(createSelect(newMap));
@@ -82,6 +71,16 @@ export default function ProjectMap({ selectedDocument, project }
             removeLayerControlsCloseEventListener(layerControlsCloseClickFunction);
         };
     }, []);
+
+    useEffect(() => {
+
+        setLoading(true);
+        searchDocuments(project, loginData.token)
+            .then(result => {
+                setDocuments(result.documents);
+                setLoading(false);
+            });
+    }, [project, loginData]);
 
     useEffect(() => {
 
@@ -104,9 +103,9 @@ export default function ProjectMap({ selectedDocument, project }
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, location.search, selectedDocument);
+        mapClickFunction.current = handleMapClick(history, location.search, onDeselectFeature, selectedDocument);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, location.search]);
+    }, [map, history, selectedDocument, location.search, onDeselectFeature]);
 
     useEffect(() => {
 
@@ -141,7 +140,6 @@ export default function ProjectMap({ selectedDocument, project }
     }, [map, selectedDocument, vectorLayer, select]);
 
     return <>
-
         { loading &&
             <div style={ spinnerContainerStyle }>
                 <Spinner animation="border" variant="secondary" />
@@ -236,8 +234,8 @@ const createSelect = (map: Map): Select => {
 };
 
 
-const handleMapClick = (history: History, searchParams: string, selectedDocument?: Document)
-        : ((_: MapBrowserEvent) => void) => {
+const handleMapClick = (history: History, searchParams: string, onDeselectFeature: () => void,
+        selectedDocument?: Document): ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
 
@@ -261,7 +259,7 @@ const handleMapClick = (history: History, searchParams: string, selectedDocument
             const { id, project } = smallestFeature.getProperties();
             history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
         } else if (selectedDocument) {
-            history.push(getMapDeselectionUrl(selectedDocument.project, searchParams, selectedDocument));
+            onDeselectFeature();
         }
     };
 };
