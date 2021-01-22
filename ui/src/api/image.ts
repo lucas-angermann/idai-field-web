@@ -15,8 +15,8 @@ export const getImageUrl = (project: string, path: string, maxWidth: number,
         maxHeight: number, token: string, format = 'jpg'): string => {
 
     const token_ = token === undefined || token === '' ? 'anonymous' : token;
-    return `/api/images/${project}/${encodeURIComponent(path)}`
-        + `/${token_}/full/!${maxWidth},${maxHeight}/0/default.${format}`;
+    return `/api/images/${project}/${encodeURIComponent(path)}/`
+        + `${token_}/full/!${maxWidth},${maxHeight}/0/default.${format}`;
 };
 
 
