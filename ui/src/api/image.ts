@@ -12,5 +12,16 @@ export const fetchImage = async (project: string,
 
 
 export const getImageUrl = (project: string, path: string, maxWidth: number,
-        maxHeight: number, token: string, format = 'jpg'): string =>
-    `/api/images/${project}/${encodeURIComponent(path)}/${token}/full/!${maxWidth},${maxHeight}/0/default.${format}`;
+        maxHeight: number, token: string, format = 'jpg'): string => {
+
+    const token_ = token === undefined || token === '' ? 'anonymous' : token;
+    return `/api/images/${project}/${encodeURIComponent(path)}/`
+        + `${token_}/full/!${maxWidth},${maxHeight}/0/default.${format}`;
+};
+
+
+export const makeUrl = (project: string, id: string, token?: string): string => {
+
+    const token_ = token === undefined || token === '' ? 'anonymous' : token;
+    return `/api/images/${project}/${id}.jp2/${token_}/info.json`;
+};

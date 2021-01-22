@@ -1,8 +1,3 @@
-.document-list-transition .documents {
-    position: absolute;
-    width: 100%;
-}
-
 .document-list-transition .enter {
     transform: translateX(100%);
 }
@@ -48,9 +43,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-}
-
-.document-hierarchy {
+    display: flex;
     transition: color 0.25s;
 }
 

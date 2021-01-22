@@ -8,6 +8,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../document/DocumentDetails';
 import { LoginContext } from '../login';
 import IiifImageLayer from './IiifImageLayer';
+import { makeUrl } from '../../api/image';
 
 
 export default function ImageView(): ReactElement {
@@ -52,11 +53,6 @@ export default function ImageView(): ReactElement {
         </>
     );
 }
-
-
-const makeUrl = (project: string, id: string, token?: string) => {
-    return `/api/images/${project}/${id}.jp2/${token !== undefined ? token : 'anonymous' }/info.json`;
-};
 
 
 const containerStyle: CSSProperties = {

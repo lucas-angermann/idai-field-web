@@ -14,34 +14,39 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import View from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { search } from '../../api/documents';
+import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
-import { ResultDocument } from '../../api/result';
+import { buildProjectQueryTemplate } from '../../api/query';
+import { Result, ResultDocument } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { LoginContext, LoginData } from '../../shared/login';
-import { getMapDeselectionUrl } from './navigation';
+import { EXCLUDED_TYPES_FIELD } from '../constants';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
 
 export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
+const MAX_SIZE = 10000;
+
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
 
-export default function ProjectMap({ document, documents, project }
-        : { document: Document, documents: ResultDocument[], project: string }): ReactElement {
+export default function ProjectMap({ selectedDocument, project, onDeselectFeature }
+        : { selectedDocument: Document, project: string, onDeselectFeature: () => void }): ReactElement {
 
     const history = useHistory();
     const location = useLocation();
     const loginData = useContext(LoginContext);
 
+    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
@@ -69,6 +74,16 @@ export default function ProjectMap({ document, documents, project }
 
     useEffect(() => {
 
+        setLoading(true);
+        searchDocuments(project, loginData.token)
+            .then(result => {
+                setDocuments(result.documents);
+                setLoading(false);
+            });
+    }, [project, loginData]);
+
+    useEffect(() => {
+
         if (!map) return;
         let mounted = true;
 
@@ -88,9 +103,9 @@ export default function ProjectMap({ document, documents, project }
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, location.search, document);
+        mapClickFunction.current = handleMapClick(history, location.search, onDeselectFeature, selectedDocument);
         map.on('click', mapClickFunction.current);
-    }, [map, history, document, location.search]);
+    }, [map, history, selectedDocument, location.search, onDeselectFeature]);
 
     useEffect(() => {
 
@@ -112,24 +127,36 @@ export default function ProjectMap({ document, documents, project }
         if (!map || !vectorLayer) return;
         select.getFeatures().clear();
 
-        if (document?.resource?.geometry) {
+        if (selectedDocument?.resource?.geometry) {
             const feature = (vectorLayer.getSource())
-                .getFeatureById(document.resource.id);
+                .getFeatureById(selectedDocument.resource.id);
             if (!feature) return;
 
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
-        } else {
+        } else if (selectedDocument === null) {
             map.getView().fit((vectorLayer.getSource()).getExtent(), FIT_OPTIONS);
         }
-    }, [map, document, vectorLayer, select]);
+    }, [map, selectedDocument, vectorLayer, select]);
 
     return <>
+        { loading &&
+            <div style={ spinnerContainerStyle }>
+                <Spinner animation="border" variant="secondary" />
+            </div>
+        }
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
         { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibleTileLayers) }
         { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
+
+
+const searchDocuments = async (id: string, token: string): Promise<Result> => {
+
+    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    return searchMap(query, token);
+};
 
 
 const createMap = (): Map => {
@@ -207,8 +234,8 @@ const createSelect = (map: Map): Select => {
 };
 
 
-const handleMapClick = (history: History, searchParams: string, selectedDocument?: Document)
-        : ((_: MapBrowserEvent) => void) => {
+const handleMapClick = (history: History, searchParams: string, onDeselectFeature: () => void,
+        selectedDocument?: Document): ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
 
@@ -232,7 +259,7 @@ const handleMapClick = (history: History, searchParams: string, selectedDocument
             const { id, project } = smallestFeature.getProperties();
             history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
         } else if (selectedDocument) {
-            history.push(getMapDeselectionUrl(selectedDocument.project, searchParams, selectedDocument));
+            onDeselectFeature();
         }
     };
 };
@@ -421,16 +448,27 @@ const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: b
 };
 
 
+const spinnerContainerStyle: CSSProperties = {
+    position: 'absolute',
+    top: '50vh',
+    left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
+    zIndex: 1
+};
+
+
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     backgroundColor: '#d3d3cf'
 };
+
 
 const layerControlsButtonStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 10}px`,
     right: '10px'
 };
+
 
 const layerSelectorStyle: CSSProperties = {
     position: 'absolute',
@@ -441,10 +479,12 @@ const layerSelectorStyle: CSSProperties = {
     overflow: 'auto'
 };
 
+
 const layerSelectorItemStyle: CSSProperties = {
     padding: '.375em .75em',
     fontSize: '.9em'
 };
+
 
 const layerSelectorButtonStyle: CSSProperties = {
     padding: '0 .375em .2em 0',

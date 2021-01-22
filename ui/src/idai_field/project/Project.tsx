@@ -1,15 +1,15 @@
-import { mdiFileTree, mdiInformation } from '@mdi/js';
+import { mdiFileTree } from '@mdi/js';
 import Icon from '@mdi/react';
+import { History } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Card, Spinner, Tooltip } from 'react-bootstrap';
+import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, search, searchMap } from '../../api/documents';
+import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import Documents from '../../shared/documents/Documents';
 import { getUserInterfaceLanguage } from '../../shared/languages';
@@ -19,36 +19,28 @@ import NotFound from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
-import { getContextUrl } from './navigation';
-import './project.css';
+import { getContextUrl, getMapDeselectionUrl } from './navigation';
 import ProjectMap from './ProjectMap';
+import ProjectSidebar from './ProjectSidebar';
 
 
-const MAX_SIZE = 10000;
 export const CHUNK_SIZE = 50;
+
 
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
     const location = useLocation();
+    const history = useHistory();
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
     const [document, setDocument] = useState<Document>(null);
+    const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [mapDocument, setMapDocument] = useState<Document>(null);
     const [notFound, setNotFound] = useState<boolean>(false);
-    const [projectDocument, setProjectDocument] = useState<Document>(null);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
-    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [total, setTotal] = useState<number>();
-    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-
-        get(projectId, loginData.token)
-            .then(setProjectDocument)
-            .catch(() => setNotFound(true));
-    }, [projectId, loginData]);
 
     useEffect(() => {
 
@@ -63,6 +55,19 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        const parent = new URLSearchParams(location.search).get('parent');
+
+        if (document) {
+            setMapDocument(document);
+        } else if (parent && parent !== 'root') {
+            get(parent, loginData.token).then(setMapDocument);
+        } else {
+            setMapDocument(null);
+        }
+    }, [location.search, document, loginData]);
+
+    useEffect(() => {
+
         initFilters(projectId, location.search, loginData.token)
             .then(result => setFilters(result.filters));
 
@@ -70,13 +75,6 @@ export default function Project(): ReactElement {
             .then(result => {
                 setDocuments(result.documents);
                 setTotal(result.size);
-            });
-
-        setLoading(true);
-        searchMapDocuments(projectId, location.search, loginData.token)
-            .then(result => {
-                setMapDocuments(result.documents);
-                setLoading(false);
             });
     }, [projectId, location.search, loginData]);
 
@@ -91,7 +89,7 @@ export default function Project(): ReactElement {
     if (notFound) return <NotFound />;
 
     return <>
-        <div style={ leftSidebarStyle } className="sidebar">
+        <ProjectSidebar>
             <Card>
                 <SearchBar onSubmit={ () => { setDocuments(null); setTotal(null); } }
                        basepath={ `/project/${projectId}` } />
@@ -110,25 +108,19 @@ export default function Project(): ReactElement {
                     <Documents
                         searchParams={ location.search }
                         documents={ documents }
-                        projectDocument={ projectDocument }
                         getChunk={ getChunk } />
                 </>
             }
-        </div>
-        <div key="results">
-            { loading &&
-                <div style={ spinnerContainerStyle }>
-                    <Spinner animation="border" variant="secondary" />
-                </div>
-            }
-            { !mapDocuments?.length && !loading && renderEmptyResult(t, location.search) }
-            <ProjectMap
-                document={ document }
-                documents={ mapDocuments }
-                project={ projectId } />
-        </div>
+        </ProjectSidebar>
+        <ProjectMap selectedDocument={ mapDocument }
+            project={ projectId }
+            onDeselectFeature={ () => deselectFeature(document, location.search, history) } />
     </>;
 }
+
+
+const deselectFeature = (document: Document, searchParams: string, history: History): void =>
+    document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
 const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
@@ -147,15 +139,6 @@ const renderTotal = (total: number, document: Document, projectId: string, t: TF
             </LinkButton>
         </div>
     </Card>;
-};
-
-
-const renderEmptyResult = (t: TFunction, searchParams: string): ReactElement => {
-
-    return <div className="alert alert-info" style={ emptyResultStyle }>
-        <Icon path={ mdiInformation } size={ 0.8 } />&nbsp;
-        { t('project.noGeometries.' + (isInHierarchyMode(searchParams) ? 'hierarchy' : 'search')) }
-    </div>;
 };
 
 
@@ -182,47 +165,9 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 };
 
 
-const searchMapDocuments = async (id: string, searchParams: string, token: string): Promise<Result> => {
-
-    let query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
-    query = parseFrontendGetParams(searchParams, query);
-    return searchMap(query, token);
-};
-
-
 const isInHierarchyMode = (searchParams: string): boolean => {
 
     return searchParams && new URLSearchParams(searchParams).has('parent');
-};
-
-
-const leftSidebarStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    width: `${SIDEBAR_WIDTH}px`,
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    left: '10px',
-    zIndex: 1000,
-    display: 'flex',
-    flexDirection: 'column'
-};
-
-
-const spinnerContainerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
-    zIndex: 1
-};
-
-
-const emptyResultStyle: CSSProperties = {
-    position: 'absolute',
-    top: NAVBAR_HEIGHT,
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), 10px)`,
-    zIndex: 1
 };
 
 

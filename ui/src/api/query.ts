@@ -29,12 +29,11 @@ export const buildBackendGetParams = (query: Query): string => {
     if (query.exists) {
         queryParams.push(...query.exists.map((fieldName: string) => ['exists[]', `${fieldName}`]));
     }
-    if (query.q === undefined) {
-        if (query.parent && query.parent !== 'root') {
-            queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
-        } else {
-            queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
-        }
+    
+    if (query.parent && query.parent !== 'root') {
+        queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
+    } else if (query.parent === 'root') {
+        queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
     }
 
     if (query.size) queryParams.push(['size', query.size.toString()]);
@@ -75,10 +74,11 @@ export const parseFrontendGetParams = (searchParams: string, query: Query = { fi
 
     if (params.has('parent')) {
         newQuery.parent = params.get('parent');
+        newQuery.sort = 'sort';
     }
 
     const filters = Array.from(params.entries())
-        .filter(([field]) => field !== 'q' && field !== 'r' && field !== 'parent')
+        .filter(([field]) => field !== 'q' && field !== 'r' && field !== 'parent' && field !== 'sort')
         .map(([field, value]) => ({ field, value }));
     
     if (!newQuery.filters) newQuery.filters = [];

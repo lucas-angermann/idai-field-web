@@ -105,6 +105,15 @@
                         "store": true
                     }
                 }
+            },
+            {
+                "featureVectors": {
+                    "path_match": "resource.featureVectors.*",
+                    "mapping": {
+                        "type": "dense_vector",
+                        "dims": 2048
+                    }
+                }
             }
         ]
     }

@@ -2,7 +2,6 @@ import { TFunction } from 'i18next';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Document } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { CHUNK_SIZE } from '../../idai_field/project/Project';
 import DocumentHierarchy from './DocumentHierarchy';
@@ -10,17 +9,15 @@ import DocumentList from './DocumentList';
 import './documents.css';
 
 
-interface DocumentProperties {
+interface DocumentsProperties {
     documents: ResultDocument[] | null;
-    projectDocument?: Document;
     searchParams: string;
     getChunk: (offset: number) => void;
 }
 
 
 export default React.memo(function Documents(
-    { documents, projectDocument, getChunk,
-        searchParams = '' }: DocumentProperties): ReactElement {
+    { documents, getChunk, searchParams = '' }: DocumentsProperties): ReactElement {
 
     const [offset, setOffset] = useState(0);
     const { t } = useTranslation();
@@ -41,19 +38,22 @@ export default React.memo(function Documents(
     }, [searchParams]);
 
     return <>
-        { documents && renderDocuments(documents, projectDocument, searchParams, onScroll) }
-        { (documents && documents.length === 0) && renderEmptyResult(t) }
+        { (documents && documents.length > 0)
+            ? renderDocuments(documents, searchParams, onScroll)
+            : renderEmptyResult(t) }
     </>;
 });
 
 
-const renderDocuments = (documents: ResultDocument[], projectDocument: Document, searchParams: string,
+const renderDocuments = (documents: ResultDocument[], searchParams: string,
                          onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
-    return searchParams && new URLSearchParams(searchParams).has('parent')
-            ? <DocumentHierarchy documents={ documents } projectDocument={ projectDocument }
-                                 searchParams={ searchParams } scrollFunction={ onScroll } />
-            : <DocumentList documents={ documents } searchParams={ searchParams } scrollFunction={ onScroll } />;
+    return <Card className="documents-card" onScroll={ onScroll }>
+        { searchParams && new URLSearchParams(searchParams).has('parent')
+            ? <DocumentHierarchy documents={ documents }
+                                 searchParams={ searchParams } />
+            : <DocumentList documents={ documents } searchParams={ searchParams } /> }
+    </Card>;
 };
 
 
