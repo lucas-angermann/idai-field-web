@@ -1,6 +1,8 @@
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Col } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import { Button, Col } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+import Icon from '@mdi/react';
+import { mdiMapSearch } from '@mdi/js';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
 import { Query } from '../../api/query';
@@ -11,6 +13,7 @@ import CONFIGURATION from '../../configuration.json';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 
 
+const HEADER_HEIGHT = 38;
 const CHUNK_SIZE = 50;
 
 
@@ -44,12 +47,22 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     }, [type, location.search, loginData]);
 
 
-    return (
-        <Col style={ documentGridStyle } onScroll={ onScroll }>
-            <DocumentGrid documents={ linkedFinds }
-                          getLinkUrl={ getFieldLink } />
+    return linkedFinds && linkedFinds.length > 0
+        ? <Col style={ containerStyle }>
+            <div style={ headerStyle }>
+                <h3>Verknüpfte Funde</h3>
+                <Link to={ { pathname: getFieldOverviewLink(type) } } target="_blank" style={ overviewButtonStyle }>
+                    <Button>
+                        <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
+                    </Button>
+                </Link>
+            </div>
+            <div style={ documentGridStyle } onScroll={ onScroll }>
+                <DocumentGrid documents={ linkedFinds }
+                              getLinkUrl={ getFieldLink } />
+            </div>
         </Col>
-    );
+        : <></>;
 }
 
 
@@ -74,7 +87,31 @@ const getFieldLink = (document: Document): string => {
 };
 
 
-const documentGridStyle: CSSProperties = {
+const getFieldOverviewLink = (type: Document): string => {
+    return `${CONFIGURATION.fieldUrl}?resource.relations.isInstanceOf.resource.id=${type.resource.id}`;
+};
+
+
+const containerStyle: CSSProperties = {
     height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT) + 'px)',
+};
+
+
+const headerStyle: CSSProperties = {
+    height: HEADER_HEIGHT + 'px',
+    textAlign: 'center',
+    paddingTop: '7px'
+};
+
+
+const documentGridStyle: CSSProperties = {
+    height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT + HEADER_HEIGHT) + 'px)',
     overflowY: 'auto'
+};
+
+
+const overviewButtonStyle: CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    right: 0
 };
