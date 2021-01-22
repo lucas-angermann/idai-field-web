@@ -47,7 +47,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
 
         getLinkedFinds(type, newOffset, loginData.token)
             .then(result => setLinkedFinds(oldLinkedFinds => oldLinkedFinds.concat(result.documents)));
-    }, [type, location.search, loginData]);
+    }, [type, loginData]);
 
 
     return linkedFinds && linkedFinds.length > 0
