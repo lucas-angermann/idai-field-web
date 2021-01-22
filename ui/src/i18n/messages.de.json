@@ -83,6 +83,11 @@
   "resourceRedirect": {
     "waitForRedirection": "Bitte warten Sie einen Moment, während Sie weitergeleitet werden..."
   },
+  "shapes": {
+    "browse": {
+      "linkedFinds": "Verknüpfte Funde"
+    }
+  },
   "languages": {
     "aa": "Afar",
     "ab": "Abchasisch",

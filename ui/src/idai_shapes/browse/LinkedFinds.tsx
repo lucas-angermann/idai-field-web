@@ -1,6 +1,7 @@
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { Button, Col } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Icon from '@mdi/react';
 import { mdiMapSearch } from '@mdi/js';
 import { Document } from '../../api/document';
@@ -21,6 +22,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
 
     const loginData = useContext(LoginContext);
     const location = useLocation();
+    const { t } = useTranslation();
 
     const [linkedFinds, setLinkedFinds] = useState<ResultDocument[]>(null);
     const [offset, setOffset] = useState<number>(0);
@@ -50,7 +52,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     return linkedFinds && linkedFinds.length > 0
         ? <Col style={ containerStyle }>
             <div style={ headerStyle }>
-                <h3>Verknüpfte Funde</h3>
+                <h3>{ t('shapes.browse.linkedFinds') }</h3>
                 <Link to={ { pathname: getFieldOverviewLink(type) } } target="_blank" style={ overviewButtonStyle }>
                     <Button>
                         <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>

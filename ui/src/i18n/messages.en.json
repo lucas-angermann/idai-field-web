@@ -83,6 +83,11 @@
   "resourceRedirect": {
     "waitForRedirection": "Please wait while being redirected..."
   },
+  "shapes": {
+    "browse": {
+      "linkedFinds": "Linked finds"
+    }
+  },
   "languages": {
     "aa": "Afar",
     "ab": "Abkhazian",
