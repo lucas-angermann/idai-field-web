@@ -134,7 +134,7 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
 
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
-        } else {
+        } else if (selectedDocument === null) {
             map.getView().fit((vectorLayer.getSource()).getExtent(), FIT_OPTIONS);
         }
     }, [map, selectedDocument, vectorLayer, select]);
