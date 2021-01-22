@@ -15,7 +15,7 @@ import CONFIGURATION from '../../configuration.json';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 
 
-const HEADER_HEIGHT = 38;
+const HEADER_HEIGHT = 43;
 const CHUNK_SIZE = 50;
 
 
@@ -53,7 +53,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     return linkedFinds && linkedFinds.length > 0
         ? <Col style={ containerStyle }>
             <div style={ headerStyle }>
-                <h3>{ t('shapes.browse.linkedFinds.header') }</h3>
+                <h4>{ t('shapes.browse.linkedFinds.header') }</h4>
                 <Link to={ { pathname: getFieldOverviewLink(type) } } target="_blank" style={ overviewButtonStyle }>
                     <OverlayTrigger placement="bottom"
                                     overlay={ getOverviewButtonTooltip(t) }
@@ -111,14 +111,18 @@ const containerStyle: CSSProperties = {
 
 const headerStyle: CSSProperties = {
     height: HEADER_HEIGHT + 'px',
+    position: 'relative',
     textAlign: 'center',
-    paddingTop: '7px'
+    paddingTop: '10px',
+    backgroundColor: 'white',
+    borderBottom: '4px dotted var(--main-bg-color)'
 };
 
 
 const documentGridStyle: CSSProperties = {
     height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT + HEADER_HEIGHT) + 'px)',
-    overflowY: 'auto'
+    overflowY: 'auto',
+    backgroundColor: 'white'
 };
 
 
