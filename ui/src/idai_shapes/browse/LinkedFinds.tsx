@@ -1,7 +1,8 @@
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Button, Col } from 'react-bootstrap';
+import { Button, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiMapSearch } from '@mdi/js';
 import { Document } from '../../api/document';
@@ -52,11 +53,15 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     return linkedFinds && linkedFinds.length > 0
         ? <Col style={ containerStyle }>
             <div style={ headerStyle }>
-                <h3>{ t('shapes.browse.linkedFinds') }</h3>
+                <h3>{ t('shapes.browse.linkedFinds.header') }</h3>
                 <Link to={ { pathname: getFieldOverviewLink(type) } } target="_blank" style={ overviewButtonStyle }>
-                    <Button>
-                        <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
-                    </Button>
+                    <OverlayTrigger placement="bottom"
+                                    overlay={ getOverviewButtonTooltip(t) }
+                                    delay={ { show: 500, hide: 0 } }>
+                        <Button>
+                            <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
+                        </Button>
+                    </OverlayTrigger>
                 </Link>
             </div>
             <div style={ documentGridStyle } onScroll={ onScroll }>
@@ -66,6 +71,11 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
         </Col>
         : <></>;
 }
+
+
+const getOverviewButtonTooltip = (t: TFunction) => <Tooltip id="linked-finds-tooltip">
+    { t('shapes.browse.linkedFinds.showOnMap') }
+</Tooltip>;
 
 
 const getLinkedFinds = async (type: Document, from: number, token: string): Promise<Result> => {

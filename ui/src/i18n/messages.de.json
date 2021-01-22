@@ -85,7 +85,10 @@
   },
   "shapes": {
     "browse": {
-      "linkedFinds": "Verknüpfte Funde"
+      "linkedFinds": {
+        "header": "Verknüpfte Funde",
+        "showOnMap": "Verknüpfte Funde auf der Karte anzeigen"
+      }
     }
   },
   "languages": {

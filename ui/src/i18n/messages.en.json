@@ -85,7 +85,10 @@
   },
   "shapes": {
     "browse": {
-      "linkedFinds": "Linked finds"
+      "linkedFinds": {
+        "header": "Linked finds",
+        "showOnMap": "Show linked finds on map"
+      }
     }
   },
   "languages": {
