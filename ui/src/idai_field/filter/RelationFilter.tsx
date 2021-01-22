@@ -20,7 +20,7 @@ export default function RelationFilter({ relationName, resourceId, params, proje
 
     useEffect(() => {
 
-       get(resourceId, loginData.token).then(setDocument)
+       get(resourceId, loginData.token).then(setDocument);
     }, [resourceId, loginData]);
 
     return document

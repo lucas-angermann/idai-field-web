@@ -82,7 +82,7 @@ export default function Browse(): ReactElement {
                         getLinkUrl={ (document: ResultDocument): string => document.resource.id } />
                 </Col>
                 { document && document.resource.category.name === 'Type' &&
-                    <LinkedFinds type={document}></LinkedFinds>
+                    <LinkedFinds type={ document } />
                 }
             </Row>
         </Container>
