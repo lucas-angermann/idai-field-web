@@ -37,6 +37,11 @@ or alternatively generate test data
     
 If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
+Prepare the web UI configuration:
+
+    $ cp ui/src/configuration.json.template ui/src/configuration.json
+    $ vi ui/src/configuration.json                # Edit configuration
+
 Start the web UI:
 
     $ cd ui
