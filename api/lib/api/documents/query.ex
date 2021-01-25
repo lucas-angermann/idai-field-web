@@ -57,6 +57,19 @@ defmodule Api.Documents.Query do
     put_in(query, [:sort], field)
   end
 
+  def set_vector_query(query, nil), do: query
+  def set_vector_query(query, %{ "model" => model, "query_vector" => query_vector }) do
+    field = "resource.featureVectors.#{model}"
+    query = add_exists(query, [field])
+    script = %{
+      source: "1 / (1 + l2norm(params.query_vector, '#{field}'))",
+      params: %{
+        query_vector: query_vector
+      }
+    }
+    put_in(query.query.script_score.script, script)
+  end
+
   def build(query) do
     Poison.encode!(query)
   end
