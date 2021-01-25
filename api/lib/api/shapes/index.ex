@@ -27,7 +27,7 @@ defmodule Api.Shapes.Index do
             }
           },
           script: %{
-            source: "1 / (1 + l2norm(params.query_vector, '#{model}'))",
+            source: "1 / (1 + l2norm(params.query_vector, 'resource.featureVectors.#{model}'))",
             params: %{
               query_vector: query_vector
             }
