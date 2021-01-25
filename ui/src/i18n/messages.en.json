@@ -84,6 +84,13 @@
     "waitForRedirection": "Please wait while being redirected..."
   },
   "shapes": {
+    "home": {
+      "catalogs": "Catalogs:",
+      "showAllCatalogs": "Show all catalogs...",
+      "searchBy": "Search by",
+      "drawingShape": "Drawing a shape",
+      "uploadingImageFile": "Uploading an image file"
+    },
     "browse": {
       "linkedFinds": {
         "header": "Linked finds",

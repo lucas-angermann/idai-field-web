@@ -84,6 +84,13 @@
     "waitForRedirection": "Bitte warten Sie einen Moment, während Sie weitergeleitet werden..."
   },
   "shapes": {
+    "home": {
+      "catalogs": "Kataloge:",
+      "showAllCatalogs": "Alle Kataloge anzeigen...",
+      "searchBy": "Suchen durch",
+      "drawingShape": "Zeichnen einer Form",
+      "uploadingImageFile": "Upload einer Bilddatei"
+    },
     "browse": {
       "linkedFinds": {
         "header": "Verknüpfte Funde",

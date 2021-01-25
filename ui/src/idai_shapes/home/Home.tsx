@@ -3,6 +3,8 @@ import Icon from '@mdi/react';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { search } from '../../api/documents';
 import { Query } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
@@ -20,6 +22,7 @@ export default function Home(): ReactElement {
 
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const loginData = useContext(LoginContext);
+    const { t } = useTranslation();
 
     useEffect(() => {
         searchCatalogDocuments(loginData.token)
@@ -35,20 +38,20 @@ export default function Home(): ReactElement {
                     <div className="search-container">
                         <h1>iDAI.<b>shapes</b></h1>
                         <SearchBar basepath="document/" />
-                        { renderFunctionBar() }
+                        { renderFunctionBar(t) }
                     </div>
                 </div>
             </Container>
             <Container>
                 <Row className="catalog">
                     <Col>
-                        <h1 className="my-5">Catalogs:</h1>
+                        <h1 className="my-5">{ t('shapes.home.catalogs') }</h1>
                         <DocumentGrid documents={ documents } getLinkUrl={ getDocumentLink } />
                     </Col>
                 </Row>
                 <Row>
                     <Col className="text-right">
-                        <Link to="document/">Show all catalogs ...</Link>
+                        <Link to="document/">{ t('shapes.home.showAllCatalogs') }</Link>
                     </Col>
                 </Row>
             </Container>
@@ -72,18 +75,18 @@ const searchCatalogDocuments = async (token: string): Promise<Result> => {
 };
 
 
-const renderFunctionBar = (): ReactElement => (
+const renderFunctionBar = (t: TFunction): ReactElement => (
     <div className="d-flex justify-content-around mt-2">
         <div className="p-1">
-            <p>Suchen durch</p>
+            <p>{ t('shapes.home.searchBy') }</p>
         </div>
         <div className="d-flex p-1">
             <Icon path={ mdiPencilOutline } size={ 0.9 } />
-            <p>Zeichnen einer Form</p>
+            <p>{ t('shapes.home.drawingShape') }</p>
         </div>
         <div className="d-flex p-1">
             <Icon path={ mdiInboxArrowUp } size={ 0.9 } />
-            <p>Upload einer Bilddatei</p>
+            <p>{ t('shapes.home.uploadingImageFile') }</p>
         </div>
     </div>
 );
