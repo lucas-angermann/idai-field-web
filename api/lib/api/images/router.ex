@@ -3,9 +3,31 @@ defmodule Api.Images.Router do
   use Plug.Router
   import RouterUtils
   alias Plug.Conn
+  alias Api.Documents.Index
 
   plug :match
+  plug Api.Auth.ReadableProjectsPlug
   plug :dispatch
+
+  get "/similar/:model/:id" do
+    doc = Index.get(id)
+    vector_query = %{
+      "model" => model,
+      "query_vector" => get_in(doc, [:resource, "featureVectors", model])
+    }
+    send_json(conn, Index.search(
+      conn.params["q"] || "*",
+      conn.params["size"] || 10,
+      conn.params["from"] || 0,
+      conn.params["filters"],
+      conn.params["not"],
+      conn.params["exists"],
+      conn.params["not_exists"],
+      conn.params["sort"],
+      vector_query,
+      conn.private[:readable_projects]
+    ))
+  end
 
   get "/:project/:id/:token/*params" do
     readable_projects = Api.Auth.Bearer.get_user_for_bearer(token).readable_projects
