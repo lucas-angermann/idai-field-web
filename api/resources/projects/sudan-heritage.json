@@ -4,7 +4,8 @@
       "name": "Place",
       "label": {
         "de": "Ort",
-        "en": "Heritage Site"
+        "en": "Heritage Site",
+        "it": "Luogo"
       },
       "description": {},
       "groups": [
@@ -17,7 +18,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kategorie",
-                "en": "Category"
+                "en": "Category",
+                "it": "Kategorie"
               },
               "description": {}
             },
@@ -34,11 +36,13 @@
               "inputType": "input",
               "label": {
                 "de": "Bezeichner",
-                "en": "Identifier"
+                "en": "Identifier",
+                "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
-                "en": "Unique identifier of this resource"
+                "en": "Unique identifier of this resource",
+                "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
             {
@@ -46,7 +50,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
-                "en": "Short description"
+                "en": "Short description",
+                "it": "Kurzbeschreibung"
               },
               "description": {}
             }
@@ -56,7 +61,8 @@
               "name": "isDepictedIn",
               "label": {
                 "de": "Wird gezeigt in",
-                "en": "Depicted in"
+                "en": "Depicted in",
+                "it": "Wird gezeigt in"
               },
               "description": {}
             },
@@ -64,14 +70,16 @@
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
-                "en": "Lies within"
+                "en": "Lies within",
+                "it": "Dentro a"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
-            "en": "Core"
+            "en": "Core",
+            "it": "Dati base"
           }
         },
         {
@@ -83,10 +91,12 @@
               "name": "gazId",
               "label": {
                 "de": "Gazetteer-ID",
-                "en": "Gazetteer ID"
+                "en": "Gazetteer ID",
+                "it": "Gazetteer-ID"
               },
               "description": {
-                "de": "ID-Nummer des Ortslexikons"
+                "de": "ID-Nummer des Ortslexikons",
+                "it": "Numero ID del dizionario locale"
               }
             },
             {
@@ -95,10 +105,12 @@
               "name": "placeName",
               "label": {
                 "de": "Ortsname",
-                "en": "Place name"
+                "en": "Place name",
+                "it": "Nome del luogo"
               },
               "description": {
-                "de": "Name der Ortschaft bzw. Gemarkung"
+                "de": "Name der Ortschaft bzw. Gemarkung",
+                "it": "Nome della località o del distretto"
               }
             },
             {
@@ -230,7 +242,8 @@
               "name": "siteClassification",
               "label": {
                 "de": "Klassifikation Fundplatz",
-                "en": "General archaeological classification for the site"
+                "en": "General archaeological classification for the site",
+                "it": "Classificazione sito"
               },
               "description": {}
             },
@@ -244,67 +257,80 @@
                 "values": {
                   "Einzelmauer": {
                     "labels": {
-                      "de": "Einzelmauer"
+                      "de": "Einzelmauer",
+                      "it": "Parete singola"
                     }
                   },
                   "Felsabarbeitung": {
                     "labels": {
-                      "de": "Felsabarbeitung"
+                      "de": "Felsabarbeitung",
+                      "it": "Lavorazione della roccia"
                     }
                   },
                   "Funderfassung": {
                     "labels": {
-                      "de": "Funderfassung"
+                      "de": "Funderfassung",
+                      "it": "Registrazione dei reperti"
                     }
                   },
                   "Fundsammlung": {
                     "labels": {
-                      "de": "Fundsammlung"
+                      "de": "Fundsammlung",
+                      "it": "Raccolta dei reperti"
                     }
                   },
                   "Grab": {
                     "labels": {
-                      "de": "Grab"
+                      "de": "Grab",
+                      "it": "Tomba"
                     }
                   },
                   "Nekropole": {
                     "labels": {
-                      "de": "Nekropole"
+                      "de": "Nekropole",
+                      "it": "Necropoli"
                     }
                   },
                   "Spolie in rezenter Mauer": {
                     "labels": {
-                      "de": "Spolie in rezenter Mauer"
+                      "de": "Spolie in rezenter Mauer",
+                      "it": "Spoglie nel muro recente"
                     }
                   },
                   "Steinbruch": {
                     "labels": {
-                      "de": "Steinbruch"
+                      "de": "Steinbruch",
+                      "it": "Cava di pietra"
                     }
                   },
                   "Straße/Platz": {
                     "labels": {
-                      "de": "Straße/Platz"
+                      "de": "Straße/Platz",
+                      "it": "Strada/piazza"
                     }
                   },
                   "Wein- bzw. Ölpresse": {
                     "labels": {
-                      "de": "Wein- bzw. Ölpresse"
+                      "de": "Wein- bzw. Ölpresse",
+                      "it": "Torchio per vino o olio"
                     }
                   },
                   "einzelnes Steindenkmal": {
                     "labels": {
-                      "de": "einzelnes Steindenkmal"
+                      "de": "einzelnes Steindenkmal",
+                      "it": "Monumento in pietra singolo"
                     }
                   },
                   "ländliches Gebäude": {
                     "labels": {
-                      "de": "ländliches Gebäude"
+                      "de": "ländliches Gebäude",
+                      "it": "Edificio rurale"
                     }
                   },
                   "urbanes Gebäude": {
                     "labels": {
-                      "de": "urbanes Gebäude"
+                      "de": "urbanes Gebäude",
+                      "it": "Edificio urbano"
                     }
                   }
                 },
@@ -313,7 +339,8 @@
               "name": "findspotClassification",
               "label": {
                 "de": "Klassifikation Fundstelle",
-                "en": "Findspot classification"
+                "en": "Findspot classification",
+                "it": "Classificazione luogo di ritrovamento"
               },
               "description": {}
             },
@@ -323,10 +350,12 @@
               "name": "modernIntervention",
               "label": {
                 "de": "Moderne Eingriffe",
-                "en": "Modern structures on the site"
+                "en": "Modern structures on the site",
+                "it": "Interventi moderni"
               },
               "description": {
-                "de": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)"
+                "de": "Beschreibung, ob der Fundplatz rezent Beschädigungen ausgesetzt war (z. B.: Steinbruch/Grube/Mine, Überbauung, Aufschüttung, Raubgrabung, Ackerbau, Wiederaufforstung, Abraumhalden)",
+                "it": "Descrivere se il sito è stato recentemente esposto a danni (ad es: cava/fossa/miniera, sovracostruzione, reinterro, scavo clandestino, agricoltura, rimboschimento, cumuli di rifiuti)"
               }
             },
             {
@@ -335,10 +364,12 @@
               "name": "excavationHistory",
               "label": {
                 "de": "Ausgrabungsgeschichte",
-                "en": "Excavation history"
+                "en": "Excavation history",
+                "it": "Storia degli scavi"
               },
               "description": {
-                "de": "Abhandlung über die Grabungsprojekte auf der Fundstelle"
+                "de": "Abhandlung über die Grabungsprojekte auf der Fundstelle",
+                "it": "Trattato sui progetti di scavo nel sito"
               }
             },
             {
@@ -347,10 +378,12 @@
               "name": "buildingResearchHistory",
               "label": {
                 "de": "Forschungsgeschichte",
-                "en": "Research history"
+                "en": "Research history",
+                "it": "Storia della ricerca"
               },
               "description": {
-                "de": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen"
+                "de": "Vorgeschichte aller am Bauwerk vorgenommenen Forschungen einschließlich Grabungen",
+                "it": "Storia di tutte le ricerche effettuate sull'edificio, compresi gli scavi"
               }
             },
             {
@@ -359,10 +392,12 @@
               "name": "buildingHistory",
               "label": {
                 "de": "Baugeschichte",
-                "en": "Building research history"
+                "en": "Building research history",
+                "it": "Storia dell'edificio"
               },
               "description": {
-                "de": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle"
+                "de": "Abhandlung über die Bauforschungsprojekte auf der Fundstelle",
+                "it": "Trattato sui progetti di ricerca edilizia sul sito"
               }
             },
             {
@@ -371,11 +406,13 @@
               "name": "findSituation",
               "label": {
                 "de": "Fundumstände",
-                "en": "Find situation"
+                "en": "Find situation",
+                "it": "Circostanze del ritrovamento"
               },
               "description": {
                 "de": "Nähere Beschreibung, unter welchen Bedingungen und von wem der Fundplatz entdeckt wurde",
-                "en": "Description of the circumstances of the finding place discovery and the persons involved"
+                "en": "Description of the circumstances of the finding place discovery and the persons involved",
+                "it": "Descrizione più dettagliata delle condizioni in cui e da chi è stato scoperto il sito"
               }
             },
             {
@@ -538,17 +575,20 @@
               "name": "description",
               "label": {
                 "de": "Beschreibung",
-                "en": "Description"
+                "en": "Description",
+                "it": "Descrizione"
               },
               "description": {
-                "de": "Freies Beschreibungsfeld"
+                "de": "Freies Beschreibungsfeld",
+                "it": "Campo di descrizione libera"
               }
             }
           ],
           "relations": [],
           "label": {
             "de": "Ort",
-            "en": "Heritage Site"
+            "en": "Heritage Site",
+            "it": "Luogo"
           }
         },
         {
@@ -559,7 +599,8 @@
               "inputType": "geometry",
               "label": {
                 "de": "Geometrie",
-                "en": "Geometry"
+                "en": "Geometry",
+                "it": "Geometria"
               },
               "description": {}
             },
@@ -569,17 +610,20 @@
               "name": "spatialLocation",
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
-                "en": "Spatial location"
+                "en": "Spatial location",
+                "it": "Descrizione della posizione spaziale"
               },
               "description": {
-                "de": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes"
+                "de": "Beschreibung der Position innerhalb der Fundstelle, des Schnittes oder des Befundes",
+                "it": "Descrizione della posizione all'interno del sito, del saggio o del ritrovamento"
               }
             }
           ],
           "relations": [],
           "label": {
             "de": "Lage / Kontext",
-            "en": "Position / Context"
+            "en": "Position / Context",
+            "it": "Posizione"
           }
         },
         {
@@ -591,7 +635,8 @@
               "name": "dating",
               "label": {
                 "de": "Datierung",
-                "en": "Dating"
+                "en": "Dating",
+                "it": "Datazione"
               },
               "description": {}
             }
@@ -599,7 +644,8 @@
           "relations": [],
           "label": {
             "de": "Zeit",
-            "en": "Time"
+            "en": "Time",
+            "it": "Tempo"
           }
         }
       ],
@@ -614,7 +660,8 @@
       "name": "Image",
       "label": {
         "de": "Abbildung",
-        "en": "Image"
+        "en": "Image",
+        "it": "Immagine"
       },
       "description": {},
       "groups": [
@@ -627,7 +674,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kategorie",
-                "en": "Category"
+                "en": "Category",
+                "it": "Kategorie"
               },
               "description": {}
             },
@@ -644,11 +692,13 @@
               "inputType": "input",
               "label": {
                 "de": "Bezeichner",
-                "en": "Identifier"
+                "en": "Identifier",
+                "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
-                "en": "Unique identifier of this resource"
+                "en": "Unique identifier of this resource",
+                "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
             {
@@ -656,7 +706,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
-                "en": "Short description"
+                "en": "Short description",
+                "it": "Kurzbeschreibung"
               },
               "description": {}
             },
@@ -667,11 +718,13 @@
               "name": "draughtsmen",
               "label": {
                 "de": "Bildersteller/Bilderstellerin",
-                "en": "Creator"
+                "en": "Creator",
+                "it": "Autore dell'immagine"
               },
               "description": {
                 "de": "Ersteller der Abbildung, Fotograf/Fotografin bzw. Zeichner/Zeichnerin",
-                "en": "Creator of the image, photographer respectively draughtsman"
+                "en": "Creator of the image, photographer respectively draughtsman",
+                "it": "Creatore dell'immagine, fotografo o disegnatore"
               }
             },
             {
@@ -681,11 +734,13 @@
               "name": "processor",
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
-                "en": "Processor"
+                "en": "Processor",
+                "it": "Responsabile"
               },
               "description": {
                 "de": "Die Person(en), die für die Ressource oder das Objekt während der Kampagne hauptverantwortlich ist/sind. Wichtig: Die Namen der Personen, die den Eintrag in der Datenbank eintragen bzw. bearbeiten, werden automatisch gespeichert und müssen daher hier nicht angegeben werden.",
-                "en": "Processor of the image in case of changes after the creation of the image"
+                "en": "Processor of the image in case of changes after the creation of the image",
+                "it": "La persona o le persone responsabili della risorsa o dell'oggetto durante la campagna. Importante: i nomi delle persone che inseriscono o modificano la voce nella banca dati vengono salvati automaticamente e quindi non devono essere inseriti qui"
               }
             },
             {
@@ -695,7 +750,8 @@
               "name": "campaign",
               "label": {
                 "de": "Kampagne",
-                "en": "Campaign"
+                "en": "Campaign",
+                "it": "Campagna"
               },
               "description": {}
             }
@@ -705,14 +761,16 @@
               "name": "depicts",
               "label": {
                 "de": "Zeigt",
-                "en": "Depicts"
+                "en": "Depicts",
+                "it": "Zeigt"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
-            "en": "Core"
+            "en": "Core",
+            "it": "Dati base"
           }
         },
         {
@@ -724,7 +782,8 @@
               "name": "height",
               "label": {
                 "de": "Höhe",
-                "en": "Height"
+                "en": "Height",
+                "it": "Höhe"
               },
               "description": {}
             },
@@ -734,7 +793,8 @@
               "name": "width",
               "label": {
                 "de": "Breite",
-                "en": "Width"
+                "en": "Width",
+                "it": "Breite"
               },
               "description": {}
             },
@@ -746,9 +806,16 @@
               "description": {}
             },
             {
-              "inputType": "input",
+              "inputType": "none",
               "source": "builtin",
               "name": "georeference",
+              "label": {},
+              "description": {}
+            },
+            {
+              "inputType": "none",
+              "source": "builtin",
+              "name": "featureVectors",
               "label": {},
               "description": {}
             },
@@ -758,10 +825,12 @@
               "name": "description",
               "label": {
                 "de": "Beschreibung",
-                "en": "Description"
+                "en": "Description",
+                "it": "Descrizione"
               },
               "description": {
-                "de": "Freies Beschreibungsfeld"
+                "de": "Freies Beschreibungsfeld",
+                "it": "Campo di descrizione libero"
               }
             },
             {
@@ -770,7 +839,8 @@
               "name": "literature",
               "label": {
                 "de": "Literaturverweis",
-                "en": "Literature reference"
+                "en": "Literature reference",
+                "it": "Bibliografia"
               },
               "description": {}
             }
@@ -778,7 +848,8 @@
           "relations": [],
           "label": {
             "de": "Abbildung",
-            "en": "Image"
+            "en": "Image",
+            "it": "Immagine"
           }
         }
       ],
@@ -793,7 +864,8 @@
       "name": "Project",
       "label": {
         "de": "Projekt",
-        "en": "Project"
+        "en": "Project",
+        "it": "Progetto"
       },
       "description": {},
       "groups": [
@@ -806,7 +878,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kategorie",
-                "en": "Category"
+                "en": "Category",
+                "it": "Kategorie"
               },
               "description": {}
             },
@@ -822,7 +895,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
-                "en": "Short description"
+                "en": "Short description",
+                "it": "Kurzbeschreibung"
               },
               "description": {}
             }
@@ -832,14 +906,16 @@
               "name": "isDepictedIn",
               "label": {
                 "de": "Wird gezeigt in",
-                "en": "Depicted in"
+                "en": "Depicted in",
+                "it": "Wird gezeigt in"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
-            "en": "Core"
+            "en": "Core",
+            "it": "Dati base"
           }
         },
         {
@@ -851,10 +927,12 @@
               "name": "description",
               "label": {
                 "de": "Beschreibung",
-                "en": "Description"
+                "en": "Description",
+                "it": "Descrizione"
               },
               "description": {
-                "de": "Freies Beschreibungsfeld"
+                "de": "Freies Beschreibungsfeld",
+                "it": "Campo di descrizione libero"
               }
             },
             {
@@ -863,11 +941,13 @@
               "name": "institution",
               "label": {
                 "de": "Institution",
-                "en": "Institution"
+                "en": "Institution",
+                "it": "Istituzione"
               },
               "description": {
                 "de": "Für das Projekt verantwortliche Institution",
-                "en": "Institution responsible for the project"
+                "en": "Institution responsible for the project",
+                "it": "Istituzione responsabile del progetto"
               }
             },
             {
@@ -876,11 +956,13 @@
               "name": "projectSupervisor",
               "label": {
                 "de": "Leiterin/Leiter",
-                "en": "Supervisor"
+                "en": "Supervisor",
+                "it": "Supervisore"
               },
               "description": {
                 "de": "Leitende Person des Projekts",
-                "en": "Person in charge of the project"
+                "en": "Person in charge of the project",
+                "it": "Responsabile del progetto"
               }
             },
             {
@@ -889,10 +971,12 @@
               "name": "contactPerson",
               "label": {
                 "de": "Kontaktperson",
-                "en": "Contact person"
+                "en": "Contact person",
+                "it": "persona di contatto"
               },
               "description": {
-                "de": "Kontaktperson des Projekts"
+                "de": "Kontaktperson des Projekts",
+                "it": "persona di contatto del progetto"
               }
             },
             {
@@ -901,11 +985,13 @@
               "name": "contactMail",
               "label": {
                 "de": "Mailadresse der Kontaktperson",
-                "en": "Mail address of the contact person"
+                "en": "Mail address of the contact person",
+                "it": "Indirizzo e-mail della persona di contatto"
               },
               "description": {
                 "de": "Mailadresse des Projekts bzw. der Kontaktperson",
-                "en": "Mail address of the project or a contact person"
+                "en": "Mail address of the project or a contact person",
+                "it": "Indirizzo e-mail del progetto o della persona di contatto"
               }
             },
             {
@@ -914,7 +1000,8 @@
               "name": "staff",
               "label": {
                 "de": "Team",
-                "en": "Staff"
+                "en": "Staff",
+                "it": "Team"
               },
               "description": {}
             },
@@ -924,7 +1011,8 @@
               "name": "campaigns",
               "label": {
                 "de": "Kampagnen",
-                "en": "Campaigns"
+                "en": "Campaigns",
+                "it": "Campagne"
               },
               "description": {}
             },
@@ -934,10 +1022,12 @@
               "name": "projectURI",
               "label": {
                 "de": "Projekt-URL",
-                "en": "Project URL"
+                "en": "Project URL",
+                "it": "URL del progetto"
               },
               "description": {
-                "de": "Hinweis auf eine externe Projektseite mit weiteren Informationen"
+                "de": "Hinweis auf eine externe Projektseite mit weiteren Informationen",
+                "it": "Riferimento ad una pagina di progetto esterna con ulteriori informazioni"
               }
             },
             {
@@ -946,11 +1036,13 @@
               "name": "externalReference",
               "label": {
                 "de": "Projekt-Homepage",
-                "en": "Project homepage"
+                "en": "Project homepage",
+                "it": "Homepage del progetto"
               },
               "description": {
                 "de": "Externe Referenz(en) des Projekts",
-                "en": "External reference(s) of the project"
+                "en": "External reference(s) of the project",
+                "it": "Riferimenti esterni del progetto"
               }
             },
             {
@@ -959,10 +1051,12 @@
               "name": "gazId",
               "label": {
                 "de": "Gazetteer-ID",
-                "en": "Gazetteer ID"
+                "en": "Gazetteer ID",
+                "it": "Gazetteer-ID"
               },
               "description": {
-                "de": "ID-Nummer des Ortslexikons"
+                "de": "ID-Nummer des Ortslexikons",
+                "it": "Numero ID del dizionario locale"
               }
             },
             {
@@ -971,10 +1065,12 @@
               "name": "latitude",
               "label": {
                 "de": "Breitengrad",
-                "en": "Latitude"
+                "en": "Latitude",
+                "it": "Latitudine"
               },
               "description": {
-                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
+                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+                "it": "Inserimento come numero decimale, sono possibili valori negativi"
               }
             },
             {
@@ -983,10 +1079,12 @@
               "name": "longitude",
               "label": {
                 "de": "Längengrad",
-                "en": "Longitude"
+                "en": "Longitude",
+                "it": "Longitudine"
               },
               "description": {
-                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich"
+                "de": "Eingabe erfolgt als Kommazahl, Negativwerte sind möglich",
+                "it": "Inserimento come numero decimale, sono possibili valori negativi"
               }
             },
             {
@@ -995,11 +1093,13 @@
               "name": "epsgId",
               "label": {
                 "de": "EPSG-Code",
-                "en": "EPSG Code"
+                "en": "EPSG Code",
+                "it": "Codice-EPSG"
               },
               "description": {
                 "de": "Angabe des EPSG-Codes (siehe http://spatialreference.org/, z. B. 3004)",
-                "en": "Specification of the EPSG code (see http://spatialreference.org/, e. g. 3004)"
+                "en": "Specification of the EPSG code (see http://spatialreference.org/, e. g. 3004)",
+                "it": "Indicazione del codice-EPSG (si veda http://spatialreference.org/, z. B. 3004)"
               }
             },
             {
@@ -1036,7 +1136,8 @@
               "name": "coordinateReferenceSystem",
               "label": {
                 "de": "Koordinatenbezugssystem",
-                "en": "Coordinate reference system"
+                "en": "Coordinate reference system",
+                "it": "Koordinatenbezugssystem"
               },
               "description": {}
             },
@@ -1046,18 +1147,21 @@
               "name": "identifier",
               "label": {
                 "de": "Bezeichner",
-                "en": "Identifier"
+                "en": "Identifier",
+                "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
-                "en": "Unique identifier of this resource"
+                "en": "Unique identifier of this resource",
+                "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             }
           ],
           "relations": [],
           "label": {
             "de": "Projekt",
-            "en": "Project"
+            "en": "Project",
+            "it": "Progetto"
           }
         }
       ],
@@ -1072,7 +1176,8 @@
       "name": "TypeCatalog",
       "label": {
         "de": "Typenkatalog",
-        "en": "Type catalog"
+        "en": "Type catalog",
+        "it": "Tipo di catalogo"
       },
       "description": {},
       "groups": [
@@ -1085,7 +1190,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kategorie",
-                "en": "Category"
+                "en": "Category",
+                "it": "Kategorie"
               },
               "description": {}
             },
@@ -1102,11 +1208,13 @@
               "inputType": "input",
               "label": {
                 "de": "Bezeichner",
-                "en": "Identifier"
+                "en": "Identifier",
+                "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
-                "en": "Unique identifier of this resource"
+                "en": "Unique identifier of this resource",
+                "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
             {
@@ -1114,7 +1222,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
-                "en": "Short description"
+                "en": "Short description",
+                "it": "Kurzbeschreibung"
               },
               "description": {}
             }
@@ -1124,14 +1233,16 @@
               "name": "isDepictedIn",
               "label": {
                 "de": "Wird gezeigt in",
-                "en": "Depicted in"
+                "en": "Depicted in",
+                "it": "Wird gezeigt in"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
-            "en": "Core"
+            "en": "Core",
+            "it": "Dati base"
           }
         },
         {
@@ -1148,25 +1259,29 @@
                   "Form": {
                     "labels": {
                       "de": "Form",
-                      "en": "Shape"
+                      "en": "Shape",
+                      "it": "Forma"
                     }
                   },
                   "Material": {
                     "labels": {
                       "de": "Material",
-                      "en": "Material"
+                      "en": "Material",
+                      "it": "Materiale"
                     }
                   },
                   "Dekoration": {
                     "labels": {
                       "de": "Dekoration",
-                      "en": "Decoration"
+                      "en": "Decoration",
+                      "it": "Decorazione"
                     }
                   },
                   "Spuren": {
                     "labels": {
                       "de": "Spuren",
-                      "en": "Traces"
+                      "en": "Traces",
+                      "it": "Tracce"
                     }
                   }
                 },
@@ -1175,7 +1290,8 @@
               "name": "criterion",
               "label": {
                 "de": "Kriterium",
-                "en": "Criterion"
+                "en": "Criterion",
+                "it": "Criterio"
               },
               "description": {}
             }
@@ -1183,7 +1299,8 @@
           "relations": [],
           "label": {
             "de": "Bestimmung",
-            "en": "Identification"
+            "en": "Identification",
+            "it": "Definizione"
           }
         },
         {
@@ -1195,7 +1312,8 @@
               "name": "literature",
               "label": {
                 "de": "Literaturverweis",
-                "en": "Literature reference"
+                "en": "Literature reference",
+                "it": "Bibliografia"
               },
               "description": {}
             }
@@ -1203,7 +1321,8 @@
           "relations": [],
           "label": {
             "de": "Typenkatalog",
-            "en": "Type catalog"
+            "en": "Type catalog",
+            "it": "Tipo di catalogo"
           }
         }
       ],
@@ -1219,7 +1338,8 @@
       "name": "Type",
       "label": {
         "de": "Typ",
-        "en": "Type"
+        "en": "Type",
+        "it": "Tipo"
       },
       "description": {},
       "groups": [
@@ -1232,7 +1352,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kategorie",
-                "en": "Category"
+                "en": "Category",
+                "it": "Kategorie"
               },
               "description": {}
             },
@@ -1249,11 +1370,13 @@
               "inputType": "input",
               "label": {
                 "de": "Bezeichner",
-                "en": "Identifier"
+                "en": "Identifier",
+                "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
-                "en": "Unique identifier of this resource"
+                "en": "Unique identifier of this resource",
+                "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
             {
@@ -1261,7 +1384,8 @@
               "inputType": "input",
               "label": {
                 "de": "Kurzbeschreibung",
-                "en": "Short description"
+                "en": "Short description",
+                "it": "Kurzbeschreibung"
               },
               "description": {}
             }
@@ -1271,7 +1395,8 @@
               "name": "isDepictedIn",
               "label": {
                 "de": "Wird gezeigt in",
-                "en": "Depicted in"
+                "en": "Depicted in",
+                "it": "Wird gezeigt in"
               },
               "description": {}
             },
@@ -1279,14 +1404,16 @@
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
-                "en": "Lies within"
+                "en": "Lies within",
+                "it": "Dentro a"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
-            "en": "Core"
+            "en": "Core",
+            "it": "Dati base"
           }
         },
         {
@@ -1297,14 +1424,16 @@
               "name": "hasInstance",
               "label": {
                 "de": "Zugeordnete Funde",
-                "en": "Associated finds"
+                "en": "Associated finds",
+                "it": "Zugeordnete Funde"
               },
               "description": {}
             }
           ],
           "label": {
             "de": "Bestimmung",
-            "en": "Identification"
+            "en": "Identification",
+            "it": "Definizione"
           }
         },
         {
@@ -1316,7 +1445,8 @@
               "name": "literature",
               "label": {
                 "de": "Literaturverweis",
-                "en": "Literature reference"
+                "en": "Literature reference",
+                "it": "Bibliografia"
               },
               "description": {}
             },
@@ -1326,17 +1456,20 @@
               "name": "description",
               "label": {
                 "de": "Beschreibung",
-                "en": "Description"
+                "en": "Description",
+                "it": "Descrizione"
               },
               "description": {
-                "de": "Freies Beschreibungsfeld"
+                "de": "Freies Beschreibungsfeld",
+                "it": "Campo di descrizione libero"
               }
             }
           ],
           "relations": [],
           "label": {
             "de": "Typ",
-            "en": "Type"
+            "en": "Type",
+            "it": "Tipo"
           }
         }
       ],
