@@ -31,6 +31,7 @@ export default function Shapes(): ReactElement {
                         <LoginForm onLogin={ setLoginData } />
                     </Route>
                     <Route path="/image/idaishapes/:id" component={ ImageView } />
+                    <Route path={ '/draw' } component={ Draw } />
                     <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>
