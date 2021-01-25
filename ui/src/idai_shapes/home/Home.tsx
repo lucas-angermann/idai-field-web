@@ -80,10 +80,10 @@ const renderFunctionBar = (t: TFunction): ReactElement => (
         <div className="p-1">
             <p>{ t('shapes.home.searchBy') }</p>
         </div>
-        <div className="d-flex p-1">
+        <Link to="./draw" className="d-flex p-1 function-bar-link">
             <Icon path={ mdiPencilOutline } size={ 0.9 } />
             <p>{ t('shapes.home.drawingShape') }</p>
-        </div>
+        </Link>
         <div className="d-flex p-1">
             <Icon path={ mdiInboxArrowUp } size={ 0.9 } />
             <p>{ t('shapes.home.uploadingImageFile') }</p>

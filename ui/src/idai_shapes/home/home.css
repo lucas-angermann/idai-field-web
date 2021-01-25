@@ -24,3 +24,12 @@
     color: white;
     z-index: 2;
 }
+
+.function-bar-link {
+    color: white;
+}
+
+.function-bar-link:hover {
+    color: white;
+    text-decoration: underline;
+}
