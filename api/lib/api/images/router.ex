@@ -20,7 +20,7 @@ defmodule Api.Images.Router do
       conn.params["size"] || 10,
       conn.params["from"] || 0,
       conn.params["filters"],
-      conn.params["not"],
+      conn.params["not"] || ["resource.id:#{id}"],
       conn.params["exists"],
       conn.params["not_exists"],
       conn.params["sort"],
