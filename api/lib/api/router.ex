@@ -19,7 +19,6 @@ defmodule Api.Router do
   forward("/api/auth", to: Api.Auth.Router)
   forward("/api/statistics", to: Api.Statistics.Router)
   forward("/api/worker", to: Worker.Router)
-  forward("/api/shapes", to: Api.Shapes.Router)
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")
