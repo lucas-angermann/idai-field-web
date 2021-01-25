@@ -8,7 +8,7 @@ defmodule Api.Documents.Router do
   plug Api.Auth.ReadableProjectsPlug
   plug :dispatch
 
-  get "/" do
+  match "/" do
     send_json(conn, Index.search(
       conn.params["q"] || "*",
       conn.params["size"] || 100,
@@ -18,11 +18,12 @@ defmodule Api.Documents.Router do
       conn.params["exists"],
       conn.params["not_exists"],
       conn.params["sort"],
+      conn.params["vector_query"],
       conn.private[:readable_projects]
     ))
   end
 
-  get "/map" do
+  match "/map" do
     send_json(conn, Index.search_geometries(
       conn.params["q"] || "*",
       conn.params["filters"],

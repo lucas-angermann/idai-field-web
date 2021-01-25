@@ -16,7 +16,7 @@ defmodule Api.Documents.Query do
   end
 
   def set_readable_projects(query, readable_projects) do
-    update_in(query.query.bool.filter, fn filter ->
+    update_in(query.query.script_score.query.bool.filter, fn filter ->
       filter ++ [%{ terms: %{ project: readable_projects }}]
     end)
   end
@@ -24,25 +24,25 @@ defmodule Api.Documents.Query do
   def add_filters(query, nil), do: query
   def add_filters(query, filters) do
     filter = Enum.map(filters, &build_terms_query/1)
-    update_in(query.query.bool.filter, &(&1 ++ filter))
+    update_in(query.query.script_score.query.bool.filter, &(&1 ++ filter))
   end
 
   def add_must_not(query, nil), do: query
   def add_must_not(query, must_not) do
     must_not = Enum.map(must_not, &build_terms_query/1)
-    update_in(query.query.bool.must_not, &(&1 ++ must_not))
+    update_in(query.query.script_score.query.bool.must_not, &(&1 ++ must_not))
   end
 
   def add_exists(query, nil), do: query
   def add_exists(query, exists) do
     exists_filter = Enum.map(exists, &build_exists_query/1)
-    update_in(query.query.bool.filter, &(&1 ++ exists_filter))
+    update_in(query.query.script_score.query.bool.filter, &(&1 ++ exists_filter))
   end
 
   def add_not_exists(query, nil), do: query
   def add_not_exists(query, not_exists) do
     exists_filter = Enum.map(not_exists, &build_exists_query/1)
-    update_in(query.query.bool.must_not, &(&1 ++ exists_filter))
+    update_in(query.query.script_score.query.bool.must_not, &(&1 ++ exists_filter))
   end
 
   def only_fields(query, fields) do
@@ -57,6 +57,19 @@ defmodule Api.Documents.Query do
     put_in(query, [:sort], field)
   end
 
+  def set_vector_query(query, nil), do: query
+  def set_vector_query(query, %{ "model" => model, "query_vector" => query_vector }) do
+    field = "resource.featureVectors.#{model}"
+    query = add_exists(query, [field])
+    script = %{
+      source: "1 / (1 + l2norm(params.query_vector, '#{field}'))",
+      params: %{
+        query_vector: query_vector
+      }
+    }
+    put_in(query.query.script_score.script, script)
+  end
+
   def build(query) do
     Poison.encode!(query)
   end
@@ -64,14 +77,21 @@ defmodule Api.Documents.Query do
   defp build_query_template(q, size, from) do
     %{
       query: %{
-        bool: %{
-          must: %{
-            query_string: %{
-              query: q
+        script_score: %{
+          query: %{
+            bool: %{
+              must: %{
+                query_string: %{
+                  query: q
+                }
+              },
+              filter: [],
+              must_not: []
             }
           },
-          filter: [],
-          must_not: []
+          script: %{
+            source: "_score"
+          }
         }
       },
       size: size,
