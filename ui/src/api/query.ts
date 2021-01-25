@@ -16,31 +16,56 @@ export type Filter = {
 };
 
 
-export const buildBackendGetParams = (query: Query): string => {
+export type BackendParams = {
+    q?: string,
+    size?: number,
+    from?: number,
+    filters?: string[],
+    not?: string[],
+    exists?: string[],
+    not_exists?: string[],
+    sort?: string[],
+    vector_query?: VectorQuery
+};
 
-    const queryParams = [['q', query.q && query.q.length > 0 ? query.q : '*']];
+
+export type VectorQuery = {
+    model: string,
+    query_vector: number[]
+};
+
+
+export const buildBackendPostParams = (query: Query): BackendParams => {
+
+    const params: BackendParams = {
+        q: query.q && query.q.length > 0 ? query.q : '*',
+        filters: [],
+        not: [],
+        exists: [],
+        not_exists: []
+    };
 
     if (query.filters) {
-        queryParams.push(...query.filters.map((filter: Filter) => ['filters[]', `${filter.field}:${filter.value}`]));
+        params.filters.push(...query.filters.map((filter: Filter) => `${filter.field}:${filter.value}`));
     }
     if (query.not) {
-        queryParams.push(...query.not.map((filter: Filter) => ['not[]', `${filter.field}:${filter.value}`]));
+        params.not.push(...query.not.map((filter: Filter) => `${filter.field}:${filter.value}`));
     }
     if (query.exists) {
-        queryParams.push(...query.exists.map((fieldName: string) => ['exists[]', `${fieldName}`]));
+        params.exists.push(...query.exists.map((fieldName: string) => `${fieldName}`));
     }
     
     if (query.parent && query.parent !== 'root') {
-        queryParams.push(['filters[]', `resource.relations.isChildOf.resource.id:${query.parent}`]);
+        params.filters.push(`resource.relations.isChildOf.resource.id:${query.parent}`);
     } else if (query.parent === 'root') {
-        queryParams.push(['not_exists[]', 'resource.relations.isChildOf']);
+        params.not_exists.push('resource.relations.isChildOf');
     }
 
-    if (query.size) queryParams.push(['size', query.size.toString()]);
-    if (query.from) queryParams.push(['from', query.from.toString()]);
-    if (query.sort) queryParams.push(['sort', query.sort]);
+    if (query.size) params.size = query.size;
+    if (query.from) params.from = query.from;
+    if (query.sort) params.sort = [query.sort];
 
-    return queryParams.map(([k, v]) => `${k}=${v}`).join('&');
+    return params;
 };
 
 

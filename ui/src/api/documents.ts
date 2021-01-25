@@ -1,5 +1,5 @@
 import { Document } from './document';
-import { buildBackendGetParams, Query } from './query';
+import { buildBackendPostParams, Query } from './query';
 import { PredecessorResult, Result } from './result';
 import { getHeaders } from './utils';
 
@@ -12,20 +12,12 @@ export const get = async (id: string, token: string): Promise<Document> => {
 };
 
 
-export const search = async (query: Query, token: string): Promise<Result> => {
-
-    const uri = `/api/documents/?${buildBackendGetParams(query)}`;
-    const response = await fetch(uri, { headers: getHeaders(token) });
-    return response.json();
-};
+export const search = async (query: Query, token: string): Promise<Result> =>
+    fetchPost('/api/documents', query, token);
 
 
-export const searchMap = async (query: Query, token: string): Promise<Result> => {
-
-    const uri = `/api/documents/map?${buildBackendGetParams(query)}`;
-    const response = await fetch(uri, { headers: getHeaders(token) });
-    return response.json();
-};
+export const searchMap = async (query: Query, token: string): Promise<Result> =>
+    fetchPost('/api/documents/map', query, token);
 
 
 export const getPredecessors = async (id: string, token: string): Promise<PredecessorResult> => {
@@ -34,4 +26,14 @@ export const getPredecessors = async (id: string, token: string): Promise<Predec
     const response = await fetch(uri, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
+};
+
+
+const fetchPost = async (uri: string, query: Query, token: string): Promise<Result> => {
+
+    const headers = getHeaders(token);
+    headers['Content-Type'] = 'application/json';
+    const params = buildBackendPostParams(query);
+    const response = await fetch(uri, { headers, method: 'POST', body: JSON.stringify(params) });
+    return response.json();
 };

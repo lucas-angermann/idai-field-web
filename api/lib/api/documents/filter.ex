@@ -1,6 +1,7 @@
 defmodule Api.Documents.Filter do
 
   def parse(nil), do: nil
+  def parse([]), do: nil
   def parse(filter_strings = [_|_]), do: Enum.map(filter_strings, &parse_filter_string/1)
 
   def expand(nil, _), do: nil
