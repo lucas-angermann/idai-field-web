@@ -11,8 +11,9 @@ import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/Docum
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { LoginContext } from '../../shared/login';
 import { SHAPES_PROJECT_ID } from '../constants';
-import LinkedFinds from './LinkedFinds';
 import './browse.css';
+import LinkedFinds from './LinkedFinds';
+import SimilarTypes from './SimilarTypes';
 
 
 const CHUNK_SIZE = 50;
@@ -78,11 +79,18 @@ export default function Browse(): ReactElement {
                     </Col>
                 }
                 <Col style={ documentGridStyle } onScroll={ onScroll }>
+                    { document && document.resource.category.name === 'Type' &&
+                        <>
+                            <h4>Ähnliche Typen</h4>
+                            <SimilarTypes type={ document } />
+                        </>
+                    }
+                    <h4>Untergeordnete Typen</h4>
                     <DocumentGrid documents={ documents }
-                        getLinkUrl={ (document: ResultDocument): string => document.resource.id } />
+                        getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
                 </Col>
                 { document && document.resource.category.name === 'Type' &&
-                    <LinkedFinds type={ document } />
+                        <LinkedFinds type={ document } />
                 }
             </Row>
         </Container>
