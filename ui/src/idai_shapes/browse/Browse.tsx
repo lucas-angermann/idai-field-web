@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, search } from '../../api/documents';
@@ -24,6 +25,7 @@ export default function Browse(): ReactElement {
     const { documentId } = useParams<{ documentId: string }>();
     const loginData = useContext(LoginContext);
     const location = useLocation();
+    const { t } = useTranslation();
 
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
@@ -70,27 +72,43 @@ export default function Browse(): ReactElement {
         <Container fluid className="browse-select">
             <DocumentBreadcrumb breadcrumbs={ breadcrumbs } />
             <Row>
-                { document &&
-                    <Col className="col-4 sidebar">
-                        <DocumentDetails
-                            document={ document }
-                            searchParams={ location.search }
-                            skipRelations={ true } />
+                { document
+                    ? <>
+                        <Col className="col-4 sidebar">
+                            <DocumentDetails
+                                document={ document }
+                                searchParams={ location.search }
+                                skipRelations={ true } />
+                        </Col>
+                        <Col style={ documentGridStyle } onScroll={ onScroll }>
+                            <Tabs id="doc-tabs" defaultActiveKey="children">
+                                <Tab eventKey="children" title="Untergeordnete Typen">
+                                    <div className="my-3">
+                                        <DocumentGrid documents={ documents }
+                                            getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
+                                    </div>
+                                </Tab>
+                                { document && document.resource.category.name === 'Type' &&
+                                    <Tab eventKey="similarTypes" title="Ähnliche Typen">
+                                        <div className="my-3">
+                                            <SimilarTypes type={ document } />
+                                        </div>
+                                    </Tab>
+                                }
+                                { document && document.resource.category.name === 'Type' &&
+                                    <Tab eventKey="linkedFinds" title={ t('shapes.browse.linkedFinds.header') }>
+                                        <div className="my-3">
+                                            <LinkedFinds type={ document } />
+                                        </div>
+                                    </Tab>
+                                }
+                            </Tabs>
+                        </Col>
+                    </>
+                    : <Col>
+                        <DocumentGrid documents={ documents }
+                            getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
                     </Col>
-                }
-                <Col style={ documentGridStyle } onScroll={ onScroll }>
-                    { document && document.resource.category.name === 'Type' &&
-                        <>
-                            <h4>Ähnliche Typen</h4>
-                            <SimilarTypes type={ document } />
-                        </>
-                    }
-                    <h4>Untergeordnete Typen</h4>
-                    <DocumentGrid documents={ documents }
-                        getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
-                </Col>
-                { document && document.resource.category.name === 'Type' &&
-                        <LinkedFinds type={ document } />
                 }
             </Row>
         </Container>

@@ -1,18 +1,17 @@
-import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Button, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
-import Icon from '@mdi/react';
 import { mdiMapSearch } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import { Tooltip } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
 import { Query } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
-import DocumentGrid from '../../shared/documents/DocumentGrid';
-import { LoginContext } from '../../shared/login';
 import CONFIGURATION from '../../configuration.json';
-import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
+import DocumentGrid from '../../shared/documents/DocumentGrid';
+import LinkButton from '../../shared/linkbutton/LinkButton';
+import { LoginContext } from '../../shared/login';
 
 
 const HEADER_HEIGHT = 43;
@@ -51,37 +50,24 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
 
 
     return linkedFinds && linkedFinds.length > 0
-        ? <Col style={ containerStyle }>
-            <div style={ headerStyle }>
-                <h4>{ t('shapes.browse.linkedFinds.header') }</h4>
-                <Link to={ { pathname: getFieldOverviewLink(type) } } target="_blank" style={ overviewButtonStyle }>
-                    <OverlayTrigger placement="bottom"
-                                    overlay={ getOverviewButtonTooltip(t) }
-                                    delay={ { show: 500, hide: 0 } }>
-                        <Button>
-                            <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
-                        </Button>
-                    </OverlayTrigger>
-                </Link>
+        ? <>
+            <div className="text-right">
+                <LinkButton to={ getFieldOverviewLink(type) } target="_blank"
+                        tooltip={ <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip> }>
+                    <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
+                </LinkButton>
             </div>
-            <div style={ documentGridStyle } onScroll={ onScroll }>
+            <div className="my-3" onScroll={ onScroll }>
                 <DocumentGrid documents={ linkedFinds }
-                              getLinkUrl={ getFieldLink } />
+                            getLinkUrl={ getFieldLink } />
             </div>
-        </Col>
+        </>
         : <></>;
 }
 
 
-const getOverviewButtonTooltip = (t: TFunction) => <Tooltip id="linked-finds-tooltip">
-    { t('shapes.browse.linkedFinds.showOnMap') }
-</Tooltip>;
-
-
-const getLinkedFinds = async (type: Document, from: number, token: string): Promise<Result> => {
-
-    return search(getQuery(type.resource.id, from), token);
-};
+const getLinkedFinds = async (type: Document, from: number, token: string): Promise<Result> =>
+    search(getQuery(type.resource.id, from), token);
 
 
 const getQuery = (typeId: string, from: number): Query => ({
@@ -93,41 +79,9 @@ const getQuery = (typeId: string, from: number): Query => ({
 });
 
 
-const getFieldLink = (document: Document): string => {
-
-    return `${CONFIGURATION.fieldUrl}/project/${document.project}/${document.resource.id}`;
-};
+const getFieldLink = (document: Document): string =>
+    `${CONFIGURATION.fieldUrl}/project/${document.project}/${document.resource.id}`;
 
 
-const getFieldOverviewLink = (type: Document): string => {
-    return `${CONFIGURATION.fieldUrl}?resource.relations.isInstanceOf.resource.id=${type.resource.id}`;
-};
-
-
-const containerStyle: CSSProperties = {
-    height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT) + 'px)',
-};
-
-
-const headerStyle: CSSProperties = {
-    height: HEADER_HEIGHT + 'px',
-    position: 'relative',
-    textAlign: 'center',
-    paddingTop: '10px',
-    backgroundColor: 'white',
-    borderBottom: '4px dotted var(--main-bg-color)'
-};
-
-
-const documentGridStyle: CSSProperties = {
-    height: 'calc(100vh - ' + (NAVBAR_HEIGHT + BREADCRUMB_HEIGHT + HEADER_HEIGHT) + 'px)',
-    overflowY: 'auto',
-    backgroundColor: 'white'
-};
-
-
-const overviewButtonStyle: CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    right: 0
-};
+const getFieldOverviewLink = (type: Document): string =>
+    `${CONFIGURATION.fieldUrl}?resource.relations.isInstanceOf.resource.id=${type.resource.id}`;
