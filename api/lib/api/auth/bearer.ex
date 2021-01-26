@@ -35,4 +35,3 @@ defmodule Api.Auth.Bearer do
     %{ name: user_name, readable_projects: all_readable_projects }
   end
 end
-
