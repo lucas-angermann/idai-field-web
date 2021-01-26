@@ -82,12 +82,12 @@ export default function Browse(): ReactElement {
                         </Col>
                         <Col style={ documentGridStyle } onScroll={ onScroll }>
                             <Tabs id="doc-tabs" defaultActiveKey="children">
-                                <Tab eventKey="children" title="Untergeordnete Typen">
+                                <Tab eventKey="children" title={ t('shapes.browse.subtypes') }>
                                     <DocumentGrid documents={ documents }
                                         getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
                                 </Tab>
                                 { document && document.resource.category.name === 'Type' &&
-                                    <Tab eventKey="similarTypes" title="Ähnliche Typen">
+                                    <Tab eventKey="similarTypes" title={ t('shapes.browse.similarTypes') }>
                                         <SimilarTypes type={ document } />
                                     </Tab>
                                 }

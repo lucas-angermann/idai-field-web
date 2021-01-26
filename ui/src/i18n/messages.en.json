@@ -92,6 +92,8 @@
       "uploadingImageFile": "Uploading an image file"
     },
     "browse": {
+      "subtypes": "Subtypes",
+      "similarTypes": "Similar types",
       "linkedFinds": {
         "header": "Linked finds",
         "showOnMap": "Show linked finds on map"

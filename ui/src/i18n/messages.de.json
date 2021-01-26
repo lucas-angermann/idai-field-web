@@ -92,6 +92,8 @@
       "uploadingImageFile": "Upload einer Bilddatei"
     },
     "browse": {
+      "subtypes": "Untergeordnete Typen",
+      "similarTypes": "Ähnliche Typen",
       "linkedFinds": {
         "header": "Verknüpfte Funde",
         "showOnMap": "Verknüpfte Funde auf der Karte anzeigen"
