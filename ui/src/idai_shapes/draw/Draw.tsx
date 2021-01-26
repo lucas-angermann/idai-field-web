@@ -49,7 +49,7 @@ export default function Draw(): ReactElement {
                 <CanvasDraw
                     ref={ canvasDraw => (saveableCanvas = canvasDraw) }
                     brushRadius={ brushRadius }
-                    lazyRadius="0"
+                    lazyRadius={ 0 }
                     canvasWidth={ 512 }
                     canvasHeight={ 512 }
                     brushColor="black"
