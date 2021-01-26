@@ -4,11 +4,11 @@ import { Map, ZoomControl } from 'react-leaflet';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
+import { makeUrl } from '../../api/image';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../document/DocumentDetails';
 import { LoginContext } from '../login';
 import IiifImageLayer from './IiifImageLayer';
-import { makeUrl } from '../../api/image';
 
 
 export default function ImageView(): ReactElement {
@@ -37,7 +37,7 @@ export default function ImageView(): ReactElement {
                     <DocumentDetails document={ document }
                                      searchParams={ location.search }
                                      isImageDocument={ true }
-                                     backButtonUrl={ comingFrom ? `/project/${project}/${comingFrom}` : undefined } /> }
+                                     backButtonUrl={ comingFrom } /> }
             </div>
             <div style={ containerStyle }>
                 <Map style={ mapStyle }

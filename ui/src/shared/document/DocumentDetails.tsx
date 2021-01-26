@@ -1,11 +1,14 @@
+import { Location } from 'history';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
-    OptionalRangeWithLabeledValues, Relation } from '../../api/document';
+import { Link, useLocation } from 'react-router-dom';
+import {
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    OptionalRangeWithLabeledValues, Relation
+} from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import Image from '../image/Image';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
@@ -20,6 +23,7 @@ export default function DocumentDetails({ document, searchParams, isImageDocumen
         : { document: Document, searchParams: string, isImageDocument?: boolean,
             backButtonUrl?: string, skipRelations?: boolean }): ReactElement {
 
+    const location = useLocation();
     const { t } = useTranslation();
 
     const images: ResultDocument[] = getImages(document);
@@ -30,7 +34,7 @@ export default function DocumentDetails({ document, searchParams, isImageDocumen
                 { renderHeader(document, searchParams, isImageDocument, backButtonUrl) }
             </Card.Header>
             <Card.Body style={ cardBodyStyle }>
-                { images && renderImages(images, document) }
+                { images && renderImages(images, document, location) }
                 { renderGroups(document, t, skipRelations) }
             </Card.Body>
         </Card>
@@ -47,17 +51,19 @@ const renderHeader = (document: Document, searchParams: string, isImageDocument:
 );
 
 
-const renderImages = (images: ResultDocument[], document: Document): ReactNode =>
+const renderImages = (images: ResultDocument[], document: Document, location: Location): ReactNode =>
     <Carousel className="document-details-carousel" interval={ null }>
-        { images?.map(renderImage(document)) }
+        { images?.map(renderImage(document, location)) }
     </Carousel>;
 
 
-const renderImage = (document: Document) => function CarouselImage(imageDoc: ResultDocument): ReactNode {
+const renderImage = (document: Document, location: Location) =>
+    
+    function CarouselImage(imageDoc: ResultDocument): ReactNode {
 
     return (
         <Carousel.Item key={ imageDoc.resource.id }>
-            <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${document.resource.id}` }
+            <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${location.pathname}` }
                     className="d-block mb-2">
                 <Image project={ document.project } id={ imageDoc.resource.id } maxWidth={ 380 } maxHeight={ 350 } />
             </Link>
