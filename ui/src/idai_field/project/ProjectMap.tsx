@@ -116,10 +116,7 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
-
-        map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
-        map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
-        map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+        setUpView(map, newVectorLayer);
 
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
@@ -167,6 +164,14 @@ const createMap = (): Map => {
         target: 'ol-project-map',
         view: new View()
     });
+};
+
+
+const setUpView = (map: Map, layer: VectorLayer) => {
+
+    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+    map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
+    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
 };
 
 
