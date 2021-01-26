@@ -51,7 +51,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
 
     return <>
             { linkedFinds && linkedFinds.length > 0
-                && <div className="text-right">
+                && <div className="my-3 text-right">
                     <LinkButton to={ getFieldOverviewLink(type) } target="_blank" tooltip={ mapTooltip }>
                         <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
                     </LinkButton>
