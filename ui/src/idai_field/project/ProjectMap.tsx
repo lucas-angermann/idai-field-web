@@ -118,7 +118,9 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         setVectorLayer(newVectorLayer);
 
         map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
-        map.getView().setMinZoom(map.getView().getZoom());
+        map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
+        map.getView().fit(newVectorLayer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents]);
 
