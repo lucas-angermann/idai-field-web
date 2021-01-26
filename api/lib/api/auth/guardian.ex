@@ -5,7 +5,7 @@ defmodule Api.Auth.Guardian do
     user = user_by(user_json, Core.Config.get(Api.Auth, :users))
     readable_projects = Core.Config.get(Api.Auth, :readable_projects)[user.name] || []
     rights = Poison.encode!(%{
-      user: user.name,
+      name: user.name,
       readable_projects: readable_projects
     })
     {:ok, rights}

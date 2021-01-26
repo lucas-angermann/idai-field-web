@@ -48,14 +48,14 @@ defmodule RouterUtils do
     if project in readable_projects, do: :ok, else: :unauthorized_access
   end
 
-  def get_user_rights conn do
+  def get_user conn do
     conn
     |> get_req_header("authorization")
     |> List.first
     |> Api.Auth.Bearer.get_user_for_bearer
   end
 
-  def get_user_rights_from_token token do
+  def get_user_from_token token do
     Api.Auth.Bearer.get_user_for_bearer(token)
   end
 end
