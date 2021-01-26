@@ -27,7 +27,7 @@ defmodule Api.Auth.Bearer do
 
   defp put_readable_projects(%{ name: user_name, readable_projects: readable_projects }) do
     all_readable_projects = if not is_admin(user_name) do
-      anonymously_readable_projects = Config.get(Api.Auth, :readable_projects)[@anonymous] || []
+      anonymously_readable_projects = get_readable_projects(@anonymous)
       Enum.uniq(readable_projects ++ anonymously_readable_projects)
     else
       Config.get(:projects)
