@@ -52,26 +52,21 @@ defmodule Api.Documents.Router do
     with doc = %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
     do
-      send_json(conn,
-        %{
-          results: fetch_entries(doc)
-                   |> Enum.map(
-                        fn entry -> %{
-                                     id: entry.resource.id,
-                                     identifier: entry.resource.identifier,
-                                     category: entry.resource.category["name"],
-                                     isChildOf: entry.resource.parentId
-                                   }
-                        end
-                      )
-                   |> Enum.reverse()
-        }
-      )
+      send_json(conn, %{ results: fetch_entries(doc) |> Enum.map(&to_predecessor/1) |> Enum.reverse() })
     else
       nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
       _ -> IO.puts "other error"
     end
+  end
+
+  defp to_predecessor(entry) do
+    %{
+      id: entry.resource.id,
+      identifier: entry.resource.identifier,
+      category: entry.resource.category["name"],
+      isChildOf: entry.resource.parentId
+    }
   end
 
   defp fetch_entries(doc) do
