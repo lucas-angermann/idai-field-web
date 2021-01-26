@@ -30,9 +30,9 @@ export const makeUrl = (project: string, id: string, token?: string): string => 
 };
 
 
-export const getSimilar = async (id: string, token: string): Promise<Result> => {
+export const getSimilar = async (id: string, token: string, size: number = 20): Promise<Result> => {
     
-    const uri = `/api/images/similar/resnet/${id}`;
+    const uri = `/api/images/similar/resnet/${id}?size=${size}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
