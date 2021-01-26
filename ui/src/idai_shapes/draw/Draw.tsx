@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Form } from 'react-bootstrap';
 import * as tf from '@tensorflow/tfjs';
 
 export default function Draw(): ReactElement {
@@ -49,6 +49,7 @@ export default function Draw(): ReactElement {
                 <CanvasDraw
                     ref={ canvasDraw => (saveableCanvas = canvasDraw) }
                     brushRadius={ brushRadius }
+                    lazyRadius="0"
                     canvasWidth={ 512 }
                     canvasHeight={ 512 }
                     brushColor="black"
@@ -65,7 +66,9 @@ export default function Draw(): ReactElement {
                     Clear
                 </Button>
                 <Col>
-                    <input type="number" className="mt-2" value={ brushRadius } onChange={ brushRadiusHandler } />
+                    <Form.Control type="range" min="5" max="30" custom
+                        className="mt-2 w-25" value={ brushRadius }
+                        onChange={ brushRadiusHandler } />
                     <p>Brush radius</p>
                 </Col>
             </Row>
