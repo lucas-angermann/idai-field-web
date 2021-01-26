@@ -1,15 +1,14 @@
 defmodule Api.Auth.AdminRightsPlug do
   import Plug.Conn
-  import RouterUtils, only: [send_unauthorized: 1, get_rights: 1]
+  import Api.Auth.Helpers
+  import RouterUtils, only: [send_unauthorized: 1, get_user_rights: 1]
 
-  def init(options) do
-    options
-  end
+  def init(options), do: options
 
   def call(conn, _opts) do
-    {_, is_admin} = get_rights(conn)
+    {user, _} = get_user_rights(conn)
 
-    if not is_admin do
+    if not is_admin(user) do
       conn
       |> send_unauthorized
       |> halt

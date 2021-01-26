@@ -30,7 +30,8 @@ defmodule Api.Images.Router do
   end
 
   get "/:project/:id/:token/*params" do
-    readable_projects = Api.Auth.Bearer.get_user_for_bearer(token).readable_projects
+    readable_projects = get_user_rights_from_token(token).readable_projects
+
     with :ok <- access_for_project_allowed(readable_projects, project) do
       handle_call conn, project, id
     else

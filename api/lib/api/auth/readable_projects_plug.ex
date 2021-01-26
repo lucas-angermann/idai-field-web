@@ -1,15 +1,11 @@
 defmodule Api.Auth.ReadableProjectsPlug do
   import Plug.Conn
+  import RouterUtils, only: [get_user_rights: 1]
 
-  import RouterUtils, only: [get_rights: 1]
-  
-  def init(options) do
-    options
-  end
-  
+  def init(options), do: options
+
   def call(conn, _opts) do
-    { readable_projects, _ } = get_rights(conn)
     conn
-    |> put_private(:readable_projects, readable_projects)
+    |> put_private(:readable_projects, get_user_rights(conn).readable_projects)
   end
 end
