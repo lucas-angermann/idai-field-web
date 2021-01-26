@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, ReactNode } from 'react';
-import { Card } from 'react-bootstrap';
+import React, { CSSProperties, ReactElement } from 'react';
+import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
 import DocumentThumbnail from '../document/DocumentThumbnail';
@@ -20,23 +20,15 @@ export default function DocumentGrid({ documents, getLinkUrl }: DocumentGridProp
     
     const { t } = useTranslation();
     
-    if (documents) {
-        return (
-            <div className="d-flex flex-wrap">
-                { documents.length === 0
-                    ? renderEmptyResult(t)
-                    : renderDocuments(documents, getLinkUrl)
-                }
-            </div>
-        );
-    } else {
-        return null;
-    }
+    return (documents?.length > 0) ? renderDocuments(documents, getLinkUrl) : renderEmptyResult(t);
+
 }
 
 
-const renderDocuments = (documents: ResultDocument[], getLinkUrl: (document: ResultDocument) => string): ReactNode =>
-    documents.map((document) => renderDocument(document, getLinkUrl));
+const renderDocuments = (documents: ResultDocument[], getLinkUrl: (document: ResultDocument) => string): ReactElement =>
+    <div className="d-flex flex-wrap my-3">
+        { documents.map((document) => renderDocument(document, getLinkUrl)) }
+    </div>;
 
 
 const renderDocument = (document: ResultDocument, getLinkUrl: (document: ResultDocument) => string): ReactElement =>
@@ -50,11 +42,13 @@ const renderDocument = (document: ResultDocument, getLinkUrl: (document: ResultD
 
 
 const renderEmptyResult = (t: TFunction): ReactElement =>
-    <Card className="documents-card m-0">
-        <Card.Body className="px-0 py-0">
-            <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
-        </Card.Body>
-    </Card>;
+    <Row>
+        <Col>
+            <Card>
+                <div className="text-center mt-sm-5 mb-sm-5"><em>{ t('project.noResults') }</em></div>
+            </Card>
+        </Col>
+    </Row>;
 
 
 const documentBoxStyle: CSSProperties = {

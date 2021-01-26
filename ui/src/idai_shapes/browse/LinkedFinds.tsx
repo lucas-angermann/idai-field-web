@@ -14,7 +14,6 @@ import LinkButton from '../../shared/linkbutton/LinkButton';
 import { LoginContext } from '../../shared/login';
 
 
-const HEADER_HEIGHT = 43;
 const CHUNK_SIZE = 50;
 
 
@@ -48,21 +47,21 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
             .then(result => setLinkedFinds(oldLinkedFinds => oldLinkedFinds.concat(result.documents)));
     }, [type, loginData]);
 
+    const mapTooltip = <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip>;
 
-    return linkedFinds && linkedFinds.length > 0
-        ? <>
-            <div className="text-right">
-                <LinkButton to={ getFieldOverviewLink(type) } target="_blank"
-                        tooltip={ <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip> }>
-                    <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
-                </LinkButton>
-            </div>
-            <div className="my-3" onScroll={ onScroll }>
+    return <>
+            { linkedFinds && linkedFinds.length > 0
+                && <div className="text-right">
+                    <LinkButton to={ getFieldOverviewLink(type) } target="_blank" tooltip={ mapTooltip }>
+                        <Icon path={ mdiMapSearch } size={ 0.8 }></Icon>
+                    </LinkButton>
+                </div>
+            }
+            <div onScroll={ onScroll }>
                 <DocumentGrid documents={ linkedFinds }
                             getLinkUrl={ getFieldLink } />
             </div>
-        </>
-        : <></>;
+        </>;
 }
 
 
