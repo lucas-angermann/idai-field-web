@@ -2,13 +2,16 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { Row, Col, Button, Form } from 'react-bootstrap';
 import * as tf from '@tensorflow/tfjs';
+import { getFromVector } from '../../api/documents';
+import { ResultDocument } from '../../api/result';
 
 export default function Draw(): ReactElement {
 
     const [model, setModel] = useState<tf.LayersModel>();
+    const [brushRadius, setBrushRadius] = useState<number>(10);
+    const [documents, setDocuments] = useState<ResultDocument[]>(null);
 
     let saveableCanvas;
-    const [brushRadius, setBrushRadius] = useState<number>(10);
     const modelUrl = 'http://localhost:3000/week1/model/model.json';
 
     const loadModel = async (url: string) => {
@@ -29,8 +32,11 @@ export default function Draw(): ReactElement {
             const raw = tf.browser.fromPixels(canvas,3);
             const resized = tf.image.resizeBilinear(raw, [512,512]);
             const tensor = resized.expandDims(0);
-            const prediction = model.predict(tensor) as tf.Tensor;
-            alert(prediction.reshape([-1]));
+            const prediction = (model.predict(tensor) as tf.Tensor).reshape([-1]);
+   
+            getFromVector(Array.from(prediction.dataSync())).then((res) => {
+                setDocuments(res.documents);
+            });
         }
 
 
