@@ -13,6 +13,7 @@ interface LinkButtonProps {
     style?: CSSProperties;
     size?: 'sm' | 'lg';
     tooltip?: ReactElement;
+    target?: string;
 }
 
 
@@ -28,10 +29,13 @@ export default function LinkButton(properties: LinkButtonProps): ReactElement {
 }
 
 
-const renderButton = ({ to, children, style, size, variant = 'primary' }: LinkButtonProps,
+const renderButton = ({ to, children, style, size, target, variant = 'primary' }: LinkButtonProps,
                       history: History) => {
 
-    return <Button onClick={ (e: MouseEvent) => { e.preventDefault(); history.push(to); } }
+    let onClick = (e: MouseEvent) => { e.preventDefault(); history.push(to); };
+    if (target) onClick = (e: MouseEvent) => { e.preventDefault(); window.open(to, target); };
+
+    return <Button onClick={ onClick }
             style={ style }
             size={ size }
             variant={ variant }>
