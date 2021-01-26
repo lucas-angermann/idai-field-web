@@ -6,7 +6,6 @@ defmodule Api.Auth.Guardian do
     readable_projects = Core.Config.get(Api.Auth, :readable_projects)[user.name] || []
     rights = Poison.encode!(%{
       user: user.name,
-      is_admin: user[:admin] == true,
       readable_projects: readable_projects
     })
     {:ok, rights}
