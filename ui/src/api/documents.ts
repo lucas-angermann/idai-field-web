@@ -47,12 +47,14 @@ const fetchPost = async (uri: string, query: Query, token: string): Promise<Resu
     return response.json();
 };
 
-export const getFromVector = async (vector: number[], model: string = 'resnet'): Promise<Result> => {
+export const getFromVector = async (query_vector: number[], model: string = 'resnet'): Promise<Result> => {
     const uri = '/api/documents/';
     const body = {
         size: 10,
-        model: model,
-        query_vector: vector
+        vector_query: {
+            model,
+            query_vector
+        }
     };
 
     const response = await fetch(uri, {
