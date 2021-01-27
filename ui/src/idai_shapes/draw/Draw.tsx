@@ -79,9 +79,13 @@ export default function Draw(): ReactElement {
                     </Row>
                 </Col>
                 <Col>
-                    {documents && <h1>10 closest shapes</h1>}
-                    <DocumentGrid documents={ documents }
-                        getLinkUrl={ (doc: ResultDocument): string => `document/${doc.resource.id}` } />
+                    {documents &&
+                    <>
+                        <h1>10 closest shapes</h1>
+                        <DocumentGrid documents={ documents }
+                            getLinkUrl={ (doc: ResultDocument): string => `document/${doc.resource.id}` } />
+                    </>
+                    }
                 </Col>
             </Row>
         </div>
