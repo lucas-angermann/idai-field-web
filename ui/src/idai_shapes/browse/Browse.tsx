@@ -31,12 +31,14 @@ export default function Browse(): ReactElement {
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
     const [offset, setOffset] = useState<number>(0);
+    const [tabKey, setTabKey] = useState<string>('children');
 
     useEffect(() => {
 
         if (documentId) {
             get(documentId, loginData.token)
-                .then(doc => setDocument(doc));
+                .then(doc => setDocument(doc))
+                .then(() => setTabKey('children'));
             getChildren(documentId, 0, loginData.token)
                 .then(result => setDocuments(result.documents));
             getPredecessors(documentId, loginData.token)
@@ -81,7 +83,7 @@ export default function Browse(): ReactElement {
                                 skipRelations={ true } />
                         </Col>
                         <Col style={ documentGridStyle } onScroll={ onScroll }>
-                            <Tabs id="doc-tabs" defaultActiveKey="children">
+                            <Tabs id="doc-tabs" activeKey={ tabKey } onSelect={ setTabKey }>
                                 <Tab eventKey="children" title={ t('shapes.browse.subtypes') }>
                                     <DocumentGrid documents={ documents }
                                         getLinkUrl={ (doc: ResultDocument): string => doc.resource.id } />
