@@ -23,6 +23,7 @@
     "bootstrap": "^4.4.1",
     "i18next": "^19.7.0",
     "idai-components-2": "1.47.30",
+    "idai-shapes-ceramics_resnet50": "^1.0.1",
     "leaflet": "^1.6.0",
     "leaflet-iiif": "^3.0.0",
     "object-hash": "^2.0.3",
@@ -47,7 +48,8 @@
     "start-shapes": "PORT=3002 REACT_APP_MAIN=shapes react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "cp -r node_modules/idai-shapes-ceramics_resnet50/model/ public/model"
   },
   "eslintConfig": {
     "extends": [

@@ -4,6 +4,7 @@
 
 data/elasticsearch/
 data/cantaloupe/
+ui/public/model/*
 
 TODO
 

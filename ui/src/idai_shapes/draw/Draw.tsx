@@ -13,7 +13,7 @@ export default function Draw(): ReactElement {
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
 
     const canvas = useRef<DrawCanvasObject>();
-    const modelUrl = 'http://localhost:3010/week1/model/model.json';
+    const modelUrl = 'http://localhost:3002/model/model.json';
 
     const loadModel = async (url: string) => {
         try {
