@@ -29,6 +29,15 @@ export const getPredecessors = async (id: string, token: string): Promise<Predec
 };
 
 
+export const getSimilar = async (id: string, token: string, size: number = 20): Promise<Result> => {
+    
+    const uri = `/api/documents/similar/resnet/${id}?size=${size}`;
+    const response = await fetch(uri, { headers: getHeaders(token) });
+    if (response.ok) return await response.json();
+    else throw(await response.json());
+};
+
+
 const fetchPost = async (uri: string, query: Query, token: string): Promise<Result> => {
 
     const headers = getHeaders(token);

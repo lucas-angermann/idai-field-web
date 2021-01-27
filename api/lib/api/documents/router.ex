@@ -60,6 +60,26 @@ defmodule Api.Documents.Router do
     end
   end
 
+  match "/similar/:model/:id" do
+    doc = Index.get(id)
+    vector_query = %{
+      "model" => model,
+      "query_vector" => get_in(doc, [:resource, "featureVectors", model])
+    }
+    send_json(conn, Index.search(
+      conn.params["q"] || "*",
+      conn.params["size"] || 10,
+      conn.params["from"] || 0,
+      conn.params["filters"],
+      conn.params["not"] || ["resource.id:#{id}"],
+      conn.params["exists"],
+      conn.params["not_exists"],
+      conn.params["sort"],
+      vector_query,
+      conn.private[:readable_projects]
+    ))
+  end
+
   defp to_predecessor(entry) do
     %{
       id: entry.resource.id,

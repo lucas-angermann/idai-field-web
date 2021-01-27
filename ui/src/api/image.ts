@@ -1,5 +1,3 @@
-import { Result } from './result';
-import { getHeaders } from './utils';
 
 export const fetchImage = async (project: string,
                                  id: string,
@@ -27,13 +25,4 @@ export const makeUrl = (project: string, id: string, token?: string): string => 
 
     const token_ = token === undefined || token === '' ? 'anonymous' : token;
     return `/api/images/${project}/${id}.jp2/${token_}/info.json`;
-};
-
-
-export const getSimilar = async (id: string, token: string, size: number = 20): Promise<Result> => {
-    
-    const uri = `/api/images/similar/resnet/${id}?size=${size}`;
-    const response = await fetch(uri, { headers: getHeaders(token) });
-    if (response.ok) return await response.json();
-    else throw(await response.json());
 };

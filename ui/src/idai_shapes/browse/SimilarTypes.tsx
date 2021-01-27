@@ -1,7 +1,6 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Document, getImages } from '../../api/document';
-import { search } from '../../api/documents';
-import { getSimilar } from '../../api/image';
+import { getSimilar, search } from '../../api/documents';
 import { Query } from '../../api/query';
 import { ResultDocument } from '../../api/result';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
