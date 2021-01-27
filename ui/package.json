@@ -31,7 +31,6 @@
     "proj4": "^2.6.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
-    "react-canvas-draw": "^1.1.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.2",
     "react-leaflet": "^2.7.0",
@@ -58,60 +57,19 @@
       "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-      "@typescript-eslint/array-type": [
-        "warn",
-        {
-          "default": "array"
-        }
-      ],
-      "@typescript-eslint/semi": [
-        "warn",
-        "always"
-      ],
+      "@typescript-eslint/array-type": [ "warn", { "default": "array" } ],
+      "@typescript-eslint/semi": [ "warn", "always" ],
       "@typescript-eslint/no-inferrable-types": 0,
-      "max-len": [
-        "warn",
-        {
-          "code": 120
-        }
-      ],
-      "no-trailing-spaces": [
-        "warn",
-        {
-          "skipBlankLines": true
-        }
-      ],
-      "no-multiple-empty-lines": [
-        "warn",
-        {
-          "max": 2
-        }
-      ],
-      "quotes": [
-        "warn",
-        "single"
-      ],
-      "jsx-quotes": [
-        "warn",
-        "prefer-double"
-      ],
-      "object-curly-spacing": [
-        "warn",
-        "always"
-      ],
-      "react/jsx-curly-spacing": [
-        "warn",
-        "always"
-      ],
-      "react/jsx-tag-spacing": [
-        "warn"
-      ],
-      "react/jsx-equals-spacing": [
-        "warn"
-      ],
-      "no-multi-spaces": [
-        "warn"
-      ]
+      "max-len": [ "warn", { "code": 120 } ],
+      "no-trailing-spaces": [ "warn", { "skipBlankLines": true } ],
+      "no-multiple-empty-lines": [ "warn", { "max": 2 } ],
+      "quotes": [ "warn", "single" ],
+      "jsx-quotes": [ "warn", "prefer-double" ],
+      "object-curly-spacing": ["warn", "always"],
+      "react/jsx-curly-spacing": ["warn", "always"],
+      "react/jsx-tag-spacing": ["warn"],
+      "react/jsx-equals-spacing": ["warn"],
+      "no-multi-spaces": ["warn"]
     }
   },
   "browserslist": {
