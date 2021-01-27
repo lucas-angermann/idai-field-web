@@ -46,3 +46,22 @@ const fetchPost = async (uri: string, query: Query, token: string): Promise<Resu
     const response = await fetch(uri, { headers, method: 'POST', body: JSON.stringify(params) });
     return response.json();
 };
+
+export const getFromVector = async (query_vector: number[], model: string = 'resnet'): Promise<Result> => {
+    const uri = '/api/documents/';
+    const body = {
+        size: 10,
+        vector_query: {
+            model,
+            query_vector
+        }
+    };
+
+    const response = await fetch(uri, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    });
+    if (response.ok) return await response.json();
+    else throw(await response.json());
+};
