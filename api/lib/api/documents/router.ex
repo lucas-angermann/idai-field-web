@@ -1,6 +1,7 @@
 defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Index
+  alias Api.Documents.Predecessors
   import RouterUtils
   import Core.Layout
 
@@ -52,7 +53,7 @@ defmodule Api.Documents.Router do
     with doc = %{ project: project } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
     do
-      send_json(conn, %{ results: fetch_entries(doc) |> Enum.map(&to_predecessor/1) |> Enum.reverse() })
+      send_json(conn, %{ results: Predecessors.get(doc) })
     else
       nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
@@ -80,24 +81,5 @@ defmodule Api.Documents.Router do
     ))
   end
 
-  defp to_predecessor(entry) do
-    %{
-      id: entry.resource.id,
-      identifier: entry.resource.identifier,
-      category: entry.resource.category["name"],
-      isChildOf: entry.resource.parentId
-    }
-  end
-
-  defp fetch_entries(doc) do
-    Stream.unfold(doc, fn
-      nil -> nil
-      current_doc -> {
-        current_doc,
-        if Map.has_key?(current_doc.resource, :parentId) && current_doc.resource.parentId != nil do
-          Index.get(current_doc.resource.parentId)
-        end
-      }
-    end)
-  end
+  
 end
