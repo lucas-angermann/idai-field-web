@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, search } from '../../api/documents';
 import { parseFrontendGetParams, Query } from '../../api/query';
-import { Predecessor, Result, ResultDocument } from '../../api/result';
+import { Result, ResultDocument } from '../../api/result';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
@@ -139,11 +139,11 @@ const getQueryTemplate = (from: number): Query => ({
 });
   
 
-const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbItem[] => predecessors.map(predec => {
+const predecessorsToBreadcrumbItems = (predecessors: ResultDocument[]): BreadcrumbItem[] => predecessors.map(predec => {
     return {
-        identifier: predec.identifier,
-        id: predec.id,
-        url: predec.id,
+        identifier: predec.resource.identifier,
+        id: predec.resource.id,
+        url: predec.resource.id,
     };
 });
 

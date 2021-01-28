@@ -1,9 +1,7 @@
 defmodule Api.Documents.Predecessors do
     alias Api.Documents.Index
 
-    def get(doc) do
-        fetch_entries(doc) |> Enum.map(&to_predecessor/1) |> Enum.reverse()
-    end
+    def get(doc), do: fetch_entries(doc) |> Enum.reverse()
 
     defp fetch_entries(doc) do
         Stream.unfold(doc, fn
@@ -15,14 +13,5 @@ defmodule Api.Documents.Predecessors do
             end
           }
         end)
-    end
-
-    defp to_predecessor(entry) do
-        %{
-          id: entry.resource.id,
-          identifier: entry.resource.identifier,
-          category: entry.resource.category["name"],
-          isChildOf: entry.resource.parentId
-        }
     end
 end
