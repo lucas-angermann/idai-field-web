@@ -98,15 +98,15 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ location.search }
                      projectId={ projectId } />
+            { isInHierarchyMode(location.search) && <ProjectBreadcrumb /> }
             { document
                 ? <DocumentDetails document={ document }
                                      searchParams={ location.search }
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 : <>
                     {
-                        isInHierarchyMode(location.search)
-                            ? <ProjectBreadcrumb />
-                            : renderTotal(total, document, projectId, t, setDocuments)
+                        !isInHierarchyMode(location.search) &&
+                            renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
