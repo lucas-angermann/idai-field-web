@@ -20,6 +20,7 @@ import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getContextUrl, getMapDeselectionUrl } from './navigation';
+import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -103,7 +104,9 @@ export default function Project(): ReactElement {
                                      backButtonUrl={ getContextUrl(projectId, location.search, document) } />
                 : <>
                     {
-                        !isInHierarchyMode(location.search) && renderTotal(total, document, projectId, t, setDocuments)
+                        isInHierarchyMode(location.search)
+                            ? <ProjectBreadcrumb />
+                            : renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
