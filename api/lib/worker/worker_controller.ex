@@ -20,6 +20,7 @@ defmodule Worker.WorkerController do
     configuration = ProjectConfigLoader.get(db)
 
     IdaiFieldDb.fetch_changes(db)
+    |> Enum.filter(&filter_non_owned_document/1)
     |> Enum.map(Mapper.process)
     |> log_finished("mapping", db)
     |> Enricher.process(db, IdaiFieldDb.get_doc(db), configuration)
@@ -32,4 +33,7 @@ defmodule Worker.WorkerController do
     Logger.info "Finished #{step} #{db}"
     change
   end
+
+  defp filter_non_owned_document(_change = %{ doc: %{ project: _project } }), do: false
+  defp filter_non_owned_document(_change), do: true
 end
