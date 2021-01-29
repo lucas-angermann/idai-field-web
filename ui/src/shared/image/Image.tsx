@@ -3,7 +3,7 @@ import { fetchImage } from '../../api/image';
 import { LoginContext } from '../login';
 import NotFoundImage from './NotFoundImage';
 
-interface ImageProps {
+export interface ImageProps {
     project: string;
     id: string;
     maxWidth: number;

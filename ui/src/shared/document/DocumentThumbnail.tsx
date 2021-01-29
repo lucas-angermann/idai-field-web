@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
 import Image from '../image/Image';
-import NotFoundImage from '../image/NotFoundImage';
+import MultiImage from '../image/MultiImage';
 
 
 const LABEL_HEIGHT = 30;
@@ -30,7 +30,10 @@ export default React.memo(function DocumentThumbnail({ document, linkUrl, maxWid
                             project={ document.project }
                             id={ imageId }
                             maxWidth={ maxWidth } maxHeight={ maxHeight } />
-                        : <NotFoundImage />
+                        : <MultiImage
+                            project={ document.project }
+                            id={ document.resource.id }
+                            maxWidth={ maxWidth } maxHeight={ maxHeight } />
                     }
                 </div>
                 <div className="p-1" title={ document.resource.identifier } style={ labelStyle }>
