@@ -11,10 +11,14 @@ export default function DocumentHierarchyHeader({ documents, searchParams }
     const project = firstDoc?.project;
     const parentDoc = getParentDocument(firstDoc);
 
+    const params = new URLSearchParams(searchParams);
+    params.set('r', 'children');
+    const linkUrl = `/project/${parentDoc.project}/${parentDoc.resource.id}${params.toString()}`;
+
     return documents.length && parentDoc
         ? <Card.Header className="hierarchy-parent">
             <DocumentTeaser project={ project } searchParams={ searchParams }
-                document={ parentDoc }
+                document={ parentDoc } linkUrl={ linkUrl }
                 hierarchyHeader={ true } />
         </Card.Header>
         : <></>;

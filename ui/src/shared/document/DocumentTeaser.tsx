@@ -6,12 +6,10 @@ import { Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
-import CONFIGURATION from '../../configuration.json';
 import LinkButton from '../linkbutton/LinkButton';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
-
-const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
+import { isType } from './document-utils';
 
 
 interface DocumentTeaserProps {
@@ -21,7 +19,7 @@ interface DocumentTeaserProps {
     project: string;
     showHierarchyButton?: boolean;
     backButtonUrl?: string;
-    asLink?: boolean;
+    linkUrl?: string;
     hierarchyHeader?: boolean;
     imageHeader?: boolean;
 }
@@ -30,7 +28,7 @@ interface DocumentTeaserProps {
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
             project, showHierarchyButton = false,
-            backButtonUrl, asLink = true, hierarchyHeader = false,
+            backButtonUrl, linkUrl, hierarchyHeader = false,
             imageHeader = false }
         : DocumentTeaserProps): ReactElement {
 
@@ -45,23 +43,17 @@ export default React.memo(function DocumentTeaser(
 
     if (hierarchyHeader) searchParams += (searchParams.length > 0) ? '&r=children' : '?r=children';
 
-    const linkUrl = isImage(document)
-        ? `/image/${project}/${document.resource.id}`
-        : isType(document)
-            ? `${CONFIGURATION.shapesUrl}/document/${document.resource.id}`
-            : `/project/${project}/${document.resource.id}${searchParams}`;
-
     return (
         <Row className="no-gutters document-teaser">
             { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
-                { asLink
+                { linkUrl
                     ? <Link to={ { pathname: linkUrl } }
                             target={ isType(document) ? '_blank' : '' }
                             style={ linkStyle } >
-                        { renderTeaser(document, size, height, asLink, hierarchyHeader) }
+                        { renderTeaser(document, size, height, linkUrl?.length > 0, hierarchyHeader) }
                     </Link>
-                    : renderTeaser(document, size, height, asLink, hierarchyHeader)
+                    : renderTeaser(document, size, height, linkUrl?.length > 0, hierarchyHeader)
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
@@ -147,18 +139,6 @@ const getHierarchyButtonSearchParams = (searchParams: string | undefined, docume
     params.set('parent', documentId);
 
     return params.toString();
-};
-
-
-const isImage = (document: ResultDocument): boolean => {
-
-    return IMAGE_CATEGORIES.includes(document.resource.category.name);
-};
-
-
-const isType = (document: ResultDocument): boolean => {
-
-    return document.resource.category.name === 'Type';
 };
 
 

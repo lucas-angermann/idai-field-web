@@ -13,6 +13,7 @@ import { ResultDocument } from '../../api/result';
 import Image from '../image/Image';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 import './document-details.css';
+import { getDocumentLink } from './document-utils';
 import DocumentTeaser from './DocumentTeaser';
 
 const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
@@ -46,7 +47,7 @@ const renderHeader = (document: Document, searchParams: string, isImageDocument:
                       backButtonUrl?: string): ReactElement => (
     <div>
         <DocumentTeaser project={ document.project } document={ document } searchParams={ searchParams }
-                        backButtonUrl={ backButtonUrl } asLink={ false } imageHeader={ isImageDocument } />
+                        backButtonUrl={ backButtonUrl } imageHeader={ isImageDocument } />
     </div>
 );
 
@@ -73,7 +74,7 @@ const renderImage = (document: Document, location: Location) =>
 
 
 const renderGroups = (document: Document, t: TFunction, skipRelations: boolean): ReactNode => {
-
+    
     return document.resource.groups.map(renderGroup(t, document.project, skipRelations));
 };
 
@@ -192,7 +193,9 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 
 const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
-    <li key={ doc.resource.id }><DocumentTeaser document={ doc } project={ project } size="small" /></li>;
+    <li key={ doc.resource.id }>
+        <DocumentTeaser document={ doc } project={ project } linkUrl={ getDocumentLink(doc, project) } size="small" />
+    </li>;
 
 
 const renderPopover = (object: LabeledValue, t: TFunction): ReactElement => {
