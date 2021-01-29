@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { fetchDescendantsImages } from '../../api/image';
 import { LoginContext } from '../login';
 import NotFoundImage from './NotFoundImage';
@@ -41,7 +41,7 @@ export default React.memo(function MultiImage({ project, id, maxWidth, maxHeight
     }, [project, id, loginData, maxWidth, maxHeight]);
 
     return imgUrls
-        ? <div style={ { position: 'relative', width: '100%', height: '100%' } }>
+        ? <div style={ multiImageStyle }>
             { imgUrls.map((imgUrl, index) =>
                 <div key={ imgUrl }
                 className={
@@ -52,3 +52,10 @@ export default React.memo(function MultiImage({ project, id, maxWidth, maxHeight
         </div>
         : error && <NotFoundImage />;
 });
+
+
+const multiImageStyle: CSSProperties = {
+    position: 'relative',
+    width: '100%',
+    height: '100%'
+};
