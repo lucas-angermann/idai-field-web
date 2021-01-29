@@ -44,6 +44,8 @@ export default function Project(): ReactElement {
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
 
+    const parent = new URLSearchParams(location.search).get('parent');
+
     useEffect(() => {
 
         if (documentId) {
@@ -57,8 +59,6 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        const parent = new URLSearchParams(location.search).get('parent');
-
         if (document) {
             setMapDocument(document);
         } else if (parent && parent !== 'root') {
@@ -66,7 +66,7 @@ export default function Project(): ReactElement {
         } else {
             setMapDocument(null);
         }
-    }, [location.search, document, loginData]);
+    }, [parent, document, loginData]);
 
     useEffect(() => {
 
@@ -99,13 +99,13 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ location.search }
                      projectId={ projectId } />
-            { isInHierarchyMode(location.search) && <ProjectBreadcrumb /> }
             { document
                 ? renderDocumentDetails(document, location.search)
                 : <>
                     {
-                        !isInHierarchyMode(location.search) &&
-                            renderTotal(total, document, projectId, t, setDocuments)
+                        isInHierarchyMode(location.search)
+                            ? parent !== 'root' && <Card><ProjectBreadcrumb documentId={ parent } /></Card>
+                            : renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
@@ -126,14 +126,19 @@ const deselectFeature = (document: Document, searchParams: string, history: Hist
 
 
 const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
-    <Card style={ cardStyle }>
-        <Card.Header style={ cardHeaderStyle }>
-            <DocumentTeaser document={ document } searchParams={ searchParams } />
-        </Card.Header>
-        <Card.Body style={ cardBodyStyle }>
-            <DocumentDetails document={ document } searchParams={ searchParams } />
-        </Card.Body>
-    </Card>;
+    <>
+        { document?.resource.parentId && <Card>
+            <ProjectBreadcrumb documentId={ document.resource.parentId } />
+        </Card> }
+        <Card style={ cardStyle }>
+            <Card.Header style={ cardHeaderStyle }>
+                <DocumentTeaser document={ document } searchParams={ searchParams } />
+            </Card.Header>
+            <Card.Body style={ cardBodyStyle }>
+                <DocumentDetails document={ document } searchParams={ searchParams } />
+            </Card.Body>
+        </Card>
+    </>;
 
 
 const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
