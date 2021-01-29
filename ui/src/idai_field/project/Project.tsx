@@ -129,9 +129,9 @@ const deselectFeature = (document: Document, searchParams: string, history: Hist
 
 const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
     <>
-        { document?.resource.parentId && <Card>
+        <Card>
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
-        </Card> }
+        </Card>
         <Card style={ cardStyle }>
             <Card.Header style={ cardHeaderStyle }>
                 <DocumentTeaser document={ document } searchParams={ searchParams } />

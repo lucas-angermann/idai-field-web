@@ -21,7 +21,7 @@ export default function ProjectBreadcrumb({ documentId, projectId }: ProjectBrea
 
     useEffect(() => {
 
-        if (documentId === 'root') {
+        if (!documentId || documentId === 'root') {
             setPredecessors([]);
             return;
         }
@@ -30,12 +30,10 @@ export default function ProjectBreadcrumb({ documentId, projectId }: ProjectBrea
             .then(result => setPredecessors(result.results));
     }, [documentId, loginData.token]);
 
-    return documentId
-        ? <>
-            { renderProject(projectId) }
-            { predecessors.map(renderPredecessor) }
-        </>
-        : null;
+    return <>
+        { renderProject(projectId) }
+        { predecessors.map(renderPredecessor) }
+    </>;
 }
 
 
