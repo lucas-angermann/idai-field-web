@@ -104,7 +104,9 @@ export default function Project(): ReactElement {
                 : <>
                     {
                         isInHierarchyMode(location.search)
-                            ? parent !== 'root' && <Card><ProjectBreadcrumb documentId={ parent } /></Card>
+                            ? <Card>
+                                <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
+                            </Card>
                             : renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
@@ -128,7 +130,7 @@ const deselectFeature = (document: Document, searchParams: string, history: Hist
 const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
     <>
         { document?.resource.parentId && <Card>
-            <ProjectBreadcrumb documentId={ document.resource.parentId } />
+            <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
         </Card> }
         <Card style={ cardStyle }>
             <Card.Header style={ cardHeaderStyle }>
