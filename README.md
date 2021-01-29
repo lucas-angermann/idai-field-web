@@ -21,8 +21,9 @@ Trigger indexing
 
     $ curl -XPOST localhost:4000/api/worker/update_mapping
     $ curl -XPOST localhost:4000/api/worker/reindex
-    $ curl -XPOST localhost:4000/api/worker/conversion # if one has images from the client
-    $ curl -XPOST localhost:4000/api/worker/tiling     # if there are georeferenced images
+    $ curl -XPOST localhost:4000/api/worker/reindex/:project # alternatively index just one project
+    $ curl -XPOST localhost:4000/api/worker/conversion       # if one has images from the client
+    $ curl -XPOST localhost:4000/api/worker/tiling           # if there are georeferenced images
 
 > Note that admin rights are needed in order to use the worker endpoints.
 > So either use a bearer token acquired through the /api/auth/sign_in
