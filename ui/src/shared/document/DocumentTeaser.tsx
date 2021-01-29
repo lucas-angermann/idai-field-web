@@ -43,7 +43,7 @@ export default React.memo(function DocumentTeaser(
         <Row className="no-gutters document-teaser">
             <Col>
                 { linkUrl
-                    ? <Link to={ { pathname: linkUrl } }
+                    ? <Link to={ linkUrl }
                             target={ isType(document) ? '_blank' : '' }
                             style={ linkStyle } >
                         { renderTeaser(document, size, height, linkUrl?.length > 0, hierarchyHeader) }
