@@ -2,6 +2,7 @@ import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { getPredecessors } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
+import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import { LoginContext } from '../../shared/login';
 
@@ -26,4 +27,4 @@ export default function ProjectBreadcrumb({ documentId }: { documentId: string }
 
 
 const renderPredecessor = (predecessor: ResultDocument) =>
-    <DocumentTeaser document={ predecessor } />;
+    <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } />;

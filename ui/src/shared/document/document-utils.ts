@@ -12,6 +12,10 @@ export const getDocumentLink = (doc: ResultDocument, project: string): string =>
         : `/project/${project}/${doc.resource.id}`;
 
 
+export const getHierarchyLink = (doc: ResultDocument): string =>
+    `/project/${doc.project}?parent=${doc.resource.id}`;
+
+
 export const isImage = (document: ResultDocument): boolean =>
     IMAGE_CATEGORIES.includes(document.resource.category.name);
 
