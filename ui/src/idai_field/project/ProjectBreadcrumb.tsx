@@ -1,5 +1,6 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import { mdiSubdirectoryArrowRight } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getPredecessors } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
@@ -19,13 +20,29 @@ export default function ProjectBreadcrumb({ documentId }: { documentId: string }
     }, [documentId, loginData.token]);
 
     return documentId
-        ? <Card>
+        ? <>
             { predecessors.map(renderPredecessor) }
-        </Card>
+        </>
         : null;
 }
+const renderPredecessor = (predecessor: ResultDocument, i: number) =>
+    <div style={ predecessorContainerStyle(i) } key={ predecessor.resource.id } className="d-flex">
+        { (i > 0) && <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } /></div> }
+        <div style={ { flexGrow: 1 } }>
+            <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } size="small" />
+        </div>
+    </div>;
 
 
-const renderPredecessor = (predecessor: ResultDocument) =>
-    <DocumentTeaser key={ predecessor.resource.id } document={ predecessor }
-        linkUrl={ getHierarchyLink(predecessor) } />;
+const predecessorContainerStyle = (i: number): CSSProperties => ({
+    position: 'relative',
+    marginLeft: `${i * 35}px`
+});
+
+
+const iconContainerStyle: CSSProperties = {
+    position: 'absolute',
+    left: '-20px',
+    top: '3px',
+    zIndex: 10
+};
