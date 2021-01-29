@@ -30,7 +30,7 @@ export default function Shapes(): ReactElement {
                     <Route path={ '/login' }>
                         <LoginForm onLogin={ setLoginData } />
                     </Route>
-                    <Route path="/image/idaishapes/:id" component={ ImageView } />
+                    <Route path="/image/:project/:id" component={ ImageView } />
                     <Route path={ '/draw' } component={ Draw } />
                     <Route component={ NotFound } />
                 </Switch>
