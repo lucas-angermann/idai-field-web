@@ -27,4 +27,5 @@ export default function ProjectBreadcrumb({ documentId }: { documentId: string }
 
 
 const renderPredecessor = (predecessor: ResultDocument) =>
-    <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } />;
+    <DocumentTeaser key={ predecessor.resource.id } document={ predecessor }
+        linkUrl={ getHierarchyLink(predecessor) } />;
