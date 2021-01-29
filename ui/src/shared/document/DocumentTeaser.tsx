@@ -1,8 +1,7 @@
-import { mdiMenuLeft, mdiMenuRight, mdiMenuUp } from '@mdi/js';
+import { mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement } from 'react';
-import { Col, Dropdown, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
@@ -16,9 +15,7 @@ interface DocumentTeaserProps {
     document: ResultDocument;
     searchParams?: string;
     size?: 'small' | 'normal';
-    project: string;
     showHierarchyButton?: boolean;
-    backButtonUrl?: string;
     linkUrl?: string;
     hierarchyHeader?: boolean;
     imageHeader?: boolean;
@@ -27,9 +24,8 @@ interface DocumentTeaserProps {
 
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
-            project, showHierarchyButton = false,
-            backButtonUrl, linkUrl, hierarchyHeader = false,
-            imageHeader = false }
+            showHierarchyButton = false,
+            linkUrl, hierarchyHeader = false }
         : DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
@@ -45,7 +41,6 @@ export default React.memo(function DocumentTeaser(
 
     return (
         <Row className="no-gutters document-teaser">
-            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
                 { linkUrl
                     ? <Link to={ { pathname: linkUrl } }
@@ -99,38 +94,6 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
         </Row>
     </div>
 );
-
-
-const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string, t: TFunction,
-                          imageHeader: boolean, projectId?: string): ReactElement => {
-
-    const searchParams = new URLSearchParams(locationSearch);
-    const overviewSearch = searchParams.get('r') === 'overview';
-    searchParams.delete('r');
-
-    return searchParams.has('q')
-        ? <Dropdown>
-            <Dropdown.Toggle variant="link" id="back-button-toggle"
-                             style={ { flex: `0 0 ${height}px` } }
-                             className="teaser-button">
-                <Icon path={ mdiMenuUp } size={ 1 }></Icon>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                <Dropdown.Item href={ (overviewSearch ? '/?' : `/project/${projectId}?`)
-                        + searchParams.toString() }>
-                    { t('project.backToSearchResults') }
-                </Dropdown.Item>
-                <Dropdown.Item href={ backButtonUrl }>
-                    { t('project.viewInContext') }
-                </Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
-        : <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
-            <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
-                <Icon path={ imageHeader ? mdiMenuLeft : mdiMenuUp } size={ 1 }></Icon>
-            </LinkButton>
-        </Col>;
-};
 
 
 const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {

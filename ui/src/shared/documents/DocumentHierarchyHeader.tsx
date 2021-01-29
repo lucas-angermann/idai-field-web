@@ -17,7 +17,7 @@ export default function DocumentHierarchyHeader({ documents, searchParams }
 
     return documents.length && parentDoc
         ? <Card.Header className="hierarchy-parent">
-            <DocumentTeaser project={ project } searchParams={ searchParams }
+            <DocumentTeaser searchParams={ searchParams }
                 document={ parentDoc } linkUrl={ linkUrl }
                 hierarchyHeader={ true } />
         </Card.Header>

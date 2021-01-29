@@ -30,4 +30,4 @@ export default function ProjectBreadcrumb(): ReactElement {
 
 
 const renderPredecessor = (predecessor: ResultDocument) =>
-    <DocumentTeaser document={ predecessor } project={ predecessor.project } />;
+    <DocumentTeaser document={ predecessor } />;

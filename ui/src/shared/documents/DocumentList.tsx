@@ -12,7 +12,7 @@ export default function DocumentList({ documents, searchParams = '' }
                 const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
                 return <div style={ documentContainerStyle } key={ document.resource.id }>
                     <DocumentTeaser document={ document } linkUrl={ linkUrl }
-                        project={ document.project } searchParams={ searchParams } />
+                        searchParams={ searchParams } />
                 </div>;
             }
             )}

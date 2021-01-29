@@ -2,7 +2,7 @@ import { Location } from 'history';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
-import { Card, Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
+import { Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -19,37 +19,26 @@ import DocumentTeaser from './DocumentTeaser';
 const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
 
 
-export default function DocumentDetails({ document, searchParams, isImageDocument=false,
-                                          backButtonUrl, skipRelations=false }
-        : { document: Document, searchParams: string, isImageDocument?: boolean,
-            backButtonUrl?: string, skipRelations?: boolean }): ReactElement {
+interface DocumentDetailsProps {
+    document: Document;
+    searchParams: string;
+    skipRelations?: boolean;
+}
+
+
+export default function DocumentDetails({ document, skipRelations=false }
+        : DocumentDetailsProps): ReactElement {
 
     const location = useLocation();
     const { t } = useTranslation();
 
     const images: ResultDocument[] = getImages(document);
 
-    return (
-        <Card style={ cardStyle }>
-            <Card.Header style={ cardHeaderStyle }>
-                { renderHeader(document, searchParams, isImageDocument, backButtonUrl) }
-            </Card.Header>
-            <Card.Body style={ cardBodyStyle }>
-                { images && renderImages(images, document, location) }
-                { renderGroups(document, t, skipRelations) }
-            </Card.Body>
-        </Card>
-    );
+    return <>
+        { images && renderImages(images, document, location) }
+        { renderGroups(document, t, skipRelations) }
+    </>;
 }
-
-
-const renderHeader = (document: Document, searchParams: string, isImageDocument: boolean,
-                      backButtonUrl?: string): ReactElement => (
-    <div>
-        <DocumentTeaser project={ document.project } document={ document } searchParams={ searchParams }
-                        backButtonUrl={ backButtonUrl } imageHeader={ isImageDocument } />
-    </div>
-);
 
 
 const renderImages = (images: ResultDocument[], document: Document, location: Location): ReactNode =>
@@ -194,7 +183,7 @@ const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : '
 
 const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
     <li key={ doc.resource.id }>
-        <DocumentTeaser document={ doc } project={ project } linkUrl={ getDocumentLink(doc, project) } size="small" />
+        <DocumentTeaser document={ doc } linkUrl={ getDocumentLink(doc, project) } size="small" />
     </li>;
 
 
@@ -219,24 +208,6 @@ const renderPopover = (object: LabeledValue, t: TFunction): ReactElement => {
 const getDecimalValue = (value: number): string => {
 
     return value.toString().replace('.', ',');
-};
-
-
-const cardStyle: CSSProperties = {
-    overflow: 'hidden',
-    flexGrow: 1,
-    flexShrink: 1
-};
-
-
-const cardHeaderStyle: CSSProperties = {
-    padding: '12px'
-};
-
-
-const cardBodyStyle: CSSProperties = {
-    height: 'calc(100% - 94px)',
-    overflow: 'auto'
 };
 
 
