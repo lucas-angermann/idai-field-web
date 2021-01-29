@@ -6,12 +6,25 @@ import { Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
+import CONFIGURATION from '../../configuration.json';
 import LinkButton from '../linkbutton/LinkButton';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
-import CONFIGURATION from '../../configuration.json';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
+
+
+interface DocumentTeaserProps {
+    document: ResultDocument;
+    searchParams?: string;
+    size?: 'small' | 'normal';
+    project: string;
+    showHierarchyButton?: boolean;
+    backButtonUrl?: string;
+    asLink?: boolean;
+    hierarchyHeader?: boolean;
+    imageHeader?: boolean;
+}
 
 
 export default React.memo(function DocumentTeaser(
@@ -19,10 +32,7 @@ export default React.memo(function DocumentTeaser(
             project, showHierarchyButton = false,
             backButtonUrl, asLink = true, hierarchyHeader = false,
             imageHeader = false }
-        : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
-            /* on rendering relation targets, the project is not part of the document*/
-            project?: string, showHierarchyButton?: boolean, backButtonUrl?: string,
-            asLink?: boolean, hierarchyHeader?: boolean, imageHeader?: boolean }): ReactElement {
+        : DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -36,10 +46,10 @@ export default React.memo(function DocumentTeaser(
     if (hierarchyHeader) searchParams += (searchParams.length > 0) ? '&r=children' : '?r=children';
 
     const linkUrl = isImage(document)
-        ? `/image/${document?.project ?? project}/${document.resource.id}`
+        ? `/image/${project}/${document.resource.id}`
         : isType(document)
             ? `${CONFIGURATION.shapesUrl}/document/${document.resource.id}`
-            : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
+            : `/project/${project}/${document.resource.id}${searchParams}`;
 
     return (
         <Row className="no-gutters document-teaser">

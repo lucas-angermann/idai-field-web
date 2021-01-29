@@ -10,7 +10,7 @@ export default function DocumentList({ documents, searchParams = '' }
         <div className="documents">
             { documents.map((document: ResultDocument) =>
                 <div style={ documentContainerStyle } key={ document.resource.id }>
-                    <DocumentTeaser document={ document } searchParams={ searchParams } />
+                    <DocumentTeaser document={ document } project={ document.project } searchParams={ searchParams } />
                 </div>
             )}
         </div>

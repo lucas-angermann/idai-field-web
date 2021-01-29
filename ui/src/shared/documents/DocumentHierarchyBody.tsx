@@ -44,7 +44,7 @@ export default React.memo(function DocumentHierarchyBody({ documents, searchPara
                         { documents.map((document: ResultDocument) =>
                             <div style={ documentContainerStyle } key={ document.resource.id }>
                                 <DocumentTeaser document={ document } searchParams={ searchParams }
-                                                showHierarchyButton={ true } />
+                                                project={ document.project } showHierarchyButton={ true } />
                             </div>
                         )}
                     </div>
