@@ -21,8 +21,6 @@ export default function ProjectBreadcrumb(): ReactElement {
             .then(result => setPredecessors(result.results));
     }, [parent, loginData.token]);
 
-    console.log({ predecessors });
-
     return parent && parent !== 'root'
         ? <Card>
             { predecessors.map(renderPredecessor) }
