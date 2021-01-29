@@ -11,6 +11,7 @@ import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import DocumentDetails from '../../shared/document/DocumentDetails';
+import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import Documents from '../../shared/documents/Documents';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
@@ -19,7 +20,8 @@ import NotFound from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
-import { getContextUrl, getMapDeselectionUrl } from './navigation';
+import { getMapDeselectionUrl } from './navigation';
+import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -42,6 +44,8 @@ export default function Project(): ReactElement {
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
 
+    const parent = new URLSearchParams(location.search).get('parent');
+
     useEffect(() => {
 
         if (documentId) {
@@ -55,8 +59,6 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        const parent = new URLSearchParams(location.search).get('parent');
-
         if (document) {
             setMapDocument(document);
         } else if (parent && parent !== 'root') {
@@ -64,7 +66,7 @@ export default function Project(): ReactElement {
         } else {
             setMapDocument(null);
         }
-    }, [location.search, document, loginData]);
+    }, [parent, document, loginData]);
 
     useEffect(() => {
 
@@ -98,12 +100,14 @@ export default function Project(): ReactElement {
                      searchParams={ location.search }
                      projectId={ projectId } />
             { document
-                ? <DocumentDetails document={ document }
-                                     searchParams={ location.search }
-                                     backButtonUrl={ getContextUrl(projectId, location.search, document) } />
+                ? renderDocumentDetails(document, location.search)
                 : <>
                     {
-                        !isInHierarchyMode(location.search) && renderTotal(total, document, projectId, t, setDocuments)
+                        isInHierarchyMode(location.search)
+                            ? <Card>
+                                <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
+                            </Card>
+                            : renderTotal(total, document, projectId, t, setDocuments)
                     }
                     <Documents
                         searchParams={ location.search }
@@ -121,6 +125,22 @@ export default function Project(): ReactElement {
 
 const deselectFeature = (document: Document, searchParams: string, history: History): void =>
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
+
+
+const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
+    <>
+        <Card>
+            <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
+        </Card>
+        <Card style={ cardStyle }>
+            <Card.Header style={ cardHeaderStyle }>
+                <DocumentTeaser document={ document } searchParams={ searchParams } />
+            </Card.Header>
+            <Card.Body style={ cardBodyStyle }>
+                <DocumentDetails document={ document } searchParams={ searchParams } />
+            </Card.Body>
+        </Card>
+    </>;
 
 
 const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
@@ -168,6 +188,24 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 const isInHierarchyMode = (searchParams: string): boolean => {
 
     return searchParams && new URLSearchParams(searchParams).has('parent');
+};
+
+
+const cardStyle: CSSProperties = {
+    overflow: 'hidden',
+    flexGrow: 1,
+    flexShrink: 1
+};
+
+
+const cardHeaderStyle: CSSProperties = {
+    padding: '12px'
+};
+
+
+const cardBodyStyle: CSSProperties = {
+    height: 'calc(100% - 94px)',
+    overflow: 'auto'
 };
 
 

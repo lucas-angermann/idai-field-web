@@ -1,5 +1,8 @@
+import { mdiMenuLeft } from '@mdi/js';
+import Icon from '@mdi/react';
 import L from 'leaflet';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import { Card } from 'react-bootstrap';
 import { Map, ZoomControl } from 'react-leaflet';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
@@ -7,6 +10,8 @@ import { get } from '../../api/documents';
 import { makeUrl } from '../../api/image';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../document/DocumentDetails';
+import DocumentTeaser from '../document/DocumentTeaser';
+import LinkButton from '../linkbutton/LinkButton';
 import { LoginContext } from '../login';
 import IiifImageLayer from './IiifImageLayer';
 
@@ -21,11 +26,13 @@ export default function ImageView(): ReactElement {
     const loginData = useContext(LoginContext);
 
     useEffect(() => {
+
         setUrl(makeUrl(project, id, loginData.token));
         get(id, loginData.token).then(doc => setDocument(doc));
     }, [id, project, loginData]);
 
     useEffect(() => {
+
         const params = new URLSearchParams(location.search);
         setComingFrom(params.get('r'));
     }, [location.search]);
@@ -33,11 +40,7 @@ export default function ImageView(): ReactElement {
     return (
         <>
             <div style={ leftSidebarStyle } className="sidebar">
-                { document &&
-                    <DocumentDetails document={ document }
-                                     searchParams={ location.search }
-                                     isImageDocument={ true }
-                                     backButtonUrl={ comingFrom } /> }
+                { document && renderDocumentDetails(document, location.search, comingFrom) }
             </div>
             <div style={ containerStyle }>
                 <Map style={ mapStyle }
@@ -53,6 +56,35 @@ export default function ImageView(): ReactElement {
         </>
     );
 }
+
+
+const renderDocumentDetails = (document: Document, searchParams: string, comingFrom: string): ReactNode =>
+    <Card style={ cardStyle }>
+        <Card.Header className="d-flex p-2">
+            <div>
+                <LinkButton to={ comingFrom } style={ { height: '100%' } } variant={ 'link' }>
+                    <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
+                </LinkButton>
+            </div>
+            <DocumentTeaser document={ document } searchParams={ searchParams } />
+        </Card.Header>
+        <Card.Body style={ cardBodyStyle }>
+            <DocumentDetails document={ document } searchParams={ searchParams } />
+        </Card.Body>
+    </Card>;
+
+
+const cardStyle: CSSProperties = {
+    overflow: 'hidden',
+    flexGrow: 1,
+    flexShrink: 1
+};
+
+
+const cardBodyStyle: CSSProperties = {
+    height: 'calc(100% - 94px)',
+    overflow: 'auto'
+};
 
 
 const containerStyle: CSSProperties = {

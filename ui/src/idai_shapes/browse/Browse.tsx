@@ -1,13 +1,14 @@
-import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
-import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
+import React, { CSSProperties, ReactElement, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import { Card, Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, search } from '../../api/documents';
 import { parseFrontendGetParams, Query } from '../../api/query';
-import { Predecessor, Result, ResultDocument } from '../../api/result';
+import { Result, ResultDocument } from '../../api/result';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
 import DocumentDetails from '../../shared/document/DocumentDetails';
+import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { LoginContext } from '../../shared/login';
@@ -77,10 +78,7 @@ export default function Browse(): ReactElement {
                 { document
                     ? <>
                         <Col className="col-4 sidebar">
-                            <DocumentDetails
-                                document={ document }
-                                searchParams={ location.search }
-                                skipRelations={ true } />
+                            { renderDocumentDetails(document, location.search) }
                         </Col>
                         <Col style={ documentGridStyle } onScroll={ onScroll }>
                             <Tabs id="doc-tabs" activeKey={ tabKey } onSelect={ setTabKey }>
@@ -110,6 +108,15 @@ export default function Browse(): ReactElement {
         </Container>
     );
 }
+const renderDocumentDetails = (document: Document, searchParams: string): ReactNode =>
+    <Card style={ cardStyle }>
+        <Card.Header style={ cardHeaderStyle }>
+            <DocumentTeaser document={ document } searchParams={ searchParams } />
+        </Card.Header>
+        <Card.Body style={ cardBodyStyle }>
+            <DocumentDetails document={ document } searchParams={ searchParams } />
+        </Card.Body>
+    </Card>;
 
 
 const getChildren = async (parentId: string, from: number, token: string) => {
@@ -139,13 +146,31 @@ const getQueryTemplate = (from: number): Query => ({
 });
   
 
-const predecessorsToBreadcrumbItems = (predecessors: Predecessor[]): BreadcrumbItem[] => predecessors.map(predec => {
+const predecessorsToBreadcrumbItems = (predecessors: ResultDocument[]): BreadcrumbItem[] => predecessors.map(predec => {
     return {
-        identifier: predec.identifier,
-        id: predec.id,
-        url: predec.id,
+        identifier: predec.resource.identifier,
+        id: predec.resource.id,
+        url: predec.resource.id,
     };
 });
+
+
+const cardStyle: CSSProperties = {
+    overflow: 'hidden',
+    flexGrow: 1,
+    flexShrink: 1
+};
+
+
+const cardHeaderStyle: CSSProperties = {
+    padding: '12px'
+};
+
+
+const cardBodyStyle: CSSProperties = {
+    height: 'calc(100% - 94px)',
+    overflow: 'auto'
+};
 
 
 const documentGridStyle: CSSProperties = {

@@ -52,14 +52,6 @@ export interface FilterBucketTreeNode {
     trees: FilterBucketTreeNode[];
 }
 
-
-export interface Predecessor {
-    isChildOf: string | null;
-    identifier: string;
-    id: string;
-    category: string;
-}
-
 export interface PredecessorResult {
-    results: Predecessor[];
+    results: ResultDocument[];
 }

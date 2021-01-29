@@ -41,12 +41,13 @@ export default React.memo(function DocumentHierarchyBody({ documents, searchPara
                     }
                     { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
                     <div className="documents" style={ documentsStyle }>
-                        { documents.map((document: ResultDocument) =>
-                            <div style={ documentContainerStyle } key={ document.resource.id }>
-                                <DocumentTeaser document={ document } searchParams={ searchParams }
+                        { documents.map((document: ResultDocument) => {
+                            const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
+                            return <div style={ documentContainerStyle } key={ document.resource.id }>
+                                <DocumentTeaser document={ document } searchParams={ searchParams } linkUrl={ linkUrl }
                                                 showHierarchyButton={ true } />
-                            </div>
-                        )}
+                            </div>;
+                        }) }
                     </div>
                 </div>
             </CSSTransition>

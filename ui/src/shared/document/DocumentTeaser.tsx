@@ -1,28 +1,32 @@
-import { mdiMenuLeft, mdiMenuRight, mdiMenuUp } from '@mdi/js';
+import { mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement } from 'react';
-import { Col, Dropdown, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
 import LinkButton from '../linkbutton/LinkButton';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
-import CONFIGURATION from '../../configuration.json';
+import { isType } from './document-utils';
 
-const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
+
+interface DocumentTeaserProps {
+    document: ResultDocument;
+    searchParams?: string;
+    size?: 'small' | 'normal';
+    showHierarchyButton?: boolean;
+    linkUrl?: string;
+    hierarchyHeader?: boolean;
+    imageHeader?: boolean;
+}
 
 
 export default React.memo(function DocumentTeaser(
     { document, searchParams = '', size = 'normal',
-            project, showHierarchyButton = false,
-            backButtonUrl, asLink = true, hierarchyHeader = false,
-            imageHeader = false }
-        : { document: ResultDocument, searchParams?: string, size?: 'small' | 'normal',
-            /* on rendering relation targets, the project is not part of the document*/
-            project?: string, showHierarchyButton?: boolean, backButtonUrl?: string,
-            asLink?: boolean, hierarchyHeader?: boolean, imageHeader?: boolean }): ReactElement {
+            showHierarchyButton = false,
+            linkUrl, hierarchyHeader = false }
+        : DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -35,23 +39,16 @@ export default React.memo(function DocumentTeaser(
 
     if (hierarchyHeader) searchParams += (searchParams.length > 0) ? '&r=children' : '?r=children';
 
-    const linkUrl = isImage(document)
-        ? `/image/${document?.project ?? project}/${document.resource.id}`
-        : isType(document)
-            ? `${CONFIGURATION.shapesUrl}/document/${document.resource.id}`
-            : `/project/${document?.project ?? project}/${document.resource.id}${searchParams}`;
-
     return (
         <Row className="no-gutters document-teaser">
-            { backButtonUrl && renderBackButton(height, searchParams, backButtonUrl, t, imageHeader, project) }
             <Col>
-                { asLink
-                    ? <Link to={ { pathname: linkUrl } }
+                { linkUrl
+                    ? <Link to={ linkUrl }
                             target={ isType(document) ? '_blank' : '' }
                             style={ linkStyle } >
-                        { renderTeaser(document, size, height, asLink, hierarchyHeader) }
+                        { renderTeaser(document, size, height, linkUrl?.length > 0, hierarchyHeader) }
                     </Link>
-                    : renderTeaser(document, size, height, asLink, hierarchyHeader)
+                    : renderTeaser(document, size, height, linkUrl?.length > 0, hierarchyHeader)
                 }
             </Col>
             { showHierarchyButton && document.resource.childrenCount > 0 &&
@@ -99,56 +96,12 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
 );
 
 
-const renderBackButton = (height: number, locationSearch: string, backButtonUrl: string, t: TFunction,
-                          imageHeader: boolean, projectId?: string): ReactElement => {
-
-    const searchParams = new URLSearchParams(locationSearch);
-    const overviewSearch = searchParams.get('r') === 'overview';
-    searchParams.delete('r');
-
-    return searchParams.has('q')
-        ? <Dropdown>
-            <Dropdown.Toggle variant="link" id="back-button-toggle"
-                             style={ { flex: `0 0 ${height}px` } }
-                             className="teaser-button">
-                <Icon path={ mdiMenuUp } size={ 1 }></Icon>
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-                <Dropdown.Item href={ (overviewSearch ? '/?' : `/project/${projectId}?`)
-                        + searchParams.toString() }>
-                    { t('project.backToSearchResults') }
-                </Dropdown.Item>
-                <Dropdown.Item href={ backButtonUrl }>
-                    { t('project.viewInContext') }
-                </Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
-        : <Col style={ { flex: `0 0 ${height}px` } } className="teaser-button">
-            <LinkButton to={ backButtonUrl } style={ { height: '100%' } } variant={ 'link' }>
-                <Icon path={ imageHeader ? mdiMenuLeft : mdiMenuUp } size={ 1 }></Icon>
-            </LinkButton>
-        </Col>;
-};
-
-
 const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {
 
     const params = new URLSearchParams(searchParams);
     params.set('parent', documentId);
 
     return params.toString();
-};
-
-
-const isImage = (document: ResultDocument): boolean => {
-
-    return IMAGE_CATEGORIES.includes(document.resource.category.name);
-};
-
-
-const isType = (document: ResultDocument): boolean => {
-
-    return document.resource.category.name === 'Type';
 };
 
 
