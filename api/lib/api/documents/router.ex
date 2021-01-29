@@ -2,6 +2,7 @@ defmodule Api.Documents.Router do
   use Plug.Router
   alias Api.Documents.Index
   alias Api.Documents.Predecessors
+  alias Api.Documents.DescendantsImages
   import RouterUtils
   import Core.Layout
 
@@ -54,6 +55,20 @@ defmodule Api.Documents.Router do
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
     do
       send_json(conn, %{ results: Predecessors.get(doc) })
+    else
+      nil -> send_not_found(conn)
+      :unauthorized_access -> send_unauthorized(conn)
+      _ -> IO.puts "other error"
+    end
+  end
+
+  get "/descendantsImages/:id/:numberOfImages" do
+    with doc = %{ project: project } <- Index.get(id),
+         :ok <- access_for_project_allowed(conn.private[:readable_projects], project)
+    do
+      send_json(conn, %{ results: DescendantsImages.get(
+        doc, elem(Integer.parse(numberOfImages), 0), conn.private[:readable_projects]
+      )})
     else
       nil -> send_not_found(conn)
       :unauthorized_access -> send_unauthorized(conn)
