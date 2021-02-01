@@ -1,12 +1,13 @@
-import { mdiMenuLeft } from '@mdi/js';
+import { mdiMenuLeft, mdiMenuRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { CSSProperties, ReactElement, useRef } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ResultDocument } from '../../api/result';
 import { getPreviousHierarchyLevelUrl } from '../../idai_field/project/navigation';
 import DocumentTeaser from '../document/DocumentTeaser';
 import LinkButton from '../linkbutton/LinkButton';
+import './document-hierarchy.css';
 
 
 interface DocumentHierarchyProps {
@@ -42,11 +43,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
                     { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
                     <div className="documents" style={ documentsStyle }>
                         { documents.map((document: ResultDocument) => {
-                            const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
-                            return <div style={ documentContainerStyle } key={ document.resource.id }>
-                                <DocumentTeaser document={ document } searchParams={ searchParams } linkUrl={ linkUrl }
-                                                showHierarchyButton={ true } />
-                            </div>;
+                            return renderDocumentRow(document, searchParams);
                         }) }
                     </div>
                 </div>
@@ -57,6 +54,34 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
 
     return prevProps.documents === nextProps.documents;
 });
+
+
+const renderDocumentRow = (document: ResultDocument, searchParams: string): ReactNode => {
+
+    const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
+    
+    return <div style={ documentRowStyle } key={ document.resource.id }>
+        <div style={ documentTeaserContainerStyle }>
+            <DocumentTeaser document={ document }
+                searchParams={ searchParams } linkUrl={ linkUrl } />
+        </div>
+        { document.resource.childrenCount > 0 && <div>
+            <LinkButton to={ '?' + getHierarchyButtonSearchParams(searchParams, document.resource.id) }
+                style={ { height: '100%', padding: '0.375rem' } } variant={ 'link' }>
+                <Icon path={ mdiMenuRight } size={ 1 }></Icon>
+            </LinkButton>
+        </div> }
+    </div>;
+};
+
+
+const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {
+
+    const params = new URLSearchParams(searchParams);
+    params.set('parent', documentId);
+
+    return params.toString();
+};
 
 
 const getGrandparent = (documents: ResultDocument[]): string => {
@@ -72,8 +97,14 @@ const getProjectId = (documents: ResultDocument[]): string => {
 };
 
 
-const documentContainerStyle: CSSProperties = {
-    borderBottom: '1px solid var(--main-bg-color)'
+const documentRowStyle: CSSProperties = {
+    borderBottom: '1px solid var(--main-bg-color)',
+    display: 'flex'
+};
+
+
+const documentTeaserContainerStyle: CSSProperties = {
+    flexGrow: 1
 };
 
 
