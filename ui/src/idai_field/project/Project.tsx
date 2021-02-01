@@ -11,7 +11,7 @@ import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import DocumentDetails from '../../shared/document/DocumentDetails';
-import DocumentLinkButton from '../../shared/document/DocumentLinkButton';
+import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
@@ -116,7 +116,7 @@ export default function Project(): ReactElement {
                      searchParams={ searchParams }
                      projectId={ projectId } />
             { document
-                ? renderDocumentDetails(document, searchParams)
+                ? renderDocumentDetails(document)
                 : isInHierarchyMode(searchParams)
                     ? renderDocumentHierarchy(documents, searchParams, projectId, parent, onScroll)
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
@@ -144,7 +144,7 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
                     <DocumentTeaser document={ document } />
                 </div>
                 <div style={ { flex: '0 0 42px', alignSelf: 'center' } }>
-                    <DocumentLinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
+                    <DocumentPermalinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
                 </div>
             </Card.Header>
             <Card.Body style={ { overflow: 'auto' } }>

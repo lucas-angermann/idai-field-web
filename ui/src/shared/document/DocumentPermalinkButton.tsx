@@ -12,7 +12,7 @@ export default function DocumentLinkButton({ document, baseUrl }
         <Button variant="primary">
             <Icon path={ mdiLinkVariant } size={ 0.8 } />
         </Button>
-    </OverlayTrigger>
+    </OverlayTrigger>;
 }
 
 
