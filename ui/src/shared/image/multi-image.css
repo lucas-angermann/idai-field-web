@@ -6,32 +6,32 @@
 
 .image-container-0 {
     z-index: 5;
-    left: 26px;
-    bottom: 26px;
+    left: 22px;
+    top: 10px;
 }
 
 .image-container-1 {
     z-index: 4;
-    left: 42px;
-    bottom: 42px;
+    left: 0;
+    top: -12px;
 }
 
 .image-container-2 {
     z-index: 3;
-    left: 10px;
-    bottom: 10px;
+    left: 44px;
+    top: 32px
 }
 
 .image-container-3 {
     z-index: 2;
-    left: 20px;
-    bottom: 20px;
+    left: 38px;
+    top: -20px;
 }
 
 .image-container-4 {
     z-index: 1;
-    left: 0;
-    top: 25px;
+    left: 5;
+    top: 26px;
 }
 
 .image-container img {
