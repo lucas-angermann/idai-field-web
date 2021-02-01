@@ -3,7 +3,6 @@ defmodule Api.Images.Router do
   use Plug.Router
   import RouterUtils
   alias Plug.Conn
-  alias Api.Documents.Index
 
   plug :match
   plug Api.Auth.ReadableProjectsPlug
