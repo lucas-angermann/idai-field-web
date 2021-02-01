@@ -12,7 +12,7 @@ import './document-hierarchy.css';
 
 interface DocumentHierarchyProps {
     documents: ResultDocument[];
-    searchParams?: string;
+    searchParams?: URLSearchParams;
     onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
@@ -20,7 +20,7 @@ interface DocumentHierarchyProps {
 export default React.memo(function DocumentHierarchy({ documents, searchParams, onScroll }
         : DocumentHierarchyProps): ReactElement {
 
-    const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
+    const parent = searchParams.get('parent') ?? 'root';
     const prevGrandparent = useRef<string>();
 
     const backward = parent === prevGrandparent.current;
@@ -56,14 +56,13 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
 });
 
 
-const renderDocumentRow = (document: ResultDocument, searchParams: string): ReactNode => {
+const renderDocumentRow = (document: ResultDocument, searchParams: URLSearchParams): ReactNode => {
 
     const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
     
     return <div style={ documentRowStyle } key={ document.resource.id }>
         <div style={ documentTeaserContainerStyle }>
-            <DocumentTeaser document={ document }
-                searchParams={ searchParams } linkUrl={ linkUrl } />
+            <DocumentTeaser document={ document } linkUrl={ linkUrl } />
         </div>
         { document.resource.childrenCount > 0 && <div>
             <LinkButton to={ '?' + getHierarchyButtonSearchParams(searchParams, document.resource.id) }
@@ -75,7 +74,7 @@ const renderDocumentRow = (document: ResultDocument, searchParams: string): Reac
 };
 
 
-const getHierarchyButtonSearchParams = (searchParams: string | undefined, documentId: string) => {
+const getHierarchyButtonSearchParams = (searchParams: URLSearchParams, documentId: string) => {
 
     const params = new URLSearchParams(searchParams);
     params.set('parent', documentId);

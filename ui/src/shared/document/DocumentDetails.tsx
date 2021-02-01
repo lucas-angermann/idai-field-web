@@ -21,13 +21,11 @@ const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'geor
 
 interface DocumentDetailsProps {
     document: Document;
-    searchParams: string;
     skipRelations?: boolean;
 }
 
 
-export default function DocumentDetails({ document, skipRelations=false }
-        : DocumentDetailsProps): ReactElement {
+export default function DocumentDetails({ document, skipRelations=false } : DocumentDetailsProps): ReactElement {
 
     const location = useLocation();
     const { t } = useTranslation();

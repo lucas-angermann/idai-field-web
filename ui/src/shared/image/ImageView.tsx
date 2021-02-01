@@ -4,7 +4,7 @@ import L from 'leaflet';
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { Map, ZoomControl } from 'react-leaflet';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
 import { makeUrl } from '../../api/image';
@@ -12,6 +12,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentDetails from '../document/DocumentDetails';
 import DocumentTeaser from '../document/DocumentTeaser';
 import LinkButton from '../linkbutton/LinkButton';
+import { useSearchParams } from '../location';
 import { LoginContext } from '../login';
 import IiifImageLayer from './IiifImageLayer';
 
@@ -19,7 +20,8 @@ import IiifImageLayer from './IiifImageLayer';
 export default function ImageView(): ReactElement {
 
     const { project, id } = useParams<{ project: string, id: string }>();
-    const location = useLocation();
+    const searchParams = useSearchParams();
+
     const [url, setUrl] = useState<string>(makeUrl(project, id));
     const [document, setDocument] = useState<Document>(null);
     const [comingFrom, setComingFrom] = useState<string>(null);
@@ -33,14 +35,13 @@ export default function ImageView(): ReactElement {
 
     useEffect(() => {
 
-        const params = new URLSearchParams(location.search);
-        setComingFrom(params.get('r'));
-    }, [location.search]);
+        setComingFrom(searchParams.get('r'));
+    }, [searchParams]);
 
     return (
         <>
             <div style={ leftSidebarStyle } className="sidebar">
-                { document && renderDocumentDetails(document, location.search, comingFrom) }
+                { document && renderDocumentDetails(document, comingFrom) }
             </div>
             <div style={ containerStyle }>
                 <Map style={ mapStyle }
@@ -58,7 +59,7 @@ export default function ImageView(): ReactElement {
 }
 
 
-const renderDocumentDetails = (document: Document, searchParams: string, comingFrom: string): ReactNode =>
+const renderDocumentDetails = (document: Document, comingFrom: string): ReactNode =>
     <Card style={ cardStyle }>
         <Card.Header className="d-flex p-2">
             <div>
@@ -66,10 +67,10 @@ const renderDocumentDetails = (document: Document, searchParams: string, comingF
                     <Icon path={ mdiMenuLeft } size={ 1 }></Icon>
                 </LinkButton>
             </div>
-            <DocumentTeaser document={ document } searchParams={ searchParams } />
+            <DocumentTeaser document={ document } />
         </Card.Header>
         <Card.Body style={ cardBodyStyle }>
-            <DocumentDetails document={ document } searchParams={ searchParams } />
+            <DocumentDetails document={ document } />
         </Card.Body>
     </Card>;
 

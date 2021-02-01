@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { Card, Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, search } from '../../api/documents';
 import { parseFrontendGetParams, Query } from '../../api/query';
@@ -11,6 +11,7 @@ import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
+import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import { SHAPES_PROJECT_ID } from '../constants';
 import './browse.css';
@@ -25,7 +26,7 @@ export default function Browse(): ReactElement {
 
     const { documentId } = useParams<{ documentId: string }>();
     const loginData = useContext(LoginContext);
-    const location = useLocation();
+    const searchParams = useSearchParams();
     const { t } = useTranslation();
 
     const [document, setDocument] = useState<Document>(null);
@@ -47,10 +48,10 @@ export default function Browse(): ReactElement {
         } else {
             setDocument(null);
             setBreadcrumb([]);
-            searchDocuments(location.search, 0, loginData.token)
+            searchDocuments(searchParams, 0, loginData.token)
                 .then(res => setDocuments(res.documents));
         }
-    }, [documentId, loginData, location.search]);
+    }, [documentId, loginData, searchParams]);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
@@ -66,9 +67,9 @@ export default function Browse(): ReactElement {
 
         const promise = documentId
             ? getChildren(documentId, newOffset, loginData.token)
-            : searchDocuments(location.search, newOffset, loginData.token);
+            : searchDocuments(searchParams, newOffset, loginData.token);
         promise.then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
-    }, [documentId, location.search, loginData]);
+    }, [documentId, searchParams, loginData]);
 
 
     return (
@@ -78,7 +79,7 @@ export default function Browse(): ReactElement {
                 { document
                     ? <>
                         <Col className="col-4 sidebar">
-                            { renderDocumentDetails(document, location.search) }
+                            { renderDocumentDetails(document) }
                         </Col>
                         <Col style={ documentGridStyle } onScroll={ onScroll }>
                             <Tabs id="doc-tabs" activeKey={ tabKey } onSelect={ setTabKey }>
@@ -108,13 +109,13 @@ export default function Browse(): ReactElement {
         </Container>
     );
 }
-const renderDocumentDetails = (document: Document, searchParams: string): ReactNode =>
+const renderDocumentDetails = (document: Document): ReactNode =>
     <Card style={ cardStyle }>
         <Card.Header style={ cardHeaderStyle }>
-            <DocumentTeaser document={ document } searchParams={ searchParams } />
+            <DocumentTeaser document={ document } />
         </Card.Header>
         <Card.Body style={ cardBodyStyle }>
-            <DocumentDetails document={ document } searchParams={ searchParams } />
+            <DocumentDetails document={ document } />
         </Card.Body>
     </Card>;
 
@@ -128,7 +129,7 @@ const getChildren = async (parentId: string, from: number, token: string) => {
 };
 
 
-const searchDocuments = async (searchParams: string, from: number, token: string): Promise<Result> => {
+const searchDocuments = async (searchParams: URLSearchParams, from: number, token: string): Promise<Result> => {
     
     let query: Query = getQueryTemplate(from);
     query = parseFrontendGetParams(searchParams, query);

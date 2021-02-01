@@ -10,14 +10,13 @@ import { isType } from './document-utils';
 
 interface DocumentTeaserProps {
     document: ResultDocument;
-    searchParams?: string;
     size?: 'small' | 'normal';
     linkUrl?: string;
     imageHeader?: boolean;
 }
 
 
-export default React.memo(function DocumentTeaser({ document, searchParams = '', size = 'normal', linkUrl }
+export default React.memo(function DocumentTeaser({ document, size = 'normal', linkUrl }
         : DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;

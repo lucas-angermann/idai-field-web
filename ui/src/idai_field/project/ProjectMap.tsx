@@ -15,7 +15,7 @@ import TileGrid from 'ol/tilegrid/TileGrid';
 import View from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
@@ -23,6 +23,7 @@ import { buildProjectQueryTemplate } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
+import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import './project-map.css';
@@ -42,7 +43,7 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         : { selectedDocument: Document, project: string, onDeselectFeature: () => void }): ReactElement {
 
     const history = useHistory();
-    const location = useLocation();
+    const searchParams = useSearchParams();
     const loginData = useContext(LoginContext);
 
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
@@ -103,9 +104,9 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, location.search, onDeselectFeature, selectedDocument);
+        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature, selectedDocument);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, location.search, onDeselectFeature]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature]);
 
     useEffect(() => {
 
@@ -241,7 +242,7 @@ const createSelect = (map: Map): Select => {
 };
 
 
-const handleMapClick = (history: History, searchParams: string, onDeselectFeature: () => void,
+const handleMapClick = (history: History, searchParams: URLSearchParams, onDeselectFeature: () => void,
         selectedDocument?: Document): ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
@@ -264,7 +265,7 @@ const handleMapClick = (history: History, searchParams: string, onDeselectFeatur
                 }
             }
             const { id, project } = smallestFeature.getProperties();
-            history.push({ pathname: `/project/${project}/${id}`, search: searchParams });
+            history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
         } else if (selectedDocument) {
             onDeselectFeature();
         }

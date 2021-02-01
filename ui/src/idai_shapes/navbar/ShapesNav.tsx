@@ -11,7 +11,7 @@ export default function ShapesNav({ onLogout }: BaseNavProps): ReactElement {
     const [showSearchBar, setSearchBar] = useState<boolean>(false);
 
     useEffect(() => {
-        setSearchBar(window.location.pathname !== '/');
+        setSearchBar(location.pathname !== '/');
     }, [location]);
 
     return (

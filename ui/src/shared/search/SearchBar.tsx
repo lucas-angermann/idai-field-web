@@ -3,22 +3,24 @@ import Icon from '@mdi/react';
 import React, { FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { parseFrontendGetParams } from '../../api/query';
+import { useSearchParams } from '../location';
 
 
 export default function SearchBar({ onSubmit, basepath }
         : { onSubmit?: () => void, basepath: string }): ReactElement {
+    
+    const history = useHistory();
+    const searchParams = useSearchParams();
+    const { t } = useTranslation();
 
     const [queryString, setQueryString] = useState(undefined);
-    const history = useHistory();
-    const { t } = useTranslation();
-    const location = useLocation();
     const input = useRef<HTMLInputElement>();
 
     useEffect(() => {
-        setQueryString(parseQueryString(location.search));
-    }, [location.search]);
+        setQueryString(parseQueryString(searchParams));
+    }, [searchParams]);
 
     
     const submitSearch = (e: FormEvent): void => {
@@ -28,7 +30,7 @@ export default function SearchBar({ onSubmit, basepath }
     };
 
     const resetQueryString = (): void => {
-        const params = new URLSearchParams(location.search);
+        const params = new URLSearchParams(searchParams);
         if (params.has('q')) {
             params.delete('q');
             history.push(`${basepath}?${params}`);
@@ -49,7 +51,7 @@ export default function SearchBar({ onSubmit, basepath }
                     onChange={ e => setQueryString(e.target.value) }
                     ref={ input } />
                 <InputGroup.Append>
-                    { isResetQueryButtonVisible(location.search) &&
+                    { isResetQueryButtonVisible(searchParams) &&
                         <Button variant="link" onClick={ resetQueryString }>
                             <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
@@ -64,16 +66,15 @@ export default function SearchBar({ onSubmit, basepath }
 }
 
 
-const parseQueryString = (locationSearch: string): string => {
+const parseQueryString = (searchParams: URLSearchParams): string => {
 
-    const queryString = parseFrontendGetParams(locationSearch).q;
+    const queryString = parseFrontendGetParams(searchParams).q;
     return queryString === '*' ? '' : queryString;
 };
 
 
-const isResetQueryButtonVisible = (locationSearch: string): boolean => {
+const isResetQueryButtonVisible = (searchParams: URLSearchParams): boolean => {
 
-    const q: string | undefined = new URLSearchParams(locationSearch).get('q');
-
+    const q = searchParams.get('q');
     return q && q.length > 0 && q !== '*';
 };

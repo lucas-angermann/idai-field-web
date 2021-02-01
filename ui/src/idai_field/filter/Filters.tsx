@@ -2,12 +2,12 @@ import React, { ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
 import { ResultFilter } from '../../api/result';
 import CategoryFilter from './CategoryFilter';
-import SimpleFilter from './SimpleFilter';
 import RelationFilters from './RelationFilters';
+import SimpleFilter from './SimpleFilter';
 
 
 export default function Filters({ filters, searchParams, projectId }
-        : { filters: ResultFilter[], searchParams: string, projectId?: string }): ReactElement {
+        : { filters: ResultFilter[], searchParams: URLSearchParams, projectId?: string }): ReactElement {
 
     if (!filters.find(filter => filter.values.length > 0)) return <></>;
 

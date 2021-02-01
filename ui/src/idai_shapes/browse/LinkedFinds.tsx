@@ -3,7 +3,6 @@ import Icon from '@mdi/react';
 import React, { ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
 import { Query } from '../../api/query';
@@ -20,7 +19,6 @@ const CHUNK_SIZE = 50;
 export default function LinkedFinds({ type }: { type: Document }): ReactElement {
 
     const loginData = useContext(LoginContext);
-    const location = useLocation();
     const { t } = useTranslation();
 
     const [linkedFinds, setLinkedFinds] = useState<ResultDocument[]>(null);
@@ -29,7 +27,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     useEffect(() => {
 
         getLinkedFinds(type, 0, loginData.token).then(result => setLinkedFinds(result.documents));
-    }, [type, loginData, location.search]);
+    }, [type, loginData]);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
