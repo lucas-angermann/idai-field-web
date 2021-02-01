@@ -1,9 +1,8 @@
 import { TFunction } from 'i18next';
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultDocument } from '../../api/result';
-import { CHUNK_SIZE } from '../../idai_field/project/Project';
 import DocumentHierarchy from './DocumentHierarchy';
 import DocumentList from './DocumentList';
 import './documents.css';
@@ -12,30 +11,14 @@ import './documents.css';
 interface DocumentsProperties {
     documents: ResultDocument[] | null;
     searchParams: string;
-    getChunk: (offset: number) => void;
+    onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
 export default React.memo(function Documents(
-    { documents, getChunk, searchParams = '' }: DocumentsProperties): ReactElement {
+    { documents, onScroll, searchParams = '' }: DocumentsProperties): ReactElement {
 
-    const [offset, setOffset] = useState(0);
     const { t } = useTranslation();
-
-    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
-
-        const el = e.currentTarget;
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            const newOffset = offset + CHUNK_SIZE;
-            getChunk(newOffset);
-            setOffset(newOffset);
-        }
-    };
-
-    useEffect(() => {
-
-        setOffset(0);
-    }, [searchParams]);
 
     return <>
         { (documents && documents.length > 0)

@@ -43,6 +43,7 @@ export default function Project(): ReactElement {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
+    const [offset, setOffset] = useState<number>(0);
 
     const parent = new URLSearchParams(location.search).get('parent');
 
@@ -75,14 +76,25 @@ export default function Project(): ReactElement {
 
         searchDocuments(projectId, location.search, 0, loginData.token)
             .then(result => {
+                setOffset(0);
                 setDocuments(result.documents);
                 setTotal(result.size);
             });
     }, [projectId, location.search, loginData]);
 
+    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
+
+        const el = e.currentTarget;
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            const newOffset = offset + CHUNK_SIZE;
+            getChunk(newOffset);
+            setOffset(newOffset);
+        }
+    };
+
     const getChunk = useCallback(
-        (offset: number): void => {
-            searchDocuments(projectId, location.search, offset, loginData.token)
+        (newOffset: number): void => {
+            searchDocuments(projectId, location.search, newOffset, loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
         },
         [projectId, location.search, loginData]
@@ -112,7 +124,7 @@ export default function Project(): ReactElement {
                     <Documents
                         searchParams={ location.search }
                         documents={ documents }
-                        getChunk={ getChunk } />
+                        onScroll={ onScroll } />
                 </>
             }
         </ProjectSidebar>

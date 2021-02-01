@@ -29,6 +29,7 @@ export default function ProjectOverview(): ReactElement {
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
+    const [offset, setOffset] = useState<number>(0);
 
     useEffect (() => {
         
@@ -52,9 +53,19 @@ export default function ProjectOverview(): ReactElement {
         }
     }, [location.search, loginData]);
 
-    const getChunk = (offset: number): void => {
+    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
-        searchDocuments(location.search, offset, loginData.token).then(result => {
+        const el = e.currentTarget;
+        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            const newOffset = offset + CHUNK_SIZE;
+            getChunk(newOffset);
+            setOffset(newOffset);
+        }
+    };
+
+    const getChunk = (newOffset: number): void => {
+
+        searchDocuments(location.search, newOffset, loginData.token).then(result => {
             setDocuments(oldDocuments => oldDocuments.concat(result.documents));
         });
     };
@@ -64,7 +75,7 @@ export default function ProjectOverview(): ReactElement {
             <Card>
                 <SearchBar basepath="/" />
             </Card>
-            { location.search.length > 0 && documents && renderSidebar(filters, location, documents, getChunk) }
+            { location.search.length > 0 && documents && renderSidebar(filters, location, documents, onScroll) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
@@ -74,12 +85,12 @@ export default function ProjectOverview(): ReactElement {
 
 
 const renderSidebar = (filters: ResultFilter[], location: Location, documents: ResultDocument[],
-                       getChunk: (offset: number) => void): ReactElement => (
+                       onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => (
     <div className="project-overview-sidebar">
         <Filters filters={ filters } searchParams={ location.search } />
         <Documents searchParams={ location.search + '&r=overview' }
             documents={ documents }
-            getChunk={ getChunk } />
+            onScroll={ onScroll } />
     </div>
 );
 
