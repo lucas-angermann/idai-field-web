@@ -152,8 +152,8 @@ const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: stri
         <Card>
             <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
         </Card>
-        <Card onScroll={ onScroll } style={ cardStyle }>
-            <DocumentHierarchy documents={ documents } searchParams={ searchParams } />
+        <Card style={ cardStyle }>
+            <DocumentHierarchy documents={ documents } searchParams={ searchParams } onScroll={ onScroll } />
         </Card>
     </>;
 
@@ -218,7 +218,7 @@ const isInHierarchyMode = (searchParams: string): boolean => {
 
 
 const cardStyle: CSSProperties = {
-    overflow: 'hidden scroll',
+    overflow: 'hidden auto',
     flexGrow: 1,
     flexShrink: 1
 };

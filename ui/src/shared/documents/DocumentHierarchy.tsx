@@ -13,10 +13,11 @@ import './document-hierarchy.css';
 interface DocumentHierarchyProps {
     documents: ResultDocument[];
     searchParams?: string;
+    onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
-export default React.memo(function DocumentHierarchy({ documents, searchParams }
+export default React.memo(function DocumentHierarchy({ documents, searchParams, onScroll }
         : DocumentHierarchyProps): ReactElement {
 
     const parent = new URLSearchParams(searchParams).get('parent') ?? 'root';
@@ -26,7 +27,6 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
     prevGrandparent.current = getGrandparent(documents);
 
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
-
 
     return <Card.Body className="px-0 py-0">
         <TransitionGroup className={ className } style={ groupStyle } >
@@ -41,7 +41,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams }
                         </LinkButton>
                     }
                     { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
-                    <div className="documents" style={ documentsStyle }>
+                    <div className="documents" style={ documentsStyle } onScroll={ onScroll }>
                         { documents.map((document: ResultDocument) => {
                             return renderDocumentRow(document, searchParams);
                         }) }
@@ -121,5 +121,6 @@ const previousHierarchyLevelButtonStyle: CSSProperties = {
 
 
 const documentsStyle: CSSProperties = {
+    overflow: 'hidden auto',
     flexGrow: 1
 };
