@@ -6,7 +6,7 @@ import DocumentTeaser from '../document/DocumentTeaser';
 export default function DocumentList({ documents, searchParams = '' }
         : { documents: ResultDocument[], searchParams: string }): ReactElement {
 
-    return documents.length > 0 ? (
+    return documents?.length > 0 ? (
         <div className="documents">
             { documents.map((document: ResultDocument) => {
                 const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
