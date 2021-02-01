@@ -28,7 +28,7 @@ defmodule Api.Statistics.ValuelistsAnalyzer do
   end
 
   def get_number_of_valuelists(valuelists, non_default_only) do
-    Enum.filter(valuelists, fn { valuelist_name, valuelist } ->
+    Enum.filter(valuelists, fn { valuelist_name, _ } ->
       !non_default_only || !String.contains?(valuelist_name, "default")
     end)
     |> length
