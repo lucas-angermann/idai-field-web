@@ -25,7 +25,7 @@ export default function ResourceRedirect(): ReactElement {
         ? <NotFound />
         : id
             ? <Redirect to={ `/project/${project}/${id}` } />
-            : <div>{ t('resourceRedirect.waitForRedirection')}</div>;
+            : <div>{ t('redirect.waitForRedirection')}</div>;
 }
 
 

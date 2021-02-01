@@ -80,7 +80,7 @@
       "info": "Sollten Ihnen bei der Verwendung der Web- oder Desktopanwendung Fehler auffallen, melden Sie sie bitte an:"
     }
   },
-  "resourceRedirect": {
+  "redirect": {
     "waitForRedirection": "Bitte warten Sie einen Moment, während Sie weitergeleitet werden..."
   },
   "shapes": {
