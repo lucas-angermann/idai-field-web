@@ -73,8 +73,6 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        console.log({ searchParams });
-
         initFilters(projectId, searchParams, loginData.token)
             .then(result => setFilters(result.filters));
 
