@@ -8,7 +8,7 @@ import { search } from '../../api/documents';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import Documents from '../../shared/documents/Documents';
+import DocumentList from '../../shared/documents/DocumentList';
 import { LoginContext } from '../../shared/login';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
@@ -88,9 +88,9 @@ const renderSidebar = (filters: ResultFilter[], location: Location, documents: R
                        onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => (
     <div className="project-overview-sidebar">
         <Filters filters={ filters } searchParams={ location.search } />
-        <Documents searchParams={ location.search + '&r=overview' }
-            documents={ documents }
-            onScroll={ onScroll } />
+        <Card style={ documentListContainerStyle } onScroll={ onScroll }>
+            <DocumentList searchParams={ location.search + '&r=overview' } documents={ documents } />
+        </Card>
     </div>
 );
 
@@ -115,6 +115,11 @@ const searchDocuments = async (searchParams: string, from: number, token: string
     const query = parseFrontendGetParams(searchParams,
         buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD));
     return search(query, token);
+};
+
+
+const documentListContainerStyle: CSSProperties = {
+    overflow: 'hidden scroll'
 };
 
 

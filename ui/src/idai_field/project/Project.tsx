@@ -12,7 +12,8 @@ import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/que
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
-import Documents from '../../shared/documents/Documents';
+import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
+import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
 import { LoginContext } from '../../shared/login';
@@ -113,19 +114,9 @@ export default function Project(): ReactElement {
                      projectId={ projectId } />
             { document
                 ? renderDocumentDetails(document, location.search)
-                : <>
-                    {
-                        isInHierarchyMode(location.search)
-                            ? <Card>
-                                <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
-                            </Card>
-                            : renderTotal(total, document, projectId, t, setDocuments)
-                    }
-                    <Documents
-                        searchParams={ location.search }
-                        documents={ documents }
-                        onScroll={ onScroll } />
-                </>
+                : isInHierarchyMode(location.search)
+                    ? renderDocumentHierarchy(documents, location.search, projectId, parent, onScroll)
+                    : renderDocumentList(documents, location.search, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
@@ -155,22 +146,45 @@ const renderDocumentDetails = (document: Document, searchParams: string): React.
     </>;
 
 
-const renderTotal = (total: number, document: Document, projectId: string, t: TFunction,
-                     setDocuments: (documents: ResultDocument[]) => void): ReactElement => {
+const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: string, projectId: string, parent: string,
+        onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+    <>
+        <Card>
+            <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
+        </Card>
+        <Card onScroll={ onScroll } style={ cardStyle }>
+            <DocumentHierarchy documents={ documents } searchParams={ searchParams } />
+        </Card>
+    </>;
+
+
+const renderDocumentList = (documents: ResultDocument[], searchParams: string, projectId: string, total: number,
+        onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
+    <>
+        <Card body={ true }>
+            { renderTotal(total, projectId, t) }
+        </Card>
+        <Card onScroll={ onScroll } style={ cardStyle }>
+            <DocumentList documents={ documents } searchParams={ searchParams } />
+        </Card>
+    </>;
+
+
+const renderTotal = (total: number, projectId: string, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
-    return <Card body={ true }>
+    return <div>
         { t('project.total') }
         <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-        <div onClick={ () => setDocuments(null) }>
+        <div>
             <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }
                         variant={ 'secondary' } tooltip={ renderHierarchyButtonTooltip(t) }>
                 <Icon path={ mdiFileTree } size={ 0.7 } />
             </LinkButton>
         </div>
-    </Card>;
+    </div>;
 };
 
 
@@ -204,7 +218,7 @@ const isInHierarchyMode = (searchParams: string): boolean => {
 
 
 const cardStyle: CSSProperties = {
-    overflow: 'hidden',
+    overflow: 'hidden scroll',
     flexGrow: 1,
     flexShrink: 1
 };
