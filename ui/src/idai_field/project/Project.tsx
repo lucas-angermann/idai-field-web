@@ -133,7 +133,7 @@ const deselectFeature = (document: Document, searchParams: URLSearchParams, hist
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
-const renderDocumentDetails = (document: Document, searchParams: URLSearchParams): React.ReactNode =>
+const renderDocumentDetails = (document: Document): React.ReactNode =>
     <>
         <Card className="p-2">
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
