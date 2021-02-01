@@ -1,14 +1,13 @@
-import { Location } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Alert, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 import { search } from '../../api/documents';
 import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentList from '../../shared/documents/DocumentList';
+import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
@@ -20,7 +19,7 @@ import './project-overview.css';
 
 export default function ProjectOverview(): ReactElement {
     
-    const location = useLocation();
+    const searchParams = useSearchParams();
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
 
@@ -40,8 +39,8 @@ export default function ProjectOverview(): ReactElement {
 
     useEffect (() => {
 
-        if (location.search.length > 0) {
-            searchDocuments(location.search, 0, loginData.token).then(result => {
+        if (searchParams.entries.length > 0) {
+            searchDocuments(searchParams, 0, loginData.token).then(result => {
                 setProjectFilter(result.filters.find(filter => filter.name === 'project'));
                 setFilters(result.filters.filter(filter => filter.name !== 'project'));
                 setDocuments(result.documents);
@@ -51,7 +50,7 @@ export default function ProjectOverview(): ReactElement {
             setFilters([]);
             setDocuments(null);
         }
-    }, [location.search, loginData]);
+    }, [searchParams, loginData]);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
@@ -65,7 +64,7 @@ export default function ProjectOverview(): ReactElement {
 
     const getChunk = (newOffset: number): void => {
 
-        searchDocuments(location.search, newOffset, loginData.token).then(result => {
+        searchDocuments(searchParams, newOffset, loginData.token).then(result => {
             setDocuments(oldDocuments => oldDocuments.concat(result.documents));
         });
     };
@@ -75,7 +74,8 @@ export default function ProjectOverview(): ReactElement {
             <Card>
                 <SearchBar basepath="/" />
             </Card>
-            { location.search.length > 0 && documents && renderSidebar(filters, location, documents, onScroll) }
+            { searchParams.entries.length > 0
+                && documents && renderSidebar(filters, searchParams, documents, onScroll) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
@@ -84,15 +84,19 @@ export default function ProjectOverview(): ReactElement {
 }
 
 
-const renderSidebar = (filters: ResultFilter[], location: Location, documents: ResultDocument[],
-                       onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => (
-    <div className="project-overview-sidebar">
-        <Filters filters={ filters } searchParams={ location.search } />
+const renderSidebar = (filters: ResultFilter[], searchParams: URLSearchParams, documents: ResultDocument[],
+                       onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
+
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('r', 'overview');
+
+    return <div className="project-overview-sidebar">
+        <Filters filters={ filters } searchParams={ searchParams } />
         <Card style={ documentListContainerStyle } onScroll={ onScroll }>
-            <DocumentList searchParams={ location.search + '&r=overview' } documents={ documents } />
+            <DocumentList searchParams={ newSearchParams } documents={ documents } />
         </Card>
-    </div>
-);
+    </div>;
+};
 
 
 const renderError = (t: TFunction): ReactElement => (
@@ -110,7 +114,7 @@ const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
     (await search({ q: 'resource.category.name:Project' }, token)).documents;
 
 
-const searchDocuments = async (searchParams: string, from: number, token: string): Promise<Result> => {
+const searchDocuments = async (searchParams: URLSearchParams, from: number, token: string): Promise<Result> => {
 
     const query = parseFrontendGetParams(searchParams,
         buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD));

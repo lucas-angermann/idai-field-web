@@ -9,14 +9,12 @@ import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
 export default function SimpleFilter({ filter, searchParams, projectId }
-        : { filter: ResultFilter, searchParams: string, projectId?: string }): ReactElement {
+        : { filter: ResultFilter, searchParams: URLSearchParams, projectId?: string }): ReactElement {
 
     if (!filter.values.length) return null;
 
-    const params = new URLSearchParams(searchParams);
-
-    return <FilterDropdown filter={ filter } params={ params } projectId={ projectId }>
-        { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, params, projectId)) }
+    return <FilterDropdown filter={ filter } params={ searchParams } projectId={ projectId }>
+        { filter.values.map((bucket: FilterBucket) => renderFilterValue(filter.name, bucket, searchParams, projectId)) }
     </FilterDropdown>;
 }
 

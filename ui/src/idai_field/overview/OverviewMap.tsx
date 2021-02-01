@@ -10,9 +10,9 @@ import { Vector as VectorSource } from 'ol/source';
 import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
 import View from 'ol/View';
 import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { FilterBucket, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT } from '../../constants';
+import { useSearchParams } from '../../shared/location';
 import { FIT_OPTIONS } from '../project/ProjectMap';
 import './overview-map.css';
 
@@ -26,7 +26,7 @@ export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
 
     const [map, setMap] = useState<Map>(null);
-    const location = useLocation();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
 
@@ -77,7 +77,7 @@ export default function OverviewMap({ documents, filter }
                     // history.push(`/project/${feature.getProperties().identifier}`);
 
                     // so instead reload the application when selecting a project
-                    window.location.href = `/project/${feature.getProperties().identifier}${location.search}`;
+                    window.location.href = `/project/${feature.getProperties().identifier}${searchParams}`;
                 }
             });
         };
@@ -85,7 +85,7 @@ export default function OverviewMap({ documents, filter }
         map.on('click', onClick);
 
         return () => map.un('click', onClick);
-    }, [map, location.search]);
+    }, [map, searchParams]);
 
     return <div className="overview-map" id="ol-overview-map" style={ mapStyle } />;
 }

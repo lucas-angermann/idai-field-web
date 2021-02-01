@@ -5,7 +5,7 @@ import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
 import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
@@ -17,6 +17,7 @@ import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
+import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import NotFound from '../../shared/NotFound';
 import SearchBar from '../../shared/search/SearchBar';
@@ -35,7 +36,7 @@ export const CHUNK_SIZE = 50;
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
-    const location = useLocation();
+    const searchParams = useSearchParams();
     const history = useHistory();
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
@@ -48,7 +49,7 @@ export default function Project(): ReactElement {
     const [total, setTotal] = useState<number>();
     const [offset, setOffset] = useState<number>(0);
 
-    const parent = new URLSearchParams(location.search).get('parent');
+    const parent = searchParams.get('parent');
 
     useEffect(() => {
 
@@ -74,16 +75,16 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        initFilters(projectId, location.search, loginData.token)
+        initFilters(projectId, searchParams, loginData.token)
             .then(result => setFilters(result.filters));
 
-        searchDocuments(projectId, location.search, 0, loginData.token)
+        searchDocuments(projectId, searchParams, 0, loginData.token)
             .then(result => {
                 setOffset(0);
                 setDocuments(result.documents);
                 setTotal(result.size);
             });
-    }, [projectId, location.search, loginData]);
+    }, [projectId, searchParams, loginData]);
 
     const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
 
@@ -97,10 +98,10 @@ export default function Project(): ReactElement {
 
     const getChunk = useCallback(
         (newOffset: number): void => {
-            searchDocuments(projectId, location.search, newOffset, loginData.token)
+            searchDocuments(projectId, searchParams, newOffset, loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
         },
-        [projectId, location.search, loginData]
+        [projectId, searchParams, loginData]
     );
 
     if (notFound) return <NotFound />;
@@ -112,27 +113,27 @@ export default function Project(): ReactElement {
                        basepath={ `/project/${projectId}` } />
             </Card>
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                     searchParams={ location.search }
+                     searchParams={ searchParams }
                      projectId={ projectId } />
             { document
-                ? renderDocumentDetails(document, location.search)
-                : isInHierarchyMode(location.search)
-                    ? renderDocumentHierarchy(documents, location.search, projectId, parent, onScroll)
-                    : renderDocumentList(documents, location.search, projectId, total, onScroll, t)
+                ? renderDocumentDetails(document, searchParams)
+                : isInHierarchyMode(searchParams)
+                    ? renderDocumentHierarchy(documents, searchParams, projectId, parent, onScroll)
+                    : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
             project={ projectId }
-            onDeselectFeature={ () => deselectFeature(document, location.search, history) } />
+            onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
     </>;
 }
 
 
-const deselectFeature = (document: Document, searchParams: string, history: History): void =>
+const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
-const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
+const renderDocumentDetails = (document: Document, searchParams: URLSearchParams): React.ReactNode =>
     <>
         <Card className="p-2">
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
@@ -140,21 +141,21 @@ const renderDocumentDetails = (document: Document, searchParams: string): React.
         <Card style={ mainSidebarCardStyle }>
             <Card.Header className="p-2" style={ { display: 'flex' } }>
                 <div style={ { flex: '1 1' } }>
-                    <DocumentTeaser document={ document } searchParams={ searchParams } />
+                    <DocumentTeaser document={ document } />
                 </div>
                 <div style={ { flex: '0 0 42px', alignSelf: 'center' } }>
                     <DocumentLinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
                 </div>
             </Card.Header>
             <Card.Body style={ { overflow: 'auto' } }>
-                <DocumentDetails document={ document } searchParams={ searchParams } />
+                <DocumentDetails document={ document } />
             </Card.Body>
         </Card>
     </>;
 
 
-const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: string, projectId: string, parent: string,
-        onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
+        parent: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <>
         <Card className="p-2">
             <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
@@ -165,8 +166,8 @@ const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: stri
     </>;
 
 
-const renderDocumentList = (documents: ResultDocument[], searchParams: string, projectId: string, total: number,
-        onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
+const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
+        total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
     <>
         <Card body={ true }>
             { renderTotal(total, projectId, t) }
@@ -203,14 +204,15 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 };
 
 
-const initFilters = async (id: string, searchParams: string, token: string): Promise<Result> => {
+const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
 
     let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
 };
 
-const searchDocuments = async (id: string, searchParams: string, from: number, token: string): Promise<Result> => {
+const searchDocuments = async (id: string, searchParams: URLSearchParams,
+        from: number, token: string): Promise<Result> => {
     
     let query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
@@ -218,10 +220,7 @@ const searchDocuments = async (id: string, searchParams: string, from: number, t
 };
 
 
-const isInHierarchyMode = (searchParams: string): boolean => {
-
-    return searchParams && new URLSearchParams(searchParams).has('parent');
-};
+const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
 
 
 const mainSidebarCardStyle: CSSProperties = {

@@ -1,5 +1,5 @@
-import { ResultDocument } from '../../api/result';
 import { Document } from '../../api/document';
+import { ResultDocument } from '../../api/result';
 
 
 export const getPreviousHierarchyLevelUrl = (projectId: string, documents: ResultDocument[]): string => {
@@ -8,17 +8,17 @@ export const getPreviousHierarchyLevelUrl = (projectId: string, documents: Resul
 };
 
 
-export const getMapDeselectionUrl = (projectId: string, locationSearch: string, document: Document): string => {
+export const getMapDeselectionUrl = (projectId: string, searchParams: URLSearchParams, document: Document): string => {
 
-    return new URLSearchParams(locationSearch).has('q')
-        ? getProjectSearchResultsUrl(projectId, locationSearch)
-        : getContextUrl(projectId, locationSearch, document);
+    return searchParams.has('q')
+        ? getProjectSearchResultsUrl(projectId, searchParams)
+        : getContextUrl(projectId, searchParams, document);
 };
 
 
-export const getContextUrl = (projectId: string, locationSearch: string, document: Document): string => {
+export const getContextUrl = (projectId: string, searchParams: URLSearchParams, document: Document): string => {
 
-    const parentId: string = new URLSearchParams(locationSearch).get('r') === 'children'
+    const parentId: string = searchParams.get('r') === 'children'
         ? (document.resource.category.name === 'Project' ? undefined : document.resource.id)
         : document.resource.parentId;
 
@@ -26,11 +26,9 @@ export const getContextUrl = (projectId: string, locationSearch: string, documen
 };
 
 
-export const getProjectSearchResultsUrl = (projectId: string, locationSearch: string): string => {
+export const getProjectSearchResultsUrl = (projectId: string, searchParams: URLSearchParams): string => {
 
-    const searchParams = new URLSearchParams(locationSearch);
     searchParams.delete('r');
-
     return `/project/${projectId}?${searchParams.toString()}`;
 };
 
