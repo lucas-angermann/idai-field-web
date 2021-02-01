@@ -132,14 +132,14 @@ const deselectFeature = (document: Document, searchParams: string, history: Hist
 
 const renderDocumentDetails = (document: Document, searchParams: string): React.ReactNode =>
     <>
-        <Card>
+        <Card className="p-2">
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
         </Card>
-        <Card style={ cardStyle }>
-            <Card.Header style={ cardHeaderStyle }>
+        <Card style={ mainSidebarCardStyle }>
+            <Card.Header className="p-2">
                 <DocumentTeaser document={ document } searchParams={ searchParams } />
             </Card.Header>
-            <Card.Body style={ cardBodyStyle }>
+            <Card.Body style={ { overflow: 'auto' } }>
                 <DocumentDetails document={ document } searchParams={ searchParams } />
             </Card.Body>
         </Card>
@@ -149,10 +149,10 @@ const renderDocumentDetails = (document: Document, searchParams: string): React.
 const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: string, projectId: string, parent: string,
         onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <>
-        <Card>
+        <Card className="p-2">
             <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
         </Card>
-        <Card style={ cardStyle }>
+        <Card style={ mainSidebarCardStyle }>
             <DocumentHierarchy documents={ documents } searchParams={ searchParams } onScroll={ onScroll } />
         </Card>
     </>;
@@ -164,7 +164,7 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: string, p
         <Card body={ true }>
             { renderTotal(total, projectId, t) }
         </Card>
-        <Card onScroll={ onScroll } style={ cardStyle }>
+        <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
             <DocumentList documents={ documents } searchParams={ searchParams } />
         </Card>
     </>;
@@ -217,21 +217,10 @@ const isInHierarchyMode = (searchParams: string): boolean => {
 };
 
 
-const cardStyle: CSSProperties = {
-    overflow: 'hidden auto',
+const mainSidebarCardStyle: CSSProperties = {
+    overflow: 'auto',
     flexGrow: 1,
     flexShrink: 1
-};
-
-
-const cardHeaderStyle: CSSProperties = {
-    padding: '12px'
-};
-
-
-const cardBodyStyle: CSSProperties = {
-    height: 'calc(100% - 94px)',
-    overflow: 'auto'
 };
 
 
