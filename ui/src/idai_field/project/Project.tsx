@@ -11,6 +11,7 @@ import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import DocumentDetails from '../../shared/document/DocumentDetails';
+import DocumentLinkButton from '../../shared/document/DocumentLinkButton';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
@@ -25,6 +26,7 @@ import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
+import CONFIGURATION from '../../configuration.json';
 
 
 export const CHUNK_SIZE = 50;
@@ -136,8 +138,13 @@ const renderDocumentDetails = (document: Document, searchParams: string): React.
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
         </Card>
         <Card style={ mainSidebarCardStyle }>
-            <Card.Header className="p-2">
-                <DocumentTeaser document={ document } searchParams={ searchParams } />
+            <Card.Header className="p-2" style={ { display: 'flex' } }>
+                <div style={ { flex: '1 1' } }>
+                    <DocumentTeaser document={ document } searchParams={ searchParams } />
+                </div>
+                <div style={ { flex: '0 0 42px', alignSelf: 'center' } }>
+                    <DocumentLinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
+                </div>
             </Card.Header>
             <Card.Body style={ { overflow: 'auto' } }>
                 <DocumentDetails document={ document } searchParams={ searchParams } />
