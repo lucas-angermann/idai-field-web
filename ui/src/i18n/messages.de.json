@@ -43,6 +43,9 @@
   "documentTeaser": {
     "noTargetResource": "Zielressource nicht vorhanden"
   },
+  "permalinkButton": {
+    "title": "Permalink der Ressource"
+  },
   "filters": {
     "relations": {
       "isInstanceOf": "Instanz des Typs"
