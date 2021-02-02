@@ -58,7 +58,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
 
 const renderDocumentRow = (document: ResultDocument, searchParams: URLSearchParams): ReactNode => {
 
-    const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
+    const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
     
     return <div style={ documentRowStyle } key={ document.resource.id }>
         <div style={ documentTeaserContainerStyle }>

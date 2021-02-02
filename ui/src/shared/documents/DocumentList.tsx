@@ -9,7 +9,7 @@ export default function DocumentList({ documents, searchParams }
     return documents?.length > 0 ? (
         <div className="documents">
             { documents.map((document: ResultDocument) => {
-                const linkUrl = `/project/${document.project}/${document.resource.id}${searchParams}`;
+                const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
                 return <div style={ documentContainerStyle } key={ document.resource.id }>
                     <DocumentTeaser document={ document } linkUrl={ linkUrl } />
                 </div>;
