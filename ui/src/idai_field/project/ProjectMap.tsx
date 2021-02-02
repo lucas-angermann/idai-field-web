@@ -147,7 +147,7 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         }
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
         { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibleTileLayers) }
-        { renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
+        { tileLayers.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
     </>;
 }
 
