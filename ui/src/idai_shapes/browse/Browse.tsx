@@ -7,8 +7,6 @@ import { get, getPredecessors, search } from '../../api/documents';
 import { parseFrontendGetParams, Query } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
 import { BREADCRUMB_HEIGHT, NAVBAR_HEIGHT } from '../../constants';
-import DocumentDetails from '../../shared/document/DocumentDetails';
-import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/DocumentBreadcrumb';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { useSearchParams } from '../../shared/location';
@@ -18,6 +16,8 @@ import { SHAPES_PROJECT_ID } from '../constants';
 import './browse.css';
 import LinkedFinds from './LinkedFinds';
 import SimilarTypes from './SimilarTypes';
+import CONFIGURATION from '../../configuration.json';
+import DocumentCard from '../../shared/document/DocumentCard';
 
 
 const CHUNK_SIZE = 50;
@@ -68,7 +68,11 @@ export default function Browse(): ReactElement {
                 { document
                     ? <>
                         <Col className="col-4 sidebar">
-                            { renderDocumentDetails(document) }
+                            <DocumentCard document={ document }
+                                baseUrl={ CONFIGURATION.shapesUrl }
+                                cardStyle={ cardStyle }
+                                headerStyle={ cardHeaderStyle }
+                                bodyStyle={ cardBodyStyle } />
                         </Col>
                         <Col style={ documentGridStyle } onScroll={ onScroll }>
                             <Tabs id="doc-tabs" activeKey={ tabKey } onSelect={ setTabKey }>
@@ -98,15 +102,6 @@ export default function Browse(): ReactElement {
         </Container>
     );
 }
-const renderDocumentDetails = (document: Document): ReactNode =>
-    <Card style={ cardStyle }>
-        <Card.Header style={ cardHeaderStyle }>
-            <DocumentTeaser document={ document } />
-        </Card.Header>
-        <Card.Body style={ cardBodyStyle }>
-            <DocumentDetails document={ document } />
-        </Card.Body>
-    </Card>;
 
 
 const getChildren = async (parentId: string, from: number, token: string) => {

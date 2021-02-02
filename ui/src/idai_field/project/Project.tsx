@@ -11,9 +11,7 @@ import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
-import DocumentDetails from '../../shared/document/DocumentDetails';
-import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
-import DocumentTeaser from '../../shared/document/DocumentTeaser';
+import DocumentCard from '../../shared/document/DocumentCard';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
@@ -123,19 +121,11 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
         <Card className="p-2">
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
         </Card>
-        <Card style={ mainSidebarCardStyle }>
-            <Card.Header className="p-2" style={ documentCardHeaderStyle }>
-                <div style={ teaserContainerStyle }>
-                    <DocumentTeaser document={ document } />
-                </div>
-                <div style={ permalinkButtonContainerStyle }>
-                    <DocumentPermalinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
-                </div>
-            </Card.Header>
-            <Card.Body style={ documentCardBodyStyle }>
-                <DocumentDetails document={ document } />
-            </Card.Body>
-        </Card>
+        <DocumentCard document={ document }
+            baseUrl={ CONFIGURATION.fieldUrl }
+            cardStyle={ mainSidebarCardStyle }
+            headerStyle={ {} }
+            bodyStyle= { {} } />
     </>;
 
 
@@ -226,25 +216,4 @@ const hierarchyButtonStyle: CSSProperties = {
     width: '45px',
     height: '38px',
     paddingTop: '3px'
-};
-
-
-const teaserContainerStyle: CSSProperties = {
-    flex: '1 1'
-};
-
-
-const permalinkButtonContainerStyle: CSSProperties = {
-    flex: '0 0 42px',
-    alignSelf: 'center'
-};
-
-
-const documentCardHeaderStyle: CSSProperties = {
-    display: 'flex'
-};
-
-
-const documentCardBodyStyle: CSSProperties = {
-    overflow: 'auto'
 };
