@@ -42,6 +42,6 @@ const teaserContainerStyle: CSSProperties = {
 
 
 const permalinkButtonContainerStyle: CSSProperties = {
-    flex: '0 0 42px',
+    flex: '0 0 45px',
     alignSelf: 'center'
 };

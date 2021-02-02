@@ -13,8 +13,10 @@ export default function DocumentLinkButton({ document, baseUrl }
     const { t } = useTranslation();
 
     return <OverlayTrigger trigger="click" placement="bottom" overlay={ getPopover(document, baseUrl, t) }>
-        <Button variant="primary">
-            <Icon path={ mdiLinkVariant } size={ 0.8 } />
+        <Button variant="secondary" style={ buttonStyle }>
+            <div style={ iconStyle }>
+              <Icon path={ mdiLinkVariant } size={ 0.7 } />
+            </div>
         </Button>
     </OverlayTrigger>;
 }
@@ -27,6 +29,17 @@ const getPopover = (document: Document, baseUrl: string, t: TFunction): ReactEle
         <input disabled value={ `${baseUrl}/document/${document.resource.id}` } style={ inputStyle }></input>
       </Popover.Content>
     </Popover>;
+
+
+const buttonStyle: CSSProperties = {
+  width: '45px'
+};
+
+
+const iconStyle: CSSProperties = {
+  position: 'relative',
+  bottom: '1px'
+};
 
 
 const popoverStyle: CSSProperties = {
