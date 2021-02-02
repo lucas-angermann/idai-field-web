@@ -20,7 +20,7 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
     
     return (
         <Card style={ cardStyle }>
-            <Card.Header className="p-2" style={ { ...headerStyle, ...{ display: 'flex' } } }>
+            <Card.Header className="p-2" style={ { ...headerStyle, ...headerBaseStyle } }>
                 <div style={ teaserContainerStyle }>
                     <DocumentTeaser document={ document } />
                 </div>
@@ -28,12 +28,22 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
                     <DocumentPermalinkButton document={ document } baseUrl={ baseUrl } />
                 </div>
             </Card.Header>
-            <Card.Body style={ bodyStyle }>
+            <Card.Body style={ { ...bodyStyle, ...bodyBaseStyle } }>
                 <DocumentDetails document={ document } />
             </Card.Body>
         </Card>
     );
 }
+
+
+const headerBaseStyle: CSSProperties = {
+    display: 'flex'
+};
+
+
+const bodyBaseStyle: CSSProperties = {
+    overflow: 'auto'
+};
 
 
 const teaserContainerStyle: CSSProperties = {
