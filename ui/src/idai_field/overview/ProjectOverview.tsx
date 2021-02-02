@@ -39,7 +39,7 @@ export default function ProjectOverview(): ReactElement {
 
     useEffect (() => {
 
-        if (searchParams.entries.length > 0) {
+        if (searchParams.has('q')) {
             searchDocuments(searchParams, 0, loginData.token).then(result => {
                 setProjectFilter(result.filters.find(filter => filter.name === 'project'));
                 setFilters(result.filters.filter(filter => filter.name !== 'project'));
@@ -62,8 +62,7 @@ export default function ProjectOverview(): ReactElement {
             <Card>
                 <SearchBar basepath="/" />
             </Card>
-            { searchParams.entries.length > 0
-                && documents && renderSidebar(filters, searchParams, documents, onScroll) }
+            { searchParams.has('q') && documents && renderSidebar(filters, searchParams, documents, onScroll) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
