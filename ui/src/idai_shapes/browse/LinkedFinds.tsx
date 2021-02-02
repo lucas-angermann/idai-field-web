@@ -1,6 +1,6 @@
 import { mdiMapSearch } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import React, { ReactElement, useContext, useEffect, useState } from 'react';
 import { Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Document } from '../../api/document';
@@ -11,6 +11,7 @@ import CONFIGURATION from '../../configuration.json';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import LinkButton from '../../shared/linkbutton/LinkButton';
 import { LoginContext } from '../../shared/login';
+import { useGetChunkOnScroll } from '../../shared/scroll';
 
 
 const CHUNK_SIZE = 50;
@@ -22,28 +23,16 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
     const { t } = useTranslation();
 
     const [linkedFinds, setLinkedFinds] = useState<ResultDocument[]>(null);
-    const [offset, setOffset] = useState<number>(0);
 
     useEffect(() => {
 
         getLinkedFinds(type, 0, loginData.token).then(result => setLinkedFinds(result.documents));
     }, [type, loginData]);
 
-    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
-
-        const el = e.currentTarget;
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            const newOffset = offset + CHUNK_SIZE;
-            getChunk(newOffset);
-            setOffset(newOffset);
-        }
-    };
-
-    const getChunk = useCallback((newOffset: number): void => {
-
+    const onScroll = useGetChunkOnScroll((newOffset: number) =>
         getLinkedFinds(type, newOffset, loginData.token)
-            .then(result => setLinkedFinds(oldLinkedFinds => oldLinkedFinds.concat(result.documents)));
-    }, [type, loginData]);
+            .then(result => setLinkedFinds(oldLinkedFinds => oldLinkedFinds.concat(result.documents)))
+    );
 
     const mapTooltip = <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip>;
 

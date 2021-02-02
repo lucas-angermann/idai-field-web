@@ -2,7 +2,7 @@ import { mdiFileTree } from '@mdi/js';
 import Icon from '@mdi/react';
 import { History } from 'history';
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, useCallback, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ import LinkButton from '../../shared/linkbutton/LinkButton';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import NotFound from '../../shared/NotFound';
+import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
@@ -47,7 +48,6 @@ export default function Project(): ReactElement {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
-    const [offset, setOffset] = useState<number>(0);
 
     const parent = searchParams.get('parent');
 
@@ -80,28 +80,14 @@ export default function Project(): ReactElement {
 
         searchDocuments(projectId, searchParams, 0, loginData.token)
             .then(result => {
-                setOffset(0);
                 setDocuments(result.documents);
                 setTotal(result.size);
             });
     }, [projectId, searchParams, loginData]);
 
-    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
-
-        const el = e.currentTarget;
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            const newOffset = offset + CHUNK_SIZE;
-            getChunk(newOffset);
-            setOffset(newOffset);
-        }
-    };
-
-    const getChunk = useCallback(
-        (newOffset: number): void => {
-            searchDocuments(projectId, searchParams, newOffset, loginData.token)
-            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
-        },
-        [projectId, searchParams, loginData]
+    const onScroll = useGetChunkOnScroll((newOffset: number) =>
+        searchDocuments(projectId, searchParams, newOffset, loginData.token)
+            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
     if (notFound) return <NotFound />;

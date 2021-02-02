@@ -9,6 +9,7 @@ import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentList from '../../shared/documents/DocumentList';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
+import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
@@ -28,7 +29,6 @@ export default function ProjectOverview(): ReactElement {
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
-    const [offset, setOffset] = useState<number>(0);
 
     useEffect (() => {
         
@@ -52,22 +52,10 @@ export default function ProjectOverview(): ReactElement {
         }
     }, [searchParams, loginData]);
 
-    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
-
-        const el = e.currentTarget;
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            const newOffset = offset + CHUNK_SIZE;
-            getChunk(newOffset);
-            setOffset(newOffset);
-        }
-    };
-
-    const getChunk = (newOffset: number): void => {
-
-        searchDocuments(searchParams, newOffset, loginData.token).then(result => {
-            setDocuments(oldDocuments => oldDocuments.concat(result.documents));
-        });
-    };
+    const onScroll = useGetChunkOnScroll((newOffset: number) =>
+        searchDocuments(searchParams, newOffset, loginData.token)
+            .then(result => setDocuments(oldDocuments => oldDocuments.concat(result.documents)))
+    );
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">

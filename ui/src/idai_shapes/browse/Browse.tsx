@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 import { Card, Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -13,6 +13,7 @@ import DocumentBreadcrumb, { BreadcrumbItem } from '../../shared/documents/Docum
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
+import { useGetChunkOnScroll } from '../../shared/scroll';
 import { SHAPES_PROJECT_ID } from '../constants';
 import './browse.css';
 import LinkedFinds from './LinkedFinds';
@@ -32,7 +33,6 @@ export default function Browse(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
-    const [offset, setOffset] = useState<number>(0);
     const [tabKey, setTabKey] = useState<string>('children');
 
     useEffect(() => {
@@ -53,24 +53,13 @@ export default function Browse(): ReactElement {
         }
     }, [documentId, loginData, searchParams]);
 
-    const onScroll = (e: React.UIEvent<Element, UIEvent>) => {
-
-        const el = e.currentTarget;
-        if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            const newOffset = offset + CHUNK_SIZE;
-            getChunk(newOffset);
-            setOffset(newOffset);
-        }
-    };
-
-    const getChunk = useCallback((newOffset: number): void => {
+    const onScroll = useGetChunkOnScroll((newOffset: number) => {
 
         const promise = documentId
             ? getChildren(documentId, newOffset, loginData.token)
             : searchDocuments(searchParams, newOffset, loginData.token);
         promise.then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
-    }, [documentId, searchParams, loginData]);
-
+    });
 
     return (
         <Container fluid className="browse-select">
