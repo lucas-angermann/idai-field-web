@@ -5,6 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "mix_task",
+      "request": "launch",
+      "name": "Run backend",
+      "task": "run",
+      "taskArgs": ["--no-halt"],
+      "projectDir": "${workspaceRoot}"
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
