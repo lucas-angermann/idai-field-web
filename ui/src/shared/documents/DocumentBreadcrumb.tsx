@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { Breadcrumb, Col, Row } from 'react-bootstrap';
-import './document-hierar-nav.css';
 
 export interface BreadcrumbItem {
     identifier: string;
@@ -15,8 +14,9 @@ interface DocumentBreadcrumbProps {
 
 export default function DocumentBreadcrumb({ breadcrumbs }: DocumentBreadcrumbProps): ReactElement {
 
-    if(breadcrumbs.length > 0)
+    if (breadcrumbs.length > 0) {
         breadcrumbs[breadcrumbs.length - 1].active = true;
+    }
 
     return (
         <Row>
