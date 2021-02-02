@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -21,9 +21,20 @@ export default function DocumentLinkButton({ document, baseUrl }
 
 
 const getPopover = (document: Document, baseUrl: string, t: TFunction): ReactElement =>
-    <Popover id="document-link-popover" style={ { width: '350px', maxWidth: '350px' } }>
+    <Popover id="document-link-popover" style={ popoverStyle }>
       <Popover.Title as="h3">{ t('permalinkButton.title') } </Popover.Title>
       <Popover.Content>
-        <input disabled value={ `${baseUrl}/document/${document.resource.id}` } style={ { width: '100%' } }></input>
+        <input disabled value={ `${baseUrl}/document/${document.resource.id}` } style={ inputStyle }></input>
       </Popover.Content>
     </Popover>;
+
+
+const popoverStyle: CSSProperties = {
+  width: '350px',
+  maxWidth: '350px'
+};
+
+
+const inputStyle: CSSProperties = {
+  width: '100%'
+};

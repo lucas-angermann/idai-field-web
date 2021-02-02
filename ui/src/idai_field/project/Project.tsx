@@ -124,15 +124,15 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
             <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
         </Card>
         <Card style={ mainSidebarCardStyle }>
-            <Card.Header className="p-2" style={ { display: 'flex' } }>
-                <div style={ { flex: '1 1' } }>
+            <Card.Header className="p-2" style={ documentCardHeaderStyle }>
+                <div style={ teaserContainerStyle }>
                     <DocumentTeaser document={ document } />
                 </div>
-                <div style={ { flex: '0 0 42px', alignSelf: 'center' } }>
+                <div style={ permalinkButtonContainerStyle }>
                     <DocumentPermalinkButton document={ document } baseUrl={ CONFIGURATION.fieldUrl } />
                 </div>
             </Card.Header>
-            <Card.Body style={ { overflow: 'auto' } }>
+            <Card.Body style={ documentCardBodyStyle }>
                 <DocumentDetails document={ document } />
             </Card.Body>
         </Card>
@@ -226,4 +226,25 @@ const hierarchyButtonStyle: CSSProperties = {
     width: '45px',
     height: '38px',
     paddingTop: '3px'
+};
+
+
+const teaserContainerStyle: CSSProperties = {
+    flex: '1 1'
+};
+
+
+const permalinkButtonContainerStyle: CSSProperties = {
+    flex: '0 0 42px',
+    alignSelf: 'center'
+};
+
+
+const documentCardHeaderStyle: CSSProperties = {
+    display: 'flex'
+};
+
+
+const documentCardBodyStyle: CSSProperties = {
+    overflow: 'auto'
 };
