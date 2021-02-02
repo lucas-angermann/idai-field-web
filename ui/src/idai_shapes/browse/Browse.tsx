@@ -1,5 +1,5 @@
-import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
-import { Card, Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import { Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
