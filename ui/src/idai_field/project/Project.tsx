@@ -10,6 +10,7 @@ import { Document } from '../../api/document';
 import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
+import CONFIGURATION from '../../configuration.json';
 import DocumentDetails from '../../shared/document/DocumentDetails';
 import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
@@ -28,7 +29,6 @@ import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
-import CONFIGURATION from '../../configuration.json';
 
 
 export const CHUNK_SIZE = 50;
@@ -95,8 +95,7 @@ export default function Project(): ReactElement {
     return <>
         <ProjectSidebar>
             <Card>
-                <SearchBar onSubmit={ () => { setDocuments(null); setTotal(null); } }
-                       basepath={ `/project/${projectId}` } />
+                <SearchBar basepath={ `/project/${projectId}` } />
             </Card>
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ searchParams }
@@ -154,14 +153,18 @@ const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLS
 
 const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
         total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
-    <>
-        <Card body={ true }>
-            { renderTotal(total, projectId, t) }
-        </Card>
-        <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
-            <DocumentList documents={ documents } searchParams={ searchParams } />
-        </Card>
-    </>;
+    documents?.length
+        ? <>
+            <Card body={ true }>
+                { renderTotal(total, projectId, t) }
+            </Card>
+            <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
+                <DocumentList documents={ documents } searchParams={ searchParams } />
+            </Card>
+        </>
+        : <Card style={ mainSidebarCardStyle } className="text-center p-5">
+            <em>{ t('project.noResults') }</em>
+        </Card>;
 
 
 const renderTotal = (total: number, projectId: string, t: TFunction): ReactElement => {
