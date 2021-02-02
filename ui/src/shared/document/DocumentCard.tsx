@@ -9,13 +9,13 @@ import { Document } from '../../api/document';
 interface DocumentCardProps {
     document: Document;
     baseUrl: string;
-    cardStyle: CSSProperties;
-    headerStyle: CSSProperties;
-    bodyStyle: CSSProperties;
+    cardStyle?: CSSProperties;
+    headerStyle?: CSSProperties;
+    bodyStyle?: CSSProperties;
 }
 
 
-export default function DocumentCard({ document, baseUrl, cardStyle, headerStyle, bodyStyle }
+export default function DocumentCard({ document, baseUrl, cardStyle = {}, headerStyle = {}, bodyStyle = {} }
         : DocumentCardProps): ReactElement {
     
     return (

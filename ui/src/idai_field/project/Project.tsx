@@ -123,9 +123,7 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
         </Card>
         <DocumentCard document={ document }
             baseUrl={ CONFIGURATION.fieldUrl }
-            cardStyle={ mainSidebarCardStyle }
-            headerStyle={ {} }
-            bodyStyle= { {} } />
+            cardStyle={ mainSidebarCardStyle } />
     </>;
 
 
