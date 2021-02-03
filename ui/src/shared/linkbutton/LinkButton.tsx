@@ -14,6 +14,7 @@ interface LinkButtonProps {
     size?: 'sm' | 'lg';
     tooltip?: ReactElement;
     target?: string;
+    className?: string;
 }
 
 
@@ -29,7 +30,7 @@ export default function LinkButton(properties: LinkButtonProps): ReactElement {
 }
 
 
-const renderButton = ({ to, children, style, size, target, variant = 'primary' }: LinkButtonProps,
+const renderButton = ({ to, children, style, size, target, className, variant = 'primary' }: LinkButtonProps,
                       history: History) => {
 
     let onClick = (e: MouseEvent) => { e.preventDefault(); history.push(to); };
@@ -38,6 +39,7 @@ const renderButton = ({ to, children, style, size, target, variant = 'primary' }
     return <Button onClick={ onClick }
             style={ style }
             size={ size }
+            className={ className }
             variant={ variant }>
         { children }
     </Button>;

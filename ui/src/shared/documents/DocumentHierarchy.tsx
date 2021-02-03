@@ -36,12 +36,11 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
                         parent !== 'root' &&
                         <LinkButton
                             to={ getPreviousHierarchyLevelUrl(getProjectId(documents), documents) }
-                            style={ previousHierarchyLevelButtonStyle } variant={ 'link' }>
+                            className="previous-button" variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
                     }
-                    { parent === 'root' && <div style={ previousHierarchyLevelButtonStyle } /> }
-                    <div className="documents" style={ documentsStyle } onScroll={ onScroll }>
+                    <div className="documents" onScroll={ onScroll }>
                         { documents.map((document: ResultDocument) => {
                             return renderDocumentRow(document, searchParams);
                         }) }
@@ -110,16 +109,4 @@ const documentTeaserContainerStyle: CSSProperties = {
 const groupStyle: CSSProperties = {
     height: '100%',
     position: 'relative'
-};
-
-
-const previousHierarchyLevelButtonStyle: CSSProperties = {
-    height: '100%',
-    padding: 0
-};
-
-
-const documentsStyle: CSSProperties = {
-    overflow: 'hidden auto',
-    flexGrow: 1
 };

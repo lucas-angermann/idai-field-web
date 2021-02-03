@@ -56,3 +56,13 @@
 .document-hierarchy .btn-link:focus {
     color: rgba(0, 0, 0, 0.5);
 }
+
+.document-hierarchy .documents {
+    overflow: hidden auto;
+    flex-grow: 1;
+}
+
+.document-hierarchy .previous-button {
+    height: 100%;
+    padding: 0;
+}
