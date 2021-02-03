@@ -52,7 +52,7 @@ const renderProject = (projectId: string): ReactNode =>
 
 const renderPredecessor = (predecessor: ResultDocument, i: number): ReactNode =>
     <div style={ predecessorContainerStyle(i) } key={ predecessor.resource.id } className="d-flex">
-        <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } /></div>
+        <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } color="grey" /></div>
         <div style={ { flexGrow: 1 } }>
             <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } size="small" />
         </div>
