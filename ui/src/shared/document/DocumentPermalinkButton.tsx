@@ -15,7 +15,7 @@ export default function DocumentLinkButton({ document, baseUrl }
 
     return <OverlayTrigger trigger="click" placement="bottom" rootClose
                            overlay={ getPopover(document, baseUrl, inputElementRef, t) }>
-        <Button variant="secondary" style={ buttonStyle }
+        <Button variant="link" style={ buttonStyle }
                 onClick={ () => selectPermalink(inputElementRef) }>
             <div style={ iconStyle }>
               <Icon path={ mdiLinkVariant } size={ 0.7 } />
@@ -53,7 +53,9 @@ const selectPermalink = (inputElementRef: MutableRefObject<HTMLInputElement>) =>
 
 
 const buttonStyle: CSSProperties = {
-  width: '45px'
+  width: '45px',
+  color: 'black',
+  boxShadow: 'none'
 };
 
 
