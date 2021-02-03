@@ -13,7 +13,7 @@ export default function DocumentLinkButton({ document, baseUrl }
     const inputElementRef: MutableRefObject<HTMLInputElement> = useRef();
     const { t } = useTranslation();
 
-    return <OverlayTrigger trigger="click" placement="bottom" rootClose
+    return <OverlayTrigger trigger="click" placement="right" rootClose
                            overlay={ getPopover(document, baseUrl, inputElementRef, t) }>
         <Button variant="link" style={ buttonStyle }
                 onClick={ () => selectPermalink(inputElementRef) }>
@@ -54,6 +54,7 @@ const selectPermalink = (inputElementRef: MutableRefObject<HTMLInputElement>) =>
 
 const buttonStyle: CSSProperties = {
   width: '45px',
+  marginTop: '3px',
   color: 'black',
   boxShadow: 'none'
 };
@@ -66,8 +67,8 @@ const iconStyle: CSSProperties = {
 
 
 const popoverStyle: CSSProperties = {
-  width: '350px',
-  maxWidth: '350px'
+  width: '550px',
+  maxWidth: '550px'
 };
 
 
