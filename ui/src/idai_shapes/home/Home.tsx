@@ -44,7 +44,7 @@ export default function Home(): ReactElement {
                 <div className="search-background">
                     <div className="search-container">
                         <h1>iDAI.<b>shapes</b></h1>
-                        {renderSearchComponents(serachBarComp)}
+                        { renderSearchComponents(serachBarComp) }
                         { renderFunctionBar(t, showFuncBarComp) }
                     </div>
                 </div>
