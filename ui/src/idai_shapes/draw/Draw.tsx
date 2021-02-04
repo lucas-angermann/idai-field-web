@@ -1,9 +1,8 @@
-import React, { ReactElement, useEffect, useState, useRef } from 'react';
-import { Row, Col, Button, Form } from 'react-bootstrap';
+import React, { ReactElement, useEffect, useState, useRef, CSSProperties } from 'react';
+import { Col, Button, Form } from 'react-bootstrap';
 import * as tf from '@tensorflow/tfjs';
 import { getFromVector } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
-import DocumentGrid from '../../shared/documents/DocumentGrid';
 import CanvasDraw, { DrawCanvasObject } from '../drawcanvas/DrawCanvas';
 import { useTranslation } from 'react-i18next';
 
@@ -57,39 +56,34 @@ export default function Draw(): ReactElement {
     };
 
     return (
-        <div className="ml-4">
-            <Row>
-                <Col>
-                    <CanvasDraw brushRadius={ brushRadius } ref={ canvas } />
-                    <Row>
-                        <Button variant="primary" size="lg" className="mx-3 mt-1" onClick={ findHandler } >
-                        { t('shapes.draw.search') }
-                        </Button>
-                        <Button
-                            variant="primary"
-                            size="lg" className="mt-2"
-                            onClick={ clearHandler } >
-                            { t('shapes.draw.clear') }
-                        </Button>
-                        <Col>
-                            <Form.Control type="range" min="5" max="30" custom
-                                className="mt-2 w-25" value={ brushRadius }
-                                onChange={ brushRadiusHandler } />
-                            <p>{ t('shapes.draw.brushRadius') }</p>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col>
-                    {documents &&
-                    <>
-                        <h1>10 closest shapes</h1>
-                        <DocumentGrid documents={ documents }
-                            getLinkUrl={ (doc: ResultDocument): string => `document/${doc.resource.id}` } />
-                    </>
-                    }
-                </Col>
-            </Row>
-        </div>
+        <>
+            <CanvasDraw brushRadius={ brushRadius } ref={ canvas } />
+            <Button
+                variant="primary"
+                className="mx-1 mt-1"
+                style={ buttonStyle }
+                onClick={ findHandler } >
+            { t('shapes.draw.search') }
+            </Button>
+            <Button
+                variant="primary"
+                className="mt-1"
+                style={ buttonStyle }
+                onClick={ clearHandler } >
+                { t('shapes.draw.clear') }
+            </Button>
+            <Col>
+                <Form.Control type="range" min="5" max="30" custom
+                    className="mt-2 w-25" value={ brushRadius }
+                    onChange={ brushRadiusHandler } />
+                <p>{ t('shapes.draw.brushRadius') }</p>
+            </Col>
+        </>
     );
 }
 
+const buttonStyle: CSSProperties = {
+    borderColor: 'white',
+    borderStyle: 'solid',
+    borderRadius: '5px'
+};
