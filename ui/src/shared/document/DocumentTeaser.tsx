@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
-import { isType } from './document-utils';
+import { isCategory } from './document-utils';
 
 
 interface DocumentTeaserProps {
@@ -33,7 +33,7 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
             <Col>
                 { linkUrl
                     ? <Link to={ linkUrl }
-                            target={ isType(document) ? '_blank' : '' }
+                            target={ isCategory(document, 'Type') ? '_blank' : '' }
                             style={ linkStyle } >
                         { renderTeaser(document, size, height, linkUrl?.length > 0) }
                     </Link>
