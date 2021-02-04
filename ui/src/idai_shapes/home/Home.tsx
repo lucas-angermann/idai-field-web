@@ -82,7 +82,7 @@ const searchCatalogDocuments = async (token: string): Promise<Result> => {
 };
 
 
-const renderFunctionBar = (t: TFunction,showComp: (searchComp) => void): ReactElement => (
+const renderFunctionBar = (t: TFunction, showComp: (searchComp) => void): ReactElement => (
     <div className="d-flex justify-content-around mt-2">
         <div className="p-1">
             <p>{ t('shapes.home.searchBy') }</p>
