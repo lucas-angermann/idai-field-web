@@ -60,7 +60,6 @@ export default function Draw(): ReactElement {
         <div className="ml-4">
             <Row>
                 <Col>
-                    <h1>Draw profile</h1>
                     <CanvasDraw brushRadius={ brushRadius } ref={ canvas } />
                     <Row>
                         <Button variant="primary" size="lg" className="mx-3 mt-1" onClick={ findHandler } >

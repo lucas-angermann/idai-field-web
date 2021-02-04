@@ -92,7 +92,8 @@
       "showAllCatalogs": "Alle Kataloge anzeigen...",
       "searchBy": "Suchen durch",
       "drawingShape": "Zeichnen einer Form",
-      "uploadingImageFile": "Upload einer Bilddatei"
+      "uploadingImageFile": "Upload einer Bilddatei",
+      "textSearch": "Textsuche"
     },
     "browse": {
       "subtypes": "Untergeordnete Typen",
