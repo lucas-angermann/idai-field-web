@@ -4,12 +4,20 @@ import CONFIGURATION from '../../configuration.json';
 
 const IMAGE_CATEGORIES = ['Image', 'Photo', 'Drawing'];
 
-export const getDocumentLink = (doc: ResultDocument, project: string): string =>
-    isImage(doc)
-    ? `/image/${project}/${doc.resource.id}`
-    : isCategory(doc, 'Type') || isCategory(doc, 'TypeCatalog')
-        ? `${CONFIGURATION.shapesUrl}/document/${doc.resource.id}`
-        : `/project/${project}/${doc.resource.id}`;
+export const getDocumentLink = (doc: ResultDocument, project: string, currentBaseUrl?: string): string => {
+
+    const [baseUrl, path] = isImage(doc)
+        ? ['', `/image/${project}/${doc.resource.id}`]
+        : isCategory(doc, 'Type') || isCategory(doc, 'TypeCatalog')
+            ? [CONFIGURATION.shapesUrl, `/document/${doc.resource.id}`]
+            : [CONFIGURATION.fieldUrl, `/project/${project}/${doc.resource.id}`];
+
+    if (currentBaseUrl && baseUrl) {
+        return (currentBaseUrl === baseUrl) ? path : baseUrl + path;
+    } else {
+        return path;
+    }
+};
 
 
 export const getHierarchyLink = (doc: ResultDocument): string =>

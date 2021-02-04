@@ -1,9 +1,9 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
+import { Document } from '../../api/document';
 import DocumentDetails from './DocumentDetails';
 import DocumentPermalinkButton from './DocumentPermalinkButton';
 import DocumentTeaser from './DocumentTeaser';
-import { Document } from '../../api/document';
 
 
 interface DocumentCardProps {
@@ -29,7 +29,7 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
                 </div>
             </Card.Header>
             <Card.Body style={ { ...bodyStyle, ...bodyBaseStyle } }>
-                <DocumentDetails document={ document } />
+                <DocumentDetails document={ document } baseUrl={ baseUrl } />
             </Card.Body>
         </Card>
     );
