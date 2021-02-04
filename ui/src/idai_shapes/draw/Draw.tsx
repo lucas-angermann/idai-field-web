@@ -5,12 +5,14 @@ import { getFromVector } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import CanvasDraw, { DrawCanvasObject } from '../drawcanvas/DrawCanvas';
+import { useTranslation } from 'react-i18next';
 
 export default function Draw(): ReactElement {
 
     const [model, setModel] = useState<tf.LayersModel>();
     const [brushRadius, setBrushRadius] = useState<number>(10);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
+    const { t } = useTranslation();
 
     const canvas = useRef<DrawCanvasObject>();
     const modelUrl = 'model/model.json';
@@ -61,20 +63,20 @@ export default function Draw(): ReactElement {
                     <h1>Draw profile</h1>
                     <CanvasDraw brushRadius={ brushRadius } ref={ canvas } />
                     <Row>
-                        <Button variant="primary" size="lg" className="mx-3 mt-2" onClick={ findHandler } >
-                        Find
+                        <Button variant="primary" size="lg" className="mx-3 mt-1" onClick={ findHandler } >
+                        { t('shapes.draw.search') }
                         </Button>
                         <Button
                             variant="primary"
                             size="lg" className="mt-2"
                             onClick={ clearHandler } >
-                            Clear
+                            { t('shapes.draw.clear') }
                         </Button>
                         <Col>
                             <Form.Control type="range" min="5" max="30" custom
                                 className="mt-2 w-25" value={ brushRadius }
                                 onChange={ brushRadiusHandler } />
-                            <p>Brush radius</p>
+                            <p>{ t('shapes.draw.brushRadius') }</p>
                         </Col>
                     </Row>
                 </Col>

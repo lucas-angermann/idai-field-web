@@ -101,6 +101,11 @@
         "header": "Linked finds",
         "showOnMap": "Show linked finds on map"
       }
+    },
+    "draw": {
+      "search": "search",
+      "clear": "clear",
+      "brushRadius": "brush radius"
     }
   },
   "languages": {

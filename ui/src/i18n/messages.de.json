@@ -101,6 +101,11 @@
         "header": "Verknüpfte Funde",
         "showOnMap": "Verknüpfte Funde auf der Karte anzeigen"
       }
+    },
+    "draw": {
+      "search": "suchen",
+      "clear": "löschen",
+      "brushRadius": "Pinselbreite"
     }
   },
   "languages": {
