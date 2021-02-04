@@ -68,5 +68,6 @@ export default CanvasDraw;
 
 
 const canvasStyle: CSSProperties = {
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    borderRadius: '12px'
 };
