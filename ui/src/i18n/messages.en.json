@@ -107,6 +107,9 @@
       "search": "search",
       "clear": "clear",
       "brushRadius": "brush radius"
+    },
+    "drawfinds": {
+      "searching": "searching"
     }
   },
   "languages": {

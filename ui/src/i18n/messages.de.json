@@ -107,6 +107,9 @@
       "search": "suchen",
       "clear": "löschen",
       "brushRadius": "Pinselbreite"
+    },
+    "drawfinds": {
+      "searching": "Suche läuft"
     }
   },
   "languages": {

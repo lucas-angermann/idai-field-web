@@ -1,47 +1,21 @@
-import React, { ReactElement, useEffect, useState, useRef, CSSProperties } from 'react';
+import React, { ReactElement, useState, useRef, CSSProperties } from 'react';
 import { Col, Button, Form } from 'react-bootstrap';
-import * as tf from '@tensorflow/tfjs';
-import { getFromVector } from '../../api/documents';
-import { ResultDocument } from '../../api/result';
 import CanvasDraw, { DrawCanvasObject } from '../drawcanvas/DrawCanvas';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import { DRAW_IMG_STORAGE } from '../constants';
 
 export default function Draw(): ReactElement {
 
-    const [model, setModel] = useState<tf.LayersModel>();
     const [brushRadius, setBrushRadius] = useState<number>(10);
-    const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const { t } = useTranslation();
-
+    const history = useHistory();
     const canvas = useRef<DrawCanvasObject>();
-    const modelUrl = 'model/model.json';
-
-    const loadModel = async (url: string) => {
-        try {
-            const model = await tf.loadLayersModel(url);
-            await setModel(model);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    useEffect(() => {
-
-        tf.ready().then(() => loadModel(modelUrl));
-    }, []);
 
     const findHandler = () => {
 
-        if(model) {
-            const raw = tf.browser.fromPixels(canvas.current.getCanvas(),3);
-            const resized = tf.image.resizeBilinear(raw, [512,512]);
-            const tensor = resized.expandDims(0);
-            const prediction = (model.predict(tensor) as tf.Tensor).reshape([-1]);
-
-            getFromVector(Array.from(prediction.dataSync())).then((res) => {
-                setDocuments(res.documents);
-            });
-        }
+        localStorage.setItem(DRAW_IMG_STORAGE, canvas.current.getCanvas().toDataURL());
+        history.push('drawfinds');
     };
 
     const brushRadiusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +26,6 @@ export default function Draw(): ReactElement {
     const clearHandler = () => {
 
         canvas.current && canvas.current.clear();
-        setDocuments(null);
     };
 
     return (
