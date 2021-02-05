@@ -48,19 +48,41 @@ For conversion of images and tiles run
     
 If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
-## Quickstart | Authorization
+## Usage | User-Managerment
 
-TODO set up users in dev.exs
-TODO login via frontend
+The `Api.Auth` section of the active config file `dev.exs` has two parts, `users` and `readable_projects`. 
+
+The `users` array has three possible keys: `name`, `pass` and `admin`. The name and pass values
+are used to authenticate users, either directly via the API or via the user interfaces of either iDAI.field or iDAI.shapes. The admin property is optional and a boolean value which allows a given user to access all projects as well as to control all administrative functions via the API. 
+
+There is one user, which always exists, even when not declared in the users array, which is `anonymous`. If one wants to speed up development, one can grant this user admin rights by declaring `%{ name: "anonymous", admin: true }` (the `pass` property is not necessary here).
+
+The `readable_projects` section then determines, which of the configured projects can be seen by which users. `readable_projects` is a map, with user names as keys and arrays for the readable projects (chosen from `:api.projects`) the corresponding user. Here one can also specify which projects can be seen by anonymous users. For that, simply use the `:anynomous` or `"anonymous"` key and list the projects publicly accessible.
+
+Users can sign in with the configured credentials via the user interfaces and see their readable projects. In addition to that they see all publicly accessible projects, which are, of course, also accessible without any login.
 
 ## Usage | API
+
+In addition to handling of requests from the user interface, direct calls to API allow to access some extra administrative functionality.
+
+### Authentication
+
+As already said, development can happen with an anonymous user endowed with admin rights. The curl statements listed all refer usually to protected endpoints which are only accessible with admin permissions. To obtain a token via the api, one can do the following:
+
+    $ curl -d '{ "name": "user-1", "pass": "pass-1" }' -H 'Content-Type: application/json' localhost:4000/api/auth/sign_in
+
+The obtained token then can be used on subsequent requests to authenticate and authorize for using the protected endpoints. 
+
+    $ curl -H "Authorization: Bearer [TOKEN]" localhost:4000/api/documents
+
+For simplicity, we omit such authentication when listing calls to `curl` here.
+
+### Indexing
 
 To index a single project
 
     $ curl -XPOST localhost:4000/api/worker/update_mapping    # necessary at least once before reindexing any project
     $ curl -XPOST localhost:4000/api/worker/reindex/:project 
-
-TODO describe getting a auth token via api
 
 ## Development
 
