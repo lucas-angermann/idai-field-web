@@ -24,6 +24,9 @@ defmodule Worker.Router do
     send_json(conn, %{ status: "ok", message: "Start updating mapping template"})
   end
 
+  # Updates the mapping template.
+  # For all projects, identified by index aliases, creates new indices.
+  # When finished, switches aliases to new indices and deletes the old indices.
   post "/reindex" do
     Worker.Indexer.update_mapping_template()
     Task.async fn -> Worker.Controller.process() end
