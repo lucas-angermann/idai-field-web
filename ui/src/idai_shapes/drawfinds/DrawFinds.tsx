@@ -17,7 +17,7 @@ export default function DrawFinds (): ReactElement {
     const { t } = useTranslation();
 
     const image = useRef<HTMLImageElement>(null);
-    const modelUrl = '/model/model.json';
+    const modelUrl = RESNET_MODEL_PATH;
 
     const predict = async (model: tf.LayersModel) => {
   
