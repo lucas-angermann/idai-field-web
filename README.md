@@ -15,16 +15,12 @@ Prepare the configuration:
     $ vi config/dev.exs                                  # Edit configuration
 
 Set up a connection to a couchdb instance and configure at least one project (`projects: ["<project>"]`). 
+Also make sure for the following curl commands to work withouth authentication in a quick demo,
+that you give the anonymous user admin rights by setting `users: [%{ name: "anonymous", admin: true }]`. 
 
-For the following curl commands to work withouth authentication in a quick demo,
-give the anonymous user admin rights by setting `users: [%{ name: "anonymous", admin: true }]`. 
-
-Start elasticsearch, cantaloupe and the api web service with docker:
+Start elasticsearch, cantaloupe and the api web service with docker and index all configured projects
 
     $ docker-compose up
-
-Trigger indexing all configured projects
-
     $ curl -XPOST localhost:4000/api/worker/reindex
 
 ## Quickstart | UI
