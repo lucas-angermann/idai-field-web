@@ -17,11 +17,17 @@ Start elasticsearch, cantaloupe and the api web service with docker:
 
     $ docker-compose up
 
-Trigger indexing
+Trigger indexing all configured projects
 
-    $ curl -XPOST localhost:4000/api/worker/update_mapping
     $ curl -XPOST localhost:4000/api/worker/reindex
-    $ curl -XPOST localhost:4000/api/worker/reindex/:project # alternatively index just one project
+
+or index a single project
+
+    $ curl -XPOST localhost:4000/api/worker/update_mapping   
+    $ curl -XPOST localhost:4000/api/worker/reindex/:project 
+
+For conversion of images and tiles run
+
     $ curl -XPOST localhost:4000/api/worker/conversion       # if one has images from the client
     $ curl -XPOST localhost:4000/api/worker/tiling           # if there are georeferenced images
 
@@ -31,7 +37,7 @@ Trigger indexing
 > or add `%{ name: "anonymous", admin: true }` to api/config/dev.exs in order
 > to grant admins rights without login for development purposes.
     
-or alternatively generate test data
+It is also possibly to generate test data
 
     $ docker-compose up elasticsearch
     $ ./put-test-data.sh                          # TODO review if this still works

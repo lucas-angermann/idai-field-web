@@ -25,6 +25,7 @@ defmodule Worker.Router do
   end
 
   post "/reindex" do
+    Worker.Indexer.update_mapping_template()
     Task.async fn -> Worker.Controller.process() end
     send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
   end
