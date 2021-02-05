@@ -22,7 +22,6 @@ const CanvasDraw = forwardRef(({ brushRadius }: CanvasProps, ref: Ref<DrawCanvas
 
         canv.current.getContext('2d').fillStyle = 'black';
         canv.current.getContext('2d').fillRect(0,0,512,512);
-
     },[]);
 
 
