@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import './drawfinds.css';
 import { useParams } from 'react-router-dom';
+import { RESNET_MODEL_PATH } from '../constants';
 
 export default function DrawFinds (): ReactElement {
 
