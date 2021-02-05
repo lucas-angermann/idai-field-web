@@ -13,7 +13,7 @@ export default function Draw(): ReactElement {
 
     const findHandler = () => {
 
-        history.push(`drawfinds/${encodeURIComponent(canvas.current.getCanvas().toDataURL())}`);
+        history.push(`drawfinds/true/${encodeURIComponent(canvas.current.getCanvas().toDataURL())}`);
     };
 
     const brushRadiusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
