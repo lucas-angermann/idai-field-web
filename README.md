@@ -48,6 +48,11 @@ For conversion of images and tiles run
     
 If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
+## Quickstart | Authorization
+
+TODO set up users in dev.exs
+TODO login via frontend
+
 ## Usage | API
 
 To index a single project
@@ -55,7 +60,7 @@ To index a single project
     $ curl -XPOST localhost:4000/api/worker/update_mapping    # necessary at least once before reindexing any project
     $ curl -XPOST localhost:4000/api/worker/reindex/:project 
 
-TODO describe authorization
+TODO describe getting a auth token via api
 
 ## Development
 
