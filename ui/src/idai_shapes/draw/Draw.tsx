@@ -3,7 +3,6 @@ import { Col, Button, Form } from 'react-bootstrap';
 import CanvasDraw, { DrawCanvasObject } from '../drawcanvas/DrawCanvas';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { DRAW_IMG_STORAGE } from '../constants';
 
 export default function Draw(): ReactElement {
 
@@ -14,8 +13,7 @@ export default function Draw(): ReactElement {
 
     const findHandler = () => {
 
-        localStorage.setItem(DRAW_IMG_STORAGE, canvas.current.getCanvas().toDataURL());
-        history.push('drawfinds');
+        history.push(`drawfinds/${encodeURIComponent(canvas.current.getCanvas().toDataURL())}`);
     };
 
     const brushRadiusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

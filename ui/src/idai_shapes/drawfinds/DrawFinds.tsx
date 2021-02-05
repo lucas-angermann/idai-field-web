@@ -7,16 +7,17 @@ import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import './drawfinds.css';
-import { DRAW_IMG_STORAGE } from '../constants';
+import { useParams } from 'react-router-dom';
 
 export default function DrawFinds (): ReactElement {
 
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [dataUrl, setDataUrl] = useState<string>(null);
+    const { data } = useParams<{ data: string }>();
     const { t } = useTranslation();
 
     const image = useRef<HTMLImageElement>(null);
-    const modelUrl = 'model/model.json';
+    const modelUrl = '/model/model.json';
 
     const predict = async (model: tf.LayersModel) => {
   
@@ -32,8 +33,8 @@ export default function DrawFinds (): ReactElement {
 
     useEffect(() => {
 
-        setDataUrl(localStorage.getItem(DRAW_IMG_STORAGE));
-    },[]);
+        setDataUrl(decodeURIComponent(data));
+    },[data]);
 
     useEffect(() => {
 

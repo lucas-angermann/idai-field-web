@@ -31,7 +31,7 @@ export default function Shapes(): ReactElement {
                         <LoginForm onLogin={ setLoginData } />
                     </Route>
                     <Route path="/image/:project/:id" component={ ImageView } />
-                    <Route path="/drawfinds" exact component={ DrawFinds } />
+                    <Route path="/drawfinds/:data" component={ DrawFinds } />
                     <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>
