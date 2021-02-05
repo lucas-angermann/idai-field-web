@@ -22,7 +22,7 @@ Start elasticsearch, cantaloupe and the api web service with docker and index al
 
     $ docker-compose up
     $ curl -XPOST localhost:4000/api/worker/reindex
-    $ curl localhost:4000/api/documents             # See properly indexed documents
+    $ curl localhost:4000/api/documents             # See properly indexed documents via api
 
 ## Quickstart | UI
 
@@ -59,17 +59,19 @@ TODO describe authorization
 
 ## Development
 
-### Components
+Note that containers can be started independently
 
-#### API
-
-It can be run independently with the following command:
-
+    $ docker-compose up elasticsearch
+    $ docker-compose up cantaloupe
     $ docker-compose up api
-    
-The api runs on port 4000. Indexed documents can be retrieved via `http://localhost:4000/documents`.
 
-#### Testing
+## Development | API
+
+### Interactive Elixir
+
+    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
+
+### Testing
 
     $ docker-compose run --service-ports --entrypoint "mix test test/app && mix test --no-start test/unit" api
 
@@ -79,33 +81,6 @@ or
     $ mix test test/app                 # application/subsystem tests
     $ mix test --no-start test/unit     # unit tests
 
-#### Interactive Elixir
-
-    $ docker-compose run --service-ports --entrypoint "iex -S mix" api
-
-#### UI
-
-The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
-
-To build for production use:
-
-    $ npm run build
-
-#### Elasticsearch
-
-It can be started independently with:
-
-    $ docker-compose up elasticsearch
-    
-The elasticsearch REST API runs on port 9200. Indexed documents can be retrieved via
-`http://localhost:9200/idai-field/_search`.
-
-#### Cantaloupe
-
-Can be started independently with
-
-    $ docker-compose up cantaloupe
-    
 ### Override docker-compose configuration to change image directories
 
 in config.exs
@@ -129,14 +104,22 @@ docker-compose.override.yml
             volumes:
                 - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
                 - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+
+## Development | UI
+
+The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
+
+To build for production use:
+
+    $ npm run build
             
-### Managing containers
+## Development | Managing containers
             
-#### (Re-)building containers
+### (Re-)building containers
 
     $ docker-compose up --build api
 
-#### Managing dependencies
+### Managing dependencies
 
 In order to add a dependency it has to be added to `mix.exs`. Afterwards, the api docker container
 has to be rebuilt explicitly with:
