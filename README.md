@@ -108,30 +108,6 @@ or
     $ mix test test/app                 # application/subsystem tests
     $ mix test --no-start test/unit     # unit tests
 
-### Override docker-compose configuration to change image directories
-
-in config.exs
-
-In order to be able to see images you can override the images volume by creating
-a `docker-compose.override.yml` that contains the volume definition. This
-file gets automatically picked up by `docker-compose` and will not be published
-to the repository.
-
-docker-compose.override.yml
-
-    version: "3.7"
-    
-    services:
-        cantaloupe:
-            volumes:
-                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
-                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
-            
-        api:    
-            volumes:
-                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
-                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
-
 ## Development | UI
 
 The frontend runs on port 3001. It autmatically picks the next available port if 3001 is already in use.
@@ -161,3 +137,29 @@ sure `mix.lock` reflects the change:
 Afterwards, the api docker container has to be rebuilt explicitly with:
 
     $ docker-compose build api
+
+## Development | Advanced
+
+### Override docker-compose configuration to change image directories
+
+in config.exs
+
+In order to be able to see images you can override the images volume by creating
+a `docker-compose.override.yml` that contains the volume definition. This
+file gets automatically picked up by `docker-compose` and will not be published
+to the repository.
+
+docker-compose.override.yml
+
+    version: "3.7"
+    
+    services:
+        cantaloupe:
+            volumes:
+                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
+                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+            
+        api:    
+            volumes:
+                - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
+                - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
