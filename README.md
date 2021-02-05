@@ -37,11 +37,6 @@ For conversion of images and tiles run
 > or add `%{ name: "anonymous", admin: true }` to api/config/dev.exs in order
 > to grant admins rights without login for development purposes.
     
-It is also possibly to generate test data
-
-    $ docker-compose up elasticsearch
-    $ ./put-test-data.sh                          # TODO review if this still works
-    
 If you have images, place them under `data/cantaloupe` (or override the docker-compose configuration as described further below, to change the default location)
 
 Prepare the web UI configuration:
