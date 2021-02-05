@@ -19,7 +19,7 @@ defmodule Worker.Controller do
   def process_db(db) do
     configuration = ProjectConfigLoader.get(db)
 
-    index = Indexer.create_project_and_set_alias db
+    {new_index, old_index} = Indexer.create_new_index_and_set_alias db
 
     IdaiFieldDb.fetch_changes(db)
     |> Enum.filter(&filter_non_owned_document/1)
@@ -27,8 +27,10 @@ defmodule Worker.Controller do
     |> log_finished("mapping", db)
     |> Enricher.process(db, IdaiFieldDb.get_doc(db), configuration)
     |> log_finished("enriching", db)
-    |> Enum.map(Indexer.process(db, index))
+    |> Enum.map(Indexer.process(db, new_index))
     |> log_finished("indexing", db)
+
+    Indexer.add_alias_and_remove_old_index db, new_index, old_index
   end
 
   def log_finished(change, step, db) do
