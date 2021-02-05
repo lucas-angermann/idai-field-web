@@ -14,6 +14,8 @@ Prepare the configuration:
     $ cp config/dev_prod.exs.template config/dev.exs
     $ vi config/dev.exs                                  # Edit configuration
 
+Set up a connection to a couchdb instance and configure at least one project (`projects: ["<project>"]`). 
+
 For the following curl commands to work withouth authentication in a quick demo,
 give the anonymous user admin rights by setting `users: [%{ name: "anonymous", admin: true }]`. 
 
