@@ -14,7 +14,7 @@ export default function DrawFinds (): ReactElement {
 
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [dataUrl, setDataUrl] = useState<string>(null);
-    const { data } = useParams<{ data: string }>();
+    const { isDrawing, data } = useParams<{ isDrawing: string ,data: string }>();
     const { t } = useTranslation();
 
     const image = useRef<HTMLImageElement>(null);
@@ -38,8 +38,12 @@ export default function DrawFinds (): ReactElement {
 
     useEffect(() => {
 
-        tf.ready().then(() => tf.loadLayersModel(RESNET_MODEL_PATH)).then((model) => predict(model));
-    }, [dataUrl]);
+        if( isDrawing === 'true'){
+            tf.ready()
+                .then(() => tf.loadLayersModel(RESNET_MODEL_PATH))
+                .then((model) => predict(tf.browser.fromPixels(image.current,3), model));
+        }
+    }, [dataUrl, isDrawing]);
     
     return (
         <div className="m-2">
