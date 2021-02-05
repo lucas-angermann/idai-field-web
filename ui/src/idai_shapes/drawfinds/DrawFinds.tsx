@@ -18,7 +18,6 @@ export default function DrawFinds (): ReactElement {
     const { t } = useTranslation();
 
     const image = useRef<HTMLImageElement>(null);
-    const modelUrl = RESNET_MODEL_PATH;
 
     const predict = async (model: tf.LayersModel) => {
   
@@ -39,7 +38,7 @@ export default function DrawFinds (): ReactElement {
 
     useEffect(() => {
 
-        tf.ready().then(() => tf.loadLayersModel(modelUrl)).then((model) => predict(model));
+        tf.ready().then(() => tf.loadLayersModel(RESNET_MODEL_PATH)).then((model) => predict(model));
     }, [dataUrl]);
     
     return (
