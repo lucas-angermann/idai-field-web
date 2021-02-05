@@ -12,7 +12,7 @@ Prepare the configuration:
 
     $ cd api
     $ cp config/dev_prod.exs.template config/dev.exs
-    $ vi config/dev.exs                                  # Edit configuration
+    $ vi config/dev.exs # Edit
 
 Set up a connection to a couchdb instance and configure at least one project (`projects: ["<project>"]`). 
 Also make sure for the following curl commands to work withouth authentication in a quick demo,
@@ -22,20 +22,21 @@ Start elasticsearch, cantaloupe and the api web service with docker and index al
 
     $ docker-compose up
     $ curl -XPOST localhost:4000/api/worker/reindex
+    $ curl localhost:4000/api/documents             # See properly indexed documents
 
 ## Quickstart | UI
 
-Prepare the web UI configuration:
-
-    $ cp ui/src/configuration.json.template ui/src/configuration.json
-    $ vi ui/src/configuration.json                # Edit configuration
-
-Prepare
+Visit the `ui` directory
 
     $ cd ui
     $ npm i
 
-Start the iDAI.field web UI with `npm start` and visit `http://localhost:3001`.
+Prepare the configuration:
+
+    $ cp src/configuration.json.template src/configuration.json
+    $ vi src/configuration.json # Edit
+
+Start the iDAI.field UI with `npm start` and visit `http://localhost:3001`.
 Start the iDAI.shapes UI with `npm run start-shapes` and visit  `http://localhost:3002`.
 
 ## Quickstart | Images
