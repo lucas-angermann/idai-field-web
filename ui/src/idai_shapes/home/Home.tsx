@@ -14,6 +14,7 @@ import SearchBar from '../../shared/search/SearchBar';
 import { SHAPES_PROJECT_ID } from '../constants';
 import './home.css';
 import Draw from '../draw/Draw';
+import FileBrowser from '../filebrowser/FileBrowser';
 
 
 const NUM_CATALOGS = 6;
@@ -106,5 +107,5 @@ const renderSearchComponents = (component: searchComp): ReactElement => {
         return <SearchBar basepath="document/" />;
     else if (component === searchComp.Draw)
         return <Draw />;
-    else return <p>upload image</p>;
+    else return <FileBrowser />;
 };
