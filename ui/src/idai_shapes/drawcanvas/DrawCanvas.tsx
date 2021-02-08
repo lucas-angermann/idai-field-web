@@ -16,19 +16,20 @@ const CanvasDraw = forwardRef(({ brushRadius }: CanvasProps, ref: Ref<DrawCanvas
     const posX = useRef<number>();
     const posY = useRef<number>();
     const canv = useRef<HTMLCanvasElement>();
+    const width = 512;
+    const height = 512;
     useImperativeHandle(ref, () => ({ clear, getCanvas }));
 
     useEffect(() => {
 
-        canv.current.getContext('2d').fillStyle = 'black';
-        canv.current.getContext('2d').fillRect(0,0,512,512);
+        clear();
     },[]);
 
 
     const clear = () => {
         const ctx = canv.current.getContext('2d');
         ctx.fillStyle = 'black';
-        ctx.fillRect(0,0,512,512);
+        ctx.fillRect(0,0,width,height);
     };
 
     const getCanvas = (): HTMLCanvasElement => canv.current;
@@ -56,7 +57,7 @@ const CanvasDraw = forwardRef(({ brushRadius }: CanvasProps, ref: Ref<DrawCanvas
     };
     
     return (
-        <canvas ref={ canv } width="512" height="512"
+        <canvas ref={ canv } width={ width } height={ height }
             style={ canvasStyle } onMouseMove={ draw }
             onMouseDown={ setPosition } onMouseEnter={ setPosition } />
     );
