@@ -2,6 +2,8 @@ defmodule Worker.Router do
   require Logger
   use Plug.Router
   import RouterUtils, only: [send_json: 2]
+  alias Worker.Indexer
+  alias Worker.Controller
 
   plug :match
   plug Api.Auth.AdminRightsPlug
@@ -20,21 +22,30 @@ defmodule Worker.Router do
   end
 
   post "/update_mapping" do
-    Worker.Indexer.update_mapping_template()
+    Indexer.update_mapping_template()
     send_json(conn, %{ status: "ok", message: "Start updating mapping template"})
   end
 
-  # Updates the mapping template.
-  # For all projects, identified by index aliases, creates new indices.
-  # When finished, switches aliases to new indices and deletes the old indices.
+  # 1. Updates the mapping template.
+  # 2. Reindexes all projects.
   post "/reindex" do
-    Worker.Indexer.update_mapping_template()
-    Task.async fn -> Worker.Controller.process() end
-    send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
+    reindex_running? = not Enum.empty? :ets.lookup(:indexing, :reindex)
+    if reindex_running? do
+      send_json(conn, %{ status: "rejected", message: "Reindex already running"}) # TODO error code?
+    else
+      :ets.insert(:indexing, {:reindex, :running})
+      Indexer.update_mapping_template()
+      Task.async fn -> 
+        Controller.process() 
+        :ets.delete(:indexing, :reindex)
+      end
+      send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
+    end
   end
 
+  # 1. Reindexes a single project.
   post "/reindex/:project" do
-    Task.async fn -> Worker.Controller.process(project) end
+    Task.async fn -> Controller.process(project) end
     send_json(conn, %{ status: "ok", message: "Start indexing '#{project}'"})
   end
 

@@ -32,6 +32,7 @@ defmodule Api.Router do
   end
 
   def start_link(_opts) do
+    :ets.new(:indexing, [:set, :public, :named_table]) # TODO make it protected or private
     Plug.Cowboy.http(__MODULE__, [])
   end
 end

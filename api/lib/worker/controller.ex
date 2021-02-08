@@ -6,17 +6,28 @@ defmodule Worker.Controller do
   alias Worker.Services.IdaiFieldDb
   alias Worker.Enricher.Enricher
   alias Core.ProjectConfigLoader
+  alias Core.Config
 
+  @doc """
+  For all configured projects triggers reindexing.
+  Every project gets indexed in its own Task.
+  Returns (syncronously) after all Tasks have finished.
+
+  While reindexing, every project, identified by its alias, a new index gets created.
+  When reindexing for the project is finished, the alias will change to point to the new index 
+  while the old index gets removed.
+  """
   def process do
-    for db <- Core.Config.get(:projects), do: process(db)
+    processes = for db <- Config.get(:projects), do: process(db)
+    Enum.map(processes, &Task.await(&1, :infinity))
   end
   def process(db) do
-    pid = spawn_link fn -> process_db(db) end
+    pid = Task.async fn -> reindex(db) end
     Logger.info "Spawned indexer #{inspect pid} for #{db}"
     pid
   end
 
-  def process_db(db) do
+  defp reindex(db) do
     configuration = ProjectConfigLoader.get(db)
 
     {new_index, old_index} = Indexer.create_new_index_and_set_alias db
@@ -33,7 +44,7 @@ defmodule Worker.Controller do
     Indexer.add_alias_and_remove_old_index db, new_index, old_index
   end
 
-  def log_finished(change, step, db) do
+  defp log_finished(change, step, db) do
     Logger.info "Finished #{step} #{db}"
     change
   end
