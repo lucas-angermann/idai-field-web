@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef,
                 useEffect, forwardRef, Ref,
-                useImperativeHandle, CSSProperties } from 'react';
+                useImperativeHandle } from 'react';
 import './drawcanvas.css';
 
 export interface DrawCanvasObject {
