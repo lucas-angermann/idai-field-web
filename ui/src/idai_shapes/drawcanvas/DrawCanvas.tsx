@@ -1,6 +1,7 @@
 import React, { ReactElement, useRef,
                 useEffect, forwardRef, Ref,
                 useImperativeHandle, CSSProperties } from 'react';
+import './drawcanvas.css';
 
 export interface DrawCanvasObject {
     clear: () => void
@@ -17,7 +18,7 @@ const CanvasDraw = forwardRef(({ brushRadius }: CanvasProps, ref: Ref<DrawCanvas
     const posY = useRef<number>();
     const canv = useRef<HTMLCanvasElement>();
     const width = 512;
-    const height = 512;
+    const height = 300;
     useImperativeHandle(ref, () => ({ clear, getCanvas }));
 
     useEffect(() => {
@@ -57,17 +58,13 @@ const CanvasDraw = forwardRef(({ brushRadius }: CanvasProps, ref: Ref<DrawCanvas
     };
     
     return (
-        <canvas ref={ canv } width={ width } height={ height }
-            style={ canvasStyle } onMouseMove={ draw }
-            onMouseDown={ setPosition } onMouseEnter={ setPosition } />
+        <div className="backgroundline">
+            <canvas ref={ canv } width={ width } height={ height }
+                onMouseMove={ draw } className="drawcanvas"
+                onMouseDown={ setPosition } onMouseEnter={ setPosition } />
+        </div>
     );
   });
 
 CanvasDraw.displayName = 'CanvasDraw';
 export default CanvasDraw;
-
-
-const canvasStyle: CSSProperties = {
-    borderStyle: 'solid',
-    borderRadius: '12px'
-};

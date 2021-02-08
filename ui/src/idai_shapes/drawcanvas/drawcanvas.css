@@ -1,0 +1,15 @@
+.drawcanvas {
+    border-style: solid;
+    border-radius: 12px;
+    opacity: 90%;
+
+}
+
+.backgroundline {
+    background-image: linear-gradient(white, white);
+    background-size: 3px 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
