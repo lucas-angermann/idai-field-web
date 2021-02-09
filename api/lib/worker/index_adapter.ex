@@ -1,4 +1,4 @@
-defmodule Worker.Indexer do
+defmodule Worker.IndexAdapter do
   require Logger
   alias Core.Config
 

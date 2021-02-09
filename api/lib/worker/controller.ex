@@ -1,7 +1,7 @@
 defmodule Worker.Controller do
   require Logger
 
-  alias Worker.Indexer
+  alias Worker.IndexAdapter
   alias Worker.Mapper
   alias Worker.Services.IdaiFieldDb
   alias Worker.Enricher.Enricher
@@ -18,6 +18,7 @@ defmodule Worker.Controller do
   while the old index gets removed.
   """
   def process do
+    raise "oops"
     processes = for db <- Config.get(:projects), do: process(db)
     Enum.map(processes, &Task.await(&1, :infinity))
   end
@@ -30,7 +31,7 @@ defmodule Worker.Controller do
   defp reindex(db) do
     configuration = ProjectConfigLoader.get(db)
 
-    {new_index, old_index} = Indexer.create_new_index_and_set_alias db
+    {new_index, old_index} = IndexAdapter.create_new_index_and_set_alias db
 
     IdaiFieldDb.fetch_changes(db)
     |> Enum.filter(&filter_non_owned_document/1)
@@ -38,10 +39,10 @@ defmodule Worker.Controller do
     |> log_finished("mapping", db)
     |> Enricher.process(db, IdaiFieldDb.get_doc(db), configuration)
     |> log_finished("enriching", db)
-    |> Enum.map(Indexer.process(db, new_index))
+    |> Enum.map(IndexAdapter.process(db, new_index))
     |> log_finished("indexing", db)
 
-    Indexer.add_alias_and_remove_old_index db, new_index, old_index
+    IndexAdapter.add_alias_and_remove_old_index db, new_index, old_index
   end
 
   defp log_finished(change, step, db) do

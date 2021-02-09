@@ -2,7 +2,7 @@ defmodule Worker.Router do
   require Logger
   use Plug.Router
   import RouterUtils, only: [send_json: 2]
-  alias Worker.Indexer
+  alias Worker.IndexAdapter
   alias Worker.Controller
 
   plug :match
@@ -22,23 +22,32 @@ defmodule Worker.Router do
   end
 
   post "/update_mapping" do
-    Indexer.update_mapping_template()
+    IndexAdapter.update_mapping_template()
     send_json(conn, %{ status: "ok", message: "Start updating mapping template"})
   end
 
   # 1. Updates the mapping template.
   # 2. Reindexes all projects.
   post "/reindex" do
+    IO.puts "reindex triggered"
     reindex_running? = not Enum.empty? :ets.lookup(:indexing, :reindex)
     if reindex_running? do
       send_json(conn, %{ status: "rejected", message: "Reindex already running"}) # TODO error code?
     else
       :ets.insert(:indexing, {:reindex, :running})
-      Indexer.update_mapping_template()
-      Task.async fn -> 
+      IndexAdapter.update_mapping_template()
+      %Task{pid: pid} = Task.async fn -> 
         Controller.process() 
+        IO.puts "1"
         :ets.delete(:indexing, :reindex)
       end
+
+      Process.monitor pid
+      receive do
+        x -> IO.puts "-"; IO.inspect x
+      end
+      
+      IO.puts "2"
       send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
     end
   end
