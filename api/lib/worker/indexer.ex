@@ -1,12 +1,57 @@
-defmodule Worker.Controller do
+defmodule Worker.Indexer do
+  @moduledoc """
+  This coordinates calls to indexing processes.
+  """
+  use GenServer
   require Logger
-
   alias Worker.IndexAdapter
   alias Worker.Mapper
   alias Worker.Services.IdaiFieldDb
   alias Worker.Enricher.Enricher
   alias Core.ProjectConfigLoader
   alias Core.Config
+
+  def start_link(opts) do
+    Logger.info "Start #{__MODULE__}"
+    GenServer.start_link(__MODULE__, :ok, opts)
+  end
+
+  @doc """
+  Triggers the indexing of all projects.
+  """
+  def trigger do
+    GenServer.call(__MODULE__, {:index, :all})
+  end
+  def trigger(project) do
+    GenServer.call(__MODULE__, {:index, project})
+  end
+
+  ##########################################################
+
+  @impl true
+  def init(:ok) do
+    {:ok, %{ update_mapping_and_reindex_all: :idle }}
+  end
+
+  @impl true
+  def handle_call({:index, project}, _from, state) do
+    
+    if project == :all do
+      process()
+    else
+      process(project)
+    end
+
+    {:reply, :ok, state}
+  end
+
+  @impl true
+  def handle_info(msg, state) do
+    IO.puts "handle_info #{inspect msg} : #{inspect state}"
+    {:noreply, state}
+  end
+
+  ##########################################################
 
   @doc """
   For all configured projects triggers reindexing.
@@ -17,12 +62,11 @@ defmodule Worker.Controller do
   When reindexing for the project is finished, the alias will change to point to the new index 
   while the old index gets removed.
   """
-  def process do
-    raise "oops"
+  defp process do
     processes = for db <- Config.get(:projects), do: process(db)
     Enum.map(processes, &Task.await(&1, :infinity))
   end
-  def process(db) do
+  defp process(db) do
     pid = Task.async fn -> reindex(db) end
     Logger.info "Spawned indexer #{inspect pid} for #{db}"
     pid

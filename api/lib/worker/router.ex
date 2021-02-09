@@ -3,7 +3,7 @@ defmodule Worker.Router do
   use Plug.Router
   import RouterUtils, only: [send_json: 2]
   alias Worker.IndexAdapter
-  alias Worker.Controller
+  alias Worker.Indexer
 
   plug :match
   plug Api.Auth.AdminRightsPlug
@@ -11,7 +11,7 @@ defmodule Worker.Router do
 
   post "/publish/:project" do
     Task.async fn ->
-      pid = Worker.Controller.process(project)
+      pid = Worker.Indexer.trigger(project)
       Process.monitor pid
       receive do
         _ -> Worker.Images.ConversionController.convert_images_for_project(project)
@@ -29,32 +29,14 @@ defmodule Worker.Router do
   # 1. Updates the mapping template.
   # 2. Reindexes all projects.
   post "/reindex" do
-    IO.puts "reindex triggered"
-    reindex_running? = not Enum.empty? :ets.lookup(:indexing, :reindex)
-    if reindex_running? do
-      send_json(conn, %{ status: "rejected", message: "Reindex already running"}) # TODO error code?
-    else
-      :ets.insert(:indexing, {:reindex, :running})
-      IndexAdapter.update_mapping_template()
-      %Task{pid: pid} = Task.async fn -> 
-        Controller.process() 
-        IO.puts "1"
-        :ets.delete(:indexing, :reindex)
-      end
-
-      Process.monitor pid
-      receive do
-        x -> IO.puts "-"; IO.inspect x
-      end
-      
-      IO.puts "2"
-      send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
-    end
+    IndexAdapter.update_mapping_template()
+    Indexer.trigger()
+    send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
   end
 
   # 1. Reindexes a single project.
   post "/reindex/:project" do
-    Task.async fn -> Controller.process(project) end
+    Indexer.trigger(project)
     send_json(conn, %{ status: "ok", message: "Start indexing '#{project}'"})
   end
 
