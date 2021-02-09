@@ -30,8 +30,8 @@ defmodule Worker.Router do
   # 2. Reindexes all projects.
   post "/reindex" do
     IndexAdapter.update_mapping_template()
-    Indexer.trigger()
-    send_json(conn, %{ status: "ok", message: "Start indexing all projects"})
+    {status, msg} = Indexer.trigger()
+    send_json(conn, %{ status: status, message: msg})
   end
 
   # 1. Reindexes a single project.
