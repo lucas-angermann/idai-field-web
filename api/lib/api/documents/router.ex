@@ -95,6 +95,4 @@ defmodule Api.Documents.Router do
       conn.private[:readable_projects]
     ))
   end
-
-  
 end
