@@ -22,7 +22,7 @@ defmodule Api.Application do
           ]
         }
       },
-      {Worker.Indexer, name: Worker.Indexer}
+      Worker.Supervisor
     ]
     opts = [strategy: :one_for_one, name: Api.Supervisor]
     Supervisor.start_link(children, opts)

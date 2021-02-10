@@ -35,69 +35,100 @@ defmodule Worker.Indexer do
 
   @impl true
   def init(:ok) do
-    {:ok, %{ update_mapping_and_reindex_all: :idle }}
+    {:ok, %{ projects: [], refs: %{} }}
   end
 
   @impl true
   def handle_call({:index, project}, _from, state = 
-  %{ update_mapping_and_reindex_all: reindex_all_state }) do
+  %{ projects: currently_reindexing_projects, refs: refs }) do
     
-    if reindex_all_state != :idle do
-      {:reply, {:rejected, "Already running"}, state}
-    else
-      if project == :all do
-        Task.async fn -> process(); :finished_mapping_and_reindex_all end
+    if project == :all do
+      if not Enum.empty? currently_reindexing_projects do
         {
-          :reply, 
-          {:ok, "Start indexing all projects"}, 
-          Map.put(state, :update_mapping_and_reindex_all, :running)
+          :reply,
+          {:rejected, "Other indexing processes still running"},
+          state
         }
       else
-        Task.async fn -> reindex(project) end
+        projects = Config.get :projects
+        refs = start_reindex_processes projects
+        { 
+          :reply,
+          {:ok, "Start indexing #{Enum.join(projects)}"},
+          %{ projects: projects, refs: refs }
+        }    
+      end
+    else
+      if project in currently_reindexing_projects do
         {
-          :reply, 
-          {:ok, "Start indexing single project #{project}"}, 
-          Map.put(state, :update_mapping_and_reindex_all, :running)
+          :reply,
+          {:rejected, "Another indexing process for #{project} still running"},
+          state
         }
+      else
+        refs = Map.merge refs, start_reindex_processes [project]
+        projects = [project|currently_reindexing_projects]
+        { 
+          :reply,
+          {:ok, "Start indexing #{project}"},
+          %{ projects: projects, refs: refs }
+        }    
       end
     end
   end
 
   @impl true
-  def handle_info({_, :finished_mapping_and_reindex_all}, state) do
-    {:noreply, Map.put(state, :update_mapping_and_reindex_all, :idle)}
+  def handle_info({_, {:finished_reindex_project, project}}, %{projects: projects, refs: refs}) do
+
+    state = %{ 
+      projects: Enum.filter(projects, fn p -> p != project end),
+      refs: Map.delete(refs, project)
+    }
+    {:noreply, state}
   end
   def handle_info(msg, state) do
+    # TODO handle DOWN
     IO.puts "handle_info #{inspect msg} : #{inspect state}"
     {:noreply, state}
   end
 
   ##########################################################
 
-  defp process do
-    processes = for db <- Config.get(:projects), do: Task.async fn -> reindex(db) end
-    Enum.map(processes, &Task.await(&1, :infinity))
+  defp start_reindex_processes(projects) do
+    for project <- projects, into: %{} do
+      task = Task.Supervisor.async_nolink(
+        Worker.IndexingSupervisor, Worker.Indexer, :reindex, [project]) 
+      {
+        project,
+        task.ref
+      }
+    end
   end
 
-  defp reindex(db) do
-    configuration = ProjectConfigLoader.get(db)
+  def reindex(project) do
+    configuration = ProjectConfigLoader.get(project)
 
-    {new_index, old_index} = IndexAdapter.create_new_index_and_set_alias db
+    #raise "raised"
+    #:timer.sleep(2000)
+    #IO.puts "slept"
 
-    IdaiFieldDb.fetch_changes(db)
+    {new_index, old_index} = IndexAdapter.create_new_index_and_set_alias project
+
+    IdaiFieldDb.fetch_changes(project)
     |> Enum.filter(&filter_non_owned_document/1)
     |> Enum.map(Mapper.process)
-    |> log_finished("mapping", db)
-    |> Enricher.process(db, IdaiFieldDb.get_doc(db), configuration)
-    |> log_finished("enriching", db)
-    |> Enum.map(IndexAdapter.process(db, new_index))
-    |> log_finished("indexing", db)
+    |> log_finished("mapping", project)
+    |> Enricher.process(project, IdaiFieldDb.get_doc(project), configuration)
+    |> log_finished("enriching", project)
+    |> Enum.map(IndexAdapter.process(project, new_index))
+    |> log_finished("indexing", project)
 
-    IndexAdapter.add_alias_and_remove_old_index db, new_index, old_index
+    IndexAdapter.add_alias_and_remove_old_index project, new_index, old_index
+    {:finished_reindex_project, project}
   end
 
-  defp log_finished(change, step, db) do
-    Logger.info "Finished #{step} #{db}"
+  defp log_finished(change, step, project) do
+    Logger.info "Finished #{step} #{project}"
     change
   end
 
