@@ -26,12 +26,12 @@ defmodule Worker.Indexer do
     GenServer.call(__MODULE__, {:index, project})
   end
 
+  ##########################################################
+
   def start_link(opts) do
     Logger.info "Start #{__MODULE__}"
     GenServer.start_link(__MODULE__, :ok, opts)
   end
-
-  ##########################################################
 
   @impl true
   def init(:ok) do
@@ -92,18 +92,19 @@ defmodule Worker.Indexer do
     {:noreply, state}
   end
 
-  ##########################################################
-
+  
   defp start_reindex_processes(projects) do
     for project <- projects, into: %{} do
       task = Task.Supervisor.async_nolink(
         Worker.IndexingSupervisor, Worker.Indexer, :reindex, [project]) 
-      {
-        project,
-        task.ref
-      }
+        {
+          project,
+          task.ref
+        }
     end
   end
+    
+  ##########################################################
 
   def reindex(project) do
     configuration = ProjectConfigLoader.get(project)
