@@ -88,7 +88,7 @@ defmodule Worker.Indexer do
   end
   def handle_info(msg, state) do
     # TODO handle DOWN
-    IO.puts "handle_info #{inspect msg} : #{inspect state}"
+    # IO.puts "handle_info #{inspect msg} : #{inspect state}"
     {:noreply, state}
   end
 
