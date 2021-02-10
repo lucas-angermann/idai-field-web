@@ -1,7 +1,4 @@
 defmodule Api.Router do
-# todo move this artifact to the top leve (let it be just 'Router')
-
-
   use Plug.Router
 
   plug :match
@@ -18,7 +15,7 @@ defmodule Api.Router do
   forward("/api/images", to: Api.Images.Router)
   forward("/api/auth", to: Api.Auth.Router)
   forward("/api/statistics", to: Api.Statistics.Router)
-  forward("/api/worker", to: Worker.Router)
+  forward("/api/worker", to: Api.Worker.Router)
 
   match _ do
     send_resp(conn, 404, "Requested page not found!")

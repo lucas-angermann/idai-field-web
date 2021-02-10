@@ -1,4 +1,4 @@
-defmodule Worker.Router do
+defmodule Api.Worker.Router do
   require Logger
   use Plug.Router
   import RouterUtils, only: [send_json: 2]
