@@ -68,6 +68,7 @@ defmodule Worker.Server do
       nil -> 
         Logger.error "Something went wrong. Could not finish reindexing"
         Logger.error "Could not find process handle for reference '#{inspect ref}'"
+        {:noreply, refs}
     end
   end
   def handle_info(msg, refs) do
