@@ -20,7 +20,7 @@ defmodule Worker.Server do
   end
 
   @impl true
-  def init(:ok), do: {:ok, %{}}
+  def init(:ok), do: {:ok, _refs = %{}} # refs of running indexing processes with project names as keys
 
   @impl true
   def handle_call({:index, projects}, _from, refs) do
