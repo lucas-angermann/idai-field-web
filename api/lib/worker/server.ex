@@ -21,11 +21,11 @@ defmodule Worker.Server do
 
   @impl true
   def init(:ok) do
-    {:ok, %{ refs: %{} }}
+    {:ok, %{}}
   end
 
   @impl true
-  def handle_call({:index, projects}, _from, state = %{ refs: refs }) do
+  def handle_call({:index, projects}, _from, refs) do
     
     conflicts = MapSet.intersection(
       MapSet.new(projects), 
@@ -39,34 +39,28 @@ defmodule Worker.Server do
           :rejected, "Other indexing processes still running. " 
           <> "Conflicts: #{Enum.join(Enum.map(conflicts, fn conflict -> "'" <> conflict <> "'" end), ", ")}"
         },
-        state
+        refs
       }
     else
       new_refs = start_reindex_processes projects
       { 
         :reply,
         {:ok, "Start indexing #{Enum.join(projects, ", ")}"},
-        %{ refs: Map.merge(refs, new_refs) }
+        Map.merge(refs, new_refs)
       }    
     end
   end
 
   @impl true
-  def handle_info({_, {:finished_reindex_project, project}}, %{refs: refs}) do
-    state = %{ 
-      refs: Map.delete(refs, project)
-    }
-    {:noreply, state}
+  def handle_info({_, {:finished_reindex_project, project}}, refs) do
+    {:noreply, Map.delete(refs, project)}
   end
-  def handle_info({:DOWN, _ref, :process, _pid, :normal}, state), do: {:noreply, state}
-  def handle_info({:DOWN, ref, :process, _pid, _error}, %{ refs: refs }) do
+  def handle_info({:DOWN, _ref, :process, _pid, :normal}, refs), do: {:noreply, refs}
+  def handle_info({:DOWN, ref, :process, _pid, _error}, refs) do
     # TODO maybe prevent error from being logged automatically. Instead log _error here.
     {project, _ref} = Enum.find(Map.to_list(refs), fn {_,v} -> v == ref end) # TODO Handle not found
     Logger.error "Something went wrong. Could not finish reindexing '#{project}'"
-    state = %{ 
-      refs: Map.delete(refs, project)
-    }
-    {:noreply, state}
+    {:noreply, Map.delete(refs, project)}
   end
   def handle_info(msg, state) do
     Logger.error "Something went wrong #{msg}"
