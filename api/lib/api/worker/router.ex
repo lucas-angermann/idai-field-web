@@ -4,6 +4,7 @@ defmodule Api.Worker.Router do
   import RouterUtils, only: [send_json: 2]
   alias Worker.IndexAdapter
   alias Worker.Indexer
+  alias Core.Config
 
   plug :match
   plug Api.Auth.AdminRightsPlug
@@ -30,13 +31,13 @@ defmodule Api.Worker.Router do
   # 2. Reindexes all projects.
   post "/reindex" do
     IndexAdapter.update_mapping_template()
-    {status, msg} = Indexer.trigger()
+    {status, msg} = Indexer.trigger(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg })
   end
 
   # 1. Reindexes a single project.
   post "/reindex/:project" do
-    {status, msg} = Indexer.trigger(project)
+    {status, msg} = Indexer.trigger([project])
     send_json(conn, %{ status: status, message: msg })
   end
 

@@ -1,7 +1,4 @@
 defmodule Worker.Indexer do
-  @moduledoc """
-  Coordinates calls to indexing processes.
-  """
   use GenServer
   require Logger
   alias Worker.IndexAdapter
@@ -9,21 +6,18 @@ defmodule Worker.Indexer do
   alias Worker.Services.IdaiFieldDb
   alias Worker.Enricher.Enricher
   alias Core.ProjectConfigLoader
-  alias Core.Config
+
 
   @doc """
-  Triggers the indexing of all configured projects.
-  Returns :ok, or :rejected, in case it is already running.
+  Triggers the indexing of projects.
+  Returns :ok, or :rejected, in case indexing for any of the given projects is already running.
 
   During reindexing, for every project (identified by its alias) a new index gets created.
   When reindexing for the project is finished, the alias will change to point to the new index 
   while the old index gets removed.
   """
-  def trigger do
-    GenServer.call(__MODULE__, {:index, :all})
-  end
-  def trigger(project) do
-    GenServer.call(__MODULE__, {:index, project})
+  def trigger(projects) do
+    GenServer.call(__MODULE__, {:index, projects})
   end
 
   ##########################################################
@@ -35,58 +29,44 @@ defmodule Worker.Indexer do
 
   @impl true
   def init(:ok) do
-    {:ok, %{ projects: [], refs: %{} }}
+    {:ok, %{ refs: %{} }}
   end
 
   @impl true
-  def handle_call({:index, project}, _from, state = 
-  %{ projects: currently_reindexing_projects, refs: refs }) do
+  def handle_call({:index, projects}, _from, state = %{ refs: refs }) do
     
-    if project == :all do
-      if not Enum.empty? currently_reindexing_projects do
+    conflicts = MapSet.intersection(
+      MapSet.new(projects), 
+      MapSet.new(Map.keys(refs)))
+      |> MapSet.to_list
+
+    if Enum.count(conflicts) > 0 do
+      {
+        :reply,
         {
-          :reply,
-          {:rejected, "Other indexing processes still running"},
-          state
-        }
-      else
-        projects = Config.get :projects
-        refs = start_reindex_processes projects
-        { 
-          :reply,
-          {:ok, "Start indexing #{Enum.join(projects)}"},
-          %{ projects: projects, refs: refs }
-        }    
-      end
+          :rejected, "Other indexing processes still running. " 
+          <> "Conflicts: #{Enum.join(Enum.map(conflicts, fn conflict -> "'" <> conflict <> "'" end), ", ")}"
+        },
+        state
+      }
     else
-      if project in currently_reindexing_projects do
-        {
-          :reply,
-          {:rejected, "Another indexing process for #{project} still running"},
-          state
-        }
-      else
-        refs = Map.merge refs, start_reindex_processes [project]
-        projects = [project|currently_reindexing_projects]
-        { 
-          :reply,
-          {:ok, "Start indexing #{project}"},
-          %{ projects: projects, refs: refs }
-        }    
-      end
+      new_refs = start_reindex_processes projects
+      { 
+        :reply,
+        {:ok, "Start indexing #{Enum.join(projects, ", ")}"},
+        %{ refs: Map.merge(refs, new_refs) }
+      }    
     end
   end
 
   @impl true
-  def handle_info({_, {:finished_reindex_project, project}}, %{projects: projects, refs: refs}) do
-
+  def handle_info({_, {:finished_reindex_project, project}}, %{refs: refs}) do
     state = %{ 
-      projects: Enum.filter(projects, fn p -> p != project end),
       refs: Map.delete(refs, project)
     }
     {:noreply, state}
   end
-  def handle_info(msg, state) do
+  def handle_info(_msg, state) do
     # TODO handle DOWN
     # IO.puts "handle_info #{inspect msg} : #{inspect state}"
     {:noreply, state}
