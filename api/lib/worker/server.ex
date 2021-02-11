@@ -32,7 +32,7 @@ defmodule Worker.Server do
 
     if Enum.count(conflicts) > 0 do
       conflicts = conflicts
-        |> Enum.map(fn conflict -> "'" <> conflict <> "'" end)
+        |> Enum.map(&("'" <> &1 <> "'"))
         |> Enum.join(", ")
       {
         :reply,
