@@ -65,9 +65,9 @@ defmodule Worker.Server do
         Logger.error "Could not find process handle for reference '#{inspect ref}'"
     end
   end
-  def handle_info(msg, state) do
+  def handle_info(msg, refs) do
     Logger.error "Something went wrong #{msg}"
-    {:noreply, state}
+    {:noreply, refs}
   end
   
   defp start_reindex_processes(projects) do
