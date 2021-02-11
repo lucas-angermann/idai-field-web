@@ -71,7 +71,7 @@ defmodule Worker.Server do
     end
   end
   def handle_info(msg, refs) do
-    Logger.error "Something went wrong #{msg}"
+    Logger.error "Something went wrong #{inspect msg}"
     {:noreply, refs}
   end
   
