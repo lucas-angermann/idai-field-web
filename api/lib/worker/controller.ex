@@ -1,6 +1,8 @@
 defmodule Worker.Controller do
   use GenServer
   require Logger
+  alias Worker.IndexingSupervisor
+  alias Worker.Indexer
 
   @doc """
   Triggers the indexing of projects.
@@ -69,7 +71,7 @@ defmodule Worker.Controller do
   defp start_reindex_processes(projects) do
     for project <- projects, into: %{} do
       task = Task.Supervisor.async_nolink(
-        Worker.IndexingSupervisor, Worker.Indexer, :reindex, [project]) 
+        IndexingSupervisor, Indexer, :reindex, [project]) 
         {
           project,
           task.ref
