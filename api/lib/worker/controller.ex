@@ -65,7 +65,6 @@ defmodule Worker.Controller do
     # IO.puts "handle_info #{inspect msg} : #{inspect state}"
     {:noreply, state}
   end
-
   
   defp start_reindex_processes(projects) do
     for project <- projects, into: %{} do
