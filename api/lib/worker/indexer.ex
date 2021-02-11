@@ -1,6 +1,6 @@
 defmodule Worker.Indexer do
   @moduledoc """
-  This coordinates calls to indexing processes.
+  Coordinates calls to indexing processes.
   """
   use GenServer
   require Logger
@@ -15,7 +15,7 @@ defmodule Worker.Indexer do
   Triggers the indexing of all configured projects.
   Returns :ok, or :rejected, in case it is already running.
 
-  While reindexing, every project, identified by its alias, a new index gets created.
+  During reindexing, for every project (identified by its alias) a new index gets created.
   When reindexing for the project is finished, the alias will change to point to the new index 
   while the old index gets removed.
   """
