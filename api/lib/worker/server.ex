@@ -20,9 +20,7 @@ defmodule Worker.Server do
   end
 
   @impl true
-  def init(:ok) do
-    {:ok, %{}}
-  end
+  def init(:ok), do: {:ok, %{}}
 
   @impl true
   def handle_call({:index, projects}, _from, refs) do
