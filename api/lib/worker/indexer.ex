@@ -6,6 +6,11 @@ defmodule Worker.Indexer do
   alias Worker.Enricher.Enricher
   alias Core.ProjectConfigLoader
 
+  @doc """
+  For every project (identified by its alias) a new index gets created.
+  When reindexing for the project is finished, the alias will change to point to the new index 
+  while the old index gets removed.
+  """
   def reindex(project) do
     configuration = ProjectConfigLoader.get(project)
 

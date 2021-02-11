@@ -7,10 +7,6 @@ defmodule Worker.Server do
   @doc """
   Triggers the indexing of projects.
   Returns :ok, or :rejected, in case indexing for any of the given projects is already running.
-
-  During reindexing, for every project (identified by its alias) a new index gets created.
-  When reindexing for the project is finished, the alias will change to point to the new index 
-  while the old index gets removed.
   """
   def index_projects(projects) do
     GenServer.call(__MODULE__, {:index, projects})
