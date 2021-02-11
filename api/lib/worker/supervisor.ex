@@ -7,6 +7,12 @@ defmodule Worker.Supervisor do
 
   @impl true
   def init(:ok) do
+    # Our configuration works such that
+    # a failure of any of the indexing processes
+    # gets handled in Worker.Server.handle_info.
+    # A failure of Worker.Server leads to a shutdown
+    # of all the running indexing processes. After which
+    # a new Worker.Server gets spawned.
     children = [
       {Task.Supervisor, name: Worker.IndexingSupervisor},
       {Worker.Server, name: Worker.Server}
