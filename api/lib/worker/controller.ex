@@ -17,7 +17,7 @@ defmodule Worker.Controller do
   ##########################################################
 
   def start_link(opts) do
-    Logger.info "Start #{__MODULE__}"
+    Logger.debug "Start #{__MODULE__}"
     GenServer.start_link(__MODULE__, :ok, opts)
   end
 
