@@ -31,11 +31,14 @@ defmodule Worker.Server do
       |> MapSet.to_list
 
     if Enum.count(conflicts) > 0 do
+      conflicts = conflicts
+        |> Enum.map(fn conflict -> "'" <> conflict <> "'" end)
+        |> Enum.join(", ")
       {
         :reply,
         {
           :rejected, "Other indexing processes still running. " 
-          <> "Conflicts: #{Enum.join(Enum.map(conflicts, fn conflict -> "'" <> conflict <> "'" end), ", ")}"
+          <> "Conflicts: #{conflicts}"
         },
         refs
       }
