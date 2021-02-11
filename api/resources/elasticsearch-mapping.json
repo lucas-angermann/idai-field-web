@@ -44,7 +44,20 @@
                     "childrenCount": {
                         "type": "integer",
                         "store": true
+                    },
+                    "featureVectors":{
+                        "properties":{
+                            "resnet": {
+                                "type": "dense_vector",
+                                "dims": 2048
+                            },
+                            "phaseFourier": {
+                                "type": "dense_vector",
+                                "dims": 164
+                            }
+                        }
                     }
+
                 }
             },
             "project": {
@@ -103,15 +116,6 @@
                     "mapping": {
                         "type": "keyword",
                         "store": true
-                    }
-                }
-            },
-            {
-                "featureVectors": {
-                    "path_match": "resource.featureVectors.*",
-                    "mapping": {
-                        "type": "dense_vector",
-                        "dims": 2048
                     }
                 }
             }
