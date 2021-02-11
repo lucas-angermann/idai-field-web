@@ -37,8 +37,8 @@ defmodule Worker.Server do
       {
         :reply,
         {
-          :rejected, "Other indexing processes still running. " 
-          <> "Conflicts: #{conflicts}"
+          :rejected, 
+          "Other indexing processes still running. Conflicts: #{conflicts}"
         },
         refs
       }
@@ -46,7 +46,10 @@ defmodule Worker.Server do
       new_refs = start_reindex_processes projects
       { 
         :reply,
-        {:ok, "Start indexing #{Enum.join(projects, ", ")}"},
+        {
+          :ok, 
+          "Start indexing #{Enum.join(projects, ", ")}"
+        },
         Map.merge(refs, new_refs)
       }    
     end
