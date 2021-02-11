@@ -3,7 +3,6 @@ defmodule Api.Worker.Router do
   use Plug.Router
   import RouterUtils, only: [send_json: 2]
   alias Worker.IndexAdapter
-  alias Worker.Indexer
   alias Core.Config
 
   plug :match
@@ -12,7 +11,7 @@ defmodule Api.Worker.Router do
 
   post "/publish/:project" do
     Task.async fn ->
-      pid = Worker.Indexer.trigger(project)
+      pid = Worker.Controller.index_projects([project])
       Process.monitor pid
       receive do
         _ -> Worker.Images.ConversionController.convert_images_for_project(project)
@@ -31,13 +30,13 @@ defmodule Api.Worker.Router do
   # 2. Reindexes all projects.
   post "/reindex" do
     IndexAdapter.update_mapping_template()
-    {status, msg} = Indexer.trigger(Config.get(:projects))
+    {status, msg} = Worker.Controller.index_projects(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg })
   end
 
   # 1. Reindexes a single project.
   post "/reindex/:project" do
-    {status, msg} = Indexer.trigger([project])
+    {status, msg} = Worker.Controller.index_projects([project])
     send_json(conn, %{ status: status, message: msg })
   end
 
