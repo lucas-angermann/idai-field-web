@@ -57,23 +57,35 @@ defmodule Worker.Server do
 
   @impl true
   def handle_info({_, {:finished_reindex_project, project}}, refs) do
-    {:noreply, Map.delete(refs, project)}
+    {
+      :noreply, 
+      Map.delete(refs, project)
+    }
   end
   def handle_info({:DOWN, _ref, :process, _pid, :normal}, refs), do: {:noreply, refs}
   def handle_info({:DOWN, ref, :process, _pid, _error}, refs) do
     case Enum.find(Map.to_list(refs), fn {_,r} -> r == ref end) do
       {project, _ref} -> 
         Logger.error "Something went wrong. Could not finish reindexing '#{project}'"
-        {:noreply, Map.delete(refs, project)}
+        {
+          :noreply, 
+          Map.delete(refs, project)
+        }
       nil -> 
         Logger.error "Something went wrong. Could not finish reindexing"
         Logger.error "Could not find process handle for reference '#{inspect ref}'"
-        {:noreply, refs}
+        {
+          :noreply, 
+          refs
+        }
     end
   end
   def handle_info(msg, refs) do
     Logger.error "Something went wrong #{inspect msg}"
-    {:noreply, refs}
+    {
+      :noreply, 
+      refs
+    }
   end
   
   defp start_reindex_processes(projects) do
