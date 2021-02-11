@@ -62,9 +62,18 @@ defmodule Worker.Controller do
     }
     {:noreply, state}
   end
-  def handle_info(_msg, state) do
-    # TODO handle DOWN
-    # IO.puts "handle_info #{inspect msg} : #{inspect state}"
+  def handle_info({:DOWN, _ref, :process, _pid, :normal}, state), do: {:noreply, state}
+  def handle_info({:DOWN, ref, :process, _pid, _error}, %{ refs: refs }) do
+    # TODO maybe prevent error from being logged automatically. Instead log _error here.
+    {project, _ref} = Enum.find(Map.to_list(refs), fn {_,v} -> v == ref end) # TODO Handle not found
+    Logger.error "Something went wrong. Could not finish reindexing '#{project}'"
+    state = %{ 
+      refs: Map.delete(refs, project)
+    }
+    {:noreply, state}
+  end
+  def handle_info(msg, state) do
+    Logger.error "Something went wrong #{msg}"
     {:noreply, state}
   end
   

@@ -9,8 +9,10 @@ defmodule Worker.Indexer do
   def reindex(project) do
     configuration = ProjectConfigLoader.get(project)
 
-    #raise "raised"
-    #:timer.sleep(2000)
+    # if (project == "wes") do
+      # :timer.sleep(1000)
+      # raise "raised"
+    # end
     #IO.puts "slept"
 
     {new_index, old_index} = IndexAdapter.create_new_index_and_set_alias project
