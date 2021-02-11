@@ -9,7 +9,7 @@ defmodule Worker.Supervisor do
   def init(:ok) do
     children = [
       {Task.Supervisor, name: Worker.IndexingSupervisor},
-      {Worker.Controller, name: Worker.Controller}
+      {Worker.Server, name: Worker.Server}
     ]
     opts = [strategy: :one_for_all]
     Supervisor.init(children, opts)

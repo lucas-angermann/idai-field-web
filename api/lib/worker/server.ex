@@ -1,4 +1,4 @@
-defmodule Worker.Controller do
+defmodule Worker.Server do
   use GenServer
   require Logger
   alias Worker.IndexingSupervisor
