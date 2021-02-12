@@ -59,7 +59,7 @@ defmodule Api.Documents.Query do
 
   def set_vector_query(query, nil), do: query
   def set_vector_query(query, %{ "model" => model, "query_vector" => query_vector }) do
-    field = "resource.featureVectors.#{model}"
+    field = "resource.relations.isDepictedIn.resource.featureVectors.#{model}"
     query = add_exists(query, [field])
     script = %{
       source: "1 / (1 + l2norm(params.query_vector, '#{field}'))",

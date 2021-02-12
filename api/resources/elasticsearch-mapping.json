@@ -118,6 +118,24 @@
                         "store": true
                     }
                 }
+            },
+            {
+                "relationsResNetFeatureVectors": {
+                    "path_match": "resource.relations.*.resource.featureVectors.resnet",
+                    "mapping": {
+                        "type": "dense_vector",
+                        "dims": 2048
+                    }
+                }
+            },
+            {
+                "relationsPhaseFourierFeatureVectors": {
+                    "path_match": "resource.relations.*.resource.featureVectors.phaseFourier",
+                    "mapping": {
+                        "type": "dense_vector",
+                        "dims": 164
+                    }
+                }
             }
         ]
     }

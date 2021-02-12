@@ -80,8 +80,9 @@ defmodule Api.Documents.Router do
     doc = Index.get(id)
     vector_query = %{
       "model" => model,
-      "query_vector" => get_in(doc, [:resource, "featureVectors", model])
+      "query_vector" => get_in(doc, [:resource, :relations ,:isDepictedIn, Access.at(0) ,:resource, :featureVectors, model])
     }
+    |> IO.inspect
     send_json(conn, Index.search(
       conn.params["q"] || "*",
       conn.params["size"] || 10,
