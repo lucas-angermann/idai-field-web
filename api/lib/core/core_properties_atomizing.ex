@@ -1,5 +1,5 @@
-defmodule Core.CorePropertiesAtomizing do
-  import Core.Utils
+defmodule Api.Core.CorePropertiesAtomizing do
+  import Api.Core.Utils
 
   @core_properties [:groups, :relations, :shortDescription, :id, :type, :category, :identifier, :geometry, :gazId,
     :georeference, :parentId, :grandparentId, :featureVectors]

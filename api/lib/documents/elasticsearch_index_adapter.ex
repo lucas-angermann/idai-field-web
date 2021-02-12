@@ -2,7 +2,7 @@ defmodule Api.Documents.ElasticsearchIndexAdapter do
   require Logger
 
   defp get_base_url do
-    "#{Core.Config.get(:elasticsearch_url)}/#{Core.Config.get(:elasticsearch_index_prefix)}_*"
+    "#{Api.Core.Config.get(:elasticsearch_url)}/#{Api.Core.Config.get(:elasticsearch_index_prefix)}_*"
   end
 
   def post_query query do

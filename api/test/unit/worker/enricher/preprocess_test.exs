@@ -1,6 +1,6 @@
-defmodule Worker.Enricher.PreprocessTest do
+defmodule Api.Worker.Enricher.PreprocessTest do
   use ExUnit.Case, async: true
-  alias Worker.Enricher.Preprocess
+  alias Api.Worker.Enricher.Preprocess
 
   test "add sort field" do
 

@@ -1,4 +1,4 @@
-defmodule IdaiConsoleLogger do
+defmodule Api.IdaiConsoleLogger do
   require Date
 
   def format(level, message, datetime, metadata) do

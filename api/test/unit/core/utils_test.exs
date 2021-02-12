@@ -1,6 +1,6 @@
-defmodule Core.UtilsTest do
+defmodule Api.Core.UtilsTest do
   use ExUnit.Case
-  import Core.Utils
+  import Api.Core.Utils
   
   test "base case" do
     assert atomize(%{ "a" => "b" }) == %{ a: "b" }

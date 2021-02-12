@@ -1,6 +1,6 @@
 defmodule Api.Statistics.ValuelistsCollector do
-  alias Core.ProjectConfigLoader
-  alias Core.Config
+  alias Api.Core.ProjectConfigLoader
+  alias Api.Core.Config
   alias Api.Documents.Query
   alias Api.Documents.Mapping
   require Logger
@@ -132,7 +132,7 @@ defmodule Api.Statistics.ValuelistsCollector do
     query
     |> Query.build
     |> index_adapter().post_query
-    |> Core.Utils.atomize_up_to(:_source)
+    |> Api.Core.Utils.atomize_up_to(:_source)
   end
 
   defp index_adapter() do

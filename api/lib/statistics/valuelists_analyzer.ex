@@ -1,5 +1,5 @@
 defmodule Api.Statistics.ValuelistsAnalyzer do
-  alias Core.Config
+  alias Api.Core.Config
 
   def find_overlapping_valuelists(valuelists, used_values_only) do
     Enum.reduce(Config.get(:projects), %{}, fn project_name, result ->

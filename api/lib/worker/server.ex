@@ -1,8 +1,8 @@
-defmodule Worker.Server do
+defmodule Api.Worker.Server do
   use GenServer
   require Logger
-  alias Worker.IndexingSupervisor
-  alias Worker.Indexer
+  alias Api.Worker.IndexingSupervisor
+  alias Api.Worker.Indexer
 
   @doc """
   Triggers the indexing of projects.

@@ -1,7 +1,7 @@
 import Config
 
 config :logger, :console,
-       format: {IdaiConsoleLogger, :format},
+       format: {Api.IdaiConsoleLogger, :format},
        metadata: [:mfa]
 
 config :tesla, :adapter, Tesla.Adapter.Ibrowse

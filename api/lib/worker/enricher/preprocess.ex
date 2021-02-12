@@ -1,4 +1,4 @@
-defmodule Worker.Enricher.Preprocess do
+defmodule Api.Worker.Enricher.Preprocess do
 
   def add_sort_field(change = %{ doc: %{ resource: %{ identifier: identifier }}}) do
     put_in(change, [:doc, :sort], add_leading_zeroes(identifier))
@@ -13,5 +13,4 @@ defmodule Worker.Enricher.Preprocess do
   defp add_leading_zeroes_to_token(token) do
     if String.match?(token, ~r/\d+/), do: String.pad_leading(token, 9, "0"), else: token
   end
-
 end

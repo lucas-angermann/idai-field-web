@@ -1,4 +1,4 @@
-defmodule Core.Tree do
+defmodule Api.Core.Tree do
 
   def find_in_tree_list(predicate, tree_list) do
     result = Enum.find(tree_list, fn %{ item: item } ->
@@ -34,5 +34,4 @@ defmodule Core.Tree do
       fn %{ item: item, trees: trees } -> %{ item: item, trees: filter_tree_list(trees, filter_function) } end
     ) |> Enum.filter(fn %{ item: item, trees: trees } -> filter_function.(item) || length(trees) > 0 end)
   end
-
 end

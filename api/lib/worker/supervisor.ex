@@ -1,4 +1,4 @@
-defmodule Worker.Supervisor do
+defmodule Api.Worker.Supervisor do
   use Supervisor
 
   def start_link(opts) do
@@ -14,8 +14,8 @@ defmodule Worker.Supervisor do
     # of all the running indexing processes. After which
     # a new Worker.Server gets spawned.
     children = [
-      {Task.Supervisor, name: Worker.IndexingSupervisor},
-      {Worker.Server, name: Worker.Server}
+      {Task.Supervisor, name: Api.Worker.IndexingSupervisor},
+      {Api.Worker.Server, name: Api.Worker.Server}
     ]
     opts = [strategy: :one_for_all]
     Supervisor.init(children, opts)

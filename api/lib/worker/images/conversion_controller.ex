@@ -1,8 +1,8 @@
-defmodule Worker.Images.ConversionController do
+defmodule Api.Worker.Images.ConversionController do
 
   require Logger
-  alias Core.Config
-  import Worker.Images.ImageMagickImageConverter
+  alias Api.Core.Config
+  import Api.Worker.Images.ImageMagickImageConverter
 
   defp log_start_project(project) do
     Logger.info "Start image conversion for '#{project}'"

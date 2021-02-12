@@ -1,7 +1,7 @@
 defmodule Api.Images.Router do
   require Logger
   use Plug.Router
-  import RouterUtils
+  import Api.RouterUtils
   alias Plug.Conn
 
   plug :match
@@ -14,7 +14,7 @@ defmodule Api.Images.Router do
     with :ok <- access_for_project_allowed(readable_projects, project) do
       handle_call conn, project, id
     else
-      :unauthorized_access -> RouterUtils.send_unauthorized conn
+      :unauthorized_access -> send_unauthorized conn
     end
   end
 

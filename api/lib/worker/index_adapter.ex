@@ -1,6 +1,6 @@
-defmodule Worker.IndexAdapter do
+defmodule Api.Worker.IndexAdapter do
   require Logger
-  alias Core.Config
+  alias Api.Core.Config
 
   defguard is_ok(status_code) when status_code >= 200 and status_code < 300
 

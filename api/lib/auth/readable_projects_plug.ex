@@ -1,6 +1,6 @@
 defmodule Api.Auth.ReadableProjectsPlug do
   import Plug.Conn
-  import RouterUtils, only: [get_user: 1]
+  import Api.RouterUtils, only: [get_user: 1]
 
   def init(options), do: options
 

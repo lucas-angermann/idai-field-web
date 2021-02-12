@@ -1,4 +1,4 @@
-defmodule Worker.Mapper do
+defmodule Api.Worker.Mapper do
 
   def process, do: fn change -> process(change) end
   def process(change = %{ doc: %{ resource: %{ type: "Project" }}}) do

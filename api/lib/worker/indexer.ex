@@ -1,10 +1,10 @@
-defmodule Worker.Indexer do
+defmodule Api.Worker.Indexer do
   require Logger
-  alias Worker.IndexAdapter
-  alias Worker.Mapper
-  alias Worker.Services.IdaiFieldDb
-  alias Worker.Enricher.Enricher
-  alias Core.ProjectConfigLoader
+  alias Api.Worker.IndexAdapter
+  alias Api.Worker.Mapper
+  alias Api.Worker.Services.IdaiFieldDb
+  alias Api.Worker.Enricher.Enricher
+  alias Api.Core.ProjectConfigLoader
 
   @doc """
   For every project (identified by its alias) a new index gets created.

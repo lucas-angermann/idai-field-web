@@ -1,10 +1,10 @@
 defmodule Api.Worker.Router do
   require Logger
   use Plug.Router
-  import RouterUtils, only: [send_json: 2]
-  alias Worker.IndexAdapter
-  alias Worker.Server
-  alias Core.Config
+  import Api.RouterUtils, only: [send_json: 2]
+  alias Api.Worker.IndexAdapter
+  alias Api.Worker.Server
+  alias Api.Core.Config
 
   plug :match
   plug Api.Auth.AdminRightsPlug
@@ -15,8 +15,8 @@ defmodule Api.Worker.Router do
       pid = Server.index_projects([project])
       Process.monitor pid
       receive do
-        _ -> Worker.Images.ConversionController.convert_images_for_project(project)
-             Worker.Images.TilesController.make_tiles([project])
+        _ -> Api.Worker.Images.ConversionController.convert_images_for_project(project)
+             Api.Worker.Images.TilesController.make_tiles([project])
       end
     end
     send_json(conn, %{ status: "ok", message: "Start publishing '#{project}'"})
@@ -43,23 +43,23 @@ defmodule Api.Worker.Router do
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling" do
-    Task.async fn -> Worker.Images.TilesController.make_tiles() end
+    Task.async fn -> Api.Worker.Images.TilesController.make_tiles() end
     send_json(conn, %{ status: "ok", message: "Tile generation started"})
   end
 
   # Prerequisite: Run reindex, run conversion
   post "/tiling/:project" do
-    Task.async fn -> Worker.Images.TilesController.make_tiles([project]) end
+    Task.async fn -> Api.Worker.Images.TilesController.make_tiles([project]) end
     send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
   end
 
   post "/conversion" do
-    Task.async fn -> Worker.Images.ConversionController.convert_images_for_all_projects() end
+    Task.async fn -> Api.Worker.Images.ConversionController.convert_images_for_all_projects() end
     send_json(conn, %{ status: "ok", message: "Started to convert all images of all projects"})
   end
 
   post "/conversion/:project" do
-    Task.async fn -> Worker.Images.ConversionController.convert_images_for_project(project) end
+    Task.async fn -> Api.Worker.Images.ConversionController.convert_images_for_project(project) end
     send_json(conn, %{ status: "ok", message: "Started to convert all images of '#{project}'"})
   end
 end

@@ -1,7 +1,7 @@
 defmodule Api.Documents.Mapping do
   alias Api.Core.Filters
-  alias Core.Tree
-  alias Core.Resource
+  alias Api.Core.Tree
+  alias Api.Core.Resource
 
   def map_single elasticsearch_result do
     elasticsearch_result
@@ -80,7 +80,7 @@ defmodule Api.Documents.Mapping do
 
   defp map_document(%{ _source: document }), do: map_document(document)
   defp map_document(document) do
-    Core.CorePropertiesAtomizing.format_document(document)
+    Api.Core.CorePropertiesAtomizing.format_document(document)
     |> add_parent_id
     |> add_grandparent_id
   end

@@ -1,7 +1,7 @@
 defmodule Api.Auth.AdminRightsPlug do
   import Plug.Conn
   import Api.Auth.Helpers
-  import RouterUtils, only: [send_unauthorized: 1, get_user: 1]
+  import Api.RouterUtils, only: [send_unauthorized: 1, get_user: 1]
 
   def init(options), do: options
 

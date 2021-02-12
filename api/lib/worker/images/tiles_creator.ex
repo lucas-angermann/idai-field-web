@@ -1,7 +1,7 @@
-defmodule Worker.Images.TilesCreator do
+defmodule Api.Worker.Images.TilesCreator do
 
   require Logger
-  alias Worker.Images.ImageMagickImageConverter
+  alias Api.Worker.Images.ImageMagickImageConverter
 
   @tile_size 256
 

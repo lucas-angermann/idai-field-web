@@ -3,8 +3,8 @@ defmodule Api.Documents.Router do
   alias Api.Documents.Index
   alias Api.Documents.Predecessors
   alias Api.Documents.DescendantsImages
-  import RouterUtils
-  import Core.Layout
+  import Api.RouterUtils
+  import Api.Core.Layout
 
   plug :match
   plug Api.Auth.ReadableProjectsPlug
@@ -39,7 +39,7 @@ defmodule Api.Documents.Router do
   get "/:id" do
     with doc = %{ project: project, resource: resource } <- Index.get(id),
          :ok <- access_for_project_allowed(conn.private[:readable_projects], project),
-         config <- Core.ProjectConfigLoader.get(project),
+         config <- Api.Core.ProjectConfigLoader.get(project),
          layouted_doc <- put_in(doc.resource, to_layouted_resource(config, resource))
     do
       send_json(conn, layouted_doc)

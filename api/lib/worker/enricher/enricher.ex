@@ -1,9 +1,9 @@
-defmodule Worker.Enricher.Enricher do
-  alias Worker.Enricher.Preprocess
-  alias Worker.Enricher.Gazetteer
-  alias Worker.Enricher.Relations
-  alias Worker.Enricher.Labels
-  alias Worker.Enricher.Children
+defmodule Api.Worker.Enricher.Enricher do
+  alias Api.Worker.Enricher.Preprocess
+  alias Api.Worker.Enricher.Gazetteer
+  alias Api.Worker.Enricher.Relations
+  alias Api.Worker.Enricher.Labels
+  alias Api.Worker.Enricher.Children
   require Logger
 
   def process(changes, project, get_for_id, configuration) do
@@ -26,7 +26,8 @@ defmodule Worker.Enricher.Enricher do
       |> Labels.add_labels(configuration)
       |> put_in([:doc, :project], project)
     rescue
-      error -> Logger.error "Enrichment failed for resource #{change.doc.resource.id}: "
+      error ->
+        Logger.error "Enrichment failed for resource #{change.doc.resource.id}: "
                <> "#{ if Map.has_key?(error, :message) do error.message else inspect(error) end }"
       nil
     end

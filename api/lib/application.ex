@@ -10,19 +10,19 @@ defmodule Api.Application do
     children = [
       Api.Router,
       %{
-        id: Core.ProjectConfigLoader,
+        id: Api.Core.ProjectConfigLoader,
         start: {
-          Core.ProjectConfigLoader,
+          Api.Core.ProjectConfigLoader,
           :start_link,
           [
             {
               if Mix.env() == :test do "test/resources" else "resources/projects" end,
-              Core.Config.get(:projects)
+              Api.Core.Config.get(:projects)
             }
           ]
         }
       },
-      Worker.Supervisor
+      Api.Worker.Supervisor
     ]
     opts = [strategy: :one_for_one, name: Api.Supervisor]
     Supervisor.start_link(children, opts)

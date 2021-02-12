@@ -1,7 +1,7 @@
-defmodule Core.CategoryTreeListTest do
+defmodule Api.Core.CategoryTreeListTest do
   use ExUnit.Case
   use Plug.Test
-  alias Core.CategoryTreeList
+  alias Api.Core.CategoryTreeList
 
   test "find_by_name" do
     category_tree_list = [

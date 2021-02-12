@@ -1,7 +1,7 @@
 defmodule Api.Documents.MappingTest do
-  import Core.Utils
+  import Api.Core.Utils
   alias Api.Documents.Mapping
-  alias Core.ProjectConfigLoader
+  alias Api.Core.ProjectConfigLoader
   use ExUnit.Case
   
   setup_all do

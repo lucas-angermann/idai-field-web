@@ -1,7 +1,7 @@
-defmodule Worker.Enricher.RelationsTest do
+defmodule Api.Worker.Enricher.RelationsTest do
   use ExUnit.Case
   use Plug.Test
-  alias Worker.Enricher.Relations
+  alias Api.Worker.Enricher.Relations
 
   test "expand relations" do
     get =

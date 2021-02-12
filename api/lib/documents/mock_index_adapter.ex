@@ -21,7 +21,7 @@ defmodule Api.Documents.MockIndexAdapter do
 
   def post_query query do
 
-    decoded_and_atomized = Core.Utils.atomize(Poison.decode!(query))
+    decoded_and_atomized = Api.Core.Utils.atomize(Poison.decode!(query))
 
 
     hits = case decoded_and_atomized.query.script_score.query.bool.must.query_string.query do

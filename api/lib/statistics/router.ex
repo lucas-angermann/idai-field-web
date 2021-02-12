@@ -1,6 +1,6 @@
 defmodule Api.Statistics.Router do
   use Plug.Router
-  import RouterUtils
+  import Api.RouterUtils
   alias Api.Statistics.ValuelistsCollector
   alias Api.Statistics.ValuelistsAnalyzer
 

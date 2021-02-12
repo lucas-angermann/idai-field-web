@@ -3,7 +3,7 @@ defmodule Api.Documents.Index do
   alias Api.Documents.Mapping
   alias Api.Documents.Query
   alias Api.Documents.Filter
-  alias Core.ProjectConfigLoader
+  alias Api.Core.ProjectConfigLoader
 
   @max_geometries 10000
   @exists_geometries ["resource.geometry"]
@@ -69,7 +69,7 @@ defmodule Api.Documents.Index do
     query
     |> Query.build
     |> index_adapter().post_query
-    |> Core.Utils.atomize_up_to(:_source)
+    |> Api.Core.Utils.atomize_up_to(:_source)
   end
 
   defp index_adapter() do

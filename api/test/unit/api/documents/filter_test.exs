@@ -1,6 +1,6 @@
 defmodule Api.Documents.FilterTest do
   alias Api.Documents.Filter
-  alias Core.ProjectConfigLoader
+  alias Api.Core.ProjectConfigLoader
   use ExUnit.Case
 
   test "expand" do

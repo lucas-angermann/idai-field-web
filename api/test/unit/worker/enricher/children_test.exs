@@ -1,7 +1,7 @@
-defmodule Worker.Enricher.ChildrenTest do
+defmodule Api.Worker.Enricher.ChildrenTest do
   use ExUnit.Case
   use Plug.Test
-  alias Worker.Enricher.Children
+  alias Api.Worker.Enricher.Children
 
   test "add children count" do
 

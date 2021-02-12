@@ -1,5 +1,5 @@
 defmodule Api.Auth.Helpers do
-  alias Core.Config
+  alias Api.Core.Config
 
   def is_admin(user_name) do
     users = Config.get(Api.Auth, :users)

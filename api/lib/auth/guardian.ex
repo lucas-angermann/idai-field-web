@@ -3,7 +3,7 @@ defmodule Api.Auth.Guardian do
   alias Api.Auth.Helpers
 
   def subject_for_token(user_json, _claims) do
-    user = user_by(user_json, Core.Config.get(Api.Auth, :users))
+    user = user_by(user_json, Api.Core.Config.get(Api.Auth, :users))
     readable_projects = Helpers.get_readable_projects(user.name)
     rights = Poison.encode!(%{
       name: user.name,
@@ -13,7 +13,7 @@ defmodule Api.Auth.Guardian do
   end
 
   def resource_from_claims(claims) do
-    rights = Core.Utils.atomize(Poison.decode!(claims["sub"]))
+    rights = Api.Core.Utils.atomize(Poison.decode!(claims["sub"]))
     {:ok, rights}
   end
 

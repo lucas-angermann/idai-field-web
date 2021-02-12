@@ -1,5 +1,5 @@
 defmodule Api.Auth.Bearer do
-  alias Core.Config
+  alias Api.Core.Config
   alias Api.Auth.Guardian
   import Api.Auth.Helpers
 
