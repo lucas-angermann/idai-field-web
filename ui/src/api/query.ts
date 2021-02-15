@@ -1,3 +1,8 @@
+import * as tf from '@tensorflow/tfjs';
+import { RESNET_MODEL_PATH, SEG_MODEL_PATH } from '../idai_shapes/constants';
+import { predict } from './featurevectors/resnet';
+import { segmentImage } from './featurevectors/segmentation';
+
 export type Query = {
     q?: string,
     filters?: Filter[],
@@ -6,13 +11,21 @@ export type Query = {
     parent?: string,
     size?: number,
     from?: number,
-    sort?: string
+    sort?: string,
+    image_query?: ImageQuery
 };
 
 
 export type Filter = {
     field: string,
     value: string
+};
+
+
+export type ImageQuery = {
+    model: string
+    segment_image: boolean,
+    image: tf.Tensor3D,
 };
 
 
@@ -35,7 +48,7 @@ export type VectorQuery = {
 };
 
 
-export const buildBackendPostParams = (query: Query): BackendParams => {
+export const buildBackendPostParams = async (query: Query): Promise<BackendParams> => {
 
     const params: BackendParams = {
         q: query.q && query.q.length > 0 ? query.q : '*',
@@ -64,6 +77,7 @@ export const buildBackendPostParams = (query: Query): BackendParams => {
     if (query.size) params.size = query.size;
     if (query.from) params.from = query.from;
     if (query.sort) params.sort = [query.sort];
+    if (query.image_query) params.vector_query = await buildVectorQuery(query.image_query);
 
     return params;
 };
@@ -129,4 +143,25 @@ export const deleteFilterFromParams = (params: URLSearchParams, key: string, val
         newValues.forEach(v => newParams.append(key, v));
     } else newParams.delete(key);
     return newParams;
+};
+
+
+const buildVectorQuery = async (imageQuery: ImageQuery): Promise<VectorQuery> => {
+
+    let resnetInputImage: tf.Tensor3D;
+    await tf.ready();
+    if (imageQuery.segment_image) {
+        const model = await tf.loadLayersModel(SEG_MODEL_PATH);
+        resnetInputImage = await segmentImage(imageQuery.image, model);
+    }
+    else {
+        resnetInputImage = imageQuery.image;
+    }
+    const resnet = await tf.loadLayersModel(RESNET_MODEL_PATH);
+    const query_vector = await predict(resnetInputImage, resnet);
+    
+    return {
+        query_vector,
+        model: imageQuery.model
+    };
 };

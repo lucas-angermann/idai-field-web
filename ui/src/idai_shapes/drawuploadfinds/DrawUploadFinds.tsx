@@ -1,14 +1,17 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState, useContext } from 'react';
 import * as tf from '@tensorflow/tfjs';
-import { ResultDocument } from '../../api/result';
+import { Result, ResultDocument } from '../../api/result';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
-import { getFromVector } from '../../api/documents';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import './drawuploadfinds.css';
 import { useParams } from 'react-router-dom';
-import { RESNET_MODEL_PATH, SEG_MODEL_PATH } from '../constants';
+import { Query } from '../../api/query';
+import { search } from '../../api/documents';
+import { LoginContext } from '../../shared/login';
+
+const NUM_DOCUMENTS = 10;
 
 export default function DrawUploadFinds (): ReactElement {
 
@@ -16,29 +19,8 @@ export default function DrawUploadFinds (): ReactElement {
     const [dataUrl, setDataUrl] = useState<string>(null);
     const { isDrawing, data } = useParams<{ isDrawing: string ,data: string }>();
     const { t } = useTranslation();
-
-    const segmentedImage = useRef<tf.Tensor3D>(null);
+    const loginData = useContext(LoginContext);
     const image = useRef<HTMLImageElement>(null);
-
-    const predict = async (raw: tf.Tensor3D, model: tf.LayersModel) => {
-  
-        const resized = tf.image.resizeBilinear(raw, [512,512]);
-        const tensor = resized.expandDims(0);
-        const prediction = (model.predict(tensor) as tf.Tensor).reshape([-1]);
-
-        getFromVector(Array.from(prediction.dataSync())).then((res) => {
-             setDocuments(res.documents);
-        });
-    };
-
-    const segmentImage = async (model: tf.LayersModel) => {
-        const raw = tf.browser.fromPixels(image.current,3);
-        const resized = tf.image.resizeBilinear(raw, [512,512]);
-        const tensor = resized.expandDims(0);
-        const segmented = model.predict(tensor) as tf.Tensor;
-        segmentedImage.current = postProcessSegmentedImage(segmented);
-
-    };
 
     useEffect(() => {
 
@@ -47,19 +29,10 @@ export default function DrawUploadFinds (): ReactElement {
 
     useEffect(() => {
 
-        if( isDrawing === 'true'){
-            tf.ready()
-                .then(() => tf.loadLayersModel(RESNET_MODEL_PATH))
-                .then((model) => predict(tf.browser.fromPixels(image.current,3), model));
-        }
-        else {
-            tf.ready()
-                .then(() => tf.loadLayersModel(SEG_MODEL_PATH))
-                .then((model) => segmentImage(model))
-                .then(() => tf.loadLayersModel(RESNET_MODEL_PATH))
-                .then((model) => predict(segmentedImage.current, model));
-        }
-    }, [dataUrl, isDrawing]);
+        searchSimilarDocuments(loginData.token, image.current, isDrawing)
+            .then(result => setDocuments(result.documents));
+    }, [dataUrl, isDrawing, loginData.token]);
+    
     
     return (
         <div className="m-2">
@@ -81,8 +54,18 @@ const renderLoadingSpinner = (t: TFunction): ReactElement => (
     </div>
 );
 
-const postProcessSegmentedImage = (image: tf.Tensor): tf.Tensor3D => {
-    const classes = tf.argMax(image,3);
-    const scaled = classes.mul(tf.scalar(255)).reshape([512,512]);
-    return tf.stack([scaled,scaled,scaled],2) as tf.Tensor3D;
+const searchSimilarDocuments = async (token: string, image:HTMLImageElement, isDrawing: string): Promise<Result> => {
+
+    const query: Query = {
+        size: NUM_DOCUMENTS,
+        image_query:  {
+            model: 'resnet',
+            segment_image: isDrawing === 'false',
+            image: tf.browser.fromPixels(image,3)
+
+        },
+        filters: [{ field: 'resource.category.name' ,value: 'Type' },]
+    };
+
+    return search(query, token);
 };
