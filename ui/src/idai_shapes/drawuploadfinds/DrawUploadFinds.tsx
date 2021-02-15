@@ -6,11 +6,11 @@ import { getFromVector } from '../../api/documents';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
-import './drawfinds.css';
+import './drawuploadfinds.css';
 import { useParams } from 'react-router-dom';
 import { RESNET_MODEL_PATH, SEG_MODEL_PATH } from '../constants';
 
-export default function DrawFinds (): ReactElement {
+export default function DrawUploadFinds (): ReactElement {
 
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
     const [dataUrl, setDataUrl] = useState<string>(null);
