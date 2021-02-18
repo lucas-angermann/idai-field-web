@@ -12,6 +12,10 @@ defmodule Api.Worker.Server do
     GenServer.call(__MODULE__, {:index, projects})
   end
 
+  def stop_index_projects(projects) do
+    GenServer.call(__MODULE__, {:stop_reindex, projects})
+  end
+
   ##########################################################
 
   def start_link(opts) do
@@ -20,14 +24,15 @@ defmodule Api.Worker.Server do
   end
 
   @impl true
-  def init(:ok), do: {:ok, _refs = %{}} # refs of running indexing processes with project names as keys
+  def init(:ok), do: {:ok, _tasks = %{}} # tasks of running indexing processes with project names as keys
 
+  # TODO handle projects not found, with :reindex and :stop_reindex
   @impl true
-  def handle_call({:index, projects}, _from, refs) do
+  def handle_call({:index, projects}, _from, tasks) do
     
     conflicts = MapSet.intersection(
       MapSet.new(projects), 
-      MapSet.new(Map.keys(refs)))
+      MapSet.new(Map.keys(tasks)))
       |> MapSet.to_list
 
     if Enum.count(conflicts) > 0 do
@@ -40,51 +45,68 @@ defmodule Api.Worker.Server do
           :rejected, 
           "Other indexing processes still running. Conflicts: #{conflicts}"
         },
-        refs
+        tasks
       }
     else
-      new_refs = start_reindex_processes projects
+      new_tasks = start_reindex_processes projects
       { 
         :reply,
         {
           :ok, 
           "Start indexing #{Enum.join(projects, ", ")}"
         },
-        Map.merge(refs, new_refs)
+        Map.merge(tasks, new_tasks)
       }    
     end
   end
-
-  @impl true
-  def handle_info({_, {:finished_reindex_project, project}}, refs) do
+  def handle_call({:stop_reindex, projects}, _from, tasks) do
+    project = List.first projects
+    pid = tasks[project].pid
+    Process.exit(pid, :killed_by_user)
+    Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"
+    # TODO remove newly created, now stale, index
     {
-      :noreply, 
-      Map.delete(refs, project)
+      :reply,
+      {
+        :ok,
+        "Stopped reindexing #{project}"
+      },
+      Map.delete(tasks, project)
     }
   end
-  def handle_info({:DOWN, _ref, :process, _pid, :normal}, refs), do: {:noreply, refs}
-  def handle_info({:DOWN, ref, :process, _pid, _error}, refs) do
-    case Enum.find(Map.to_list(refs), fn {_,r} -> r == ref end) do
-      {project, _ref} -> 
+
+  @impl true
+  def handle_info({_, {:finished_reindex_project, project}}, tasks) do
+    {
+      :noreply, 
+      Map.delete(tasks, project)
+    }
+  end
+  def handle_info({:DOWN, _ref, :process, _pid, :normal}, tasks), do: {:noreply, tasks}
+  def handle_info({:DOWN, _ref, :process, _pid, :killed_by_user}, tasks), do: {:noreply, tasks}
+  def handle_info({:DOWN, ref, :process, _pid, _error}, tasks) do
+
+    case Enum.find(Map.to_list(tasks), fn {_, %{ref: r}} -> r == ref end) do
+      {project, _task} -> 
         Logger.error "Something went wrong. Could not finish reindexing '#{project}'"
         {
           :noreply, 
-          Map.delete(refs, project)
+          Map.delete(tasks, project)
         }
       nil -> 
         Logger.error "Something went wrong. Could not finish reindexing"
         Logger.error "Could not find process handle for reference '#{inspect ref}'"
         {
           :noreply, 
-          refs
+          tasks
         }
     end
   end
-  def handle_info(msg, refs) do
+  def handle_info(msg, tasks) do
     Logger.error "Something went wrong #{inspect msg}"
     {
       :noreply, 
-      refs
+      tasks
     }
   end
   
@@ -92,10 +114,10 @@ defmodule Api.Worker.Server do
     for project <- projects, into: %{} do
       task = Task.Supervisor.async_nolink(
         IndexingSupervisor, Indexer, :reindex, [project]) 
-        {
-          project,
-          task.ref
-        }
+      {
+        project,
+        task
+      }
     end
   end
 end

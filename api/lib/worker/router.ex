@@ -41,6 +41,11 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
 
+  post "/stop_reindex/:project" do # TODO replace this with query params
+    {status, msg} = Server.stop_index_projects([project])
+    send_json(conn, %{ status: status, message: msg })
+  end
+
   # Prerequisite: Run reindex, run conversion
   post "/tiling" do
     Task.async fn -> Api.Worker.Images.TilesController.make_tiles() end
