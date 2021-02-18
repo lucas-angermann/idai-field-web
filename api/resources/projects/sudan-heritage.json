@@ -67,6 +67,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
@@ -79,6 +88,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -106,6 +116,7 @@
               "label": {
                 "de": "Ortsname",
                 "en": "Place name",
+                "es": "Yacimiento",
                 "it": "Nome del luogo"
               },
               "description": {
@@ -243,6 +254,7 @@
               "label": {
                 "de": "Klassifikation Fundplatz",
                 "en": "General archaeological classification for the site",
+                "es": "Clasificación del yacimiento",
                 "it": "Classificazione sito"
               },
               "description": {}
@@ -365,6 +377,7 @@
               "label": {
                 "de": "Ausgrabungsgeschichte",
                 "en": "Excavation history",
+                "es": "Historia de la excavación",
                 "it": "Storia degli scavi"
               },
               "description": {
@@ -576,6 +589,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "it": "Descrizione"
               },
               "description": {
@@ -611,6 +625,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "it": "Descrizione della posizione spaziale"
               },
               "description": {
@@ -623,6 +638,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -645,6 +661,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -735,6 +752,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "it": "Responsabile"
               },
               "description": {
@@ -751,6 +769,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "it": "Campagna"
               },
               "description": {}
@@ -765,11 +784,21 @@
                 "it": "Zeigt"
               },
               "description": {}
+            },
+            {
+              "name": "isMapLayerOf",
+              "label": {
+                "de": "Kartenhintergrund von",
+                "en": "Map layer of",
+                "it": "Kartenhintergrund von"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -826,6 +855,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "it": "Descrizione"
               },
               "description": {
@@ -910,11 +940,21 @@
                 "it": "Wird gezeigt in"
               },
               "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -928,6 +968,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "it": "Descrizione"
               },
               "description": {
@@ -1237,11 +1278,21 @@
                 "it": "Wird gezeigt in"
               },
               "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -1300,6 +1351,7 @@
           "label": {
             "de": "Bestimmung",
             "en": "Identification",
+            "es": "Clasificación",
             "it": "Definizione"
           }
         },
@@ -1401,6 +1453,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
@@ -1413,6 +1474,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -1433,6 +1495,7 @@
           "label": {
             "de": "Bestimmung",
             "en": "Identification",
+            "es": "Clasificación",
             "it": "Definizione"
           }
         },
@@ -1457,6 +1520,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "it": "Descrizione"
               },
               "description": {

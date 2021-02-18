@@ -80,6 +80,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -96,6 +97,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -108,6 +110,7 @@
               "label": {
                 "de": "Startdatum",
                 "en": "Beginning date",
+                "es": "Fecha inicial",
                 "fr": "Date de début",
                 "it": "Data di inizio"
               },
@@ -123,6 +126,7 @@
               "label": {
                 "de": "Enddatum",
                 "en": "End date",
+                "es": "Fecha final",
                 "fr": "Date de fin",
                 "it": "Data di fine"
               },
@@ -143,6 +147,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
@@ -156,6 +169,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -184,6 +198,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -223,6 +238,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -246,6 +262,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -259,6 +276,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         }
@@ -352,6 +370,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -368,6 +387,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -395,6 +415,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -410,6 +431,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -430,6 +452,15 @@
                   "description": {}
                 },
                 {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
+                  },
+                  "description": {}
+                },
+                {
                   "name": "liesWithin",
                   "label": {
                     "de": "Liegt in",
@@ -443,6 +474,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -471,6 +503,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -559,6 +592,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -594,6 +628,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -607,6 +642,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -630,6 +666,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -670,6 +707,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -749,6 +787,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -762,6 +801,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             }
@@ -854,6 +894,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -870,6 +911,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -882,6 +924,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -897,6 +940,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -917,6 +961,15 @@
                   "description": {}
                 },
                 {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
+                  },
+                  "description": {}
+                },
+                {
                   "name": "liesWithin",
                   "label": {
                     "de": "Liegt in",
@@ -930,6 +983,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -958,6 +1012,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -1933,6 +1988,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -1968,6 +2024,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -1981,6 +2038,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -2004,6 +2062,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -2017,6 +2076,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -2184,6 +2244,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -2206,6 +2267,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -2297,6 +2359,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -2313,6 +2376,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -2325,6 +2389,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -2340,6 +2405,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -2360,6 +2426,15 @@
                   "description": {}
                 },
                 {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
+                  },
+                  "description": {}
+                },
+                {
                   "name": "liesWithin",
                   "label": {
                     "de": "Liegt in",
@@ -2373,6 +2448,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -2401,6 +2477,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -2544,6 +2621,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -2567,6 +2645,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -2580,6 +2659,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             }
@@ -2660,6 +2740,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
@@ -2673,6 +2762,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -2700,6 +2790,7 @@
               "label": {
                 "de": "Ortsname",
                 "en": "Place name",
+                "es": "Yacimiento",
                 "it": "Nome del luogo"
               },
               "description": {
@@ -2734,6 +2825,7 @@
               "label": {
                 "de": "Klassifikation Fundplatz",
                 "en": "Site classification",
+                "es": "Clasificación del yacimiento",
                 "it": "Classificazione sito"
               },
               "description": {}
@@ -2856,6 +2948,7 @@
               "label": {
                 "de": "Ausgrabungsgeschichte",
                 "en": "Excavation history",
+                "es": "Historia de la excavación",
                 "it": "Storia degli scavi"
               },
               "description": {
@@ -2913,6 +3006,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -2949,6 +3043,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -2962,6 +3057,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -2985,6 +3081,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -3060,6 +3157,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -3076,6 +3174,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -3103,6 +3202,7 @@
               "label": {
                 "de": "Startdatum",
                 "en": "Beginning date",
+                "es": "Fecha inicial",
                 "fr": "Date de début",
                 "it": "Data di inizio"
               },
@@ -3118,6 +3218,7 @@
               "label": {
                 "de": "Enddatum",
                 "en": "End date",
+                "es": "Fecha final",
                 "fr": "Date de fin",
                 "it": "Data di fine"
               },
@@ -3134,6 +3235,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -3161,6 +3271,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -3374,6 +3485,7 @@
               "label": {
                 "de": "Farbe und Intensität",
                 "en": "Color",
+                "es": "Color y intensidad",
                 "fr": "Couleur",
                 "it": "Colore ed intensità"
               },
@@ -3975,6 +4087,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -4037,6 +4150,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -4072,6 +4186,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -4085,6 +4200,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -4133,6 +4249,7 @@
               "label": {
                 "de": "Niveau",
                 "en": "Vertical extent",
+                "es": "Nivel",
                 "fr": "Étendue verticale",
                 "it": "Livello o estensione in altezza"
               },
@@ -4206,6 +4323,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -4373,6 +4491,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -4423,6 +4542,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -4497,6 +4617,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -4513,6 +4634,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -4540,6 +4662,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -4555,6 +4678,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -4571,6 +4695,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -4598,6 +4731,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -4811,6 +4945,7 @@
                   "label": {
                     "de": "Farbe und Intensität",
                     "en": "Color",
+                    "es": "Color y intensidad",
                     "fr": "Couleur",
                     "it": "Colore ed intensità"
                   },
@@ -5412,6 +5547,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -5583,6 +5719,7 @@
                   "label": {
                     "de": "Bezeichnung bzw. Klassifikation Schicht",
                     "en": "Layer classification",
+                    "es": "Clasificación de la unidad estratigráfica",
                     "fr": "Classification de la couche",
                     "it": "Definizione o classificazione dello strato"
                   },
@@ -6060,6 +6197,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -6095,6 +6233,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -6143,6 +6282,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -6191,6 +6331,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -6270,6 +6411,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -6285,6 +6427,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -6358,6 +6501,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -6525,6 +6669,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -6575,6 +6720,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -6650,6 +6796,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -6666,6 +6813,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -6693,6 +6841,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -6708,6 +6857,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -6724,6 +6874,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -6751,6 +6910,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -6964,6 +7124,7 @@
                   "label": {
                     "de": "Farbe und Intensität",
                     "en": "Color",
+                    "es": "Color y intensidad",
                     "fr": "Couleur",
                     "it": "Colore ed intensità"
                   },
@@ -7565,6 +7726,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -8839,6 +9001,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -8874,6 +9037,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -8887,6 +9051,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -8935,6 +9100,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -8998,6 +9164,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -9013,6 +9180,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -9086,6 +9254,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -9253,6 +9422,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -9303,6 +9473,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -9378,6 +9549,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -9394,6 +9566,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -9421,6 +9594,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -9436,6 +9610,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -9452,6 +9627,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -9479,6 +9663,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -9692,6 +9877,7 @@
                   "label": {
                     "de": "Farbe und Intensität",
                     "en": "Color",
+                    "es": "Color y intensidad",
                     "fr": "Couleur",
                     "it": "Colore ed intensità"
                   },
@@ -10293,6 +10479,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -11243,6 +11430,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -11278,6 +11466,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -11313,6 +11502,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -11361,6 +11551,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -11409,6 +11600,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -11488,6 +11680,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -11503,6 +11696,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -11576,6 +11770,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -11743,6 +11938,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -11793,6 +11989,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -11866,6 +12063,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -11882,6 +12080,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -11909,6 +12108,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -11924,6 +12124,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -11940,6 +12141,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -11967,6 +12177,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -12180,6 +12391,7 @@
                   "label": {
                     "de": "Farbe und Intensität",
                     "en": "Color",
+                    "es": "Color y intensidad",
                     "fr": "Couleur",
                     "it": "Colore ed intensità"
                   },
@@ -12781,6 +12993,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -12996,6 +13209,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -13031,6 +13245,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -13066,6 +13281,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -13079,6 +13295,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -13127,6 +13344,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -13206,6 +13424,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -13221,6 +13440,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -13294,6 +13514,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -13461,6 +13682,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -13511,6 +13733,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -13583,6 +13806,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -13599,6 +13823,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -13626,6 +13851,7 @@
                   "label": {
                     "de": "Startdatum",
                     "en": "Beginning date",
+                    "es": "Fecha inicial",
                     "fr": "Date de début",
                     "it": "Data di inizio"
                   },
@@ -13641,6 +13867,7 @@
                   "label": {
                     "de": "Enddatum",
                     "en": "End date",
+                    "es": "Fecha final",
                     "fr": "Date de fin",
                     "it": "Data di fine"
                   },
@@ -13657,6 +13884,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -13684,6 +13920,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -13897,6 +14134,7 @@
                   "label": {
                     "de": "Farbe und Intensität",
                     "en": "Color",
+                    "es": "Color y intensidad",
                     "fr": "Couleur",
                     "it": "Colore ed intensità"
                   },
@@ -14498,6 +14736,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -15431,6 +15670,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -15466,6 +15706,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -15501,6 +15742,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -15549,6 +15791,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -15597,6 +15840,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -15676,6 +15920,7 @@
                   "label": {
                     "de": "Orientierung",
                     "en": "Orientation",
+                    "es": "Orientación",
                     "fr": "Orientation",
                     "it": "Orientamento"
                   },
@@ -15691,6 +15936,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -15764,6 +16010,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -15931,6 +16178,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -15981,6 +16229,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -16056,6 +16305,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -16069,6 +16319,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -16096,6 +16355,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -16113,6 +16373,7 @@
               "label": {
                 "de": "Niveau",
                 "en": "Vertical extent",
+                "es": "Nivel",
                 "fr": "Étendue verticale",
                 "it": "Livello o estensione in altezza"
               },
@@ -16128,6 +16389,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -16189,6 +16451,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -16224,6 +16487,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -16237,6 +16501,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -16258,6 +16523,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         }
@@ -16331,6 +16597,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -16344,6 +16611,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -16371,6 +16647,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -16388,6 +16665,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -16403,6 +16681,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -16464,6 +16743,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -16499,6 +16779,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -16512,6 +16793,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -16533,6 +16815,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             }
@@ -16607,6 +16890,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -16620,6 +16904,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -16647,6 +16940,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -16664,6 +16958,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -16679,6 +16974,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -16762,6 +17058,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -16797,6 +17094,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -16810,6 +17108,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -16831,6 +17130,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             }
@@ -16907,6 +17207,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -16923,6 +17224,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -16936,6 +17238,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -16963,6 +17274,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -16995,6 +17307,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         }
@@ -17069,6 +17382,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -17085,6 +17399,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -17102,6 +17417,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "isRecordedIn",
               "label": {
                 "de": "Aufgenommen in Maßnahme",
@@ -17115,6 +17439,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -17244,6 +17569,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -17305,6 +17631,7 @@
               "label": {
                 "de": "Höhe",
                 "en": "Height",
+                "es": "Altura",
                 "fr": "Hauteur",
                 "it": "Altezza"
               },
@@ -17340,6 +17667,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -17375,6 +17703,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -17388,6 +17717,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -17436,6 +17766,7 @@
               "label": {
                 "de": "Niveau",
                 "en": "Vertical extent",
+                "es": "Nivel",
                 "fr": "Étendue verticale",
                 "it": "Livello o estensione in altezza"
               },
@@ -17449,6 +17780,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -17619,6 +17951,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -17641,6 +17974,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -17716,6 +18050,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -17732,6 +18067,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -17744,6 +18080,7 @@
               "label": {
                 "de": "Datum",
                 "en": "Date",
+                "es": "Fecha",
                 "fr": "Date",
                 "it": "Data"
               },
@@ -17760,6 +18097,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -17787,6 +18133,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -17819,6 +18166,7 @@
           "label": {
             "de": "Bestimmung",
             "en": "Identification",
+            "es": "Clasificación",
             "it": "Definizione"
           }
         },
@@ -17832,6 +18180,7 @@
               "label": {
                 "de": "Restaurierung",
                 "en": "Restoration",
+                "es": "Restauración",
                 "fr": "Restauration",
                 "it": "Restauro"
               },
@@ -17950,6 +18299,7 @@
               "label": {
                 "de": "Anzahl (gesamt)",
                 "en": "Total number",
+                "es": "Número (total)",
                 "fr": "Nombre total",
                 "it": "Numero (totale)"
               },
@@ -17965,6 +18315,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -18088,6 +18439,7 @@
               "label": {
                 "de": "Erhaltener Anteil",
                 "en": "Preservation assessment",
+                "es": "Porcentaje conservado",
                 "fr": "Évaluation de la préservation",
                 "it": "Parte conservata"
               },
@@ -18103,6 +18455,7 @@
               "label": {
                 "de": "Erhaltung in Prozent",
                 "en": "Condition in percent",
+                "es": "Estado de conservación - porcentaje",
                 "fr": "Condition en pourcentage",
                 "it": "Conservazione in percentuale"
               },
@@ -18118,6 +18471,7 @@
               "label": {
                 "de": "Kommentar zum Erhaltungszustand",
                 "en": "Condition comment",
+                "es": "Comentario sobre estado de conservación",
                 "fr": "Commentaire sur la condition",
                 "it": "Commento sullo stato di conservazione"
               },
@@ -18130,6 +18484,7 @@
               "label": {
                 "de": "Gewicht (g)",
                 "en": "Weight (g)",
+                "es": "Peso (g)",
                 "fr": "Poids (g)",
                 "it": "Peso (g)"
               },
@@ -18175,6 +18530,7 @@
               "label": {
                 "de": "Aufbewahrungsort",
                 "en": "Storage place",
+                "es": "Deposito - ciudad",
                 "fr": "Lieu de stockage",
                 "it": "Luogo di conservazione"
               },
@@ -18264,6 +18620,7 @@
               "label": {
                 "de": "Höhe",
                 "en": "Height",
+                "es": "Altura",
                 "fr": "Hauteur",
                 "it": "Altezza"
               },
@@ -18299,6 +18656,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -18334,6 +18692,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -18487,6 +18846,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -18510,6 +18870,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -18550,6 +18911,7 @@
               "label": {
                 "de": "Niveau",
                 "en": "Vertical extent",
+                "es": "Nivel",
                 "fr": "Étendue verticale",
                 "it": "Livello o estensione in altezza"
               },
@@ -18563,6 +18925,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -18730,6 +19093,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -18752,6 +19116,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -18826,6 +19191,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -18842,6 +19208,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -18854,6 +19221,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -18870,6 +19238,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -18897,6 +19274,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -18929,6 +19307,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -18942,6 +19321,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -19060,6 +19440,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -19075,6 +19456,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -19198,6 +19580,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -19213,6 +19596,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -19228,6 +19612,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -19240,6 +19625,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -19285,6 +19671,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -19586,6 +19973,7 @@
                   "label": {
                     "de": "Keramikart Ware",
                     "en": "Pottery type, ware",
+                    "es": "Tipo de cerámica",
                     "it": "Tipo di ceramica"
                   },
                   "description": {}
@@ -19743,6 +20131,7 @@
                   "label": {
                     "de": "Gefäß-Grundform",
                     "en": "Basic vessel form",
+                    "es": "Descripción de forma",
                     "it": "Forma di base del vaso"
                   },
                   "description": {}
@@ -19972,6 +20361,7 @@
                   "label": {
                     "de": "Form",
                     "en": "Specific vessel form",
+                    "es": "Forma",
                     "it": "Forma"
                   },
                   "description": {
@@ -21699,6 +22089,7 @@
                   "label": {
                     "de": "Art des Objekts",
                     "en": "Object type",
+                    "es": "Clasificación del material",
                     "it": "Tipo di oggetto"
                   },
                   "description": {}
@@ -21710,6 +22101,7 @@
                   "label": {
                     "de": "Verwendung",
                     "en": "Purpose",
+                    "es": "Función",
                     "it": "Utilizzo"
                   },
                   "description": {
@@ -21977,6 +22369,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -22020,6 +22413,7 @@
                   "label": {
                     "de": "Anzahl Wand-Scherben",
                     "en": "Number of wall sherds",
+                    "es": "Número de fragmentos de cuerpo",
                     "it": "Numero di frammenti di parete"
                   },
                   "description": {}
@@ -22031,6 +22425,7 @@
                   "label": {
                     "de": "Anzahl Boden-Scherben",
                     "en": "Number of base sherds",
+                    "es": "Número de fragmentos de fondo",
                     "it": "Numero di frammenti di fondo"
                   },
                   "description": {}
@@ -22042,6 +22437,7 @@
                   "label": {
                     "de": "Anzahl Henkel",
                     "en": "Number of handles",
+                    "es": "Número de fragmentos de asa",
                     "it": "Numero di anse"
                   },
                   "description": {}
@@ -22086,6 +22482,7 @@
                   "label": {
                     "de": "Anzahl Rand-Scherben",
                     "en": "Number of rim sherds",
+                    "es": "Número de fragmentos de borde",
                     "it": "Numero di frammenti di orlo"
                   },
                   "description": {}
@@ -22198,6 +22595,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -22233,6 +22631,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -22268,6 +22667,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -22421,6 +22821,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -22444,6 +22845,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -22484,6 +22886,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -22497,6 +22900,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -22664,6 +23068,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -22686,6 +23091,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -22761,6 +23167,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -22777,6 +23184,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -22789,6 +23197,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -22805,6 +23214,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -22832,6 +23250,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -22864,6 +23283,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -22877,6 +23297,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -22995,6 +23416,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -23010,6 +23432,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -23133,6 +23556,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -23148,6 +23572,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -23163,6 +23588,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -23175,6 +23601,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -23220,6 +23647,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -24668,6 +25096,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -25120,6 +25549,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -25155,6 +25585,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -25190,6 +25621,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -25343,6 +25775,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -25366,6 +25799,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -25406,6 +25840,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -25419,6 +25854,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -25586,6 +26022,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -25608,6 +26045,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -25683,6 +26121,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -25699,6 +26138,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -25711,6 +26151,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -25727,6 +26168,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -25754,6 +26204,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -25786,6 +26237,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -25799,6 +26251,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -25917,6 +26370,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -25932,6 +26386,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -26055,6 +26510,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -26070,6 +26526,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -26085,6 +26542,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -26097,6 +26555,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -26142,6 +26601,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -27589,6 +28049,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -27636,6 +28097,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -27671,6 +28133,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -27706,6 +28169,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -27859,6 +28323,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -27882,6 +28347,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -27922,6 +28388,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -27935,6 +28402,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -28102,6 +28570,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -28124,6 +28593,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -28199,6 +28669,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -28215,6 +28686,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -28227,6 +28699,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -28243,6 +28716,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -28270,6 +28752,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -28302,6 +28785,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -28315,6 +28799,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -28433,6 +28918,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -28448,6 +28934,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -28571,6 +29058,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -28586,6 +29074,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -28601,6 +29090,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -28613,6 +29103,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -28658,6 +29149,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -28759,6 +29251,7 @@
                   "label": {
                     "de": "Grobe Einordnung der Knochen",
                     "en": "Coarse classification of the bones",
+                    "es": "Tipo de huesos",
                     "it": "Classificazione approssimativa delle ossa"
                   },
                   "description": {}
@@ -28992,6 +29485,7 @@
                   "label": {
                     "de": "Knochen-Klassifikation",
                     "en": "Bone classification",
+                    "es": "Clasificación de los huesos",
                     "it": "Classificazione delle ossa"
                   },
                   "description": {}
@@ -29048,6 +29542,7 @@
                   "label": {
                     "de": "Verbrennungsgrad der Knochen (nach Wahl 1982)",
                     "en": "Burning grade of the bones (according to Wahl 1982)",
+                    "es": "Grado de cremación del hueso",
                     "it": "Grado di combustione delle ossa (secondo Wahl 1982)"
                   },
                   "description": {}
@@ -29239,6 +29734,7 @@
                   "label": {
                     "de": "Altersklasse",
                     "en": "Biological age",
+                    "es": "Grupo de edad",
                     "it": "Fascia d'età"
                   },
                   "description": {
@@ -29274,6 +29770,7 @@
                   "label": {
                     "de": "Geschlecht",
                     "en": "Sex",
+                    "es": "Sexo",
                     "it": "Sesso"
                   },
                   "description": {
@@ -29320,6 +29817,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -29355,6 +29853,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -29390,6 +29889,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -29543,6 +30043,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -29566,6 +30067,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -29606,6 +30108,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -29619,6 +30122,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -29786,6 +30290,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -29808,6 +30313,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -29885,6 +30391,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -29901,6 +30408,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -29913,6 +30421,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -29929,6 +30438,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -29956,6 +30474,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -29988,6 +30507,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -30001,6 +30521,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -30119,6 +30640,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -30134,6 +30656,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -30257,6 +30780,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -30272,6 +30796,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -30287,6 +30812,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -30299,6 +30825,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -30344,6 +30871,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -31063,6 +31591,7 @@
                   "label": {
                     "de": "Ansprache bzw. Art des Objekts",
                     "en": "Designation or type of the object",
+                    "es": "Tipo del objeto",
                     "it": "Denominazione o tipo di oggetto"
                   },
                   "description": {}
@@ -31629,6 +32158,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -31676,6 +32206,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -31711,6 +32242,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -31746,6 +32278,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -31899,6 +32432,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -31922,6 +32456,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -31962,6 +32497,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -31975,6 +32511,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -32142,6 +32679,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -32164,6 +32702,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -32239,6 +32778,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -32255,6 +32795,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -32267,6 +32808,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -32283,6 +32825,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -32310,6 +32861,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -32342,6 +32894,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -32355,6 +32908,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -32473,6 +33027,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -32488,6 +33043,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -32611,6 +33167,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -32626,6 +33183,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -32641,6 +33199,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -32653,6 +33212,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -32698,6 +33258,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -33981,6 +34542,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -34028,6 +34590,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -34063,6 +34626,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -34098,6 +34662,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -34251,6 +34816,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -34274,6 +34840,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -34314,6 +34881,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -34327,6 +34895,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -34494,6 +35063,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -34516,6 +35086,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -34591,6 +35162,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -34607,6 +35179,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -34619,6 +35192,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -34635,6 +35209,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -34662,6 +35245,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -34694,6 +35278,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -34707,6 +35292,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -34825,6 +35411,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -34840,6 +35427,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -34963,6 +35551,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -34978,6 +35567,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -34993,6 +35583,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -35005,6 +35596,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -35050,6 +35642,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -35857,6 +36450,7 @@
                   "label": {
                     "de": "Art des Objekts",
                     "en": "Object type",
+                    "es": "Tipo de lítica",
                     "it": "Tipo di oggetto"
                   },
                   "description": {}
@@ -36314,6 +36908,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -36361,6 +36956,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -36396,6 +36992,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -36431,6 +37028,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -36584,6 +37182,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -36607,6 +37206,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -36647,6 +37247,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -36660,6 +37261,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -36827,6 +37429,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -36849,6 +37452,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -36924,6 +37528,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -36940,6 +37545,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -36952,6 +37558,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -36968,6 +37575,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -36995,6 +37611,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -37027,6 +37644,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -37040,6 +37658,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -37158,6 +37777,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -37173,6 +37793,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -37296,6 +37917,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -37311,6 +37933,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -37326,6 +37949,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -37338,6 +37962,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -37383,6 +38008,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -37762,6 +38388,7 @@
                   "label": {
                     "de": "Ansprache bzw. Art des Objekts",
                     "en": "Designation or type of the object",
+                    "es": "Clasificación del objeto",
                     "it": "Denominazione o tipo di oggetto"
                   },
                   "description": {}
@@ -38105,6 +38732,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -38405,6 +39033,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -38440,6 +39069,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -38475,6 +39105,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -38628,6 +39259,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -38651,6 +39283,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -38691,6 +39324,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -38704,6 +39338,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -38871,6 +39506,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -38893,6 +39529,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -38968,6 +39605,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -38984,6 +39622,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -38996,6 +39635,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -39012,6 +39652,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -39039,6 +39688,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -39071,6 +39721,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -39084,6 +39735,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -39202,6 +39854,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -39217,6 +39870,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -39340,6 +39994,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -39355,6 +40010,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -39370,6 +40026,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -39382,6 +40039,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -39427,6 +40085,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -39932,6 +40591,7 @@
                   "label": {
                     "de": "Provenienz",
                     "en": "Provenance",
+                    "es": "Procedencia",
                     "fr": "Provenance",
                     "it": "Provenienza"
                   },
@@ -42128,6 +42788,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -42163,6 +42824,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -42198,6 +42860,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -42351,6 +43014,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -42374,6 +43038,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -42414,6 +43079,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -42427,6 +43093,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -42594,6 +43261,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -42616,6 +43284,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -42691,6 +43360,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -42707,6 +43377,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -42719,6 +43390,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -42735,6 +43407,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -42762,6 +43443,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -42794,6 +43476,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -42807,6 +43490,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -42925,6 +43609,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -42940,6 +43625,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -43063,6 +43749,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -43078,6 +43765,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -43093,6 +43781,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -43105,6 +43794,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -43150,6 +43840,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -43747,6 +44438,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -43782,6 +44474,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -43817,6 +44510,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -43970,6 +44664,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -43993,6 +44688,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -44033,6 +44729,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -44046,6 +44743,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -44213,6 +44911,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -44235,6 +44934,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -44310,6 +45010,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -44326,6 +45027,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -44338,6 +45040,7 @@
                   "label": {
                     "de": "Datum",
                     "en": "Date",
+                    "es": "Fecha",
                     "fr": "Date",
                     "it": "Data"
                   },
@@ -44354,6 +45057,15 @@
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
                     "it": "Wird gezeigt in"
+                  },
+                  "description": {}
+                },
+                {
+                  "name": "hasMapLayer",
+                  "label": {
+                    "de": "Hat Kartenhintergrund",
+                    "en": "Has map layer",
+                    "it": "Hat Kartenhintergrund"
                   },
                   "description": {}
                 },
@@ -44381,6 +45093,7 @@
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -44413,6 +45126,7 @@
               "label": {
                 "de": "Bestimmung",
                 "en": "Identification",
+                "es": "Clasificación",
                 "it": "Definizione"
               }
             },
@@ -44426,6 +45140,7 @@
                   "label": {
                     "de": "Restaurierung",
                     "en": "Restoration",
+                    "es": "Restauración",
                     "fr": "Restauration",
                     "it": "Restauro"
                   },
@@ -44544,6 +45259,7 @@
                   "label": {
                     "de": "Anzahl (gesamt)",
                     "en": "Total number",
+                    "es": "Número (total)",
                     "fr": "Nombre total",
                     "it": "Numero (totale)"
                   },
@@ -44559,6 +45275,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -44682,6 +45399,7 @@
                   "label": {
                     "de": "Erhaltener Anteil",
                     "en": "Preservation assessment",
+                    "es": "Porcentaje conservado",
                     "fr": "Évaluation de la préservation",
                     "it": "Parte conservata"
                   },
@@ -44697,6 +45415,7 @@
                   "label": {
                     "de": "Erhaltung in Prozent",
                     "en": "Condition in percent",
+                    "es": "Estado de conservación - porcentaje",
                     "fr": "Condition en pourcentage",
                     "it": "Conservazione in percentuale"
                   },
@@ -44712,6 +45431,7 @@
                   "label": {
                     "de": "Kommentar zum Erhaltungszustand",
                     "en": "Condition comment",
+                    "es": "Comentario sobre estado de conservación",
                     "fr": "Commentaire sur la condition",
                     "it": "Commento sullo stato di conservazione"
                   },
@@ -44724,6 +45444,7 @@
                   "label": {
                     "de": "Gewicht (g)",
                     "en": "Weight (g)",
+                    "es": "Peso (g)",
                     "fr": "Poids (g)",
                     "it": "Peso (g)"
                   },
@@ -44769,6 +45490,7 @@
                   "label": {
                     "de": "Aufbewahrungsort",
                     "en": "Storage place",
+                    "es": "Deposito - ciudad",
                     "fr": "Lieu de stockage",
                     "it": "Luogo di conservazione"
                   },
@@ -44870,6 +45592,7 @@
                   "label": {
                     "de": "Molluske-Klassification",
                     "en": "Mollusk classification",
+                    "es": "Clasificación malacológica",
                     "it": "Classificazione del mollusco"
                   },
                   "description": {}
@@ -44913,6 +45636,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "fr": "Hauteur",
                     "it": "Altezza"
                   },
@@ -44948,6 +45672,7 @@
                   "label": {
                     "de": "Länge",
                     "en": "Length",
+                    "es": "Longitud",
                     "fr": "Longueur",
                     "it": "Lunghezza"
                   },
@@ -44983,6 +45708,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "fr": "Largeur",
                     "it": "Larghezza"
                   },
@@ -45136,6 +45862,7 @@
               "label": {
                 "de": "Maße",
                 "en": "Dimensions",
+                "es": "Medidas",
                 "it": "Dimensioni"
               }
             },
@@ -45159,6 +45886,7 @@
                   "label": {
                     "de": "Beschreibung der räumlichen Lage",
                     "en": "Spatial location",
+                    "es": "Descripción de la ubicación",
                     "fr": "Localisation spatiale",
                     "it": "Descrizione della posizione spaziale"
                   },
@@ -45199,6 +45927,7 @@
                   "label": {
                     "de": "Niveau",
                     "en": "Vertical extent",
+                    "es": "Nivel",
                     "fr": "Étendue verticale",
                     "it": "Livello o estensione in altezza"
                   },
@@ -45212,6 +45941,7 @@
               "label": {
                 "de": "Lage / Kontext",
                 "en": "Position / Context",
+                "es": "Ubicación / contexto",
                 "it": "Posizione"
               }
             },
@@ -45379,6 +46109,7 @@
                   "label": {
                     "de": "Grobdatierung",
                     "en": "Period",
+                    "es": "Época",
                     "fr": "Période",
                     "it": "Datazione approssimativa"
                   },
@@ -45401,6 +46132,7 @@
               "label": {
                 "de": "Zeit",
                 "en": "Time",
+                "es": "Cronología",
                 "it": "Tempo"
               }
             }
@@ -45478,6 +46210,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -45494,6 +46227,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -45507,6 +46241,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -45534,6 +46277,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -45812,6 +46556,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -45858,6 +46603,7 @@
               "label": {
                 "de": "Höhe",
                 "en": "Height",
+                "es": "Altura",
                 "fr": "Hauteur",
                 "it": "Altezza"
               },
@@ -45893,6 +46639,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -45906,6 +46653,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -46073,6 +46821,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -46095,6 +46844,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -46171,6 +46921,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -46186,6 +46937,7 @@
               "label": {
                 "de": "Datum",
                 "en": "Date",
+                "es": "Fecha",
                 "fr": "Date",
                 "it": "Data"
               },
@@ -46202,6 +46954,15 @@
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
                 "it": "Wird gezeigt in"
+              },
+              "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
               },
               "description": {}
             },
@@ -46229,6 +46990,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -46292,6 +47054,7 @@
               "label": {
                 "de": "Art der Probe",
                 "en": "Sample type",
+                "es": "Clasificación",
                 "fr": "Type d'échantillon",
                 "it": "Tipo di campione"
               },
@@ -46322,6 +47085,7 @@
               "label": {
                 "de": "Gewicht (g)",
                 "en": "Weight (g)",
+                "es": "Peso (g)",
                 "fr": "Poids (g)",
                 "it": "Peso (g)"
               },
@@ -46451,6 +47215,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -46488,6 +47253,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -46501,6 +47267,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -46524,6 +47291,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -46615,6 +47383,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -46632,6 +47401,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -46647,11 +47417,21 @@
                 "it": "Zeigt"
               },
               "description": {}
+            },
+            {
+              "name": "isMapLayerOf",
+              "label": {
+                "de": "Kartenhintergrund von",
+                "en": "Map layer of",
+                "it": "Kartenhintergrund von"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -46708,6 +47488,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -46823,6 +47604,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -46840,6 +47622,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -46855,11 +47638,21 @@
                     "it": "Zeigt"
                   },
                   "description": {}
+                },
+                {
+                  "name": "isMapLayerOf",
+                  "label": {
+                    "de": "Kartenhintergrund von",
+                    "en": "Map layer of",
+                    "it": "Kartenhintergrund von"
+                  },
+                  "description": {}
                 }
               ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -46916,6 +47709,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -47109,6 +47903,7 @@
                   "label": {
                     "de": "Art der Zeichnung",
                     "en": "Drawing type",
+                    "es": "Tipo de dibujo",
                     "it": "Tipo di disegno"
                   },
                   "description": {}
@@ -47282,6 +48077,7 @@
                   "label": {
                     "de": "Bearbeiterin/Bearbeiter",
                     "en": "Processor",
+                    "es": "Responsable",
                     "fr": "Auteur",
                     "it": "Responsabile"
                   },
@@ -47299,6 +48095,7 @@
                   "label": {
                     "de": "Kampagne",
                     "en": "Campaign",
+                    "es": "Campaña",
                     "fr": "Campagne",
                     "it": "Campagna"
                   },
@@ -47314,11 +48111,21 @@
                     "it": "Zeigt"
                   },
                   "description": {}
+                },
+                {
+                  "name": "isMapLayerOf",
+                  "label": {
+                    "de": "Kartenhintergrund von",
+                    "en": "Map layer of",
+                    "it": "Kartenhintergrund von"
+                  },
+                  "description": {}
                 }
               ],
               "label": {
                 "de": "Stammdaten",
                 "en": "Core",
+                "es": "Datos maestros",
                 "it": "Dati base"
               }
             },
@@ -47375,6 +48182,7 @@
                   "label": {
                     "de": "Beschreibung",
                     "en": "Description",
+                    "es": "Descripción",
                     "fr": "Description",
                     "it": "Descrizione"
                   },
@@ -47477,6 +48285,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -47493,6 +48302,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -47525,6 +48335,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "isRecordedIn",
               "label": {
                 "de": "Aufgenommen in Maßnahme",
@@ -47548,6 +48367,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -47561,6 +48381,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -47622,6 +48443,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -47657,6 +48479,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -47670,6 +48493,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -47693,6 +48517,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -47706,6 +48531,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -47719,6 +48545,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -47741,6 +48568,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -47816,6 +48644,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -47832,6 +48661,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -47864,6 +48694,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "isRecordedIn",
               "label": {
                 "de": "Aufgenommen in Maßnahme",
@@ -47887,6 +48726,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -47900,6 +48740,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -47961,6 +48802,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -47996,6 +48838,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -48009,6 +48852,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -48032,6 +48876,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -48045,6 +48890,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -48058,6 +48904,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -48080,6 +48927,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -48155,6 +49003,7 @@
               "label": {
                 "de": "Bearbeiterin/Bearbeiter",
                 "en": "Processor",
+                "es": "Responsable",
                 "fr": "Auteur",
                 "it": "Responsabile"
               },
@@ -48171,6 +49020,7 @@
               "label": {
                 "de": "Kampagne",
                 "en": "Campaign",
+                "es": "Campaña",
                 "fr": "Campagne",
                 "it": "Campagna"
               },
@@ -48203,6 +49053,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "isRecordedIn",
               "label": {
                 "de": "Aufgenommen in Maßnahme",
@@ -48226,6 +49085,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -48239,6 +49099,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -48285,6 +49146,7 @@
               "label": {
                 "de": "Länge",
                 "en": "Length",
+                "es": "Longitud",
                 "fr": "Longueur",
                 "it": "Lunghezza"
               },
@@ -48320,6 +49182,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "fr": "Largeur",
                 "it": "Larghezza"
               },
@@ -48333,6 +49196,7 @@
           "label": {
             "de": "Maße",
             "en": "Dimensions",
+            "es": "Medidas",
             "it": "Dimensioni"
           }
         },
@@ -48356,6 +49220,7 @@
               "label": {
                 "de": "Beschreibung der räumlichen Lage",
                 "en": "Spatial location",
+                "es": "Descripción de la ubicación",
                 "fr": "Localisation spatiale",
                 "it": "Descrizione della posizione spaziale"
               },
@@ -48369,6 +49234,7 @@
           "label": {
             "de": "Lage / Kontext",
             "en": "Position / Context",
+            "es": "Ubicación / contexto",
             "it": "Posizione"
           }
         },
@@ -48382,6 +49248,7 @@
               "label": {
                 "de": "Grobdatierung",
                 "en": "Period",
+                "es": "Época",
                 "fr": "Période",
                 "it": "Datazione approssimativa"
               },
@@ -48404,6 +49271,7 @@
           "label": {
             "de": "Zeit",
             "en": "Time",
+            "es": "Cronología",
             "it": "Tempo"
           }
         }
@@ -48465,11 +49333,21 @@
                 "it": "Wird gezeigt in"
               },
               "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -48483,6 +49361,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
@@ -48793,11 +49672,21 @@
                 "it": "Wird gezeigt in"
               },
               "description": {}
+            },
+            {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
             }
           ],
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -48856,6 +49745,7 @@
           "label": {
             "de": "Bestimmung",
             "en": "Identification",
+            "es": "Clasificación",
             "it": "Definizione"
           }
         },
@@ -48958,6 +49848,15 @@
               "description": {}
             },
             {
+              "name": "hasMapLayer",
+              "label": {
+                "de": "Hat Kartenhintergrund",
+                "en": "Has map layer",
+                "it": "Hat Kartenhintergrund"
+              },
+              "description": {}
+            },
+            {
               "name": "liesWithin",
               "label": {
                 "de": "Liegt in",
@@ -48971,6 +49870,7 @@
           "label": {
             "de": "Stammdaten",
             "en": "Core",
+            "es": "Datos maestros",
             "it": "Dati base"
           }
         },
@@ -48991,6 +49891,7 @@
           "label": {
             "de": "Bestimmung",
             "en": "Identification",
+            "es": "Clasificación",
             "it": "Definizione"
           }
         },
@@ -49016,6 +49917,7 @@
               "label": {
                 "de": "Beschreibung",
                 "en": "Description",
+                "es": "Descripción",
                 "fr": "Description",
                 "it": "Descrizione"
               },
