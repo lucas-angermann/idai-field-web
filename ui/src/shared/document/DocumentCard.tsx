@@ -25,7 +25,7 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
                     <DocumentTeaser document={ document } />
                 </div>
                 <div style={ permalinkButtonContainerStyle }>
-                    <DocumentPermalinkButton document={ document } baseUrl={ baseUrl } />
+                    <DocumentPermalinkButton id={ document.resource.id } baseUrl={ baseUrl } />
                 </div>
             </Card.Header>
             <Card.Body style={ { ...bodyStyle, ...bodyBaseStyle } }>

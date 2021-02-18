@@ -4,17 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiLinkVariant } from '@mdi/js';
-import { Document } from '../../api/document';
 
 
-export default function DocumentLinkButton({ document, baseUrl }
-        : { document: Document, baseUrl: string }): ReactElement {
+export default function DocumentPermalinkButton({ id, baseUrl }: { id: string, baseUrl: string }): ReactElement {
 
     const inputElementRef: MutableRefObject<HTMLInputElement> = useRef();
     const { t } = useTranslation();
 
-    return <OverlayTrigger trigger="click" placement="right" rootClose
-                           overlay={ getPopover(document, baseUrl, inputElementRef, t) }>
+    return <OverlayTrigger trigger="click" placement="right"
+                           overlay={ getPopover(id, baseUrl, inputElementRef, t) }>
         <Button variant="link" style={ buttonStyle }
                 onClick={ () => selectPermalink(inputElementRef) }>
             <div style={ iconStyle }>
@@ -25,13 +23,13 @@ export default function DocumentLinkButton({ document, baseUrl }
 }
 
 
-const getPopover = (document: Document, baseUrl: string, inputElementRef: MutableRefObject<HTMLInputElement>,
+const getPopover = (id: string, baseUrl: string, inputElementRef: MutableRefObject<HTMLInputElement>,
                     t: TFunction): ReactElement =>
     <Popover id="document-link-popover" style={ popoverStyle }>
-      <Popover.Title as="h3">{ t('permalinkButton.title') } </Popover.Title>
+      <Popover.Title as="h3">{ t('permalinkButton.title') }</Popover.Title>
       <Popover.Content>
         <input ref={ inputElementRef } readOnly
-          value={ `${baseUrl}/document/${document.resource.id}` }
+          value={ `${baseUrl}/document/${id}` }
           style={ inputStyle } />
       </Popover.Content>
     </Popover>;
