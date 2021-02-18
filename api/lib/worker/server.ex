@@ -12,8 +12,8 @@ defmodule Api.Worker.Server do
     GenServer.call(__MODULE__, {:index, projects})
   end
 
-  def stop_index_projects(projects) do
-    GenServer.call(__MODULE__, {:stop_reindex, projects})
+  def stop_index_project(project) do
+    GenServer.call(__MODULE__, {:stop_reindex, project})
   end
 
   ##########################################################
@@ -59,8 +59,7 @@ defmodule Api.Worker.Server do
       }    
     end
   end
-  def handle_call({:stop_reindex, projects}, _from, tasks) do
-    project = List.first projects
+  def handle_call({:stop_reindex, project}, _from, tasks) do
     pid = tasks[project].pid
     Process.exit(pid, :killed_by_user)
     Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"

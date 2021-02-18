@@ -41,8 +41,8 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
 
-  post "/stop_reindex/:project" do # TODO replace this with query params
-    {status, msg} = Server.stop_index_projects([project])
+  post "/reindex/:project/stop" do
+    {status, msg} = Server.stop_index_project(project)
     send_json(conn, %{ status: status, message: msg })
   end
 
