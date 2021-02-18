@@ -5,8 +5,10 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
-    OptionalRangeWithLabeledValues, Relation } from '../../api/document';
+import {
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    OptionalRangeWithLabeledValues, Relation
+} from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import Image from '../image/Image';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
@@ -19,11 +21,11 @@ const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'geor
 
 interface DocumentDetailsProps {
     document: Document;
-    skipRelations?: boolean;
+    baseUrl: string;
 }
 
 
-export default function DocumentDetails({ document, skipRelations=false } : DocumentDetailsProps): ReactElement {
+export default function DocumentDetails({ document, baseUrl } : DocumentDetailsProps): ReactElement {
 
     const location = useLocation();
     const { t } = useTranslation();
@@ -32,7 +34,7 @@ export default function DocumentDetails({ document, skipRelations=false } : Docu
 
     return <>
         { images && renderImages(images, document, location) }
-        { renderGroups(document, t, skipRelations) }
+        { renderGroups(document, t, baseUrl) }
     </>;
 }
 
@@ -58,19 +60,19 @@ const renderImage = (document: Document, location: Location) =>
 };
 
 
-const renderGroups = (document: Document, t: TFunction, skipRelations: boolean): ReactNode => {
+const renderGroups = (document: Document, t: TFunction, baseUrl: string): ReactNode => {
     
-    return document.resource.groups.map(renderGroup(t, document.project, skipRelations));
+    return document.resource.groups.map(renderGroup(t, document.project, baseUrl));
 };
 
 
-const renderGroup = (t: TFunction, project: string, skipRelations: boolean) =>
+const renderGroup = (t: TFunction, project: string, baseUrl: string) =>
     function FieldGroupRow(group: FieldGroup): ReactNode {
 
     return (
         <div key={ `${group.name}_group` }>
             { renderFieldList(group.fields, t) }
-            { skipRelations || renderRelationList(group.relations, project, t) }
+            { renderRelationList(group.relations, project, t, baseUrl) }
         </div>
     );
 };
@@ -91,7 +93,7 @@ const renderFieldList = (fields: Field[], t: TFunction): ReactNode => {
 };
 
 
-const renderRelationList = (relations: Relation[], project: string, t: TFunction): ReactNode => {
+const renderRelationList = (relations: Relation[], project: string, t: TFunction, baseUrl: string): ReactNode => {
 
     if (!relations) return null;
 
@@ -101,7 +103,7 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
             <dt key={ `${relation.name}_dt` }>{ renderMultiLanguageText(relation, t) }</dt>,
             <dd key={ `${relation.name}_dd` }>
                 <ul className="list-unstyled" style={ listStyle }>
-                    { relation.targets.map(doc => renderDocumentLink(project, doc)) }
+                    { relation.targets.map(doc => renderDocumentLink(project, doc, baseUrl)) }
                 </ul>
             </dd>
         ]);
@@ -177,9 +179,9 @@ const renderOptionalRange = (optionalRange: OptionalRangeWithLabeledValues, t: T
 const renderFieldValueBoolean = (value: boolean): ReactNode => value ? 'yes' : 'no';
 
 
-const renderDocumentLink = (project: string, doc: ResultDocument): ReactNode =>
+const renderDocumentLink = (project: string, doc: ResultDocument, baseUrl: string): ReactNode =>
     <li key={ doc.resource.id }>
-        <DocumentTeaser document={ doc } linkUrl={ getDocumentLink(doc, project) } size="small" />
+        <DocumentTeaser document={ doc } linkUrl={ getDocumentLink(doc, project, baseUrl) } size="small" />
     </li>;
 
 

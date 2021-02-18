@@ -92,7 +92,8 @@
       "showAllCatalogs": "Show all catalogs...",
       "searchBy": "Search by",
       "drawingShape": "Drawing a shape",
-      "uploadingImageFile": "Uploading an image file"
+      "uploadingImageFile": "Uploading an image file",
+      "textSearch": "text search"
     },
     "browse": {
       "subtypes": "Subtypes",
@@ -101,6 +102,14 @@
         "header": "Linked finds",
         "showOnMap": "Show linked finds on map"
       }
+    },
+    "draw": {
+      "search": "search",
+      "clear": "clear",
+      "brushRadius": "brush radius"
+    },
+    "drawfinds": {
+      "searching": "searching"
     }
   },
   "languages": {

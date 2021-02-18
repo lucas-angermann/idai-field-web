@@ -1,11 +1,10 @@
-defmodule Core.ProjectConfigTest do
+defmodule Api.Core.ProjectConfigTest do
   use ExUnit.Case, async: true
-  alias Core.ProjectConfig
-  alias Core.ProjectConfigLoader
+  alias Api.Core.ProjectConfig
 
   test "get label" do
-    start_supervised({ProjectConfigLoader, {"test/resources", ["test-project"]}})
-    configuration = ProjectConfigLoader.get("test-project")
+    start_supervised({Api.Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = Api.Core.ProjectConfigLoader.get("test-project")
 
     label = ProjectConfig.get_label(configuration, "Operation", "category")
     assert label == %{ en: "Category", de: "Kategorie"}

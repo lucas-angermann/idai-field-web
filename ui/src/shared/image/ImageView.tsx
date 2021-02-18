@@ -70,7 +70,7 @@ const renderDocumentDetails = (document: Document, comingFrom: string): ReactNod
             <DocumentTeaser document={ document } />
         </Card.Header>
         <Card.Body style={ cardBodyStyle }>
-            <DocumentDetails document={ document } />
+            <DocumentDetails document={ document } baseUrl="" />
         </Card.Body>
     </Card>;
 

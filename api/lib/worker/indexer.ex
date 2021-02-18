@@ -1,75 +1,39 @@
-defmodule Worker.Indexer do
+defmodule Api.Worker.Indexer do
   require Logger
+  alias Api.Worker.IndexAdapter
+  alias Api.Worker.Mapper
+  alias Api.Worker.Services.IdaiFieldDb
+  alias Api.Worker.Enricher.Enricher
+  alias Api.Core.ProjectConfigLoader
 
-  defguard is_ok(status_code) when status_code >= 200 and status_code < 300
+  @doc """
+  For every project (identified by its alias) a new index gets created.
+  When reindexing for the project is finished, the alias will change to point to the new index 
+  while the old index gets removed.
+  """
+  def reindex(project) do
+    configuration = ProjectConfigLoader.get(project)
 
-  defguard is_error(status_code) when status_code >= 400
+    {new_index, old_index} = IndexAdapter.create_new_index_and_set_alias project
 
-  def process(project), do: fn change -> process(change, project) end
-  def process(nil, _), do: nil
-  def process(change = %{deleted: true}, project) do
-    # TODO: mark documents as deleted instead of removing them from index
-    case HTTPoison.delete(get_doc_url(change.id, project)) do
-      # Deleted documents possibly never existed in the index, so ignore 404s
-      {:ok, %HTTPoison.Response{status_code: 404, body: _}} -> nil
-      result -> handle_result(result, change, project)
-    end
-  end
-  def process(change, project) do
-    HTTPoison.put(
-      get_doc_url(change.id, project),
-      Poison.encode!(change.doc),
-      [{"Content-Type", "application/json"}]
-    )
-    |> handle_result(change, project)
-  end
+    IdaiFieldDb.fetch_changes(project)
+    |> Enum.filter(&filter_non_owned_document/1)
+    |> Enum.map(Mapper.process)
+    |> log_finished("mapping", project)
+    |> Enricher.process(project, IdaiFieldDb.get_doc(project), configuration)
+    |> log_finished("enriching", project)
+    |> Enum.map(IndexAdapter.process(project, new_index))
+    |> log_finished("indexing", project)
 
-  def update_mapping_template() do
-    with {:ok, body} <- File.read("resources/elasticsearch-mapping.json"),
-         {:ok, _} <- HTTPoison.put(get_template_url(), body, [{"Content-Type", "application/json"}])
-    do
-      Logger.info "Successfully updated index mapping template"
-    else
-      err -> Logger.error "Updating index mapping failed: #{inspect err}"
-    end
+    IndexAdapter.add_alias_and_remove_old_index project, new_index, old_index
+    {:finished_reindex_project, project}
   end
 
-  defp get_doc_url(id, project) do
-    "#{Core.Config.get(:elasticsearch_url)}/"
-    <> "#{Core.Config.get(:elasticsearch_index_prefix)}_#{project}/"
-    <> "_doc/#{id}"
+  defp log_finished(change, step, project) do
+    Logger.info "Finished #{step} #{project}"
+    change
   end
 
-  defp get_template_url() do
-    "#{Core.Config.get(:elasticsearch_url)}/"
-    <> "_template/"
-    <> "#{Core.Config.get(:elasticsearch_index_prefix)}"
-  end
-
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, _, _)
-    when is_ok(status_code) do
-
-    Poison.decode!(body)
-  end
-
-  defp handle_result({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, change, project)
-    when is_error(status_code) do
-
-    result = Poison.decode!(body)
-    Logger.error "Updating index failed!
-      status_code: #{status_code}
-      project: #{project}
-      id: #{change.id}
-      result: #{inspect result}"
-    nil
-  end
-
-  defp handle_result({:error, %HTTPoison.Error{reason: reason}}, change, project) do
-
-    Logger.error "Updating index failed!
-      project: #{project}
-      id: #{change.id}
-      reason: #{inspect reason}"
-    nil
-  end
+  defp filter_non_owned_document(_change = %{ doc: %{ project: _project } }), do: false
+  defp filter_non_owned_document(_change), do: true
 end

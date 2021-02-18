@@ -3,6 +3,6 @@ defmodule Api.EnvironmentTest do
   use Plug.Test
 
   test "test imagemagick" do
-    assert Worker.Images.ImageMagickImageConverter.environment_ready()
+    assert Api.Worker.Images.ImageMagickImageConverter.environment_ready()
   end
 end

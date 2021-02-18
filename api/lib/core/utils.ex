@@ -1,4 +1,4 @@
-defmodule Core.Utils do
+defmodule Api.Core.Utils do
 
   def atomize(%{} = map, list, inclusive) do
 

@@ -20,7 +20,7 @@ defmodule Api.RouterTest do
       conn
     end), Api.AppTestHelper.opts)
     body = if Enum.member?(conn.resp_headers, {"content-type", "application/json; charset=utf-8"}) do
-      Core.Utils.atomize(Poison.decode!(conn.resp_body))
+      Api.Core.Utils.atomize(Poison.decode!(conn.resp_body))
     else
       conn.resp_body
     end

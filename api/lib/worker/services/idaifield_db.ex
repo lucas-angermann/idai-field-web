@@ -1,6 +1,6 @@
-defmodule Worker.Services.IdaiFieldDb do
-  alias Core.CorePropertiesAtomizing
-  alias Worker.Services.ResultHandler
+defmodule Api.Worker.Services.IdaiFieldDb do
+  alias Api.Core.CorePropertiesAtomizing
+  alias Api.Worker.Services.ResultHandler
   require Logger
 
   @doc """
@@ -8,9 +8,9 @@ defmodule Worker.Services.IdaiFieldDb do
   """
   def get_doc(db), do: fn id -> get_doc(db, id) end
   def get_doc(db, id) do
-    auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
+    auth = [hackney: [basic_auth: {Api.Core.Config.get(:couchdb_user), Api.Core.Config.get(:couchdb_password)}]]
 
-    result = HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
+    result = HTTPoison.get("#{Api.Core.Config.get(:couchdb_url)}/#{db}/#{id}", %{}, auth)
              |> ResultHandler.handle_result
 
     case result do
@@ -22,8 +22,8 @@ defmodule Worker.Services.IdaiFieldDb do
   end
 
   def fetch_changes(db) do
-    auth = [hackney: [basic_auth: {Core.Config.get(:couchdb_user), Core.Config.get(:couchdb_password)}]]
-    HTTPoison.get("#{Core.Config.get(:couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
+    auth = [hackney: [basic_auth: {Api.Core.Config.get(:couchdb_user), Api.Core.Config.get(:couchdb_password)}]]
+    HTTPoison.get("#{Api.Core.Config.get(:couchdb_url)}/#{db}/_changes?include_docs=true", %{}, auth)
     |> ResultHandler.handle_result
     |> get_in(["results"])
     |> CorePropertiesAtomizing.format_changes

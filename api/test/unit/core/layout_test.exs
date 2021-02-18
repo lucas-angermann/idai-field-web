@@ -1,8 +1,7 @@
-defmodule Core.LayoutTest do
-    use ExUnit.Case, async: true
-    use Plug.Test
-    alias Core.Layout
-    alias Core.ProjectConfigLoader
+defmodule Api.Core.LayoutTest do
+  use ExUnit.Case, async: true
+  use Plug.Test
+  alias Api.Core.Layout
 
   test "map object" do
 
@@ -32,8 +31,8 @@ defmodule Core.LayoutTest do
       ]
     }
 
-    start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
-    configuration = ProjectConfigLoader.get("test-project")
+    start_supervised({Api.Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = Api.Core.ProjectConfigLoader.get("test-project")
 
     layouted_resource = Layout.to_layouted_resource(configuration, resource )
 

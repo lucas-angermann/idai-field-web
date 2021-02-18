@@ -1,10 +1,10 @@
-defmodule Core.ProjectConfigLoader do
+defmodule Api.Core.ProjectConfigLoader do
   require Logger
   use Agent
 
   def start_link({project_config_dir_name, projects}) do
     
-    projects = (projects || Core.Config.get(:projects)) ++ ["default"]
+    projects = (projects || Api.Core.Config.get(:projects)) ++ ["default"]
     
     configs = for project <- projects, into: %{} do
       {
@@ -32,7 +32,7 @@ defmodule Core.ProjectConfigLoader do
     with {:ok, body} <- File.read(file_name),
          {:ok, json} <- Poison.decode(body)
     do
-      Core.Utils.atomize(json, [:values])
+      Api.Core.Utils.atomize(json, [:values])
     else
       _ ->
         Logger.info "No configuration found for project #{project_name}, using default configuration"

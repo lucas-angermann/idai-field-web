@@ -1,7 +1,7 @@
-defmodule Core.TreeTest do
+defmodule Api.Core.TreeTest do
   use ExUnit.Case
   use Plug.Test
-  alias Core.Tree
+  alias Api.Core.Tree
 
   test "find_in_tree_list" do
     tree_list = [

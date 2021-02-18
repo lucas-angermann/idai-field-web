@@ -1,7 +1,7 @@
-defmodule Worker.Images.TilesController do
+defmodule Api.Worker.Images.TilesController do
 
-  alias Core.Config
-  alias Worker.Images.TilesCreator
+  alias Api.Core.Config
+  alias Api.Worker.Images.TilesCreator
 
   def make_tiles do
     projects = Config.get(:projects)

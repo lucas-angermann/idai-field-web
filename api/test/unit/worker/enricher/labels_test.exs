@@ -1,8 +1,7 @@
-defmodule Worker.Enricher.LabelsTest do
+defmodule Api.Worker.Enricher.LabelsTest do
   use ExUnit.Case, async: true
   use Plug.Test
-  alias Worker.Enricher.Labels
-  alias Core.ProjectConfigLoader
+  alias Api.Worker.Enricher.Labels
 
   test "add labels" do
 
@@ -35,8 +34,8 @@ defmodule Worker.Enricher.LabelsTest do
       }
     }
 
-    start_supervised({ProjectConfigLoader, {"test/resources", ["test-project"]}})
-    configuration = ProjectConfigLoader.get("test-project")
+    start_supervised({Api.Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = Api.Core.ProjectConfigLoader.get("test-project")
 
     result = Labels.add_labels(change, configuration)
 
@@ -117,8 +116,8 @@ defmodule Worker.Enricher.LabelsTest do
       }
     }
 
-    start_supervised({Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
-    configuration = ProjectConfigLoader.get("test-project")
+    start_supervised({Api.Core.ProjectConfigLoader, {"test/resources", ["test-project"]}})
+    configuration = Api.Core.ProjectConfigLoader.get("test-project")
 
     result = Labels.add_labels(change, configuration)
     assert result == %{

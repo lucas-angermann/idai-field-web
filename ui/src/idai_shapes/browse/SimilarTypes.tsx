@@ -1,7 +1,6 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { Document, getImages } from '../../api/document';
-import { getSimilar, search } from '../../api/documents';
-import { Query } from '../../api/query';
+import { Document } from '../../api/document';
+import { getSimilar } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import DocumentGrid from '../../shared/documents/DocumentGrid';
 import { LoginContext } from '../../shared/login';
@@ -16,15 +15,8 @@ export default function SimilarTypes({ type }: { type: Document }): ReactElement
 
         if (!type) return;
 
-        const imageId = getImages(type)?.[0].resource.id;
-        imageId && getSimilar(imageId, loginData.token).then(imagesResult => {
-            const typeDocQueries: Query[] = imagesResult.documents.map(doc =>
-                ({ q: `resource.relations.isDepictedIn.resource.id:${doc.resource.id}` }));
-            Promise.all(typeDocQueries.map(query => search(query, loginData.token)))
-                .then(results => results.filter((result) => result.size > 0))
-                .then(results => results.map(result => result.documents[0]))
-                .then(setSimilarTypes);
-        });
+        getSimilar(type.resource.id, loginData.token)
+            .then(result => setSimilarTypes(result.documents));
     }, [type, loginData.token]);
 
     return <>

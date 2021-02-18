@@ -1,7 +1,7 @@
-defmodule Core.CorePropertiesAtomizingTest do
+defmodule Api.Core.CorePropertiesAtomizingTest do
   use ExUnit.Case, async: true
   use Plug.Test
-  import Core.CorePropertiesAtomizing
+  import Api.Core.CorePropertiesAtomizing
 
   test "base  case" do
     result = format_document(%{ "resource" => %{ "category" => "Operation" }})

@@ -1,11 +1,10 @@
 import React, { CSSProperties, ReactElement } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { ResultDocument } from '../../api/result';
+import RelativeOrAbsoluteLink from '../linkbutton/RelativeOrAbsoluteLink';
 import CategoryIcon from './CategoryIcon';
 import './document-teaser.css';
-import { isType } from './document-utils';
 
 
 interface DocumentTeaserProps {
@@ -32,11 +31,9 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
         <Row className="no-gutters document-teaser">
             <Col>
                 { linkUrl
-                    ? <Link to={ linkUrl }
-                            target={ isType(document) ? '_blank' : '' }
-                            style={ linkStyle } >
+                    ? <RelativeOrAbsoluteLink url={ linkUrl } style={ linkStyle } >
                         { renderTeaser(document, size, height, linkUrl?.length > 0) }
-                    </Link>
+                    </RelativeOrAbsoluteLink>
                     : renderTeaser(document, size, height, linkUrl?.length > 0)
                 }
             </Col>

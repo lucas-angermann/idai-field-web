@@ -1,4 +1,5 @@
-defmodule Worker.Enricher.Children do
+defmodule Api.Worker.Enricher.Children do
+  
   def add_children_counts(changes) do
     children_counts = get_children_counts(changes)
     Enum.map(changes, &add_children_count(&1, children_counts))

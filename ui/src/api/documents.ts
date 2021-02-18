@@ -29,9 +29,10 @@ export const getPredecessors = async (id: string, token: string): Promise<Predec
 };
 
 
-export const getSimilar = async (id: string, token: string, size: number = 20): Promise<Result> => {
+export const getSimilar = async (id: string, token: string,
+    featureType: string = 'phaseFourier',size: number = 20): Promise<Result> => {
     
-    const uri = `/api/documents/similar/resnet/${id}?size=${size}`;
+    const uri = `/api/documents/similar/${featureType}/${id}?size=${size}`;
     const response = await fetch(uri, { headers: getHeaders(token) });
     if (response.ok) return await response.json();
     else throw(await response.json());
@@ -42,26 +43,7 @@ const fetchPost = async (uri: string, query: Query, token: string): Promise<Resu
 
     const headers = getHeaders(token);
     headers['Content-Type'] = 'application/json';
-    const params = buildBackendPostParams(query);
+    const params = await buildBackendPostParams(query);
     const response = await fetch(uri, { headers, method: 'POST', body: JSON.stringify(params) });
     return response.json();
-};
-
-export const getFromVector = async (query_vector: number[], model: string = 'resnet'): Promise<Result> => {
-    const uri = '/api/documents/';
-    const body = {
-        size: 10,
-        vector_query: {
-            model,
-            query_vector
-        }
-    };
-
-    const response = await fetch(uri, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-    });
-    if (response.ok) return await response.json();
-    else throw(await response.json());
 };

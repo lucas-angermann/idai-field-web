@@ -6,9 +6,9 @@ import { doLogout, getPersistedLogin, LoginContext } from '../shared/login';
 import LoginForm from '../shared/loginform/LoginForm';
 import NotFound from '../shared/NotFound';
 import Browse from './browse/Browse';
+import DrawUploadFinds from './drawuploadfinds/DrawUploadFinds';
 import Home from './home/Home';
 import ShapesNav from './navbar/ShapesNav';
-import Draw from './draw/Draw';
 
 
 export default function Shapes(): ReactElement {
@@ -31,7 +31,7 @@ export default function Shapes(): ReactElement {
                         <LoginForm onLogin={ setLoginData } />
                     </Route>
                     <Route path="/image/:project/:id" component={ ImageView } />
-                    <Route path={ '/draw' } component={ Draw } />
+                    <Route path="/drawfinds/:isDrawing/:data" component={ DrawUploadFinds } />
                     <Route component={ NotFound } />
                 </Switch>
             </LoginContext.Provider>

@@ -1,4 +1,4 @@
-defmodule Worker.Images.ImageMagickImageConverter do
+defmodule Api.Worker.Images.ImageMagickImageConverter do
   @moduledoc """
   Encapsulates access to
   * imagemagick,

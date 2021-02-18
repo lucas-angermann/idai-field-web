@@ -1,4 +1,4 @@
-defmodule Core.Config do
+defmodule Api.Core.Config do
   require Logger
 
   def get key do

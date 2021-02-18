@@ -1,15 +1,15 @@
-defmodule Core.Layout do
-  alias Core.Utils
-  alias Core.Resource
+defmodule Api.Core.Layout do
+  alias Api.Core.Utils
+  alias Api.Core.Resource
 
   def to_layouted_resource(configuration, resource) do
-    %{ groups: config_groups } = Core.CategoryTreeList.find_by_name(resource.category["name"], configuration)
+    %{ groups: config_groups } = Api.Core.CategoryTreeList.find_by_name(resource.category["name"], configuration)
 
     resource
     |> put_in([:groups], Enum.flat_map(config_groups, scan_group(resource)))
     |> put_in([:parentId], Resource.get_parent_id(resource))
     |> put_in([:grandparentId], Resource.get_grandparent_id(resource))
-    |> Map.take(List.delete(Core.CorePropertiesAtomizing.get_core_properties(), :relations))
+    |> Map.take(List.delete(Api.Core.CorePropertiesAtomizing.get_core_properties(), :relations))
     |> Utils.atomize # TODO why this?
   end
 
@@ -47,7 +47,7 @@ defmodule Core.Layout do
             name: config_item.name,
             label: config_item.label,
             description: config_item.description,
-            value: Core.Utils.atomize(value)
+            value: Api.Core.Utils.atomize(value)
         }]
     end
   end

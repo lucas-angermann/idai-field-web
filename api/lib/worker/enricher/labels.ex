@@ -1,7 +1,7 @@
-defmodule Worker.Enricher.Labels do
+defmodule Api.Worker.Enricher.Labels do
   require Logger
-  alias Core.Utils
-  alias Core.CategoryTreeList
+  alias Api.Core.Utils
+  alias Api.Core.CategoryTreeList
 
   @core_properties [:id, :identifier, :shortDescription, :geometry, :geometry_wgs84, :georeference,
     :gazId, :parentId, :featureVectors]

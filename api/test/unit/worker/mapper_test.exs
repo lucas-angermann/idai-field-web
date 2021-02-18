@@ -1,6 +1,6 @@
-defmodule Worker.MapperTest do
+defmodule Api.Worker.MapperTest do
   
-  alias Worker.Mapper
+  alias Api.Worker.Mapper
   
   use ExUnit.Case
   use Plug.Test
