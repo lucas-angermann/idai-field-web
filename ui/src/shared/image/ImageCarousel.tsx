@@ -4,7 +4,7 @@ import { ResultDocument } from '../../api/result';
 import { Document } from '../../api/document';
 import { Location } from 'history';
 import Image from './Image';
-import './document-details.css';
+import './imagecarousel.css';
 import { Link } from 'react-router-dom';
 
 export interface ImageCarouselProps {
@@ -16,7 +16,7 @@ export interface ImageCarouselProps {
 export function ImageCarousel ({ document, images, location }: ImageCarouselProps): ReactElement {
 
     return (
-        <Carousel className="document-details-carousel" interval={ null }>
+        <Carousel className="image-carousel" interval={ null }>
             { images?.map(renderImage(document, location)) }
         </Carousel>
     );

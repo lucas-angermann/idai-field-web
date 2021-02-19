@@ -1,8 +1,0 @@
-.document-details-carousel .carousel-indicators li {
-    background-color: black;
-}
-
-.document-details-carousel .carousel-control-next,
-.document-details-carousel .carousel-control-prev {
-    filter: invert(100%);
-}
