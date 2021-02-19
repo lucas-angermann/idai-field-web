@@ -25,6 +25,7 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
+import { ProjectDescription } from './ProjectDescription';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -47,6 +48,7 @@ export default function Project(): ReactElement {
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
     const [parent, setParent] = useState<string>('root');
+    const [projectDoc, setProjectDoc] = useState<Document>(null);
 
     useEffect(() => {
         if(searchParams.has('q')){
@@ -59,6 +61,12 @@ export default function Project(): ReactElement {
             setParent(searchParams.get('parent'));
         }
     },[searchParams]);
+
+    useEffect(() => {
+
+        get(projectId,loginData.token)
+            .then(setProjectDoc);
+    },[projectId, loginData]);
 
     useEffect(() => {
 
@@ -116,6 +124,7 @@ export default function Project(): ReactElement {
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
+        {projectDoc && <ProjectDescription document={ projectDoc } />}
         <ProjectMap selectedDocument={ mapDocument }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
