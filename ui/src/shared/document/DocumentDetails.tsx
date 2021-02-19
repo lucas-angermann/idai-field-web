@@ -6,7 +6,7 @@ import { Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getDocumentImages, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
 import { ResultDocument } from '../../api/result';
@@ -30,7 +30,7 @@ export default function DocumentDetails({ document, baseUrl } : DocumentDetailsP
     const location = useLocation();
     const { t } = useTranslation();
 
-    const images: ResultDocument[] = getImages(document);
+    const images: ResultDocument[] = getDocumentImages(document);
 
     return <>
         { images && renderImages(images, document, location) }
