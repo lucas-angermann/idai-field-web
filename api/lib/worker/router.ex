@@ -10,18 +10,6 @@ defmodule Api.Worker.Router do
   plug Api.Auth.AdminRightsPlug
   plug :dispatch
 
-  post "/publish/:project" do
-    Task.async fn ->
-      pid = Server.index_projects([project])
-      Process.monitor pid
-      receive do
-        _ -> Api.Worker.Images.ConversionController.convert_images_for_project(project)
-             Api.Worker.Images.TilesController.make_tiles([project])
-      end
-    end
-    send_json(conn, %{ status: "ok", message: "Start publishing '#{project}'"})
-  end
-
   post "/update_mapping" do
     IndexAdapter.update_mapping_template()
     send_json(conn, %{ status: "ok", message: "Start updating mapping template"})
