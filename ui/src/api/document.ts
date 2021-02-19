@@ -89,3 +89,9 @@ export function getDocumentImages(document: Document): ResultDocument[] {
     return document.resource.groups.find((group: FieldGroup) => group.name === 'stem')
         .relations.find((rel: Relation) => rel.name === 'isDepictedIn')?.targets;
 }
+
+export function getDocumentDescription(document: Document): FieldValue {
+
+    return document.resource.groups.find((group: FieldGroup) => group.name === 'parent')
+        .fields.find((field: Field) => field.name === 'description')?.value;
+}
