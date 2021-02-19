@@ -1,5 +1,5 @@
 import React, { ReactElement, CSSProperties } from 'react';
-import { Document, getDocumentImages } from '../../api/document';
+import { Document, getDocumentImages, getDocumentDescription } from '../../api/document';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { Card, Row, Col } from 'react-bootstrap';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
@@ -12,6 +12,7 @@ export interface ProjectDescriptionProps {
 export function ProjectDescription ({ document }: ProjectDescriptionProps):ReactElement {
 
     const images = getDocumentImages(document);
+    const description = getDocumentDescription(document);
     return (
             <Card style={ containerStyle } >
                 <Row>
@@ -24,8 +25,8 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
                     </Col>
                     }
                     <Col>
-                        <Card.Title>{ document.project }</Card.Title>
-                        <Card.Text>{ document.resource.shortDescription}</Card.Text>
+                        <Card.Title>{ document.resource.shortDescription }</Card.Title>
+                        <Card.Text>{ description }</Card.Text>
                     </Col>
                 </Row>
             </Card>
