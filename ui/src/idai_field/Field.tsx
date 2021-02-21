@@ -6,6 +6,7 @@ import LoginForm from '../shared/loginform/LoginForm';
 import Contact from './contact/Contact';
 import DocumentRedirect from './DocumentRedirect';
 import Download from './download/Download';
+import Dashboard from './dashboard/Dashboard';
 import Manual from './manual/Manual';
 import FieldNav from './navbar/FieldNav';
 import ProjectOverview from './overview/ProjectOverview';
@@ -41,6 +42,8 @@ export default function Field(): ReactElement {
                     <Route path="/manual" component={ Manual } />
 
                     <Route path="/contact" component={ Contact } />
+
+                    <Route path="/dashboard" component={ Dashboard } />
 
                     <Route path="/login">
                         <LoginForm onLogin={ setLoginData } />

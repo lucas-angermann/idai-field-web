@@ -1,8 +1,8 @@
-import { mdiMenuRight } from '@mdi/js';
+import { mdiMenuRight, mdiDatabase } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Location } from 'history';
 import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { Nav, NavDropdown } from 'react-bootstrap';
+import { Button, Nav, NavDropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { Document } from '../../api/document';
@@ -27,9 +27,16 @@ export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
 
     const NavItemClass = (route: string) => getNavItemClass(route, getCurrentRoute(location, projectDocument));
 
-
     return (
         <BaseNav onLogout={ onLogout } brand="field">
+            { loginData.user === 'admin' &&
+                <Nav.Link as="span">
+                    <Link to="/dashboard" className={ NavItemClass('dashboard') }>
+                        <Button variant="link">
+                            <Icon path={ mdiDatabase } size={ 1 } />
+                        </Button>
+                    </Link>
+                </Nav.Link> }
             <Nav activeKey={ location.pathname } className="mr-auto">
                 <Nav.Link as="span">
                     <Link to="/" className={ NavItemClass('overview') }>
