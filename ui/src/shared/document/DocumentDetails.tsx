@@ -1,18 +1,16 @@
-import { Location } from 'history';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
-import { Carousel, OverlayTrigger, Popover } from 'react-bootstrap';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getImages, LabeledValue,
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getDocumentImages, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
 import { ResultDocument } from '../../api/result';
-import Image from '../image/Image';
+import { ImageCarousel } from '../image/ImageCarousel';
 import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
-import './document-details.css';
 import { getDocumentLink } from './document-utils';
 import DocumentTeaser from './DocumentTeaser';
 
@@ -30,34 +28,17 @@ export default function DocumentDetails({ document, baseUrl } : DocumentDetailsP
     const location = useLocation();
     const { t } = useTranslation();
 
-    const images: ResultDocument[] = getImages(document);
+    const images: ResultDocument[] = getDocumentImages(document);
 
     return <>
-        { images && renderImages(images, document, location) }
+        { images && <ImageCarousel
+                        images={ images }
+                        document={ document }
+                        location={ location }
+                    />}
         { renderGroups(document, t, baseUrl) }
     </>;
 }
-
-
-const renderImages = (images: ResultDocument[], document: Document, location: Location): ReactNode =>
-    <Carousel className="document-details-carousel" interval={ null }>
-        { images?.map(renderImage(document, location)) }
-    </Carousel>;
-
-
-const renderImage = (document: Document, location: Location) =>
-    
-    function CarouselImage(imageDoc: ResultDocument): ReactNode {
-
-    return (
-        <Carousel.Item key={ imageDoc.resource.id }>
-            <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${location.pathname}` }
-                    className="d-block mb-2">
-                <Image project={ document.project } id={ imageDoc.resource.id } maxWidth={ 380 } maxHeight={ 350 } />
-            </Link>
-        </Carousel.Item>
-    );
-};
 
 
 const renderGroups = (document: Document, t: TFunction, baseUrl: string): ReactNode => {

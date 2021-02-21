@@ -25,6 +25,7 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
+import { ProjectDescription } from './ProjectDescription';
 import ProjectMap from './ProjectMap';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -46,8 +47,26 @@ export default function Project(): ReactElement {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
+    const [parent, setParent] = useState<string>('root');
+    const [projectDoc, setProjectDoc] = useState<Document>(null);
 
-    const parent = searchParams.get('parent');
+    useEffect(() => {
+        if(searchParams.has('q')){
+            setParent('');
+        }
+        else if(!searchParams.has('p') && !searchParams.has('parent')){
+            searchParams.append('parent','root');
+            setParent('root');
+        } else {
+            setParent(searchParams.get('parent'));
+        }
+    },[searchParams]);
+
+    useEffect(() => {
+
+        get(projectId,loginData.token)
+            .then(setProjectDoc);
+    },[projectId, loginData]);
 
     useEffect(() => {
 
@@ -100,11 +119,12 @@ export default function Project(): ReactElement {
                      projectId={ projectId } />
             { document
                 ? renderDocumentDetails(document)
-                : isInHierarchyMode(searchParams)
+                : isInHierarchyMode(parent)
                     ? renderDocumentHierarchy(documents, searchParams, projectId, parent, onScroll)
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
+        {projectDoc && <ProjectDescription document={ projectDoc } />}
         <ProjectMap selectedDocument={ mapDocument }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
@@ -197,7 +217,7 @@ const searchDocuments = async (id: string, searchParams: URLSearchParams,
 };
 
 
-const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
+const isInHierarchyMode = (parent: string): boolean => parent !== '';
 
 
 const mainSidebarCardStyle: CSSProperties = {
