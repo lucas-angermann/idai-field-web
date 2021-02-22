@@ -12,6 +12,11 @@ export default function Dashboard(): ReactElement {
             <div style={ pageStyle }>
                 <h3 style={ headingStyle }>{ 'Dashboard' }</h3>
                 <p style={ paragraphStyle }>{ 'Projects'}</p>
+                <ul>
+                    { loginData.readableProjects.map((project, index) => {
+                        return <li key={ index }>{ project }</li>;
+                    })}
+                </ul>
             </div>
         } </div>);
 }
