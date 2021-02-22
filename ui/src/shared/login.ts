@@ -59,7 +59,7 @@ export const persistLogin = (loginData: LoginData): void =>
 export const forgetLogin = (): void => localStorage.removeItem(LOGIN_DATA);
 
 
-export const getFallbackLogin = (): LoginData => ANONYMOUS_USER;
+export const getFallbackLoginData = (): LoginData => ANONYMOUS_USER;
 
 
 export const getLoginData = async (): Promise<LoginData> => {
