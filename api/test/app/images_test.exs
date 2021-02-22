@@ -11,7 +11,7 @@ defmodule Api.ImagesTest do
   setup context do
     token = if login_info = context[:login] do
       {name, pass} = login_info
-      Api.AppTestHelper.sign_in(name, pass)
+      Api.AppTestHelper.sign_in(name, pass)["token"]
     else
       "anonymous"
     end

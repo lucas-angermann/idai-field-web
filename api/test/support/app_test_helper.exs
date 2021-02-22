@@ -15,6 +15,6 @@ defmodule Api.AppTestHelper do
   def sign_in name, pass do
     conn = conn(:post, @auth_sign_in_path, %{ name: name, pass: pass })
            |> Api.Router.call(@opts)
-    Poison.decode!(conn.resp_body)["token"]
+    Poison.decode!(conn.resp_body)
   end
 end

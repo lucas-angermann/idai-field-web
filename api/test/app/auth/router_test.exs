@@ -12,7 +12,8 @@ defmodule Api.Auth.RouterTest do
       conn = conn(:get, context[:path])
       conn = Api.Router.call((if login_info = context[:login] do
         {name, pass} = login_info
-        put_req_header(conn, "authorization", Api.AppTestHelper.sign_in(name, pass))
+        %{ "token" => token } = Api.AppTestHelper.sign_in(name, pass)
+        put_req_header(conn, "authorization", token)
       else
         conn
       end), Api.AppTestHelper.opts)

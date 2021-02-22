@@ -34,9 +34,13 @@ defmodule Api.Auth.Router do
     user = user_by(conn.body_params, Api.Core.Config.get(Api.Auth, :users))
 
     {:ok, token, _claims} = Guardian.encode_and_sign(user)
+
+    readable_projects = Bearer.get_user_for_bearer(token).readable_projects
+
     response = %{ 
       token: token,
-      admin: (if user[:admin] == true, do: true, else: false) # TODO review; alternative: Api.Auth.Helpers.is_admin(username)
+      admin: (if user[:admin] == true, do: true, else: false), # TODO review; alternative: Api.Auth.Helpers.is_admin(username)
+      readable_projects: readable_projects
     }
     conn
     |> put_resp_content_type("text/plain")
