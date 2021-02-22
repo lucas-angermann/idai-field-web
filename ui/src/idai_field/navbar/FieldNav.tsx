@@ -29,7 +29,7 @@ export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
 
     return (
         <BaseNav onLogout={ onLogout } brand="field">
-            { loginData.admin === true &&
+            { loginData.isAdmin === true &&
                 <Nav.Link as="span">
                     <Link to="/dashboard" className={ NavItemClass('dashboard') }>
                         <Button variant="link">

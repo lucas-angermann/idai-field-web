@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import ImageView from '../shared/image/ImageView';
-import { doLogout, getLoginData, getFallbackLoginData, LoginContext } from '../shared/login';
+import { doLogout, getLoginData, LoginContext } from '../shared/login';
 import LoginForm from '../shared/loginform/LoginForm';
 import NotFound from '../shared/NotFound';
 import Browse from './browse/Browse';
@@ -13,12 +13,11 @@ import ShapesNav from './navbar/ShapesNav';
 
 export default function Shapes(): ReactElement {
     
-    const [loginData, setLoginData] = useState(getFallbackLoginData());
+    const [loginData, setLoginData] = useState(getLoginData());
 
     useEffect(() => {
 
         document.title = 'iDAI.shapes';
-        getLoginData().then(setLoginData);
     }, []);
 
     return (

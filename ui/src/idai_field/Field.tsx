@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import ImageView from '../shared/image/ImageView';
-import { doLogout, getFallbackLoginData, getLoginData, LoginContext } from '../shared/login';
+import { doLogout, getLoginData, LoginContext } from '../shared/login';
 import LoginForm from '../shared/loginform/LoginForm';
 import Contact from './contact/Contact';
 import DocumentRedirect from './DocumentRedirect';
@@ -16,12 +16,11 @@ import ResourceRedirect from './ResourceRedirect';
 
 export default function Field(): ReactElement {
 
-    const [loginData, setLoginData] = useState(getFallbackLoginData());
+    const [loginData, setLoginData] = useState(getLoginData());
 
     useEffect(() => {
 
         document.title = 'iDAI.field';
-        getLoginData().then(setLoginData);
     }, []);
 
     return (

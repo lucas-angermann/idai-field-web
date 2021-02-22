@@ -11,11 +11,11 @@ defmodule Api.Auth.Router do
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    rights = Bearer.get_user_for_bearer(bearer)
+    token_content = Bearer.get_user_for_bearer(bearer)
 
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(rights)
+    |> send_json(token_content)
   end
 
   # As body, pass json like this

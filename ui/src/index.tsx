@@ -8,6 +8,7 @@ import i18n from './i18n/i18n';
 import Field from './idai_field/Field';
 import Shapes from './idai_shapes/Shapes';
 import './index.css';
+import { setAnonymousUserRights } from './shared/login';
 
 
 Modal.setAppElement('#root');
@@ -27,9 +28,11 @@ const app = (subdomain === 'shapes' || process.env.REACT_APP_MAIN === 'shapes')
             ? <Shapes />
             : <Field />;
 
-ReactDOM.render(
+
+setAnonymousUserRights().finally(() => {
+  ReactDOM.render(
     <I18nextProvider i18n={ i18n }>
       { app }
     </I18nextProvider>,
-  document.getElementById('root')
-);
+  document.getElementById('root'));
+});
