@@ -68,15 +68,14 @@ export const getLoginData = (): LoginData => {
 
 export const doLogout = (setLoginData: (_: LoginData) => void) => (): void => {
     forgetLogin();
-    setLoginData(ANONYMOUS_USER); 
-    // TODO use opportunity to refresh anonymous users rights; supposedly this has to be then asynchronous
+    refreshAnonymousUserRights().then(setLoginData);
 };
 
 
 export const LoginContext = React.createContext(ANONYMOUS_USER);
 
 
-export const setAnonymousUserRights = async (): Promise<void> => {
+export const refreshAnonymousUserRights = async (): Promise<LoginData> => {
 
     const loginDataValue = localStorage.getItem(LOGIN_DATA);
     if (loginDataValue) return;
@@ -87,7 +86,7 @@ export const setAnonymousUserRights = async (): Promise<void> => {
             'Content-Type': 'application/json'
         }
     });
-    if (response.status !== 200) return;
+    if (response.status !== 200) return ANONYMOUS_USER;
 
     const infoJson = await response.json();
 
@@ -96,4 +95,5 @@ export const setAnonymousUserRights = async (): Promise<void> => {
     anonymous.isAdmin = infoJson.is_admin;
     
     persistLogin(anonymous);
+    return anonymous;
 };
