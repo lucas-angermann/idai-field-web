@@ -2,7 +2,7 @@ defmodule Api.Auth.RouterTest do
     use ExUnit.Case, async: true
     use Plug.Test
   
-    @auth_show_path Api.AppTestHelper.auth_path <> "/show"
+    @auth_show_path Api.AppTestHelper.auth_path <> "/info"
   
     @user1 {"user-1", "pass-1"}
     @user2 {"user-2", "pass-2"}
@@ -12,7 +12,7 @@ defmodule Api.Auth.RouterTest do
       conn = conn(:get, context[:path])
       conn = Api.Router.call((if login_info = context[:login] do
         {name, pass} = login_info
-        %{ "token" => token } = Api.AppTestHelper.sign_in(name, pass)
+        token = Api.AppTestHelper.sign_in(name, pass)
         put_req_header(conn, "authorization", token)
       else
         conn
@@ -27,19 +27,19 @@ defmodule Api.Auth.RouterTest do
   
     @tag path: @auth_show_path
     test "show rights - anonymous", context do
-      assert context.body.rights.readable_projects == ["a"]
+      assert context.body.readable_projects == ["a"]
     end
     @tag path: @auth_show_path, login: @user1
     test "show rights - user-1", context do
-      assert context.body.rights.readable_projects == ["a", "b", "c", "d"]
+      assert context.body.readable_projects == ["a", "b", "c", "d"]
     end
     @tag path: @auth_show_path, login: @user2
     test "show rights - user-2", context do
-      assert context.body.rights.readable_projects == ["a", "b", "c"]
+      assert context.body.readable_projects == ["a", "b", "c"]
     end
     @tag path: @auth_show_path, login: @user3
     test "show rights - user-3", context do
-      assert context.body.rights.readable_projects == ["a", "b"]
+      assert context.body.readable_projects == ["a", "b"]
     end
   end
   

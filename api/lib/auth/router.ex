@@ -8,14 +8,14 @@ defmodule Api.Auth.Router do
   plug :dispatch
 
   # One may or may not pass a Bearer token when calling this
-  get "/show" do
+  get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
     rights = Bearer.get_user_for_bearer(bearer)
 
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(%{ status: "ok", rights: rights })
+    |> send_json(rights)
   end
 
   # As body, pass json like this
@@ -35,16 +35,9 @@ defmodule Api.Auth.Router do
 
     {:ok, token, _claims} = Guardian.encode_and_sign(user)
 
-    readable_projects = Bearer.get_user_for_bearer(token).readable_projects
-
-    response = %{ 
-      token: token,
-      admin: (if user[:admin] == true, do: true, else: false), # TODO review; alternative: Api.Auth.Helpers.is_admin(username)
-      readable_projects: readable_projects
-    }
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(response)
+    |> send_json(%{ token: token })
   end
 
   defp user_by(%{"name" => name, "pass" => pass}, users) do

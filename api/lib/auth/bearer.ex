@@ -32,6 +32,10 @@ defmodule Api.Auth.Bearer do
     else
       Config.get(:projects)
     end
-    %{ name: user_name, readable_projects: all_readable_projects }
+    %{ 
+      name: user_name, 
+      readable_projects: all_readable_projects,
+      admin: is_admin(user_name)
+    }
   end
 end
