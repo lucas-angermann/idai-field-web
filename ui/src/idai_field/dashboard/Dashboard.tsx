@@ -8,7 +8,7 @@ export default function Dashboard(): ReactElement {
     const loginData = useContext(LoginContext);
 
     return (<div>
-        { loginData.user === 'admin' &&
+        { loginData.admin === true &&
             <div style={ pageStyle }>
                 <h3 style={ headingStyle }>{ 'Dashboard' }</h3>
                 <p style={ paragraphStyle }>{ 'Projects'}</p>

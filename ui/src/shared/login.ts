@@ -3,12 +3,14 @@ import React from 'react';
 export interface LoginData {
     user: string;
     token: string;
+    admin: boolean;
 }
 
 
 export const ANONYMOUS_USER: LoginData = {
     user: 'anonymous',
-    token: ''
+    token: '',
+    admin: false
 };
 
 
@@ -22,9 +24,11 @@ export const postLogin = async (user: string, password: string): Promise<LoginDa
             },
             body: JSON.stringify({ name: user, pass: password })
         });
+        const json = await response.json();
         return {
             user,
-            token: (await response.json()).token
+            token: json.token,
+            admin: json.admin
         };
     } catch (_) {
         return null;

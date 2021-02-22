@@ -3,8 +3,8 @@ defmodule Api.Auth.Guardian do
   alias Api.Auth.Helpers
 
   @impl true
-  def subject_for_token(user_json, _claims) do
-    user = user_by(user_json, Api.Core.Config.get(Api.Auth, :users))
+  def subject_for_token(user, _claims) do
+    
     readable_projects = Helpers.get_readable_projects(user.name)
     rights = Poison.encode!(%{
       name: user.name,
@@ -17,11 +17,5 @@ defmodule Api.Auth.Guardian do
   def resource_from_claims(claims) do
     rights = Api.Core.Utils.atomize(Poison.decode!(claims["sub"]))
     {:ok, rights}
-  end
-    
-  defp user_by(%{"name" => name, "pass" => pass}, users) do
-    auth_ok? = fn u -> u.name == name and u.pass == pass end
-    [found_user|_] = Enum.filter users, auth_ok?
-    found_user
   end
 end
