@@ -33,7 +33,7 @@ defmodule Api.Auth.Router do
   post "/sign_in" do
     response = Helpers.sign_in(
       Api.Core.Utils.atomize(conn.body_params), 
-      Api.Core.Config.get(Api.Auth, :users))
+      Api.Core.Config.get(:auth).users)
     conn
     |> put_resp_content_type("text/plain")
     |> send_json(response)
