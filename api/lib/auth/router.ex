@@ -27,9 +27,9 @@ defmodule Api.Auth.Router do
   # Issues a token for the user, which can be used in follow up requests
   # to claim to be that same user.
   #
-  # IMPL NOTE: The token will only act as an identifier and contain the readable
-  #   projects, but it will not maintain the users role, i.e. if he has admin rights.
-  #   This is handled by the plugs and routers.
+  # IMPL NOTE: The token will only act as an identifier, but in itself will
+  #   not contain the user's role (i.e. if he is admin). This is on purpose, so
+  #   routers and plugs always have the chance to apply rules with the latest state.
   post "/sign_in" do
     user = user_by(conn.body_params, Api.Core.Config.get(Api.Auth, :users))
 
@@ -37,12 +37,32 @@ defmodule Api.Auth.Router do
 
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(%{ token: token })
+    |> send_json(
+      %{ 
+        token: (if user.name == "anonymous", do: nil, else: token),
+        is_admin: user.admin
+      }
+    )
   end
 
+  defp user_by(%{"name" => "anonymous"}, users) do
+    anon? = fn u -> u.name == "anonymous" end
+    case Enum.filter users, anon? do
+      [found_user|_] -> update_admin(found_user)
+      [] -> %{ name: "anonymous", admin: false }
+    end
+  end
   defp user_by(%{"name" => name, "pass" => pass}, users) do
     auth_ok? = fn u -> u.name == name and u.pass == pass end
     [found_user|_] = Enum.filter users, auth_ok?
-    found_user
+    update_admin(found_user)
+  end
+
+  defp update_admin(user) do
+    if user[:admin] == true do
+      user
+    else
+      put_in(user[:admin], false)
+    end
   end
 end
