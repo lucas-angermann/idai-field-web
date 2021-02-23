@@ -4,7 +4,7 @@ defmodule Api.Auth.Rights do
 
   @anonymous "anonymous"
 
-  def is_admin(user_name) do # TODO maybe move elsewhere
+  def is_admin(user_name) do # TODO move elsewhere
     users = Config.get(:rights).users
     user  = Enum.find(users, %{}, fn user -> user.name == user_name end)
     user[:admin] == true
@@ -69,7 +69,7 @@ defmodule Api.Auth.Rights do
       anonymously_readable_projects = get_readable_projects(@anonymous, readable_projects)
       Enum.uniq(user_specific_readable_projects ++ anonymously_readable_projects)
     else
-      Config.get(:projects)
+      Config.get(:projects) # <- TODO this sideways access to config should not be here
     end
     %{ 
       user_name: user_name, 
