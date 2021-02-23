@@ -29,11 +29,13 @@ export const postLogin = async (user: string, password: string): Promise<LoginDa
         });
         const json = (await signInResponse.json());
 
-        return {
-            user,
-            token: json.token,
-            isAdmin: json.is_admin
-        };
+        return json.token === undefined
+            ? null
+            : {
+                user,
+                token: json.token,
+                isAdmin: json.is_admin === true
+            };
     } catch (_) {
         return null;
     }
@@ -73,7 +75,7 @@ export const refreshAnonymousUserRights = async (): Promise<LoginData> => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: "anonymous" })
+        body: JSON.stringify({ name: 'anonymous' })
     });
     if (response.status !== 200) return ANONYMOUS_USER;
 

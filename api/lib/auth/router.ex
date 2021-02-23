@@ -33,16 +33,16 @@ defmodule Api.Auth.Router do
   post "/sign_in" do
     user = user_by(conn.body_params, Api.Core.Config.get(Api.Auth, :users))
 
-    {:ok, token, _claims} = Guardian.encode_and_sign(user)
-
+    response = case user do
+      %{ name: "anonymous" } -> %{ is_admin: user.admin }
+      %{ } -> {:ok, token, _claims} = Guardian.encode_and_sign(user)
+              %{ token: token, is_admin: user.admin }
+      nil -> %{ info: :not_found }
+    end
+    
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(
-      %{ 
-        token: (if user.name == "anonymous", do: nil, else: token),
-        is_admin: user.admin
-      }
-    )
+    |> send_json(response)
   end
 
   defp user_by(%{"name" => "anonymous"}, users) do
@@ -54,9 +54,12 @@ defmodule Api.Auth.Router do
   end
   defp user_by(%{"name" => name, "pass" => pass}, users) do
     auth_ok? = fn u -> u.name == name and u.pass == pass end
-    [found_user|_] = Enum.filter users, auth_ok?
-    update_admin(found_user)
+    case Enum.filter users, auth_ok? do
+      [found_user|_] -> update_admin(found_user)
+      [] -> nil
+    end
   end
+  defp user_by(_, _users), do: nil
 
   defp update_admin(user) do
     if user[:admin] == true do
