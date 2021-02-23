@@ -6,7 +6,7 @@ defmodule Api.Auth.AdminRightsPlug do
   def init(options), do: options
 
   def call(conn, _opts) do
-    if not is_admin(get_user(conn).name) do
+    if not is_admin(get_user(conn).user_name) do
       conn
       |> send_unauthorized
       |> halt
