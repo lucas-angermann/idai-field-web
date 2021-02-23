@@ -19,13 +19,6 @@ defmodule Api.Auth.SignInTest do
       assert context.result["is_admin"] == false
     end
 
-    @tag user: %{ name: "anonymos" }
-    test "anonymous, misspelled", context do
-      assert context.result["token"] == nil
-      assert context.result["info"] == "not_found"
-      assert context.result["is_admin"] == nil
-    end
-
     @tag user: %{ name: "user-1", pass: "pass-1" }
     test "known user", context do
       assert context.result["token"] != nil
