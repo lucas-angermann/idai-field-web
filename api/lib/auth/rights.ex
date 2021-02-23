@@ -10,7 +10,7 @@ defmodule Api.Auth.Rights do
     user[:admin] == true
   end
 
-  def sign_in(credentials, _rights = %{ users: users }) do
+  def authorize(credentials, _rights = %{ users: users }) do
     case user_by(credentials, users) do
       user = %{ name: @anonymous } -> 
         if credentials[:pass] != nil do
@@ -24,10 +24,10 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  def get_user_for_bearer(nil, _rights = %{ readable_projects: readable_projects}) do
+  def authenticate(nil, _rights = %{ readable_projects: readable_projects}) do
     anonymous_user(readable_projects)
   end
-  def get_user_for_bearer(bearer, _rights = %{ readable_projects: readable_projects }) do
+  def authenticate(bearer, _rights = %{ readable_projects: readable_projects }) do
     token = String.replace bearer, "Bearer ", ""
     case Guardian.resource_from_token(token) do
       {:ok, token_content, _} -> assemble_user_info(token_content.user_name, readable_projects)

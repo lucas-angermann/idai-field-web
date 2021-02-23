@@ -10,7 +10,7 @@ defmodule Api.Auth.Router do
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    token_content = Rights.get_user_for_bearer(bearer, Api.Core.Config.get(:rights))
+    token_content = Rights.authenticate(bearer, Api.Core.Config.get(:rights))
 
     conn
     |> put_resp_content_type("text/plain")
@@ -30,7 +30,7 @@ defmodule Api.Auth.Router do
   #   not contain the user's role (i.e. if he is admin). This is on purpose, so
   #   routers and plugs always have the chance to apply rules with the latest state.
   post "/sign_in" do
-    response = Rights.sign_in(
+    response = Rights.authorize(
       Api.Core.Utils.atomize(conn.body_params), 
       Api.Core.Config.get(:rights))
     conn

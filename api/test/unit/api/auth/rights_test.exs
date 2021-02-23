@@ -10,77 +10,77 @@ defmodule Api.Auth.RightsTest do
   ]
 
   test "known user" do
-    response = sign_in(%{ name: "user-1", pass: "pass-1" }, %{ users: @users })
+    response = authorize(%{ name: "user-1", pass: "pass-1" }, %{ users: @users })
     assert response[:token] != nil
     assert response[:is_admin] == false
     assert response[:info] == nil
   end
 
   test "unknown user" do
-    response = sign_in(%{ name: "user-7", pass: "pass-1" }, %{ users: @users })
+    response = authorize(%{ name: "user-7", pass: "pass-1" }, %{ users: @users })
     assert response[:token] == nil
     assert response[:is_admin] == nil
     assert response[:info] == :not_found
   end
   
   test "wrong pass" do
-    response = sign_in(%{ name: "user-1", pass: "pass-2" }, %{ users: @users })
+    response = authorize(%{ name: "user-1", pass: "pass-2" }, %{ users: @users })
     assert response[:token] == nil
     assert response[:is_admin] == nil
     assert response[:info] == :not_found
   end
 
   test "known user - admin false" do
-    response = sign_in(%{ name: "user-1", pass: "pass-1" }, %{ users: [%{ name: "user-1", pass: "pass-1", admin: false }]})
+    response = authorize(%{ name: "user-1", pass: "pass-1" }, %{ users: [%{ name: "user-1", pass: "pass-1", admin: false }]})
     assert response[:token] != nil
     assert response[:is_admin] == false
     assert response[:info] == nil
   end
 
   test "known user - admin true" do
-    response = sign_in(%{ name: "user-1", pass: "pass-1" }, %{ users: [%{ name: "user-1", pass: "pass-1", admin: true }]})
+    response = authorize(%{ name: "user-1", pass: "pass-1" }, %{ users: [%{ name: "user-1", pass: "pass-1", admin: true }]})
     assert response[:token] != nil
     assert response[:is_admin] == true
     assert response[:info] == nil
   end
 
   test "anonymous" do
-    response = sign_in(%{ name: @anonymous }, %{ users: []})
+    response = authorize(%{ name: @anonymous }, %{ users: []})
     assert response[:token] == nil
     assert response[:is_admin] == false
     assert response[:info] == nil
   end
 
   test "anonymous - admin nil" do
-    response = sign_in(%{ name: @anonymous }, %{ users: [%{ name: @anonymous }]})
+    response = authorize(%{ name: @anonymous }, %{ users: [%{ name: @anonymous }]})
     assert response[:token] == nil
     assert response[:is_admin] == false
     assert response[:info] == nil
   end
 
   test "anonymous - admin false" do
-    response = sign_in(%{ name: @anonymous }, %{ users: [%{ name: @anonymous, admin: false }]})
+    response = authorize(%{ name: @anonymous }, %{ users: [%{ name: @anonymous, admin: false }]})
     assert response[:token] == nil
     assert response[:is_admin] == false
     assert response[:info] == nil
   end
 
   test "anonymous - admin true" do
-    response = sign_in(%{ name: @anonymous }, %{ users: [%{ name: @anonymous, admin: true }]})
+    response = authorize(%{ name: @anonymous }, %{ users: [%{ name: @anonymous, admin: true }]})
     assert response[:token] == nil
     assert response[:is_admin] == true
     assert response[:info] == nil
   end
 
   test "anonymous - misspelled" do
-    response = sign_in(%{ name: "anonymos" }, %{ users: []})
+    response = authorize(%{ name: "anonymos" }, %{ users: []})
     assert response[:token] == nil
     assert response[:is_admin] == nil
     assert response[:info] == :not_found
   end
 
   test "anonymous - password given" do
-    response = sign_in(%{ name: @anonymous, pass: "abc" }, %{ users: []})
+    response = authorize(%{ name: @anonymous, pass: "abc" }, %{ users: []})
     assert response[:token] == nil
     assert response[:is_admin] == nil
     assert response[:info] == :not_found
