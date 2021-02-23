@@ -4,12 +4,6 @@ defmodule Api.Auth.Rights do
 
   @anonymous "anonymous"
 
-  def is_admin(user_name) do # TODO move elsewhere
-    users = Config.get(:rights).users
-    user  = Enum.find(users, %{}, fn user -> user.name == user_name end)
-    user[:admin] == true
-  end
-
   def authorize(credentials, _rights = %{ users: users }) do
     case user_by(credentials, users) do
       user = %{ name: @anonymous } -> 
@@ -24,14 +18,14 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  def authenticate(nil, _rights = %{ readable_projects: readable_projects}) do
-    anonymous_user(readable_projects)
+  def authenticate(nil, rights) do
+    anonymous_user(rights)
   end
-  def authenticate(bearer, _rights = %{ readable_projects: readable_projects }) do
+  def authenticate(bearer, rights) do
     token = String.replace bearer, "Bearer ", ""
     case Guardian.resource_from_token(token) do
-      {:ok, token_content, _} -> assemble_user_info(token_content.user_name, readable_projects)
-      _ -> anonymous_user(readable_projects) # todo write test
+      {:ok, token_content, _} -> assemble_user_info(token_content.user_name, rights)
+      _ -> anonymous_user(rights) # todo write test
     end
   end
 
@@ -59,12 +53,19 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  defp anonymous_user(readable_projects) do
-    assemble_user_info(@anonymous, readable_projects)
+  defp anonymous_user(rights) do
+    assemble_user_info(@anonymous, rights)
   end
 
-  defp assemble_user_info(user_name, readable_projects) do
-    all_readable_projects = if not is_admin(user_name) do
+  defp assemble_user_info(
+    user_name, 
+    %{ readable_projects: readable_projects, users: users }) do
+
+    is_admin = case Enum.find(users, nil, fn user -> user.name == user_name end) do
+      nil -> false
+      found_user -> found_user[:admin] == true
+    end
+    all_readable_projects = if not is_admin do
       user_specific_readable_projects = if user_name != @anonymous, do: get_readable_projects(user_name, readable_projects), else: []
       anonymously_readable_projects = get_readable_projects(@anonymous, readable_projects)
       Enum.uniq(user_specific_readable_projects ++ anonymously_readable_projects)
@@ -74,7 +75,7 @@ defmodule Api.Auth.Rights do
     %{ 
       user_name: user_name, 
       readable_projects: all_readable_projects,
-      is_admin: is_admin(user_name)
+      is_admin: is_admin
     }
   end
 
