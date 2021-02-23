@@ -1,6 +1,5 @@
 defmodule Api.Auth.Rights do
   alias Api.Auth.Guardian
-  alias Api.Core.Config # TODO get rid of dependency
 
   @anonymous "anonymous"
 
@@ -18,14 +17,15 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  def authenticate(nil, rights) do
-    anonymous_user(rights)
+  # TODO review if rights and projects should be passed differently
+  def authenticate(nil, rights, projects) do
+    anonymous_user(rights, projects)
   end
-  def authenticate(bearer, rights) do
+  def authenticate(bearer, rights, projects) do
     token = String.replace bearer, "Bearer ", ""
     case Guardian.resource_from_token(token) do
-      {:ok, token_content, _} -> assemble_user_info(token_content.user_name, rights)
-      _ -> anonymous_user(rights) # todo write test
+      {:ok, token_content, _} -> assemble_user_info(token_content.user_name, rights, projects)
+      _ -> anonymous_user(rights, projects) # todo write test
     end
   end
 
@@ -53,13 +53,14 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  defp anonymous_user(rights) do
-    assemble_user_info(@anonymous, rights)
+  defp anonymous_user(rights, projects) do
+    assemble_user_info(@anonymous, rights, projects)
   end
 
   defp assemble_user_info(
     user_name, 
-    %{ readable_projects: readable_projects, users: users }) do
+    %{ readable_projects: readable_projects, users: users },
+    projects) do
 
     is_admin = case Enum.find(users, nil, fn user -> user.name == user_name end) do
       nil -> false
@@ -70,7 +71,7 @@ defmodule Api.Auth.Rights do
       anonymously_readable_projects = get_readable_projects(@anonymous, readable_projects)
       Enum.uniq(user_specific_readable_projects ++ anonymously_readable_projects)
     else
-      Config.get(:projects) # <- TODO this sideways access to config should not be here
+      projects
     end
     %{ 
       user_name: user_name, 

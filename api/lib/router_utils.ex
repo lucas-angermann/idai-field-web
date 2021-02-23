@@ -54,10 +54,10 @@ defmodule Api.RouterUtils do
     conn
     |> get_req_header("authorization")
     |> List.first
-    |> Rights.authenticate(Config.get(:rights))
+    |> Rights.authenticate(Config.get(:rights), Config.get(:projects))
   end
 
   def get_user_from_token token do
-    Rights.authenticate(token, Config.get(:rights))
+    Rights.authenticate(token, Config.get(:rights), Config.get(:projects))
   end
 end

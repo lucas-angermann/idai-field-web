@@ -1,6 +1,8 @@
 defmodule Api.Auth.Router do
   use Plug.Router
   import Api.RouterUtils, only: [send_json: 2]
+  alias Api.Core.Config
+  alias Api.Core.Utils
   alias Api.Auth.Rights
 
   plug :match
@@ -10,7 +12,7 @@ defmodule Api.Auth.Router do
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    token_content = Rights.authenticate(bearer, Api.Core.Config.get(:rights))
+    token_content = Rights.authenticate(bearer, Config.get(:rights), Config.get(:projects))
 
     conn
     |> put_resp_content_type("text/plain")
@@ -31,8 +33,8 @@ defmodule Api.Auth.Router do
   #   routers and plugs always have the chance to apply rules with the latest state.
   post "/sign_in" do
     response = Rights.authorize(
-      Api.Core.Utils.atomize(conn.body_params), 
-      Api.Core.Config.get(:rights))
+      Utils.atomize(conn.body_params), 
+      Config.get(:rights))
     conn
     |> put_resp_content_type("text/plain")
     |> send_json(response)
