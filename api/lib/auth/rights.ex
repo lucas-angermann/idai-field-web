@@ -10,7 +10,7 @@ defmodule Api.Auth.Rights do
     user[:admin] == true
   end
 
-  def sign_in(credentials, users) do
+  def sign_in(credentials, _rights = %{ users: users }) do
     case user_by(credentials, users) do
       user = %{ name: @anonymous } -> 
         if credentials[:pass] != nil do
