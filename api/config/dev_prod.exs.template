@@ -12,7 +12,7 @@ config :api,
   gazetteer_url: "https://gazetteer.dainst.org",
   projects: ["db1", "db2", "db3"],
   locales: ["de", "en"],
-  auth: %{ 
+  rights: %{ 
     users: [
       %{ name: "user-1", pass: "pass-1", admin: true }
     ],

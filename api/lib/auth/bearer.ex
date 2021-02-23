@@ -37,8 +37,8 @@ defmodule Api.Auth.Bearer do
 
   defp get_readable_projects(user_name) do
     user_name = if is_atom(user_name), do: user_name, else: String.to_atom(user_name)
-    Config.get(:auth).readable_projects[user_name]
-    || Config.get(:auth).readable_projects[Atom.to_string(user_name)]
+    Config.get(:rights).readable_projects[user_name]
+    || Config.get(:rights).readable_projects[Atom.to_string(user_name)]
     || []
   end
 end

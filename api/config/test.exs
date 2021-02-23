@@ -5,7 +5,7 @@ config :logger, level: :error
 config :api,
   projects: ["a", "b"],
   image_dir: "test/resources/images",
-  auth: %{
+  rights: %{
     users: [
       %{ name: "user-1", pass: "pass-1" },
       %{ name: "user-2", pass: "pass-2" },
