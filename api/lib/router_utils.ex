@@ -52,10 +52,10 @@ defmodule Api.RouterUtils do
     conn
     |> get_req_header("authorization")
     |> List.first
-    |> Api.Auth.Bearer.get_user_for_bearer
+    |> Api.Auth.Bearer.get_user_for_bearer(Api.Core.Config.get(:rights))
   end
 
   def get_user_from_token token do
-    Api.Auth.Bearer.get_user_for_bearer(token)
+    Api.Auth.Bearer.get_user_for_bearer(token, Api.Core.Config.get(:rights))
   end
 end

@@ -11,7 +11,7 @@ defmodule Api.Auth.Router do
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    token_content = Bearer.get_user_for_bearer(bearer)
+    token_content = Bearer.get_user_for_bearer(bearer, Api.Core.Config.get(:rights))
 
     conn
     |> put_resp_content_type("text/plain")
