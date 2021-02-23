@@ -1,6 +1,6 @@
-defmodule Api.Auth.HelpersTest do
+defmodule Api.Auth.RightsTest do
   use ExUnit.Case
-  import Api.Auth.Helpers
+  import Api.Auth.Rights
 
   @anonymous "anonymous"
 
