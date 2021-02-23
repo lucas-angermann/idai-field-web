@@ -29,7 +29,8 @@ config :api, Elixir.Api.Auth,
   users: [
     %{ name: "user-1", pass: "pass-1" },
     %{ name: "user-2", pass: "pass-2" },
-    %{ name: "user-3", pass: "pass-3" }
+    %{ name: "user-3", pass: "pass-3" },
+    %{ name: "user-5", pass: "pass-5", admin: true }
   ],
   readable_projects: %{
     "user-1" => ["a", "b", "c", "d"],
