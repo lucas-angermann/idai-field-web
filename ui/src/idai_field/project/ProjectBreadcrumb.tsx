@@ -1,34 +1,19 @@
 import { mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { getPredecessors } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
-import { LoginContext } from '../../shared/login';
+
 
 interface ProjectBreadcrumbProps {
-    documentId: string;
     projectId: string;
+    predecessors: ResultDocument[];
 }
 
-export default function ProjectBreadcrumb({ documentId, projectId }: ProjectBreadcrumbProps): ReactElement {
 
-    const loginData = useContext(LoginContext);
-
-    const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
-
-    useEffect(() => {
-
-        if (!documentId || documentId === 'root') {
-            setPredecessors([]);
-            return;
-        }
-
-        getPredecessors(documentId, loginData.token)
-            .then(result => setPredecessors(result.results));
-    }, [documentId, loginData.token]);
+export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBreadcrumbProps): ReactElement {
 
     return <>
         { renderProject(projectId) }

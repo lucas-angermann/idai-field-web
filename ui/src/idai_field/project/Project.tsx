@@ -7,7 +7,7 @@ import { Card, Tooltip } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, search } from '../../api/documents';
+import { get, getPredecessors, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
@@ -44,6 +44,7 @@ export default function Project(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocument, setMapDocument] = useState<Document>(null);
+    const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
@@ -51,22 +52,21 @@ export default function Project(): ReactElement {
     const [projectDoc, setProjectDoc] = useState<Document>(null);
 
     useEffect(() => {
-        if(searchParams.has('q')){
+        if (searchParams.has('q')) {
             setParent('');
-        }
-        else if(!searchParams.has('p') && !searchParams.has('parent')){
-            searchParams.append('parent','root');
+        } else if (!searchParams.has('p') && !searchParams.has('parent')) {
+            searchParams.append('parent', 'root');
             setParent('root');
         } else {
             setParent(searchParams.get('parent'));
         }
-    },[searchParams]);
+    }, [searchParams]);
 
     useEffect(() => {
 
-        get(projectId,loginData.token)
+        get(projectId, loginData.token)
             .then(setProjectDoc);
-    },[projectId, loginData]);
+    }, [projectId, loginData]);
 
     useEffect(() => {
 
@@ -82,11 +82,21 @@ export default function Project(): ReactElement {
     useEffect(() => {
 
         if (document) {
+            if (document.resource.id !== documentId) return;
             setMapDocument(document);
+            if (document.resource.parentId) {
+                getPredecessors(document.resource.parentId, loginData.token)
+                    .then(result => setPredecessors(result.results));
+            } else {
+                setPredecessors([]);
+            }
         } else if (parent && parent !== 'root') {
             get(parent, loginData.token).then(setMapDocument);
+            getPredecessors(parent, loginData.token)
+                .then(result => setPredecessors(result.results));
         } else {
             setMapDocument(null);
+            setPredecessors([]);
         }
     }, [parent, document, loginData]);
 
@@ -118,9 +128,9 @@ export default function Project(): ReactElement {
                      searchParams={ searchParams }
                      projectId={ projectId } />
             { document
-                ? renderDocumentDetails(document)
+                ? renderDocumentDetails(document, predecessors)
                 : isInHierarchyMode(parent)
-                    ? renderDocumentHierarchy(documents, searchParams, projectId, parent, onScroll)
+                    ? renderDocumentHierarchy(documents, searchParams, projectId, predecessors, onScroll)
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
@@ -136,10 +146,10 @@ const deselectFeature = (document: Document, searchParams: URLSearchParams, hist
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
-const renderDocumentDetails = (document: Document): React.ReactNode =>
+const renderDocumentDetails = (document: Document, predecessors: ResultDocument[]): React.ReactNode =>
     <>
         <Card className="p-2">
-            <ProjectBreadcrumb documentId={ document.resource.parentId } projectId={ document.project } />
+            <ProjectBreadcrumb projectId={ document.project } predecessors={ predecessors } />
         </Card>
         <DocumentCard document={ document }
             baseUrl={ CONFIGURATION.fieldUrl }
@@ -148,10 +158,10 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
 
 
 const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
-        parent: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+        predecessors: ResultDocument[], onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <>
         <Card className="p-2">
-            <ProjectBreadcrumb documentId={ parent } projectId={ projectId } />
+            <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
         </Card>
         <Card style={ mainSidebarCardStyle }>
             <DocumentHierarchy documents={ documents } searchParams={ searchParams } onScroll={ onScroll } />
