@@ -7,15 +7,13 @@ export interface LoginData {
     user: string;
     token: string;
     isAdmin: boolean;
-    readableProjects: string[];
 }
 
 
 export const ANONYMOUS_USER: LoginData = {
     user: 'anonymous',
     token: '',
-    isAdmin: false,
-    readableProjects: []
+    isAdmin: false
 };
 
 
@@ -29,23 +27,15 @@ export const postLogin = async (user: string, password: string): Promise<LoginDa
             },
             body: JSON.stringify({ name: user, pass: password })
         });
-        const token = (await signInResponse.json()).token;
+        const json = (await signInResponse.json());
 
-        const infoResponse = await fetch('/api/auth/info', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + token
-            }
-        });
-        const infoJson = await infoResponse.json();
-
-        return {
-            user,
-            token: token,
-            isAdmin: infoJson.is_admin,
-            readableProjects: infoJson.readable_projects
-        };
+        return json.token === undefined
+            ? null
+            : {
+                user,
+                token: json.token,
+                isAdmin: json.is_admin === true
+            };
     } catch (_) {
         return null;
     }
@@ -80,19 +70,19 @@ export const refreshAnonymousUserRights = async (): Promise<LoginData> => {
     const loginDataValue = localStorage.getItem(LOGIN_DATA);
     if (loginDataValue) return;
 
-    const response = await fetch('/api/auth/info', {
-        method: 'GET',
+    const response = await fetch('/api/auth/sign_in', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({ name: 'anonymous' })
     });
     if (response.status !== 200) return ANONYMOUS_USER;
 
-    const infoJson = await response.json();
+    const json = await response.json();
 
     const anonymous = clone(ANONYMOUS_USER);
-    anonymous.readableProjects = infoJson.readable_projects;
-    anonymous.isAdmin = infoJson.is_admin;
+    anonymous.isAdmin = json.is_admin;
     
     persistLogin(anonymous);
     return anonymous;

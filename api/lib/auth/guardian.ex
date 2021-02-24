@@ -1,6 +1,5 @@
 defmodule Api.Auth.Guardian do
   use Guardian, otp_app: :api
-  alias Api.Auth.Helpers
 
   @impl true
   def subject_for_token(user, _claims) do

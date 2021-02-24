@@ -1,8 +1,9 @@
 defmodule Api.Auth.Router do
   use Plug.Router
   import Api.RouterUtils, only: [send_json: 2]
-  alias Api.Auth.Bearer
-  alias Api.Auth.Guardian
+  alias Api.Core.Config
+  alias Api.Core.Utils
+  alias Api.Auth.Rights
 
   plug :match
   plug :dispatch
@@ -11,7 +12,7 @@ defmodule Api.Auth.Router do
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    token_content = Bearer.get_user_for_bearer(bearer)
+    token_content = Rights.authenticate(bearer, Config.get(:rights), Config.get(:projects))
 
     conn
     |> put_resp_content_type("text/plain")
@@ -27,22 +28,15 @@ defmodule Api.Auth.Router do
   # Issues a token for the user, which can be used in follow up requests
   # to claim to be that same user.
   #
-  # IMPL NOTE: The token will only act as an identifier and contain the readable
-  #   projects, but it will not maintain the users role, i.e. if he has admin rights.
-  #   This is handled by the plugs and routers.
+  # IMPL NOTE: The token will only act as an identifier, but in itself will
+  #   not contain the user's role (i.e. if he is admin). This is on purpose, so
+  #   routers and plugs always have the chance to apply rules with the latest state.
   post "/sign_in" do
-    user = user_by(conn.body_params, Api.Core.Config.get(Api.Auth, :users))
-
-    {:ok, token, _claims} = Guardian.encode_and_sign(user)
-
+    response = Rights.authorize(
+      Utils.atomize(conn.body_params), 
+      Config.get(:rights))
     conn
     |> put_resp_content_type("text/plain")
-    |> send_json(%{ token: token })
-  end
-
-  defp user_by(%{"name" => name, "pass" => pass}, users) do
-    auth_ok? = fn u -> u.name == name and u.pass == pass end
-    [found_user|_] = Enum.filter users, auth_ok?
-    found_user
+    |> send_json(response)
   end
 end

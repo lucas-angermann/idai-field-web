@@ -1,5 +1,7 @@
 defmodule Api.RouterUtils do
   import Plug.Conn, only: [put_resp_content_type: 2, send_resp: 3, get_req_header: 2]
+  alias Api.Core.Config
+  alias Api.Auth.Rights
 
   def send_json(conn, %{error: "bad_request"} = error) do
     conn
@@ -52,10 +54,10 @@ defmodule Api.RouterUtils do
     conn
     |> get_req_header("authorization")
     |> List.first
-    |> Api.Auth.Bearer.get_user_for_bearer
+    |> Rights.authenticate(Config.get(:rights), Config.get(:projects))
   end
 
   def get_user_from_token token do
-    Api.Auth.Bearer.get_user_for_bearer(token)
+    Rights.authenticate(token, Config.get(:rights), Config.get(:projects))
   end
 end

@@ -11,17 +11,17 @@ config :api,
   couchdb_password: "",
   gazetteer_url: "https://gazetteer.dainst.org",
   projects: ["db1", "db2", "db3"],
-  locales: ["de", "en"]
+  locales: ["de", "en"],
+  rights: %{ 
+    users: [
+      %{ name: "user-1", pass: "pass-1", admin: true }
+    ],
+    readable_projects: %{
+      "user-1" => ["a", "b", "c", "d"],
+      "anonymous" => ["a"]
+    }
+  }
 
 config :api, Api.Auth.Guardian,
        issuer: "api",
        secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
-
-config :api, Api.Auth,
-  users: [
-    %{ name: "user-1", pass: "pass-1", admin: true }
-  ],
-  readable_projects: %{
-    "user-1" => ["a", "b", "c", "d"],
-    "anonymous" => ["a"]
-  }
