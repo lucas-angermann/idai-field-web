@@ -1,5 +1,3 @@
-import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
-import Icon from '@mdi/react';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
@@ -14,7 +12,7 @@ import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import View from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
-import { Button, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
@@ -26,6 +24,7 @@ import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
+import LayersMenu from './LayersMenu';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
@@ -36,11 +35,9 @@ const MAX_SIZE = 10000;
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 
-type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
-
-
-export default function ProjectMap({ selectedDocument, project, onDeselectFeature }
-        : { selectedDocument: Document, project: string, onDeselectFeature: () => void }): ReactElement {
+export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature }
+        : { selectedDocument: Document, predecessors: ResultDocument[], project: string,
+            onDeselectFeature: () => void }): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -52,8 +49,6 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-    const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
-    const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
     
     const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
 
@@ -64,12 +59,8 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
         setSelect(createSelect(newMap));
         configureCursor(newMap);
 
-        const layerControlsCloseClickFunction = () => getLayerControlsCloseClickFunction(setLayerControlsVisible);
-        addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
-
         return () => {
             if (newMap) newMap.setTarget(null);
-            removeLayerControlsCloseEventListener(layerControlsCloseClickFunction);
         };
     }, []);
 
@@ -92,7 +83,6 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
             if (mounted) {
                 setTileLayers(newTileLayers);
                 newTileLayers.forEach(layer => map.addLayer(layer));
-                setVisibleTileLayers([]);
             }
         });
 
@@ -146,8 +136,7 @@ export default function ProjectMap({ selectedDocument, project, onDeselectFeatur
             </div>
         }
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, setVisibleTileLayers) }
-        { tileLayers.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
+        <LayersMenu map={ map } tileLayers={ tileLayers } fitOptions={ FIT_OPTIONS }></LayersMenu>
     </>;
 }
 
@@ -173,64 +162,6 @@ const setUpView = (map: Map, layer: VectorLayer) => {
     map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
     map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
     map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
-};
-
-
-const renderLayerControlsButton = (layerControlsVisible: boolean,
-        setLayerControlsVisible: React.Dispatch<React.SetStateAction<boolean>>): ReactElement => <>
-    <Button id="layer-controls-button" variant="primary" style={ layerControlsButtonStyle }
-            onClick={ () => setLayerControlsVisible(!layerControlsVisible) }>
-        <Icon path={ mdiLayers } size={ 0.8 } />
-    </Button>
-</>;
-
-
-const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayers: string[],
-        setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
-
-    return <>
-        <div id="layer-controls" style={ layerSelectorStyle } className="layer-controls">
-            <ul className="list-group">
-                { tileLayers.map(renderLayerControl(map, visibleTileLayers, setVisibleTileLayers)) }
-            </ul>
-        </div>
-    </>;
-};
-
-/* eslint-disable react/display-name */
-const renderLayerControl = (map: Map, visibleTileLayers: string[], setVisibleTileLayers: VisibleTileLayersSetter) =>
-        (tileLayer: TileLayer): ReactElement => {
-
-    const resource = tileLayer.get('document').resource;
-    const extent = tileLayer.getSource().getTileGrid().getExtent();
-
-    return (
-        <li style={ layerSelectorItemStyle } key={ resource.id } className="list-group-item">
-                <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
-                        style={ layerSelectorButtonStyle }
-                        className={ visibleTileLayers.includes(resource.id) && 'active' }>
-                    <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
-                </Button>
-                <Button variant="link" onClick={ () => map.getView().fit(extent, FIT_OPTIONS) }
-                        style={ layerSelectorButtonStyle }>
-                    <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
-                </Button>
-            { resource.identifier }
-        </li>
-    );
-};
-/* eslint-enable react/display-name */
-
-
-const toggleLayer = (tileLayer: TileLayer,
-        setVisibleTileLayers: React.Dispatch<React.SetStateAction<string[]>>): void => {
-
-    const docId = tileLayer.get('document').resource.id;
-
-    tileLayer.setVisible(!tileLayer.getVisible());
-    tileLayer.getVisible()
-        ? setVisibleTileLayers(old => [...old, docId])
-        : setVisibleTileLayers(old => old.filter(id => id !== docId));
 };
 
 
@@ -425,37 +356,6 @@ const createFeature = (document: ResultDocument): Feature => ({
 });
 
 
-const addLayerControlsCloseEventListener = (eventListener: EventListener) => {
-
-    document.addEventListener('click', eventListener);
-};
-
-
-const removeLayerControlsCloseEventListener = (eventListener: EventListener) => {
-
-    document.removeEventListener('click', eventListener);
-};
-
-
-const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: boolean) => void) => {
-
-    return (event: MouseEvent) => {
-
-        let element = event.target as Element;
-        let insideLayerControls: boolean = false;
-        while (element) {
-            if (element.id.startsWith('layer-controls')) {
-                insideLayerControls = true;
-                break;
-            } else {
-                element = element.parentElement;
-            }
-        }
-        if (!insideLayerControls) setLayerControlsVisible(false);
-    };
-};
-
-
 const spinnerContainerStyle: CSSProperties = {
     position: 'absolute',
     top: '50vh',
@@ -468,33 +368,4 @@ const spinnerContainerStyle: CSSProperties = {
 const mapStyle: CSSProperties = {
     height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
     backgroundColor: '#d3d3cf'
-};
-
-
-const layerControlsButtonStyle: CSSProperties = {
-    position: 'absolute',
-    top: `${NAVBAR_HEIGHT + 10}px`,
-    right: '10px'
-};
-
-
-const layerSelectorStyle: CSSProperties = {
-    position: 'absolute',
-    top: `${NAVBAR_HEIGHT + 50}px`,
-    right: '10px',
-    zIndex: 100,
-    height: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
-    overflow: 'auto'
-};
-
-
-const layerSelectorItemStyle: CSSProperties = {
-    padding: '.375em .75em',
-    fontSize: '.9em'
-};
-
-
-const layerSelectorButtonStyle: CSSProperties = {
-    padding: '0 .375em .2em 0',
-    lineHeight: 1
 };

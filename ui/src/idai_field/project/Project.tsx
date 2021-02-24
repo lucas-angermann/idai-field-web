@@ -136,6 +136,7 @@ export default function Project(): ReactElement {
         </ProjectSidebar>
         {projectDoc && <ProjectDescription document={ projectDoc } />}
         <ProjectMap selectedDocument={ mapDocument }
+            predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
     </>;
