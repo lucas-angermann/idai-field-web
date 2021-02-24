@@ -17,7 +17,6 @@ defmodule Api.Auth.Rights do
     end
   end
 
-  # TODO review if rights and projects should be passed differently
   def authenticate(nil, rights, projects) do
     anonymous_user(rights, projects)
   end
