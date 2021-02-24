@@ -25,6 +25,3 @@ config :api,
 config :api, Api.Auth.Guardian,
        issuer: "api",
        secret_key: "Secret key. You can use `mix guardian.gen.secret` to get one"
-
-config :api, Api.Auth,
-  
