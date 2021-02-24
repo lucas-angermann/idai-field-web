@@ -15,11 +15,6 @@ defmodule Api.Worker.Images.TilesCreator do
     else
       template = TilesTemplate.create(Enum.max([width, height]), @tile_size)
 
-      template = Enum.take(template, 2)
-
-      IO.puts "#{width}:#{height}"
-      IO.inspect template
-
       Logger.info "Rescale images in preparation of tile generation for #{project}/#{image_id}"
       if (rescale_images(template, project, image_id) == false) do
         Logger.error "Could not rescale all images for '#{image_id}' in preparation of tiling. Skip tile generation"
