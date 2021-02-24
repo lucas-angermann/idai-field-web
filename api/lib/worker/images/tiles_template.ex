@@ -1,6 +1,7 @@
 defmodule Api.Worker.Images.TilesTemplate do
 
-  def create(image_size, tile_size) do
+  def create({width, height}, tile_size) do
+    image_size = Enum.max([width, height])
     Stream.unfold(
       image_size,
       fn current_size ->
