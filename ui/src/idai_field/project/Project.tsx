@@ -98,7 +98,7 @@ export default function Project(): ReactElement {
             setMapDocument(null);
             setPredecessors([]);
         }
-    }, [parent, document, loginData]);
+    }, [parent, document, documentId, loginData]);
 
     useEffect(() => {
 
