@@ -136,7 +136,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
             </div>
         }
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        <LayersMenu map={ map } tileLayers={ tileLayers } fitOptions={ FIT_OPTIONS }></LayersMenu>
+        <LayersMenu map={ map }
+                    tileLayers={ tileLayers }
+                    fitOptions={ FIT_OPTIONS }
+                    predecessors={ predecessors }></LayersMenu>
     </>;
 }
 

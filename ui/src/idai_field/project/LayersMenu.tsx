@@ -5,17 +5,22 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import Map from 'ol/Map';
 import { FitOptions } from 'ol/View';
 import { Tile as TileLayer } from 'ol/layer';
+import { to } from 'tsfun';
 import { NAVBAR_HEIGHT } from '../../constants';
+import { ResultDocument } from '../../api/result';
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
+type LayerGroup = { document?: ResultDocument, tileLayers: TileLayer[] };
 
-export default function LayersMenu({ map, tileLayers, fitOptions }
-    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions }): ReactElement {
+
+export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
+    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[] }): ReactElement {
 
         const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
         const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
+        const [layerGroups, setLayerGroups] = useState<LayerGroup[]>([]);
 
 
         useEffect(() => {
@@ -29,14 +34,15 @@ export default function LayersMenu({ map, tileLayers, fitOptions }
 
         useEffect(() => {
 
+            setLayerGroups(createLayerGroups(tileLayers, predecessors));
             setVisibleTileLayers([]);
-        }, [tileLayers]);
+        }, [tileLayers, predecessors]);
 
 
         return <>
-            { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, fitOptions,
+            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions,
                 setVisibleTileLayers) }
-            { tileLayers.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
+            { layerGroups.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
         </>;
 }
 
@@ -50,16 +56,25 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
 </>;
 
 
-const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayers: string[],
+const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[],
         fitOptions: FitOptions, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <>
         <div id="layer-controls" style={ layerSelectorStyle } className="layer-controls">
             <ul className="list-group">
-                { tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
+                { layerGroups.map(layerGroup => {
+                    return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, setVisibleTileLayers);
+                }) }
             </ul>
         </div>
     </>;
+};
+
+
+const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
+        setVisibleTileLayers: VisibleTileLayersSetter) => {
+
+    return layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers));
 };
 
 /* eslint-disable react/display-name */
@@ -127,6 +142,32 @@ const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: b
         }
         if (!insideLayerControls) setLayerControlsVisible(false);
     };
+};
+
+
+const createLayerGroups = (tileLayers: TileLayer[], predecessors: ResultDocument[]): LayerGroup[] => {
+
+    const layerGroups: LayerGroup[] = predecessors.map(predecessor => {
+        return {
+            document: predecessor,
+            tileLayers: getLinkedTileLayers(predecessor.resource.id, tileLayers)
+        };
+    }).filter(layerGroup => layerGroup.tileLayers.length > 0);
+
+    layerGroups.push({
+        tileLayers: getLinkedTileLayers('project', tileLayers)
+    });
+
+    return layerGroups;
+};
+
+
+const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileLayer[] => {
+    
+    return tileLayers.filter(tileLayer => {
+        const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
+        return relations && relations.map(to('resource.id')).includes(resourceId);
+    });
 };
 
 
