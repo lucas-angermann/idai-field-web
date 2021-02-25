@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, CSSProperties, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import Icon from '@mdi/react';
 import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
 import Map from 'ol/Map';
@@ -59,22 +59,27 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
 const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[],
         fitOptions: FitOptions, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
-    return <>
-        <div id="layer-controls" style={ layerSelectorStyle } className="layer-controls">
-            <ul className="list-group">
-                { layerGroups.map(layerGroup => {
-                    return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, setVisibleTileLayers);
-                }) }
-            </ul>
-        </div>
-    </>;
+    return <Card id="layer-controls" style={ cardStyle } className="layer-controls">
+        <Card.Body style={ cardBodyStyle }>
+            { layerGroups.map(layerGroup => {
+                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, setVisibleTileLayers);
+            }) }
+        </Card.Body>
+    </Card>;
 };
 
 
 const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
         setVisibleTileLayers: VisibleTileLayersSetter) => {
 
-    return layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers));
+    return <>
+        <div style={ layerGroupHeadingStyle }>
+            { layerGroup.document ? layerGroup.document.resource.identifier : 'Projekt' }
+        </div>
+        <ul className="list-group" style={ layerGroupStyle }>
+            { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
+        </ul>
+    </>
 };
 
 /* eslint-disable react/display-name */
@@ -85,7 +90,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
     const extent = tileLayer.getSource().getTileGrid().getExtent();
 
     return (
-        <li style={ layerSelectorItemStyle } key={ resource.id } className="list-group-item">
+        <li style={ layerControlStyle } key={ resource.id } className="list-group-item">
                 <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
                         style={ layerSelectorButtonStyle }
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
@@ -178,17 +183,39 @@ const layerControlsButtonStyle: CSSProperties = {
 };
 
 
-const layerSelectorStyle: CSSProperties = {
+const cardStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 50}px`,
     right: '10px',
     zIndex: 1000,
-    height: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
-    overflow: 'auto'
+    border: '1px solid rgba(0, 0, 0, .125)',
+    borderRadius: '.25rem',
+    marginTop: '-1px'
 };
 
 
-const layerSelectorItemStyle: CSSProperties = {
+const cardBodyStyle: CSSProperties = {
+    maxHeight: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
+    padding: 0,
+    overflowY: 'auto',
+    overflowX: 'hidden'
+};
+
+
+const layerGroupHeadingStyle: CSSProperties = {
+    padding: '7px'
+};
+
+
+const layerGroupStyle: CSSProperties = {
+    marginRight: '-1px',
+    marginLeft: '-1px',
+    marginBottom: '-1px',
+    borderRadius: 0
+};
+
+
+const layerControlStyle: CSSProperties = {
     padding: '.375em .75em',
     fontSize: '.9em'
 };
