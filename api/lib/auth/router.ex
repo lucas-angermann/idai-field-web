@@ -1,6 +1,6 @@
 defmodule Api.Auth.Router do
   use Plug.Router
-  import Api.RouterUtils, only: [send_json: 2]
+  import Api.RouterUtils
   alias Api.Core.Config
   alias Api.Core.Utils
   alias Api.Auth.Rights
@@ -8,15 +8,22 @@ defmodule Api.Auth.Router do
   plug :match
   plug :dispatch
 
-  # One may or may not pass a Bearer token when calling this
+  # TODO move somewhere else
   get "/info" do
 
     bearer = List.first get_req_header(conn, "authorization")
-    token_content = Rights.authenticate(bearer, Config.get(:rights), Config.get(:projects))
+    rights_context = Rights.authenticate(bearer, 
+      Config.get(:rights), Config.get(:projects))
 
-    conn
-    |> put_resp_content_type("text/plain")
-    |> send_json(token_content)
+    if rights_context.is_admin do
+      conn
+      |> put_resp_content_type("text/plain")
+      |> send_json(%{ readable_projects: rights_context.readable_projects })
+    else
+      conn
+      |> put_resp_content_type("text/plain")
+      |> send_unauthorized
+    end
   end
 
   # As body, pass json like this

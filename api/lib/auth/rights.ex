@@ -17,6 +17,14 @@ defmodule Api.Auth.Rights do
     end
   end
 
+  @doc """
+  Returns a rights_context of the form
+  %{ 
+    user_name: String,
+    readable_projects: List,
+    is_admin: Boolean
+  }
+  """
   def authenticate(nil, rights, projects) do
     anonymous_user(rights, projects)
   end

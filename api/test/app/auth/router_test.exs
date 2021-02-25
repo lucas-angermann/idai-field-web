@@ -2,11 +2,9 @@ defmodule Api.Auth.RouterTest do
     use ExUnit.Case, async: true
     use Plug.Test
   
-    @auth_show_path Api.AppTestHelper.auth_path <> "/info"
+    @auth_info_path Api.AppTestHelper.auth_path <> "/info"
   
-    @user1 {"user-1", "pass-1"}
-    @user2 {"user-2", "pass-2"}
-    @user3 {"user-3", "pass-3"}
+    @user5 {"user-5", "pass-5"}
   
     setup context do
       conn = conn(:get, context[:path])
@@ -25,20 +23,8 @@ defmodule Api.Auth.RouterTest do
       [conn: conn, body: body]
     end
   
-    @tag path: @auth_show_path
-    test "show rights - anonymous", context do
-      assert context.body.readable_projects == ["a"]
-    end
-    @tag path: @auth_show_path, login: @user1
-    test "show rights - user-1", context do
-      assert context.body.readable_projects == ["a", "b", "c", "d"]
-    end
-    @tag path: @auth_show_path, login: @user2
-    test "show rights - user-2", context do
-      assert context.body.readable_projects == ["a", "b", "c"]
-    end
-    @tag path: @auth_show_path, login: @user3
-    test "show rights - user-3", context do
+    @tag path: @auth_info_path, login: @user5
+    test "show readable_projects - anonymous", context do
       assert context.body.readable_projects == ["a", "b"]
     end
   end
