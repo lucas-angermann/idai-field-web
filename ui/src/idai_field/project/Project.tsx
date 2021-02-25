@@ -134,7 +134,7 @@ export default function Project(): ReactElement {
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
-        {projectDoc && <ProjectDescription document={ projectDoc } />}
+        {(projectDoc && parent === 'root') && <ProjectDescription document={ projectDoc } />}
         <ProjectMap selectedDocument={ mapDocument }
             predecessors={ predecessors }
             project={ projectId }
