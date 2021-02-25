@@ -3,7 +3,7 @@ import { Document, getDocumentImages, getDocumentDescription } from '../../api/d
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { Card, Row, Col, Collapse, Button } from 'react-bootstrap';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
-import { mdiArrowDownDropCircle } from '@mdi/js';
+import { mdiArrowDownDropCircle, mdiArrowUpDropCircle } from '@mdi/js';
 import Icon from '@mdi/react';
 
 export interface ProjectDescriptionProps {
@@ -22,7 +22,7 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
                 aria-controls="collapse-card"
                 aria-expanded={ open }
                 >
-                <Icon path={ mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
+                <Icon path={ open? mdiArrowUpDropCircle :mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
                 {!open && document.resource.shortDescription}
             </Button>
             <Collapse in={ open }>
