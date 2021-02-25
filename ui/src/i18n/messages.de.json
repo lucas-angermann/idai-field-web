@@ -37,7 +37,7 @@
       "hierarchy": "Auf dieser Ebene der Projekthierarchie befinden sich keine Ressourcen, die mit Geodaten verknüpft sind."
     },
     "map": {
-      "layersMenu": {
+      "layerControls": {
         "project": "Projekt"
       }
     }

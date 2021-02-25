@@ -24,7 +24,7 @@ import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
 import { EXCLUDED_TYPES_FIELD } from '../constants';
-import LayersMenu from './LayersMenu';
+import LayerControls from './LayerControls';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
@@ -136,10 +136,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
             </div>
         }
         <div className="project-map" id="ol-project-map" style={ mapStyle } />
-        <LayersMenu map={ map }
+        <LayerControls map={ map }
                     tileLayers={ tileLayers }
                     fitOptions={ FIT_OPTIONS }
-                    predecessors={ predecessors }></LayersMenu>
+                    predecessors={ predecessors }></LayerControls>
     </>;
 }
 

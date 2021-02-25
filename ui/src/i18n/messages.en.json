@@ -37,7 +37,7 @@
       "hierarchy": "At this level of the project hierarchy there are no resources linked to geodata."
     },
     "map": {
-      "layersMenu": {
+      "layerControls": {
         "project": "Project"
       }
     }

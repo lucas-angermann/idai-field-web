@@ -17,7 +17,7 @@ type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 type LayerGroup = { document?: ResultDocument, tileLayers: TileLayer[] };
 
 
-export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
+export default function LayerControls({ map, tileLayers, fitOptions, predecessors }
     : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[] }): ReactElement {
 
         const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
@@ -78,7 +78,7 @@ const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: s
 
     return <div key={ layerGroup.document ? layerGroup.document.resource.id : 'project-layers' }>
         <div style={ layerGroupHeadingStyle }>
-            { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layersMenu.project') }
+            { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layerControls.project') }
         </div>
         <ul className="list-group" style={ layerGroupStyle }>
             { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
