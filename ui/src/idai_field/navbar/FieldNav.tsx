@@ -10,6 +10,8 @@ import { get } from '../../api/documents';
 import { LoginContext } from '../../shared/login';
 import BaseNav, { BaseNavProps, getNavItemClass } from '../../shared/navbar/BaseNav';
 import { dropdownStyle } from '../../shared/navbar/styles';
+import { getProjectLabel } from '../projects';
+
 
 export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
 
@@ -49,7 +51,7 @@ export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
                         <Nav.Link as="span">
                             <Link to={ `/project/${projectDocument.resource.id}` }
                                 className={ NavItemClass('project') }>
-                                { projectDocument.resource.identifier }
+                                { getProjectLabel(projectDocument) }
                             </Link>
                         </Nav.Link>
                     </>

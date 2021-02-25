@@ -14,12 +14,13 @@ import { FilterBucket, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { useSearchParams } from '../../shared/location';
 import { FIT_OPTIONS } from '../project/ProjectMap';
+import { getProjectLabel } from '../projects';
 import './overview-map.css';
 
 
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
-const MAX_LABEL_LENGTH = 25;
+
 
 
 export default function OverviewMap({ documents, filter }
@@ -183,12 +184,7 @@ const createFeatureLabel = (document: ResultDocument, filter?: ResultFilter): st
         (bucket: FilterBucket) => bucket.value.name === document.project
     ) as FilterBucket;
 
-    const baseLabel: string = document.resource.shortDescription
-            && document.resource.shortDescription.length <= MAX_LABEL_LENGTH
-        ? document.resource.shortDescription
-        : document.resource.identifier;
-
-    return baseLabel + (
+    return getProjectLabel(document) + (
         projectBucket && projectBucket.count > 0
             ? ` (${projectBucket.count})`
             : ''
