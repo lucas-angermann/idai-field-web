@@ -7,7 +7,7 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import Map from 'ol/Map';
 import { FitOptions } from 'ol/View';
 import { Tile as TileLayer } from 'ol/layer';
-import { to } from 'tsfun';
+import { flatten, to } from 'tsfun';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { ResultDocument } from '../../api/result';
 
@@ -30,14 +30,16 @@ export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
             const layerControlsCloseClickFunction = () => getLayerControlsCloseClickFunction(setLayerControlsVisible);
             addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
 
+            setVisibleTileLayers(restoreVisibleTileLayers());
+
             return () => removeLayerControlsCloseEventListener(layerControlsCloseClickFunction);
         }, []);
 
 
         useEffect(() => {
-
-            setLayerGroups(createLayerGroups(tileLayers, predecessors));
-            hideRemovedLayers(tileLayers, visibleTileLayers);
+            const newLayerGroups: LayerGroup[] = createLayerGroups(tileLayers, predecessors);
+            setLayerGroups(newLayerGroups);
+            updateTileLayerVisibility(tileLayers, newLayerGroups, visibleTileLayers);
         }, [tileLayers, predecessors, visibleTileLayers]);
 
 
@@ -93,7 +95,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
 
     return (
         <li style={ layerControlStyle } key={ resource.id } className="list-group-item">
-                <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
+                <Button variant="link" onClick={ () => toggleLayer(tileLayer, visibleTileLayers, setVisibleTileLayers) }
                         style={ layerSelectorButtonStyle }
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
@@ -109,25 +111,29 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
 /* eslint-enable react/display-name */
 
 
-const toggleLayer = (tileLayer: TileLayer,
+const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
                     setVisibleTileLayers: React.Dispatch<React.SetStateAction<string[]>>): void => {
 
     const docId = tileLayer.get('document').resource.id;
 
     tileLayer.setVisible(!tileLayer.getVisible());
-    tileLayer.getVisible()
-        ? setVisibleTileLayers(old => [...old, docId])
-        : setVisibleTileLayers(old => old.filter(id => id !== docId));
+    const newVisibleTileLayers: string[] = tileLayer.getVisible()
+        ? [...visibleTileLayers, docId]
+        : visibleTileLayers.filter(id => id !== docId);
+
+    setVisibleTileLayers(newVisibleTileLayers);
+    saveVisibleTileLayers(newVisibleTileLayers);
 };
 
 
-const hideRemovedLayers = (tileLayers: TileLayer[], visibleTileLayers: string[]) => {
+const updateTileLayerVisibility = (tileLayers: TileLayer[], layerGroups: LayerGroup[], visibleTileLayers: string[]) => {
 
-    visibleTileLayers.filter(tileLayerId => {
-        return !tileLayers.filter(tileLayer => tileLayer.getVisible())
-            .map(tileLayer => tileLayer.get('document').resource.id).includes(tileLayerId);
-    }).forEach(tileLayerId => {
-        tileLayers.find(tileLayer => tileLayer.get('document').resource.id === tileLayerId).setVisible(false);
+    const groupLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers')));
+    
+    tileLayers.forEach(tileLayer => {
+        tileLayer.setVisible(groupLayers.includes(tileLayer)
+            && visibleTileLayers.includes(tileLayer.get('document').resource.id)
+        );
     });
 };
 
@@ -186,6 +192,27 @@ const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileL
         const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
         return relations && relations.map(to('resource.id')).includes(resourceId);
     });
+};
+
+
+const saveVisibleTileLayers = (visibleTileLayers: string[]) => {
+
+    try {
+        localStorage.setItem('visibleTileLayers', JSON.stringify(visibleTileLayers));
+    } catch (err) {
+        console.warn('Failed to save list of visible tile layers to local storage', err);
+    }
+};
+
+
+const restoreVisibleTileLayers = (): string[] => {
+
+    try {
+        return JSON.parse(localStorage.getItem('visibleTileLayers')) || [];
+    } catch (err) {
+        console.warn('Failed to restore list of visible tile layers from local storage', err);
+        return [];
+    }
 };
 
 
