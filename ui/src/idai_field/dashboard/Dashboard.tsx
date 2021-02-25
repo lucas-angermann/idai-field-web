@@ -1,4 +1,5 @@
-import React, { CSSProperties, ReactElement, useContext } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import { getReadableProjects } from '../../api/documents';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { LoginContext } from '../../shared/login';
 
@@ -6,8 +7,12 @@ import { LoginContext } from '../../shared/login';
 export default function Dashboard(): ReactElement {
 
     const loginData = useContext(LoginContext);
+    const [projects, setProjects] = useState<string[]>([]);
+    
+    useEffect(() => {
 
-    const readableProjects = [];
+        getReadableProjects(loginData.token).then(setProjects);
+    }, [loginData]);
 
     return (<div>
         { loginData.isAdmin === true &&
@@ -15,7 +20,7 @@ export default function Dashboard(): ReactElement {
                 <h3 style={ headingStyle }>{ 'Dashboard' }</h3>
                 <p style={ paragraphStyle }>{ 'Projects'}</p>
                 <ul>
-                    { readableProjects.map((project, index) => {
+                    { projects.map((project, index) => {
                         return <li key={ index }>{ project }</li>;
                     })}
                 </ul>

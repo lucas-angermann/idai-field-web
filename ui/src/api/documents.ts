@@ -20,6 +20,14 @@ export const searchMap = async (query: Query, token: string): Promise<Result> =>
     fetchPost('/api/documents/map', query, token);
 
 
+export const getReadableProjects = async(token: string): Promise<string[]> => {
+
+    const response = await fetch('/api/auth/info', { headers: getHeaders(token) });
+    if (response.ok) return (await response.json())['readable_projects'];
+    else throw(await response.json());
+};
+
+
 export const getPredecessors = async (id: string, token: string): Promise<PredecessorResult> => {
     
     const uri = `/api/documents/predecessors/${id}`;
