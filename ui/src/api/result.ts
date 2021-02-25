@@ -31,6 +31,7 @@ export interface ResultResource {
     geometry: Geometry;
     geometry_wgs84?: Geometry;
     width?: number;
+    height?: number;
 }
 
 

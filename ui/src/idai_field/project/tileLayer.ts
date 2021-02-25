@@ -13,16 +13,18 @@ export const getResolutions = (
         tileSize: number,
         document: ResultDocument): number[] => {
 
+    const portraitFormat = document.resource.height > document.resource.width;
+
     const result = [];
-    const layerWidth = extent[2] - extent[0];
-    const imageWidth = document.resource.width;
+    const layerSize = extent[portraitFormat ? 3 : 2] - extent[portraitFormat ? 1 : 0];
+    const imageSize = portraitFormat ? document.resource.height : document.resource.width;
     
     let scale = 1;
-    while (tileSize < imageWidth / scale) {
-        result.push(layerWidth / imageWidth * scale);
+    while (tileSize < imageSize / scale) {
+        result.push(layerSize / imageSize * scale);
         scale *= 2;
     }
-    result.push(layerWidth / imageWidth * scale);
+    result.push(layerSize / imageSize * scale);
 
     return result.reverse();
 };
