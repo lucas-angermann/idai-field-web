@@ -34,13 +34,13 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
 
-  # Prerequisite: Run reindex, run conversion
+  # Prerequisite: Reindex
   post "/tiling" do
     Task.async fn -> Api.Worker.Images.TilesController.make_tiles() end
     send_json(conn, %{ status: "ok", message: "Tile generation started"})
   end
 
-  # Prerequisite: Run reindex, run conversion
+  # Prerequisite: Project is indexed
   post "/tiling/:project" do
     Task.async fn -> Api.Worker.Images.TilesController.make_tiles([project]) end
     send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
