@@ -37,7 +37,6 @@ export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
         useEffect(() => {
 
             setLayerGroups(createLayerGroups(tileLayers, predecessors));
-            setVisibleTileLayers([]);
         }, [tileLayers, predecessors]);
 
 
