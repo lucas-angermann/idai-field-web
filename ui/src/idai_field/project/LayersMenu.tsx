@@ -1,5 +1,7 @@
 import React, { ReactElement, useState, CSSProperties, useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
 import Map from 'ol/Map';
@@ -21,7 +23,7 @@ export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
         const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
         const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
         const [layerGroups, setLayerGroups] = useState<LayerGroup[]>([]);
-
+        const { t } = useTranslation();
 
         useEffect(() => {
 
@@ -40,7 +42,7 @@ export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
 
 
         return <>
-            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions,
+            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions, t,
                 setVisibleTileLayers) }
             { layerGroups.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
         </>;
@@ -57,12 +59,12 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
 
 
 const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[],
-        fitOptions: FitOptions, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
+        fitOptions: FitOptions, t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <Card id="layer-controls" style={ cardStyle } className="layer-controls">
         <Card.Body style={ cardBodyStyle }>
             { layerGroups.map(layerGroup => {
-                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, setVisibleTileLayers);
+                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, t, setVisibleTileLayers);
             }) }
         </Card.Body>
     </Card>;
@@ -70,11 +72,11 @@ const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLay
 
 
 const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
-        setVisibleTileLayers: VisibleTileLayersSetter) => {
+        t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter) => {
 
     return <>
         <div style={ layerGroupHeadingStyle }>
-            { layerGroup.document ? layerGroup.document.resource.identifier : 'Projekt' }
+            { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layersMenu.project') }
         </div>
         <ul className="list-group" style={ layerGroupStyle }>
             { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
