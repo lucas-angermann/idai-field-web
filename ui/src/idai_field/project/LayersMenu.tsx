@@ -1,22 +1,29 @@
 import React, { ReactElement, useState, CSSProperties, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import Icon from '@mdi/react';
 import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js';
 import Map from 'ol/Map';
 import { FitOptions } from 'ol/View';
 import { Tile as TileLayer } from 'ol/layer';
+import { to } from 'tsfun';
 import { NAVBAR_HEIGHT } from '../../constants';
+import { ResultDocument } from '../../api/result';
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 
+type LayerGroup = { document?: ResultDocument, tileLayers: TileLayer[] };
 
-export default function LayersMenu({ map, tileLayers, fitOptions }
-    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions }): ReactElement {
+
+export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
+    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[] }): ReactElement {
 
         const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
         const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
-
+        const [layerGroups, setLayerGroups] = useState<LayerGroup[]>([]);
+        const { t } = useTranslation();
 
         useEffect(() => {
 
@@ -29,14 +36,15 @@ export default function LayersMenu({ map, tileLayers, fitOptions }
 
         useEffect(() => {
 
+            setLayerGroups(createLayerGroups(tileLayers, predecessors));
             setVisibleTileLayers([]);
-        }, [tileLayers]);
+        }, [tileLayers, predecessors]);
 
 
         return <>
-            { layerControlsVisible && renderLayerControls(map, tileLayers, visibleTileLayers, fitOptions,
+            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions, t,
                 setVisibleTileLayers) }
-            { tileLayers.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
+            { layerGroups.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
         </>;
 }
 
@@ -50,16 +58,30 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
 </>;
 
 
-const renderLayerControls = (map: Map, tileLayers: TileLayer[], visibleTileLayers: string[],
-        fitOptions: FitOptions, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
+const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[],
+        fitOptions: FitOptions, t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
+
+    return <Card id="layer-controls" style={ cardStyle } className="layer-controls">
+        <Card.Body style={ cardBodyStyle }>
+            { layerGroups.map(layerGroup => {
+                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, t, setVisibleTileLayers);
+            }) }
+        </Card.Body>
+    </Card>;
+};
+
+
+const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
+        t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter) => {
 
     return <>
-        <div id="layer-controls" style={ layerSelectorStyle } className="layer-controls">
-            <ul className="list-group">
-                { tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
-            </ul>
+        <div style={ layerGroupHeadingStyle }>
+            { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layersMenu.project') }
         </div>
-    </>;
+        <ul className="list-group" style={ layerGroupStyle }>
+            { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
+        </ul>
+    </>
 };
 
 /* eslint-disable react/display-name */
@@ -70,7 +92,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
     const extent = tileLayer.getSource().getTileGrid().getExtent();
 
     return (
-        <li style={ layerSelectorItemStyle } key={ resource.id } className="list-group-item">
+        <li style={ layerControlStyle } key={ resource.id } className="list-group-item">
                 <Button variant="link" onClick={ () => toggleLayer(tileLayer, setVisibleTileLayers) }
                         style={ layerSelectorButtonStyle }
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
@@ -130,6 +152,32 @@ const getLayerControlsCloseClickFunction = (setLayerControlsVisible: (visible: b
 };
 
 
+const createLayerGroups = (tileLayers: TileLayer[], predecessors: ResultDocument[]): LayerGroup[] => {
+
+    const layerGroups: LayerGroup[] = predecessors.map(predecessor => {
+        return {
+            document: predecessor,
+            tileLayers: getLinkedTileLayers(predecessor.resource.id, tileLayers)
+        };
+    }).filter(layerGroup => layerGroup.tileLayers.length > 0);
+
+    layerGroups.push({
+        tileLayers: getLinkedTileLayers('project', tileLayers)
+    });
+
+    return layerGroups;
+};
+
+
+const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileLayer[] => {
+    
+    return tileLayers.filter(tileLayer => {
+        const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
+        return relations && relations.map(to('resource.id')).includes(resourceId);
+    });
+};
+
+
 const layerControlsButtonStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 10}px`,
@@ -137,17 +185,39 @@ const layerControlsButtonStyle: CSSProperties = {
 };
 
 
-const layerSelectorStyle: CSSProperties = {
+const cardStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 50}px`,
     right: '10px',
     zIndex: 1000,
-    height: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
-    overflow: 'auto'
+    border: '1px solid rgba(0, 0, 0, .125)',
+    borderRadius: '.25rem',
+    marginTop: '-1px'
 };
 
 
-const layerSelectorItemStyle: CSSProperties = {
+const cardBodyStyle: CSSProperties = {
+    maxHeight: `calc(100vh - ${NAVBAR_HEIGHT + 60}px)`,
+    padding: 0,
+    overflowY: 'auto',
+    overflowX: 'hidden'
+};
+
+
+const layerGroupHeadingStyle: CSSProperties = {
+    padding: '7px'
+};
+
+
+const layerGroupStyle: CSSProperties = {
+    marginRight: '-1px',
+    marginLeft: '-1px',
+    marginBottom: '-1px',
+    borderRadius: 0
+};
+
+
+const layerControlStyle: CSSProperties = {
     padding: '.375em .75em',
     fontSize: '.9em'
 };
