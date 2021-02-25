@@ -20,10 +20,28 @@ export const searchMap = async (query: Query, token: string): Promise<Result> =>
     fetchPost('/api/documents/map', query, token);
 
 
-export const getReadableProjects = async(token: string): Promise<string[]> => {
+// TODO move elsewhere
+export const getReadableProjects = async (token: string): Promise<string[]> => {
 
     const response = await fetch('/api/auth/info', { headers: getHeaders(token) });
     if (response.ok) return (await response.json())['readable_projects'];
+    else throw(await response.json());
+};
+
+
+// TODO move elsewhere
+export const postReindex = async (token: string, project: string): Promise<unknown> => {
+
+    const uri = project === ''
+        ? '/api/worker/reindex'
+        : '/api/worker/reindex/' + project;
+
+    const response = await fetch(uri, {
+        headers: getHeaders(token),
+        method: 'POST'
+    });
+
+    if (response.ok) return (await response.json());
     else throw(await response.json());
 };
 
