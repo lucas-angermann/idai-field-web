@@ -39,6 +39,7 @@ export default function LayerControls({ map, tileLayers, fitOptions, predecessor
         useEffect(() => {
             const newLayerGroups: LayerGroup[] = createLayerGroups(tileLayers, predecessors);
             setLayerGroups(newLayerGroups);
+            updateZIndices(newLayerGroups);
             updateTileLayerVisibility(tileLayers, newLayerGroups, visibleTileLayers);
         }, [tileLayers, predecessors, visibleTileLayers]);
 
@@ -193,6 +194,16 @@ const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileL
         const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
         return relations && relations.map(to('resource.id')).includes(resourceId);
     });
+};
+
+
+const updateZIndices = (layerGroups: LayerGroup[]) => {
+
+    const tileLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers'))).reverse();
+
+    for (let i = 0; i < tileLayers.length; i++) {
+        tileLayers[i].setZIndex(i);
+    }
 };
 
 
