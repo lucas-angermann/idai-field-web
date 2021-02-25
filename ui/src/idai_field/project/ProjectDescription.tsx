@@ -15,6 +15,9 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
     const images = getDocumentImages(document);
     const description = getDocumentDescription(document);
     const [open, setOpen] = useState<boolean>(true);
+
+    if (!document.resource.shortDescription && !description) return null;
+    
     return (
         <Card style={ containerStyle }>
             <Button className="btn-primary p-1 d-flex flex-row-reverse"
@@ -22,7 +25,7 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
                 aria-controls="collapse-card"
                 aria-expanded={ open }
                 >
-                <Icon path={ open? mdiArrowUpDropCircle :mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
+                <Icon path={ open? mdiArrowUpDropCircle : mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
                 {!open && document.resource.shortDescription}
             </Button>
             <Collapse in={ open }>
