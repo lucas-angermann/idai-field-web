@@ -21,8 +21,6 @@ import './overview-map.css';
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
 
 
-
-
 export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {
 

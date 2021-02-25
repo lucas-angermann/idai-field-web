@@ -37,7 +37,8 @@ export default function LayersMenu({ map, tileLayers, fitOptions, predecessors }
         useEffect(() => {
 
             setLayerGroups(createLayerGroups(tileLayers, predecessors));
-        }, [tileLayers, predecessors]);
+            hideRemovedLayers(tileLayers, visibleTileLayers);
+        }, [tileLayers, predecessors, visibleTileLayers]);
 
 
         return <>
@@ -80,7 +81,7 @@ const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: s
         <ul className="list-group" style={ layerGroupStyle }>
             { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
         </ul>
-    </>
+    </>;
 };
 
 /* eslint-disable react/display-name */
@@ -117,6 +118,17 @@ const toggleLayer = (tileLayer: TileLayer,
     tileLayer.getVisible()
         ? setVisibleTileLayers(old => [...old, docId])
         : setVisibleTileLayers(old => old.filter(id => id !== docId));
+};
+
+
+const hideRemovedLayers = (tileLayers: TileLayer[], visibleTileLayers: string[]) => {
+
+    visibleTileLayers.filter(tileLayerId => {
+        return !tileLayers.filter(tileLayer => tileLayer.getVisible())
+            .map(tileLayer => tileLayer.get('document').resource.id).includes(tileLayerId);
+    }).forEach(tileLayerId => {
+        tileLayers.find(tileLayer => tileLayer.get('document').resource.id === tileLayerId).setVisible(false);
+    });
 };
 
 
