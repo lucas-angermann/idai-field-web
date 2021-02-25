@@ -22,7 +22,7 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
                 aria-controls="collapse-card"
                 aria-expanded={ open }
                 >
-                <Icon path={ open? mdiArrowUpDropCircle :mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
+                <Icon path={ open? mdiArrowUpDropCircle : mdiArrowDownDropCircle } size={ 0.8 } className="m-1" />
                 {!open && document.resource.shortDescription}
             </Button>
             <Collapse in={ open }>
