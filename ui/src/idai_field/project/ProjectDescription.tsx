@@ -15,6 +15,9 @@ export function ProjectDescription ({ document }: ProjectDescriptionProps):React
     const images = getDocumentImages(document);
     const description = getDocumentDescription(document);
     const [open, setOpen] = useState<boolean>(true);
+
+    if (!document.resource.shortDescription && !description) return null;
+    
     return (
         <Card style={ containerStyle }>
             <Button className="btn-primary p-1 d-flex flex-row-reverse"
