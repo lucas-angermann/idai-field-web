@@ -159,13 +159,13 @@ const createLayerGroups = (tileLayers: TileLayer[], predecessors: ResultDocument
             document: predecessor,
             tileLayers: getLinkedTileLayers(predecessor.resource.id, tileLayers)
         };
-    }).filter(layerGroup => layerGroup.tileLayers.length > 0);
+    });
 
     layerGroups.push({
         tileLayers: getLinkedTileLayers('project', tileLayers)
     });
 
-    return layerGroups;
+    return layerGroups.filter(layerGroup => layerGroup.tileLayers.length > 0);
 };
 
 
