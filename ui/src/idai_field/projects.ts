@@ -1,7 +1,7 @@
 import { ResultDocument } from '../api/result';
 
 
-const MAX_LABEL_LENGTH = 25;
+const MAX_LABEL_LENGTH = 35;
 
 
 export const getProjectLabel = (projectDocument: ResultDocument): string => {
