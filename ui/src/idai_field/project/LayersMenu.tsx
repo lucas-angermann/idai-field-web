@@ -76,14 +76,14 @@ const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLay
 const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
         t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter) => {
 
-    return <>
+    return <div key={ layerGroup.document ? layerGroup.document.resource.id : 'project-layers' }>
         <div style={ layerGroupHeadingStyle }>
             { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layersMenu.project') }
         </div>
         <ul className="list-group" style={ layerGroupStyle }>
             { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
         </ul>
-    </>;
+    </div>;
 };
 
 /* eslint-disable react/display-name */
@@ -129,6 +129,7 @@ const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
 const updateTileLayerVisibility = (tileLayers: TileLayer[], layerGroups: LayerGroup[], visibleTileLayers: string[]) => {
 
     const groupLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers')));
+    console.log(groupLayers);
     
     tileLayers.forEach(tileLayer => {
         tileLayer.setVisible(groupLayers.includes(tileLayer)
