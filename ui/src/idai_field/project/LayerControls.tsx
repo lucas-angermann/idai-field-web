@@ -28,7 +28,7 @@ export default function LayerControls({ map, tileLayers, fitOptions, predecessor
 
         useEffect(() => {
 
-            const layerControlsCloseClickFunction = () => getLayerControlsCloseClickFunction(setLayerControlsVisible);
+            const layerControlsCloseClickFunction = getLayerControlsCloseClickFunction(setLayerControlsVisible);
             addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
 
             setVisibleTileLayers(restoreVisibleTileLayers());
@@ -131,7 +131,6 @@ const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
 const updateTileLayerVisibility = (tileLayers: TileLayer[], layerGroups: LayerGroup[], visibleTileLayers: string[]) => {
 
     const groupLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers')));
-    console.log(groupLayers);
     
     tileLayers.forEach(tileLayer => {
         tileLayer.setVisible(groupLayers.includes(tileLayer)
