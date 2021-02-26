@@ -123,7 +123,7 @@ const sideStyle: CSSProperties = {
     fontFamily: 'monospace',
     color: 'white',
     backgroundColor: 'black',
-    height: 'calc(100vh - 130px)'
+    height: 'calc(100vh - 138px)'
 };
 
 
@@ -132,6 +132,8 @@ const pageStyle: CSSProperties = {
 
 
 const headingStyle: CSSProperties = {
+    paddingTop: '10px',
+    paddingBottom: '13px',
     textAlign: 'center',
     marginBottom: '15px'
 };
