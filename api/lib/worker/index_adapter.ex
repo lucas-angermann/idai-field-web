@@ -40,6 +40,21 @@ defmodule Api.Worker.IndexAdapter do
     {new_index, old_index}
   end
 
+  def remove_stale_index_alias(project) do
+    alias = "#{Config.get(:elasticsearch_index_prefix)}_#{project}"
+    {new_index, _old_index} = get_new_index_name(alias) # TODO handle failure
+    with {:ok, %HTTPoison.Response{body: body}} <- HTTPoison.delete("#{Config.get(:elasticsearch_url)}/#{new_index}"),
+         body <- Poison.decode! body
+    do
+      case body do 
+        %{ "acknowledged" => true } -> IO.puts "done" # TODO return message to caller?
+        _ -> nil
+      end
+    else
+      _err -> nil
+    end
+  end
+
   def add_alias_and_remove_old_index(project, new_index, old_index) do
     alias = "#{Config.get(:elasticsearch_index_prefix)}_#{project}"
 

@@ -29,6 +29,10 @@ defmodule Api.Worker.Indexer do
     {:finished_reindex_project, project}
   end
 
+  def stop_reindex(project) do
+    IndexAdapter.remove_stale_index_alias project
+  end
+
   defp log_finished(change, step, project) do
     Logger.info "Finished #{step} #{project}"
     change

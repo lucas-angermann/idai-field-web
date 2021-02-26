@@ -63,9 +63,9 @@ defmodule Api.Worker.Server do
 
     if tasks[project] != nil do
       pid = tasks[project].pid
-      Process.exit(pid, :killed_by_user)
+      Process.exit pid, :killed_by_user
+      Indexer.stop_reindex project # TODO Review timing; deletion of index after process killed; an existing working index must never be allowed to get deleted by accident
       Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"
-      # TODO remove newly created, now stale, index
       {
         :reply,
         {
