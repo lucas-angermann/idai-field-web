@@ -98,12 +98,12 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
     return (
         <li style={ layerControlStyle } key={ resource.id } className="list-group-item">
                 <Button variant="link" onClick={ () => toggleLayer(tileLayer, visibleTileLayers, setVisibleTileLayers) }
-                        style={ layerSelectorButtonStyle }
+                        style={ layerButtonStyle }
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
                 </Button>
                 <Button variant="link" onClick={ () => map.getView().fit(extent, fitOptions) }
-                        style={ layerSelectorButtonStyle }>
+                        style={ layerButtonStyle }>
                     <Icon path={ mdiImageFilterCenterFocus } size={ 0.7 } />
                 </Button>
             { resource.identifier }
@@ -273,7 +273,7 @@ const layerControlStyle: CSSProperties = {
 };
 
 
-const layerSelectorButtonStyle: CSSProperties = {
+const layerButtonStyle: CSSProperties = {
     padding: '0 .375em .2em 0',
     lineHeight: 1
 };

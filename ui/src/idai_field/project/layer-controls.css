@@ -12,3 +12,7 @@
 .layer-controls .btn-link:hover {
     color: rgba(0, 0, 0, 0.9) !important;
 }
+
+.layer-controls .list-group-item .btn:focus {
+    box-shadow: none;
+}
