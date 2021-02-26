@@ -16,6 +16,10 @@ defmodule Api.Worker.Server do
     GenServer.call(__MODULE__, {:stop_reindex, project})
   end
 
+  def show_running() do
+    GenServer.call(__MODULE__, {:show_running})
+  end
+
   ##########################################################
 
   def start_link(opts) do
@@ -58,6 +62,16 @@ defmodule Api.Worker.Server do
         Map.merge(tasks, new_tasks)
       }    
     end
+  end
+  def handle_call({:show_running}, _from, tasks) do
+    {
+      :reply,
+      {
+        :ok,
+        Map.keys(tasks)
+      },
+      tasks
+    }
   end
   def handle_call({:stop_reindex, project}, _from, tasks) do
 

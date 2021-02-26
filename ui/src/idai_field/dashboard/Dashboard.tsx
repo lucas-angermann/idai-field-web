@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { postReindex, postStopReindex } from '../../api/worker';
+import { getShowInfo, postReindex, postStopReindex } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
@@ -35,10 +35,15 @@ export default function Dashboard(): ReactElement {
                                 <span className="btn" style={ rStyle }
                                     onClick={ () => triggerReindex(loginData.token, setStat, project) }>Reindex</span>
                             </div>
-                            { project !== 'All projects' && <div style={ projectButtonsStyle2 }>
+                            { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
                                     onClick={ () => triggerStopReindex(loginData.token, setStat, project) }>Stop</span>
-                            </div> }
+                            </div> : 
+                            <div style={ projectButtonsStyle2 }>
+                                <span className="btn" style={ rStyle }
+                                    onClick={ () => triggerShowInfo(loginData.token, setStat) }>Info</span>
+                            </div>
+                        }
                         </div>;
                     })}
                 </div>
@@ -72,6 +77,18 @@ const triggerStopReindex = async (token: string,
     setStat(['Project: ' + project, 'Task: Reindex',
         'Status:', response['status'], 'Message:', response['message']]);
 };
+
+
+const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
+
+    const response = await getShowInfo(token);
+    setStat(['Server', 'Task: Show running reindex procecces',
+        'Status:', response['status'], 'Currently running:', 
+        response?.['message'].length > 0 
+            ? response['message'].join(', ') 
+            : 'No processes'
+        ]);
+}
 
 
 const projectRowStyle: CSSProperties = {

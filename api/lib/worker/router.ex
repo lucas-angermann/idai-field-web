@@ -23,6 +23,11 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
 
+  get "/reindex" do
+    {status, msg} = Server.show_running()
+    send_json(conn, %{ status: status, message: msg })
+  end
+
   # 1. Reindexes a single project.
   post "/reindex/:project" do
     {status, msg} = Server.index_projects([project])
