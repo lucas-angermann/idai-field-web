@@ -46,6 +46,21 @@ export const postReindex = async (token: string, project: string): Promise<unkno
 };
 
 
+// TODO move elsewhere
+export const postStopReindex = async (token: string, project: string): Promise<unknown> => {
+
+    const uri = '/api/worker/reindex/' + project + '/stop';
+
+    const response = await fetch(uri, {
+        headers: getHeaders(token),
+        method: 'POST'
+    });
+
+    if (response.ok) return (await response.json());
+    else throw(await response.json());
+};
+
+
 export const getPredecessors = async (id: string, token: string): Promise<PredecessorResult> => {
     
     const uri = `/api/documents/predecessors/${id}`;

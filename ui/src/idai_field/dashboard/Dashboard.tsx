@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
-import { getReadableProjects, postReindex } from '../../api/documents';
+import { getReadableProjects, postReindex, postStopReindex } from '../../api/documents';
 import { LoginContext } from '../../shared/login';
 
 
@@ -34,6 +34,10 @@ export default function Dashboard(): ReactElement {
                                 <span className="btn" style={ rStyle }
                                     onClick={ () => triggerReindex(loginData.token, setStat, project) }>Reindex</span>
                             </div>
+                            { project !== 'All projects' && <div style={ projectButtonsStyle2 }>
+                                <span className="btn" style={ rStyle }
+                                    onClick={ () => triggerStopReindex(loginData.token, setStat, project) }>Stop</span>
+                            </div> }
                         </div>;
                     })}
                 </div>
@@ -60,6 +64,15 @@ const triggerReindex = async (token: string,
 };
 
 
+const triggerStopReindex = async (token: string,
+    setStat: (s: string[]) => void, project: string): Promise<void> => {
+
+    const response = await postStopReindex(token, project === 'All projects' ? '' : project);
+    setStat(['Project: ' + project, 'Task: Reindex',
+        'Status:', response['status'], 'Message:', response['message']]);
+};
+
+
 const projectRowStyle: CSSProperties = {
     height: '44px',
     position: 'relative'
@@ -79,9 +92,19 @@ const projectButtonsStyle: CSSProperties = {
     left: '200px',
     top: '0px',
     height: '44px',
+    width: '100px',
+    position: 'absolute',
+};
+
+
+const projectButtonsStyle2: CSSProperties = {
+    left: '300px',
+    top: '0px',
+    height: '44px',
     width: 'calc(100vh - 200px)',
     position: 'absolute',
 };
+
 
 
 const rStyle: CSSProperties = {
