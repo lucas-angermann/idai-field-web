@@ -60,18 +60,30 @@ defmodule Api.Worker.Server do
     end
   end
   def handle_call({:stop_reindex, project}, _from, tasks) do
-    pid = tasks[project].pid
-    Process.exit(pid, :killed_by_user)
-    Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"
-    # TODO remove newly created, now stale, index
-    {
-      :reply,
+
+    if tasks[project] != nil do
+      pid = tasks[project].pid
+      Process.exit(pid, :killed_by_user)
+      Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"
+      # TODO remove newly created, now stale, index
       {
-        :ok,
-        "Stopped reindexing #{project}"
-      },
-      Map.delete(tasks, project)
-    }
+        :reply,
+        {
+          :ok,
+          "Stopped reindexing #{project}"
+        },
+        Map.delete(tasks, project)
+      }
+    else
+      {
+        :reply,
+        {
+          :ignored,
+          "Currently no reindexing process is running for #{project}"
+        },
+        tasks
+      }
+    end
   end
 
   @impl true
