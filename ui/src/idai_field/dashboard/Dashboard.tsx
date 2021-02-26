@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
-import { getReadableProjects, postReindex, postStopReindex } from '../../api/documents';
+import { getReadableProjects } from '../../api/auth';
+import { postReindex, postStopReindex } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
