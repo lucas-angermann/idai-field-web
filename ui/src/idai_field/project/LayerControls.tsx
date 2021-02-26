@@ -10,6 +10,7 @@ import { Tile as TileLayer } from 'ol/layer';
 import { flatten, to } from 'tsfun';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { ResultDocument } from '../../api/result';
+import './layer-controls.css';
 
 
 type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
