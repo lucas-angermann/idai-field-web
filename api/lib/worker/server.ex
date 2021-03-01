@@ -59,14 +59,12 @@ defmodule Api.Worker.Server do
       :reply,
       {
         :ok,
-        Enum.map(
-          Map.keys(tasks), 
-          fn task -> "#{task}[#{Atom.to_string(tasks[task].type)}]" end)
+        Enum.map(Map.keys(tasks), display(tasks))
       },
       tasks
     }
   end
-  def handle_call({:stop_tasks, project}, _from, tasks) do
+  def handle_call({:stop_task, project}, _from, tasks) do
 
     if tasks[project] != nil do
       pid = tasks[project].task.pid
@@ -137,6 +135,7 @@ defmodule Api.Worker.Server do
 
     if Enum.count(conflicts) > 0 do
       conflicts = conflicts
+        |> Enum.map(display(tasks))
         |> Enum.map(&("'" <> &1 <> "'"))
         |> Enum.join(", ")
       {
@@ -159,7 +158,7 @@ defmodule Api.Worker.Server do
       }    
     end
   end
-  
+
   defp start_reindex_processes(projects) do
     for project <- projects, into: %{} do
       task = Task.Supervisor.async_nolink(
@@ -195,5 +194,9 @@ defmodule Api.Worker.Server do
         %{ task: task, type: :convert }
       }
     end
+  end
+
+  defp display(tasks) do
+    fn task_name -> "#{task_name}[#{Atom.to_string(tasks[task_name].type)}]" end
   end
 end
