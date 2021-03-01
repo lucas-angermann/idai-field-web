@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { getShowInfo, postReindex, postStopReindex } from '../../api/worker';
+import { getShowProcesses, postReindex, postStopProcess, postTilegen } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
@@ -35,9 +35,13 @@ export default function Dashboard(): ReactElement {
                                 <span className="btn" style={ rStyle }
                                     onClick={ () => triggerReindex(loginData.token, setStat, project) }>Reindex</span>
                             </div>
+                            <div style={ projectButtonsStyle1 }>
+                                <span className="btn" style={ rStyle }
+                                    onClick={ () => triggerTilegen(loginData.token, setStat, project) }>Tilegen</span>
+                            </div>
                             { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerStopReindex(loginData.token, setStat, project) }>Stop</span>
+                                    onClick={ () => triggerStopProcess(loginData.token, setStat, project) }>Stop</span>
                             </div> : 
                             <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
@@ -70,10 +74,19 @@ const triggerReindex = async (token: string,
 };
 
 
-const triggerStopReindex = async (token: string,
+const triggerTilegen = async (token: string,
     setStat: (s: string[]) => void, project: string): Promise<void> => {
 
-    const response = await postStopReindex(token, project === 'All projects' ? '' : project);
+    const response = await postTilegen(token, project === 'All projects' ? '' : project);
+    setStat(['Project: ' + project, 'Task: Tilegen',
+        'Status:', response['status'], 'Message:', response['message']]);
+};
+
+
+const triggerStopProcess = async (token: string,
+    setStat: (s: string[]) => void, project: string): Promise<void> => {
+
+    const response = await postStopProcess(token, project === 'All projects' ? '' : project);
     setStat(['Project: ' + project, 'Task: Reindex',
         'Status:', response['status'], 'Message:', response['message']]);
 };
@@ -81,7 +94,7 @@ const triggerStopReindex = async (token: string,
 
 const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
 
-    const response = await getShowInfo(token);
+    const response = await getShowProcesses(token);
     setStat(['Server', 'Task: Show running procecces',
         'Status:', response['status'], 'Currently running:', 
         response?.['message'].length > 0 
@@ -115,8 +128,17 @@ const projectButtonsStyle: CSSProperties = {
 };
 
 
+const projectButtonsStyle1: CSSProperties = {
+    left: '275px',
+    top: '0px',
+    height: '44px',
+    width: '100px',
+    position: 'absolute',
+};
+
+
 const projectButtonsStyle2: CSSProperties = {
-    left: '300px',
+    left: '350px',
     top: '0px',
     height: '44px',
     width: 'calc(100vh - 200px)',

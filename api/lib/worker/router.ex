@@ -19,36 +19,36 @@ defmodule Api.Worker.Router do
   # 2. Reindexes all projects.
   post "/reindex" do
     IndexAdapter.update_mapping_template()
-    {status, msg} = Server.index_projects(Config.get(:projects))
-    send_json(conn, %{ status: status, message: msg })
-  end
-
-  get "/reindex" do
-    {status, msg} = Server.show_running()
+    {status, msg} = Server.reindex(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg })
   end
 
   # 1. Reindexes a single project.
   post "/reindex/:project" do
-    {status, msg} = Server.index_projects([project])
+    {status, msg} = Server.reindex([project])
     send_json(conn, %{ status: status, message: msg })
   end
-
-  post "/reindex/:project/stop" do
-    {status, msg} = Server.stop_index_project(project)
+  
+  post "/stop_process/:project" do
+    {status, msg} = Server.stop_process project
+    send_json(conn, %{ status: status, message: msg })
+  end
+  
+  get "/show_processes" do
+    {status, msg} = Server.show_processes()
     send_json(conn, %{ status: status, message: msg })
   end
 
   # Prerequisite: Reindex
-  post "/tiling" do
-    Task.async fn -> Api.Worker.Images.TilesController.make_tiles() end
-    send_json(conn, %{ status: "ok", message: "Tile generation started"})
+  post "/tilegen" do
+    {status, msg} = Server.tilegen(Config.get(:projects))
+    send_json(conn, %{ status: status, message: msg})
   end
 
   # Prerequisite: Project is indexed
-  post "/tiling/:project" do
-    Task.async fn -> Api.Worker.Images.TilesController.make_tiles([project]) end
-    send_json(conn, %{ status: "ok", message: "Tile generation started for '#{project}'"})
+  post "/tilegen/:project" do
+    {status, msg} = Server.tilegen([project])
+    send_json(conn, %{ status: status, message: msg})
   end
 
   post "/conversion" do

@@ -20,9 +20,11 @@ export const postReindex = async (token: string, project: string): Promise<unkno
 };
 
 
-export const postStopReindex = async (token: string, project: string): Promise<unknown> => {
+export const postTilegen = async (token: string, project: string): Promise<unknown> => {
 
-    const uri = PATH + '/reindex/' + project + '/stop';
+    const uri = project === '' 
+        ? PATH + '/tilegen'
+        : PATH + '/tilegen/' + project;
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
@@ -34,9 +36,23 @@ export const postStopReindex = async (token: string, project: string): Promise<u
 };
 
 
-export const getShowInfo = async (token: string): Promise<unknown> => {
+export const postStopProcess = async (token: string, project: string): Promise<unknown> => {
 
-    const uri = PATH + '/reindex';
+    const uri = PATH + '/stop_process/' + project;
+
+    const response = await fetch(uri, {
+        headers: getHeaders(token),
+        method: 'POST'
+    });
+
+    if (response.ok) return (await response.json());
+    else throw(await response.json());
+};
+
+
+export const getShowProcesses = async (token: string): Promise<unknown> => {
+
+    const uri = PATH + '/show_processes';
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
