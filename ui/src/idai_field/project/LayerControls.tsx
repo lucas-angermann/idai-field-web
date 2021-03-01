@@ -255,21 +255,21 @@ const cardBodyStyle: CSSProperties = {
 
 
 const layerGroupHeadingStyle: CSSProperties = {
-    padding: '7px'
+    padding: '7px 7px 0 7px'
 };
 
 
 const layerGroupStyle: CSSProperties = {
     marginRight: '-1px',
     marginLeft: '-1px',
-    marginBottom: '-1px',
     borderRadius: 0
 };
 
 
 const layerControlStyle: CSSProperties = {
-    padding: '.375em .75em',
-    fontSize: '.9em'
+    padding: '.25em .75em',
+    fontSize: '.9em',
+    border: 'none'
 };
 
 
