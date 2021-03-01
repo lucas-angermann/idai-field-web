@@ -68,7 +68,9 @@ defmodule Api.Worker.Server do
       :reply,
       {
         :ok,
-        Map.keys(tasks)
+        Enum.map(
+          Map.keys(tasks), 
+          fn task -> "#{task}[#{Atom.to_string(tasks[task].type)}]" end)
       },
       tasks
     }
@@ -76,7 +78,7 @@ defmodule Api.Worker.Server do
   def handle_call({:stop_reindex, project}, _from, tasks) do
 
     if tasks[project] != nil do
-      pid = tasks[project].pid
+      pid = tasks[project].task.pid
       Process.exit pid, :killed_by_user
       Indexer.stop_reindex project # TODO Review timing; deletion of index after process killed; an existing working index must never be allowed to get deleted by accident
       Logger.info "Reindexing stopped by admin. Did not finish reindexing '#{project}'"
@@ -141,7 +143,7 @@ defmodule Api.Worker.Server do
         IndexingSupervisor, Indexer, :reindex, [project]) 
       {
         project,
-        task
+        %{ task: task, type: :reindex }
       }
     end
   end

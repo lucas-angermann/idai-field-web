@@ -82,7 +82,7 @@ const triggerStopReindex = async (token: string,
 const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
 
     const response = await getShowInfo(token);
-    setStat(['Server', 'Task: Show running reindex procecces',
+    setStat(['Server', 'Task: Show running procecces',
         'Status:', response['status'], 'Currently running:', 
         response?.['message'].length > 0 
             ? response['message'].join(', ') 
