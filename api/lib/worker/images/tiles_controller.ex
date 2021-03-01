@@ -1,6 +1,5 @@
 defmodule Api.Worker.Images.TilesController do
 
-  alias Api.Core.Config
   alias Api.Worker.Images.TilesCreator
 
   def make_tiles(projects) do # TODO pass project, instead projects
