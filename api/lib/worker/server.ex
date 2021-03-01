@@ -3,6 +3,7 @@ defmodule Api.Worker.Server do
   require Logger
   alias Api.Worker.IndexingSupervisor
   alias Api.Worker.Indexer
+  alias Api.Worker.IndexAdapter
   alias Api.Worker.Images.TilesController
   alias Api.Worker.Images.ConversionController
 
@@ -32,6 +33,11 @@ defmodule Api.Worker.Server do
   def stop_task(project), do: GenServer.call(__MODULE__, {:stop_task, project})
 
   def show_tasks(), do: GenServer.call(__MODULE__, {:show_tasks})
+
+  def update_mapping() do
+    IndexAdapter.update_mapping_template()
+    {:ok, "Start updating mapping template"}
+  end
 
   ##########################################################
 
