@@ -2,6 +2,7 @@ defmodule Api.Worker.Router do
   require Logger
   use Plug.Router
   import Api.RouterUtils, only: [send_json: 2]
+  alias Api.Worker.IndexAdapter
   alias Api.Worker.Server
   alias Api.Core.Config
 
@@ -10,14 +11,14 @@ defmodule Api.Worker.Router do
   plug :dispatch
 
   post "/update_mapping" do
-    {status, msg} = Server.update_mapping()
-    send_json(conn, %{ status: status, message: msg})
+    IndexAdapter.update_mapping_template()
+    send_json(conn, %{ status: "ok", message: "Start updating mapping template"})
   end
 
   # 1. Updates the mapping template.
   # 2. Reindexes all projects.
   post "/reindex" do
-    {_status, _msg} = Server.update_mapping()
+    IndexAdapter.update_mapping_template()
     {status, msg} = Server.reindex(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg })
   end
