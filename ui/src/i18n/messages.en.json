@@ -310,6 +310,8 @@
   "after": "After",
   "asMeasuredBy": "as measured by",
   "zenonId": "Zenon ID",
+  "page": "Page",
+  "figure": "Figure",
   "from": "From: ",
   "to": ", to: "
 }
