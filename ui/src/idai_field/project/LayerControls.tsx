@@ -57,7 +57,9 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
         setLayerControlsVisible: React.Dispatch<React.SetStateAction<boolean>>): ReactElement => <>
     <Button id="layer-controls-button" variant="primary" style={ layerControlsButtonStyle }
             onClick={ () => setLayerControlsVisible(!layerControlsVisible) }>
-        <Icon path={ mdiLayers } size={ 0.8 } />
+        <span style={ layerControlsButtonIconContainerStyle }>
+            <Icon path={ mdiLayers } size={ 0.8 } />
+        </span>
     </Button>
 </>;
 
@@ -232,6 +234,12 @@ const layerControlsButtonStyle: CSSProperties = {
     position: 'absolute',
     top: `${NAVBAR_HEIGHT + 10}px`,
     right: '10px'
+};
+
+
+const layerControlsButtonIconContainerStyle: CSSProperties = {
+    position: 'relative',
+    bottom: '1px'
 };
 
 
