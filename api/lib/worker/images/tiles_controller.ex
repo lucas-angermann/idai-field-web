@@ -13,7 +13,7 @@ defmodule Api.Worker.Images.TilesController do
     entries = projects
     |> Enum.flat_map(&tiles_for_project/1)
     Enum.map(entries, &TilesCreator.create_tiles/1)
-    { :finished_tilegen_project, List.first(projects) } # TODO review
+    { :finished, List.first(projects) } # TODO review
   end
 
   defp tiles_for_project(project) do

@@ -4,6 +4,7 @@ defmodule Api.Worker.Server do
   alias Api.Worker.IndexingSupervisor
   alias Api.Worker.Indexer
   alias Api.Worker.Images.TilesController
+  alias Api.Worker.Images.ConversionController
 
   @moduledoc """
   The general design is that per project (at most) one
@@ -16,11 +17,13 @@ defmodule Api.Worker.Server do
   """
   def reindex(projects), do: GenServer.call(__MODULE__, {:reindex, projects})
 
+  def tilegen(projects), do: GenServer.call(__MODULE__, {:tilegen, projects})
+
+  def convert(projects), do: GenServer.call(__MODULE__, {:convert, projects})
+
   def stop_process(project), do: GenServer.call(__MODULE__, {:stop_process, project})
 
   def show_processes(), do: GenServer.call(__MODULE__, {:show_processes})
-
-  def tilegen(projects), do: GenServer.call(__MODULE__, {:tilegen, projects})
 
   ##########################################################
 
@@ -97,6 +100,38 @@ defmodule Api.Worker.Server do
       }    
     end
   end
+  def handle_call({:convert, projects}, _from, tasks) do
+    
+    # TODO get rid of code duplication
+    conflicts = MapSet.intersection(
+      MapSet.new(projects), 
+      MapSet.new(Map.keys(tasks)))
+      |> MapSet.to_list
+
+    if Enum.count(conflicts) > 0 do
+      conflicts = conflicts
+        |> Enum.map(&("'" <> &1 <> "'"))
+        |> Enum.join(", ")
+      {
+        :reply,
+        {
+          :rejected, 
+          "Other processes still running. Conflicts: #{conflicts}"
+        },
+        tasks
+      }
+    else
+      new_tasks = start_convert_processes projects
+      { 
+        :reply,
+        {
+          :ok, 
+          "Start converting images for #{Enum.join(projects, ", ")}"
+        },
+        Map.merge(tasks, new_tasks)
+      }    
+    end
+  end
   def handle_call({:show_processes}, _from, tasks) do
     {
       :reply,
@@ -137,15 +172,9 @@ defmodule Api.Worker.Server do
   end
 
   @impl true
-  def handle_info({_, {:finished_reindex_project, project}}, tasks) do
+  def handle_info({_, {:finished, project}}, tasks) do
     {
       :noreply, 
-      Map.delete(tasks, project)
-    }
-  end
-  def handle_info({_, {:finished_tilegen_project, project}}, tasks) do # TODO review
-    {
-      :noreply,
       Map.delete(tasks, project)
     }
   end
@@ -197,6 +226,19 @@ defmodule Api.Worker.Server do
       { 
         project,
         %{ task: task, type: :tilegen }
+      }
+    end
+  end
+
+  defp start_convert_processes(projects) do
+    # TODO review code duplications
+    for project <- projects, into: %{} do
+      task = Task.Supervisor.async_nolink(
+        IndexingSupervisor, ConversionController, :convert, [[project]] # TODO review params 
+      )
+      { 
+        project,
+        %{ task: task, type: :convert }
       }
     end
   end

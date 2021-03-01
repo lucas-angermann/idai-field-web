@@ -29,12 +29,12 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
   
-  post "/stop_process/:project" do
+  post "/processes/stop/:project" do
     {status, msg} = Server.stop_process project
     send_json(conn, %{ status: status, message: msg })
   end
   
-  get "/show_processes" do
+  get "/processes/show" do
     {status, msg} = Server.show_processes()
     send_json(conn, %{ status: status, message: msg })
   end
@@ -48,16 +48,16 @@ defmodule Api.Worker.Router do
   # Prerequisite: Project is indexed
   post "/tilegen/:project" do
     {status, msg} = Server.tilegen([project])
-    send_json(conn, %{ status: status, message: msg})
+    send_json(conn, %{ status: status, message: msg })
   end
 
-  post "/conversion" do
-    Task.async fn -> Api.Worker.Images.ConversionController.convert_images_for_all_projects() end
-    send_json(conn, %{ status: "ok", message: "Started to convert all images of all projects"})
+  post "/convert" do
+    {status, msg} = Server.convert(Config.get(:projects))
+    send_json(conn, %{ status: status, message: msg })
   end
 
-  post "/conversion/:project" do
-    Task.async fn -> Api.Worker.Images.ConversionController.convert_images_for_project(project) end
-    send_json(conn, %{ status: "ok", message: "Started to convert all images of '#{project}'"})
+  post "/convert/:project" do
+    {status, msg} = Server.convert([project])
+    send_json(conn, %{ status: status, message: msg })
   end
 end

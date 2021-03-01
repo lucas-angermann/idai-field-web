@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { getShowProcesses, postReindex, postStopProcess, postTilegen } from '../../api/worker';
+import { getShowProcesses, postConvert, postReindex, postStopProcess, postTilegen } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
@@ -34,6 +34,10 @@ export default function Dashboard(): ReactElement {
                             <div style={ projectButtonsStyle }>
                                 <span className="btn" style={ rStyle }
                                     onClick={ () => triggerReindex(loginData.token, setStat, project) }>Reindex</span>
+                            </div>
+                            <div style={ projectButtonsStyle0 }>
+                                <span className="btn" style={ rStyle }
+                                    onClick={ () => triggerConvert(loginData.token, setStat, project) }>Convert</span>
                             </div>
                             <div style={ projectButtonsStyle1 }>
                                 <span className="btn" style={ rStyle }
@@ -74,6 +78,15 @@ const triggerReindex = async (token: string,
 };
 
 
+const triggerConvert = async (token: string,
+    setStat: (s: string[]) => void, project: string): Promise<void> => {
+
+    const response = await postConvert(token, project === 'All projects' ? '' : project);
+    setStat(['Project: ' + project, 'Task: Convert',
+        'Status:', response['status'], 'Message:', response['message']]);
+};
+
+
 const triggerTilegen = async (token: string,
     setStat: (s: string[]) => void, project: string): Promise<void> => {
 
@@ -95,7 +108,7 @@ const triggerStopProcess = async (token: string,
 const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
 
     const response = await getShowProcesses(token);
-    setStat(['Server', 'Task: Show running procecces',
+    setStat(['Server', 'Task: Show running processes',
         'Status:', response['status'], 'Currently running:', 
         response?.['message'].length > 0 
             ? response['message'].join(', ') 
@@ -120,7 +133,16 @@ const projectNameStyle: CSSProperties = {
 
 
 const projectButtonsStyle: CSSProperties = {
-    left: '200px',
+    left: '140px',
+    top: '0px',
+    height: '44px',
+    width: '100px',
+    position: 'absolute',
+};
+
+
+const projectButtonsStyle0: CSSProperties = {
+    left: '210px',
     top: '0px',
     height: '44px',
     width: '100px',
@@ -129,7 +151,7 @@ const projectButtonsStyle: CSSProperties = {
 
 
 const projectButtonsStyle1: CSSProperties = {
-    left: '275px',
+    left: '280px',
     top: '0px',
     height: '44px',
     width: '100px',

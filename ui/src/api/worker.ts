@@ -20,6 +20,24 @@ export const postReindex = async (token: string, project: string): Promise<unkno
 };
 
 
+// TODO remove duplication
+export const postConvert = async (token: string, project: string): Promise<unknown> => {
+    
+    const uri = project === '' 
+    ? PATH + '/convert'
+    : PATH + '/convert/' + project;
+    
+    const response = await fetch(uri, {
+        headers: getHeaders(token),
+        method: 'POST'
+    });
+    
+    if (response.ok) return (await response.json());
+    else throw(await response.json());
+};
+
+
+// TODO remove duplication
 export const postTilegen = async (token: string, project: string): Promise<unknown> => {
 
     const uri = project === '' 
@@ -38,7 +56,7 @@ export const postTilegen = async (token: string, project: string): Promise<unkno
 
 export const postStopProcess = async (token: string, project: string): Promise<unknown> => {
 
-    const uri = PATH + '/stop_process/' + project;
+    const uri = PATH + '/processes/stop/' + project;
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
@@ -52,7 +70,7 @@ export const postStopProcess = async (token: string, project: string): Promise<u
 
 export const getShowProcesses = async (token: string): Promise<unknown> => {
 
-    const uri = PATH + '/show_processes';
+    const uri = PATH + '/processes/show';
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
