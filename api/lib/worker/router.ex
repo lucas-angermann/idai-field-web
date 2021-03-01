@@ -29,13 +29,13 @@ defmodule Api.Worker.Router do
     send_json(conn, %{ status: status, message: msg })
   end
   
-  post "/processes/stop/:project" do
-    {status, msg} = Server.stop_process project
+  post "/tasks/stop/:project" do
+    {status, msg} = Server.stop_task project
     send_json(conn, %{ status: status, message: msg })
   end
   
-  get "/processes/show" do
-    {status, msg} = Server.show_processes()
+  get "/tasks/show" do
+    {status, msg} = Server.show_tasks()
     send_json(conn, %{ status: status, message: msg })
   end
 

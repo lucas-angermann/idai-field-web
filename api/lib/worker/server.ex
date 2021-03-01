@@ -13,17 +13,25 @@ defmodule Api.Worker.Server do
 
   @doc """
   Triggers the indexing of projects.
-  Returns :ok, or :rejected, in case indexing for any of the given projects is already running.
+  Returns :ok, or :rejected, in case a task for any of the given projects is already running.
   """
   def reindex(projects), do: GenServer.call(__MODULE__, {:reindex, projects})
 
+  @doc """
+  Triggers the tile generation of projects.
+  Returns :ok, or :rejected, in case a task for any of the given projects is already running.
+  """
   def tilegen(projects), do: GenServer.call(__MODULE__, {:tilegen, projects})
 
+  @doc """
+  Triggers the image conversion of projects.
+  Returns :ok, or :rejected, in case a task for any of the given projects is already running.
+  """
   def convert(projects), do: GenServer.call(__MODULE__, {:convert, projects})
 
-  def stop_process(project), do: GenServer.call(__MODULE__, {:stop_process, project})
+  def stop_task(project), do: GenServer.call(__MODULE__, {:stop_task, project})
 
-  def show_processes(), do: GenServer.call(__MODULE__, {:show_processes})
+  def show_tasks(), do: GenServer.call(__MODULE__, {:show_tasks})
 
   ##########################################################
 
@@ -38,101 +46,15 @@ defmodule Api.Worker.Server do
   # TODO handle projects not found, with :reindex and :stop_reindex
   @impl true
   def handle_call({:reindex, projects}, _from, tasks) do
-    
-    conflicts = MapSet.intersection(
-      MapSet.new(projects), 
-      MapSet.new(Map.keys(tasks)))
-      |> MapSet.to_list
-
-    if Enum.count(conflicts) > 0 do
-      conflicts = conflicts
-        |> Enum.map(&("'" <> &1 <> "'"))
-        |> Enum.join(", ")
-      {
-        :reply,
-        {
-          :rejected, 
-          "Other processes still running. Conflicts: #{conflicts}"
-        },
-        tasks
-      }
-    else
-      new_tasks = start_reindex_processes projects
-      { 
-        :reply,
-        {
-          :ok, 
-          "Start indexing #{Enum.join(projects, ", ")}"
-        },
-        Map.merge(tasks, new_tasks)
-      }    
-    end
+    create_tasks(projects, tasks, &start_reindex_processes/1)
   end
   def handle_call({:tilegen, projects}, _from, tasks) do
-    
-    # TODO get rid of code duplication
-    conflicts = MapSet.intersection(
-      MapSet.new(projects), 
-      MapSet.new(Map.keys(tasks)))
-      |> MapSet.to_list
-
-    if Enum.count(conflicts) > 0 do
-      conflicts = conflicts
-        |> Enum.map(&("'" <> &1 <> "'"))
-        |> Enum.join(", ")
-      {
-        :reply,
-        {
-          :rejected, 
-          "Other processes still running. Conflicts: #{conflicts}"
-        },
-        tasks
-      }
-    else
-      new_tasks = start_tilegen_processes projects
-      { 
-        :reply,
-        {
-          :ok, 
-          "Start generating tiles for #{Enum.join(projects, ", ")}"
-        },
-        Map.merge(tasks, new_tasks)
-      }    
-    end
+    create_tasks(projects, tasks, &start_tilegen_processes/1)
   end
   def handle_call({:convert, projects}, _from, tasks) do
-    
-    # TODO get rid of code duplication
-    conflicts = MapSet.intersection(
-      MapSet.new(projects), 
-      MapSet.new(Map.keys(tasks)))
-      |> MapSet.to_list
-
-    if Enum.count(conflicts) > 0 do
-      conflicts = conflicts
-        |> Enum.map(&("'" <> &1 <> "'"))
-        |> Enum.join(", ")
-      {
-        :reply,
-        {
-          :rejected, 
-          "Other processes still running. Conflicts: #{conflicts}"
-        },
-        tasks
-      }
-    else
-      new_tasks = start_convert_processes projects
-      { 
-        :reply,
-        {
-          :ok, 
-          "Start converting images for #{Enum.join(projects, ", ")}"
-        },
-        Map.merge(tasks, new_tasks)
-      }    
-    end
+    create_tasks(projects, tasks, &start_convert_processes/1)
   end
-  def handle_call({:show_processes}, _from, tasks) do
+  def handle_call({:show_tasks}, _from, tasks) do
     {
       :reply,
       {
@@ -144,18 +66,18 @@ defmodule Api.Worker.Server do
       tasks
     }
   end
-  def handle_call({:stop_process, project}, _from, tasks) do
+  def handle_call({:stop_tasks, project}, _from, tasks) do
 
     if tasks[project] != nil do
       pid = tasks[project].task.pid
       Process.exit pid, :killed_by_user
       Indexer.stop_reindex project # TODO Review timing; deletion of index after process killed; an existing working index must never be allowed to get deleted by accident
-      Logger.info "Process stopped by admin. Did not finish task for '#{project}'"
+      Logger.info "Task stopped by admin. Did not finish task for '#{project}'"
       {
         :reply,
         {
           :ok,
-          "Stopped process for #{project}"
+          "Stopped task for #{project}"
         },
         Map.delete(tasks, project)
       }
@@ -164,7 +86,7 @@ defmodule Api.Worker.Server do
         :reply,
         {
           :ignored,
-          "Currently no process is running for #{project}"
+          "Currently no task is running for #{project}"
         },
         tasks
       }
@@ -184,7 +106,7 @@ defmodule Api.Worker.Server do
 
     case Enum.find(Map.to_list(tasks), fn {_, %{ task: %{ ref: r }}} -> r == ref end) do
       {project, _task} -> 
-        Logger.error "Something went wrong. Could not finish reindexing '#{project}'"
+        Logger.error "Something went wrong. Could not finish task for '#{project}'"
         {
           :noreply, 
           Map.delete(tasks, project)
@@ -204,6 +126,38 @@ defmodule Api.Worker.Server do
       :noreply,
       tasks
     }
+  end
+
+  defp create_tasks(projects, tasks, create_task_function) do
+
+    conflicts = MapSet.intersection(
+      MapSet.new(projects), 
+      MapSet.new(Map.keys(tasks)))
+      |> MapSet.to_list
+
+    if Enum.count(conflicts) > 0 do
+      conflicts = conflicts
+        |> Enum.map(&("'" <> &1 <> "'"))
+        |> Enum.join(", ")
+      {
+        :reply,
+        {
+          :rejected, 
+          "Other tasks still running. Conflicts: #{conflicts}"
+        },
+        tasks
+      }
+    else
+      new_tasks = create_task_function.(projects)
+      { 
+        :reply,
+        {
+          :ok, 
+          "Start tasks for #{Enum.join(projects, ", ")}"
+        },
+        Map.merge(tasks, new_tasks)
+      }    
+    end
   end
   
   defp start_reindex_processes(projects) do
@@ -234,7 +188,7 @@ defmodule Api.Worker.Server do
     # TODO review code duplications
     for project <- projects, into: %{} do
       task = Task.Supervisor.async_nolink(
-        IndexingSupervisor, ConversionController, :convert, [[project]] # TODO review params 
+        IndexingSupervisor, ConversionController, :convert, [project]
       )
       { 
         project,

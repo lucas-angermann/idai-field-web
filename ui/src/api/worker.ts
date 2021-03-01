@@ -56,7 +56,7 @@ export const postTilegen = async (token: string, project: string): Promise<unkno
 
 export const postStopProcess = async (token: string, project: string): Promise<unknown> => {
 
-    const uri = PATH + '/processes/stop/' + project;
+    const uri = PATH + '/tasks/stop/' + project;
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
@@ -70,7 +70,7 @@ export const postStopProcess = async (token: string, project: string): Promise<u
 
 export const getShowProcesses = async (token: string): Promise<unknown> => {
 
-    const uri = PATH + '/processes/show';
+    const uri = PATH + '/tasks/show';
 
     const response = await fetch(uri, {
         headers: getHeaders(token),
