@@ -152,7 +152,7 @@ defmodule Api.Worker.Server do
         :reply,
         {
           :ok, 
-          "Start tasks for #{Enum.join(projects, ", ")}"
+          "Start task for #{Enum.join(projects, ", ")}"
         },
         Map.merge(tasks, new_tasks)
       }    
@@ -160,38 +160,25 @@ defmodule Api.Worker.Server do
   end
 
   defp start_reindex_processes(projects) do
-    for project <- projects, into: %{} do
-      task = Task.Supervisor.async_nolink(
-        IndexingSupervisor, Indexer, :reindex, [project]) 
-      {
-        project,
-        %{ task: task, type: :reindex }
-      }
-    end
+    start_processes(projects, :reindex, fn project -> Task.Supervisor.async_nolink(
+        IndexingSupervisor, Indexer, :reindex, [project]) end) 
   end
 
   defp start_tilegen_processes(projects) do
-    # TODO review code duplications
-    for project <- projects, into: %{} do
-      task = Task.Supervisor.async_nolink(
-        IndexingSupervisor, TilesController, :make_tiles, [[project]] # TODO review params 
-      )
-      { 
-        project,
-        %{ task: task, type: :tilegen }
-      }
-    end
+    start_processes(projects, :tilegen, fn project -> Task.Supervisor.async_nolink(
+        IndexingSupervisor, TilesController, :make_tiles, [[project]]) end) # TODO review params 
   end
 
   defp start_convert_processes(projects) do
-    # TODO review code duplications
+    start_processes(projects, :convert, fn project -> Task.Supervisor.async_nolink(
+      IndexingSupervisor, ConversionController, :convert, [project]) end) 
+  end
+
+  defp start_processes(projects, type, start_function) do
     for project <- projects, into: %{} do
-      task = Task.Supervisor.async_nolink(
-        IndexingSupervisor, ConversionController, :convert, [project]
-      )
       { 
         project,
-        %{ task: task, type: :convert }
+        %{ task: start_function.(project), type: type}
       }
     end
   end

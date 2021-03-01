@@ -108,7 +108,7 @@ const triggerStopProcess = async (token: string,
 const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
 
     const response = await getShowProcesses(token);
-    setStat(['Server', 'Task: Show running processes',
+    setStat(['Server', 'Task: Show running tasks',
         'Status:', response['status'], 'Currently running:', 
         response?.['message'].length > 0 
             ? response['message'].join(', ') 
