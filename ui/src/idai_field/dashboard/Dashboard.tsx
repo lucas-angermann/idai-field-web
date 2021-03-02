@@ -101,7 +101,7 @@ const rStyle: CSSProperties = {
     left: '0px',
     top: '0px',
     padding: '0',
-    color: 'green'
+    color: 'blue'
 };
 
 
