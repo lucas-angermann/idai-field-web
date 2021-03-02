@@ -6,7 +6,6 @@ defmodule Api.Worker.Images.TilesCreator do
 
   @tile_size 256
 
-  def create_tiles({project, image_id, image_size}), do: create_tiles(project, image_id, image_size)
   def create_tiles(project, image_id, image_size) do
     Logger.info "Start generating tiles for #{project}/#{image_id}"
     unless ImageMagickImageConverter.source_exists?(project, image_id)

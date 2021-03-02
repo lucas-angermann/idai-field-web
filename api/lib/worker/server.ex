@@ -169,16 +169,13 @@ defmodule Api.Worker.Server do
   end
 
   defp start_process(project, :reindex) do
-    Task.Supervisor.async_nolink(
-        IndexingSupervisor, Indexer, :reindex, [project])
+    Task.Supervisor.async_nolink(IndexingSupervisor, Indexer, :reindex, [project])
   end
   defp start_process(project, :tilegen) do
-    Task.Supervisor.async_nolink(
-      IndexingSupervisor, TilesController, :make_tiles, [[project]]) # TODO review params 
+    Task.Supervisor.async_nolink(IndexingSupervisor, TilesController, :make_tiles, [project])
   end
   defp start_process(project, :convert) do
-    Task.Supervisor.async_nolink(
-      IndexingSupervisor, ConversionController, :convert, [project])
+    Task.Supervisor.async_nolink(IndexingSupervisor, ConversionController, :convert, [project])
   end
 
   defp display(tasks) do
