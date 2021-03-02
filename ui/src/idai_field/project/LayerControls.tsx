@@ -18,8 +18,9 @@ type VisibleTileLayersSetter = React.Dispatch<React.SetStateAction<string[]>>;
 type LayerGroup = { document?: ResultDocument, tileLayers: TileLayer[] };
 
 
-export default function LayerControls({ map, tileLayers, fitOptions, predecessors }
-    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[] }): ReactElement {
+export default function LayerControls({ map, tileLayers, fitOptions, predecessors, project }
+    : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[],
+            project: string }): ReactElement {
 
         const [visibleTileLayers, setVisibleTileLayers] = useState<string[]|null>(null);
         const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
@@ -31,10 +32,10 @@ export default function LayerControls({ map, tileLayers, fitOptions, predecessor
             const layerControlsCloseClickFunction = getLayerControlsCloseClickFunction(setLayerControlsVisible);
             addLayerControlsCloseEventListener(layerControlsCloseClickFunction);
 
-            setVisibleTileLayers(restoreVisibleTileLayers());
+            setVisibleTileLayers(restoreVisibleTileLayers(project));
 
             return () => removeLayerControlsCloseEventListener(layerControlsCloseClickFunction);
-        }, []);
+        }, [project]);
 
 
         useEffect(() => {
@@ -50,8 +51,8 @@ export default function LayerControls({ map, tileLayers, fitOptions, predecessor
 
 
         return <>
-            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions, t,
-                setVisibleTileLayers) }
+            { layerControlsVisible && renderLayerControls(map, layerGroups, visibleTileLayers, fitOptions, project,
+                t, setVisibleTileLayers) }
             { layerGroups.length > 0 && renderLayerControlsButton(layerControlsVisible, setLayerControlsVisible) }
         </>;
 }
@@ -68,13 +69,14 @@ const renderLayerControlsButton = (layerControlsVisible: boolean,
 </>;
 
 
-const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[],
-        fitOptions: FitOptions, t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
+const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLayers: string[], fitOptions: FitOptions,
+        project: string, t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter): ReactElement => {
 
     return <Card id="layer-controls" style={ cardStyle } className="layer-controls">
         <Card.Body style={ cardBodyStyle }>
             { layerGroups.map(layerGroup => {
-                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, t, setVisibleTileLayers);
+                return renderLayerGroup(layerGroup, map, visibleTileLayers, fitOptions, project, t,
+                    setVisibleTileLayers);
             }) }
         </Card.Body>
     </Card>;
@@ -82,20 +84,22 @@ const renderLayerControls = (map: Map, layerGroups: LayerGroup[], visibleTileLay
 
 
 const renderLayerGroup = (layerGroup: LayerGroup, map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
-        t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter) => {
+        project: string, t: TFunction, setVisibleTileLayers: VisibleTileLayersSetter) => {
 
     return <div key={ layerGroup.document ? layerGroup.document.resource.id : 'project-layers' }>
         <div style={ layerGroupHeadingStyle }>
             { layerGroup.document ? layerGroup.document.resource.identifier : t('project.map.layerControls.project') }
         </div>
         <ul className="list-group" style={ layerGroupStyle }>
-            { layerGroup.tileLayers.map(renderLayerControl(map, visibleTileLayers, fitOptions, setVisibleTileLayers)) }
+            { layerGroup.tileLayers.map(
+                renderLayerControl(map, visibleTileLayers, fitOptions, project, setVisibleTileLayers)
+            ) }
         </ul>
     </div>;
 };
 
 /* eslint-disable react/display-name */
-const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: FitOptions,
+const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: FitOptions, project: string,
         setVisibleTileLayers: VisibleTileLayersSetter) => (tileLayer: TileLayer): ReactElement => {
 
     const resource = tileLayer.get('document').resource;
@@ -103,7 +107,8 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
 
     return (
         <li style={ layerControlStyle } key={ resource.id } className="list-group-item">
-                <Button variant="link" onClick={ () => toggleLayer(tileLayer, visibleTileLayers, setVisibleTileLayers) }
+                <Button variant="link"
+                        onClick={ () => toggleLayer(tileLayer, project, visibleTileLayers, setVisibleTileLayers) }
                         style={ layerButtonStyle }
                         className={ visibleTileLayers.includes(resource.id) && 'active' }>
                     <Icon path={ visibleTileLayers.includes(resource.id) ? mdiEye : mdiEyeOff } size={ 0.7 } />
@@ -119,7 +124,7 @@ const renderLayerControl = (map: Map, visibleTileLayers: string[], fitOptions: F
 /* eslint-enable react/display-name */
 
 
-const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
+const toggleLayer = (tileLayer: TileLayer, project: string, visibleTileLayers: string[],
                     setVisibleTileLayers: React.Dispatch<React.SetStateAction<string[]>>): void => {
 
     const docId = tileLayer.get('document').resource.id;
@@ -131,7 +136,7 @@ const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
         : visibleTileLayers.filter(id => id !== docId);
 
     setVisibleTileLayers(newVisibleTileLayers);
-    saveVisibleTileLayers(newVisibleTileLayers);
+    saveVisibleTileLayers(newVisibleTileLayers, project);
 };
 
 
@@ -215,20 +220,20 @@ const updateZIndices = (layerGroups: LayerGroup[]) => {
 };
 
 
-const saveVisibleTileLayers = (visibleTileLayers: string[]) => {
+const saveVisibleTileLayers = (visibleTileLayers: string[], project: string) => {
 
     try {
-        localStorage.setItem('visibleTileLayers', JSON.stringify(visibleTileLayers));
+        localStorage.setItem(`visibleTileLayers_${project}`, JSON.stringify(visibleTileLayers));
     } catch (err) {
         console.warn('Failed to save list of visible tile layers to local storage', err);
     }
 };
 
 
-const restoreVisibleTileLayers = (): string[]|null => {
+const restoreVisibleTileLayers = (project: string): string[]|null => {
 
     try {
-        return JSON.parse(localStorage.getItem('visibleTileLayers'));
+        return JSON.parse(localStorage.getItem(`visibleTileLayers_${project}`));
     } catch (err) {
         console.warn('Failed to restore list of visible tile layers from local storage', err);
         return null;

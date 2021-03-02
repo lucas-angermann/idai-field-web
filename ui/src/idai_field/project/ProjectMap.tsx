@@ -139,7 +139,8 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
         <LayerControls map={ map }
                     tileLayers={ tileLayers }
                     fitOptions={ FIT_OPTIONS }
-                    predecessors={ predecessors }></LayerControls>
+                    predecessors={ predecessors }
+                    project={ project }></LayerControls>
     </>;
 }
 
