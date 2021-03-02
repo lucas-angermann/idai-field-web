@@ -37,17 +37,22 @@ export default function Dashboard(): ReactElement {
                             setStat={ setStat }></Tasks>
                         { project !== 'All projects'
                             ? <div style={ projectButtonsStyle2 }>
-                                <span className="btn" style={ rStyle }
+                                <span className="btn"
+                                    style={ rStyle }
                                     onClick={
-                                        () => (postStopTask(loginData.token, project)).then(setStat) }>
-                                            Stop
+                                        () => (postStopTask(loginData.token, project)).then(setStat)
+                                    }>
+                                    Stop
                                 </span>
                             </div>
                             : <div style={ projectButtonsStyle2 }>
-                            <span className="btn" style={ rStyle }
-                                onClick={ () => (getShowTasks(loginData.token)).then(setStat) }>
+                                <span className="btn"
+                                    style={ rStyle }
+                                    onClick={
+                                        () => (getShowTasks(loginData.token)).then(setStat)
+                                    }>
                                     Info
-                            </span>
+                                </span>
                             </div>
                         }
                     </div>)
