@@ -21,7 +21,7 @@ type LayerGroup = { document?: ResultDocument, tileLayers: TileLayer[] };
 export default function LayerControls({ map, tileLayers, fitOptions, predecessors }
     : { map: Map, tileLayers: TileLayer[], fitOptions: FitOptions, predecessors: ResultDocument[] }): ReactElement {
 
-        const [visibleTileLayers, setVisibleTileLayers] = useState<string[]>([]);
+        const [visibleTileLayers, setVisibleTileLayers] = useState<string[]|null>(null);
         const [layerControlsVisible, setLayerControlsVisible] = useState<boolean>(false);
         const [layerGroups, setLayerGroups] = useState<LayerGroup[]>([]);
         const { t } = useTranslation();
@@ -38,9 +38,13 @@ export default function LayerControls({ map, tileLayers, fitOptions, predecessor
 
 
         useEffect(() => {
+
             const newLayerGroups: LayerGroup[] = createLayerGroups(tileLayers, predecessors);
             setLayerGroups(newLayerGroups);
             updateZIndices(newLayerGroups);
+            if (newLayerGroups.length > 0 && !visibleTileLayers) {
+                setVisibleTileLayers(getDefaultVisibleTileLayers(newLayerGroups));
+            }
             updateTileLayerVisibility(tileLayers, newLayerGroups, visibleTileLayers);
         }, [tileLayers, predecessors, visibleTileLayers]);
 
@@ -121,6 +125,7 @@ const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
     const docId = tileLayer.get('document').resource.id;
 
     tileLayer.setVisible(!tileLayer.getVisible());
+    if (!visibleTileLayers) visibleTileLayers = [];
     const newVisibleTileLayers: string[] = tileLayer.getVisible()
         ? [...visibleTileLayers, docId]
         : visibleTileLayers.filter(id => id !== docId);
@@ -133,7 +138,8 @@ const toggleLayer = (tileLayer: TileLayer, visibleTileLayers: string[],
 const updateTileLayerVisibility = (tileLayers: TileLayer[], layerGroups: LayerGroup[], visibleTileLayers: string[]) => {
 
     const groupLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers')));
-    
+    if (!visibleTileLayers) visibleTileLayers = [];
+
     tileLayers.forEach(tileLayer => {
         tileLayer.setVisible(groupLayers.includes(tileLayer)
             && visibleTileLayers.includes(tileLayer.get('document').resource.id)
@@ -219,14 +225,24 @@ const saveVisibleTileLayers = (visibleTileLayers: string[]) => {
 };
 
 
-const restoreVisibleTileLayers = (): string[] => {
+const restoreVisibleTileLayers = (): string[]|null => {
 
     try {
-        return JSON.parse(localStorage.getItem('visibleTileLayers')) || [];
+        return JSON.parse(localStorage.getItem('visibleTileLayers'));
     } catch (err) {
         console.warn('Failed to restore list of visible tile layers from local storage', err);
-        return [];
+        return null;
     }
+};
+
+
+const getDefaultVisibleTileLayers = (layerGroups: LayerGroup[]): string[] => {
+
+    const projectGroup: LayerGroup|undefined = layerGroups.find(layerGroup => !layerGroup.document);
+
+    return projectGroup
+        ? [projectGroup.tileLayers[projectGroup.tileLayers.length - 1].get('document').resource.id]
+        : [];
 };
 
 
