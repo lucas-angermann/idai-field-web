@@ -33,15 +33,15 @@ export default function Dashboard(): ReactElement {
                                 { project }</div>
                             <div style={ projectButtonsStyle }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerReindex(loginData.token, setStat, project) }>Reindex</span>
+                                    onClick={ () => (postReindex(loginData.token, project) as any).then(setStat) }>Reindex</span>
                             </div>
                             <div style={ projectButtonsStyle0 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerConvert(loginData.token, setStat, project) }>Convert</span>
+                                    onClick={ () => (postConvert(loginData.token, project) as any).then(setStat) }>Convert</span>
                             </div>
                             <div style={ projectButtonsStyle1 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerTiling(loginData.token, setStat, project) }>Tiling</span>
+                                    onClick={ () => (postTiling(loginData.token, project) as any).then(setStat) }>Tiling</span>
                             </div>
                             { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
@@ -67,21 +67,6 @@ export default function Dashboard(): ReactElement {
         </div>
         </div></div>);
 }
-
-
-const triggerReindex = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => 
-        setStat(await postReindex(token, project) as any);
-
-
-const triggerConvert = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> =>
-        setStat(await postConvert(token, project) as any);
-
-
-const triggerTiling = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => 
-        setStat(await postTiling(token, project) as any);
 
 
 const triggerStopProcess = async (token: string,
