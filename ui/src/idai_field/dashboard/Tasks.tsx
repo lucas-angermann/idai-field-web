@@ -9,15 +9,15 @@ export default function Tasks({ project, token, setStat }
     return (<div>
         <div style={ projectButtonsStyle }>
             <span className="btn" style={ rStyle }
-                onClick={ () => (postReindex(token, project) as any).then(setStat) }>Reindex</span>
+                onClick={ () => (postReindex(token, project)).then(setStat) }>Reindex</span>
         </div>
         <div style={ projectButtonsStyle0 }>
             <span className="btn" style={ rStyle }
-                onClick={ () => (postConvert(token, project) as any).then(setStat) }>Convert</span>
+                onClick={ () => (postConvert(token, project)).then(setStat) }>Convert</span>
         </div>
         <div style={ projectButtonsStyle1 }>
             <span className="btn" style={ rStyle }
-                onClick={ () => (postTiling(token, project) as any).then(setStat) }>Tiling</span>
+                onClick={ () => (postTiling(token, project)).then(setStat) }>Tiling</span>
         </div>
     </div>);
 }

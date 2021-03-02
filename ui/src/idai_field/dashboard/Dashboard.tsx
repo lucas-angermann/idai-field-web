@@ -39,13 +39,13 @@ export default function Dashboard(): ReactElement {
                             ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
                                     onClick={
-                                        () => (postStopTask(loginData.token, project) as any).then(setStat) }>
+                                        () => (postStopTask(loginData.token, project)).then(setStat) }>
                                             Stop
                                 </span>
                             </div>
                             : <div style={ projectButtonsStyle2 }>
                             <span className="btn" style={ rStyle }
-                                onClick={ () => (getShowTasks(loginData.token) as any).then(setStat) }>
+                                onClick={ () => (getShowTasks(loginData.token)).then(setStat) }>
                                     Info
                             </span>
                             </div>
