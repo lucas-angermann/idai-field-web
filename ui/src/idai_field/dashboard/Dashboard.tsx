@@ -24,7 +24,7 @@ export default function Dashboard(): ReactElement {
         <h3 style={ headingStyle }>{ 'Dashboard' }</h3>
         <div className="row">
         { loginData.isAdmin === true &&
-        <div style={ pageStyle } className="col-md-6">
+        <div className="col-md-6">
             <p style={ paragraphStyle }>{ 'Projects'}
             </p>
             <div>
@@ -73,7 +73,7 @@ export default function Dashboard(): ReactElement {
 
 
 const projectRowStyle: CSSProperties = {
-    height: '44px',
+    height: '96px',
     position: 'relative'
 };
 
@@ -88,9 +88,9 @@ const projectNameStyle: CSSProperties = {
 
 
 const projectButtonsStyle2: CSSProperties = {
-    left: '350px',
+    left: '140px',
     top: '0px',
-    height: '44px',
+    height: '22px',
     width: 'calc(100vh - 200px)',
     position: 'absolute',
 };
@@ -115,10 +115,6 @@ const sideStyle: CSSProperties = {
 };
 
 
-const pageStyle: CSSProperties = {
-};
-
-
 const headingStyle: CSSProperties = {
     paddingTop: '10px',
     paddingBottom: '13px',
@@ -128,7 +124,7 @@ const headingStyle: CSSProperties = {
 
 
 const paragraphStyle: CSSProperties = {
-    height: '100px',
+    height: '64px',
     width: '1000px',
     marginRight: 'auto',
     marginLeft: 'auto'
