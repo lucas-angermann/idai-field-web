@@ -70,30 +70,18 @@ export default function Dashboard(): ReactElement {
 
 
 const triggerReindex = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => {
-
-    const response = await postReindex(token, project === 'All projects' ? '' : project);
-    setStat(['Project: ' + project, 'Task: Reindex',
-        'Status:', response['status'], 'Message:', response['message']]);
-};
+    setStat: (s: string[]) => void, project: string): Promise<void> => 
+        setStat(await postReindex(token, project) as any);
 
 
 const triggerConvert = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => {
-
-    const response = await postConvert(token, project === 'All projects' ? '' : project);
-    setStat(['Project: ' + project, 'Task: Convert',
-        'Status:', response['status'], 'Message:', response['message']]);
-};
+    setStat: (s: string[]) => void, project: string): Promise<void> =>
+        setStat(await postConvert(token, project) as any);
 
 
 const triggerTiling = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => {
-
-    const response = await postTiling(token, project === 'All projects' ? '' : project);
-    setStat(['Project: ' + project, 'Task: Tiling',
-        'Status:', response['status'], 'Message:', response['message']]);
-};
+    setStat: (s: string[]) => void, project: string): Promise<void> => 
+        setStat(await postTiling(token, project) as any);
 
 
 const triggerStopProcess = async (token: string,

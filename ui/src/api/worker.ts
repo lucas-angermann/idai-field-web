@@ -16,9 +16,9 @@ export const postTiling = async (token: string, project: string): Promise<unknow
     postTask(token, 'tiling', project);
 
 
-export const postTask = async (token: string, endpoint: string, project: string): Promise<unknown> => {
+export const postTask = async (token: string, endpoint: string, project: string): Promise<string[]> => {
 
-    const uri = project === '' 
+    const uri = project === 'All projects' 
         ? PATH + '/' + endpoint
         : PATH + '/' + endpoint + '/' + project;
 
@@ -27,7 +27,12 @@ export const postTask = async (token: string, endpoint: string, project: string)
         method: 'POST'
     });
 
-    if (response.ok) return (await response.json());
+    if (response.ok) {
+        const json = await response.json();
+        const msg = ['Project: ' + project, 'Task: ' + endpoint,
+            'Status:', json['status'], 'Message:', json['message']];
+        return msg;
+    }
     else throw(await response.json());
 };
 
