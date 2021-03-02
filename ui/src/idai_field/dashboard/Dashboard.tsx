@@ -1,7 +1,8 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { getShowTasks, postConvert, postReindex, postStopTask, postTiling } from '../../api/worker';
+import { getShowTasks, postStopTask } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
+import Tasks from './Tasks';
 
 
 export default function Dashboard(): ReactElement {
@@ -23,39 +24,36 @@ export default function Dashboard(): ReactElement {
         <h3 style={ headingStyle }>{ 'Dashboard' }</h3>
         <div className="row">
         { loginData.isAdmin === true &&
-            <div style={ pageStyle } className="col-md-6">
-                <p style={ paragraphStyle }>{ 'Projects'}
-                </p>
-                <div>
-                    { projects.map((project, index) => {
-                        return <div key={ index } style={ projectRowStyle }>
-                            <div style={ projectNameStyle }>
-                                { project }</div>
-                            <div style={ projectButtonsStyle }>
+        <div style={ pageStyle } className="col-md-6">
+            <p style={ paragraphStyle }>{ 'Projects'}
+            </p>
+            <div>
+                { projects.map((project, index) =>
+                    (<div key={ index } style={ projectRowStyle }>
+                        <div style={ projectNameStyle }>
+                            { project }</div>
+                        <Tasks project={ project }
+                            token={ loginData.token }
+                            setStat={ setStat }></Tasks>
+                        { project !== 'All projects'
+                            ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => (postReindex(loginData.token, project) as any).then(setStat) }>Reindex</span>
+                                    onClick={
+                                        () => (postStopTask(loginData.token, project) as any).then(setStat) }>
+                                            Stop
+                                </span>
                             </div>
-                            <div style={ projectButtonsStyle0 }>
-                                <span className="btn" style={ rStyle }
-                                    onClick={ () => (postConvert(loginData.token, project) as any).then(setStat) }>Convert</span>
-                            </div>
-                            <div style={ projectButtonsStyle1 }>
-                                <span className="btn" style={ rStyle }
-                                    onClick={ () => (postTiling(loginData.token, project) as any).then(setStat) }>Tiling</span>
-                            </div>
-                            { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
-                                <span className="btn" style={ rStyle }
-                                    onClick={ () => (postStopTask(loginData.token, project) as any).then(setStat) }>Stop</span>
-                            </div> : 
-                            <div style={ projectButtonsStyle2 }>
-                                <span className="btn" style={ rStyle }
-                                    onClick={ () => (getShowTasks(loginData.token) as any).then(setStat) }>Info</span>
+                            : <div style={ projectButtonsStyle2 }>
+                            <span className="btn" style={ rStyle }
+                                onClick={ () => (getShowTasks(loginData.token) as any).then(setStat) }>
+                                    Info
+                            </span>
                             </div>
                         }
-                        </div>;
-                    })}
-                </div>
+                    </div>)
+                )}
             </div>
+        </div>
         }
         <div className="col-md-6" style={ sideStyle }>
             { stat.length === 0 && 'idle...' }
@@ -84,33 +82,6 @@ const projectNameStyle: CSSProperties = {
 };
 
 
-const projectButtonsStyle: CSSProperties = {
-    left: '140px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
-    position: 'absolute',
-};
-
-
-const projectButtonsStyle0: CSSProperties = {
-    left: '210px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
-    position: 'absolute',
-};
-
-
-const projectButtonsStyle1: CSSProperties = {
-    left: '280px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
-    position: 'absolute',
-};
-
-
 const projectButtonsStyle2: CSSProperties = {
     left: '350px',
     top: '0px',
@@ -118,7 +89,6 @@ const projectButtonsStyle2: CSSProperties = {
     width: 'calc(100vh - 200px)',
     position: 'absolute',
 };
-
 
 
 const rStyle: CSSProperties = {

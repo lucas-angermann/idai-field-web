@@ -12,13 +12,13 @@ export const postConvert = async (token: string, project: string): Promise<unkno
     postTask(token, 'convert', project);
 
 
-export const postTiling = async (token: string, project: string): Promise<unknown> => 
+export const postTiling = async (token: string, project: string): Promise<unknown> =>
     postTask(token, 'tiling', project);
 
 
 export const postTask = async (token: string, endpoint: string, project: string): Promise<string[]> => {
 
-    const uri = project === 'All projects' 
+    const uri = project === 'All projects'
         ? PATH + '/' + endpoint
         : PATH + '/' + endpoint + '/' + project;
 
@@ -49,7 +49,7 @@ export const postStopTask = async (token: string, project: string): Promise<stri
     if (response.ok) {
         const json = await response.json();
         return ['Project: ' + project, 'Task: Reindex',
-            'Status:', json['status'], 'Message:', json['message']]
+            'Status:', json['status'], 'Message:', json['message']];
     }
     else throw(await response.json());
 };
@@ -67,11 +67,11 @@ export const getShowTasks = async (token: string): Promise<string[]> => {
     if (response.ok) {
         const json = await response.json();
         return ['Server', 'Task: Show running tasks',
-            'Status:', json['status'], 'Currently running:', 
-            json?.['message'].length > 0 
-                ? json['message'].join(', ') 
+            'Status:', json['status'], 'Currently running:',
+            json?.['message'].length > 0
+                ? json['message'].join(', ')
                 : 'No processes'
-            ]
+            ];
     }
     else throw(await response.json());
 };
