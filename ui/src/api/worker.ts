@@ -38,11 +38,11 @@ export const postConvert = async (token: string, project: string): Promise<unkno
 
 
 // TODO remove duplication
-export const postTilegen = async (token: string, project: string): Promise<unknown> => {
+export const postTiling = async (token: string, project: string): Promise<unknown> => {
 
     const uri = project === '' 
-        ? PATH + '/tilegen'
-        : PATH + '/tilegen/' + project;
+        ? PATH + '/tiling'
+        : PATH + '/tiling/' + project;
 
     const response = await fetch(uri, {
         headers: getHeaders(token),

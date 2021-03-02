@@ -40,14 +40,14 @@ defmodule Api.Worker.Router do
   end
 
   # Prerequisite: Reindex
-  post "/tilegen" do
-    {status, msg} = Server.tilegen(Config.get(:projects))
+  post "/tiling" do
+    {status, msg} = Server.tiling(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg})
   end
 
   # Prerequisite: Project is indexed
-  post "/tilegen/:project" do
-    {status, msg} = Server.tilegen([project])
+  post "/tiling/:project" do
+    {status, msg} = Server.tiling([project])
     send_json(conn, %{ status: status, message: msg })
   end
 

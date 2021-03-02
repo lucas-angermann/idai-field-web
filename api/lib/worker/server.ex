@@ -21,7 +21,7 @@ defmodule Api.Worker.Server do
   Triggers the tile generation of projects.
   Returns :ok, or :rejected, in case a task for any of the given projects is already running.
   """
-  def tilegen(projects), do: GenServer.call(__MODULE__, {:tilegen, projects})
+  def tiling(projects), do: GenServer.call(__MODULE__, {:tiling, projects})
 
   @doc """
   Triggers the image conversion of projects.
@@ -48,8 +48,8 @@ defmodule Api.Worker.Server do
   def handle_call({:reindex, projects}, _from, tasks) do
     create_tasks(projects, tasks, :reindex)
   end
-  def handle_call({:tilegen, projects}, _from, tasks) do
-    create_tasks(projects, tasks, :tilegen)
+  def handle_call({:tiling, projects}, _from, tasks) do
+    create_tasks(projects, tasks, :tiling)
   end
   def handle_call({:convert, projects}, _from, tasks) do
     create_tasks(projects, tasks, :convert)
@@ -171,7 +171,7 @@ defmodule Api.Worker.Server do
   defp start_process(project, :reindex) do
     Task.Supervisor.async_nolink(IndexingSupervisor, Indexer, :reindex, [project])
   end
-  defp start_process(project, :tilegen) do
+  defp start_process(project, :tiling) do
     Task.Supervisor.async_nolink(IndexingSupervisor, TilesController, :make_tiles, [project])
   end
   defp start_process(project, :convert) do

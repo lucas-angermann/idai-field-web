@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { getShowProcesses, postConvert, postReindex, postStopProcess, postTilegen } from '../../api/worker';
+import { getShowProcesses, postConvert, postReindex, postStopProcess, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
@@ -41,7 +41,7 @@ export default function Dashboard(): ReactElement {
                             </div>
                             <div style={ projectButtonsStyle1 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerTilegen(loginData.token, setStat, project) }>Tilegen</span>
+                                    onClick={ () => triggerTiling(loginData.token, setStat, project) }>Tiling</span>
                             </div>
                             { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
@@ -87,11 +87,11 @@ const triggerConvert = async (token: string,
 };
 
 
-const triggerTilegen = async (token: string,
+const triggerTiling = async (token: string,
     setStat: (s: string[]) => void, project: string): Promise<void> => {
 
-    const response = await postTilegen(token, project === 'All projects' ? '' : project);
-    setStat(['Project: ' + project, 'Task: Tilegen',
+    const response = await postTiling(token, project === 'All projects' ? '' : project);
+    setStat(['Project: ' + project, 'Task: Tiling',
         'Status:', response['status'], 'Message:', response['message']]);
 };
 
