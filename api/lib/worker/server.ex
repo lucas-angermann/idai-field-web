@@ -46,13 +46,13 @@ defmodule Api.Worker.Server do
   # TODO handle projects not found, with :reindex and :stop_reindex
   @impl true
   def handle_call({:reindex, projects}, _from, tasks) do
-    create_tasks(projects, tasks, &start_reindex_processes/1)
+    create_tasks(projects, tasks, :reindex)
   end
   def handle_call({:tilegen, projects}, _from, tasks) do
-    create_tasks(projects, tasks, &start_tilegen_processes/1)
+    create_tasks(projects, tasks, :tilegen)
   end
   def handle_call({:convert, projects}, _from, tasks) do
-    create_tasks(projects, tasks, &start_convert_processes/1)
+    create_tasks(projects, tasks, :convert)
   end
   def handle_call({:show_tasks}, _from, tasks) do
     {
@@ -126,7 +126,7 @@ defmodule Api.Worker.Server do
     }
   end
 
-  defp create_tasks(projects, tasks, create_task_function) do
+  defp create_tasks(projects, tasks, type) do
 
     conflicts = MapSet.intersection(
       MapSet.new(projects), 
@@ -147,7 +147,7 @@ defmodule Api.Worker.Server do
         tasks
       }
     else
-      new_tasks = create_task_function.(projects)
+      new_tasks = start_processes(projects, type)
       { 
         :reply,
         {
@@ -159,28 +159,26 @@ defmodule Api.Worker.Server do
     end
   end
 
-  defp start_reindex_processes(projects) do
-    start_processes(projects, :reindex, fn project -> Task.Supervisor.async_nolink(
-        IndexingSupervisor, Indexer, :reindex, [project]) end) 
-  end
-
-  defp start_tilegen_processes(projects) do
-    start_processes(projects, :tilegen, fn project -> Task.Supervisor.async_nolink(
-        IndexingSupervisor, TilesController, :make_tiles, [[project]]) end) # TODO review params 
-  end
-
-  defp start_convert_processes(projects) do
-    start_processes(projects, :convert, fn project -> Task.Supervisor.async_nolink(
-      IndexingSupervisor, ConversionController, :convert, [project]) end) 
-  end
-
-  defp start_processes(projects, type, start_function) do
+  defp start_processes(projects, type) do
     for project <- projects, into: %{} do
       { 
         project,
-        %{ task: start_function.(project), type: type}
+        %{ task: start_process(project, type), type: type}
       }
     end
+  end
+
+  defp start_process(project, :reindex) do
+    Task.Supervisor.async_nolink(
+        IndexingSupervisor, Indexer, :reindex, [project])
+  end
+  defp start_process(project, :tilegen) do
+    Task.Supervisor.async_nolink(
+      IndexingSupervisor, TilesController, :make_tiles, [[project]]) # TODO review params 
+  end
+  defp start_process(project, :convert) do
+    Task.Supervisor.async_nolink(
+      IndexingSupervisor, ConversionController, :convert, [project])
   end
 
   defp display(tasks) do
