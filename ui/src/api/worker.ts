@@ -37,7 +37,7 @@ export const postTask = async (token: string, endpoint: string, project: string)
 };
 
 
-export const postStopProcess = async (token: string, project: string): Promise<unknown> => {
+export const postStopTask = async (token: string, project: string): Promise<string[]> => {
 
     const uri = PATH + '/tasks/stop/' + project;
 
@@ -46,12 +46,16 @@ export const postStopProcess = async (token: string, project: string): Promise<u
         method: 'POST'
     });
 
-    if (response.ok) return (await response.json());
+    if (response.ok) {
+        const json = await response.json();
+        return ['Project: ' + project, 'Task: Reindex',
+            'Status:', json['status'], 'Message:', json['message']]
+    }
     else throw(await response.json());
 };
 
 
-export const getShowProcesses = async (token: string): Promise<unknown> => {
+export const getShowTasks = async (token: string): Promise<string[]> => {
 
     const uri = PATH + '/tasks/show';
 
@@ -60,6 +64,14 @@ export const getShowProcesses = async (token: string): Promise<unknown> => {
         method: 'GET'
     });
 
-    if (response.ok) return (await response.json());
+    if (response.ok) {
+        const json = await response.json();
+        return ['Server', 'Task: Show running tasks',
+            'Status:', json['status'], 'Currently running:', 
+            json?.['message'].length > 0 
+                ? json['message'].join(', ') 
+                : 'No processes'
+            ]
+    }
     else throw(await response.json());
 };

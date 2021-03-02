@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects } from '../../api/auth';
-import { getShowProcesses, postConvert, postReindex, postStopProcess, postTiling } from '../../api/worker';
+import { getShowTasks, postConvert, postReindex, postStopTask, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 
 
@@ -45,11 +45,11 @@ export default function Dashboard(): ReactElement {
                             </div>
                             { project !== 'All projects' ? <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerStopProcess(loginData.token, setStat, project) }>Stop</span>
+                                    onClick={ () => (postStopTask(loginData.token, project) as any).then(setStat) }>Stop</span>
                             </div> : 
                             <div style={ projectButtonsStyle2 }>
                                 <span className="btn" style={ rStyle }
-                                    onClick={ () => triggerShowInfo(loginData.token, setStat) }>Info</span>
+                                    onClick={ () => (getShowTasks(loginData.token) as any).then(setStat) }>Info</span>
                             </div>
                         }
                         </div>;
@@ -66,27 +66,6 @@ export default function Dashboard(): ReactElement {
             }) }
         </div>
         </div></div>);
-}
-
-
-const triggerStopProcess = async (token: string,
-    setStat: (s: string[]) => void, project: string): Promise<void> => {
-
-    const response = await postStopProcess(token, project === 'All projects' ? '' : project);
-    setStat(['Project: ' + project, 'Task: Reindex',
-        'Status:', response['status'], 'Message:', response['message']]);
-};
-
-
-const triggerShowInfo = async (token: string, setStat: (s: string[]) => void): Promise<void> => {
-
-    const response = await getShowProcesses(token);
-    setStat(['Server', 'Task: Show running tasks',
-        'Status:', response['status'], 'Currently running:', 
-        response?.['message'].length > 0 
-            ? response['message'].join(', ') 
-            : 'No processes'
-        ]);
 }
 
 
