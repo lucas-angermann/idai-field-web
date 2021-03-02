@@ -1,19 +1,12 @@
 defmodule Api.Worker.Images.TilesController do
 
-  alias Api.Core.Config
   alias Api.Worker.Images.TilesCreator
 
-  def make_tiles do
-    projects = Config.get(:projects)
-    make_tiles(projects)
-  end
-  def make_tiles(projects) do
-    #IO.puts "_____ #{inspect Enprojects}"
-    Enum.map(projects, fn project -> IO.puts project end)
+  def make_tiles(projects) do # TODO pass project, instead projects
     entries = projects
     |> Enum.flat_map(&tiles_for_project/1)
     Enum.map(entries, &TilesCreator.create_tiles/1)
-    { :finished_tilegen_project, List.first(projects) } # TODO review
+    { :finished, List.first(projects) } # TODO review
   end
 
   defp tiles_for_project(project) do

@@ -26,7 +26,7 @@ defmodule Api.Worker.Indexer do
     |> log_finished("indexing", project)
 
     IndexAdapter.add_alias_and_remove_old_index project, new_index, old_index
-    {:finished_reindex_project, project}
+    {:finished, project}
   end
 
   def stop_reindex(project) do
