@@ -4,6 +4,8 @@ import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
+import { Icon } from '@mdi/react';
+import { mdiOpenInNew } from '@mdi/js';
 import {
     DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getDocumentImages, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
@@ -122,7 +124,7 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
             labeledPosition ? getLabel(labeledPosition) : undefined
         );
     } else if (Literature.isValid(object as Literature)) {
-        return Literature.generateLabel(object as Literature, t);
+        return renderLiterature(object as Literature, t);
     } else if (OptionalRange.isValid(object as OptionalRange)) {
         return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
     } else {
@@ -141,6 +143,26 @@ const renderMultiLanguageText = (object: LabeledValue, t: TFunction): ReactNode 
             <div style={ multiLanguageTextStyle }>{ label }</div>
           </OverlayTrigger>
         : label;
+};
+
+
+const renderLiterature = (literature: Literature, t: TFunction): ReactNode => {
+
+    const label: string = Literature.generateLabel(literature as Literature, t, false);
+
+    return <>
+        { label }
+        { literature.zenonId &&
+            <div>
+                <a href={ `https://zenon.dainst.org/Record/${literature.zenonId}` }
+                    target="_blank" rel="noopener noreferrer">
+                    Zenon <span style={ linkIconContainerStyle }>
+                        <Icon path={ mdiOpenInNew } size={ 0.8 } />
+                    </span>
+                </a>
+            </div>
+        }
+    </>;
 };
 
 
@@ -199,4 +221,10 @@ const multiLanguageTextStyle: CSSProperties = {
 
 const listStyle: CSSProperties = {
     marginBottom: '0'
+};
+
+
+const linkIconContainerStyle: CSSProperties = {
+    position: 'relative',
+    bottom: '1px'
 };
