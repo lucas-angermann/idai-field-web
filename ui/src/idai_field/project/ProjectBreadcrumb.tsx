@@ -2,9 +2,13 @@ import { mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { clone } from 'tsfun/struct';
 import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
+
+
+const MAX_BREADCRUMB_ITEMS: number = 3;
 
 
 interface ProjectBreadcrumbProps {
@@ -15,9 +19,15 @@ interface ProjectBreadcrumbProps {
 
 export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBreadcrumbProps): ReactElement {
 
+    const shownPrecedessors = clone(predecessors);
+    if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
+        shownPrecedessors.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
+        shownPrecedessors.unshift(null);
+    }
+
     return <>
         { renderProject(projectId) }
-        { predecessors.map(renderPredecessor) }
+        { shownPrecedessors.map(renderPredecessor) }
     </>;
 }
 
@@ -35,11 +45,16 @@ const renderProject = (projectId: string): ReactNode =>
     </Link>;
 
 
-const renderPredecessor = (predecessor: ResultDocument, i: number): ReactNode =>
-    <div style={ predecessorContainerStyle(i) } key={ predecessor.resource.id } className="d-flex">
+const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNode =>
+    <div style={ predecessorContainerStyle(i) }
+            key={ predecessor ? predecessor.resource.id : 'breadcrumb-placeholder' }
+            className="d-flex">
         <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } color="grey" /></div>
         <div style={ { flexGrow: 1 } }>
-            <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } size="small" />
+            { predecessor
+                ? <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } size="small" />
+                : <div style={ placeholderStyle }>...</div>
+            }
         </div>
     </div>;
 
@@ -68,4 +83,13 @@ const iconContainerStyle: CSSProperties = {
     left: '-20px',
     top: '3px',
     zIndex: 10
+};
+
+
+const placeholderStyle: CSSProperties = {
+    position: 'relative',
+    left: '10px',
+    height: '28px',
+    paddingTop: '2px',
+    cursor: 'default'
 };
