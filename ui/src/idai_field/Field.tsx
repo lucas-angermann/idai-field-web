@@ -32,7 +32,7 @@ export default function Field(): ReactElement {
                     <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
                     <Route path="/project/:projectId/:documentId?" component={ Project } />
-                    <Redirect from="/projects/:id" to="/project/:id" />
+                    <Redirect from="/projects/:projectId/:documentId" to="/project/:projectId/:documentId" />
 
                     <Route path="/document/:id" component={ DocumentRedirect } />
                     <Redirect from="/documents/:id" to="/document/:id" />
