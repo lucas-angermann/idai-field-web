@@ -28,7 +28,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
 
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
-    return <Card.Body className="px-0 py-0">
+    return <Card.Body className="px-0 py-0" style={ cardBodyStyle }>
         <TransitionGroup className={ className } style={ groupStyle } >
             <CSSTransition key={ parent } timeout={ 500 }>
                 <div className="document-hierarchy">
@@ -92,6 +92,11 @@ const getGrandparent = (documents: ResultDocument[]): string => {
 const getProjectId = (documents: ResultDocument[]): string => {
 
     return documents.length > 0 ? documents[0].project : null;
+};
+
+
+const cardBodyStyle: CSSProperties = {
+    height: '100%'
 };
 
 

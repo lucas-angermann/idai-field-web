@@ -37,7 +37,8 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
 
 
 const headerBaseStyle: CSSProperties = {
-    display: 'flex'
+    display: 'flex',
+    flex: '0 0 auto'
 };
 
 

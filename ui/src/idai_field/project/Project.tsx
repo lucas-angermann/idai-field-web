@@ -214,8 +214,7 @@ const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchPara
 
 const mainSidebarCardStyle: CSSProperties = {
     overflow: 'hidden auto',
-    flexGrow: 1,
-    flexShrink: 1
+    flex: '1 1'
 };
 
 
