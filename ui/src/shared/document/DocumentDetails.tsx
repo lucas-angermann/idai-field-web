@@ -17,6 +17,7 @@ import { getDocumentLink } from './document-utils';
 import DocumentTeaser from './DocumentTeaser';
 
 const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
+const HIDDEN_RELATIONS = ['isDepictedIn', 'hasMapLayer'];
 
 
 interface DocumentDetailsProps {
@@ -81,7 +82,7 @@ const renderRelationList = (relations: Relation[], project: string, t: TFunction
     if (!relations) return null;
 
     const relationElements = relations
-        .filter(relation => relation.name !== 'isDepictedIn')
+        .filter(relation => !HIDDEN_RELATIONS.includes(relation.name))
         .map(relation => [
             <dt key={ `${relation.name}_dt` }>{ renderMultiLanguageText(relation, t) }</dt>,
             <dd key={ `${relation.name}_dd` }>
