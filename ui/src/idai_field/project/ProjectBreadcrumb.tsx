@@ -19,15 +19,9 @@ interface ProjectBreadcrumbProps {
 
 export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBreadcrumbProps): ReactElement {
 
-    const shownPrecedessors = clone(predecessors);
-    if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
-        shownPrecedessors.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
-        shownPrecedessors.unshift(null);
-    }
-
     return <>
         { renderProject(projectId) }
-        { shownPrecedessors.map(renderPredecessor) }
+        { limitPredecessors(predecessors).map(renderPredecessor) }
     </>;
 }
 
@@ -57,6 +51,19 @@ const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNo
             }
         </div>
     </div>;
+
+
+const limitPredecessors = (predecessors: ResultDocument[]): (ResultDocument|null)[] => {
+
+    const result = clone(predecessors);
+    
+    if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
+        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
+        result.unshift(null);
+    }
+
+    return result;
+}
 
 
 const homeHeadingStyle: CSSProperties = {
