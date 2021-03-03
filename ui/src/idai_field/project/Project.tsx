@@ -47,18 +47,8 @@ export default function Project(): ReactElement {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
-    const [parent, setParent] = useState<string>('root');
 
-    useEffect(() => {
-        if (searchParams.has('q')) {
-            setParent('');
-        } else if (!searchParams.has('p') && !searchParams.has('parent')) {
-            searchParams.append('parent', 'root');
-            setParent('root');
-        } else {
-            setParent(searchParams.get('parent'));
-        }
-    }, [searchParams]);
+    const parent = searchParams.get('parent');
 
     useEffect(() => {
 
@@ -121,7 +111,7 @@ export default function Project(): ReactElement {
                      projectId={ projectId } />
             { document
                 ? renderDocumentDetails(document, predecessors)
-                : isInHierarchyMode(parent)
+                : isInHierarchyMode(searchParams)
                     ? renderDocumentHierarchy(documents, searchParams, projectId, predecessors, onScroll)
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
@@ -219,7 +209,7 @@ const searchDocuments = async (id: string, searchParams: URLSearchParams,
 };
 
 
-const isInHierarchyMode = (parent: string): boolean => parent !== '';
+const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
 
 
 const mainSidebarCardStyle: CSSProperties = {
