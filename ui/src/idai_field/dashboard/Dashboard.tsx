@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { getReadableProjects, Token } from '../../api/auth';
 import { getShowTasks, postConvert, postReindex, postStop, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
-import Tasks from './Tasks';
+import Tasks, { TaskType } from './Tasks';
 
 
 export default function Dashboard(): ReactElement {
@@ -63,7 +63,7 @@ export default function Dashboard(): ReactElement {
 
 
 const call = (token: Token, setStat: (s: string[]) => void) =>
-    async (project: string, cmd: 'reindex'|'convert'|'tiling'|'stop') => {
+    async (project: string, cmd: TaskType) => {
 
     switch(cmd) {
         case 'reindex': setStat(await postReindex(token, project) as string[]); break;
