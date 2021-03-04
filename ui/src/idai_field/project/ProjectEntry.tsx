@@ -90,7 +90,7 @@ export default function ProjectEntry ():ReactElement {
                     <Row>
                         { images &&
                         <Col className="col-6">
-                            <ImageCarousel document={ projectDoc } images={ images } />
+                            <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
                         </Col>
                         }
                         { description &&
@@ -151,4 +151,8 @@ const renderFilterItem = (bucket: FilterBucketTreeNode) => (
 const filterColStyle: CSSProperties = {
     overflowY: 'scroll',
     maxHeight: '58vh'
+};
+
+const imageCarouselStyle: CSSProperties = {
+    background: '#d3d3cf'
 };
