@@ -10,7 +10,8 @@ export const getDocumentLink = (doc: ResultDocument, project: string, currentBas
         ? ['', `/image/${project}/${doc.resource.id}`]
         : isCategory(doc, 'Type') || isCategory(doc, 'TypeCatalog')
             ? [CONFIGURATION.shapesUrl, `/document/${doc.resource.id}`]
-            : [CONFIGURATION.fieldUrl, `/project/${project}/${doc.resource.id}`];
+            : [CONFIGURATION.fieldUrl,
+                `/project/${project}/${ isCategory(doc, 'Project') ? doc.resource.identifier : doc.resource.id }`];
 
     if (currentBaseUrl && baseUrl) {
         return (currentBaseUrl === baseUrl) ? path : baseUrl + path;
