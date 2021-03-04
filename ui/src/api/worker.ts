@@ -38,9 +38,11 @@ export const postTask = async (token: Token, endpoint: string, project: string):
 };
 
 
-export const postStopTask = async (token: Token, project: string): Promise<string[]> => {
+export const postStop = async (token: Token, project: string): Promise<string[]> => {
 
-    const uri = PATH + '/tasks/stop/' + project;
+    const uri = project === 'All projects' 
+        ? PATH + '/tasks/stop'
+        : PATH + '/tasks/stop/' + project;
 
     const response = await fetch(uri, {
         headers: getHeaders(token),

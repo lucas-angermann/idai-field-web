@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { getReadableProjects, Token } from '../../api/auth';
-import { getShowTasks, postConvert, postReindex, postStopTask, postTiling } from '../../api/worker';
+import { getShowTasks, postConvert, postReindex, postStop, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 import Tasks from './Tasks';
 
@@ -69,7 +69,7 @@ const call = (token: Token, setStat: (s: string[]) => void) =>
         case 'reindex': setStat(await postReindex(token, project) as string[]); break;
         case 'convert': setStat(await postConvert(token, project) as string[]); break;
         case 'tiling': setStat(await postTiling(token, project) as string[]); break;
-        case 'stop': setStat(await postStopTask(token, project) as string[]); break;
+        case 'stop': setStat(await postStop(token, project) as string[]); break;
     }
 };
 
