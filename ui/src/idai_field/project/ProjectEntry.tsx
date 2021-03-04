@@ -46,18 +46,7 @@ export default function ProjectEntry ():ReactElement {
 
     },[projectDoc]);
 
-    const renderFilters = (filters: ResultFilter[]) =>
-        filters.map((filter: ResultFilter) =>
-            filter.name === 'resource.category.name' && renderFilter(filter, projectId));
-    
-    
-    const renderFilter = (filter: ResultFilter, projectId?: string) =>
-    {
-        return filter.values.map((bucket: FilterBucketTreeNode) =>
-            renderFilterValue(filter.name, bucket, projectId));
-    };
-    
-
+ 
     if (!projectDoc || !filters) return null;
     return (
         <Card className="m-3">
@@ -82,7 +71,7 @@ export default function ProjectEntry ():ReactElement {
                     </Row>
                     <Row className="p-3">
                         <Col style={ filterColStyle }>
-                            { renderFilters(filters) }
+                            { renderFilters(filters, projectId) }
                         </Col>
                     </Row>
                 </Col>
@@ -121,13 +110,21 @@ export default function ProjectEntry ():ReactElement {
     );
 }
 
+const renderFilters = (filters: ResultFilter[], projectId: string) =>
+    filters.map((filter: ResultFilter) =>
+        filter.name === 'resource.category.name' && renderFilter(filter, projectId));
 
-const renderFilterValue = (key: string, bucket: FilterBucketTreeNode,
-        projectId?: string, level: number = 1): ReactNode => (
+
+const renderFilter = (filter: ResultFilter, projectId?: string) =>
+    filter.values.map((bucket: FilterBucketTreeNode) =>
+        renderFilterValue(bucket, projectId));
+
+
+const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string): ReactNode => (
         <React.Fragment>
             { renderFilterItem(bucket) }
             { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
-                renderFilterValue(key, b, projectId, level + 1))
+                renderFilterValue(b, projectId))
             }
         </React.Fragment>
     );
