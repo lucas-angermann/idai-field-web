@@ -29,9 +29,7 @@ defmodule Api.Worker.Server do
   """
   def convert(projects), do: GenServer.call(__MODULE__, {:convert, projects})
 
-  def stop_task(project), do: GenServer.call(__MODULE__, {:stop_task, project})
-
-  def stop_tasks, do: GenServer.call(__MODULE__, {:stop_tasks})
+  def stop_tasks(projects), do: GenServer.call(__MODULE__, {:stop_tasks, projects})
 
   def show_tasks(), do: GenServer.call(__MODULE__, {:show_tasks})
 
@@ -66,47 +64,25 @@ defmodule Api.Worker.Server do
       tasks
     }
   end
-  def handle_call({:stop_task, project}, _from, tasks) do
+  def handle_call({:stop_tasks, projects}, _from, tasks) do
 
-    if tasks[project] != nil do
-      pid = tasks[project].task.pid
-      Process.exit pid, :killed_by_user
-      Indexer.stop_reindex project # TODO Review timing; deletion of index after process killed; an existing working index must never be allowed to get deleted by accident
-      Logger.info "Task stopped by admin. Did not finish task for '#{project}'"
-      {
-        :reply,
-        {
-          :ok,
-          "Stopped task for #{project}"
-        },
-        Map.delete(tasks, project)
-      }
-    else
-      {
-        :reply,
-        {
-          :ignored,
-          "Currently no task is running for #{project}"
-        },
-        tasks
-      }
-    end
-  end
-  def handle_call({:stop_tasks}, _from, tasks) do
-
-    if Map.keys(tasks) !== [] do
-      Enum.map(Map.keys(tasks), fn project -> 
-        # TODO review duplicated code
+    projects = 
+      projects 
+      |> Enum.filter(fn project -> tasks[project] != nil end)
+      |> Enum.map(fn project -> 
         pid = tasks[project].task.pid
         Process.exit pid, :killed_by_user
         Indexer.stop_reindex project # TODO Review timing; deletion of index after process killed; an existing working index must never be allowed to get deleted by accident
         Logger.info "Task stopped by admin. Did not finish task for '#{project}'"
+        project
       end)
+
+    if projects !== [] do
       {
         :reply,
         {
           :ok,
-          "Stopped all tasks"
+          "Stopped tasks for #{Enum.join(projects, ", ")}"
         },
         %{}
       }
@@ -115,7 +91,7 @@ defmodule Api.Worker.Server do
         :reply,
         {
           :ignored,
-          "Currently no task are running"
+          "No task running"
         },
         tasks
       }

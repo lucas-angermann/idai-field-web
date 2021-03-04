@@ -30,12 +30,12 @@ defmodule Api.Worker.Router do
   end
   
   post "/tasks/stop" do
-    {status, msg} = Server.stop_tasks
+    {status, msg} = Server.stop_tasks(Config.get(:projects))
     send_json(conn, %{ status: status, message: msg })
   end
 
   post "/tasks/stop/:project" do
-    {status, msg} = Server.stop_task project
+    {status, msg} = Server.stop_tasks([project])
     send_json(conn, %{ status: status, message: msg })
   end
   
