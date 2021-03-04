@@ -102,7 +102,8 @@ export default function ProjectEntry ():ReactElement {
                                 onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
                                 fitOptions={ MAP_FIT_OPTIONS }
                                 spinnerContainerStyle={ MapSpinnerContainerStyle }
-                                mapHeightVh={ 40 } />
+                                mapHeightVh={ 40 }
+                                reloadMapOnClickEvent={ true } />
                         </Col>
                     </Row>
                 </Col>

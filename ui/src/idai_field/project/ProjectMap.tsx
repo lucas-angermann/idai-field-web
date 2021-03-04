@@ -41,12 +41,13 @@ interface ProjectMapProps {
     fitOptions: FitOptions;
     spinnerContainerStyle: CSSProperties;
     mapHeightVh?: number;
+    reloadMapOnClickEvent?: boolean;
 }
 
 
 export default function ProjectMap({
         selectedDocument, predecessors,
-        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100 }
+        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100, reloadMapOnClickEvent=false }
         : ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -104,9 +105,10 @@ export default function ProjectMap({
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature, selectedDocument);
+        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
+                                                    selectedDocument, reloadMapOnClickEvent);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, searchParams, onDeselectFeature]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature, reloadMapOnClickEvent]);
 
     useEffect(() => {
 
@@ -188,7 +190,7 @@ const createSelect = (map: Map): Select => {
 
 
 const handleMapClick = (history: History, searchParams: URLSearchParams, onDeselectFeature: () => void,
-        selectedDocument?: Document): ((_: MapBrowserEvent) => void) => {
+        selectedDocument?: Document, reload?: boolean): ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
 
@@ -210,7 +212,12 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
                 }
             }
             const { id, project } = smallestFeature.getProperties();
-            history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
+            if(reload){
+                let href = `/project/${project}/${id}`;
+                if(searchParams.toString()) href += `?${searchParams}`;
+                window.location.href = href;
+            }
+            else history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
         } else if (selectedDocument) {
             onDeselectFeature();
         }
