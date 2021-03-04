@@ -19,13 +19,14 @@ const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 export default function ProjectEntry ():ReactElement {
 
     const { projectId } = useParams<{ projectId: string }>();
-    const [projectDoc, setProjectDoc] = useState<Document>();
-    const [description, setDescription] = useState<FieldValue>('');
-    const [images, setImages] = useState<ResultDocument[]>();
     const loginData = useContext(LoginContext);
     const history = useHistory();
     const searchParams = useSearchParams();
+
     const [filters, setFilters] = useState<ResultFilter[]>([]);
+    const [projectDoc, setProjectDoc] = useState<Document>();
+    const [description, setDescription] = useState<FieldValue>('');
+    const [images, setImages] = useState<ResultDocument[]>();
 
     useEffect(() => {
 
@@ -91,13 +92,13 @@ export default function ProjectEntry ():ReactElement {
                     <Row className="mt-1">
                         <Col className="col-6" >
                            <ProjectMap
-                            selectedDocument={ projectDoc }
-                            predecessors={ [] }
-                            project={ projectId }
-                            onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
-                            fitOptions={ MAP_FIT_OPTIONS }
-                            spinnerContainerStyle={ MapSpinnerContainerStyle }
-                            mapHeightVh={ 40 } />
+                                selectedDocument={ projectDoc }
+                                predecessors={ [] }
+                                project={ projectId }
+                                onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
+                                fitOptions={ MAP_FIT_OPTIONS }
+                                spinnerContainerStyle={ MapSpinnerContainerStyle }
+                                mapHeightVh={ 40 } />
                         </Col>
                     </Row>
                 </Col>
@@ -110,6 +111,7 @@ export default function ProjectEntry ():ReactElement {
         </Card>
     );
 }
+
 
 const renderFilters = (filters: ResultFilter[], projectId: string) =>
     filters.map((filter: ResultFilter) =>
