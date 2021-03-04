@@ -2,30 +2,23 @@ import React, { CSSProperties } from 'react';
 import { ReactElement } from 'react';
 
 
-export type TaskType = 'reindex'|'convert'|'tiling'|'stop';
+type TasksProps = {
+    project: string,
+    exec: (project: string, cmd: string) => void,
+    buttons: [string, string, string][],
+    itemWidth: number
+};
 
 
-const WIDTH = 70;
-
-
-type TasksProps = { project: string, exec: (project: string, cmd: TaskType) => void };
-
-
-const BUTTONS = [['reindex', 'Reindex', 'green'],
-    ['convert', 'Convert', 'green'],
-    ['tiling', 'Tiling', 'green'],
-    ['stop', 'Stop', 'blue']];
-
-
-export default React.memo(function Tasks({ project, exec }: TasksProps): ReactElement {
+export default React.memo(function Tasks({ project, exec, buttons, itemWidth }: TasksProps): ReactElement {
 
     return (<div style={ boxStyle }>
 
-        { BUTTONS.map(([type, Title, color]: [TaskType, string, string], i) => (
+        { buttons.map(([type, title, color], i) => (
 
-            <div style={ buttonDivStyle(i, WIDTH) } key={ i }>
+            <div style={ buttonDivStyle(i, itemWidth) } key={ i }>
                 <span className="btn" style={ buttonSpanStyle(color) }
-                    onClick={ () => exec(project, type) }>{ Title }</span>
+                    onClick={ () => exec(project, type) }>{ title }</span>
             </div>
            )) }
     </div>);

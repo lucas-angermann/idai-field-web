@@ -2,7 +2,21 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { getReadableProjects, Token } from '../../api/auth';
 import { getShowTasks, postConvert, postReindex, postStop, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
-import Tasks, { TaskType } from './Tasks';
+import Tasks from './Tasks';
+
+
+export type TaskType = 'reindex'|'convert'|'tiling'|'stop';
+
+
+const BUTTONS: [TaskType, string, string][] = [
+    ['reindex', 'Reindex', 'green'],
+    ['convert', 'Convert', 'green'],
+    ['tiling', 'Tiling', 'green'],
+    ['stop', 'Stop', 'blue']
+];
+
+
+const WIDTH = 70;
 
 
 export default function Dashboard(): ReactElement {
@@ -33,7 +47,9 @@ export default function Dashboard(): ReactElement {
                         <div style={ projectNameStyle }>
                             { project }</div>
                         <Tasks project={ project }
-                            exec={ call(loginData.token, setStat) }></Tasks>
+                            exec={ call(loginData.token, setStat) }
+                            buttons={ BUTTONS }
+                            itemWidth={ WIDTH }></Tasks>
                         { project === 'All projects'
                             && <div style={ buttonDivStyle }>
                                 <span className="btn"
