@@ -11,7 +11,6 @@ import Manual from './manual/Manual';
 import FieldNav from './navbar/FieldNav';
 import ProjectOverview from './overview/ProjectOverview';
 import Project from './project/Project';
-import ProjectEntry from './project/ProjectEntry';
 import ResourceRedirect from './ResourceRedirect';
 
 
@@ -32,7 +31,6 @@ export default function Field(): ReactElement {
                     <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                     <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
-                    <Route path="/project/:projectId/entry" exact component={ ProjectEntry } />
                     <Route path="/project/:projectId/:documentId?" component={ Project } />
                     <Redirect from="/projects/:projectId/:documentId" to="/project/:projectId/:documentId" />
 
