@@ -13,7 +13,6 @@ import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import { FilterBucket, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { useSearchParams } from '../../shared/location';
-//import { FIT_OPTIONS } from '../project/ProjectMap';
 import { getProjectLabel } from '../projects';
 import './overview-map.css';
 
