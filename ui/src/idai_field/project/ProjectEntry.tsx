@@ -25,7 +25,6 @@ export default function ProjectEntry ():ReactElement {
     const loginData = useContext(LoginContext);
     const history = useHistory();
     const searchParams = useSearchParams();
-    searchParams.append('q','*');
     const [filters, setFilters] = useState<ResultFilter[]>([]);
 
     useEffect(() => {
@@ -48,13 +47,13 @@ export default function ProjectEntry ():ReactElement {
 
     const renderFilters = (filters: ResultFilter[]) =>
         filters.map((filter: ResultFilter) =>
-            filter.name === 'resource.category.name' && renderFilter(filter, searchParams, projectId));
+            filter.name === 'resource.category.name' && renderFilter(filter, projectId));
     
     
-    const renderFilter = (filter: ResultFilter, searchParams: URLSearchParams, projectId?: string) =>
+    const renderFilter = (filter: ResultFilter, projectId?: string) =>
     {
         return filter.values.map((bucket: FilterBucketTreeNode) =>
-            renderFilterValue(filter.name, bucket, searchParams, projectId));
+            renderFilterValue(filter.name, bucket, projectId));
     };
     
 
@@ -111,12 +110,12 @@ export default function ProjectEntry ():ReactElement {
 }
 
 
-const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams,
-    projectId?: string, level: number = 1): ReactNode => (
+const renderFilterValue = (key: string, bucket: FilterBucketTreeNode,
+        projectId?: string, level: number = 1): ReactNode => (
         <React.Fragment>
             { renderFilterItem(bucket) }
             { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
-                renderFilterValue(key, b, params, projectId, level + 1))
+                renderFilterValue(key, b, projectId, level + 1))
             }
         </React.Fragment>
     );
