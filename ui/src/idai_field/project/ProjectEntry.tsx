@@ -28,6 +28,7 @@ export default function ProjectEntry ():ReactElement {
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [projectDoc, setProjectDoc] = useState<Document>();
     const [description, setDescription] = useState<FieldValue>('');
+    const [title, setTitle] = useState<string>('');
     const [images, setImages] = useState<ResultDocument[]>();
 
     useEffect(() => {
@@ -45,9 +46,13 @@ export default function ProjectEntry ():ReactElement {
             const description = getDocumentDescription(projectDoc);
             setDescription(description? description : '');
             setImages(getDocumentImages(projectDoc));
+            
+            const title = projectDoc.resource.shortDescription;
+            setTitle(title? title: projectId);
         }
+       
 
-    },[projectDoc]);
+    },[projectDoc, projectId]);
 
  
     if (!projectDoc || !filters) return null;
@@ -56,7 +61,7 @@ export default function ProjectEntry ():ReactElement {
             <Row className="text-center p-2">
                 <Col>
                     <Card.Title >
-                        <strong>{ projectDoc.resource.shortDescription }</strong>
+                        <strong>{ title }</strong>
                     </Card.Title>
                 </Col>
             </Row>
