@@ -50,6 +50,7 @@ const limitPredecessors = (predecessors: ResultDocument[]): (ResultDocument|null
     }
 
     return result;
+};
 
 
 const predecessorContainerStyle = (i: number): CSSProperties => ({
