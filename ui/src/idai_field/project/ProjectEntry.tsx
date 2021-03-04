@@ -20,7 +20,7 @@ export default function ProjectEntry ():ReactElement {
 
     const { projectId } = useParams<{ projectId: string }>();
     const [projectDoc, setProjectDoc] = useState<Document>();
-    const [description, setDescription] = useState<FieldValue>();
+    const [description, setDescription] = useState<FieldValue>('');
     const [images, setImages] = useState<ResultDocument[]>();
     const loginData = useContext(LoginContext);
     const history = useHistory();
@@ -39,7 +39,8 @@ export default function ProjectEntry ():ReactElement {
     useEffect(() => {
 
         if(projectDoc){
-            setDescription(getDocumentDescription(projectDoc));
+            const description = getDocumentDescription(projectDoc);
+            setDescription(description? description : '');
             setImages(getDocumentImages(projectDoc));
         }
 
@@ -57,7 +58,7 @@ export default function ProjectEntry ():ReactElement {
     };
     
 
-    if (!projectDoc || !images || !description || !filters) return null;
+    if (!projectDoc || !filters) return null;
     return (
         <Card className="m-3">
             <Row className="text-center p-2">
@@ -87,12 +88,16 @@ export default function ProjectEntry ():ReactElement {
                 </Col>
                 <Col>
                     <Row>
+                        { images &&
                         <Col className="col-6">
                             <ImageCarousel document={ projectDoc } images={ images } />
                         </Col>
+                        }
+                        { description &&
                         <Col>
                             <Card.Text>{ description }</Card.Text>
                         </Col>
+                        }
                     </Row>
                     <Row className="mt-1">
                         <Col className="col-6" >
@@ -102,12 +107,14 @@ export default function ProjectEntry ():ReactElement {
                             project={ projectId }
                             onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
                             fitOptions={ MAP_FIT_OPTIONS }
-                            mapHeightVh={ 50 } />
-                        </Col>
-                        <Col className="d-flex align-items-end flex-column mt-auto">
-                            { <ProjectHomeButton projectId={ projectId } /> }
+                            mapHeightVh={ 40 } />
                         </Col>
                     </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="d-flex align-items-end flex-column">
+                            { <ProjectHomeButton projectId={ projectId } /> }
                 </Col>
             </Row>
         </Card>
@@ -143,5 +150,5 @@ const renderFilterItem = (bucket: FilterBucketTreeNode) => (
 
 const filterColStyle: CSSProperties = {
     overflowY: 'scroll',
-    maxHeight: '63vh'
+    maxHeight: '58vh'
 };
