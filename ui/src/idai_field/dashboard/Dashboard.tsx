@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
-import { getReadableProjects } from '../../api/auth';
-import { getShowTasks, postStopTask } from '../../api/worker';
+import { getReadableProjects, Token } from '../../api/auth';
+import { getShowTasks, postConvert, postReindex, postStopTask, postTiling } from '../../api/worker';
 import { LoginContext } from '../../shared/login';
 import Tasks from './Tasks';
 
@@ -33,19 +33,9 @@ export default function Dashboard(): ReactElement {
                         <div style={ projectNameStyle }>
                             { project }</div>
                         <Tasks project={ project }
-                            token={ loginData.token }
-                            setStat={ setStat }></Tasks>
-                        { project !== 'All projects'
-                            ? <div style={ projectButtonsStyle2 }>
-                                <span className="btn"
-                                    style={ rStyle }
-                                    onClick={
-                                        () => (postStopTask(loginData.token, project)).then(setStat)
-                                    }>
-                                    Stop
-                                </span>
-                            </div>
-                            : <div style={ projectButtonsStyle2 }>
+                            exec={ call(loginData.token, setStat) }></Tasks>
+                        { project === 'All projects'
+                            && <div style={ projectButtonsStyle2 }>
                                 <span className="btn"
                                     style={ rStyle }
                                     onClick={
@@ -72,6 +62,18 @@ export default function Dashboard(): ReactElement {
 }
 
 
+const call = (token: Token, setStat: (s: string[]) => void) =>
+    async (project: string, cmd: 'reindex'|'convert'|'tiling'|'stop') => {
+
+    switch(cmd) {
+        case 'reindex': setStat(await postReindex(token, project) as string[]); break;
+        case 'convert': setStat(await postConvert(token, project) as string[]); break;
+        case 'tiling': setStat(await postTiling(token, project) as string[]); break;
+        case 'stop': setStat(await postStopTask(token, project) as string[]); break;
+    }
+};
+
+
 const projectRowStyle: CSSProperties = {
     height: '96px',
     position: 'relative'
@@ -88,7 +90,7 @@ const projectNameStyle: CSSProperties = {
 
 
 const projectButtonsStyle2: CSSProperties = {
-    left: '140px',
+    left: '210px',
     top: '0px',
     height: '22px',
     width: 'calc(100vh - 200px)',

@@ -1,22 +1,23 @@
+import { Token } from './auth';
 import { getHeaders } from './utils';
 
 
 const PATH = '/api/worker/';
 
 
-export const postReindex = async (token: string, project: string): Promise<unknown> =>
+export const postReindex = async (token: Token, project: string): Promise<unknown> =>
     postTask(token, 'reindex', project);
 
 
-export const postConvert = async (token: string, project: string): Promise<unknown> =>
+export const postConvert = async (token: Token, project: string): Promise<unknown> =>
     postTask(token, 'convert', project);
 
 
-export const postTiling = async (token: string, project: string): Promise<unknown> =>
+export const postTiling = async (token: Token, project: string): Promise<unknown> =>
     postTask(token, 'tiling', project);
 
 
-export const postTask = async (token: string, endpoint: string, project: string): Promise<string[]> => {
+export const postTask = async (token: Token, endpoint: string, project: string): Promise<string[]> => {
 
     const uri = project === 'All projects'
         ? PATH + '/' + endpoint
@@ -37,7 +38,7 @@ export const postTask = async (token: string, endpoint: string, project: string)
 };
 
 
-export const postStopTask = async (token: string, project: string): Promise<string[]> => {
+export const postStopTask = async (token: Token, project: string): Promise<string[]> => {
 
     const uri = PATH + '/tasks/stop/' + project;
 
@@ -55,7 +56,7 @@ export const postStopTask = async (token: string, project: string): Promise<stri
 };
 
 
-export const getShowTasks = async (token: string): Promise<string[]> => {
+export const getShowTasks = async (token: Token): Promise<string[]> => {
 
     const uri = PATH + '/tasks/show';
 
