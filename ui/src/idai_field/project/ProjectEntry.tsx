@@ -1,14 +1,20 @@
-import React, { ReactElement, useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { Row, Col, Card } from 'react-bootstrap';
 import SearchBar from '../../shared/search/SearchBar';
 import { Document, getDocumentImages, getDocumentDescription, FieldValue } from '../../api/document';
 import { get } from '../../api/documents';
 import { LoginContext } from '../../shared/login';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
-import { ResultDocument } from '../../api/result';
+import { ResultDocument, ResultFilter, FilterBucketTreeNode } from '../../api/result';
 import { useSearchParams } from '../../shared/location';
 import ProjectHomeButton from './ProjectHomeButton';
+import { deselectFeature, initFilters } from './Project';
+import CategoryIcon from '../../shared/document/CategoryIcon';
+import { getLabel } from '../../shared/languages';
+import ProjectMap from './ProjectMap';
+
+const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
 export default function ProjectEntry ():ReactElement {
 
@@ -17,9 +23,15 @@ export default function ProjectEntry ():ReactElement {
     const [description, setDescription] = useState<FieldValue>();
     const [images, setImages] = useState<ResultDocument[]>();
     const loginData = useContext(LoginContext);
+    const history = useHistory();
     const searchParams = useSearchParams();
+    searchParams.append('q','*');
+    const [filters, setFilters] = useState<ResultFilter[]>([]);
 
     useEffect(() => {
+
+        initFilters(projectId, searchParams, loginData.token)
+            .then(result => setFilters(result.filters));
 
         get(projectId, loginData.token)
             .then(setProjectDoc);
@@ -34,19 +46,42 @@ export default function ProjectEntry ():ReactElement {
 
     },[projectDoc]);
 
-    if (!projectDoc || !images || !description) return null;
+    const renderFilters = (filters: ResultFilter[]) =>
+        filters.map((filter: ResultFilter) =>
+            filter.name === 'resource.category.name' && renderFilter(filter, searchParams, projectId));
+    
+    
+    const renderFilter = (filter: ResultFilter, searchParams: URLSearchParams, projectId?: string) =>
+    {
+        return filter.values.map((bucket: FilterBucketTreeNode) =>
+            renderFilterValue(filter.name, bucket, searchParams, projectId));
+    };
+    
+
+    if (!projectDoc || !images || !description || !filters) return null;
     return (
-        <Card className="m-2">
-            <Row>
-                <Col className="col-3">
-                    <SearchBar basepath={ `/project/${projectId}` } />
-                </Col>
+        <Card className="m-3">
+            <Row className="text-center p-2">
                 <Col>
+                    <Card.Title >
+                        <strong>{ projectDoc.resource.shortDescription }</strong>
+                    </Card.Title>
+                </Col>
+            </Row>
+            <Row className="p-2">
+                <Col className="col-4">
                     <Row>
                         <Col>
-                            <Card.Title>{ projectDoc.resource.shortDescription }</Card.Title>
+                            <SearchBar basepath={ `/project/${projectId}` } />
                         </Col>
                     </Row>
+                    <Row className="p-3">
+                        <Col style={ filterColStyle }>
+                            { renderFilters(filters) }
+                        </Col>
+                    </Row>
+                </Col>
+                <Col>
                     <Row>
                         <Col className="col-6">
                             <ImageCarousel document={ projectDoc } images={ images } />
@@ -56,8 +91,14 @@ export default function ProjectEntry ():ReactElement {
                         </Col>
                     </Row>
                     <Row className="mt-1">
-                        <Col className="col-6">
-                            <p>Minimap</p>
+                        <Col className="col-6" >
+                           <ProjectMap
+                            selectedDocument={ projectDoc }
+                            predecessors={ [] }
+                            project={ projectId }
+                            onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
+                            fitOptions={ MAP_FIT_OPTIONS }
+                            mapHeightVh={ 50 } />
                         </Col>
                         <Col className="d-flex align-items-end flex-column mt-auto">
                             { <ProjectHomeButton projectId={ projectId } /> }
@@ -68,3 +109,35 @@ export default function ProjectEntry ():ReactElement {
         </Card>
     );
 }
+
+
+const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams,
+    projectId?: string, level: number = 1): ReactNode => (
+        <React.Fragment>
+            { renderFilterItem(bucket) }
+            { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
+                renderFilterValue(key, b, params, projectId, level + 1))
+            }
+        </React.Fragment>
+    );
+
+
+const renderFilterItem = (bucket: FilterBucketTreeNode) => (
+    <Row>
+        <Col>
+            <CategoryIcon category={ bucket.item.value } size="20" />
+        </Col>
+        <Col>
+            { getLabel(bucket.item.value) }
+        </Col>
+        <Col>
+            { bucket.item.count }
+        </Col>
+    </Row>
+);
+
+
+const filterColStyle: CSSProperties = {
+    overflowY: 'scroll',
+    maxHeight: '70vh'
+};

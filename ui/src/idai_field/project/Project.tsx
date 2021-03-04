@@ -147,7 +147,7 @@ export default function Project(): ReactElement {
 }
 
 
-const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
+export const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
@@ -217,7 +217,7 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 };
 
 
-const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
+export const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
 
     let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
