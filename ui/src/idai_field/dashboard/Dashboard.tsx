@@ -35,9 +35,9 @@ export default function Dashboard(): ReactElement {
                         <Tasks project={ project }
                             exec={ call(loginData.token, setStat) }></Tasks>
                         { project === 'All projects'
-                            && <div style={ projectButtonsStyle2 }>
+                            && <div style={ buttonDivStyle }>
                                 <span className="btn"
-                                    style={ rStyle }
+                                    style={ buttonSpanStyle }
                                     onClick={
                                         () => (getShowTasks(loginData.token)).then(setStat)
                                     }>
@@ -89,7 +89,7 @@ const projectNameStyle: CSSProperties = {
 };
 
 
-const projectButtonsStyle2: CSSProperties = {
+const buttonDivStyle: CSSProperties = {
     left: '210px',
     top: '0px',
     height: '22px',
@@ -98,7 +98,7 @@ const projectButtonsStyle2: CSSProperties = {
 };
 
 
-const rStyle: CSSProperties = {
+const buttonSpanStyle: CSSProperties = {
     position: 'relative',
     left: '0px',
     top: '0px',
