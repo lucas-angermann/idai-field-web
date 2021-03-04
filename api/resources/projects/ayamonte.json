@@ -5,6 +5,7 @@
       "label": {
         "de": "Maßnahme",
         "en": "Operation",
+        "es": "Intervención",
         "it": "Operazione"
       },
       "description": {},
@@ -38,11 +39,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -142,6 +145,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -160,6 +164,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -209,6 +214,7 @@
           "label": {
             "de": "Maßnahme",
             "en": "Operation",
+            "es": "Intervención",
             "it": "Operazione"
           }
         },
@@ -287,6 +293,7 @@
           "label": {
             "de": "Schnitt",
             "en": "Trench",
+            "es": "Corte",
             "it": "Saggio"
           },
           "description": {
@@ -322,11 +329,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -441,6 +450,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -459,6 +469,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -508,6 +519,7 @@
               "label": {
                 "de": "Maßnahme",
                 "en": "Operation",
+                "es": "Intervención",
                 "it": "Operazione"
               }
             },
@@ -598,6 +610,7 @@
               "label": {
                 "de": "Schnitt",
                 "en": "Trench",
+                "es": "Corte",
                 "it": "Saggio"
               }
             },
@@ -850,6 +863,7 @@
           "label": {
             "de": "Bauwerk",
             "en": "Building",
+            "es": "Edificio",
             "it": "Edificio"
           },
           "description": {},
@@ -883,11 +897,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -987,6 +1003,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -1005,6 +1022,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -1054,6 +1072,7 @@
               "label": {
                 "de": "Maßnahme",
                 "en": "Operation",
+                "es": "Intervención",
                 "it": "Operazione"
               }
             },
@@ -1897,6 +1916,7 @@
               "label": {
                 "de": "Bauwerk",
                 "en": "Building",
+                "es": "Edificio",
                 "it": "Edificio"
               }
             },
@@ -2238,6 +2258,7 @@
           "label": {
             "de": "Survey-Areal",
             "en": "Survey area",
+            "es": "Área de prospección",
             "it": "Area del Survey"
           },
           "description": {},
@@ -2271,11 +2292,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -2375,6 +2398,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -2393,6 +2417,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -2442,6 +2467,7 @@
               "label": {
                 "de": "Maßnahme",
                 "en": "Operation",
+                "es": "Intervención",
                 "it": "Operazione"
               }
             },
@@ -2546,6 +2572,7 @@
               "label": {
                 "de": "Survey-Areal",
                 "en": "Survey area",
+                "es": "Área de prospección",
                 "it": "Area del Survey"
               }
             },
@@ -2627,6 +2654,7 @@
       "label": {
         "de": "Ort",
         "en": "Place",
+        "es": "Sitio",
         "it": "Luogo"
       },
       "description": {},
@@ -2660,11 +2688,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -2699,6 +2729,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -2717,6 +2748,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -2993,6 +3025,7 @@
           "label": {
             "de": "Ort",
             "en": "Place",
+            "es": "Sitio",
             "it": "Luogo"
           }
         },
@@ -3069,6 +3102,7 @@
       "label": {
         "de": "Stratigraphische Einheit",
         "en": "Stratigraphical unit",
+        "es": "Unidad estratigráfica",
         "it": "Unità Stratigrafica"
       },
       "description": {},
@@ -3102,11 +3136,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -3220,6 +3256,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -3238,6 +3275,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -3247,6 +3285,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -3911,6 +3950,7 @@
           "label": {
             "de": "Stratigraphische Einheit",
             "en": "Stratigraphical unit",
+            "es": "Unidad estratigráfica",
             "it": "Unità Stratigrafica"
           }
         },
@@ -4070,6 +4110,7 @@
               "label": {
                 "de": "Gleich wie",
                 "en": "Equivalent to",
+                "es": "Corresponde con",
                 "it": "Gleich wie"
               },
               "description": {}
@@ -4099,6 +4140,7 @@
               "label": {
                 "de": "Schneidet",
                 "en": "Cuts",
+                "es": "Corta",
                 "it": "Taglia"
               },
               "description": {}
@@ -4108,6 +4150,7 @@
               "label": {
                 "de": "Wird geschnitten von",
                 "en": "Cut by",
+                "es": "Cortado por",
                 "it": "Tagliato da"
               },
               "description": {}
@@ -4117,6 +4160,7 @@
               "label": {
                 "de": "Grenzt an",
                 "en": "Borders",
+                "es": "Adyacente a",
                 "it": "Si appoggia a"
               },
               "description": {}
@@ -4319,6 +4363,7 @@
               "label": {
                 "de": "Zeitlich nach",
                 "en": "After",
+                "es": "Cronología: después de",
                 "it": "Zeitlich nach"
               },
               "description": {}
@@ -4328,6 +4373,7 @@
               "label": {
                 "de": "Zeitlich vor",
                 "en": "Before",
+                "es": "Cronología: antes de",
                 "it": "Zeitlich vor"
               },
               "description": {}
@@ -4337,6 +4383,7 @@
               "label": {
                 "de": "Zeitgleich mit",
                 "en": "Contemporary with",
+                "es": "Cronología: simultáneo con",
                 "it": "Zeitgleich mit"
               },
               "description": {}
@@ -4361,6 +4408,7 @@
           "label": {
             "de": "Erdbefund",
             "en": "Layer",
+            "es": "Estrato",
             "it": "Strato"
           },
           "description": {},
@@ -4394,11 +4442,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -4512,6 +4562,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -4530,6 +4581,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -4539,6 +4591,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -5203,6 +5256,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -5666,6 +5720,7 @@
               "label": {
                 "de": "Erdbefund",
                 "en": "Layer",
+                "es": "Estrato",
                 "it": "Strato"
               }
             },
@@ -5859,6 +5914,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -5888,6 +5944,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -5897,6 +5954,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -5906,6 +5964,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -6108,6 +6167,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -6117,6 +6177,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -6126,6 +6187,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -6151,6 +6213,7 @@
           "label": {
             "de": "Grab",
             "en": "Grave",
+            "es": "Tumba",
             "it": "Tomba"
           },
           "description": {},
@@ -6184,11 +6247,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -6302,6 +6367,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -6320,6 +6386,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -6329,6 +6396,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -6993,6 +7061,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -7542,6 +7611,7 @@
               "label": {
                 "de": "Grab",
                 "en": "Grave",
+                "es": "Tumba",
                 "it": "Tomba"
               }
             },
@@ -7716,6 +7786,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -7745,6 +7816,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -7754,6 +7826,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -7763,6 +7836,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -7965,6 +8039,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -7974,6 +8049,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -7983,6 +8059,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -8008,6 +8085,7 @@
           "label": {
             "de": "Bestattung",
             "en": "Burial",
+            "es": "Sepultura",
             "it": "Sepoltura"
           },
           "description": {},
@@ -8041,11 +8119,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -8159,6 +8239,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -8177,6 +8258,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -8186,6 +8268,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -8850,6 +8933,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -9357,6 +9441,7 @@
               "label": {
                 "de": "Bestattung",
                 "en": "Burial",
+                "es": "Sepultura",
                 "it": "Sepoltura"
               }
             },
@@ -9516,6 +9601,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -9545,6 +9631,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -9554,6 +9641,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -9563,6 +9651,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -9765,6 +9854,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -9774,6 +9864,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -9783,6 +9874,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -9808,6 +9900,7 @@
           "label": {
             "de": "Architektur",
             "en": "Architecture",
+            "es": "Arquitectura",
             "it": "Architettura"
           },
           "description": {},
@@ -9841,11 +9934,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -9959,6 +10054,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -9977,6 +10073,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -9986,6 +10083,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -10650,6 +10748,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -11535,6 +11634,7 @@
               "label": {
                 "de": "Architektur",
                 "en": "Architecture",
+                "es": "Arquitectura",
                 "it": "Architettura"
               }
             },
@@ -11772,6 +11872,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -11801,6 +11902,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -11810,6 +11912,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -11819,6 +11922,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -12021,6 +12125,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -12030,6 +12135,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -12039,6 +12145,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -12064,6 +12171,7 @@
           "label": {
             "de": "Fußboden",
             "en": "Floor",
+            "es": "Suelo",
             "it": "Pavimento"
           },
           "description": {},
@@ -12097,11 +12205,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -12215,6 +12325,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -12233,6 +12344,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -12242,6 +12354,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -12906,6 +13019,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -13416,6 +13530,7 @@
               "label": {
                 "de": "Fußboden",
                 "en": "Floor",
+                "es": "Suelo",
                 "it": "Pavimento"
               }
             },
@@ -13575,6 +13690,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -13604,6 +13720,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -13613,6 +13730,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -13622,6 +13740,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -13824,6 +13943,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -13833,6 +13953,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -13842,6 +13963,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -13867,6 +13989,7 @@
           "label": {
             "de": "Profil",
             "en": "Profile",
+            "es": "Perfil",
             "it": "Profilo"
           },
           "description": {},
@@ -13900,11 +14023,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -14018,6 +14143,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -14036,6 +14162,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -14045,6 +14172,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -14709,6 +14837,7 @@
               "label": {
                 "de": "Stratigraphische Einheit",
                 "en": "Stratigraphical unit",
+                "es": "Unidad estratigráfica",
                 "it": "Unità Stratigrafica"
               }
             },
@@ -14742,6 +14871,7 @@
               "label": {
                 "de": "Profil",
                 "en": "Profile",
+                "es": "Perfil",
                 "it": "Profilo"
               }
             },
@@ -14999,6 +15129,7 @@
                   "label": {
                     "de": "Gleich wie",
                     "en": "Equivalent to",
+                    "es": "Corresponde con",
                     "it": "Gleich wie"
                   },
                   "description": {}
@@ -15028,6 +15159,7 @@
                   "label": {
                     "de": "Schneidet",
                     "en": "Cuts",
+                    "es": "Corta",
                     "it": "Taglia"
                   },
                   "description": {}
@@ -15037,6 +15169,7 @@
                   "label": {
                     "de": "Wird geschnitten von",
                     "en": "Cut by",
+                    "es": "Cortado por",
                     "it": "Tagliato da"
                   },
                   "description": {}
@@ -15046,6 +15179,7 @@
                   "label": {
                     "de": "Grenzt an",
                     "en": "Borders",
+                    "es": "Adyacente a",
                     "it": "Si appoggia a"
                   },
                   "description": {}
@@ -15248,6 +15382,7 @@
                   "label": {
                     "de": "Zeitlich nach",
                     "en": "After",
+                    "es": "Cronología: después de",
                     "it": "Zeitlich nach"
                   },
                   "description": {}
@@ -15257,6 +15392,7 @@
                   "label": {
                     "de": "Zeitlich vor",
                     "en": "Before",
+                    "es": "Cronología: antes de",
                     "it": "Zeitlich vor"
                   },
                   "description": {}
@@ -15266,6 +15402,7 @@
                   "label": {
                     "de": "Zeitgleich mit",
                     "en": "Contemporary with",
+                    "es": "Cronología: simultáneo con",
                     "it": "Zeitgleich mit"
                   },
                   "description": {}
@@ -15292,6 +15429,7 @@
       "label": {
         "de": "Bereich",
         "en": "Area",
+        "es": "Área",
         "it": "Area"
       },
       "description": {},
@@ -15325,11 +15463,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -15364,6 +15504,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -15382,6 +15523,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -15391,6 +15533,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -15445,6 +15588,7 @@
           "label": {
             "de": "Bereich",
             "en": "Area",
+            "es": "Área",
             "it": "Area"
           }
         },
@@ -15578,6 +15722,7 @@
           "label": {
             "de": "Planquadrat",
             "en": "Survey unit",
+            "es": "Cuadrante de prospección",
             "it": "Quadrato di coordinate"
           },
           "description": {},
@@ -15611,11 +15756,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -15650,6 +15797,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -15668,6 +15816,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -15677,6 +15826,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -15731,6 +15881,7 @@
               "label": {
                 "de": "Bereich",
                 "en": "Area",
+                "es": "Área",
                 "it": "Area"
               }
             },
@@ -15865,6 +16016,7 @@
           "label": {
             "de": "Ausgrabung",
             "en": "Excavation",
+            "es": "Excavación",
             "it": "Scavo"
           },
           "description": {},
@@ -15898,11 +16050,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -15937,6 +16091,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -15955,6 +16110,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -15964,6 +16120,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -16018,6 +16175,7 @@
               "label": {
                 "de": "Bereich",
                 "en": "Area",
+                "es": "Área",
                 "it": "Area"
               }
             },
@@ -16040,6 +16198,7 @@
               "label": {
                 "de": "Ausgrabung",
                 "en": "Excavation",
+                "es": "Excavación",
                 "it": "Scavo"
               }
             },
@@ -16176,6 +16335,7 @@
       "label": {
         "de": "Bauwerksteil",
         "en": "Building part",
+        "es": "Parte de edificio",
         "it": "Parte della costruzione"
       },
       "description": {},
@@ -16209,11 +16369,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -16265,6 +16427,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -16283,6 +16446,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -16292,6 +16456,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -16324,6 +16489,7 @@
               "label": {
                 "de": "Grenzt an",
                 "en": "Borders",
+                "es": "Adyacente a",
                 "it": "Si appoggia a"
               },
               "description": {}
@@ -16349,6 +16515,7 @@
       "label": {
         "de": "Raum",
         "en": "Room",
+        "es": "Habitación",
         "it": "Stanza"
       },
       "description": {},
@@ -16382,11 +16549,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -16438,6 +16607,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -16456,6 +16626,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -16607,6 +16778,7 @@
           "label": {
             "de": "Raum",
             "en": "Room",
+            "es": "Habitación",
             "it": "Stanza"
           }
         },
@@ -17008,6 +17180,7 @@
       "label": {
         "de": "Fund",
         "en": "Find",
+        "es": "Hallazgo",
         "it": "Reperto"
       },
       "description": {},
@@ -17041,11 +17214,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -17112,6 +17287,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -17130,6 +17306,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -17139,6 +17316,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -17172,6 +17350,7 @@
               "label": {
                 "de": "Typologische Einordnung",
                 "en": "Typological classification",
+                "es": "Clasificación tipológica",
                 "it": "Typologische Einordnung"
               },
               "description": {}
@@ -17703,6 +17882,7 @@
           "label": {
             "de": "Fund",
             "en": "Find",
+            "es": "Hallazgo",
             "it": "Reperto"
           }
         },
@@ -18104,6 +18284,7 @@
           "label": {
             "de": "Keramik",
             "en": "Pottery",
+            "es": "Cerámica",
             "it": "Ceramica"
           },
           "description": {},
@@ -18137,11 +18318,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -18208,6 +18391,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -18226,6 +18410,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -18235,6 +18420,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -18268,6 +18454,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -18799,6 +18986,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -20837,6 +21025,7 @@
               "label": {
                 "de": "Keramik",
                 "en": "Pottery",
+                "es": "Cerámica",
                 "it": "Ceramica"
               }
             },
@@ -21239,6 +21428,7 @@
           "label": {
             "de": "Terrakotta",
             "en": "Terracotta",
+            "es": "Terracota",
             "it": "Terracotta"
           },
           "description": {},
@@ -21272,11 +21462,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -21343,6 +21535,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -21361,6 +21554,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -21370,6 +21564,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -21403,6 +21598,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -21934,6 +22130,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -23744,6 +23941,7 @@
               "label": {
                 "de": "Terrakotta",
                 "en": "Terracotta",
+                "es": "Terracota",
                 "it": "Terracotta"
               }
             },
@@ -24146,6 +24344,7 @@
           "label": {
             "de": "Ziegel",
             "en": "Brick",
+            "es": "Adobe / Teja / Ladrillo",
             "it": "Mattoni"
           },
           "description": {},
@@ -24179,11 +24378,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -24250,6 +24451,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -24268,6 +24470,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -24277,6 +24480,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -24310,6 +24514,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -24841,6 +25046,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -26245,6 +26451,7 @@
               "label": {
                 "de": "Ziegel",
                 "en": "Brick",
+                "es": "Adobe / Teja / Ladrillo",
                 "it": "Mattoni"
               }
             },
@@ -26647,6 +26854,7 @@
           "label": {
             "de": "Knochen",
             "en": "Bone",
+            "es": "Resto óseo",
             "it": "Ossa"
           },
           "description": {},
@@ -26680,11 +26888,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -26751,6 +26961,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -26769,6 +26980,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -26778,6 +26990,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -26811,6 +27024,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -27342,6 +27556,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -27866,6 +28081,7 @@
               "label": {
                 "de": "Knochen",
                 "en": "Bone",
+                "es": "Resto óseo",
                 "it": "Ossa"
               }
             },
@@ -28268,6 +28484,7 @@
           "label": {
             "de": "Glas",
             "en": "Glass",
+            "es": "Vidrio",
             "it": "Vetro"
           },
           "description": {
@@ -28303,11 +28520,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -28374,6 +28593,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -28392,6 +28612,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -28401,6 +28622,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -28434,6 +28656,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -28965,6 +29188,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -30088,6 +30312,7 @@
               "label": {
                 "de": "Glas",
                 "en": "Glass",
+                "es": "Vidrio",
                 "it": "Vetro"
               }
             },
@@ -30490,6 +30715,7 @@
           "label": {
             "de": "Metall",
             "en": "Metal",
+            "es": "Metal",
             "it": "Metallo"
           },
           "description": {},
@@ -30523,11 +30749,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -30594,6 +30822,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -30612,6 +30841,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -30621,6 +30851,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -30654,6 +30885,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -31185,6 +31417,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -32425,6 +32658,7 @@
               "label": {
                 "de": "Metall",
                 "en": "Metal",
+                "es": "Metal",
                 "it": "Metallo"
               }
             },
@@ -32827,6 +33061,7 @@
           "label": {
             "de": "Stein",
             "en": "Stone",
+            "es": "Lítica",
             "it": "Pietra"
           },
           "description": {},
@@ -32860,11 +33095,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -32931,6 +33168,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -32949,6 +33187,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -32958,6 +33197,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -32991,6 +33231,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -33522,6 +33763,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -34744,6 +34986,7 @@
               "label": {
                 "de": "Stein",
                 "en": "Stone",
+                "es": "Lítica",
                 "it": "Pietra"
               }
             },
@@ -35146,6 +35389,7 @@
           "label": {
             "de": "Holz",
             "en": "Wood",
+            "es": "Madera",
             "it": "Legno"
           },
           "description": {},
@@ -35179,11 +35423,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -35250,6 +35496,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -35268,6 +35515,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -35277,6 +35525,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -35310,6 +35559,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -35841,6 +36091,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -36666,6 +36917,7 @@
               "label": {
                 "de": "Holz",
                 "en": "Wood",
+                "es": "Madera",
                 "it": "Legno"
               }
             },
@@ -37068,6 +37320,7 @@
           "label": {
             "de": "Münze",
             "en": "Coin",
+            "es": "Moneda",
             "it": "Moneta"
           },
           "description": {},
@@ -37101,11 +37354,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -37172,6 +37427,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -37190,6 +37446,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -37199,6 +37456,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -37232,6 +37490,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -37763,6 +38022,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -40374,6 +40634,7 @@
               "label": {
                 "de": "Münze",
                 "en": "Coin",
+                "es": "Moneda",
                 "it": "Moneta"
               }
             },
@@ -40776,6 +41037,7 @@
           "label": {
             "de": "Putzfragment",
             "en": "Plaster fragment",
+            "es": "Fragmento de enfoscado",
             "it": "Frammento di intonaco"
           },
           "description": {},
@@ -40809,11 +41071,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -40880,6 +41144,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -40898,6 +41163,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -40907,6 +41173,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -40940,6 +41207,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -41471,6 +41739,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -41682,6 +41951,7 @@
               "label": {
                 "de": "Putzfragment",
                 "en": "Plaster fragment",
+                "es": "Fragmento de enfoscado",
                 "it": "Frammento di intonaco"
               }
             },
@@ -42098,6 +42368,7 @@
           "label": {
             "de": "Mollusk",
             "en": "Mollusk",
+            "es": "Malacofauna",
             "it": "Mollusco"
           },
           "description": {},
@@ -42131,11 +42402,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -42202,6 +42475,7 @@
                   "label": {
                     "de": "Wird gezeigt in",
                     "en": "Depicted in",
+                    "es": "Representado en",
                     "it": "Wird gezeigt in"
                   },
                   "description": {}
@@ -42220,6 +42494,7 @@
                   "label": {
                     "de": "Aufgenommen in Maßnahme",
                     "en": "Recorded in operation",
+                    "es": "Tomada en intervención",
                     "it": "Inserito nell'operazione"
                   },
                   "description": {}
@@ -42229,6 +42504,7 @@
                   "label": {
                     "de": "Liegt in",
                     "en": "Lies within",
+                    "es": "Dentro de",
                     "it": "Dentro a"
                   },
                   "description": {}
@@ -42262,6 +42538,7 @@
                   "label": {
                     "de": "Typologische Einordnung",
                     "en": "Typological classification",
+                    "es": "Clasificación tipológica",
                     "it": "Typologische Einordnung"
                   },
                   "description": {}
@@ -42793,6 +43070,7 @@
               "label": {
                 "de": "Fund",
                 "en": "Find",
+                "es": "Hallazgo",
                 "it": "Reperto"
               }
             },
@@ -42836,6 +43114,7 @@
               "label": {
                 "de": "Mollusk",
                 "en": "Mollusk",
+                "es": "Malacofauna",
                 "it": "Mollusco"
               }
             },
@@ -43241,6 +43520,7 @@
       "label": {
         "de": "Inschrift",
         "en": "Inscription",
+        "es": "Inscripción",
         "it": "Iscrizione"
       },
       "description": {},
@@ -43274,11 +43554,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -43330,6 +43612,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -43348,6 +43631,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -43357,6 +43641,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -43629,6 +43914,7 @@
           "label": {
             "de": "Inschrift",
             "en": "Inscription",
+            "es": "Inscripción",
             "it": "Iscrizione"
           }
         },
@@ -43920,6 +44206,7 @@
       "label": {
         "de": "Probe",
         "en": "Sample",
+        "es": "Muestra",
         "it": "Campione"
       },
       "description": {},
@@ -43953,11 +44240,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -44011,6 +44300,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -44029,6 +44319,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -44038,6 +44329,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -44277,8 +44569,22 @@
               "description": {}
             },
             {
-              "inputType": "input",
+              "inputType": "radio",
               "source": "custom",
+              "valuelist": {
+                "createdBy": "T.H.",
+                "creationDate": "16.09.2020",
+                "description": {},
+                "values": {
+                  "Huelva": {
+                    "labels": {
+                      "de": "Huelva",
+                      "es": "Huelva"
+                    }
+                  }
+                },
+                "id": "Find-storagePlace-ayamonte"
+              },
               "name": "storagePlace",
               "label": {
                 "de": "Aufbewahrungsort",
@@ -44307,6 +44613,7 @@
           "label": {
             "de": "Probe",
             "en": "Sample",
+            "es": "Muestra",
             "it": "Campione"
           }
         },
@@ -44360,6 +44667,7 @@
       "label": {
         "de": "Abbildung",
         "en": "Image",
+        "es": "Imagen",
         "it": "Immagine"
       },
       "description": {},
@@ -44393,11 +44701,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -44465,6 +44775,7 @@
               "label": {
                 "de": "Zeigt",
                 "en": "Depicts",
+                "es": "Representa",
                 "it": "Zeigt"
               },
               "description": {}
@@ -44496,6 +44807,7 @@
               "label": {
                 "de": "Höhe",
                 "en": "Height",
+                "es": "Altura",
                 "it": "Höhe"
               },
               "description": {}
@@ -44507,6 +44819,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "it": "Breite"
               },
               "description": {}
@@ -44563,6 +44876,7 @@
           "label": {
             "de": "Abbildung",
             "en": "Image",
+            "es": "Imagen",
             "it": "Immagine"
           }
         }
@@ -44578,6 +44892,7 @@
           "label": {
             "de": "Zeichnung",
             "en": "Drawing",
+            "es": "Dibujo",
             "it": "Disegno"
           },
           "description": {},
@@ -44611,11 +44926,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -44683,6 +45000,7 @@
                   "label": {
                     "de": "Zeigt",
                     "en": "Depicts",
+                    "es": "Representa",
                     "it": "Zeigt"
                   },
                   "description": {}
@@ -44714,6 +45032,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "it": "Höhe"
                   },
                   "description": {}
@@ -44725,6 +45044,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "it": "Breite"
                   },
                   "description": {}
@@ -44781,6 +45101,7 @@
               "label": {
                 "de": "Abbildung",
                 "en": "Image",
+                "es": "Imagen",
                 "it": "Immagine"
               }
             },
@@ -45048,6 +45369,7 @@
               "label": {
                 "de": "Zeichnung",
                 "en": "Drawing",
+                "es": "Dibujo",
                 "it": "Disegno"
               }
             }
@@ -45064,6 +45386,7 @@
           "label": {
             "de": "Foto",
             "en": "Photo",
+            "es": "Fotografía",
             "it": "Foto"
           },
           "description": {},
@@ -45097,11 +45420,13 @@
                   "label": {
                     "de": "Bezeichner",
                     "en": "Identifier",
+                    "es": "Identificador",
                     "it": "Bezeichner"
                   },
                   "description": {
                     "de": "Eindeutiger Bezeichner dieser Ressource",
                     "en": "Unique identifier of this resource",
+                    "es": "Identificador único de este recurso",
                     "it": "Eindeutiger Bezeichner dieser Ressource"
                   }
                 },
@@ -45169,6 +45494,7 @@
                   "label": {
                     "de": "Zeigt",
                     "en": "Depicts",
+                    "es": "Representa",
                     "it": "Zeigt"
                   },
                   "description": {}
@@ -45200,6 +45526,7 @@
                   "label": {
                     "de": "Höhe",
                     "en": "Height",
+                    "es": "Altura",
                     "it": "Höhe"
                   },
                   "description": {}
@@ -45211,6 +45538,7 @@
                   "label": {
                     "de": "Breite",
                     "en": "Width",
+                    "es": "Anchura",
                     "it": "Breite"
                   },
                   "description": {}
@@ -45267,6 +45595,7 @@
               "label": {
                 "de": "Abbildung",
                 "en": "Image",
+                "es": "Imagen",
                 "it": "Immagine"
               }
             },
@@ -45311,6 +45640,7 @@
               "label": {
                 "de": "Foto",
                 "en": "Photo",
+                "es": "Fotografía",
                 "it": "Foto"
               }
             }
@@ -45330,6 +45660,7 @@
       "label": {
         "de": "Decke",
         "en": "Ceiling",
+        "es": "Techo",
         "it": "Tetto"
       },
       "description": {},
@@ -45363,11 +45694,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -45434,6 +45767,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -45452,6 +45786,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -45461,6 +45796,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -45496,6 +45832,7 @@
           "label": {
             "de": "Decke",
             "en": "Ceiling",
+            "es": "Techo",
             "it": "Tetto"
           }
         },
@@ -45681,6 +46018,7 @@
       "label": {
         "de": "Boden",
         "en": "Floor",
+        "es": "Suelo",
         "it": "Pavimento"
       },
       "description": {},
@@ -45714,11 +46052,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -45785,6 +46125,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -45803,6 +46144,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -45812,6 +46154,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -45847,6 +46190,7 @@
           "label": {
             "de": "Boden",
             "en": "Floor",
+            "es": "Suelo",
             "it": "Pavimento"
           }
         },
@@ -46032,6 +46376,7 @@
       "label": {
         "de": "Wand",
         "en": "Wall",
+        "es": "Muralla",
         "it": "Parete"
       },
       "description": {},
@@ -46065,11 +46410,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -46136,6 +46483,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -46154,6 +46502,7 @@
               "label": {
                 "de": "Aufgenommen in Maßnahme",
                 "en": "Recorded in operation",
+                "es": "Tomada en intervención",
                 "it": "Inserito nell'operazione"
               },
               "description": {}
@@ -46163,6 +46512,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -46198,6 +46548,7 @@
           "label": {
             "de": "Wand",
             "en": "Wall",
+            "es": "Muralla",
             "it": "Parete"
           }
         },
@@ -46368,6 +46719,7 @@
       "label": {
         "de": "Projekt",
         "en": "Project",
+        "es": "Proyecto",
         "it": "Progetto"
       },
       "description": {},
@@ -46412,6 +46764,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -46663,6 +47016,7 @@
               "label": {
                 "de": "Koordinatenbezugssystem",
                 "en": "Coordinate reference system",
+                "es": "Sistema de referencia de coordenadas",
                 "it": "Koordinatenbezugssystem"
               },
               "description": {}
@@ -46674,11 +47028,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -46702,6 +47058,7 @@
           "label": {
             "de": "Projekt",
             "en": "Project",
+            "es": "Proyecto",
             "it": "Progetto"
           }
         }
