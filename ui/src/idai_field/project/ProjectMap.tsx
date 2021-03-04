@@ -39,7 +39,7 @@ interface ProjectMapProps {
     project: string;
     onDeselectFeature: () => void;
     fitOptions: FitOptions;
-    mapHeightVh?: number
+    mapHeightVh?: number;
 }
 
 
