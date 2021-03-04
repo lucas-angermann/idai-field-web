@@ -74,6 +74,11 @@ export default function ProjectEntry ():ReactElement {
                             <SearchBar basepath={ `/project/${projectId}` } />
                         </Col>
                     </Row>
+                    <Row className="text-center pt-2">
+                        <Col>
+                            <Card.Text>Kategorien</Card.Text>
+                        </Col>
+                    </Row>
                     <Row className="p-3">
                         <Col style={ filterColStyle }>
                             { renderFilters(filters) }
@@ -138,5 +143,5 @@ const renderFilterItem = (bucket: FilterBucketTreeNode) => (
 
 const filterColStyle: CSSProperties = {
     overflowY: 'scroll',
-    maxHeight: '70vh'
+    maxHeight: '63vh'
 };
