@@ -18,7 +18,7 @@ defmodule Api.Worker.Indexer do
 
     IdaiFieldDb.fetch_changes(project)
     |> Enum.filter(&filter_non_owned_document/1)
-    |> Enum.map(Mapper.process)
+    |> Enum.map(Mapper.process(project))
     |> log_finished("mapping", project)
     |> Enricher.process(project, IdaiFieldDb.get_doc(project), configuration)
     |> log_finished("enriching", project)
