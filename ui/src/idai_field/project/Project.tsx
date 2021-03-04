@@ -47,6 +47,9 @@ export default function Project(): ReactElement {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
+    const [documentsLoaded, setDocumentsLoaded] = useState<boolean>(false);
+    const [predecessorsLoaded, setPredecessorsLoaded] = useState<boolean>(false);
+    const [hierarchyUpdate, setHierarchyUpdate] = useState<Date>();
 
     const parent = searchParams.get('parent');
 
@@ -63,26 +66,37 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        setPredecessorsLoaded(false);
+
         if (document) {
             if (document.resource.id !== documentId) return;
             setMapDocument(document);
             if (document.resource.parentId) {
                 getPredecessors(document.resource.parentId, loginData.token)
-                    .then(result => setPredecessors(result.results));
+                    .then(result => {
+                        setPredecessors(result.results);
+                        setPredecessorsLoaded(true);
+                    });
             } else {
                 setPredecessors([]);
             }
         } else if (parent && parent !== 'root') {
             get(parent, loginData.token).then(setMapDocument);
             getPredecessors(parent, loginData.token)
-                .then(result => setPredecessors(result.results));
+                .then(result => {
+                    setPredecessors(result.results);
+                    setPredecessorsLoaded(true);
+                });
         } else {
             setMapDocument(null);
             setPredecessors([]);
+            setPredecessorsLoaded(true);
         }
     }, [parent, document, documentId, loginData]);
 
     useEffect(() => {
+
+        setDocumentsLoaded(false);
 
         initFilters(projectId, searchParams, loginData.token)
             .then(result => setFilters(result.filters));
@@ -91,8 +105,13 @@ export default function Project(): ReactElement {
             .then(result => {
                 setDocuments(result.documents);
                 setTotal(result.size);
+                setDocumentsLoaded(true);
             });
     }, [projectId, searchParams, loginData]);
+
+    useEffect(() => {
+        if (documentsLoaded && predecessorsLoaded) setHierarchyUpdate(new Date());
+    }, [documentsLoaded, predecessorsLoaded])
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
         searchDocuments(projectId, searchParams, newOffset, loginData.token)
@@ -112,7 +131,8 @@ export default function Project(): ReactElement {
             { document
                 ? renderDocumentDetails(document, predecessors)
                 : isInHierarchyMode(searchParams)
-                    ? renderDocumentHierarchy(documents, searchParams, projectId, predecessors, onScroll)
+                    ? renderDocumentHierarchy(documents, searchParams, projectId, predecessors, hierarchyUpdate,
+                        onScroll)
                     : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
             }
         </ProjectSidebar>
@@ -140,14 +160,14 @@ const renderDocumentDetails = (document: Document, predecessors: ResultDocument[
 
 
 const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
-        predecessors: ResultDocument[], onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+        predecessors: ResultDocument[], update: Date, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <>
         <Card className="p-2">
             <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
         </Card>
         <Card style={ mainSidebarCardStyle }>
             <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
-                searchParams={ searchParams } onScroll={ onScroll } />
+                searchParams={ searchParams } update={ update } onScroll={ onScroll } />
         </Card>
     </>;
 

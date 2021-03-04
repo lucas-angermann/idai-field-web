@@ -13,13 +13,14 @@ interface DocumentHierarchyProps {
     documents: ResultDocument[];
     predecessors: ResultDocument[];
     project: string;
+    update: Date;
     searchParams?: URLSearchParams;
     onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
-export default React.memo(function DocumentHierarchy({ documents, predecessors, project, searchParams, onScroll }
-        : DocumentHierarchyProps): ReactElement {
+export default React.memo(function DocumentHierarchy({ documents, predecessors, project, update, searchParams,
+        onScroll }: DocumentHierarchyProps): ReactElement {
 
     const parent = searchParams.get('parent') ?? 'root';
     const prevGrandparent = useRef<string>();
@@ -36,7 +37,7 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
                     {
                         parent !== 'root' &&
                         <LinkButton
-                            to={ `/project/${project}?parent=${getGrandparent(predecessors) ?? 'root'}` }
+                            to={ `/project/${project}?parent=${ getGrandparent(predecessors) }` }
                             className="previous-button" variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
@@ -52,7 +53,7 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
     </Card.Body>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
-    return prevProps.documents === nextProps.documents && prevProps.predecessors === nextProps.predecessors;
+    return prevProps.update === nextProps.update;
 });
 
 
