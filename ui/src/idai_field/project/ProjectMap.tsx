@@ -19,7 +19,7 @@ import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
 import { buildProjectQueryTemplate } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import { NAVBAR_HEIGHT } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
@@ -39,13 +39,14 @@ interface ProjectMapProps {
     project: string;
     onDeselectFeature: () => void;
     fitOptions: FitOptions;
+    spinnerContainerStyle: CSSProperties;
     mapHeightVh?: number;
 }
 
 
 export default function ProjectMap({
         selectedDocument, predecessors,
-        project, onDeselectFeature, fitOptions, mapHeightVh=100 }
+        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100 }
         : ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -367,15 +368,6 @@ const createFeature = (document: ResultDocument): Feature => ({
         project: document.project
     }
 });
-
-
-const spinnerContainerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
-    zIndex: 1
-};
 
 
 const mapStyle = (mapHeight): CSSProperties =>

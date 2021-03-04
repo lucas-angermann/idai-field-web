@@ -142,6 +142,7 @@ export default function Project(): ReactElement {
             predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
+            spinnerContainerStyle={ MapSpinnerContainerStyle }
             fitOptions={ MAP_FIT_OPTIONS } />
     </>;
 }
@@ -249,4 +250,12 @@ const hierarchyButtonStyle: CSSProperties = {
     width: '45px',
     height: '38px',
     paddingTop: '3px'
+};
+
+const MapSpinnerContainerStyle: CSSProperties = {
+    position: 'absolute',
+    top: '50vh',
+    left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
+    zIndex: 1
 };

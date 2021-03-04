@@ -96,6 +96,7 @@ export default function ProjectEntry ():ReactElement {
                             project={ projectId }
                             onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
                             fitOptions={ MAP_FIT_OPTIONS }
+                            spinnerContainerStyle={ MapSpinnerContainerStyle }
                             mapHeightVh={ 40 } />
                         </Col>
                     </Row>
@@ -150,6 +151,15 @@ const filterColStyle: CSSProperties = {
     maxHeight: '58vh'
 };
 
+
 const imageCarouselStyle: CSSProperties = {
     background: '#d3d3cf'
+};
+
+
+const MapSpinnerContainerStyle: CSSProperties = {
+    position: 'absolute',
+    top: '45%',
+    left: '45%',
+    zIndex: 1
 };
