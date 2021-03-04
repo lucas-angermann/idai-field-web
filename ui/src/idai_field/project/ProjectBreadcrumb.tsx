@@ -58,12 +58,12 @@ const limitPredecessors = (predecessors: ResultDocument[]): (ResultDocument|null
     const result = clone(predecessors);
     
     if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
-        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
+        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS + 1);
         result.unshift(null);
     }
 
     return result;
-}
+};
 
 
 const homeHeadingStyle: CSSProperties = {
