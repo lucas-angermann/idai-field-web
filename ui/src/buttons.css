@@ -39,6 +39,10 @@
     border-radius: 0;
 }
 
+.btn:focus {
+    box-shadow: none !important;
+}
+
 .close-button-icon {
     position: relative;
     bottom: 2px;
