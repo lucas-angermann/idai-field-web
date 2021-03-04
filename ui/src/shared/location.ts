@@ -5,11 +5,14 @@ export function useSearchParams(): URLSearchParams {
 
     const location = useLocation();
 
-    const [searchParams, setSearchParams] = useState<URLSearchParams>(new URLSearchParams());
+    const [searchParams, setSearchParams] = useState<URLSearchParams>(new URLSearchParams(location.search));
 
     useEffect(() => {
 
-        setSearchParams(new URLSearchParams(location.search));
+        const newSearchParams: URLSearchParams = new URLSearchParams(location.search);
+        if (searchParams.toString() !== newSearchParams.toString()) {
+            setSearchParams(newSearchParams);
+        }
     }, [location.search]);
 
     return searchParams;
