@@ -1,26 +1,30 @@
 import React, { CSSProperties } from 'react';
 import { ReactElement } from 'react';
-import { postConvert, postReindex, postTiling } from '../../api/worker';
 
 
-export default function Tasks({ project, token, setStat }
-    : { project: string, token: string, setStat: (s: string[]) => void }): ReactElement {
+export default React.memo(function Tasks({ project, exec }
+    : { project: string,
+        exec: (project: string, cmd: 'reindex'|'convert'|'tiling'|'stop') => void }): ReactElement {
 
     return (<div style={ boxStyle }>
-        <div style={ projectButtonsStyle }>
-            <span className="btn" style={ rStyle }
-                onClick={ () => (postReindex(token, project)).then(setStat) }>Reindex</span>
+        <div style={ buttonDivStyle(0) }>
+            <span className="btn" style={ buttonSpanStyle('green') }
+                onClick={ () => exec(project, 'reindex') }>Reindex</span>
         </div>
-        <div style={ projectButtonsStyle0 }>
-            <span className="btn" style={ rStyle }
-                onClick={ () => (postConvert(token, project)).then(setStat) }>Convert</span>
+        <div style={ buttonDivStyle(1) }>
+            <span className="btn" style={ buttonSpanStyle('green') }
+                onClick={ () => exec(project, 'convert') }>Convert</span>
         </div>
-        <div style={ projectButtonsStyle1 }>
-            <span className="btn" style={ rStyle }
-                onClick={ () => (postTiling(token, project)).then(setStat) }>Tiling</span>
+        <div style={ buttonDivStyle(2) }>
+            <span className="btn" style={ buttonSpanStyle('green') }
+                onClick={ () => exec(project, 'tiling') }>Tiling</span>
+        </div>
+        <div style={ buttonDivStyle(3) }>
+            <span className="btn" style={ buttonSpanStyle('blue') }
+                onClick={ () => exec(project, 'stop') }>Stop</span>
         </div>
     </div>);
-}
+});
 
 
 const boxStyle: CSSProperties = {
@@ -31,37 +35,16 @@ const boxStyle: CSSProperties = {
 };
 
 
-const projectButtonsStyle: CSSProperties = {
-    left: '0px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
+const buttonDivStyle = (index: number): CSSProperties => ({
+    left: (index * 70) + 'px',
     position: 'absolute',
-};
+});
 
 
-const projectButtonsStyle0: CSSProperties = {
-    left: '70px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
-    position: 'absolute',
-};
-
-
-const projectButtonsStyle1: CSSProperties = {
-    left: '140px',
-    top: '0px',
-    height: '44px',
-    width: '100px',
-    position: 'absolute',
-};
-
-
-const rStyle: CSSProperties = {
+const buttonSpanStyle = (color: string): CSSProperties => ({
     position: 'relative',
     left: '0px',
     top: '0px',
-    padding: '0',
-    color: 'green'
-};
+    padding: '0px',
+    color: color
+});
