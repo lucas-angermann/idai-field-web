@@ -34,10 +34,16 @@ const MAX_SIZE = 10000;
 
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
+interface ProjectMapProps {
+    selectedDocument: Document;
+    predecessors: ResultDocument[];
+    project: string;
+    onDeselectFeature: () => void
+}
+
 
 export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature }
-        : { selectedDocument: Document, predecessors: ResultDocument[], project: string,
-            onDeselectFeature: () => void }): ReactElement {
+        : ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
