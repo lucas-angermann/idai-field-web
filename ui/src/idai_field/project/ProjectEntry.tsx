@@ -121,7 +121,7 @@ const renderFilter = (filter: ResultFilter, projectId?: string) =>
 
 
 const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string): ReactNode => (
-        <React.Fragment>
+        <React.Fragment key={ bucket.item.value.name }>
             { renderFilterItem(bucket) }
             { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
                 renderFilterValue(b, projectId))
