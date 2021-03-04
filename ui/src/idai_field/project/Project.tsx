@@ -146,7 +146,8 @@ const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLS
             <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
         </Card>
         <Card style={ mainSidebarCardStyle }>
-            <DocumentHierarchy documents={ documents } searchParams={ searchParams } onScroll={ onScroll } />
+            <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
+                searchParams={ searchParams } onScroll={ onScroll } />
         </Card>
     </>;
 

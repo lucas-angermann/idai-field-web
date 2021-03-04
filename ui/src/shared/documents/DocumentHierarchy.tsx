@@ -4,7 +4,6 @@ import React, { CSSProperties, ReactElement, ReactNode, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { ResultDocument } from '../../api/result';
-import { getPreviousHierarchyLevelUrl } from '../../idai_field/project/navigation';
 import DocumentTeaser from '../document/DocumentTeaser';
 import LinkButton from '../linkbutton/LinkButton';
 import './document-hierarchy.css';
@@ -12,19 +11,21 @@ import './document-hierarchy.css';
 
 interface DocumentHierarchyProps {
     documents: ResultDocument[];
+    predecessors: ResultDocument[];
+    project: string;
     searchParams?: URLSearchParams;
     onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
-export default React.memo(function DocumentHierarchy({ documents, searchParams, onScroll }
+export default React.memo(function DocumentHierarchy({ documents, predecessors, project, searchParams, onScroll }
         : DocumentHierarchyProps): ReactElement {
 
     const parent = searchParams.get('parent') ?? 'root';
     const prevGrandparent = useRef<string>();
 
     const backward = parent === prevGrandparent.current;
-    prevGrandparent.current = getGrandparent(documents);
+    prevGrandparent.current = getGrandparent(predecessors);
 
     const className = backward ? 'document-list-transition backward' : 'document-list-transition';
 
@@ -35,7 +36,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
                     {
                         parent !== 'root' &&
                         <LinkButton
-                            to={ getPreviousHierarchyLevelUrl(getProjectId(documents), documents) }
+                            to={ `/project/${project}?parent=${getGrandparent(predecessors) ?? 'root'}` }
                             className="previous-button" variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
@@ -51,7 +52,7 @@ export default React.memo(function DocumentHierarchy({ documents, searchParams, 
     </Card.Body>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
-    return prevProps.documents === nextProps.documents;
+    return prevProps.documents === nextProps.documents && prevProps.predecessors === nextProps.predecessors;
 });
 
 
@@ -82,16 +83,11 @@ const getHierarchyButtonSearchParams = (searchParams: URLSearchParams, documentI
 };
 
 
-const getGrandparent = (documents: ResultDocument[]): string => {
+const getGrandparent = (predecessors: ResultDocument[]): string => {
 
-    const grandparent = documents.length > 0 ? documents[0].resource.grandparentId : null;
-    return grandparent ?? 'root';
-};
-
-
-const getProjectId = (documents: ResultDocument[]): string => {
-
-    return documents.length > 0 ? documents[0].project : null;
+    return predecessors.length > 1
+        ? predecessors[predecessors.length - 2].resource.id
+        : 'root';
 };
 
 

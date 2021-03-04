@@ -2,12 +2,6 @@ import { Document } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 
 
-export const getPreviousHierarchyLevelUrl = (projectId: string, documents: ResultDocument[]): string => {
-
-    return `/project/${projectId}?parent=${getGrandparentId(documents) ?? 'root'}`;
-};
-
-
 export const getMapDeselectionUrl = (projectId: string, searchParams: URLSearchParams, document: Document): string => {
 
     return searchParams.has('q')
@@ -30,12 +24,4 @@ export const getProjectSearchResultsUrl = (projectId: string, searchParams: URLS
 
     searchParams.delete('r');
     return `/project/${projectId}?${searchParams.toString()}`;
-};
-
-
-const getGrandparentId = (documents: ResultDocument[]): string | undefined => {
-
-    if (documents.length === 0) return undefined;
-
-    return documents[0].resource.grandparentId;
 };
