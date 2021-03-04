@@ -11,15 +11,15 @@ import { Fill, Icon, Stroke, Style, Text } from 'ol/style';
 import View from 'ol/View';
 import React, { CSSProperties, ReactElement, useEffect, useState } from 'react';
 import { FilterBucket, ResultDocument, ResultFilter } from '../../api/result';
-import { NAVBAR_HEIGHT } from '../../constants';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import { useSearchParams } from '../../shared/location';
-import { FIT_OPTIONS } from '../project/ProjectMap';
+//import { FIT_OPTIONS } from '../project/ProjectMap';
 import { getProjectLabel } from '../projects';
 import './overview-map.css';
 
 
 const MAPBOX_KEY = 'pk.eyJ1Ijoic2ViYXN0aWFuY3V5IiwiYSI6ImNrOTQxZjA4MzAxaGIzZnBwZzZ4c21idHIifQ._2-exYw4CZRjn9WoLx8i1A';
-
+const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 
 export default function OverviewMap({ documents, filter }
         : { documents: ResultDocument[], filter?: ResultFilter }): ReactElement {

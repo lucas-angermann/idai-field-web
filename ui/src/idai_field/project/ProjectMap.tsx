@@ -10,7 +10,7 @@ import Map from 'ol/Map';
 import { TileImage, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
-import View from 'ol/View';
+import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -29,7 +29,6 @@ import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
 
-export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 const MAX_SIZE = 10000;
 
 const STYLE_CACHE: { [ category: string ] : Style } = { };
@@ -38,11 +37,15 @@ interface ProjectMapProps {
     selectedDocument: Document;
     predecessors: ResultDocument[];
     project: string;
-    onDeselectFeature: () => void
+    onDeselectFeature: () => void;
+    fitOptions: FitOptions;
+    mapHeightVh?: number
 }
 
 
-export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature }
+export default function ProjectMap({
+        selectedDocument, predecessors,
+        project, onDeselectFeature, fitOptions, mapHeightVh=100 }
         : ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -113,10 +116,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
-        setUpView(map, newVectorLayer);
+        setUpView(map, newVectorLayer, fitOptions);
 
         return () => map.removeLayer(newVectorLayer);
-    }, [map, documents]);
+    }, [map, documents, fitOptions]);
 
     useEffect(() => {
 
@@ -129,11 +132,11 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
             if (!feature) return;
 
             select.getFeatures().push(feature);
-            map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
+            map.getView().fit(feature.getGeometry().getExtent(), );
         } else if (selectedDocument === null) {
-            map.getView().fit((vectorLayer.getSource()).getExtent(), FIT_OPTIONS);
+            map.getView().fit((vectorLayer.getSource()).getExtent(), fitOptions);
         }
-    }, [map, selectedDocument, vectorLayer, select]);
+    }, [map, selectedDocument, vectorLayer, select, fitOptions]);
 
     return <>
         { loading &&
@@ -141,10 +144,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
                 <Spinner animation="border" variant="secondary" />
             </div>
         }
-        <div className="project-map" id="ol-project-map" style={ mapStyle } />
+        <div className="project-map" id="ol-project-map" style={ mapStyle(mapHeightVh) } />
         <LayerControls map={ map }
                     tileLayers={ tileLayers }
-                    fitOptions={ FIT_OPTIONS }
+                    fitOptions={ fitOptions }
                     predecessors={ predecessors }
                     project={ project }></LayerControls>
     </>;
@@ -167,11 +170,11 @@ const createMap = (): Map => {
 };
 
 
-const setUpView = (map: Map, layer: VectorLayer) => {
+const setUpView = (map: Map, layer: VectorLayer, fitOptions: FitOptions) => {
 
-    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
     map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
-    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
 };
 
 
@@ -375,7 +378,10 @@ const spinnerContainerStyle: CSSProperties = {
 };
 
 
-const mapStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    backgroundColor: '#d3d3cf'
+const mapStyle = (mapHeight): CSSProperties =>
+{
+    return {
+            height: `calc(${mapHeight}vh - ${NAVBAR_HEIGHT}px)`,
+            backgroundColor: '#d3d3cf'
+        };
 };

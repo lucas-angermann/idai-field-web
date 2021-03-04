@@ -11,6 +11,7 @@ import { get, getPredecessors, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
+import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
@@ -30,6 +31,7 @@ import ProjectSidebar from './ProjectSidebar';
 
 
 export const CHUNK_SIZE = 50;
+const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 
 
 export default function Project(): ReactElement {
@@ -139,7 +141,8 @@ export default function Project(): ReactElement {
         <ProjectMap selectedDocument={ mapDocument }
             predecessors={ predecessors }
             project={ projectId }
-            onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
+            onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
+            fitOptions={ MAP_FIT_OPTIONS } />
     </>;
 }
 
