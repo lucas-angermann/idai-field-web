@@ -13,6 +13,7 @@ import { deselectFeature, initFilters } from './Project';
 import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../shared/languages';
 import ProjectMap from './ProjectMap';
+import { useTranslation } from 'react-i18next';
 
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
@@ -22,6 +23,7 @@ export default function ProjectEntry ():ReactElement {
     const loginData = useContext(LoginContext);
     const history = useHistory();
     const searchParams = useSearchParams();
+    const { t } = useTranslation();
 
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [projectDoc, setProjectDoc] = useState<Document>();
@@ -65,9 +67,11 @@ export default function ProjectEntry ():ReactElement {
                             <SearchBar basepath={ `/project/${projectId}` } />
                         </Col>
                     </Row>
-                    <Row className="text-center pt-2">
+                    <Row className="mt-3 ml-1">
                         <Col>
-                            <Card.Text>Kategorien</Card.Text>
+                            <Card.Text>
+                                <strong>{ t('projectEntry.categories') }</strong>
+                            </Card.Text>
                         </Col>
                     </Row>
                     <Row className="p-3">
@@ -150,7 +154,7 @@ const renderFilterItem = (bucket: FilterBucketTreeNode) => (
 
 const filterColStyle: CSSProperties = {
     overflowY: 'scroll',
-    maxHeight: '58vh'
+    maxHeight: '55vh'
 };
 
 
