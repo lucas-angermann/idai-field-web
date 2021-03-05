@@ -40,7 +40,7 @@ export const postTask = async (token: Token, endpoint: string, project: string):
 
 export const postStop = async (token: Token, project: string): Promise<string[]> => {
 
-    const uri = project === 'All projects' 
+    const uri = project === 'All projects'
         ? PATH + '/tasks/stop'
         : PATH + '/tasks/stop/' + project;
 

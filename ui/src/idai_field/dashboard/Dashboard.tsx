@@ -5,6 +5,20 @@ import { LoginContext } from '../../shared/login';
 import Tasks from './Tasks';
 
 
+export type TaskType = 'reindex'|'convert'|'tiling'|'stop';
+
+
+const BUTTONS: [TaskType, string, string][] = [
+    ['reindex', 'Reindex', 'green'],
+    ['convert', 'Convert', 'green'],
+    ['tiling', 'Tiling', 'green'],
+    ['stop', 'Stop', 'blue']
+];
+
+
+const WIDTH = 70;
+
+
 export default function Dashboard(): ReactElement {
 
     const loginData = useContext(LoginContext);
@@ -33,7 +47,9 @@ export default function Dashboard(): ReactElement {
                         <div style={ projectNameStyle }>
                             { project }</div>
                         <Tasks project={ project }
-                            exec={ call(loginData.token, setStat) }></Tasks>
+                            exec={ call(loginData.token, setStat) }
+                            buttons={ BUTTONS }
+                            itemWidth={ WIDTH }></Tasks>
                         { project === 'All projects'
                             && <div style={ buttonDivStyle }>
                                 <span className="btn"
@@ -63,7 +79,7 @@ export default function Dashboard(): ReactElement {
 
 
 const call = (token: Token, setStat: (s: string[]) => void) =>
-    async (project: string, cmd: 'reindex'|'convert'|'tiling'|'stop') => {
+    async (project: string, cmd: TaskType) => {
 
     switch(cmd) {
         case 'reindex': setStat(await postReindex(token, project) as string[]); break;
