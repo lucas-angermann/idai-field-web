@@ -1,11 +1,14 @@
+import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 import { mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { clone } from 'tsfun/struct';
+import { Document } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import ProjectHomeButton from './ProjectHomeButton';
+import { get } from '../../api/documents';
+import { LoginContext } from '../../shared/login';
 
 
 const MAX_BREADCRUMB_ITEMS: number = 3;
@@ -19,8 +22,16 @@ interface ProjectBreadcrumbProps {
 
 export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBreadcrumbProps): ReactElement {
 
+    const [projectDocument, setProjectDocument] = useState<Document>();
+    const loginData = useContext(LoginContext);
+
+    useEffect(() => {
+
+        get(projectId, loginData.token).then(setProjectDocument);
+    }, [projectId]);
+
     return <>
-        { <ProjectHomeButton projectId={ projectId } /> }
+        { projectDocument && <ProjectHomeButton projectDocument={ projectDocument } /> }
         { limitPredecessors(predecessors).map(renderPredecessor) }
     </>;
 }
