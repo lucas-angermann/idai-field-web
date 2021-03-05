@@ -11,11 +11,12 @@ interface DocumentTeaserProps {
     document: ResultDocument;
     size?: 'small' | 'normal';
     linkUrl?: string;
+    fullShortDescriptions?: boolean;
 }
 
 
-export default React.memo(function DocumentTeaser({ document, size = 'normal', linkUrl }
-        : DocumentTeaserProps): ReactElement {
+export default React.memo(function DocumentTeaser({ document, size = 'normal', linkUrl,
+        fullShortDescriptions = true }: DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -31,9 +32,9 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
             <Col>
                 { linkUrl
                     ? <RelativeOrAbsoluteLink url={ linkUrl } style={ linkStyle } >
-                        { renderTeaser(document, size, height, linkUrl?.length > 0) }
+                        { renderTeaser(document, size, height, linkUrl?.length > 0, fullShortDescriptions) }
                     </RelativeOrAbsoluteLink>
-                    : renderTeaser(document, size, height, linkUrl?.length > 0)
+                    : renderTeaser(document, size, height, linkUrl?.length > 0, fullShortDescriptions)
                 }
             </Col>
         </Row>
@@ -41,7 +42,8 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
 });
 
 
-const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean) => (
+const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean,
+        fullShortDescriptions: boolean) => (
 
     <div className={ `py-2 px-4 teaser-container teaser-${size} ${asLink ? 'link' : ''}` }>
         <Row>
@@ -60,7 +62,8 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                 </Row>
                 { document.resource.shortDescription &&
                 <Row>
-                    <Col className="p-0 text-muted short-description"
+                    <Col className={ 'p-0 text-muted short-description'
+                            + (fullShortDescriptions ? '' : ' single-line') }
                          style={ textStyle }>
                         { document.resource.shortDescription }
                     </Col>

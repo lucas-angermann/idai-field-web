@@ -10,6 +10,14 @@
     font-size: .9rem;
 }
 
+.document-teaser .short-description.single-line {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .document-teaser h3 {
     font-size: 18px;
 }

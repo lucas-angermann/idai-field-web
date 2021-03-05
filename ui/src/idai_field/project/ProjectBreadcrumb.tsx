@@ -33,7 +33,10 @@ const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNo
         <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } color="grey" /></div>
         <div style={ { flexGrow: 1 } }>
             { predecessor
-                ? <DocumentTeaser document={ predecessor } linkUrl={ getHierarchyLink(predecessor) } size="small" />
+                ? <DocumentTeaser document={ predecessor }
+                    linkUrl={ getHierarchyLink(predecessor) }
+                    fullShortDescriptions={ false }
+                    size="small" />
                 : <div style={ placeholderStyle }>...</div>
             }
         </div>
