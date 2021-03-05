@@ -197,7 +197,11 @@ const createLayerGroups = (tileLayers: TileLayer[], predecessors: ResultDocument
         tileLayers: getLinkedTileLayers('project', tileLayers)
     });
 
-    return layerGroups.filter(layerGroup => layerGroup.tileLayers.length > 0);
+    const result = layerGroups.filter(layerGroup => layerGroup.tileLayers.length > 0);
+
+    return (result.length === 0 && tileLayers.length > 0)
+        ? [{ tileLayers }]
+        : result;
 };
 
 
