@@ -28,7 +28,7 @@ export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBr
     useEffect(() => {
 
         get(projectId, loginData.token).then(setProjectDocument);
-    }, [projectId]);
+    }, [projectId, loginData]);
 
     return <>
         { projectDocument && <ProjectHomeButton projectDocument={ projectDocument } /> }

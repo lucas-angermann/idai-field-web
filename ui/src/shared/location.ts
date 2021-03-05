@@ -13,6 +13,7 @@ export function useSearchParams(): URLSearchParams {
         if (searchParams.toString() !== newSearchParams.toString()) {
             setSearchParams(newSearchParams);
         }
+    // eslint-disable-next-line
     }, [location.search]);
 
     return searchParams;

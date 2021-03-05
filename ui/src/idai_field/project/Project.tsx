@@ -111,7 +111,7 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
         if (documentsLoaded && predecessorsLoaded) setHierarchyUpdate(new Date());
-    }, [documentsLoaded, predecessorsLoaded])
+    }, [documentsLoaded, predecessorsLoaded]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
         searchDocuments(projectId, searchParams, newOffset, loginData.token)
