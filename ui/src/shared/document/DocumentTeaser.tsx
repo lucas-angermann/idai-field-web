@@ -11,7 +11,6 @@ interface DocumentTeaserProps {
     document: ResultDocument;
     size?: 'small' | 'normal';
     linkUrl?: string;
-    imageHeader?: boolean;
 }
 
 
