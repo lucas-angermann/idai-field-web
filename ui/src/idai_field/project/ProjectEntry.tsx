@@ -115,7 +115,7 @@ export default function ProjectEntry ():ReactElement {
             </Row>
             <Row>
                 <Col className="d-flex align-items-end flex-column">
-                            { <ProjectHomeButton projectId={ projectId } /> }
+                            { <ProjectHomeButton projectDocument={ projectDoc } /> }
                 </Col>
             </Row>
         </Card>
