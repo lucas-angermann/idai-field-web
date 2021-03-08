@@ -3,6 +3,7 @@ import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { to } from 'tsfun';
 import { ResultDocument } from '../../api/result';
 import DocumentTeaser from '../document/DocumentTeaser';
 import LinkButton from '../linkbutton/LinkButton';
@@ -22,13 +23,11 @@ interface DocumentHierarchyProps {
 export default React.memo(function DocumentHierarchy({ documents, predecessors, project, update, searchParams,
         onScroll }: DocumentHierarchyProps): ReactElement {
 
-    const parent = searchParams.get('parent') ?? 'root';
-    const prevGrandparent = useRef<string>();
+    const parent: string = searchParams.get('parent') ?? 'root';
+    const previousPredecessors = useRef<ResultDocument[]>([]);
 
-    const backward = parent === prevGrandparent.current;
-    prevGrandparent.current = getGrandparent(predecessors);
-
-    const className = backward ? 'document-list-transition backward' : 'document-list-transition';
+    const className: string = getTransitionClassname(previousPredecessors.current, parent);
+    previousPredecessors.current = predecessors;
 
     return <Card.Body className="px-0 py-0" style={ cardBodyStyle }>
         <TransitionGroup className={ className } style={ groupStyle } >
@@ -81,6 +80,20 @@ const getHierarchyButtonSearchParams = (searchParams: URLSearchParams, documentI
     params.set('parent', documentId);
 
     return params.toString();
+};
+
+
+const getTransitionClassname = (previousPredecessors: ResultDocument[], parent: string): string => {
+
+    return isBackwardsTransition(previousPredecessors, parent)
+        ? 'document-list-transition backward'
+        : 'document-list-transition';
+};
+
+
+const isBackwardsTransition = (previousPredecessors: ResultDocument[], parent: string): boolean => {
+
+    return previousPredecessors.map(to('resource.id')).includes(parent) || parent === 'root';
 };
 
 
