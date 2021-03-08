@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement } from 'react';
+import React, { ReactNode, ReactElement, CSSProperties } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { ResultDocument } from '../../api/result';
 import { Document } from '../../api/document';
@@ -13,12 +13,13 @@ export interface ImageCarouselProps {
     document: Document;
     images: ResultDocument[];
     location?: Location;
+    style?: CSSProperties;
 }
 
-export function ImageCarousel ({ document, images, location }: ImageCarouselProps): ReactElement {
+export function ImageCarousel ({ document, images, location, style={} }: ImageCarouselProps): ReactElement {
 
     return (
-        <Carousel className="image-carousel" interval={ null }>
+        <Carousel className="image-carousel" interval={ null } style={ style }>
             { images?.map(renderImage(document, location)) }
         </Carousel>
     );

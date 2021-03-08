@@ -11,6 +11,7 @@ import { get, getPredecessors, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
+import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
@@ -30,6 +31,7 @@ import ProjectSidebar from './ProjectSidebar';
 
 
 export const CHUNK_SIZE = 50;
+const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 
 
 export default function Project(): ReactElement {
@@ -139,12 +141,14 @@ export default function Project(): ReactElement {
         <ProjectMap selectedDocument={ mapDocument }
             predecessors={ predecessors }
             project={ projectId }
-            onDeselectFeature={ () => deselectFeature(document, searchParams, history) } />
+            onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
+            spinnerContainerStyle={ MapSpinnerContainerStyle }
+            fitOptions={ MAP_FIT_OPTIONS } />
     </>;
 }
 
 
-const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
+export const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
@@ -214,7 +218,7 @@ const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
 };
 
 
-const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
+export const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
 
     let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
@@ -246,4 +250,12 @@ const hierarchyButtonStyle: CSSProperties = {
     width: '45px',
     height: '38px',
     paddingTop: '3px'
+};
+
+const MapSpinnerContainerStyle: CSSProperties = {
+    position: 'absolute',
+    top: '50vh',
+    left: '50vw',
+    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
+    zIndex: 1
 };

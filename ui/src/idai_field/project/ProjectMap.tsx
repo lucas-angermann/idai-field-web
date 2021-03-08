@@ -10,7 +10,7 @@ import Map from 'ol/Map';
 import { TileImage, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
-import View from 'ol/View';
+import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -19,7 +19,7 @@ import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
 import { buildProjectQueryTemplate } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
-import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import { NAVBAR_HEIGHT } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
@@ -29,15 +29,26 @@ import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
 
-export const FIT_OPTIONS = { padding: [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 const MAX_SIZE = 10000;
 
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
+interface ProjectMapProps {
+    selectedDocument: Document;
+    predecessors: ResultDocument[];
+    project: string;
+    onDeselectFeature: () => void;
+    fitOptions: FitOptions;
+    spinnerContainerStyle: CSSProperties;
+    mapHeightVh?: number;
+    reloadMapOnClickEvent?: boolean;
+}
 
-export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature }
-        : { selectedDocument: Document, predecessors: ResultDocument[], project: string,
-            onDeselectFeature: () => void }): ReactElement {
+
+export default function ProjectMap({
+        selectedDocument, predecessors,
+        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100, reloadMapOnClickEvent=false }
+        : ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -94,9 +105,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature, selectedDocument);
+        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
+                                                    selectedDocument, reloadMapOnClickEvent);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, searchParams, onDeselectFeature]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature, reloadMapOnClickEvent]);
 
     useEffect(() => {
 
@@ -107,10 +119,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
-        setUpView(map, newVectorLayer);
+        setUpView(map, newVectorLayer, fitOptions);
 
         return () => map.removeLayer(newVectorLayer);
-    }, [map, documents]);
+    }, [map, documents, fitOptions]);
 
     useEffect(() => {
 
@@ -123,11 +135,11 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
             if (!feature) return;
 
             select.getFeatures().push(feature);
-            map.getView().fit(feature.getGeometry().getExtent(), FIT_OPTIONS);
+            map.getView().fit(feature.getGeometry().getExtent(), );
         } else if (selectedDocument === null) {
-            map.getView().fit((vectorLayer.getSource()).getExtent(), FIT_OPTIONS);
+            map.getView().fit((vectorLayer.getSource()).getExtent(), fitOptions);
         }
-    }, [map, selectedDocument, vectorLayer, select]);
+    }, [map, selectedDocument, vectorLayer, select, fitOptions]);
 
     return <>
         { loading &&
@@ -135,10 +147,10 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
                 <Spinner animation="border" variant="secondary" />
             </div>
         }
-        <div className="project-map" id="ol-project-map" style={ mapStyle } />
+        <div className="project-map" id="ol-project-map" style={ mapStyle(mapHeightVh) } />
         <LayerControls map={ map }
                     tileLayers={ tileLayers }
-                    fitOptions={ FIT_OPTIONS }
+                    fitOptions={ fitOptions }
                     predecessors={ predecessors }
                     project={ project }></LayerControls>
     </>;
@@ -161,11 +173,11 @@ const createMap = (): Map => {
 };
 
 
-const setUpView = (map: Map, layer: VectorLayer) => {
+const setUpView = (map: Map, layer: VectorLayer, fitOptions: FitOptions) => {
 
-    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
     map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
-    map.getView().fit(layer.getSource().getExtent(), { padding: FIT_OPTIONS.padding });
+    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
 };
 
 
@@ -178,7 +190,7 @@ const createSelect = (map: Map): Select => {
 
 
 const handleMapClick = (history: History, searchParams: URLSearchParams, onDeselectFeature: () => void,
-        selectedDocument?: Document): ((_: MapBrowserEvent) => void) => {
+        selectedDocument?: Document, reload?: boolean): ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
 
@@ -200,7 +212,12 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
                 }
             }
             const { id, project } = smallestFeature.getProperties();
-            history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
+            if(reload){
+                let href = `/project/${project}/${id}`;
+                if(searchParams.toString()) href += `?${searchParams}`;
+                window.location.href = href;
+            }
+            else history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
         } else if (selectedDocument) {
             onDeselectFeature();
         }
@@ -360,16 +377,10 @@ const createFeature = (document: ResultDocument): Feature => ({
 });
 
 
-const spinnerContainerStyle: CSSProperties = {
-    position: 'absolute',
-    top: '50vh',
-    left: '50vw',
-    transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
-    zIndex: 1
-};
-
-
-const mapStyle: CSSProperties = {
-    height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
-    backgroundColor: '#d3d3cf'
+const mapStyle = (mapHeight): CSSProperties =>
+{
+    return {
+            height: `calc(${mapHeight}vh - ${NAVBAR_HEIGHT}px)`,
+            backgroundColor: '#d3d3cf'
+        };
 };

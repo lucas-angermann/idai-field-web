@@ -42,6 +42,9 @@
       }
     }
   },
+  "projectEntry": {
+    "categories": "Kategorien"
+  },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend not available!"
   },
