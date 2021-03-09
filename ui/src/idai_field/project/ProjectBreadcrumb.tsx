@@ -68,7 +68,7 @@ const limitPredecessors = (predecessors: ResultDocument[]): [boolean, ResultDocu
     let limited = false;
     
     if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
-        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS + 1);
+        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
         limited = true;
     }
 
