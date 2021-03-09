@@ -1,4 +1,6 @@
-import React, { ReactElement, CSSProperties } from 'react';
+import { mdiFileTree } from '@mdi/js';
+import Icon from '@mdi/react';
+import React, { CSSProperties, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { getProjectLabel } from '../projects';
@@ -12,7 +14,10 @@ interface ProjectHomeButtonProps {
 export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButtonProps): ReactElement {
     return (
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
-            <div className="p-2 d-flex teaser-container link">
+            <div className="p-2 d-flex teaser-container teaser-small link">
+                <div>
+                    <Icon path={ mdiFileTree } size={ 0.8 } color="black" />
+                </div>
                 <div>
                     <h3 className="mx-2 my-1" style={ homeHeadingStyle }>
                         { getProjectLabel(projectDocument) }

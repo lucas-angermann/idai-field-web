@@ -1,14 +1,14 @@
-import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
-import { mdiSubdirectoryArrowRight } from '@mdi/js';
+import { mdiDotsVertical, mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
+import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 import { clone } from 'tsfun/struct';
 import { Document } from '../../api/document';
+import { get } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
-import ProjectHomeButton from './ProjectHomeButton';
-import { get } from '../../api/documents';
 import { LoginContext } from '../../shared/login';
+import ProjectHomeButton from './ProjectHomeButton';
 
 
 const MAX_BREADCRUMB_ITEMS: number = 3;
@@ -30,40 +30,49 @@ export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBr
         get(projectId, loginData.token).then(setProjectDocument);
     }, [projectId, loginData]);
 
+    const [limited, limitedPredecessors] = limitPredecessors(predecessors);
+
     return <>
         { projectDocument && <ProjectHomeButton projectDocument={ projectDocument } /> }
-        { limitPredecessors(predecessors).map(renderPredecessor) }
+        { limited && renderPlaceholder() }
+        { limitedPredecessors.map(renderPredecessor) }
     </>;
 }
+
+
+const renderPlaceholder = (): ReactNode =>
+    <div style={ placeholderStyle }>
+        <Icon path={ mdiDotsVertical } size={ 1 } color="grey" />
+    </div>;
 
 
 const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNode =>
     <div style={ predecessorContainerStyle(i) }
             key={ predecessor ? predecessor.resource.id : 'breadcrumb-placeholder' }
             className="d-flex">
-        <div style={ iconContainerStyle }><Icon path={ mdiSubdirectoryArrowRight } size={ 1 } color="grey" /></div>
         <div style={ { flexGrow: 1 } }>
-            { predecessor
-                ? <DocumentTeaser document={ predecessor }
-                    linkUrl={ getHierarchyLink(predecessor) }
-                    fullShortDescriptions={ false }
-                    size="small" />
-                : <div style={ placeholderStyle }>...</div>
-            }
+            <div style={ iconContainerStyle }>
+                <Icon path={ mdiSubdirectoryArrowRight } size={ 1 } color="grey" />
+            </div>
+            <DocumentTeaser document={ predecessor }
+                linkUrl={ getHierarchyLink(predecessor) }
+                fullShortDescriptions={ false }
+                size="small" />
         </div>
     </div>;
 
 
-const limitPredecessors = (predecessors: ResultDocument[]): (ResultDocument|null)[] => {
+const limitPredecessors = (predecessors: ResultDocument[]): [boolean, ResultDocument[]] => {
 
     const result = clone(predecessors);
+    let limited = false;
     
     if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
         result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS + 1);
-        result.unshift(null);
+        limited = true;
     }
 
-    return result;
+    return [limited, result];
 };
 
 
@@ -82,9 +91,5 @@ const iconContainerStyle: CSSProperties = {
 
 
 const placeholderStyle: CSSProperties = {
-    position: 'relative',
-    left: '10px',
-    height: '28px',
-    paddingTop: '2px',
-    cursor: 'default'
+    margin: '-4px 0 0 13px'
 };
