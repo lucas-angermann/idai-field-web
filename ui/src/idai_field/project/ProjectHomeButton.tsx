@@ -14,9 +14,6 @@ export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButto
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
             <div className="p-2 d-flex teaser-container link">
                 <div>
-                    <img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } />
-                </div>
-                <div>
                     <h3 className="mx-2 my-1" style={ homeHeadingStyle }>
                         { getProjectLabel(projectDocument) }
                     </h3>
@@ -25,13 +22,6 @@ export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButto
         </Link>
     );
 }
-
-
-const homeIconStyle: CSSProperties = {
-    height: '26px',
-    width: '26px',
-    fill: 'black'
-};
 
 
 const homeHeadingStyle: CSSProperties = {
