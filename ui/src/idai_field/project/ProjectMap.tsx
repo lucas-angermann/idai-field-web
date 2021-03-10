@@ -56,7 +56,7 @@ export default function ProjectMap({
     const loginData = useContext(LoginContext);
 
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
-    const [highlightedDocuments, setHighlightedDocuments] = useState<ResultDocument[]>([]);
+    const [highlightedDocuments, setHighlightedDocuments] = useState<ResultDocument[]>([]); // Highlight all if null
     const [loading, setLoading] = useState<boolean>(false);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
@@ -89,10 +89,14 @@ export default function ProjectMap({
 
     useEffect(() => {
 
-        fetchSearchDocuments(project, searchParams, loginData.token)
-            .then(result => {
-                setHighlightedDocuments(result.documents);
-            });
+        if (searchParams.toString() === 'q=*') {
+            setHighlightedDocuments(null);
+        } else {
+            fetchSearchDocuments(project, searchParams, loginData.token)
+                .then(result => {
+                    setHighlightedDocuments(result.documents);
+                });
+        }
     }, [project, searchParams, loginData]);
 
     useEffect(() => {
@@ -408,7 +412,8 @@ const createFeature = (document: ResultDocument): Feature => ({
 
 const isHighlighted = (resourceId: string, highlightedDocuments: ResultDocument[]): boolean => {
 
-    return highlightedDocuments.map(to('resource.id')).includes(resourceId);
+    return highlightedDocuments === null
+        || highlightedDocuments.map(to('resource.id')).includes(resourceId);
 };
 
 
