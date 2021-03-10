@@ -225,7 +225,9 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
 
     return async (e: MapBrowserEvent) => {
 
-        const features = e.map.getFeaturesAtPixel(e.pixel);
+        const features = e.map.getFeaturesAtPixel(e.pixel)
+            .filter(feature => feature.getProperties().highlighted);
+
         if (features.length) {
             let smallestFeature = features[0];
             let smallestArea = 0;
@@ -243,12 +245,13 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
                 }
             }
             const { id, project } = smallestFeature.getProperties();
-            if(reload){
+            if (reload) {
                 let href = `/project/${project}/${id}`;
-                if(searchParams.toString()) href += `?${searchParams}`;
+                if (searchParams.toString()) href += `?${searchParams}`;
                 window.location.href = href;
+            } else {
+                history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
             }
-            else history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
         } else if (selectedDocument) {
             onDeselectFeature();
         }
@@ -259,9 +262,11 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
 const configureCursor = (map: Map) => {
 
     map.on('pointermove', event => {
-        map.getTargetElement().style.cursor = map.getFeaturesAtPixel(event.pixel).length > 0
-            ? 'pointer'
-            : '';
+        map.getTargetElement().style.cursor = map.getFeaturesAtPixel(event.pixel)
+            .filter(feature => feature.getProperties().highlighted)
+            .length > 0
+                ? 'pointer'
+                : '';
     });
 };
 
