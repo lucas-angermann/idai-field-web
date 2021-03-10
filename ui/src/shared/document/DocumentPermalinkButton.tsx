@@ -52,7 +52,6 @@ const selectPermalink = (inputElementRef: MutableRefObject<HTMLInputElement>) =>
 
 const buttonStyle: CSSProperties = {
   width: '45px',
-  marginTop: '3px',
   color: 'black',
   boxShadow: 'none'
 };
