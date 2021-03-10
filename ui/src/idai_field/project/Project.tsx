@@ -124,8 +124,13 @@ export default function Project(): ReactElement {
 
     return <>
         <ProjectSidebar>
-            <Card>
-                <SearchBar basepath={ `/project/${projectId}` } />
+            <Card className="d-flex flex-row" style={ searchCardStyle }>
+                <LinkButton to={ `/project/${projectId}` } variant="secondary" style={ homeButtonStyle }>
+                    <img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } />
+                </LinkButton>
+                <div style={ { flexGrow: 1 } }>
+                    <SearchBar basepath={ `/project/${projectId}` } />
+                </div>
             </Card>
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ searchParams }
@@ -142,7 +147,7 @@ export default function Project(): ReactElement {
             predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
-            spinnerContainerStyle={ MapSpinnerContainerStyle }
+            spinnerContainerStyle={ mapSpinnerContainerStyle }
             fitOptions={ MAP_FIT_OPTIONS } />
     </>;
 }
@@ -252,10 +257,25 @@ const hierarchyButtonStyle: CSSProperties = {
     paddingTop: '3px'
 };
 
-const MapSpinnerContainerStyle: CSSProperties = {
+const mapSpinnerContainerStyle: CSSProperties = {
     position: 'absolute',
     top: '50vh',
     left: '50vw',
     transform: `translate(calc(-50% + ${SIDEBAR_WIDTH / 2}px), -50%)`,
     zIndex: 1
+};
+
+const searchCardStyle: CSSProperties = {
+    backgroundColor: 'transparent'
+};
+
+const homeButtonStyle: CSSProperties = {
+    border: 0,
+    marginRight: '2px'
+};
+
+const homeIconStyle: CSSProperties = {
+    height: '20px',
+    width: '20px',
+    fill: 'black'
 };
