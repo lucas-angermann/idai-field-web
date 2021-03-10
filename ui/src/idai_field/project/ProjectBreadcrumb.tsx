@@ -1,6 +1,7 @@
 import { mdiDotsVertical, mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { clone } from 'tsfun/struct';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
@@ -8,6 +9,7 @@ import { ResultDocument } from '../../api/result';
 import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import { LoginContext } from '../../shared/login';
+import './project-breadcrumb.css';
 import ProjectHomeButton from './ProjectHomeButton';
 
 
@@ -30,25 +32,36 @@ export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBr
         get(projectId, loginData.token).then(setProjectDocument);
     }, [projectId, loginData]);
 
-    const [limited, limitedPredecessors] = limitPredecessors(predecessors);
+    const [predecessorsHead, predecessorsTail] = limitPredecessors(predecessors);
 
     return <>
         { projectDocument && <ProjectHomeButton projectDocument={ projectDocument } /> }
-        { limited && renderPlaceholder() }
-        { limitedPredecessors.map(renderPredecessor) }
+        { predecessorsHead.length > 0 && renderPlaceholder(predecessorsHead) }
+        { predecessorsTail.map(renderPredecessor) }
     </>;
 }
 
 
-const renderPlaceholder = (): ReactNode =>
-    <div style={ placeholderStyle }>
-        <Icon path={ mdiDotsVertical } size={ 1 } color="grey" />
+const renderPlaceholder = (predecessors: ResultDocument[]): ReactNode =>
+    <div className="placeholder">
+        <OverlayTrigger trigger="click" placement="bottom" rootClose
+                overlay={ renderPlaceholderPopover(predecessors) }>
+            <Icon path={ mdiDotsVertical } size={ 1 } color="grey" />
+        </OverlayTrigger>
     </div>;
+
+
+const renderPlaceholderPopover = (predecessors: ResultDocument[]): ReactElement =>
+    <Popover id="placeholder-popover">
+        <Popover.Content>
+            { predecessors.map(renderPredecessor) }
+        </Popover.Content>
+    </Popover>;
 
 
 const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNode =>
     <div style={ predecessorContainerStyle(i) }
-            key={ predecessor ? predecessor.resource.id : 'breadcrumb-placeholder' }
+            key={ predecessor.resource.id }
             className="d-flex">
         <div style={ { flexGrow: 1 } }>
             <div style={ iconContainerStyle }>
@@ -62,17 +75,16 @@ const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNo
     </div>;
 
 
-const limitPredecessors = (predecessors: ResultDocument[]): [boolean, ResultDocument[]] => {
+const limitPredecessors = (predecessors: ResultDocument[]): [ResultDocument[], ResultDocument[]] => {
 
-    const result = clone(predecessors);
-    let limited = false;
+    const tail = clone(predecessors);
+    let head = [];
     
     if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
-        result.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
-        limited = true;
+        head = tail.splice(0, predecessors.length - MAX_BREADCRUMB_ITEMS);
     }
 
-    return [limited, result];
+    return [head, tail];
 };
 
 
@@ -87,9 +99,4 @@ const iconContainerStyle: CSSProperties = {
     left: '-20px',
     top: '3px',
     zIndex: 10
-};
-
-
-const placeholderStyle: CSSProperties = {
-    margin: '-4px 0 0 13px'
 };

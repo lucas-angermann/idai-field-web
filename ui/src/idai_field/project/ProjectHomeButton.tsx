@@ -14,7 +14,7 @@ interface ProjectHomeButtonProps {
 export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButtonProps): ReactElement {
     return (
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
-            <div className="p-2 d-flex teaser-container teaser-small link">
+            <div className="d-flex teaser-container teaser-small link">
                 <div>
                     <Icon path={ mdiFileTree } size={ 0.8 } color="black" />
                 </div>

@@ -43,9 +43,11 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
 
 
 const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean,
-        fullShortDescriptions: boolean) => (
+        fullShortDescriptions: boolean) => {
 
-    <div className={ `py-2 px-4 teaser-container teaser-${size} ${asLink ? 'link' : ''}` }>
+    const classes = `${(size === 'normal') && 'py-2 px-4'} teaser-container teaser-${size} ${asLink ? 'link' : ''}`;
+
+    return <div className={ classes }>
         <Row>
             <Col style={ { flex: `0 0 ${height}px`, height: `${height}px` } } className="pl-2">
                 <CategoryIcon size={ `${height}` }
@@ -71,8 +73,8 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                 }
             </Col>
         </Row>
-    </div>
-);
+    </div>;
+};
 
 
 const linkStyle: CSSProperties = {
