@@ -14,10 +14,11 @@ import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
-import { buildProjectQueryTemplate } from '../../api/query';
+import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
@@ -55,12 +56,13 @@ export default function ProjectMap({
     const loginData = useContext(LoginContext);
 
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [highlightedDocuments, setHighlightedDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-    
+
     const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
 
     useEffect(() => {
@@ -78,12 +80,20 @@ export default function ProjectMap({
     useEffect(() => {
 
         setLoading(true);
-        searchDocuments(project, loginData.token)
+        fetchAllDocuments(project, loginData.token)
             .then(result => {
                 setDocuments(result.documents);
                 setLoading(false);
             });
     }, [project, loginData]);
+
+    useEffect(() => {
+
+        fetchSearchDocuments(project, searchParams, loginData.token)
+            .then(result => {
+                setHighlightedDocuments(result.documents);
+            });
+    }, [project, searchParams, loginData]);
 
     useEffect(() => {
 
@@ -115,7 +125,6 @@ export default function ProjectMap({
         if (!map || !documents?.length) return;
 
         const featureCollection = createFeatureCollection(documents);
-
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
@@ -123,6 +132,17 @@ export default function ProjectMap({
 
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents, fitOptions]);
+
+    useEffect(() => {
+
+        if (!vectorLayer) return;
+
+        vectorLayer.getSource().getFeatures().forEach(feature => {
+            const properties = feature.getProperties();
+            properties.highlighted = isHighlighted(feature.getProperties()['id'], highlightedDocuments);
+            feature.setProperties(properties);
+        });
+    }, [highlightedDocuments, vectorLayer]);
 
     useEffect(() => {
 
@@ -157,10 +177,17 @@ export default function ProjectMap({
 }
 
 
-const searchDocuments = async (id: string, token: string): Promise<Result> => {
+const fetchAllDocuments = async (projectId: string, token: string): Promise<Result> => {
 
-    const query = buildProjectQueryTemplate(id, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
     return searchMap(query, token);
+};
+
+
+const fetchSearchDocuments = async (projectId: string, params: URLSearchParams, token: string): Promise<Result> => {
+
+    const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    return searchMap(parseFrontendGetParams(params, query), token);
 };
 
 
@@ -303,24 +330,26 @@ const getTileLayer = (document: ResultDocument, loginData: LoginData): TileLayer
 
 const getStyle = (feature: OlFeature): Style => {
 
-    const category = feature.getProperties().category;
+    const category: string = feature.getProperties().category;
+    const highlighted: boolean = feature.getProperties().highlighted;
+    const styleId: string = category + '_' + (highlighted ? 'highlighted' : 'default');
 
-    if (STYLE_CACHE[category]) return STYLE_CACHE[category];
+    if (STYLE_CACHE[styleId]) return STYLE_CACHE[styleId];
 
-    const transparentColor = getColorForCategory(feature.getProperties().category, 0.3);
-    const color = getColorForCategory(feature.getProperties().category, 1);
+    const transparentColor = getColorForCategory(category, 0.3);
+    const color = getColorForCategory(category, 1);
 
     const style = new Style({
         image: new CircleStyle({
             radius: 4,
-            fill: new Fill({ color: 'white' }),
-            stroke: new Stroke({ color, width: 5 }),
+            fill: new Fill({ color: highlighted ? 'white' : 'transparent' }),
+            stroke: new Stroke({ color: highlighted ? color : 'transparent', width: 5 }),
         }),
-        stroke: new Stroke({ color }),
-        fill: new Fill({ color: transparentColor })
+        stroke: new Stroke({ color: highlighted ? color : transparentColor }),
+        fill: new Fill({ color: highlighted ? transparentColor : 'transparent' })
     });
 
-    STYLE_CACHE[category] = style;
+    STYLE_CACHE[styleId] = style;
 
     return style;
 };
@@ -359,7 +388,7 @@ const createFeatureCollection = (documents: ResultDocument[]): FeatureCollection
         type: 'FeatureCollection',
         features: documents
             .filter(document => document?.resource.geometry)
-            .map(createFeature)
+            .map(document => createFeature(document))
     };
 };
 
@@ -375,6 +404,12 @@ const createFeature = (document: ResultDocument): Feature => ({
         project: document.project
     }
 });
+
+
+const isHighlighted = (resourceId: string, highlightedDocuments: ResultDocument[]): boolean => {
+
+    return highlightedDocuments.map(to('resource.id')).includes(resourceId);
+};
 
 
 const mapStyle = (mapHeight): CSSProperties =>
