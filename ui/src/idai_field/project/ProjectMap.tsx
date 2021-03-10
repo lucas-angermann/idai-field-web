@@ -2,6 +2,7 @@ import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
 import { never } from 'ol/events/condition';
+import { Extent } from 'ol/extent';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
@@ -132,7 +133,6 @@ export default function ProjectMap({
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
-        setUpView(map, newVectorLayer, fitOptions);
 
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents, fitOptions]);
@@ -146,7 +146,9 @@ export default function ProjectMap({
             properties.highlighted = isHighlighted(feature.getProperties()['id'], highlightedDocuments);
             feature.setProperties(properties);
         });
-    }, [highlightedDocuments, vectorLayer]);
+
+        setUpView(map, vectorLayer, fitOptions);
+    }, [map, highlightedDocuments, vectorLayer, fitOptions]);
 
     useEffect(() => {
 
@@ -161,7 +163,7 @@ export default function ProjectMap({
             select.getFeatures().push(feature);
             map.getView().fit(feature.getGeometry().getExtent(), fitOptions);
         } else if (selectedDocument === null) {
-            map.getView().fit((vectorLayer.getSource()).getExtent(), fitOptions);
+            map.getView().fit(getExtentOfHighlightedGeometries(vectorLayer), fitOptions);
         }
     }, [map, selectedDocument, vectorLayer, select, fitOptions]);
 
@@ -208,7 +210,7 @@ const setUpView = (map: Map, layer: VectorLayer, fitOptions: FitOptions) => {
 
     map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
     map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
-    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
+    map.getView().fit(getExtentOfHighlightedGeometries(layer), { padding: fitOptions.padding });
 };
 
 
@@ -419,6 +421,17 @@ const isHighlighted = (resourceId: string, highlightedDocuments: ResultDocument[
 
     return highlightedDocuments === null
         || highlightedDocuments.map(to('resource.id')).includes(resourceId);
+};
+
+
+const getExtentOfHighlightedGeometries = (vectorLayer: VectorLayer): Extent => {
+
+    const highlightedFeatures = vectorLayer.getSource().getFeatures()
+        .filter(feature => feature.getProperties().highlighted);
+
+    return highlightedFeatures.length > 0
+        ? new VectorSource({ features: highlightedFeatures }).getExtent()
+        : vectorLayer.getSource().getExtent();
 };
 
 
