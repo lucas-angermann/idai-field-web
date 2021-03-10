@@ -90,7 +90,7 @@ export default function ProjectMap({
 
     useEffect(() => {
 
-        if (searchParams.toString() === 'q=*') {
+        if (searchParams.toString() === 'q=*' || searchParams.toString() === '') {
             setHighlightedDocuments(null);
         } else {
             fetchSearchDocuments(project, searchParams, loginData.token)
