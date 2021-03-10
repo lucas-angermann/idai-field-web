@@ -13,7 +13,7 @@ import './project-breadcrumb.css';
 import ProjectHomeButton from './ProjectHomeButton';
 
 
-const MAX_BREADCRUMB_ITEMS: number = 3;
+const MAX_BREADCRUMB_ITEMS: number = window.screen.height <= 800 ? 2 : 3;
 
 
 interface ProjectBreadcrumbProps {
@@ -69,7 +69,7 @@ const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNo
             </div>
             <DocumentTeaser document={ predecessor }
                 linkUrl={ getHierarchyLink(predecessor) }
-                fullShortDescriptions={ false }
+                showShortDescription="singleLine"
                 size="small" />
         </div>
     </div>;
