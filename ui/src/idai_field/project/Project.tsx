@@ -277,5 +277,6 @@ const homeButtonStyle: CSSProperties = {
 const homeIconStyle: CSSProperties = {
     height: '20px',
     width: '20px',
-    fill: 'black'
+    fill: 'black',
+    verticalAlign: 'sub'
 };
