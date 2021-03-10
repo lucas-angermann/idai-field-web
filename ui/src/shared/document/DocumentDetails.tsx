@@ -16,7 +16,7 @@ import { getLabel, getNumberOfUndisplayedLabels } from '../languages';
 import { getDocumentLink } from './document-utils';
 import DocumentTeaser from './DocumentTeaser';
 
-const HIDDEN_FIELDS = ['id', 'identifier', 'shortDescription', 'geometry', 'georeference', 'originalFilename'];
+const HIDDEN_FIELDS = ['id', 'identifier', 'geometry', 'georeference', 'originalFilename'];
 const HIDDEN_RELATIONS = ['isDepictedIn', 'hasMapLayer'];
 
 
@@ -45,7 +45,7 @@ export default function DocumentDetails({ document, baseUrl } : DocumentDetailsP
 
 
 const renderGroups = (document: Document, t: TFunction, baseUrl: string): ReactNode => {
-    
+
     return document.resource.groups.map(renderGroup(t, document.project, baseUrl));
 };
 

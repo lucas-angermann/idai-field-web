@@ -11,12 +11,12 @@ interface DocumentTeaserProps {
     document: ResultDocument;
     size?: 'small' | 'normal';
     linkUrl?: string;
-    fullShortDescriptions?: boolean;
+    showShortDescription?: 'full' | 'singleLine' | 'none';
 }
 
 
 export default React.memo(function DocumentTeaser({ document, size = 'normal', linkUrl,
-        fullShortDescriptions = true }: DocumentTeaserProps): ReactElement {
+        showShortDescription = 'full' }: DocumentTeaserProps): ReactElement {
 
     const height = (size === 'small') ? 26 : 40;
     const { t } = useTranslation();
@@ -32,9 +32,9 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
             <Col>
                 { linkUrl
                     ? <RelativeOrAbsoluteLink url={ linkUrl } style={ linkStyle } >
-                        { renderTeaser(document, size, height, linkUrl?.length > 0, fullShortDescriptions) }
+                        { renderTeaser(document, size, height, linkUrl?.length > 0, showShortDescription) }
                     </RelativeOrAbsoluteLink>
-                    : renderTeaser(document, size, height, linkUrl?.length > 0, fullShortDescriptions)
+                    : renderTeaser(document, size, height, linkUrl?.length > 0, showShortDescription)
                 }
             </Col>
         </Row>
@@ -43,7 +43,7 @@ export default React.memo(function DocumentTeaser({ document, size = 'normal', l
 
 
 const renderTeaser = (document: ResultDocument, size: string, height: number, asLink: boolean,
-        fullShortDescriptions: boolean) => {
+        showShortDescription: 'full' | 'singleLine' | 'none') => {
 
     const classes = `${(size === 'normal') && 'py-2 px-4'} teaser-container teaser-${size} ${asLink ? 'link' : ''}`;
 
@@ -62,10 +62,10 @@ const renderTeaser = (document: ResultDocument, size: string, height: number, as
                         }
                     </Col>
                 </Row>
-                { document.resource.shortDescription &&
+                { document.resource.shortDescription && showShortDescription !== 'none' &&
                 <Row>
                     <Col className={ 'p-0 text-muted short-description'
-                            + (fullShortDescriptions ? '' : ' single-line') }
+                            + (showShortDescription === 'full' ? '' : ' single-line') }
                          style={ textStyle }>
                         { document.resource.shortDescription }
                     </Col>

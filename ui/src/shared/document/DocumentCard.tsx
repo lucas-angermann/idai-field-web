@@ -22,7 +22,7 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
         <Card style={ cardStyle }>
             <Card.Header className="p-2" style={ { ...headerStyle, ...headerBaseStyle } }>
                 <div style={ teaserContainerStyle }>
-                    <DocumentTeaser document={ document } />
+                    <DocumentTeaser document={ document } showShortDescription="none" />
                 </div>
                 <div style={ permalinkButtonContainerStyle }>
                     <DocumentPermalinkButton id={ document.resource.id } baseUrl={ baseUrl } />
