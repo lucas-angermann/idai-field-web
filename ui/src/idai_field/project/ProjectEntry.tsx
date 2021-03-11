@@ -14,6 +14,7 @@ import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../shared/languages';
 import ProjectMap from './ProjectMap';
 import { useTranslation } from 'react-i18next';
+import { getProjectLabel } from '../projects';
 
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
@@ -46,9 +47,7 @@ export default function ProjectEntry ():ReactElement {
             const description = getDocumentDescription(projectDoc);
             setDescription(description? description : '');
             setImages(getDocumentImages(projectDoc));
-            
-            const title = projectDoc.resource.shortDescription;
-            setTitle(title? title: projectId);
+            setTitle(getProjectLabel(projectDoc));
         }
        
 
@@ -114,7 +113,7 @@ export default function ProjectEntry ():ReactElement {
                 </Col>
             </Row>
             <Row>
-                <Col className="d-flex align-items-end flex-column">
+                <Col className="d-flex align-items-start flex-column">
                             { <ProjectHomeButton projectDocument={ projectDoc } /> }
                 </Col>
             </Row>
