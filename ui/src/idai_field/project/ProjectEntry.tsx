@@ -107,7 +107,8 @@ export default function ProjectEntry ():ReactElement {
                                 fitOptions={ MAP_FIT_OPTIONS }
                                 spinnerContainerStyle={ MapSpinnerContainerStyle }
                                 mapHeightVh={ 40 }
-                                reloadMapOnClickEvent={ true } />
+                                reloadMapOnClickEvent={ true }
+                                displayLayerControls={ false } />
                         </Col>
                     </Row>
                 </Col>

@@ -44,12 +44,14 @@ interface ProjectMapProps {
     spinnerContainerStyle: CSSProperties;
     mapHeightVh?: number;
     reloadMapOnClickEvent?: boolean;
+    displayLayerControls? : boolean
 }
 
 
 export default function ProjectMap({
         selectedDocument, predecessors,
-        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100, reloadMapOnClickEvent=false }
+        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100,
+        reloadMapOnClickEvent=false, displayLayerControls=true }
         : ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -174,11 +176,12 @@ export default function ProjectMap({
             </div>
         }
         <div className="project-map" id="ol-project-map" style={ mapStyle(mapHeightVh) } />
+        { displayLayerControls &&
         <LayerControls map={ map }
                     tileLayers={ tileLayers }
                     fitOptions={ fitOptions }
                     predecessors={ predecessors }
-                    project={ project }></LayerControls>
+                    project={ project }></LayerControls>}
     </>;
 }
 
