@@ -135,7 +135,7 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ searchParams }
                      projectId={ projectId } />
-            { searchParams.has('q') && renderTotal(total, searchParams, !!document, t) }
+            { !isInHierarchyMode(searchParams) && renderTotal(total, searchParams, !!document, t) }
             { document
                 ? renderDocumentDetails(document, predecessors)
                 : isInHierarchyMode(searchParams)
