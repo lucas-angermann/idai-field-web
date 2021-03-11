@@ -43,7 +43,8 @@
     }
   },
   "projectEntry": {
-    "categories": "Kategorien"
+    "categories": "Kategorien",
+    "toHierarOverview": "Zur hierarischen Übersicht"
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend not available!"

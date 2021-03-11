@@ -114,7 +114,8 @@ export default function ProjectEntry ():ReactElement {
             </Row>
             <Row>
                 <Col className="d-flex align-items-start flex-column">
-                            { <ProjectHomeButton projectDocument={ projectDoc } /> }
+                            { <ProjectHomeButton projectDocument={ projectDoc }
+                                label={ t('projectEntry.toHierarOverview') } /> }
                 </Col>
             </Row>
         </Card>
