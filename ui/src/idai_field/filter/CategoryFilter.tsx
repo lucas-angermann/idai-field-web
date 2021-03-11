@@ -5,7 +5,6 @@ import { FilterBucketTreeNode, ResultFilter } from '../../api/result';
 import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../shared/languages';
 import CloseButton from './CloseButton';
-import FilterDropdown from './FilterDropdown';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
@@ -14,11 +13,10 @@ export default function CategoryFilter({ filter, searchParams, projectId }
 
     if (!filter.values.length) return null;
 
-    return <FilterDropdown filter={ filter } params={ searchParams } projectId={ projectId }>
+    return <>
         { filter.values.map((bucket: FilterBucketTreeNode) =>
-            renderFilterValue(filter.name, bucket, searchParams, projectId))
-        }
-    </FilterDropdown>;
+            renderFilterValue(filter.name, bucket, searchParams, projectId)) }
+    </>;
 }
 
 
@@ -53,7 +51,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
 
 
 const filterValueStyle = (level: number): CSSProperties => ({
-    width: '365px',
+    width: '315px',
     paddingLeft: `${level * 1.2}em`
 });
 

@@ -210,17 +210,21 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
         { t('project.resources') }
     </>;
 
-    return <Card body={ true }>
+    return <Card className="d-flex flex-row">
         { asLink
-            ? <Link to={ `/project/${projectId}?${searchParams}` }>
-                <Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>
-                { children }
-            </Link>
+            ? <div style={ totalTextStyle } className="py-2 px-3">
+                <Link to={ `/project/${projectId}?${searchParams}` }>
+                    <Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>
+                    { children }
+                </Link>
+            </div>
             : <>
-                { children }
-                <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                         searchParams={ searchParams }
-                         projectId={ projectId } />
+                <div style={ totalTextStyle } className="py-2 px-3">
+                    { children }
+                </div>
+                    <Filters filters={ filters.filter(filter => filter.name !== 'project') }
+                            searchParams={ searchParams }
+                            projectId={ projectId } />
             </>
         }
     </Card>;
@@ -251,16 +255,6 @@ const mainSidebarCardStyle: CSSProperties = {
     flex: '1 1'
 };
 
-
-const hierarchyButtonStyle: CSSProperties = {
-    position: 'absolute',
-    right: '13px',
-    bottom: '13px',
-    width: '45px',
-    height: '38px',
-    paddingTop: '3px'
-};
-
 const mapSpinnerContainerStyle: CSSProperties = {
     position: 'absolute',
     top: '50vh',
@@ -283,4 +277,8 @@ const homeIconStyle: CSSProperties = {
     width: '20px',
     fill: 'black',
     verticalAlign: 'sub'
+};
+
+const totalTextStyle: CSSProperties = {
+    flexGrow: 1
 };

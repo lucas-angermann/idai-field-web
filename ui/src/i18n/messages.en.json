@@ -40,7 +40,8 @@
       "layerControls": {
         "project": "Project"
       }
-    }
+    },
+    "filters": "Filters"
   },
   "projectEntry": {
     "categories": "Kategorien",
