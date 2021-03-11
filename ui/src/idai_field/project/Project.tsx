@@ -161,7 +161,7 @@ export default function Project(): ReactElement {
 }
 
 
-export const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
+const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 

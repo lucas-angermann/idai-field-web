@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Row, Col, Card } from 'react-bootstrap';
 import SearchBar from '../../shared/search/SearchBar';
 import { Document, getDocumentImages, getDocumentDescription, FieldValue } from '../../api/document';
@@ -9,12 +9,13 @@ import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { ResultDocument, ResultFilter, FilterBucketTreeNode } from '../../api/result';
 import { useSearchParams } from '../../shared/location';
 import ProjectHomeButton from './ProjectHomeButton';
-import { deselectFeature, initFilters } from './Project';
+import { initFilters } from './Project';
 import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../shared/languages';
 import ProjectMap from './ProjectMap';
 import { useTranslation } from 'react-i18next';
 import { getProjectLabel } from '../projects';
+import { getMapDeselectionUrl } from './navigation';
 
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
@@ -22,7 +23,6 @@ export default function ProjectEntry ():ReactElement {
 
     const { projectId } = useParams<{ projectId: string }>();
     const loginData = useContext(LoginContext);
-    const history = useHistory();
     const searchParams = useSearchParams();
     const { t } = useTranslation();
 
@@ -103,7 +103,7 @@ export default function ProjectEntry ():ReactElement {
                                 selectedDocument={ projectDoc }
                                 predecessors={ [] }
                                 project={ projectId }
-                                onDeselectFeature={ () => deselectFeature(projectDoc, searchParams, history) }
+                                onDeselectFeature={ () => deselectFeature(projectDoc, searchParams) }
                                 fitOptions={ MAP_FIT_OPTIONS }
                                 spinnerContainerStyle={ MapSpinnerContainerStyle }
                                 mapHeightVh={ 40 }
@@ -162,6 +162,11 @@ const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
         </Row>
     </Link>
 );
+
+
+const deselectFeature = (document: Document, searchParams: URLSearchParams): void => {
+    window.location.href = getMapDeselectionUrl(document.project, searchParams, document);
+};
 
 
 const filterColStyle: CSSProperties = {
