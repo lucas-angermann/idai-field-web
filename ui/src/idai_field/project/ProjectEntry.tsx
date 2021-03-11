@@ -132,14 +132,19 @@ const renderFilter = (filter: ResultFilter, projectId: string) =>
         renderFilterValue(bucket, projectId));
 
 
-const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string): ReactNode => (
-        <React.Fragment key={ bucket.item.value.name }>
+const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string, level: number = 1): ReactNode => (
+        <div style={ filterValueStyle(level) } key={ bucket.item.value.name }>
             { renderFilterItem(bucket, projectId) }
             { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
-                renderFilterValue(b, projectId))
+                renderFilterValue(b, projectId, level + 1))
             }
-        </React.Fragment>
+        </div>
     );
+
+
+const filterValueStyle = (level: number): CSSProperties => ({
+    paddingLeft: `${level * 1.0}em`
+});
 
 
 const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
@@ -151,7 +156,7 @@ const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
             <Col>
                 { getLabel(bucket.item.value) }
             </Col>
-            <Col>
+            <Col className="text-right">
                 { bucket.item.count }
             </Col>
         </Row>
