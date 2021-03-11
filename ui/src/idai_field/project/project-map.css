@@ -42,3 +42,15 @@
     bottom: 11px;
     right: 11px;
 }
+
+.project-link {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index:  1000;
+    
+}
+
+.project-link:hover {
+    border: 1px dashed;
+}

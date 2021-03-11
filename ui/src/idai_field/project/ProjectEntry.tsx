@@ -15,7 +15,6 @@ import { getLabel } from '../../shared/languages';
 import ProjectMap from './ProjectMap';
 import { useTranslation } from 'react-i18next';
 import { getProjectLabel } from '../projects';
-import { getMapDeselectionUrl } from './navigation';
 
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
@@ -103,7 +102,7 @@ export default function ProjectEntry ():ReactElement {
                                 selectedDocument={ projectDoc }
                                 predecessors={ [] }
                                 project={ projectId }
-                                onDeselectFeature={ () => deselectFeature(projectDoc, searchParams) }
+                                onDeselectFeature={ undefined }
                                 fitOptions={ MAP_FIT_OPTIONS }
                                 spinnerContainerStyle={ MapSpinnerContainerStyle }
                                 isMiniMap={ true } />
@@ -162,11 +161,6 @@ const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
         </Row>
     </Link>
 );
-
-
-const deselectFeature = (document: Document, searchParams: URLSearchParams): void => {
-    window.location.href = getMapDeselectionUrl(document.project, searchParams, document);
-};
 
 
 const filterColStyle: CSSProperties = {

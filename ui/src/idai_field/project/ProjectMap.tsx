@@ -14,7 +14,7 @@ import TileGrid from 'ol/tilegrid/TileGrid';
 import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
@@ -29,7 +29,8 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import LayerControls from './LayerControls';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
-
+import { mdiRedo } from '@mdi/js';
+import Icon from '@mdi/react';
 
 const MAX_SIZE = 10000;
 
@@ -39,7 +40,7 @@ interface ProjectMapProps {
     selectedDocument: Document;
     predecessors: ResultDocument[];
     project: string;
-    onDeselectFeature: () => void;
+    onDeselectFeature: () => void | undefined;
     fitOptions: FitOptions;
     spinnerContainerStyle: CSSProperties;
     isMiniMap: boolean
@@ -171,13 +172,19 @@ export default function ProjectMap({ selectedDocument, predecessors,project,
                 <Spinner animation="border" variant="secondary" />
             </div>
         }
+       
         <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
-        { !isMiniMap &&
-        <LayerControls map={ map }
-                    tileLayers={ tileLayers }
-                    fitOptions={ fitOptions }
-                    predecessors={ predecessors }
-                    project={ project }></LayerControls>}
+        
+        { isMiniMap ?
+            <Link to={ `/project/${project}?parent=root` } className="project-link">
+                <Icon path={ mdiRedo } size={ 1.0 } ></Icon>
+            </Link> :
+            <LayerControls map={ map }
+                        tileLayers={ tileLayers }
+                        fitOptions={ fitOptions }
+                        predecessors={ predecessors }
+                        project={ project }></LayerControls>
+        }
     </>;
 }
 
@@ -253,7 +260,7 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
             } else {
                 history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
             }
-        } else if (selectedDocument) {
+        } else if (selectedDocument && onDeselectFeature) {
             onDeselectFeature();
         }
     };
