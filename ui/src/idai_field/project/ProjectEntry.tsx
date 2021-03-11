@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Row, Col, Card } from 'react-bootstrap';
 import SearchBar from '../../shared/search/SearchBar';
 import { Document, getDocumentImages, getDocumentDescription, FieldValue } from '../../api/document';
@@ -128,14 +128,14 @@ const renderFilters = (filters: ResultFilter[], projectId: string) =>
         filter.name === 'resource.category.name' && renderFilter(filter, projectId));
 
 
-const renderFilter = (filter: ResultFilter, projectId?: string) =>
+const renderFilter = (filter: ResultFilter, projectId: string) =>
     filter.values.map((bucket: FilterBucketTreeNode) =>
         renderFilterValue(bucket, projectId));
 
 
 const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string): ReactNode => (
         <React.Fragment key={ bucket.item.value.name }>
-            { renderFilterItem(bucket) }
+            { renderFilterItem(bucket, projectId) }
             { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
                 renderFilterValue(b, projectId))
             }
@@ -143,18 +143,20 @@ const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string): Rea
     );
 
 
-const renderFilterItem = (bucket: FilterBucketTreeNode) => (
-    <Row>
-        <Col>
-            <CategoryIcon category={ bucket.item.value } size="20" />
-        </Col>
-        <Col>
-            { getLabel(bucket.item.value) }
-        </Col>
-        <Col>
-            { bucket.item.count }
-        </Col>
-    </Row>
+const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
+    <Link to={ `/project/${projectId}?q=*&resource.category.name=${bucket.item.value.name}` }>
+        <Row>
+            <Col>
+                <CategoryIcon category={ bucket.item.value } size="20" />
+            </Col>
+            <Col>
+                { getLabel(bucket.item.value) }
+            </Col>
+            <Col>
+                { bucket.item.count }
+            </Col>
+        </Row>
+    </Link>
 );
 
 
