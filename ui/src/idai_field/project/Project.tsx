@@ -156,7 +156,8 @@ export default function Project(): ReactElement {
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
             spinnerContainerStyle={ mapSpinnerContainerStyle }
-            fitOptions={ MAP_FIT_OPTIONS } />
+            fitOptions={ MAP_FIT_OPTIONS }
+            isMiniMap={ false } />
     </>;
 }
 

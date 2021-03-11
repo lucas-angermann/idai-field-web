@@ -42,16 +42,12 @@ interface ProjectMapProps {
     onDeselectFeature: () => void;
     fitOptions: FitOptions;
     spinnerContainerStyle: CSSProperties;
-    mapHeightVh?: number;
-    reloadMapOnClickEvent?: boolean;
-    displayLayerControls? : boolean
+    isMiniMap: boolean
 }
 
 
-export default function ProjectMap({
-        selectedDocument, predecessors,
-        project, onDeselectFeature, fitOptions, spinnerContainerStyle, mapHeightVh=100,
-        reloadMapOnClickEvent=false, displayLayerControls=true }
+export default function ProjectMap({ selectedDocument, predecessors,project,
+    onDeselectFeature, fitOptions, spinnerContainerStyle, isMiniMap }
         : ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -123,9 +119,9 @@ export default function ProjectMap({
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
         mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
-                                                    selectedDocument, reloadMapOnClickEvent);
+                                                    selectedDocument, isMiniMap);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, searchParams, onDeselectFeature, reloadMapOnClickEvent]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature, isMiniMap]);
 
     useEffect(() => {
 
@@ -175,8 +171,8 @@ export default function ProjectMap({
                 <Spinner animation="border" variant="secondary" />
             </div>
         }
-        <div className="project-map" id="ol-project-map" style={ mapStyle(mapHeightVh) } />
-        { displayLayerControls &&
+        <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
+        { !isMiniMap &&
         <LayerControls map={ map }
                     tileLayers={ tileLayers }
                     fitOptions={ fitOptions }
@@ -438,8 +434,9 @@ const getExtentOfHighlightedGeometries = (vectorLayer: VectorLayer): Extent => {
 };
 
 
-const mapStyle = (mapHeight): CSSProperties =>
+const mapStyle = (isMiniMap: boolean): CSSProperties =>
 {
+    const mapHeight = isMiniMap? 40 : 100;
     return {
             height: `calc(${mapHeight}vh - ${NAVBAR_HEIGHT}px)`,
             backgroundColor: '#d3d3cf'
