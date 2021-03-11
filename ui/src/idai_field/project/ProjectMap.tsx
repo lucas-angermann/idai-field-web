@@ -15,7 +15,7 @@ import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { to } from 'tsfun';
+import { isUndefined, not, sameset, to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
@@ -47,9 +47,8 @@ interface ProjectMapProps {
 }
 
 
-export default function ProjectMap({ selectedDocument, predecessors,project,
-    onDeselectFeature, fitOptions, spinnerContainerStyle, isMiniMap }
-        : ProjectMapProps): ReactElement {
+export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature, fitOptions,
+        spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -62,7 +61,8 @@ export default function ProjectMap({ selectedDocument, predecessors,project,
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-
+    const [extent, setExtent] = useState<Extent>();
+ 
     const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
 
     useEffect(() => {
@@ -132,13 +132,15 @@ export default function ProjectMap({ selectedDocument, predecessors,project,
         const newVectorLayer = getGeoJSONLayer(featureCollection);
         if (newVectorLayer) map.addLayer(newVectorLayer);
         setVectorLayer(newVectorLayer);
+        setUpView(map, newVectorLayer, fitOptions);
 
         return () => map.removeLayer(newVectorLayer);
     }, [map, documents, fitOptions]);
 
     useEffect(() => {
 
-        if (!vectorLayer) return;
+        if (!map || !vectorLayer) return;
+        select.getFeatures().clear();
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
@@ -146,25 +148,21 @@ export default function ProjectMap({ selectedDocument, predecessors,project,
             feature.setProperties(properties);
         });
 
-        setUpView(map, vectorLayer, fitOptions);
-    }, [map, highlightedDocuments, vectorLayer, fitOptions]);
-
-    useEffect(() => {
-
-        if (!map || !vectorLayer) return;
-        select.getFeatures().clear();
-
         if (selectedDocument?.resource?.geometry) {
             const feature = (vectorLayer.getSource())
                 .getFeatureById(selectedDocument.resource.id);
             if (!feature) return;
-
             select.getFeatures().push(feature);
-            map.getView().fit(feature.getGeometry().getExtent(), fitOptions);
-        } else if (selectedDocument === null) {
-            map.getView().fit(getExtentOfHighlightedGeometries(vectorLayer), fitOptions);
+        }    
+
+        const newExtent = getExtent(vectorLayer, predecessors, selectedDocument);
+        if (!extent || !sameset(newExtent, extent)) {
+            setExtent(newExtent);
+            map.getView().fit(newExtent, fitOptions);
         }
-    }, [map, selectedDocument, vectorLayer, select, fitOptions]);
+        
+    }, [map, selectedDocument, predecessors, highlightedDocuments, vectorLayer, select, fitOptions]);
+
 
     return <>
         { loading &&
@@ -216,7 +214,7 @@ const setUpView = (map: Map, layer: VectorLayer, fitOptions: FitOptions) => {
 
     map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
     map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
-    map.getView().fit(getExtentOfHighlightedGeometries(layer), { padding: fitOptions.padding });
+    map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
 };
 
 
@@ -430,14 +428,37 @@ const isHighlighted = (resourceId: string, highlightedDocuments: ResultDocument[
 };
 
 
-const getExtentOfHighlightedGeometries = (vectorLayer: VectorLayer): Extent => {
+const getExtent = (layer: VectorLayer, predecessors: ResultDocument[], selectedDocument?: ResultDocument): Extent => {
 
-    const highlightedFeatures = vectorLayer.getSource().getFeatures()
+    if (predecessors.length === 0 && !selectedDocument) return getExtentOfHighlightedGeometries(layer);
+
+    const predecessorFeatures = predecessors.map(predecessor => getFeature(predecessor, layer))
+        .filter(not(isUndefined));
+
+    const feature = predecessorFeatures.find(predecessorFeature => {
+        return ['Trench', 'Building', 'Survey'].includes(predecessorFeature.getProperties().category);
+    }) || (selectedDocument && getFeature(selectedDocument, layer));
+
+    return feature ? feature.getGeometry().getExtent() : layer.getSource().getExtent();
+};
+
+
+const getFeature = (document: ResultDocument, layer: VectorLayer): OlFeature => {
+
+    return layer.getSource().getFeatures().find(feature => {
+        return feature.getProperties().id === document.resource.id;
+    });
+};
+
+
+const getExtentOfHighlightedGeometries = (layer: VectorLayer): Extent => {
+
+    const highlightedFeatures = layer.getSource().getFeatures()
         .filter(feature => feature.getProperties().highlighted);
 
     return highlightedFeatures.length > 0
         ? new VectorSource({ features: highlightedFeatures }).getExtent()
-        : vectorLayer.getSource().getExtent();
+        : layer.getSource().getExtent();
 };
 
 
