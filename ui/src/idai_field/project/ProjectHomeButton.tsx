@@ -8,10 +8,12 @@ import { getProjectLabel } from '../projects';
 
 interface ProjectHomeButtonProps {
     projectDocument: Document;
+    label?: string | undefined;
 }
 
 
-export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButtonProps): ReactElement {
+export default function ProjectHomeButton({ projectDocument, label = undefined }: ProjectHomeButtonProps): ReactElement
+{
     return (
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
             <div className="d-flex teaser-container teaser-small link">
@@ -20,7 +22,7 @@ export default function ProjectHomeButton ({ projectDocument }: ProjectHomeButto
                 </div>
                 <div>
                     <h3 className="mx-2 my-1" style={ homeHeadingStyle }>
-                        { getProjectLabel(projectDocument) }
+                        { label? label : getProjectLabel(projectDocument) }
                     </h3>
                 </div>
             </div>
