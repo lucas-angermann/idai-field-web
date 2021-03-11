@@ -52,7 +52,7 @@ export default function SearchBar({ onSubmit, basepath }
                     ref={ input } />
                 <InputGroup.Append>
                     { isResetQueryButtonVisible(searchParams) &&
-                        <Button variant="link" onClick={ resetQueryString }>
+                        <Button variant="link" onClick={ resetQueryString } style={ { backgroundColor: 'white' } }>
                             <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
                     }
