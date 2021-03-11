@@ -1,11 +1,11 @@
-import { mdiFileTree } from '@mdi/js';
+import { mdiMenuLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import { History } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
-import { Card, Tooltip } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
 import { get, getPredecessors, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
@@ -135,6 +135,7 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ searchParams }
                      projectId={ projectId } />
+            { searchParams.has('q') && renderTotal(total, searchParams, !!document, t) }
             { document
                 ? renderDocumentDetails(document, predecessors)
                 : isInHierarchyMode(searchParams)
@@ -185,9 +186,6 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
         total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
     documents?.length
         ? <>
-            <Card body={ true }>
-                { renderTotal(total, projectId, t) }
-            </Card>
             <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
                 <DocumentList documents={ documents } searchParams={ searchParams } />
             </Card>
@@ -197,29 +195,22 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
         </Card>;
 
 
-const renderTotal = (total: number, projectId: string, t: TFunction): ReactElement => {
+const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boolean, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
-    return <div>
+    const children = <>
         { t('project.total') }
-        <b> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
+        <b key="project-total"> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
         { t('project.resources') }
-        <div>
-            <LinkButton to={ `/project/${projectId}?parent=root` } style={ hierarchyButtonStyle }
-                        variant={ 'secondary' } tooltip={ renderHierarchyButtonTooltip(t) }>
-                <Icon path={ mdiFileTree } size={ 0.7 } />
-            </LinkButton>
-        </div>
-    </div>;
-};
+    </>;
 
-
-const renderHierarchyButtonTooltip = (t: TFunction): ReactElement => {
-
-    return <Tooltip id="hierarchy-button-tooltip">
-        { t('project.hierarchyView') }
-    </Tooltip>;
+    return <Card body={ true }>
+        { asLink
+            ? <Link to={ `./?${searchParams}` }><Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>{ children }</Link>
+            : children
+        }
+    </Card>;
 };
 
 
