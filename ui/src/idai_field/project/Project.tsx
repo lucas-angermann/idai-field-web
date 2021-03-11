@@ -125,7 +125,7 @@ export default function Project(): ReactElement {
         const hierarchy = isInHierarchyMode(searchParams);
 
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
-        const totalBox = renderTotal(total, searchParams, !!document, t);
+        const totalBox = renderTotal(total, searchParams, !!document, filters, projectId, t);
 
         return document
             ? hierarchy
@@ -149,9 +149,6 @@ export default function Project(): ReactElement {
                     <SearchBar basepath={ `/project/${projectId}` } />
                 </div>
             </Card>
-            <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                     searchParams={ searchParams }
-                     projectId={ projectId } />
             { renderSidebarContent() }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
@@ -201,7 +198,8 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
         </Card>;
 
 
-const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boolean, t: TFunction): ReactElement => {
+const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boolean, filters: ResultFilter[],
+        projectId: string, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
@@ -213,8 +211,16 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
 
     return <Card body={ true }>
         { asLink
-            ? <Link to={ `./?${searchParams}` }><Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>{ children }</Link>
-            : children
+            ? <Link to={ `/project/${projectId}?${searchParams}` }>
+                <Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>
+                { children }
+            </Link>
+            : <>
+                { children }
+                <Filters filters={ filters.filter(filter => filter.name !== 'project') }
+                         searchParams={ searchParams }
+                         projectId={ projectId } />
+            </>
         }
     </Card>;
 };
