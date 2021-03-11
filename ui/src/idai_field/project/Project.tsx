@@ -120,6 +120,23 @@ export default function Project(): ReactElement {
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
+    const renderSidebarContent = () => {
+
+        const hierarchy = isInHierarchyMode(searchParams);
+
+        const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
+        const totalBox = renderTotal(total, searchParams, !!document, t);
+
+        return document
+            ? hierarchy
+                ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
+                : [totalBox, breadcrumbBox, renderDocumentDetails(document)]
+            : hierarchy
+                ? [breadcrumbBox, totalBox, renderDocumentHierarchy(documents, searchParams, projectId,
+                    predecessors, hierarchyUpdate, onScroll)]
+                : [totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
+    };
+
     if (notFound) return <NotFound />;
 
     return <>
@@ -135,14 +152,7 @@ export default function Project(): ReactElement {
             <Filters filters={ filters.filter(filter => filter.name !== 'project') }
                      searchParams={ searchParams }
                      projectId={ projectId } />
-            { !isInHierarchyMode(searchParams) && renderTotal(total, searchParams, !!document, t) }
-            { document
-                ? renderDocumentDetails(document, predecessors)
-                : isInHierarchyMode(searchParams)
-                    ? renderDocumentHierarchy(documents, searchParams, projectId, predecessors, hierarchyUpdate,
-                        onScroll)
-                    : renderDocumentList(documents, searchParams, projectId, total, onScroll, t)
-            }
+            { renderSidebarContent() }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
             predecessors={ predecessors }
@@ -158,28 +168,24 @@ export const deselectFeature = (document: Document, searchParams: URLSearchParam
     document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
 
 
-const renderDocumentDetails = (document: Document, predecessors: ResultDocument[]): React.ReactNode =>
-    <>
-        <Card className="p-2">
-            <ProjectBreadcrumb projectId={ document.project } predecessors={ predecessors } />
-        </Card>
-        <DocumentCard document={ document }
-            baseUrl={ CONFIGURATION.fieldUrl }
-            cardStyle={ mainSidebarCardStyle } />
-    </>;
+const renderDocumentDetails = (document: Document): React.ReactNode =>
+    <DocumentCard document={ document }
+        baseUrl={ CONFIGURATION.fieldUrl }
+        cardStyle={ mainSidebarCardStyle } />;
 
 
 const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
         predecessors: ResultDocument[], update: Date, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
-    <>
-        <Card className="p-2">
-            <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
-        </Card>
-        <Card style={ mainSidebarCardStyle }>
-            <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
-                searchParams={ searchParams } update={ update } onScroll={ onScroll } />
-        </Card>
-    </>;
+    <Card style={ mainSidebarCardStyle }>
+        <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
+            searchParams={ searchParams } update={ update } onScroll={ onScroll } />
+    </Card>;
+
+
+const renderBreadcrumb = (projectId: string, predecessors: ResultDocument[]) =>
+    <Card className="p-2">
+        <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
+    </Card>;
 
 
 const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
