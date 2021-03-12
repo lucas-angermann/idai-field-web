@@ -1,35 +1,42 @@
+import { mdiLinkVariant } from '@mdi/js';
+import Icon from '@mdi/react';
+import { TFunction } from 'i18next';
 import React, { CSSProperties, MutableRefObject, ReactElement, useRef } from 'react';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { TFunction } from 'i18next';
-import Icon from '@mdi/react';
-import { mdiLinkVariant } from '@mdi/js';
 
 
-export default function DocumentPermalinkButton({ id, baseUrl }: { id: string, baseUrl: string }): ReactElement {
+interface DocumentPermalinkButtonProps {
+  id: string;
+  baseUrl: string;
+  type?: string;
+}
+
+export default function DocumentPermalinkButton({ id, baseUrl, type = 'document' }: DocumentPermalinkButtonProps)
+        : ReactElement {
 
     const inputElementRef: MutableRefObject<HTMLInputElement> = useRef();
     const { t } = useTranslation();
 
-    return <OverlayTrigger trigger="click" placement="right"
-                           overlay={ getPopover(id, baseUrl, inputElementRef, t) }>
+    return <OverlayTrigger trigger="click" placement="auto"
+                           overlay={ getPopover(id, baseUrl, type, inputElementRef, t) }>
         <Button variant="link" style={ buttonStyle }
                 onClick={ () => selectPermalink(inputElementRef) }>
             <div style={ iconStyle }>
-              <Icon path={ mdiLinkVariant } size={ 0.7 } />
+              <Icon path={ mdiLinkVariant } />
             </div>
         </Button>
     </OverlayTrigger>;
 }
 
 
-const getPopover = (id: string, baseUrl: string, inputElementRef: MutableRefObject<HTMLInputElement>,
+const getPopover = (id: string, baseUrl: string, type: string, inputElementRef: MutableRefObject<HTMLInputElement>,
                     t: TFunction): ReactElement =>
     <Popover id="document-link-popover" style={ popoverStyle }>
       <Popover.Title as="h3">{ t('permalinkButton.title') }</Popover.Title>
       <Popover.Content>
         <input ref={ inputElementRef } readOnly
-          value={ `${baseUrl}/document/${id}` }
+          value={ `${baseUrl}/${type}/${id}` }
           style={ inputStyle } />
       </Popover.Content>
     </Popover>;

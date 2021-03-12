@@ -1,20 +1,22 @@
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, Card } from 'react-bootstrap';
-import SearchBar from '../../shared/search/SearchBar';
-import { Document, getDocumentImages, getDocumentDescription, FieldValue } from '../../api/document';
-import { get } from '../../api/documents';
-import { LoginContext } from '../../shared/login';
-import { ImageCarousel } from '../../shared/image/ImageCarousel';
-import { ResultDocument, ResultFilter, FilterBucketTreeNode } from '../../api/result';
-import { useSearchParams } from '../../shared/location';
-import ProjectHomeButton from './ProjectHomeButton';
-import { initFilters } from './Project';
-import CategoryIcon from '../../shared/document/CategoryIcon';
-import { getLabel } from '../../shared/languages';
-import ProjectMap from './ProjectMap';
+import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Link, useParams } from 'react-router-dom';
+import { Document, FieldValue, getDocumentDescription, getDocumentImages } from '../../api/document';
+import { get } from '../../api/documents';
+import { FilterBucketTreeNode, ResultDocument, ResultFilter } from '../../api/result';
+import CONFIGURATION from '../../configuration.json';
+import CategoryIcon from '../../shared/document/CategoryIcon';
+import PermalinkButton from '../../shared/document/DocumentPermalinkButton';
+import { ImageCarousel } from '../../shared/image/ImageCarousel';
+import { getLabel } from '../../shared/languages';
+import { useSearchParams } from '../../shared/location';
+import { LoginContext } from '../../shared/login';
+import SearchBar from '../../shared/search/SearchBar';
 import { getProjectLabel } from '../projects';
+import { initFilters } from './Project';
+import ProjectHomeButton from './ProjectHomeButton';
+import ProjectMap from './ProjectMap';
 
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, 100 ], duration: 500 };
 
@@ -43,79 +45,83 @@ export default function ProjectEntry ():ReactElement {
     useEffect(() => {
 
         if(projectDoc){
-            const description = getDocumentDescription(projectDoc);
-            setDescription(description? description : '');
+            const newDescription = getDocumentDescription(projectDoc);
+            setDescription(newDescription || '');
             setImages(getDocumentImages(projectDoc));
             setTitle(getProjectLabel(projectDoc));
         }
        
 
     },[projectDoc, projectId]);
-
  
     if (!projectDoc || !filters) return null;
     return (
         <Card className="m-3">
-            <Row className="text-center p-2">
-                <Col>
-                    <Card.Title >
-                        <strong>{ title }</strong>
-                    </Card.Title>
-                </Col>
-            </Row>
-            <Row className="p-2">
-                <Col className="col-4">
-                    <Row>
-                        <Col>
-                            <SearchBar basepath={ `/project/${projectId}` } />
-                        </Col>
-                    </Row>
-                    <Row className="mt-3 ml-1">
-                        <Col>
-                            <Card.Text>
-                                <strong>{ t('projectEntry.categories') }</strong>
-                            </Card.Text>
-                        </Col>
-                    </Row>
-                    <Row className="p-3">
-                        <Col style={ filterColStyle }>
-                            { renderFilters(filters, projectId) }
-                        </Col>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row>
-                        { images &&
-                        <Col className="col-6">
-                            <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
-                        </Col>
-                        }
-                        { description &&
-                        <Col>
-                            <Card.Text>{ description }</Card.Text>
-                        </Col>
-                        }
-                    </Row>
-                    <Row className="mt-1">
-                        <Col className="col-6" >
-                           <ProjectMap
-                                selectedDocument={ projectDoc }
-                                predecessors={ [] }
-                                project={ projectId }
-                                onDeselectFeature={ undefined }
-                                fitOptions={ MAP_FIT_OPTIONS }
-                                spinnerContainerStyle={ MapSpinnerContainerStyle }
-                                isMiniMap={ true } />
-                        </Col>
-                    </Row>
-                </Col>
-            </Row>
-            <Row>
-                <Col className="d-flex align-items-start flex-column">
-                            { <ProjectHomeButton projectDocument={ projectDoc }
-                                label={ t('projectEntry.toHierarOverview') } /> }
-                </Col>
-            </Row>
+            <Card.Header>
+                <Row>
+                    <Col>
+                        <h2><img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } /> { title }</h2>
+                    </Col>
+                    <Col className="text-right">
+                        <PermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
+                    </Col>
+                </Row>
+            </Card.Header>
+            <Card.Body>
+                <Row className="p-2">
+                    <Col className="col-4">
+                        <Row>
+                            <Col>
+                                <SearchBar basepath={ `/project/${projectId}` } />
+                            </Col>
+                        </Row>
+                        <Row className="mt-3 ml-1">
+                            <Col>
+                                <Card.Text>
+                                    <strong>{ t('projectEntry.categories') }</strong>
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row className="p-3">
+                            <Col style={ filterColStyle }>
+                                { renderFilters(filters, projectId) }
+                            </Col>
+                        </Row>
+                    </Col>
+                    <Col>
+                        <Row>
+                            { images &&
+                            <Col className="col-6">
+                                <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
+                            </Col>
+                            }
+                            { description &&
+                            <Col>
+                                <Card.Text>{ description }</Card.Text>
+                            </Col>
+                            }
+                        </Row>
+                        <Row className="mt-1">
+                            <Col className="col-6" >
+                            <ProjectMap
+                                    selectedDocument={ projectDoc }
+                                    predecessors={ [] }
+                                    project={ projectId }
+                                    onDeselectFeature={ undefined }
+                                    fitOptions={ MAP_FIT_OPTIONS }
+                                    spinnerContainerStyle={ MapSpinnerContainerStyle }
+                                    isMiniMap={ true } />
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col className="d-flex align-items-start flex-column">
+                                { <ProjectHomeButton projectDocument={ projectDoc }
+                                    label={ t('projectEntry.toHierarOverview') } /> }
+                    </Col>
+                </Row>
+            </Card.Body>
         </Card>
     );
 }
@@ -179,4 +185,11 @@ const MapSpinnerContainerStyle: CSSProperties = {
     top: '45%',
     left: '45%',
     zIndex: 1
+};
+
+
+const homeIconStyle: CSSProperties = {
+    height: '1.5rem',
+    width: '1.5rem',
+    marginTop: '-0.3rem'
 };
