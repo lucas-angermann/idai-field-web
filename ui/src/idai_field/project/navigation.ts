@@ -1,5 +1,4 @@
 import { Document } from '../../api/document';
-import { ResultDocument } from '../../api/result';
 
 
 export const getMapDeselectionUrl = (projectId: string, searchParams: URLSearchParams, document: Document): string => {
