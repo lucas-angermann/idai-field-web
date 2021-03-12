@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Document, FieldValue, getDocumentDescription, getDocumentImages } from '../../api/document';
+import { Document, getDocumentImages } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
@@ -30,7 +30,6 @@ export default function ProjectEntry ():ReactElement {
 
     const [categoryFilter, setCategoryFilter] = useState<ResultFilter>();
     const [projectDoc, setProjectDoc] = useState<Document>();
-    const [description, setDescription] = useState<FieldValue>('');
     const [title, setTitle] = useState<string>('');
     const [images, setImages] = useState<ResultDocument[]>();
 
@@ -46,14 +45,10 @@ export default function ProjectEntry ():ReactElement {
 
     useEffect(() => {
 
-        if(projectDoc){
-            const newDescription = getDocumentDescription(projectDoc);
-            setDescription(newDescription || '');
+        if(projectDoc) {
             setImages(getDocumentImages(projectDoc));
             setTitle(getProjectLabel(projectDoc));
         }
-       
-
     },[projectDoc, projectId]);
  
     if (!projectDoc || !categoryFilter) return null;

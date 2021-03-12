@@ -139,7 +139,7 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
 
     useEffect(() => {
 
-        if (!map || !vectorLayer) return;
+        if (!vectorLayer) return;
         select.getFeatures().clear();
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
@@ -156,12 +156,24 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
         }
 
         const newExtent = getExtent(vectorLayer, predecessors, selectedDocument);
-        if (!extent || !sameset(newExtent, extent)) {
-            setExtent(newExtent);
-            map.getView().fit(newExtent, fitOptions);
-        }
         
-    }, [map, selectedDocument, predecessors, highlightedDocuments, vectorLayer, select, fitOptions]);
+        setExtent(prevExtent => {
+            if (!prevExtent || !sameset(newExtent, prevExtent)) {
+                return newExtent;
+            } else {
+                return prevExtent;
+            }
+        });
+        
+    }, [selectedDocument, predecessors, highlightedDocuments, vectorLayer, select]);
+
+
+    useEffect(() => {
+
+        if (!map || !extent) return;
+
+        map.getView().fit(extent, fitOptions);
+    }, [map, extent, fitOptions]);
 
 
     return <>

@@ -8,12 +8,13 @@ import { getProjectLabel } from '../projects';
 
 interface ProjectHierarchyButtonProps {
     projectDocument: Document;
-    label?: string | undefined;
+    label?: string;
 }
 
 
-export default function ProjectHierarchyButton({ projectDocument, label = undefined }: ProjectHierarchyButtonProps): ReactElement
-{
+export default function ProjectHierarchyButton({ projectDocument, label = undefined }: ProjectHierarchyButtonProps)
+        : ReactElement {
+            
     return (
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
             <div className="d-flex teaser-container teaser-small link">
