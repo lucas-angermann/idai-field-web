@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next';
 
 
 interface DocumentPermalinkButtonProps {
-  id: string;
-  baseUrl: string;
-  type?: string;
+    id: string;
+    baseUrl: string;
+    type?: string;
 }
 
 export default function DocumentPermalinkButton({ id, baseUrl, type = 'document' }: DocumentPermalinkButtonProps)
@@ -31,51 +31,51 @@ export default function DocumentPermalinkButton({ id, baseUrl, type = 'document'
 
 
 const getPopover = (id: string, baseUrl: string, type: string, inputElementRef: MutableRefObject<HTMLInputElement>,
-                    t: TFunction): ReactElement =>
+        t: TFunction): ReactElement =>
     <Popover id="document-link-popover" style={ popoverStyle }>
-      <Popover.Title as="h3">{ t('permalinkButton.title') }</Popover.Title>
-      <Popover.Content>
-        <input ref={ inputElementRef } readOnly
-          value={ `${baseUrl}/${type}/${id}` }
-          style={ inputStyle } />
-      </Popover.Content>
+        <Popover.Title as="h3">{ t('permalinkButton.title') }</Popover.Title>
+        <Popover.Content>
+            <input ref={ inputElementRef } readOnly
+                value={ `${baseUrl}/${type}/${id}` }
+                style={ inputStyle } />
+        </Popover.Content>
     </Popover>;
 
 
 const selectPermalink = (inputElementRef: MutableRefObject<HTMLInputElement>) => {
 
-  if (inputElementRef?.current) return;
-  
-  const observer = new MutationObserver(() => {
-    if (inputElementRef?.current) {
-      inputElementRef.current.select();
-      observer.disconnect();
-    }
-  });
+    if (inputElementRef?.current) return;
+    
+    const observer = new MutationObserver(() => {
+        if (inputElementRef?.current) {
+            inputElementRef.current.select();
+            observer.disconnect();
+        }
+    });
 
-  observer.observe(document, { childList: true, subtree: true });
+    observer.observe(document, { childList: true, subtree: true });
 };
 
 
 const buttonStyle: CSSProperties = {
-  width: '45px',
-  color: 'black',
-  boxShadow: 'none'
+    width: '45px',
+    color: 'black',
+    boxShadow: 'none'
 };
 
 
 const iconStyle: CSSProperties = {
-  position: 'relative',
-  bottom: '1px'
+    position: 'relative',
+    bottom: '1px'
 };
 
 
 const popoverStyle: CSSProperties = {
-  width: '550px',
-  maxWidth: '550px'
+    width: '550px',
+    maxWidth: '550px'
 };
 
 
 const inputStyle: CSSProperties = {
-  width: '100%'
+    
 };
