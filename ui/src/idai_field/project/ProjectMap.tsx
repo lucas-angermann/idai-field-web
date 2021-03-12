@@ -1,3 +1,5 @@
+import { mdiRedo } from '@mdi/js';
+import Icon from '@mdi/react';
 import { Feature, FeatureCollection } from 'geojson';
 import { History } from 'history';
 import { Feature as OlFeature, MapBrowserEvent } from 'ol';
@@ -29,8 +31,6 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import LayerControls from './LayerControls';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
-import { mdiRedo } from '@mdi/js';
-import Icon from '@mdi/react';
 
 const MAX_SIZE = 10000;
 
@@ -153,7 +153,7 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
                 .getFeatureById(selectedDocument.resource.id);
             if (!feature) return;
             select.getFeatures().push(feature);
-        }    
+        }
 
         const newExtent = getExtent(vectorLayer, predecessors, selectedDocument);
         if (!extent || !sameset(newExtent, extent)) {
@@ -464,9 +464,9 @@ const getExtentOfHighlightedGeometries = (layer: VectorLayer): Extent => {
 
 const mapStyle = (isMiniMap: boolean): CSSProperties =>
 {
-    const mapHeight = isMiniMap? 40 : 100;
+    const height = isMiniMap ? '100%' : `calc(100vh - ${NAVBAR_HEIGHT}px)`;
     return {
-            height: `calc(${mapHeight}vh - ${NAVBAR_HEIGHT}px)`,
-            backgroundColor: '#d3d3cf'
-        };
+        height,
+        backgroundColor: '#d3d3cf'
+    };
 };
