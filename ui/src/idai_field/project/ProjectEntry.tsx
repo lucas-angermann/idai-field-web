@@ -1,18 +1,17 @@
-import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Document, FieldValue, getDocumentDescription, getDocumentImages } from '../../api/document';
 import { get } from '../../api/documents';
-import { FilterBucketTreeNode, ResultDocument, ResultFilter } from '../../api/result';
+import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
-import CategoryIcon from '../../shared/document/CategoryIcon';
 import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
-import { getLabel } from '../../shared/languages';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import SearchBar from '../../shared/search/SearchBar';
+import CategoryFilter from '../filter/CategoryFilter';
 import { getProjectLabel } from '../projects';
 import { initFilters } from './Project';
 import ProjectHomeButton from './ProjectHomeButton';
@@ -27,7 +26,7 @@ export default function ProjectEntry ():ReactElement {
     const searchParams = useSearchParams();
     const { t } = useTranslation();
 
-    const [filters, setFilters] = useState<ResultFilter[]>([]);
+    const [categoryFilter, setCategoryFilter] = useState<ResultFilter>();
     const [projectDoc, setProjectDoc] = useState<Document>();
     const [description, setDescription] = useState<FieldValue>('');
     const [title, setTitle] = useState<string>('');
@@ -36,7 +35,8 @@ export default function ProjectEntry ():ReactElement {
     useEffect(() => {
 
         initFilters(projectId, searchParams, loginData.token)
-            .then(result => setFilters(result.filters));
+            .then(result => result.filters.find(filter => filter.name === 'resource.category.name'))
+            .then(setCategoryFilter);
 
         get(projectId, loginData.token)
             .then(setProjectDoc);
@@ -54,7 +54,8 @@ export default function ProjectEntry ():ReactElement {
 
     },[projectDoc, projectId]);
  
-    if (!projectDoc || !filters) return null;
+    if (!projectDoc || !categoryFilter) return null;
+    
     return (
         <Card className="m-3">
             <Card.Header>
@@ -78,13 +79,13 @@ export default function ProjectEntry ():ReactElement {
                         <Row className="mt-3 ml-1">
                             <Col>
                                 <Card.Text>
-                                    <strong>{ t('projectEntry.categories') }</strong>
+                                    <h5>{ t('projectEntry.categories') }</h5>
                                 </Card.Text>
                             </Col>
                         </Row>
                         <Row className="p-3">
                             <Col style={ filterColStyle }>
-                                { renderFilters(filters, projectId) }
+                                <CategoryFilter filter={ categoryFilter } projectId={ projectId } />
                             </Col>
                         </Row>
                     </Col>
@@ -125,48 +126,6 @@ export default function ProjectEntry ():ReactElement {
         </Card>
     );
 }
-
-
-const renderFilters = (filters: ResultFilter[], projectId: string) =>
-    filters.map((filter: ResultFilter) =>
-        filter.name === 'resource.category.name' && renderFilter(filter, projectId));
-
-
-const renderFilter = (filter: ResultFilter, projectId: string) =>
-    filter.values.map((bucket: FilterBucketTreeNode) =>
-        renderFilterValue(bucket, projectId));
-
-
-const renderFilterValue = (bucket: FilterBucketTreeNode, projectId: string, level: number = 1): ReactNode => (
-        <div style={ filterValueStyle(level) } key={ bucket.item.value.name }>
-            { renderFilterItem(bucket, projectId) }
-            { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
-                renderFilterValue(b, projectId, level + 1))
-            }
-        </div>
-    );
-
-
-const filterValueStyle = (level: number): CSSProperties => ({
-    paddingLeft: `${level * 1.0}em`
-});
-
-
-const renderFilterItem = (bucket: FilterBucketTreeNode, projectId: string) => (
-    <Link to={ `/project/${projectId}?q=*&resource.category.name=${bucket.item.value.name}` }>
-        <Row>
-            <Col>
-                <CategoryIcon category={ bucket.item.value } size="20" />
-            </Col>
-            <Col>
-                { getLabel(bucket.item.value) }
-            </Col>
-            <Col className="text-right">
-                { bucket.item.count }
-            </Col>
-        </Row>
-    </Link>
-);
 
 
 const filterColStyle: CSSProperties = {
