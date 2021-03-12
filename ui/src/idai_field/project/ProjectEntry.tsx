@@ -7,7 +7,7 @@ import { get } from '../../api/documents';
 import { FilterBucketTreeNode, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import CategoryIcon from '../../shared/document/CategoryIcon';
-import PermalinkButton from '../../shared/document/DocumentPermalinkButton';
+import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { getLabel } from '../../shared/languages';
 import { useSearchParams } from '../../shared/location';
@@ -63,7 +63,7 @@ export default function ProjectEntry ():ReactElement {
                         <h2><img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } /> { title }</h2>
                     </Col>
                     <Col className="text-right">
-                        <PermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
+                        <DocumentPermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
                     </Col>
                 </Row>
             </Card.Header>
