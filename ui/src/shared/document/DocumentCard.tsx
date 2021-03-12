@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { Card } from 'react-bootstrap';
 import { Document } from '../../api/document';
 import DocumentDetails from './DocumentDetails';
-import PermalinkButton from './DocumentPermalinkButton';
+import DocumentPermalinkButton from './DocumentPermalinkButton';
 import DocumentTeaser from './DocumentTeaser';
 
 
@@ -25,7 +25,7 @@ export default function DocumentCard({ document, baseUrl, cardStyle = {}, header
                     <DocumentTeaser document={ document } showShortDescription="none" />
                 </div>
                 <div style={ permalinkButtonContainerStyle }>
-                    <PermalinkButton id={ document.resource.id } baseUrl={ baseUrl } />
+                    <DocumentPermalinkButton id={ document.resource.id } baseUrl={ baseUrl } />
                 </div>
             </Card.Header>
             <Card.Body style={ { ...bodyStyle, ...bodyBaseStyle } }>
