@@ -6,13 +6,13 @@ import { Document } from '../../api/document';
 import { getProjectLabel } from '../projects';
 
 
-interface ProjectHomeButtonProps {
+interface ProjectHierarchyButtonProps {
     projectDocument: Document;
     label?: string | undefined;
 }
 
 
-export default function ProjectHomeButton({ projectDocument, label = undefined }: ProjectHomeButtonProps): ReactElement
+export default function ProjectHierarchyButton({ projectDocument, label = undefined }: ProjectHierarchyButtonProps): ReactElement
 {
     return (
         <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">

@@ -16,7 +16,7 @@ import SearchBar from '../../shared/search/SearchBar';
 import CategoryFilter from '../filter/CategoryFilter';
 import { getProjectLabel } from '../projects';
 import { initFilters } from './Project';
-import ProjectHomeButton from './ProjectHomeButton';
+import ProjectHierarchyButton from './ProjectHierarchyButton';
 import ProjectMap from './ProjectMap';
 
 const MAP_FIT_OPTIONS = { padding : [ 10, 10, 10, 10 ], duration: 500 };
@@ -74,7 +74,7 @@ export default function ProjectEntry ():ReactElement {
                         <SearchBar basepath={ `/project/${projectId}` } />
                     </Card>
                     <Card className="mb-2 mt-0 p-2">
-                        <ProjectHomeButton projectDocument={ projectDoc }
+                        <ProjectHierarchyButton projectDocument={ projectDoc }
                             label={ t('projectEntry.toHierarOverview') } />
                     </Card>
                     <Card className="my-0 flex-fill" style={ { height: 0 } }>
