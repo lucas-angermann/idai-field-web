@@ -142,7 +142,7 @@ export default function Project(): ReactElement {
     return <>
         <ProjectSidebar>
             <Card className="d-flex flex-row" style={ searchCardStyle }>
-                <LinkButton to={ `/project/${projectId}` } variant="secondary" style={ homeButtonStyle }>
+                <LinkButton to={ `/project/${projectId}/entry` } variant="secondary" style={ homeButtonStyle }>
                     <img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } />
                 </LinkButton>
                 <div style={ { flexGrow: 1 } }>
