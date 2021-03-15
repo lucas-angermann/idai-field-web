@@ -2,18 +2,18 @@ import { mdiMenuLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 import { History } from 'history';
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
-import { get, getPredecessors, search } from '../../api/documents';
+import { search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
-import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
+import DocumentHierarchy, { HierarchyData } from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
@@ -26,7 +26,8 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
-import ProjectMap from './ProjectMap';
+import ProjectMap, { ProjectMapData } from './ProjectMap';
+import { postProjectQuery, ProjectQuery } from './projectQuery';
 import ProjectSidebar from './ProjectSidebar';
 
 
@@ -44,76 +45,60 @@ export default function Project(): ReactElement {
 
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
-    const [mapDocument, setMapDocument] = useState<Document>(null);
+    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
+    const [mapData, setMapData] = useState<ProjectMapData>(null);
+    const [hierarchyData, setHierarchyData] = useState<HierarchyData>();
     const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [total, setTotal] = useState<number>();
-    const [documentsLoaded, setDocumentsLoaded] = useState<boolean>(false);
-    const [predecessorsLoaded, setPredecessorsLoaded] = useState<boolean>(false);
-    const [hierarchyUpdate, setHierarchyUpdate] = useState<Date>();
 
-    const parent = searchParams.get('parent');
+    const previousSearchParams = useRef(new URLSearchParams());
 
     useEffect(() => {
 
-        if (documentId) {
-            get(documentId, loginData.token)
-                .then(setDocument)
-                .catch(() => setNotFound(true));
-        } else {
-            setDocument(null);
+        const parent = searchParams.get('parent');
+        let query = null;
+        if (searchParams.toString() !== previousSearchParams.current.toString()) {
+            query = buildProjectQueryTemplate(projectId, 0, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
+            query = parseFrontendGetParams(searchParams, query);
         }
-    }, [documentId, loginData]);
-
-    useEffect(() => {
-
-        setPredecessorsLoaded(false);
-
-        if (document) {
-            if (document.resource.id !== documentId) return;
-            setMapDocument(document);
-            if (document.resource.parentId) {
-                getPredecessors(document.resource.parentId, loginData.token)
-                    .then(result => {
-                        setPredecessors(result.results);
-                        setPredecessorsLoaded(true);
-                    });
-            } else {
-                setPredecessors([]);
+        previousSearchParams.current = searchParams;
+        const projectQuery: ProjectQuery = {
+            query: query,
+            selected_id: documentId,
+            predecessors_id: (parent && parent !== 'root') ? parent : documentId
+        };
+        postProjectQuery(projectQuery, loginData.token).then(result => {
+            if (result.search) {
+                setDocuments(result.search.documents);
+                setTotal(result.search.size);
+                setFilters(result.search.filters);
             }
-        } else if (parent && parent !== 'root') {
-            get(parent, loginData.token).then(setMapDocument);
-            getPredecessors(parent, loginData.token)
-                .then(result => {
-                    setPredecessors(result.results);
-                    setPredecessorsLoaded(true);
-                });
-        } else {
-            setMapDocument(null);
-            setPredecessors([]);
-            setPredecessorsLoaded(true);
-        }
-    }, [parent, document, documentId, loginData]);
-
-    useEffect(() => {
-
-        setDocumentsLoaded(false);
-
-        initFilters(projectId, searchParams, loginData.token)
-            .then(result => setFilters(result.filters));
-
-        searchDocuments(projectId, searchParams, 0, loginData.token)
-            .then(result => {
-                setDocuments(result.documents);
-                setTotal(result.size);
-                setDocumentsLoaded(true);
+            if (result.map) setMapDocuments(result.map.documents);
+            const newPredecessors = result.predecessors;
+            if ((!parent || parent === 'root') && documentId && newPredecessors.length > 0) {
+                newPredecessors.pop();
+            }
+            const mapDocument = result.selected
+                ? result.selected
+                : (parent && parent !== 'root' && newPredecessors.length > 0)
+                    ? (newPredecessors[newPredecessors.length - 1] as Document)
+                    : null;
+            setMapData({
+                selectedDocument: mapDocument,
+                highlightedDocuments: result.map ? result.map.documents : mapDocuments,
+                predecessors: newPredecessors
             });
-    }, [projectId, searchParams, loginData]);
-
-    useEffect(() => {
-        if (documentsLoaded && predecessorsLoaded) setHierarchyUpdate(new Date());
-    }, [documentsLoaded, predecessorsLoaded]);
+            setHierarchyData({
+                documents: result.search ? result.search.documents : documents,
+                predecessors: newPredecessors
+            });
+            setPredecessors(newPredecessors);
+            setDocument(result.selected);
+            if (documentId && !result.selected) setNotFound(true);
+        });
+    }, [projectId, documentId, searchParams, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
         searchDocuments(projectId, searchParams, newOffset, loginData.token)
@@ -132,8 +117,7 @@ export default function Project(): ReactElement {
                 ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
                 : [totalBox, breadcrumbBox, renderDocumentDetails(document)]
             : hierarchy
-                ? [breadcrumbBox, totalBox, renderDocumentHierarchy(documents, searchParams, projectId,
-                    predecessors, hierarchyUpdate, onScroll)]
+                ? [breadcrumbBox, totalBox, renderDocumentHierarchy(hierarchyData, searchParams, projectId, onScroll)]
                 : [totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
     };
 
@@ -151,8 +135,7 @@ export default function Project(): ReactElement {
             </Card>
             { renderSidebarContent() }
         </ProjectSidebar>
-        <ProjectMap selectedDocument={ mapDocument }
-            predecessors={ predecessors }
+        <ProjectMap data={ mapData }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
             spinnerContainerStyle={ mapSpinnerContainerStyle }
@@ -172,11 +155,11 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
         cardStyle={ mainSidebarCardStyle } />;
 
 
-const renderDocumentHierarchy = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
-        predecessors: ResultDocument[], update: Date, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+const renderDocumentHierarchy = (data: HierarchyData, searchParams: URLSearchParams, projectId: string,
+        onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <Card style={ mainSidebarCardStyle }>
-        <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
-            searchParams={ searchParams } update={ update } onScroll={ onScroll } />
+        <DocumentHierarchy data={ data } project={ projectId }
+            searchParams={ searchParams } onScroll={ onScroll } />
     </Card>;
 
 

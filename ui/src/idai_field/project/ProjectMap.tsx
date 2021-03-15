@@ -15,11 +15,11 @@ import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { isUndefined, not, sameset, to } from 'tsfun';
+import { isUndefined, not, to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
-import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { buildProjectQueryTemplate } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
@@ -37,8 +37,7 @@ const MAX_SIZE = 10000;
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 interface ProjectMapProps {
-    selectedDocument: Document;
-    predecessors: ResultDocument[];
+    data: ProjectMapData;
     project: string;
     onDeselectFeature: () => void | undefined;
     fitOptions: FitOptions;
@@ -46,8 +45,14 @@ interface ProjectMapProps {
     isMiniMap: boolean
 }
 
+export interface ProjectMapData {
+    selectedDocument: Document;
+    highlightedDocuments: ResultDocument[];
+    predecessors: ResultDocument[];
+}
 
-export default function ProjectMap({ selectedDocument, predecessors, project, onDeselectFeature, fitOptions,
+
+export default function ProjectMap({ data, project, onDeselectFeature, fitOptions,
         spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -55,13 +60,11 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
     const loginData = useContext(LoginContext);
 
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
-    const [highlightedDocuments, setHighlightedDocuments] = useState<ResultDocument[]>([]); // Highlight all if null
     const [loading, setLoading] = useState<boolean>(false);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
-    const [extent, setExtent] = useState<Extent>();
  
     const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
 
@@ -89,18 +92,6 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
 
     useEffect(() => {
 
-        if (searchParams.toString() === 'q=*' || searchParams.toString() === '') {
-            setHighlightedDocuments(null);
-        } else {
-            fetchSearchDocuments(project, searchParams, loginData.token)
-                .then(result => {
-                    setHighlightedDocuments(result.documents);
-                });
-        }
-    }, [project, searchParams, loginData]);
-
-    useEffect(() => {
-
         if (!map) return;
         let mounted = true;
 
@@ -117,12 +108,13 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
     useEffect(() => {
 
         if (!map) return;
+        if (!data) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
         mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
-                                                    selectedDocument, isMiniMap);
+            data.selectedDocument, isMiniMap);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, searchParams, onDeselectFeature, isMiniMap]);
+    }, [map, history, data, searchParams, onDeselectFeature, isMiniMap]);
 
     useEffect(() => {
 
@@ -139,29 +131,27 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
 
     useEffect(() => {
 
-        if (!map || !vectorLayer) return;
+        if (!map || !vectorLayer || !data) return;
         select.getFeatures().clear();
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
-            properties.highlighted = isHighlighted(feature.getProperties()['id'], highlightedDocuments);
+            properties.highlighted = isHighlighted(feature.getProperties()['id'], data.highlightedDocuments);
             feature.setProperties(properties);
         });
 
-        if (selectedDocument?.resource?.geometry) {
+        if (data.selectedDocument?.resource?.geometry) {
             const feature = (vectorLayer.getSource())
-                .getFeatureById(selectedDocument.resource.id);
+                .getFeatureById(data.selectedDocument.resource.id);
             if (!feature) return;
             select.getFeatures().push(feature);
-        }    
-
-        const newExtent = getExtent(vectorLayer, predecessors, selectedDocument);
-        if (!extent || !sameset(newExtent, extent)) {
-            setExtent(newExtent);
-            map.getView().fit(newExtent, fitOptions);
         }
-        
-    }, [map, selectedDocument, predecessors, highlightedDocuments, vectorLayer, select, fitOptions]);
+
+        map.getView().fit(
+            getExtent(vectorLayer, data.predecessors, data.selectedDocument),
+            fitOptions
+        );
+    }, [map, data, vectorLayer, select, fitOptions]);
 
 
     return <>
@@ -173,15 +163,15 @@ export default function ProjectMap({ selectedDocument, predecessors, project, on
        
         <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
         
-        { isMiniMap ?
+        { data && (isMiniMap ?
             <Link to={ `/project/${project}?parent=root` } className="project-link">
                 <Icon path={ mdiRedo } size={ 1.0 } ></Icon>
             </Link> :
             <LayerControls map={ map }
                         tileLayers={ tileLayers }
                         fitOptions={ fitOptions }
-                        predecessors={ predecessors }
-                        project={ project }></LayerControls>
+                        predecessors={ data.predecessors }
+                        project={ project }></LayerControls>)
         }
     </>;
 }
@@ -191,13 +181,6 @@ const fetchAllDocuments = async (projectId: string, token: string): Promise<Resu
 
     const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
     return searchMap(query, token);
-};
-
-
-const fetchSearchDocuments = async (projectId: string, params: URLSearchParams, token: string): Promise<Result> => {
-
-    const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
-    return searchMap(parseFrontendGetParams(params, query), token);
 };
 
 

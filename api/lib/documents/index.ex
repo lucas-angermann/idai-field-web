@@ -9,6 +9,7 @@ defmodule Api.Documents.Index do
   @exists_geometries ["resource.geometry"]
   @fields_geometries ["resource.category", "resource.geometry", "resource.identifier", "resource.id", "project"]
 
+  def get(nil), do: nil
   def get(id) do
     Query.init("_id:#{id}", 1)
     |> build_post_atomize()

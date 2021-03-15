@@ -3,6 +3,7 @@ defmodule Api.Documents.Predecessors do
 
     def get(doc), do: fetch_entries(doc) |> Enum.reverse()
 
+    defp fetch_entries(nil), do: []
     defp fetch_entries(doc) do
         Stream.unfold(doc, fn
           nil -> nil

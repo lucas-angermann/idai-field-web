@@ -11,23 +11,29 @@ import './document-hierarchy.css';
 
 
 interface DocumentHierarchyProps {
-    documents: ResultDocument[];
-    predecessors: ResultDocument[];
+    data: HierarchyData;
     project: string;
-    update: Date;
     searchParams?: URLSearchParams;
     onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
 }
 
 
-export default React.memo(function DocumentHierarchy({ documents, predecessors, project, update, searchParams,
+export interface HierarchyData {
+    documents: ResultDocument[];
+    predecessors: ResultDocument[];
+}
+
+
+export default React.memo(function DocumentHierarchy({ data, project, searchParams,
         onScroll }: DocumentHierarchyProps): ReactElement {
 
     const parent: string = searchParams.get('parent') ?? 'root';
     const previousPredecessors = useRef<ResultDocument[]>([]);
 
     const className: string = getTransitionClassname(previousPredecessors.current, parent);
-    previousPredecessors.current = predecessors;
+    previousPredecessors.current = data ? data.predecessors : [];
+
+    if (!data) return <></>;
 
     return <Card.Body className="px-0 py-0" style={ cardBodyStyle }>
         <TransitionGroup className={ className } style={ groupStyle } >
@@ -36,13 +42,13 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
                     {
                         parent !== 'root' &&
                         <LinkButton
-                            to={ `/project/${project}?parent=${ getGrandparent(predecessors) }` }
+                            to={ `/project/${project}?parent=${ getGrandparent(data.predecessors) }` }
                             className="previous-button" variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
                     }
                     <div className="documents" onScroll={ onScroll }>
-                        { documents.map((document: ResultDocument) => {
+                        { data.documents.map((document: ResultDocument) => {
                             return renderDocumentRow(document, searchParams);
                         }) }
                     </div>
@@ -52,7 +58,7 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
     </Card.Body>;
 }, (prevProps: DocumentHierarchyProps, nextProps: DocumentHierarchyProps) => {
 
-    return prevProps.update === nextProps.update;
+    return prevProps.data === nextProps.data;
 });
 
 
