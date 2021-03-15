@@ -63,7 +63,7 @@ export default function Project(): ReactElement {
             ? buildQuery(projectId, searchParams, 0)
             : null;
         previousSearchParams.current = searchParams;
-        const predecessorsId: string = (parent && parent !== 'root') ? parent : documentId;
+        const predecessorsId: string = isResource(parent) ? parent : documentId;
 
         fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
             const newPredecessors = getPredecessors(data, parent, documentId);
@@ -226,7 +226,7 @@ const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Qu
 const getPredecessors = (data: ProjectData, parent: string, documentId: string): ResultDocument[] => {
     
     const predecessors = data.predecessors;
-    if ((!parent || parent === 'root') && documentId && predecessors.length > 0) {
+    if (!isResource(parent) && documentId && predecessors.length > 0) {
         predecessors.pop();
     }
     return predecessors;
@@ -237,7 +237,7 @@ const getMapDocument = (data: ProjectData, parent: string, predecessors: ResultD
 
     return data.selected
         ? data.selected
-        : (parent && parent !== 'root' && predecessors.length > 0)
+        : (isResource(parent) && predecessors.length > 0)
             ? (predecessors[predecessors.length - 1] as Document)
             : null;
 };
@@ -247,6 +247,9 @@ const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchPara
 
 
 const isInSearchMode = (searchParams: URLSearchParams): boolean => searchParams.has('q');
+
+
+const isResource = (parent: string) => parent && parent !== 'root';
 
 
 const mainSidebarCardStyle: CSSProperties = {
