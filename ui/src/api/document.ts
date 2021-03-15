@@ -84,14 +84,12 @@ export interface Relation {
     targets: ResultDocument[];
 }
 
-export function getDocumentImages(document: Document): ResultDocument[] {
-
-    return document.resource.groups.find((group: FieldGroup) => group.name === 'stem')
+export const getDocumentImages = (document: Document): ResultDocument[] =>
+    document.resource.groups.find((group: FieldGroup) => group.name === 'stem')
         .relations.find((rel: Relation) => rel.name === 'isDepictedIn')?.targets;
-}
 
-export function getDocumentDescription(document: Document): FieldValue {
+export const getDocumentDescription = (doc: Document): FieldValue => getFieldValue(doc, 'parent', 'description');
 
-    return document.resource.groups.find((group: FieldGroup) => group.name === 'parent')
-        .fields.find((field: Field) => field.name === 'description')?.value;
-}
+export const getFieldValue = (document: Document, groupName: string, fieldName: string): FieldValue =>
+    document.resource.groups.find((group: FieldGroup) => group.name === groupName)
+        .fields.find((field: Field) => field.name === fieldName)?.value;
