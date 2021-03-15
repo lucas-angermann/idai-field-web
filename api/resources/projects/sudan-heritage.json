@@ -5,6 +5,7 @@
       "label": {
         "de": "Ort",
         "en": "Heritage Site",
+        "es": "Sitio",
         "it": "Luogo"
       },
       "description": {},
@@ -19,6 +20,7 @@
               "label": {
                 "de": "Kategorie",
                 "en": "Category",
+                "es": "Categoría",
                 "it": "Kategorie"
               },
               "description": {}
@@ -37,11 +39,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -51,6 +55,7 @@
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description",
+                "es": "Breve descripción",
                 "it": "Kurzbeschreibung"
               },
               "description": {}
@@ -62,6 +67,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -80,6 +86,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -602,6 +609,7 @@
           "label": {
             "de": "Ort",
             "en": "Heritage Site",
+            "es": "Sitio",
             "it": "Luogo"
           }
         },
@@ -678,6 +686,7 @@
       "label": {
         "de": "Abbildung",
         "en": "Image",
+        "es": "Imagen",
         "it": "Immagine"
       },
       "description": {},
@@ -692,6 +701,7 @@
               "label": {
                 "de": "Kategorie",
                 "en": "Category",
+                "es": "Categoría",
                 "it": "Kategorie"
               },
               "description": {}
@@ -710,11 +720,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -724,6 +736,7 @@
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description",
+                "es": "Breve descripción",
                 "it": "Kurzbeschreibung"
               },
               "description": {}
@@ -781,6 +794,7 @@
               "label": {
                 "de": "Zeigt",
                 "en": "Depicts",
+                "es": "Representa",
                 "it": "Zeigt"
               },
               "description": {}
@@ -812,6 +826,7 @@
               "label": {
                 "de": "Höhe",
                 "en": "Height",
+                "es": "Altura",
                 "it": "Höhe"
               },
               "description": {}
@@ -823,6 +838,7 @@
               "label": {
                 "de": "Breite",
                 "en": "Width",
+                "es": "Anchura",
                 "it": "Breite"
               },
               "description": {}
@@ -879,6 +895,7 @@
           "label": {
             "de": "Abbildung",
             "en": "Image",
+            "es": "Imagen",
             "it": "Immagine"
           }
         }
@@ -895,6 +912,7 @@
       "label": {
         "de": "Projekt",
         "en": "Project",
+        "es": "Proyecto",
         "it": "Progetto"
       },
       "description": {},
@@ -909,6 +927,7 @@
               "label": {
                 "de": "Kategorie",
                 "en": "Category",
+                "es": "Categoría",
                 "it": "Kategorie"
               },
               "description": {}
@@ -926,6 +945,7 @@
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description",
+                "es": "Breve descripción",
                 "it": "Kurzbeschreibung"
               },
               "description": {}
@@ -937,6 +957,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -1178,6 +1199,7 @@
               "label": {
                 "de": "Koordinatenbezugssystem",
                 "en": "Coordinate reference system",
+                "es": "Sistema de referencia de coordenadas",
                 "it": "Koordinatenbezugssystem"
               },
               "description": {}
@@ -1189,11 +1211,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             }
@@ -1202,6 +1226,7 @@
           "label": {
             "de": "Projekt",
             "en": "Project",
+            "es": "Proyecto",
             "it": "Progetto"
           }
         }
@@ -1232,6 +1257,7 @@
               "label": {
                 "de": "Kategorie",
                 "en": "Category",
+                "es": "Categoría",
                 "it": "Kategorie"
               },
               "description": {}
@@ -1250,11 +1276,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -1264,6 +1292,7 @@
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description",
+                "es": "Breve descripción",
                 "it": "Kurzbeschreibung"
               },
               "description": {}
@@ -1275,6 +1304,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -1391,6 +1421,7 @@
       "label": {
         "de": "Typ",
         "en": "Type",
+        "es": "Tipo",
         "it": "Tipo"
       },
       "description": {},
@@ -1405,6 +1436,7 @@
               "label": {
                 "de": "Kategorie",
                 "en": "Category",
+                "es": "Categoría",
                 "it": "Kategorie"
               },
               "description": {}
@@ -1423,11 +1455,13 @@
               "label": {
                 "de": "Bezeichner",
                 "en": "Identifier",
+                "es": "Identificador",
                 "it": "Bezeichner"
               },
               "description": {
                 "de": "Eindeutiger Bezeichner dieser Ressource",
                 "en": "Unique identifier of this resource",
+                "es": "Identificador único de este recurso",
                 "it": "Eindeutiger Bezeichner dieser Ressource"
               }
             },
@@ -1437,6 +1471,7 @@
               "label": {
                 "de": "Kurzbeschreibung",
                 "en": "Short description",
+                "es": "Breve descripción",
                 "it": "Kurzbeschreibung"
               },
               "description": {}
@@ -1448,6 +1483,7 @@
               "label": {
                 "de": "Wird gezeigt in",
                 "en": "Depicted in",
+                "es": "Representado en",
                 "it": "Wird gezeigt in"
               },
               "description": {}
@@ -1466,6 +1502,7 @@
               "label": {
                 "de": "Liegt in",
                 "en": "Lies within",
+                "es": "Dentro de",
                 "it": "Dentro a"
               },
               "description": {}
@@ -1487,6 +1524,7 @@
               "label": {
                 "de": "Zugeordnete Funde",
                 "en": "Associated finds",
+                "es": "Hallazgos relacionados",
                 "it": "Zugeordnete Funde"
               },
               "description": {}
@@ -1533,6 +1571,7 @@
           "label": {
             "de": "Typ",
             "en": "Type",
+            "es": "Tipo",
             "it": "Tipo"
           }
         }

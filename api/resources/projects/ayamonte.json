@@ -7655,6 +7655,41 @@
                     },
                     "id": "position-values-expansion-default"
                   },
+                  "name": "dimensionHeight",
+                  "label": {
+                    "de": "Höhe",
+                    "en": "Height",
+                    "es": "Altura",
+                    "it": "Altezza"
+                  },
+                  "description": {
+                    "de": "Angabe der Höhe an der maximalen/minimalen Ausdehnung",
+                    "it": "Altezza alla massima/minima estensione"
+                  }
+                },
+                {
+                  "inputType": "dimension",
+                  "source": "common",
+                  "positionValues": {
+                    "createdBy": "",
+                    "creationDate": "",
+                    "description": {},
+                    "values": {
+                      "Maximale Ausdehnung": {
+                        "labels": {
+                          "de": "Maximale Ausdehnung",
+                          "en": "Maximum expansion"
+                        }
+                      },
+                      "Minimale Ausdehnung": {
+                        "labels": {
+                          "de": "Minimale Ausdehnung",
+                          "en": "Minimum expansion"
+                        }
+                      }
+                    },
+                    "id": "position-values-expansion-default"
+                  },
                   "name": "dimensionLength",
                   "label": {
                     "de": "Länge",
@@ -44279,6 +44314,19 @@
               }
             },
             {
+              "inputType": "checkboxes",
+              "valuelistFromProjectField": "campaigns",
+              "source": "common",
+              "name": "campaign",
+              "label": {
+                "de": "Kampagne",
+                "en": "Campaign",
+                "es": "Campaña",
+                "it": "Campagna"
+              },
+              "description": {}
+            },
+            {
               "inputType": "date",
               "source": "common",
               "name": "date",
@@ -44615,6 +44663,123 @@
             "en": "Sample",
             "es": "Muestra",
             "it": "Campione"
+          }
+        },
+        {
+          "name": "dimension",
+          "fields": [
+            {
+              "inputType": "dimension",
+              "source": "common",
+              "positionValues": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {},
+                "values": {
+                  "Maximale Ausdehnung": {
+                    "labels": {
+                      "de": "Maximale Ausdehnung",
+                      "en": "Maximum expansion"
+                    }
+                  },
+                  "Minimale Ausdehnung": {
+                    "labels": {
+                      "de": "Minimale Ausdehnung",
+                      "en": "Minimum expansion"
+                    }
+                  }
+                },
+                "id": "position-values-expansion-default"
+              },
+              "name": "dimensionHeight",
+              "label": {
+                "de": "Höhe",
+                "en": "Height",
+                "es": "Altura",
+                "it": "Altezza"
+              },
+              "description": {
+                "de": "Angabe der Höhe an der maximalen/minimalen Ausdehnung",
+                "it": "Altezza alla massima/minima estensione"
+              }
+            },
+            {
+              "inputType": "dimension",
+              "source": "common",
+              "positionValues": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {},
+                "values": {
+                  "Maximale Ausdehnung": {
+                    "labels": {
+                      "de": "Maximale Ausdehnung",
+                      "en": "Maximum expansion"
+                    }
+                  },
+                  "Minimale Ausdehnung": {
+                    "labels": {
+                      "de": "Minimale Ausdehnung",
+                      "en": "Minimum expansion"
+                    }
+                  }
+                },
+                "id": "position-values-expansion-default"
+              },
+              "name": "dimensionLength",
+              "label": {
+                "de": "Länge",
+                "en": "Length",
+                "es": "Longitud",
+                "it": "Lunghezza"
+              },
+              "description": {
+                "de": "Angabe der Länge",
+                "it": "Indicazione della lunghezza"
+              }
+            },
+            {
+              "inputType": "dimension",
+              "source": "common",
+              "positionValues": {
+                "createdBy": "",
+                "creationDate": "",
+                "description": {},
+                "values": {
+                  "Maximale Ausdehnung": {
+                    "labels": {
+                      "de": "Maximale Ausdehnung",
+                      "en": "Maximum expansion"
+                    }
+                  },
+                  "Minimale Ausdehnung": {
+                    "labels": {
+                      "de": "Minimale Ausdehnung",
+                      "en": "Minimum expansion"
+                    }
+                  }
+                },
+                "id": "position-values-expansion-default"
+              },
+              "name": "dimensionWidth",
+              "label": {
+                "de": "Breite",
+                "en": "Width",
+                "es": "Anchura",
+                "it": "Larghezza"
+              },
+              "description": {
+                "de": "Angabe der Breite an der maximalen/minimalen Ausdehnung",
+                "it": "Larghezza alla massima/minima estensione"
+              }
+            }
+          ],
+          "relations": [],
+          "label": {
+            "de": "Maße",
+            "en": "Dimensions",
+            "es": "Medidas",
+            "it": "Dimensioni"
           }
         },
         {
@@ -45486,6 +45651,21 @@
                     "it": "Campagna"
                   },
                   "description": {}
+                },
+                {
+                  "inputType": "date",
+                  "source": "common",
+                  "name": "date",
+                  "label": {
+                    "de": "Datum",
+                    "en": "Date",
+                    "es": "Fecha",
+                    "it": "Data"
+                  },
+                  "description": {
+                    "de": "Datum der Aufnahme/Durchführung",
+                    "it": "Data dell'esecuzione/del rilevamento"
+                  }
                 }
               ],
               "relations": [
