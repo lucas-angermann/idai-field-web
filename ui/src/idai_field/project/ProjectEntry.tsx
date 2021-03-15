@@ -84,8 +84,9 @@ export default function ProjectEntry ():ReactElement {
                 <div className="flex-fill" style={ contentStyle }>
                     <div className="px-2 my-1 clearfix">
                         { images &&
-                            <div className="float-right p-2" style={ { width: '30vw' } }>
-                                <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
+                            <div className="float-right p-2">
+                                <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle }
+                                    maxWidth={ 600 } maxHeight={ 400 } />
                             </div>
                         }
                         <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
@@ -133,7 +134,9 @@ const filterColStyle: CSSProperties = {
 };
 
 const imageCarouselStyle: CSSProperties = {
-    background: '#d3d3cf'
+    background: '#d3d3cf',
+    width: '30vw',
+    maxWidth: '600px'
 };
 
 const contentStyle: CSSProperties = {
@@ -142,7 +145,8 @@ const contentStyle: CSSProperties = {
 
 const mapContainerStyle: CSSProperties = {
     flex: '1 1 50%',
-    maxHeight: '35vw'
+    maxHeight: '35vw',
+    position: 'relative'
 };
 
 const detailsContainerStyle: CSSProperties = {
