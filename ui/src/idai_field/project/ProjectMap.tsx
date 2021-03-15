@@ -37,7 +37,9 @@ const MAX_SIZE = 10000;
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 interface ProjectMapProps {
-    data: ProjectMapData;
+    selectedDocument: Document;
+    highlightedDocuments: ResultDocument[];
+    predecessors: ResultDocument[];
     project: string;
     onDeselectFeature: () => void | undefined;
     fitOptions: FitOptions;
@@ -45,15 +47,9 @@ interface ProjectMapProps {
     isMiniMap: boolean
 }
 
-export interface ProjectMapData {
-    selectedDocument: Document;
-    highlightedDocuments: ResultDocument[];
-    predecessors: ResultDocument[];
-}
 
-
-export default function ProjectMap({ data, project, onDeselectFeature, fitOptions,
-        spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
+export default function ProjectMap({ selectedDocument, highlightedDocuments, predecessors, project, onDeselectFeature,
+        fitOptions, spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -108,13 +104,12 @@ export default function ProjectMap({ data, project, onDeselectFeature, fitOption
     useEffect(() => {
 
         if (!map) return;
-        if (!data) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
         mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
-            data.selectedDocument, isMiniMap);
+            selectedDocument, isMiniMap);
         map.on('click', mapClickFunction.current);
-    }, [map, history, data, searchParams, onDeselectFeature, isMiniMap]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature, isMiniMap]);
 
     useEffect(() => {
 
@@ -131,27 +126,28 @@ export default function ProjectMap({ data, project, onDeselectFeature, fitOption
 
     useEffect(() => {
 
-        if (!map || !vectorLayer || !data) return;
+        if (!map || !vectorLayer) return;
+
         select.getFeatures().clear();
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
-            properties.highlighted = isHighlighted(feature.getProperties()['id'], data.highlightedDocuments);
+            properties.highlighted = isHighlighted(feature.getProperties()['id'], highlightedDocuments);
             feature.setProperties(properties);
         });
 
-        if (data.selectedDocument?.resource?.geometry) {
+        if (selectedDocument?.resource?.geometry) {
             const feature = (vectorLayer.getSource())
-                .getFeatureById(data.selectedDocument.resource.id);
+                .getFeatureById(selectedDocument.resource.id);
             if (!feature) return;
             select.getFeatures().push(feature);
         }
 
         map.getView().fit(
-            getExtent(vectorLayer, data.predecessors, data.selectedDocument),
+            getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
         );
-    }, [map, data, vectorLayer, select, fitOptions]);
+    }, [map, selectedDocument, highlightedDocuments, predecessors, vectorLayer, select, fitOptions]);
 
 
     return <>
@@ -163,14 +159,14 @@ export default function ProjectMap({ data, project, onDeselectFeature, fitOption
        
         <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
         
-        { data && (isMiniMap ?
+        { (isMiniMap ?
             <Link to={ `/project/${project}?parent=root` } className="project-link">
                 <Icon path={ mdiRedo } size={ 1.0 } ></Icon>
             </Link> :
             <LayerControls map={ map }
                         tileLayers={ tileLayers }
                         fitOptions={ fitOptions }
-                        predecessors={ data.predecessors }
+                        predecessors={ predecessors }
                         project={ project }></LayerControls>)
         }
     </>;

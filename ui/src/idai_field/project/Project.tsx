@@ -4,6 +4,7 @@ import { History } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Card } from 'react-bootstrap';
+import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { Document } from '../../api/document';
@@ -13,7 +14,7 @@ import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
-import DocumentHierarchy, { HierarchyData } from '../../shared/documents/DocumentHierarchy';
+import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
@@ -26,7 +27,7 @@ import { EXCLUDED_TYPES_FIELD } from '../constants';
 import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
-import ProjectMap, { ProjectMapData } from './ProjectMap';
+import ProjectMap from './ProjectMap';
 import { postProjectQuery, ProjectQuery } from './projectQuery';
 import ProjectSidebar from './ProjectSidebar';
 
@@ -45,9 +46,8 @@ export default function Project(): ReactElement {
 
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
+    const [mapDocument, setMapDocument] = useState<Document>(null);
     const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
-    const [mapData, setMapData] = useState<ProjectMapData>(null);
-    const [hierarchyData, setHierarchyData] = useState<HierarchyData>();
     const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -70,12 +70,6 @@ export default function Project(): ReactElement {
             predecessors_id: (parent && parent !== 'root') ? parent : documentId
         };
         postProjectQuery(projectQuery, loginData.token).then(result => {
-            if (result.search) {
-                setDocuments(result.search.documents);
-                setTotal(result.search.size);
-                setFilters(result.search.filters);
-            }
-            if (result.map) setMapDocuments(result.map.documents);
             const newPredecessors = result.predecessors;
             if ((!parent || parent === 'root') && documentId && newPredecessors.length > 0) {
                 newPredecessors.pop();
@@ -85,17 +79,18 @@ export default function Project(): ReactElement {
                 : (parent && parent !== 'root' && newPredecessors.length > 0)
                     ? (newPredecessors[newPredecessors.length - 1] as Document)
                     : null;
-            setMapData({
-                selectedDocument: mapDocument,
-                highlightedDocuments: result.map ? result.map.documents : mapDocuments,
-                predecessors: newPredecessors
+            
+            unstable_batchedUpdates(() => {
+                if (result.search) {
+                    setDocuments(result.search.documents);
+                    setTotal(result.search.size);
+                    setFilters(result.search.filters);
+                }
+                if (result.map) setMapDocuments(result.map.documents);
+                setDocument(result.selected);
+                setPredecessors(newPredecessors);
+                setMapDocument(mapDocument);
             });
-            setHierarchyData({
-                documents: result.search ? result.search.documents : documents,
-                predecessors: newPredecessors
-            });
-            setPredecessors(newPredecessors);
-            setDocument(result.selected);
             if (documentId && !result.selected) setNotFound(true);
         });
     }, [projectId, documentId, searchParams, loginData]);
@@ -117,7 +112,9 @@ export default function Project(): ReactElement {
                 ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
                 : [totalBox, breadcrumbBox, renderDocumentDetails(document)]
             : hierarchy
-                ? [breadcrumbBox, totalBox, renderDocumentHierarchy(hierarchyData, searchParams, projectId, onScroll)]
+                ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
+                    documents, predecessors, searchParams, projectId, onScroll
+                )]
                 : [totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
     };
 
@@ -135,7 +132,9 @@ export default function Project(): ReactElement {
             </Card>
             { renderSidebarContent() }
         </ProjectSidebar>
-        <ProjectMap data={ mapData }
+        <ProjectMap selectedDocument={ mapDocument }
+            highlightedDocuments={ mapDocuments }
+            predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
             spinnerContainerStyle={ mapSpinnerContainerStyle }
@@ -155,10 +154,10 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
         cardStyle={ mainSidebarCardStyle } />;
 
 
-const renderDocumentHierarchy = (data: HierarchyData, searchParams: URLSearchParams, projectId: string,
-        onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+const renderDocumentHierarchy = (documents: ResultDocument[], predecessors: ResultDocument[],
+        searchParams: URLSearchParams, projectId: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
     <Card style={ mainSidebarCardStyle }>
-        <DocumentHierarchy data={ data } project={ projectId }
+        <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
             searchParams={ searchParams } onScroll={ onScroll } />
     </Card>;
 

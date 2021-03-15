@@ -99,7 +99,9 @@ export default function ProjectEntry ():ReactElement {
                     <Row className="mt-1">
                         <Col className="col-6" >
                            <ProjectMap
-                                data={ { selectedDocument: projectDoc, highlightedDocuments: [], predecessors: [] } }
+                                selectedDocument={ undefined }
+                                highlightedDocuments={ [] }
+                                predecessors={ [] }
                                 project={ projectId }
                                 onDeselectFeature={ undefined }
                                 fitOptions={ MAP_FIT_OPTIONS }
