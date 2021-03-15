@@ -4,7 +4,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
-import { Document, getDocumentDescription, getDocumentImages } from '../../api/document';
+import { Document, FieldValue, getDocumentDescription, getDocumentImages } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
@@ -99,8 +99,11 @@ const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, ca
     </div>;
 
 const renderContent = (projectId: string, projectDoc: Document, images: ResultDocument[], location: Location,
-        t: TFunction) =>
-    <div className="flex-fill" style={ contentStyle }>
+        t: TFunction) => {
+
+    const description = getDocumentDescription(projectDoc);
+
+    return <div className="flex-fill" style={ contentStyle }>
         <div className="px-2 my-1 clearfix">
             { images &&
                 <div className="float-right p-2">
@@ -108,8 +111,7 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
                         location={ location } maxWidth={ 600 } maxHeight={ 400 } />
                 </div>
             }
-            <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
-            </div>
+            { description && renderDescription(description) }
         </div>
         <div className="d-flex">
             <div className="p-2" style={ mapContainerStyle }>
@@ -128,6 +130,14 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
             </div>
         </div>
     </div>;
+};
+
+
+const renderDescription = (description: FieldValue) =>
+    description.toString()
+        .split(/\r\n|\n\r|\r|\n/g)
+        .filter(paragraph => paragraph.length > 0)
+        .map((paragraph, i) => <p key={ i }>{ paragraph }</p>);
 
 
 const containerStyle: CSSProperties = {
