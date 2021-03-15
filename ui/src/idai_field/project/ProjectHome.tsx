@@ -1,15 +1,16 @@
+import { mdiEmail, mdiMapMarker, mdiWeb } from '@mdi/js';
+import Icon from '@mdi/react';
 import { Location } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
-import { Document, getDocumentDescription, getDocumentImages } from '../../api/document';
+import { Document, FieldValue, getDocumentDescription, getDocumentImages, getFieldValue } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
-import { renderGroup } from '../../shared/document/DocumentDetails';
 import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { useSearchParams } from '../../shared/location';
@@ -86,11 +87,11 @@ const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, ca
         </Card>
         <Card className="mb-2 mt-0 p-2">
             <ProjectHierarchyButton projectDocument={ projectDoc }
-                label={ t('projectEntry.toHierarOverview') } />
+                label={ t('projectHome.toHierarOverview') } />
         </Card>
         <Card className="my-0 flex-fill" style={ { height: 0 } }>
             <div className="py-1 card-header">
-                <h5>{ t('projectEntry.categories') }</h5>
+                <h5>{ t('projectHome.categories') }</h5>
             </div>
             <div className="flex-fill py-2" style={ filterColStyle }>
                 <CategoryFilter filter={ categoryFilter } projectId={ projectId } />
@@ -99,8 +100,11 @@ const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, ca
     </div>;
 
 const renderContent = (projectId: string, projectDoc: Document, images: ResultDocument[], location: Location,
-        t: TFunction) =>
-    <div className="flex-fill" style={ contentStyle }>
+        t: TFunction) => {
+
+    const description = getDocumentDescription(projectDoc);
+
+    return <div className="flex-fill" style={ contentStyle }>
         <div className="px-2 my-1 clearfix">
             { images &&
                 <div className="float-right p-2">
@@ -108,8 +112,7 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
                         location={ location } maxWidth={ 600 } maxHeight={ 400 } />
                 </div>
             }
-            <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
-            </div>
+            { description && renderDescription(description) }
         </div>
         <div className="d-flex">
             <div className="p-2" style={ mapContainerStyle }>
@@ -124,11 +127,55 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
                         isMiniMap={ true } />
             </div>
             <div className="p-2" style={ detailsContainerStyle }>
-                { renderGroup(t, projectId, CONFIGURATION.fieldUrl, ['description', 'staff'])
-                    (projectDoc.resource.groups[1]) }
+                { renderProjectDetails(projectDoc, t) }
             </div>
         </div>
     </div>;
+};
+
+
+const renderDescription = (description: FieldValue) =>
+    description.toString()
+        .split(/\r\n|\n\r|\r|\n/g)
+        .filter(paragraph => paragraph.length > 0)
+        .map((paragraph, i) => <p key={ i }>{ paragraph }</p>);
+
+const renderProjectDetails = (projectDoc: Document, t: TFunction) =>
+    <dl>
+        <dt>{ t('projectHome.institution') }</dt>
+        <dd>{ getFieldValue(projectDoc, 'parent', 'institution')?.toString() }</dd>
+        <dt>{ t('projectHome.projectSupervisor') }</dt>
+        <dd>{ getFieldValue(projectDoc, 'parent', 'projectSupervisor')?.toString() }</dd>
+        <dt>{ t('projectHome.contactPerson') }</dt>
+        <dd>
+            <a href={ `mailto:${getFieldValue(projectDoc, 'parent', 'contactMail')?.toString()}` }>
+                <Icon path={ mdiEmail } size={ 0.8 } className="mr-1" />
+                { getFieldValue(projectDoc, 'parent', 'contactPerson')?.toString() }
+            </a>
+        </dd>
+        <dt>{ t('projectHome.staff') }</dt>
+        <dd>{ (getFieldValue(projectDoc, 'parent', 'staff') as FieldValue[]).join(', ') }</dd>
+        <dt>{ t('projectHome.links') }</dt>
+        <dd>
+            <ul className="list-unstyled">
+                <li>
+                    <a href={ `${getFieldValue(projectDoc, 'parent', 'externalReference')?.toString()}` }
+                            target="_blank" rel="noreferrer">
+                        <Icon path={ mdiWeb } size={ 0.8 } className="mr-1" />
+                        { t('projectHome.externalReference') }
+                    </a>
+                </li>
+                <li>
+                    <a href={ 'https://gazetteer.dainst.org/place/'
+                            + getFieldValue(projectDoc, 'parent', 'gazId')?.toString() }
+                            target="_blank" rel="noreferrer">
+                        <Icon path={ mdiMapMarker } size={ 0.8 } className="mr-1" />
+                        { t('projectHome.gazId') }
+                    </a>
+                </li>
+            </ul>
+        </dd>
+    </dl>;
 
 
 const containerStyle: CSSProperties = {
@@ -163,7 +210,8 @@ const contentStyle: CSSProperties = {
 
 const mapContainerStyle: CSSProperties = {
     flex: '1 1 50%',
-    maxHeight: '35vw',
+    height: '30vw',
+    maxHeight: '40vw',
     position: 'relative'
 };
 

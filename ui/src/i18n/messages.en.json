@@ -43,9 +43,16 @@
     },
     "filters": "Filters"
   },
-  "projectEntry": {
+  "projectHome": {
     "categories": "Kategorien",
-    "toHierarOverview": "Hierarchy View"
+    "toHierarOverview": "Hierarchy View",
+    "institution": "Institution",
+    "projectSupervisor": "Supervisor",
+    "contactPerson": "Contact",
+    "staff": "Staff",
+    "links": "Further information",
+    "externalReference": "Project website",
+    "gazId": "iDAI.gazetteer"
   },
   "projectOverview": {
     "projectOverview.backendNotAvailable": "Backend nicht erreichbar!"
