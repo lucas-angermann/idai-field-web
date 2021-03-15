@@ -100,7 +100,7 @@ export default function ProjectEntry ():ReactElement {
                         <Col className="col-6" >
                            <ProjectMap
                                 selectedDocument={ undefined }
-                                highlightedDocuments={ [] }
+                                highlightedIds={ [] }
                                 predecessors={ [] }
                                 project={ projectId }
                                 onDeselectFeature={ undefined }
