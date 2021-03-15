@@ -1,0 +1,7 @@
+#filter-popover {
+    margin-top: 60px !important;
+}
+
+#filter-popover .arrow {
+    margin-top: -60px !important;
+}

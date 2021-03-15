@@ -5,7 +5,9 @@ import React, { CSSProperties, ReactElement } from 'react';
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { ResultFilter } from '../../api/result';
+import { NAVBAR_HEIGHT } from '../../constants';
 import CategoryFilter from './CategoryFilter';
+import './filters.css';
 import RelationFilters from './RelationFilters';
 import SimpleFilter from './SimpleFilter';
 
@@ -29,9 +31,9 @@ export default function Filters({ filters, searchParams, projectId }
 
 
 const renderFilterPopover = (filters: ResultFilter[], searchParams: URLSearchParams, projectId: string, t: TFunction) =>
-    <Popover id="filter-popover" style={ popoverStyles }>
+    <Popover id="filter-popover" style={ popoverStyles } className="d-flex flex-column">
         <Popover.Title as="h3">{ t('project.filters') }</Popover.Title>
-        <Popover.Content>
+        <Popover.Content className="flex-grow-1" style={ contentStyles }>
             { filters.map((filter: ResultFilter) =>
                 filter.name === 'resource.category.name'
                 ? <CategoryFilter filter={ filter } searchParams={ searchParams } projectId={ projectId }
@@ -45,6 +47,9 @@ const renderFilterPopover = (filters: ResultFilter[], searchParams: URLSearchPar
 
 const popoverStyles: CSSProperties = {
     maxWidth: '400px',
-    maxHeight: '90vh',
-    overflow: 'auto' // TODO: this removes the popover's arrow
+    maxHeight: `calc(100vh - ${NAVBAR_HEIGHT + 18}px)`
+};
+
+const contentStyles: CSSProperties = {
+    overflowY: 'auto'
 };
