@@ -28,7 +28,7 @@ import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
-import { postProjectQuery, ProjectQuery } from './projectQuery';
+import { fetchProjectData } from './projectData';
 import ProjectSidebar from './ProjectSidebar';
 
 
@@ -64,34 +64,30 @@ export default function Project(): ReactElement {
             query = parseFrontendGetParams(searchParams, query);
         }
         previousSearchParams.current = searchParams;
-        const projectQuery: ProjectQuery = {
-            query: query,
-            selected_id: documentId,
-            predecessors_id: (parent && parent !== 'root') ? parent : documentId
-        };
-        postProjectQuery(projectQuery, loginData.token).then(result => {
-            const newPredecessors = result.predecessors;
+        const predecessorsId: string = (parent && parent !== 'root') ? parent : documentId;
+        fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
+            const newPredecessors = data.predecessors;
             if ((!parent || parent === 'root') && documentId && newPredecessors.length > 0) {
                 newPredecessors.pop();
             }
-            const mapDocument = result.selected
-                ? result.selected
+            const mapDocument = data.selected
+                ? data.selected
                 : (parent && parent !== 'root' && newPredecessors.length > 0)
                     ? (newPredecessors[newPredecessors.length - 1] as Document)
                     : null;
             
             unstable_batchedUpdates(() => {
-                if (result.search) {
-                    setDocuments(result.search.documents);
-                    setTotal(result.search.size);
-                    setFilters(result.search.filters);
+                if (data.searchResult) {
+                    setDocuments(data.searchResult.documents);
+                    setTotal(data.searchResult.size);
+                    setFilters(data.searchResult.filters);
                 }
-                if (result.map) setMapDocuments(result.map.documents);
-                setDocument(result.selected);
+                if (data.mapSearchResult) setMapDocuments(data.mapSearchResult.documents);
+                setDocument(data.selected);
                 setPredecessors(newPredecessors);
                 setMapDocument(mapDocument);
             });
-            if (documentId && !result.selected) setNotFound(true);
+            if (documentId && !data.selected) setNotFound(true);
         });
     }, [projectId, documentId, searchParams, loginData]);
 
