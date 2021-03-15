@@ -15,7 +15,7 @@ import View, { FitOptions } from 'ol/View';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
-import { isUndefined, not, to } from 'tsfun';
+import { isUndefined, not } from 'tsfun';
 import { Document } from '../../api/document';
 import { search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
@@ -38,7 +38,7 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 interface ProjectMapProps {
     selectedDocument: Document;
-    highlightedDocuments: ResultDocument[];
+    highlightedIds: string[];
     predecessors: ResultDocument[];
     project: string;
     onDeselectFeature: () => void | undefined;
@@ -48,7 +48,7 @@ interface ProjectMapProps {
 }
 
 
-export default function ProjectMap({ selectedDocument, highlightedDocuments, predecessors, project, onDeselectFeature,
+export default function ProjectMap({ selectedDocument, highlightedIds, predecessors, project, onDeselectFeature,
         fitOptions, spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
@@ -132,7 +132,7 @@ export default function ProjectMap({ selectedDocument, highlightedDocuments, pre
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
-            properties.highlighted = isHighlighted(feature.getProperties()['id'], highlightedDocuments);
+            properties.highlighted = highlightedIds.includes(feature.getProperties()['id']);
             feature.setProperties(properties);
         });
 
@@ -147,7 +147,7 @@ export default function ProjectMap({ selectedDocument, highlightedDocuments, pre
             getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
         );
-    }, [map, selectedDocument, highlightedDocuments, predecessors, vectorLayer, select, fitOptions]);
+    }, [map, selectedDocument, highlightedIds, predecessors, vectorLayer, select, fitOptions]);
 
 
     return <>
@@ -398,13 +398,6 @@ const createFeature = (document: ResultDocument): Feature => ({
         project: document.project
     }
 });
-
-
-const isHighlighted = (resourceId: string, highlightedDocuments: ResultDocument[]): boolean => {
-
-    return highlightedDocuments === null
-        || highlightedDocuments.map(to('resource.id')).includes(resourceId);
-};
 
 
 const getExtent = (layer: VectorLayer, predecessors: ResultDocument[], selectedDocument?: ResultDocument): Extent => {

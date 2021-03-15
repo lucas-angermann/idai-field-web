@@ -7,6 +7,7 @@ import { Card } from 'react-bootstrap';
 import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useParams } from 'react-router-dom';
+import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
@@ -47,7 +48,7 @@ export default function Project(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocument, setMapDocument] = useState<Document>(null);
-    const [mapDocuments, setMapDocuments] = useState<ResultDocument[]>([]);
+    const [mapHighlightedIds, setMapHighlightedIds] = useState<string[]>([]);
     const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -82,7 +83,13 @@ export default function Project(): ReactElement {
                     setTotal(data.searchResult.size);
                     setFilters(data.searchResult.filters);
                 }
-                if (data.mapSearchResult) setMapDocuments(data.mapSearchResult.documents);
+                if (data.mapSearchResult) {
+                    setMapHighlightedIds(
+                        data.mapSearchResult.documents
+                            ? data.mapSearchResult.documents.map(to('resource.id'))
+                            : []
+                    );
+                }
                 setDocument(data.selected);
                 setPredecessors(newPredecessors);
                 setMapDocument(mapDocument);
@@ -129,7 +136,7 @@ export default function Project(): ReactElement {
             { renderSidebarContent() }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
-            highlightedDocuments={ mapDocuments }
+            highlightedIds={ mapHighlightedIds }
             predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
