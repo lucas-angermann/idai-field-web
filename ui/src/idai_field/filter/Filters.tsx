@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT } from '../../constants';
 import CategoryFilter from './CategoryFilter';
-import './filters.css';
 import RelationFilters from './RelationFilters';
 import SimpleFilter from './SimpleFilter';
 
@@ -21,7 +20,8 @@ export default function Filters({ filters, searchParams, projectId }
 
     return <div>
         <OverlayTrigger trigger="click" placement="right"
-                overlay={ renderFilterPopover(filters, searchParams, projectId, t) }>
+                overlay={ renderFilterPopover(filters, searchParams, projectId, t) }
+                popperConfig={ popperConfig }>
             <Button variant="link">
                 <Icon path={ mdiFilter } size={ 0.8 } />
             </Button>
@@ -43,6 +43,18 @@ const renderFilterPopover = (filters: ResultFilter[], searchParams: URLSearchPar
             <RelationFilters searchParams={ searchParams } projectId={ projectId } />
         </Popover.Content>
     </Popover>;
+
+
+const popperConfig = {
+    modifiers: [
+        {
+            name: 'preventOverflow',
+            options: {
+                padding: NAVBAR_HEIGHT + 10,
+            },
+        },
+    ]
+};
 
 
 const popoverStyles: CSSProperties = {
