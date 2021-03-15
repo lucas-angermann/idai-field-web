@@ -2,7 +2,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { Document, getDocumentImages } from '../../api/document';
+import { Document, getDocumentDescription, getDocumentImages } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
@@ -81,12 +81,18 @@ export default function ProjectEntry ():ReactElement {
                         </div>
                     </Card>
                 </div>
-                <div className="mx-2 d-flex flex-fill">
-                    <div className="d-flex flex-column" style={ { flex: '1 1 50%' } }>
+                <div className="flex-fill" style={ contentStyle }>
+                    <div className="px-2 my-1 clearfix">
                         { images &&
-                            <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
+                            <div className="float-right p-2" style={ { width: '30vw' } }>
+                                <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle } />
+                            </div>
                         }
-                        <div className="flex-fill mt-2" style={ { position: 'relative' } }>
+                        <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
+                        </div>
+                    </div>
+                    <div className="d-flex">
+                        <div className="p-2" style={ mapContainerStyle }>
                             <ProjectMap
                                     selectedDocument={ projectDoc }
                                     predecessors={ [] }
@@ -96,9 +102,10 @@ export default function ProjectEntry ():ReactElement {
                                     spinnerContainerStyle={ mapSpinnerContainerStyle }
                                     isMiniMap={ true } />
                         </div>
-                    </div>
-                    <div className="px-3 py-1" style={ contentStyle }>
-                        { renderGroup(t, projectId, CONFIGURATION.fieldUrl)(projectDoc.resource.groups[1]) }
+                        <div className="p-2" style={ detailsContainerStyle }>
+                            { renderGroup(t, projectId, CONFIGURATION.fieldUrl, ['description', 'staff'])
+                                (projectDoc.resource.groups[1]) }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,7 +124,8 @@ const headerStyle: CSSProperties = {
 };
 
 const sidebarStyles: CSSProperties = {
-    width: `${SIDEBAR_WIDTH}px`
+    width: `${SIDEBAR_WIDTH}px`,
+    flexShrink: 0
 };
 
 const filterColStyle: CSSProperties = {
@@ -129,8 +137,16 @@ const imageCarouselStyle: CSSProperties = {
 };
 
 const contentStyle: CSSProperties = {
-    flex: '1 1 50%',
     overflowY: 'auto'
+};
+
+const mapContainerStyle: CSSProperties = {
+    flex: '1 1 50%',
+    maxHeight: '35vw'
+};
+
+const detailsContainerStyle: CSSProperties = {
+    flex: '1 1 50%'
 };
 
 const mapSpinnerContainerStyle: CSSProperties = {

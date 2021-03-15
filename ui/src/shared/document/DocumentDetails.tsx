@@ -50,12 +50,12 @@ const renderGroups = (document: Document, t: TFunction, baseUrl: string): ReactN
 };
 
 
-export const renderGroup = (t: TFunction, project: string, baseUrl: string) =>
+export const renderGroup = (t: TFunction, project: string, baseUrl: string, skip: string[] = []) =>
     function FieldGroupRow(group: FieldGroup): ReactNode {
 
     return (
         <div key={ `${group.name}_group` }>
-            { renderFieldList(group.fields, t) }
+            { renderFieldList(group.fields.filter(field => !skip.includes(field.name)), t) }
             { renderRelationList(group.relations, project, t, baseUrl) }
         </div>
     );
