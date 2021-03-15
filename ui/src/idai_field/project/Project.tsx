@@ -220,7 +220,7 @@ const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Qu
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
     return parseFrontendGetParams(searchParams, query);
-}
+};
 
 
 const getPredecessors = (data: ProjectData, parent: string, documentId: string): ResultDocument[] => {
