@@ -39,7 +39,7 @@ const renderImage = (document: Document, maxWidth: number, maxHeight: number, lo
                     { location
                         ?
                             <Link to={ `/image/${document.project}/${imageDoc.resource.id}?r=${location.pathname}` }
-                                    className="d-block mb-2">
+                                    className="d-block">
                                 <Image
                                     project={ document.project }
                                     id={ imageDoc.resource.id }

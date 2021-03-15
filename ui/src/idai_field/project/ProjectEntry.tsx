@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { Document, getDocumentDescription, getDocumentImages } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument, ResultFilter } from '../../api/result';
@@ -26,6 +26,7 @@ export default function ProjectEntry ():ReactElement {
     const { projectId } = useParams<{ projectId: string }>();
     const loginData = useContext(LoginContext);
     const searchParams = useSearchParams();
+    const location = useLocation();
     const { t } = useTranslation();
 
     const [categoryFilter, setCategoryFilter] = useState<ResultFilter>();
@@ -86,7 +87,7 @@ export default function ProjectEntry ():ReactElement {
                         { images &&
                             <div className="float-right p-2">
                                 <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle }
-                                    maxWidth={ 600 } maxHeight={ 400 } />
+                                    location={ location } maxWidth={ 600 } maxHeight={ 400 } />
                             </div>
                         }
                         <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
@@ -136,7 +137,9 @@ const filterColStyle: CSSProperties = {
 const imageCarouselStyle: CSSProperties = {
     background: '#d3d3cf',
     width: '30vw',
-    maxWidth: '600px'
+    maxWidth: '600px',
+    height: '20vw',
+    maxHeight: '400px'
 };
 
 const contentStyle: CSSProperties = {
