@@ -116,6 +116,7 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
                 <ProjectMap
                         selectedDocument={ projectDoc }
                         predecessors={ [] }
+                        highlightedIds={ [] }
                         project={ projectId }
                         onDeselectFeature={ undefined }
                         fitOptions={ MAP_FIT_OPTIONS }
