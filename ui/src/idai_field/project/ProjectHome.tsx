@@ -1,3 +1,5 @@
+import { Location } from 'history';
+import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -56,64 +58,76 @@ export default function ProjectHome ():ReactElement {
     
     return (
         <div className="d-flex flex-column p-2" style={ containerStyle }>
-            <div className="d-flex p-2 m-2" style={ headerStyle }>
-                <div className="flex-fill">
-                    <h2><img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } /> { title }</h2>
-                </div>
-                <div className="flex-fill text-right">
-                    <DocumentPermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
-                </div>
-            </div>
+            { renderTitle(title, projectId) }
             <div className="d-flex flex-fill pt-2" style={ { height: 0 } }>
-                <div className="mx-2 d-flex flex-column" style={ sidebarStyles }>
-                    <Card className="mb-2 mt-0">
-                        <SearchBar basepath={ `/project/${projectId}` } />
-                    </Card>
-                    <Card className="mb-2 mt-0 p-2">
-                        <ProjectHierarchyButton projectDocument={ projectDoc }
-                            label={ t('projectEntry.toHierarOverview') } />
-                    </Card>
-                    <Card className="my-0 flex-fill" style={ { height: 0 } }>
-                        <div className="py-1 card-header">
-                            <h5>{ t('projectEntry.categories') }</h5>
-                        </div>
-                        <div className="flex-fill py-2" style={ filterColStyle }>
-                            <CategoryFilter filter={ categoryFilter } projectId={ projectId } />
-                        </div>
-                    </Card>
-                </div>
-                <div className="flex-fill" style={ contentStyle }>
-                    <div className="px-2 my-1 clearfix">
-                        { images &&
-                            <div className="float-right p-2">
-                                <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle }
-                                    location={ location } maxWidth={ 600 } maxHeight={ 400 } />
-                            </div>
-                        }
-                        <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
-                        </div>
-                    </div>
-                    <div className="d-flex">
-                        <div className="p-2" style={ mapContainerStyle }>
-                            <ProjectMap
-                                    selectedDocument={ projectDoc }
-                                    predecessors={ [] }
-                                    project={ projectId }
-                                    onDeselectFeature={ undefined }
-                                    fitOptions={ MAP_FIT_OPTIONS }
-                                    spinnerContainerStyle={ mapSpinnerContainerStyle }
-                                    isMiniMap={ true } />
-                        </div>
-                        <div className="p-2" style={ detailsContainerStyle }>
-                            { renderGroup(t, projectId, CONFIGURATION.fieldUrl, ['description', 'staff'])
-                                (projectDoc.resource.groups[1]) }
-                        </div>
-                    </div>
-                </div>
+                { renderSidebar(projectId, projectDoc, t, categoryFilter) }
+                { renderContent(projectId, projectDoc, images, location, t) }
             </div>
         </div>
     );
 }
+
+
+const renderTitle = (title: string, projectId: string) =>
+    <div className="d-flex p-2 m-2" style={ headerStyle }>
+        <div className="flex-fill">
+            <h2><img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } /> {title}</h2>
+        </div>
+        <div className="flex-fill text-right">
+            <DocumentPermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
+        </div>
+    </div>;
+
+
+const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, categoryFilter: ResultFilter) =>
+    <div className="mx-2 d-flex flex-column" style={ sidebarStyles }>
+        <Card className="mb-2 mt-0">
+            <SearchBar basepath={ `/project/${projectId}` } />
+        </Card>
+        <Card className="mb-2 mt-0 p-2">
+            <ProjectHierarchyButton projectDocument={ projectDoc }
+                label={ t('projectEntry.toHierarOverview') } />
+        </Card>
+        <Card className="my-0 flex-fill" style={ { height: 0 } }>
+            <div className="py-1 card-header">
+                <h5>{ t('projectEntry.categories') }</h5>
+            </div>
+            <div className="flex-fill py-2" style={ filterColStyle }>
+                <CategoryFilter filter={ categoryFilter } projectId={ projectId } />
+            </div>
+        </Card>
+    </div>;
+
+const renderContent = (projectId: string, projectDoc: Document, images: ResultDocument[], location: Location,
+        t: TFunction) =>
+    <div className="flex-fill" style={ contentStyle }>
+        <div className="px-2 my-1 clearfix">
+            { images &&
+                <div className="float-right p-2">
+                    <ImageCarousel document={ projectDoc } images={ images } style={ imageCarouselStyle }
+                        location={ location } maxWidth={ 600 } maxHeight={ 400 } />
+                </div>
+            }
+            <div dangerouslySetInnerHTML={ { __html: getDocumentDescription(projectDoc).toString() } }>
+            </div>
+        </div>
+        <div className="d-flex">
+            <div className="p-2" style={ mapContainerStyle }>
+                <ProjectMap
+                        selectedDocument={ projectDoc }
+                        predecessors={ [] }
+                        project={ projectId }
+                        onDeselectFeature={ undefined }
+                        fitOptions={ MAP_FIT_OPTIONS }
+                        spinnerContainerStyle={ mapSpinnerContainerStyle }
+                        isMiniMap={ true } />
+            </div>
+            <div className="p-2" style={ detailsContainerStyle }>
+                { renderGroup(t, projectId, CONFIGURATION.fieldUrl, ['description', 'staff'])
+                    (projectDoc.resource.groups[1]) }
+            </div>
+        </div>
+    </div>;
 
 
 const containerStyle: CSSProperties = {
