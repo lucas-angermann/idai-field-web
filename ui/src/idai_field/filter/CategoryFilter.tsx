@@ -8,8 +8,8 @@ import CloseButton from './CloseButton';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
-export default function CategoryFilter({ filter, searchParams, projectId }
-        : { filter: ResultFilter, searchParams: URLSearchParams, projectId?: string }): ReactElement {
+export default function CategoryFilter({ filter, searchParams = new URLSearchParams(), projectId }
+        : { filter: ResultFilter, searchParams?: URLSearchParams, projectId?: string }): ReactElement {
 
     if (!filter.values.length) return null;
 
@@ -51,7 +51,6 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
 
 
 const filterValueStyle = (level: number): CSSProperties => ({
-    width: '315px',
     paddingLeft: `${level * 1.2}em`
 });
 

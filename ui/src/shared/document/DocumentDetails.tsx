@@ -1,11 +1,11 @@
+import { mdiOpenInNew } from '@mdi/js';
+import { Icon } from '@mdi/react';
 import { TFunction } from 'i18next';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { Icon } from '@mdi/react';
-import { mdiOpenInNew } from '@mdi/js';
 import {
     DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getDocumentImages, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
@@ -50,12 +50,12 @@ const renderGroups = (document: Document, t: TFunction, baseUrl: string): ReactN
 };
 
 
-const renderGroup = (t: TFunction, project: string, baseUrl: string) =>
+export const renderGroup = (t: TFunction, project: string, baseUrl: string, skip: string[] = []) =>
     function FieldGroupRow(group: FieldGroup): ReactNode {
 
     return (
         <div key={ `${group.name}_group` }>
-            { renderFieldList(group.fields, t) }
+            { renderFieldList(group.fields.filter(field => !skip.includes(field.name)), t) }
             { renderRelationList(group.relations, project, t, baseUrl) }
         </div>
     );

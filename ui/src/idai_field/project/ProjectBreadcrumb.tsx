@@ -10,7 +10,7 @@ import { getHierarchyLink } from '../../shared/document/document-utils';
 import DocumentTeaser from '../../shared/document/DocumentTeaser';
 import { LoginContext } from '../../shared/login';
 import './project-breadcrumb.css';
-import ProjectHomeButton from './ProjectHomeButton';
+import ProjectHierarchyButton from './ProjectHierarchyButton';
 
 
 const MAX_BREADCRUMB_ITEMS: number = window.screen.height <= 800 ? 2 : 3;
@@ -35,7 +35,7 @@ export default function ProjectBreadcrumb({ projectId, predecessors }: ProjectBr
     const [predecessorsHead, predecessorsTail] = limitPredecessors(predecessors);
 
     return <>
-        { projectDocument && <ProjectHomeButton projectDocument={ projectDocument } /> }
+        { projectDocument && <ProjectHierarchyButton projectDocument={ projectDocument } /> }
         { predecessorsHead.length > 0 && renderPlaceholder(predecessorsHead) }
         { predecessorsTail.map(renderPredecessor) }
     </>;

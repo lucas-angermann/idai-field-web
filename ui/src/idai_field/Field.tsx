@@ -4,14 +4,14 @@ import ImageView from '../shared/image/ImageView';
 import { doLogout, getLoginData, LoginContext } from '../shared/login';
 import LoginForm from '../shared/loginform/LoginForm';
 import Contact from './contact/Contact';
+import Dashboard from './dashboard/Dashboard';
 import DocumentRedirect from './DocumentRedirect';
 import Download from './download/Download';
-import Dashboard from './dashboard/Dashboard';
 import Manual from './manual/Manual';
 import FieldNav from './navbar/FieldNav';
 import ProjectOverview from './overview/ProjectOverview';
 import Project from './project/Project';
-import ProjectEntry from './project/ProjectEntry';
+import ProjectHome from './project/ProjectHome';
 import ResourceRedirect from './ResourceRedirect';
 
 
@@ -32,7 +32,7 @@ export default function Field(): ReactElement {
                     <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                     <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
-                    <Route path="/project/:projectId/entry" exact component={ ProjectEntry } />
+                    <Route path="/project/:projectId/entry" exact component={ ProjectHome } />
                     <Route path="/project/:projectId/:documentId?" component={ Project } />
                     <Redirect from="/projects/:projectId/:documentId" to="/project/:projectId/:documentId" />
 

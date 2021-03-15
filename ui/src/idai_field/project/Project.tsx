@@ -105,20 +105,21 @@ export default function Project(): ReactElement {
 
     const renderSidebarContent = () => {
 
-        const hierarchy = isInHierarchyMode(searchParams);
+        const hierarchyMode = isInHierarchyMode(searchParams);
+        const searchMode = isInSearchMode(searchParams);
 
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
         const totalBox = renderTotal(total, searchParams, !!document, filters, projectId, t);
 
         return document
-            ? hierarchy
+            ? hierarchyMode
                 ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
-                : [totalBox, breadcrumbBox, renderDocumentDetails(document)]
-            : hierarchy
+                : [searchMode && totalBox, breadcrumbBox, renderDocumentDetails(document)]
+            : hierarchyMode
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
                     documents, predecessors, searchParams, projectId, onScroll
                 )]
-                : [totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
+                : [searchMode && totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
     };
 
     if (notFound) return <NotFound />;
@@ -126,7 +127,7 @@ export default function Project(): ReactElement {
     return <>
         <ProjectSidebar>
             <Card className="d-flex flex-row" style={ searchCardStyle }>
-                <LinkButton to={ `/project/${projectId}` } variant="secondary" style={ homeButtonStyle }>
+                <LinkButton to={ `/project/${projectId}/entry` } variant="secondary" style={ homeButtonStyle }>
                     <img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } />
                 </LinkButton>
                 <div style={ { flexGrow: 1 } }>
@@ -233,6 +234,9 @@ const searchDocuments = async (id: string, searchParams: URLSearchParams,
 
 
 const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
+
+
+const isInSearchMode = (searchParams: URLSearchParams): boolean => searchParams.has('q');
 
 
 const mainSidebarCardStyle: CSSProperties = {

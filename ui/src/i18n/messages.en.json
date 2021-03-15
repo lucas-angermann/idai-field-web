@@ -54,7 +54,7 @@
     "noTargetResource": "Target resource not found"
   },
   "permalinkButton": {
-    "title": "Permalink of the resource"
+    "title": "Permalink"
   },
   "filters": {
     "relations": {
