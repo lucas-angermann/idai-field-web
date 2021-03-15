@@ -10,7 +10,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
-import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { buildProjectQueryTemplate, parseFrontendGetParams, Query } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { SIDEBAR_WIDTH } from '../../constants';
@@ -58,14 +58,13 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
-        const parent = searchParams.get('parent');
-        let query = null;
-        if (searchParams.toString() !== previousSearchParams.current.toString()) {
-            query = buildProjectQueryTemplate(projectId, 0, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
-            query = parseFrontendGetParams(searchParams, query);
-        }
+        const parent: string = searchParams.get('parent');
+        const query: Query = (searchParams.toString() !== previousSearchParams.current.toString())
+            ? buildQuery(projectId, searchParams, 0)
+            : null;
         previousSearchParams.current = searchParams;
         const predecessorsId: string = (parent && parent !== 'root') ? parent : documentId;
+
         fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
             const newPredecessors = getPredecessors(data, parent, documentId);
             
@@ -91,7 +90,7 @@ export default function Project(): ReactElement {
     }, [projectId, documentId, searchParams, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        searchDocuments(projectId, searchParams, newOffset, loginData.token)
+        search(buildQuery(projectId, searchParams, newOffset), loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
@@ -216,13 +215,12 @@ export const initFilters = async (id: string, searchParams: URLSearchParams, tok
     return search(query, token);
 };
 
-const searchDocuments = async (id: string, searchParams: URLSearchParams,
-        from: number, token: string): Promise<Result> => {
-    
-    let query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
-    query = parseFrontendGetParams(searchParams, query);
-    return search(query, token);
-};
+
+const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Query => {
+
+    const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
+    return parseFrontendGetParams(searchParams, query);
+}
 
 
 const getPredecessors = (data: ProjectData, parent: string, documentId: string): ResultDocument[] => {
