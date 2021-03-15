@@ -29,7 +29,7 @@ import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
-import { fetchProjectData } from './projectData';
+import { fetchProjectData, ProjectData } from './projectData';
 import ProjectSidebar from './ProjectSidebar';
 
 
@@ -67,15 +67,7 @@ export default function Project(): ReactElement {
         previousSearchParams.current = searchParams;
         const predecessorsId: string = (parent && parent !== 'root') ? parent : documentId;
         fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
-            const newPredecessors = data.predecessors;
-            if ((!parent || parent === 'root') && documentId && newPredecessors.length > 0) {
-                newPredecessors.pop();
-            }
-            const mapDocument = data.selected
-                ? data.selected
-                : (parent && parent !== 'root' && newPredecessors.length > 0)
-                    ? (newPredecessors[newPredecessors.length - 1] as Document)
-                    : null;
+            const newPredecessors = getPredecessors(data, parent, documentId);
             
             unstable_batchedUpdates(() => {
                 if (data.searchResult) {
@@ -92,7 +84,7 @@ export default function Project(): ReactElement {
                 }
                 setDocument(data.selected);
                 setPredecessors(newPredecessors);
-                setMapDocument(mapDocument);
+                setMapDocument(getMapDocument(data, parent, newPredecessors));
             });
             if (documentId && !data.selected) setNotFound(true);
         });
@@ -230,6 +222,26 @@ const searchDocuments = async (id: string, searchParams: URLSearchParams,
     let query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
     query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
+};
+
+
+const getPredecessors = (data: ProjectData, parent: string, documentId: string): ResultDocument[] => {
+    
+    const predecessors = data.predecessors;
+    if ((!parent || parent === 'root') && documentId && predecessors.length > 0) {
+        predecessors.pop();
+    }
+    return predecessors;
+};
+
+
+const getMapDocument = (data: ProjectData, parent: string, predecessors: ResultDocument[]): Document => {
+
+    return data.selected
+        ? data.selected
+        : (parent && parent !== 'root' && predecessors.length > 0)
+            ? (predecessors[predecessors.length - 1] as Document)
+            : null;
 };
 
 
