@@ -21,7 +21,7 @@ import ProjectMap from './ProjectMap';
 
 const MAP_FIT_OPTIONS = { padding : [ 10, 10, 10, 10 ], duration: 500 };
 
-export default function ProjectEntry ():ReactElement {
+export default function ProjectHome ():ReactElement {
 
     const { projectId } = useParams<{ projectId: string }>();
     const loginData = useContext(LoginContext);
