@@ -19,7 +19,7 @@ export default function Filters({ filters, searchParams, projectId }
     if (!filters.find(filter => filter.values.length > 0)) return <></>;
 
     return <div>
-        <OverlayTrigger trigger="click" placement="right"
+        <OverlayTrigger trigger="click" placement="right" rootClose
                 overlay={ renderFilterPopover(filters, searchParams, projectId, t) }
                 popperConfig={ popperConfig }>
             <Button variant="link">
