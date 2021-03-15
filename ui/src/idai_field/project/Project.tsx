@@ -122,19 +122,20 @@ export default function Project(): ReactElement {
 
     const renderSidebarContent = () => {
 
-        const hierarchy = isInHierarchyMode(searchParams);
+        const hierarchyMode = isInHierarchyMode(searchParams);
+        const searchMode = isInSearchMode(searchParams);
 
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
         const totalBox = renderTotal(total, searchParams, !!document, filters, projectId, t);
 
         return document
-            ? hierarchy
+            ? hierarchyMode
                 ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
-                : [totalBox, breadcrumbBox, renderDocumentDetails(document)]
-            : hierarchy
+                : [searchMode && totalBox, breadcrumbBox, renderDocumentDetails(document)]
+            : hierarchyMode
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(documents, searchParams, projectId,
                     predecessors, hierarchyUpdate, onScroll)]
-                : [totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
+                : [searchMode && totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
     };
 
     if (notFound) return <NotFound />;
@@ -248,6 +249,9 @@ const searchDocuments = async (id: string, searchParams: URLSearchParams,
 
 
 const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
+
+
+const isInSearchMode = (searchParams: URLSearchParams): boolean => searchParams.has('q');
 
 
 const mainSidebarCardStyle: CSSProperties = {
