@@ -11,7 +11,7 @@ import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams, Query } from '../../api/query';
-import { Result, ResultDocument, ResultFilter } from '../../api/result';
+import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
