@@ -15,10 +15,17 @@ export type ProjectData = {
 export const fetchProjectData = async (token: string, query?: Query, selectedId?: string,
         predecessorsId?: string): Promise<ProjectData> => {
 
-    const searchResult: Result = query ? await search(query, token) : undefined;
-    const mapSearchResult: Result = query ? await searchMap(query, token) : undefined;
-    const selected: Document = selectedId ? await get(selectedId, token) : undefined;
-    const predecessors: ResultDocument[] = predecessorsId ? (await getPredecessors(predecessorsId, token)).results : [];
+    const promises = [];
+    promises.push(query ? search(query, token) : undefined);
+    promises.push(query ? searchMap(query, token) : undefined);
+    promises.push(selectedId ? get(selectedId, token) : undefined);
+    promises.push(predecessorsId ? getPredecessors(predecessorsId, token) : { results: [] });
 
-    return { searchResult, mapSearchResult, selected, predecessors };
+    const data = await Promise.all(promises);
+    return {
+        searchResult: data[0],
+        mapSearchResult: data[1],
+        selected: data[2],
+        predecessors: data[3].results
+     };
 };
