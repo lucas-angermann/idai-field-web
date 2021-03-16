@@ -38,6 +38,7 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 interface ProjectMapProps {
     selectedDocument: Document;
+    hoverDocument?: ResultDocument;
     highlightedIds?: string[];
     highlightedCategories?: string[];
     predecessors: ResultDocument[];
@@ -49,8 +50,9 @@ interface ProjectMapProps {
 }
 
 
-export default function ProjectMap({ selectedDocument, highlightedIds, predecessors, highlightedCategories, project,
-        onDeselectFeature, fitOptions, spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
+export default function ProjectMap({ selectedDocument, hoverDocument, highlightedIds, predecessors,
+        highlightedCategories, project, onDeselectFeature, fitOptions, spinnerContainerStyle,
+        isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -128,7 +130,6 @@ export default function ProjectMap({ selectedDocument, highlightedIds, predecess
     useEffect(() => {
 
         if (!map || !vectorLayer) return;
-        select.getFeatures().clear();
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
@@ -138,19 +139,21 @@ export default function ProjectMap({ selectedDocument, highlightedIds, predecess
             feature.setProperties(properties);
         });
 
-        if (selectedDocument?.resource?.geometry) {
-            const feature = (vectorLayer.getSource())
-                .getFeatureById(selectedDocument.resource.id);
-            if (!feature) return;
-            select.getFeatures().push(feature);
-        }
-
         map.getView().fit(
             getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
         );
     }, [map, selectedDocument, highlightedIds, predecessors, highlightedCategories, vectorLayer, select, fitOptions]);
 
+    useEffect(() => {
+
+        if (!select || !vectorLayer) return;
+
+        select.getFeatures().clear();
+
+        if (selectedDocument) addToSelect(select, selectedDocument, vectorLayer);
+        if (hoverDocument) addToSelect(select, hoverDocument, vectorLayer);
+    }, [selectedDocument, hoverDocument, select, vectorLayer]);
 
     return <>
         { loading &&
@@ -204,6 +207,17 @@ const createSelect = (map: Map): Select => {
     const select = new Select({ condition: never, style: getSelectStyle });
     map.addInteraction(select);
     return select;
+};
+
+
+const addToSelect = (select: Select, document: Document|ResultDocument, layer: VectorLayer) => {
+
+    if (document.resource?.geometry) {
+        const feature = (layer.getSource())
+            .getFeatureById(document.resource.id);
+        if (!feature) return;
+        select.getFeatures().push(feature);
+    }
 };
 
 

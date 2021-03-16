@@ -3,14 +3,23 @@ import { ResultDocument } from '../../api/result';
 import DocumentTeaser from '../document/DocumentTeaser';
 
 
-export default function DocumentList({ documents, searchParams }
-        : { documents: ResultDocument[], searchParams: URLSearchParams }): ReactElement {
+interface DocumentListProps {
+    documents: ResultDocument[];
+    searchParams: URLSearchParams;
+    onMouseEnter?: (document: ResultDocument) => void;
+    onMouseLeave?: () => void;
+}
+
+
+export default function DocumentList({ documents, searchParams, onMouseEnter, onMouseLeave }
+        : DocumentListProps): ReactElement {
 
     return documents?.length > 0 ? (
-        <div className="documents">
+        <div className="documents" onMouseLeave={ () => onMouseLeave && onMouseLeave() }>
             { documents.map((document: ResultDocument) => {
                 const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
-                return <div style={ documentContainerStyle } key={ document.resource.id }>
+                return <div style={ documentContainerStyle } key={ document.resource.id }
+                            onMouseEnter={ () => onMouseEnter && onMouseEnter(document) }>
                     <DocumentTeaser document={ document } linkUrl={ linkUrl } />
                 </div>;
             }

@@ -16,11 +16,13 @@ interface DocumentHierarchyProps {
     project: string;
     searchParams?: URLSearchParams;
     onScroll: (e: React.UIEvent<Element, UIEvent>) => void;
+    onMouseEnter?: (document: ResultDocument) => void;
+    onMouseLeave?: () => void;
 }
 
 
 export default React.memo(function DocumentHierarchy({ documents, predecessors, project, searchParams,
-        onScroll }: DocumentHierarchyProps): ReactElement {
+        onScroll, onMouseEnter, onMouseLeave }: DocumentHierarchyProps): ReactElement {
 
     const parent: string = searchParams.get('parent') ?? 'root';
     const previousPredecessors = useRef<ResultDocument[]>([]);
@@ -42,9 +44,10 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
                     }
-                    <div className="documents" onScroll={ onScroll }>
+                    <div className="documents" onScroll={ onScroll }
+                            onMouseLeave={ () => onMouseLeave && onMouseLeave() }>
                         { documents.map((document: ResultDocument) => {
-                            return renderDocumentRow(document, searchParams);
+                            return renderDocumentRow(document, searchParams, onMouseEnter);
                         }) }
                     </div>
                 </div>
@@ -57,11 +60,13 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
 });
 
 
-const renderDocumentRow = (document: ResultDocument, searchParams: URLSearchParams): ReactNode => {
+const renderDocumentRow = (document: ResultDocument, searchParams: URLSearchParams,
+        onMouseEnter?: (document: ResultDocument) => void): ReactNode => {
 
     const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
     
-    return <div style={ documentRowStyle } key={ document.resource.id }>
+    return <div style={ documentRowStyle } key={ document.resource.id }
+                onMouseEnter={ () => onMouseEnter && onMouseEnter(document) }>
         <div style={ documentTeaserContainerStyle }>
             <DocumentTeaser document={ document } linkUrl={ linkUrl } />
         </div>

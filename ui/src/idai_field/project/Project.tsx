@@ -47,6 +47,7 @@ export default function Project(): ReactElement {
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [mapDocument, setMapDocument] = useState<Document>(null);
+    const [hoverDocument, setHoverDocument] = useState<ResultDocument>(null);
     const [mapHighlightedIds, setMapHighlightedIds] = useState<string[]>([]);
     const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
@@ -110,9 +111,11 @@ export default function Project(): ReactElement {
                 : [searchMode && totalBox, breadcrumbBox, renderDocumentDetails(document)]
             : hierarchyMode
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
-                    documents, predecessors, searchParams, projectId, onScroll
+                    documents, predecessors, searchParams, projectId, onScroll, setHoverDocument
                 )]
-                : [searchMode && totalBox, renderDocumentList(documents, searchParams, projectId, total, onScroll, t)];
+                : [searchMode && totalBox, renderDocumentList(
+                    documents, searchParams, projectId, total, onScroll, setHoverDocument, t
+                )];
     };
 
     if (notFound) return <NotFound />;
@@ -130,6 +133,7 @@ export default function Project(): ReactElement {
             { renderSidebarContent() }
         </ProjectSidebar>
         <ProjectMap selectedDocument={ mapDocument }
+            hoverDocument={ hoverDocument }
             highlightedIds={ mapHighlightedIds }
             predecessors={ predecessors }
             project={ projectId }
@@ -152,10 +156,13 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
 
 
 const renderDocumentHierarchy = (documents: ResultDocument[], predecessors: ResultDocument[],
-        searchParams: URLSearchParams, projectId: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
+        searchParams: URLSearchParams, projectId: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
+        setHoverDocument: (document: ResultDocument) => void) =>
     <Card key="documentHierarchy" style={ mainSidebarCardStyle }>
         <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
-            searchParams={ searchParams } onScroll={ onScroll } />
+            searchParams={ searchParams } onScroll={ onScroll }
+            onMouseEnter={ document => setHoverDocument(document) }
+            onMouseLeave={ () => setHoverDocument(null) } />
     </Card>;
 
 
@@ -166,11 +173,14 @@ const renderBreadcrumb = (projectId: string, predecessors: ResultDocument[]) =>
 
 
 const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
-        total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void, t: TFunction) =>
+        total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
+        setHoverDocument: (document: ResultDocument) => void, t: TFunction) =>
     documents?.length
         ? <>
             <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
-                <DocumentList documents={ documents } searchParams={ searchParams } />
+                <DocumentList documents={ documents } searchParams={ searchParams }
+                    onMouseEnter={ document => setHoverDocument(document) }
+                    onMouseLeave={ () => setHoverDocument(null) } />
             </Card>
         </>
         : <Card style={ mainSidebarCardStyle } className="text-center p-5">
