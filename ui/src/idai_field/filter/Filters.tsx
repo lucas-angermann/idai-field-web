@@ -11,8 +11,9 @@ import RelationFilters from './RelationFilters';
 import SimpleFilter from './SimpleFilter';
 
 
-export default function Filters({ filters, searchParams, projectId }
-        : { filters: ResultFilter[], searchParams: URLSearchParams, projectId?: string }): ReactElement {
+export default function Filters({ filters, searchParams, projectId, onMouseOverCategories }
+        : { filters: ResultFilter[], searchParams: URLSearchParams, projectId?: string,
+            onMouseOverCategories?: (categories: string[]) => void }): ReactElement {
 
     const { t } = useTranslation();
 
@@ -20,7 +21,7 @@ export default function Filters({ filters, searchParams, projectId }
 
     return <div>
         <OverlayTrigger trigger="click" placement="right" rootClose
-                overlay={ renderFilterPopover(filters, searchParams, projectId, t) }
+                overlay={ renderFilterPopover(filters, searchParams, projectId, t, onMouseOverCategories) }
                 popperConfig={ popperConfig }>
             <Button variant="link">
                 <Icon path={ mdiFilter } size={ 0.8 } />
@@ -30,14 +31,18 @@ export default function Filters({ filters, searchParams, projectId }
 }
 
 
-const renderFilterPopover = (filters: ResultFilter[], searchParams: URLSearchParams, projectId: string, t: TFunction) =>
+const renderFilterPopover = (filters: ResultFilter[], searchParams: URLSearchParams, projectId: string,
+        t: TFunction, onMouseOverCategories?: (categories: string[]) => void) =>
     <Popover id="filter-popover" style={ popoverStyles } className="d-flex flex-column">
         <Popover.Title as="h3">{ t('project.filters') }</Popover.Title>
         <Popover.Content className="flex-grow-1" style={ contentStyles }>
             { filters.map((filter: ResultFilter) =>
                 filter.name === 'resource.category.name'
                 ? <CategoryFilter filter={ filter } searchParams={ searchParams } projectId={ projectId }
-                                    key={ filter.name } />
+                                  key={ filter.name }
+                                  onMouseEnter={ categories => onMouseOverCategories
+                                    && onMouseOverCategories(categories) }
+                                  onMouseLeave={ () => onMouseOverCategories && onMouseOverCategories(null) } />
                 : <SimpleFilter filter={ filter } searchParams={ searchParams } projectId={ projectId }
                                 key={ filter.name } />) }
             <RelationFilters searchParams={ searchParams } projectId={ projectId } />

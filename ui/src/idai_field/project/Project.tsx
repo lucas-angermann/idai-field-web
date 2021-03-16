@@ -49,6 +49,7 @@ export default function Project(): ReactElement {
     const [mapDocument, setMapDocument] = useState<Document>(null);
     const [hoverDocument, setHoverDocument] = useState<ResultDocument>(null);
     const [mapHighlightedIds, setMapHighlightedIds] = useState<string[]>([]);
+    const [mapHighlightedCategories, setMapHighlightedCategories] = useState<string[]>(null);
     const [predecessors, setPredecessors] = useState<ResultDocument[]>([]);
     const [notFound, setNotFound] = useState<boolean>(false);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
@@ -103,7 +104,9 @@ export default function Project(): ReactElement {
         const searchMode = isInSearchMode(searchParams);
 
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
-        const totalBox = renderTotal(total, searchParams, !!document, filters, projectId, t);
+        const totalBox = renderTotal(
+            total, searchParams, !!document, filters, projectId, setMapHighlightedCategories, t
+        );
 
         return document
             ? hierarchyMode
@@ -135,6 +138,7 @@ export default function Project(): ReactElement {
         <ProjectMap selectedDocument={ mapDocument }
             hoverDocument={ hoverDocument }
             highlightedIds={ mapHighlightedIds }
+            highlightedCategories={ mapHighlightedCategories }
             predecessors={ predecessors }
             project={ projectId }
             onDeselectFeature={ () => deselectFeature(document, new URLSearchParams(location.search), history) }
@@ -189,7 +193,7 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
 
 
 const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boolean, filters: ResultFilter[],
-        projectId: string, t: TFunction): ReactElement => {
+        projectId: string, setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
@@ -212,8 +216,8 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
                     { children }
                 </div>
                     <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                            searchParams={ searchParams }
-                            projectId={ projectId } />
+                            searchParams={ searchParams } projectId={ projectId }
+                            onMouseOverCategories={ setMapHighlightedCategories } />
             </>
         }
     </Card>;
