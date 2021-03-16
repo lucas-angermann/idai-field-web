@@ -37,6 +37,7 @@ export default function ProjectHome ():ReactElement {
     const [title, setTitle] = useState<string>('');
     const [images, setImages] = useState<ResultDocument[]>();
     const [highlightedCategories, setHighlightedCategories] = useState<string[]>([]);
+    const [predecessors] = useState<ResultDocument[]>([]);
 
     useEffect(() => {
 
@@ -54,7 +55,7 @@ export default function ProjectHome ():ReactElement {
             setImages(getDocumentImages(projectDoc));
             setTitle(getProjectLabel(projectDoc));
         }
-    },[projectDoc, projectId]);
+    }, [projectDoc, projectId]);
  
     if (!projectDoc || !categoryFilter) return null;
     
@@ -63,7 +64,7 @@ export default function ProjectHome ():ReactElement {
             { renderTitle(title, projectId) }
             <div className="d-flex flex-fill pt-2" style={ { height: 0 } }>
                 { renderSidebar(projectId, projectDoc, categoryFilter, setHighlightedCategories, t) }
-                { renderContent(projectId, projectDoc, images, location, highlightedCategories, t) }
+                { renderContent(projectId, projectDoc, images, location, highlightedCategories, predecessors, t) }
             </div>
         </div>
     );
@@ -105,7 +106,7 @@ const renderSidebar = (projectId: string, projectDoc: Document, categoryFilter: 
 
 
 const renderContent = (projectId: string, projectDoc: Document, images: ResultDocument[], location: Location,
-        highlightedCategories: string[], t: TFunction) => {
+        highlightedCategories: string[], predecessors: ResultDocument[], t: TFunction) => {
 
     const description = getDocumentDescription(projectDoc);
 
@@ -124,7 +125,7 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
                 <ProjectMap
                         selectedDocument={ projectDoc }
                         highlightedCategories={ highlightedCategories }
-                        predecessors={ [] }
+                        predecessors={ predecessors }
                         project={ projectId }
                         onDeselectFeature={ undefined }
                         fitOptions={ MAP_FIT_OPTIONS }
