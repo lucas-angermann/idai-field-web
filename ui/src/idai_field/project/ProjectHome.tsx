@@ -91,7 +91,7 @@ const renderSidebar = (projectId: string, projectDoc: Document, categoryFilter: 
         </Card>
         <Card className="mb-2 mt-0 p-2">
             <ProjectHierarchyButton projectDocument={ projectDoc }
-                label={ t('projectHome.toHierarOverview') } />
+                label={ t('projectHome.toHierarchicalView') } />
         </Card>
         <Card className="my-0 flex-fill" style={ { height: 0 } }>
             <div className="py-1 card-header">
