@@ -224,14 +224,6 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
 };
 
 
-export const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
-
-    let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
-    query = parseFrontendGetParams(searchParams, query);
-    return search(query, token);
-};
-
-
 const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Query => {
 
     const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);

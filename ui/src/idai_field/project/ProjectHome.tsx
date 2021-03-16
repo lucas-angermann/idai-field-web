@@ -7,8 +7,9 @@ import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useParams } from 'react-router-dom';
 import { Document, FieldValue, getDocumentDescription, getDocumentImages, getFieldValue } from '../../api/document';
-import { get } from '../../api/documents';
-import { ResultDocument, ResultFilter } from '../../api/result';
+import { get, search } from '../../api/documents';
+import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
@@ -16,9 +17,9 @@ import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import SearchBar from '../../shared/search/SearchBar';
+import { EXCLUDED_TYPES_FIELD } from '../constants';
 import CategoryFilter from '../filter/CategoryFilter';
 import { getProjectLabel } from '../projects';
-import { initFilters } from './Project';
 import ProjectHierarchyButton from './ProjectHierarchyButton';
 import ProjectMap from './ProjectMap';
 
@@ -183,6 +184,14 @@ const renderProjectDetails = (projectDoc: Document, t: TFunction) =>
             </ul>
         </dd>
     </dl>;
+
+
+const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
+
+    let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
+    query = parseFrontendGetParams(searchParams, query);
+    return search(query, token);
+};
 
 
 const containerStyle: CSSProperties = {
