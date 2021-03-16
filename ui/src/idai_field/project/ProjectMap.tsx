@@ -38,7 +38,8 @@ const STYLE_CACHE: { [ category: string ] : Style } = { };
 
 interface ProjectMapProps {
     selectedDocument: Document;
-    highlightedIds: string[];
+    highlightedIds?: string[];
+    highlightedCategories?: string[];
     predecessors: ResultDocument[];
     project: string;
     onDeselectFeature: () => void | undefined;
@@ -48,8 +49,8 @@ interface ProjectMapProps {
 }
 
 
-export default function ProjectMap({ selectedDocument, highlightedIds, predecessors, project, onDeselectFeature,
-        fitOptions, spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
+export default function ProjectMap({ selectedDocument, highlightedIds, predecessors, highlightedCategories, project,
+        onDeselectFeature, fitOptions, spinnerContainerStyle, isMiniMap }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -131,7 +132,9 @@ export default function ProjectMap({ selectedDocument, highlightedIds, predecess
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
-            properties.highlighted = highlightedIds.includes(feature.getProperties()['id']);
+            properties.highlighted =
+                (!highlightedIds || highlightedIds.includes(feature.getProperties()['id']))
+                && (!highlightedCategories || highlightedCategories.includes(properties.category));
             feature.setProperties(properties);
         });
 
@@ -146,7 +149,7 @@ export default function ProjectMap({ selectedDocument, highlightedIds, predecess
             getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
         );
-    }, [map, selectedDocument, highlightedIds, predecessors, vectorLayer, select, fitOptions]);
+    }, [map, selectedDocument, highlightedIds, predecessors, highlightedCategories, vectorLayer, select, fitOptions]);
 
 
     return <>

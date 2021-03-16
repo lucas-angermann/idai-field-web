@@ -8,24 +8,26 @@ import CloseButton from './CloseButton';
 import { buildParamsForFilterValue, isFilterValueInParams } from './utils';
 
 
-export default function CategoryFilter({ filter, searchParams = new URLSearchParams(), projectId }
-        : { filter: ResultFilter, searchParams?: URLSearchParams, projectId?: string }): ReactElement {
+export default function CategoryFilter({ filter, searchParams = new URLSearchParams(), projectId, onMouseEnter,
+        onMouseLeave }: { filter: ResultFilter, searchParams?: URLSearchParams, projectId?: string,
+        onMouseEnter?: (categories: string[]) => void, onMouseLeave?: (categories: string[]) => void }): ReactElement {
 
     if (!filter.values.length) return null;
 
-    return <>
+    return <div onMouseLeave={ () => onMouseLeave && onMouseLeave([]) }>
         { filter.values.map((bucket: FilterBucketTreeNode) =>
-            renderFilterValue(filter.name, bucket, searchParams, projectId)) }
-    </>;
+            renderFilterValue(filter.name, bucket, searchParams, onMouseEnter, projectId)) }
+    </div>;
 }
 
 
 const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: URLSearchParams,
-                           projectId?: string, level: number = 1): ReactNode =>
+        onMouseEnter?: (categories: string[]) => void, projectId?: string, level: number = 1): ReactNode =>
     <React.Fragment key={ bucket.item.value.name }>
         <Dropdown.Item
                 as={ Link }
                 style={ filterValueStyle(level) }
+                onMouseOver={ () => onMouseEnter && onMouseEnter([bucket.item.value.name]) }
                 to={ (projectId ? `/project/${projectId}?` : '/?')
                     + buildParamsForFilterValue(params, key, bucket.item.value.name) }>
             <Row>
@@ -45,7 +47,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
             </Row>
         </Dropdown.Item>
         { bucket.trees && bucket.trees.map((b: FilterBucketTreeNode) =>
-                renderFilterValue(key, b, params, projectId, level + 1))
+            renderFilterValue(key, b, params, onMouseEnter, projectId, level + 1))
         }
     </React.Fragment>;
 

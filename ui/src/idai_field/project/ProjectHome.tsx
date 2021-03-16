@@ -36,6 +36,7 @@ export default function ProjectHome ():ReactElement {
     const [projectDoc, setProjectDoc] = useState<Document>();
     const [title, setTitle] = useState<string>('');
     const [images, setImages] = useState<ResultDocument[]>();
+    const [highlightedCategories, setHighlightedCategories] = useState<string[]>([]);
 
     useEffect(() => {
 
@@ -61,8 +62,8 @@ export default function ProjectHome ():ReactElement {
         <div className="d-flex flex-column p-2" style={ containerStyle }>
             { renderTitle(title, projectId) }
             <div className="d-flex flex-fill pt-2" style={ { height: 0 } }>
-                { renderSidebar(projectId, projectDoc, t, categoryFilter) }
-                { renderContent(projectId, projectDoc, images, location, t) }
+                { renderSidebar(projectId, projectDoc, categoryFilter, setHighlightedCategories, t) }
+                { renderContent(projectId, projectDoc, images, location, highlightedCategories, t) }
             </div>
         </div>
     );
@@ -80,7 +81,8 @@ const renderTitle = (title: string, projectId: string) =>
     </div>;
 
 
-const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, categoryFilter: ResultFilter) =>
+const renderSidebar = (projectId: string, projectDoc: Document, categoryFilter: ResultFilter,
+        setHighlightedCategories: (categories: string[]) => void, t: TFunction) =>
     <div className="mx-2 d-flex flex-column" style={ sidebarStyles }>
         <Card className="mb-2 mt-0">
             <SearchBar basepath={ `/project/${projectId}` } />
@@ -94,13 +96,16 @@ const renderSidebar = (projectId: string, projectDoc: Document, t: TFunction, ca
                 <h5>{ t('projectHome.categories') }</h5>
             </div>
             <div className="flex-fill py-2" style={ filterColStyle }>
-                <CategoryFilter filter={ categoryFilter } projectId={ projectId } />
+                <CategoryFilter filter={ categoryFilter } projectId={ projectId }
+                    onMouseEnter={ setHighlightedCategories }
+                    onMouseLeave={ setHighlightedCategories } />
             </div>
         </Card>
     </div>;
 
+
 const renderContent = (projectId: string, projectDoc: Document, images: ResultDocument[], location: Location,
-        t: TFunction) => {
+        highlightedCategories: string[], t: TFunction) => {
 
     const description = getDocumentDescription(projectDoc);
 
@@ -118,8 +123,8 @@ const renderContent = (projectId: string, projectDoc: Document, images: ResultDo
             <div className="p-2" style={ mapContainerStyle }>
                 <ProjectMap
                         selectedDocument={ projectDoc }
+                        highlightedCategories={ highlightedCategories }
                         predecessors={ [] }
-                        highlightedIds={ [] }
                         project={ projectId }
                         onDeselectFeature={ undefined }
                         fitOptions={ MAP_FIT_OPTIONS }
@@ -139,6 +144,7 @@ const renderDescription = (description: FieldValue) =>
         .split(/\r\n|\n\r|\r|\n/g)
         .filter(paragraph => paragraph.length > 0)
         .map((paragraph, i) => <p key={ i }>{ paragraph }</p>);
+
 
 const renderProjectDetails = (projectDoc: Document, t: TFunction) =>
     <dl>
