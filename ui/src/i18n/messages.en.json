@@ -31,7 +31,6 @@
     "backToSearchResults": "Back to search results",
     "viewInContext": "View in context",
     "noResults": "No results",
-    "hierarchyView": "Hierarchy view",
     "noGeometries": {
       "search": "The search results do not include any resources linked to geodata.",
       "hierarchy": "At this level of the project hierarchy there are no resources linked to geodata."
