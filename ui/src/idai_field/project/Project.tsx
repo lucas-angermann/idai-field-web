@@ -153,14 +153,14 @@ const renderDocumentDetails = (document: Document): React.ReactNode =>
 
 const renderDocumentHierarchy = (documents: ResultDocument[], predecessors: ResultDocument[],
         searchParams: URLSearchParams, projectId: string, onScroll: (e: React.UIEvent<Element, UIEvent>) => void) =>
-    <Card style={ mainSidebarCardStyle }>
+    <Card key="documentHierarchy" style={ mainSidebarCardStyle }>
         <DocumentHierarchy documents={ documents } predecessors={ predecessors } project={ projectId }
             searchParams={ searchParams } onScroll={ onScroll } />
     </Card>;
 
 
 const renderBreadcrumb = (projectId: string, predecessors: ResultDocument[]) =>
-    <Card className="p-2">
+    <Card key="projectBreadcrumb" className="p-2">
         <ProjectBreadcrumb projectId={ projectId } predecessors={ predecessors } />
     </Card>;
 
@@ -189,7 +189,7 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
         { t('project.resources') }
     </>;
 
-    return <Card className="d-flex flex-row">
+    return <Card key="total" className="d-flex flex-row">
         { asLink
             ? <div style={ totalTextStyle } className="py-2 px-3">
                 <Link to={ `/project/${projectId}?${searchParams}` }>
