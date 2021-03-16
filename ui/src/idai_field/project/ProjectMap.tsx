@@ -129,7 +129,7 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
 
     useEffect(() => {
 
-        if (!map || !vectorLayer) return;
+        if (!vectorLayer) return;
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
@@ -138,12 +138,17 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
                 && (!highlightedCategories || highlightedCategories.includes(properties.category));
             feature.setProperties(properties);
         });
+    }, [selectedDocument, highlightedIds, highlightedCategories, predecessors, vectorLayer, select]);
 
+    useEffect(() => {
+
+        if (!map || !vectorLayer) return;
+        
         map.getView().fit(
             getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
         );
-    }, [map, selectedDocument, highlightedIds, predecessors, highlightedCategories, vectorLayer, select, fitOptions]);
+    }, [map, selectedDocument, highlightedIds, predecessors, vectorLayer, fitOptions]);
 
     useEffect(() => {
 
