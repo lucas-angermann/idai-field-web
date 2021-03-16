@@ -116,9 +116,7 @@ export default function Project(): ReactElement {
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
                     documents, predecessors, searchParams, projectId, onScroll, setHoverDocument
                 )]
-                : [searchMode && totalBox, renderDocumentList(
-                    documents, searchParams, projectId, total, onScroll, setHoverDocument, t
-                )];
+                : [searchMode && totalBox, renderDocumentList(documents, searchParams, onScroll, setHoverDocument, t)];
     };
 
     if (notFound) return <NotFound />;
@@ -176,8 +174,8 @@ const renderBreadcrumb = (projectId: string, predecessors: ResultDocument[]) =>
     </Card>;
 
 
-const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams, projectId: string,
-        total: number, onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
+const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams,
+        onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
         setHoverDocument: (document: ResultDocument) => void, t: TFunction) =>
     documents?.length
         ? <>
