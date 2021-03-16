@@ -1,6 +1,7 @@
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { flatten } from 'tsfun';
 import { FilterBucketTreeNode, ResultFilter } from '../../api/result';
 import CategoryIcon from '../../shared/document/CategoryIcon';
 import { getLabel } from '../../shared/languages';
@@ -27,7 +28,7 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
         <Dropdown.Item
                 as={ Link }
                 style={ filterValueStyle(level) }
-                onMouseOver={ () => onMouseEnter && onMouseEnter([bucket.item.value.name]) }
+                onMouseOver={ () => onMouseEnter && onMouseEnter(getCategoryAndSubcategoryNames(bucket)) }
                 to={ (projectId ? `/project/${projectId}?` : '/?')
                     + buildParamsForFilterValue(params, key, bucket.item.value.name) }>
             <Row>
@@ -52,9 +53,18 @@ const renderFilterValue = (key: string, bucket: FilterBucketTreeNode, params: UR
     </React.Fragment>;
 
 
+const getCategoryAndSubcategoryNames = (bucket: FilterBucketTreeNode): string[] => {
+
+    return [bucket.item.value.name].concat(
+        flatten(bucket.trees.map(subBucket => getCategoryAndSubcategoryNames(subBucket)))
+    );
+};
+
+
 const filterValueStyle = (level: number): CSSProperties => ({
     paddingLeft: `${level * 1.2}em`
 });
+
 
 const categoryLabelStyle: CSSProperties = {
     margin: '3px 10px',
