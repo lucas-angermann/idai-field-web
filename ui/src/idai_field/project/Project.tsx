@@ -6,7 +6,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useS
 import { Card } from 'react-bootstrap';
 import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { search } from '../../api/documents';
@@ -19,7 +19,6 @@ import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
 import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
-import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import NotFound from '../../shared/NotFound';
 import { useGetChunkOnScroll } from '../../shared/scroll';
@@ -40,7 +39,7 @@ const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], dura
 export default function Project(): ReactElement {
 
     const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
-    const searchParams = useSearchParams();
+    const location = useLocation();
     const history = useHistory();
     const loginData = useContext(LoginContext);
     const { t } = useTranslation();
@@ -58,6 +57,7 @@ export default function Project(): ReactElement {
 
     useEffect(() => {
 
+        const searchParams = new URLSearchParams(location.search);
         const parent: string = searchParams.get('parent');
         const query: Query = (searchParams.toString() !== previousSearchParams.current.toString())
             ? buildQuery(projectId, searchParams, 0)
@@ -87,14 +87,16 @@ export default function Project(): ReactElement {
             });
             if (documentId && !data.selected) setNotFound(true);
         });
-    }, [projectId, documentId, searchParams, loginData]);
+    }, [projectId, documentId, location.search, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        search(buildQuery(projectId, searchParams, newOffset), loginData.token)
+        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
     const renderSidebarContent = () => {
+
+        const searchParams = new URLSearchParams(location.search);
 
         const hierarchyMode = isInHierarchyMode(searchParams);
         const searchMode = isInSearchMode(searchParams);
@@ -131,7 +133,7 @@ export default function Project(): ReactElement {
             highlightedIds={ mapHighlightedIds }
             predecessors={ predecessors }
             project={ projectId }
-            onDeselectFeature={ () => deselectFeature(document, searchParams, history) }
+            onDeselectFeature={ () => deselectFeature(document, new URLSearchParams(location.search), history) }
             spinnerContainerStyle={ mapSpinnerContainerStyle }
             fitOptions={ MAP_FIT_OPTIONS }
             isMiniMap={ false } />
