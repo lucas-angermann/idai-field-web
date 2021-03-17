@@ -17,7 +17,7 @@ export default function DocumentList({ documents, searchParams, onMouseEnter, on
     return documents?.length > 0 ? (
         <div className="documents" onMouseLeave={ () => onMouseLeave && onMouseLeave() }>
             { documents.map((document: ResultDocument) => {
-                const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
+                const linkUrl = `/project/${document.project}/search/${document.resource.id}?${searchParams}`;
                 return <div style={ documentContainerStyle } key={ document.resource.id }
                             onMouseEnter={ () => onMouseEnter && onMouseEnter(document) }>
                     <DocumentTeaser document={ document } linkUrl={ linkUrl } />

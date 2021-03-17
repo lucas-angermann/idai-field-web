@@ -11,7 +11,11 @@ export const getDocumentLink = (doc: ResultDocument, project: string, currentBas
         : isCategory(doc, 'Type') || isCategory(doc, 'TypeCatalog')
             ? [CONFIGURATION.shapesUrl, `/document/${doc.resource.id}`]
             : [CONFIGURATION.fieldUrl,
-                `/project/${project}/${ isCategory(doc, 'Project') ? doc.resource.identifier : doc.resource.id }`];
+                `/project/${project}/hierarchy/${ isCategory(doc, 'Project')
+                    ? doc.resource.identifier
+                    : doc.resource.id
+                }`
+            ];
 
     if (currentBaseUrl && baseUrl) {
         return (currentBaseUrl === baseUrl) ? path : baseUrl + path;
@@ -22,7 +26,7 @@ export const getDocumentLink = (doc: ResultDocument, project: string, currentBas
 
 
 export const getHierarchyLink = (doc: ResultDocument): string =>
-    `/project/${doc.project}?parent=${doc.resource.id}`;
+    `/project/${doc.project}/hierarchy?parent=${doc.resource.id}`;
 
 
 export const isImage = (document: ResultDocument): boolean =>

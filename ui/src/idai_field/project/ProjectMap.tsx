@@ -29,6 +29,7 @@ import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
 import { EXCLUDED_CATEGORIES } from '../constants';
 import LayerControls from './LayerControls';
+import { ProjectView } from './Project';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
@@ -46,13 +47,14 @@ interface ProjectMapProps {
     onDeselectFeature: () => void | undefined;
     fitOptions: FitOptions;
     spinnerContainerStyle: CSSProperties;
-    isMiniMap: boolean
+    isMiniMap: boolean;
+    projectView?: ProjectView
 }
 
 
 export default function ProjectMap({ selectedDocument, hoverDocument, highlightedIds, predecessors,
         highlightedCategories, project, onDeselectFeature, fitOptions, spinnerContainerStyle,
-        isMiniMap }: ProjectMapProps): ReactElement {
+        isMiniMap, projectView = 'hierarchy' }: ProjectMapProps): ReactElement {
 
     const history = useHistory();
     const searchParams = useSearchParams();
@@ -109,10 +111,10 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
         if (!map) return;
         if (mapClickFunction.current) map.un('click', mapClickFunction.current);
 
-        mapClickFunction.current = handleMapClick(history, searchParams, onDeselectFeature,
+        mapClickFunction.current = handleMapClick(history, searchParams, projectView, onDeselectFeature,
             selectedDocument, isMiniMap);
         map.on('click', mapClickFunction.current);
-    }, [map, history, selectedDocument, searchParams, onDeselectFeature, isMiniMap]);
+    }, [map, history, selectedDocument, searchParams, onDeselectFeature, isMiniMap, projectView]);
 
     useEffect(() => {
 
@@ -170,7 +172,7 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
         <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
         
         { (isMiniMap ?
-            <Link to={ `/project/${project}?parent=root` } className="project-link">
+            <Link to={ `/project/${project}/hierarchy?parent=root` } className="project-link">
                 <Icon path={ mdiRedo } size={ 1.0 } ></Icon>
             </Link> :
             <LayerControls map={ map }
@@ -226,8 +228,9 @@ const addToSelect = (select: Select, document: Document|ResultDocument, layer: V
 };
 
 
-const handleMapClick = (history: History, searchParams: URLSearchParams, onDeselectFeature: () => void,
-        selectedDocument?: Document, reload?: boolean): ((_: MapBrowserEvent) => void) => {
+const handleMapClick = (history: History, searchParams: URLSearchParams, projectView: ProjectView,
+        onDeselectFeature: () => void, selectedDocument?: Document, reload?: boolean)
+        : ((_: MapBrowserEvent) => void) => {
 
     return async (e: MapBrowserEvent) => {
 
@@ -252,11 +255,11 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, onDesel
             }
             const { id, project } = smallestFeature.getProperties();
             if (reload) {
-                let href = `/project/${project}/${id}`;
+                let href = `/project/${project}/${projectView}/${id}`;
                 if (searchParams.toString()) href += `?${searchParams}`;
                 window.location.href = href;
             } else {
-                history.push({ pathname: `/project/${project}/${id}`, search: searchParams.toString() });
+                history.push({ pathname: `/project/${project}/${projectView}/${id}`, search: searchParams.toString() });
             }
         } else if (selectedDocument && onDeselectFeature) {
             onDeselectFeature();

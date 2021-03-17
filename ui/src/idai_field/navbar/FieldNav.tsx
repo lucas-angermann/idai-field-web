@@ -41,7 +41,7 @@ export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
                     projectDocument && <>
                         <Icon path={ mdiMenuRight } size={ 1 } className="navbar-project-arrow" />
                         <Nav.Link as="span">
-                            <Link to={ `/project/${projectDocument.resource.id}/entry` }
+                            <Link to={ `/project/${projectDocument.resource.id}` }
                                 className={ NavItemClass('project') }>
                                 { getProjectLabel(projectDocument) }
                             </Link>

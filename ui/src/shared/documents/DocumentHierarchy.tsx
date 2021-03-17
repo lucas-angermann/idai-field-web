@@ -39,7 +39,7 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
                     {
                         parent !== 'root' &&
                         <LinkButton
-                            to={ `/project/${project}?parent=${ getGrandparent(predecessors) }` }
+                            to={ `/project/${project}/hierarchy?parent=${ getGrandparent(predecessors) }` }
                             className="previous-button" variant={ 'link' }>
                             <Icon path={ mdiMenuLeft } size={ 1 } />
                         </LinkButton>
@@ -63,7 +63,7 @@ export default React.memo(function DocumentHierarchy({ documents, predecessors, 
 const renderDocumentRow = (document: ResultDocument, searchParams: URLSearchParams,
         onMouseEnter?: (document: ResultDocument) => void): ReactNode => {
 
-    const linkUrl = `/project/${document.project}/${document.resource.id}?${searchParams}`;
+    const linkUrl = `/project/${document.project}/hierarchy/${document.resource.id}?${searchParams}`;
     
     return <div style={ documentRowStyle } key={ document.resource.id }
                 onMouseEnter={ () => onMouseEnter && onMouseEnter(document) }>

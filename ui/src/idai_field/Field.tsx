@@ -32,9 +32,8 @@ export default function Field(): ReactElement {
                     <Route path="/resource/:project/:identifier" component={ ResourceRedirect } />
                     <Redirect from="/resources/:project/:identifier" to="/resource/:project/:identifier" />
 
-                    <Route path="/project/:projectId/entry" exact component={ ProjectHome } />
-                    <Route path="/project/:projectId/:documentId?" component={ Project } />
-                    <Redirect from="/projects/:projectId/:documentId" to="/project/:projectId/:documentId" />
+                    <Route path="/project/:projectId" exact component={ ProjectHome } />
+                    <Route path="/project/:projectId/:view/:documentId?" component={ Project } />
 
                     <Route path="/document/:id" component={ DocumentRedirect } />
                     <Redirect from="/documents/:id" to="/document/:id" />

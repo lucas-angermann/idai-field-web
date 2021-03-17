@@ -36,9 +36,13 @@ export const CHUNK_SIZE = 50;
 const MAP_FIT_OPTIONS = { padding : [ 100, 100, 100, SIDEBAR_WIDTH + 100 ], duration: 500 };
 
 
+export type ProjectView = 'search'|'hierarchy';
+
+
 export default function Project(): ReactElement {
 
-    const { projectId, documentId } = useParams<{ projectId: string, documentId: string }>();
+    const { projectId, documentId, view } = useParams<{ projectId: string, documentId: string, view: ProjectView }>();
+
     const location = useLocation();
     const history = useHistory();
     const loginData = useContext(LoginContext);
@@ -100,23 +104,21 @@ export default function Project(): ReactElement {
 
         const searchParams = new URLSearchParams(location.search);
 
-        const hierarchyMode = isInHierarchyMode(searchParams);
-        const searchMode = isInSearchMode(searchParams);
-
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
         const totalBox = renderTotal(
-            total, searchParams, !!document, filters, projectId, setMapHighlightedCategories, t
+            total, searchParams, view, !!document, filters, projectId, setMapHighlightedCategories, t
         );
 
         return document
-            ? hierarchyMode
+            ? view === 'hierarchy'
                 ? [breadcrumbBox, totalBox, renderDocumentDetails(document)]
-                : [searchMode && totalBox, breadcrumbBox, renderDocumentDetails(document)]
-            : hierarchyMode
+                : [view === 'search' && totalBox, breadcrumbBox, renderDocumentDetails(document)]
+            : view === 'hierarchy'
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
                     documents, predecessors, searchParams, projectId, onScroll, setHoverDocument
                 )]
-                : [searchMode && totalBox, renderDocumentList(documents, searchParams, onScroll, setHoverDocument, t)];
+                : [view === 'search' && totalBox, renderDocumentList(documents, searchParams, onScroll,
+                    setHoverDocument, t)];
     };
 
     if (notFound) return <NotFound />;
@@ -124,11 +126,11 @@ export default function Project(): ReactElement {
     return <>
         <ProjectSidebar>
             <Card className="d-flex flex-row" style={ searchCardStyle }>
-                <LinkButton to={ `/project/${projectId}/entry` } variant="secondary" style={ homeButtonStyle }>
+                <LinkButton to={ `/project/${projectId}` } variant="secondary" style={ homeButtonStyle }>
                     <img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } />
                 </LinkButton>
                 <div style={ { flexGrow: 1 } }>
-                    <SearchBar basepath={ `/project/${projectId}` } />
+                    <SearchBar basepath={ `/project/${projectId}/search` } />
                 </div>
             </Card>
             { renderSidebarContent() }
@@ -139,7 +141,7 @@ export default function Project(): ReactElement {
             highlightedCategories={ mapHighlightedCategories }
             predecessors={ predecessors }
             project={ projectId }
-            onDeselectFeature={ () => deselectFeature(document, new URLSearchParams(location.search), history) }
+            onDeselectFeature={ () => deselectFeature(document, new URLSearchParams(location.search), view, history) }
             spinnerContainerStyle={ mapSpinnerContainerStyle }
             fitOptions={ MAP_FIT_OPTIONS }
             isMiniMap={ false } />
@@ -147,8 +149,8 @@ export default function Project(): ReactElement {
 }
 
 
-const deselectFeature = (document: Document, searchParams: URLSearchParams, history: History): void =>
-    document && history.push(getMapDeselectionUrl(document.project, searchParams, document));
+const deselectFeature = (document: Document, searchParams: URLSearchParams, view: ProjectView, history: History) =>
+    document && history.push(getMapDeselectionUrl(document.project, searchParams, view, document));
 
 
 const renderDocumentDetails = (document: Document): React.ReactNode =>
@@ -188,8 +190,9 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
         </Card>;
 
 
-const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boolean, filters: ResultFilter[],
-        projectId: string, setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
+const renderTotal = (total: number, searchParams: URLSearchParams, view: ProjectView, asLink: boolean,
+        filters: ResultFilter[], projectId: string,
+        setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
 
     if (!total) return null;
 
@@ -202,7 +205,7 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
     return <Card key="total" className="d-flex flex-row">
         { asLink
             ? <div style={ totalTextStyle } className="py-2 px-3">
-                <Link to={ `/project/${projectId}?${searchParams}` }>
+                <Link to={ `/project/${projectId}/${view}?${searchParams}` }>
                     <Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>
                     { children }
                 </Link>
@@ -212,7 +215,7 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
                     { children }
                 </div>
                     <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                            searchParams={ searchParams } projectId={ projectId }
+                            searchParams={ searchParams } projectId={ projectId } projectView={ view }
                             onMouseOverCategories={ setMapHighlightedCategories } />
             </>
         }
@@ -245,12 +248,6 @@ const getMapDocument = (data: ProjectData, parent: string, predecessors: ResultD
             ? (predecessors[predecessors.length - 1] as Document)
             : null;
 };
-
-
-const isInHierarchyMode = (searchParams: URLSearchParams): boolean => searchParams.has('parent');
-
-
-const isInSearchMode = (searchParams: URLSearchParams): boolean => searchParams.has('q');
 
 
 const isResource = (parent: string) => parent && parent !== 'root';

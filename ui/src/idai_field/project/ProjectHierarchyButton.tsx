@@ -16,7 +16,7 @@ export default function ProjectHierarchyButton({ projectDocument, label = undefi
         : ReactElement {
             
     return (
-        <Link to={ `/project/${projectDocument.resource.id}?parent=root` } className="document-teaser">
+        <Link to={ `/project/${projectDocument.resource.id}/hierarchy?parent=root` } className="document-teaser">
             <div className="d-flex teaser-container teaser-small link">
                 <div>
                     <Icon path={ mdiFileTree } size={ 0.8 } color="black" />

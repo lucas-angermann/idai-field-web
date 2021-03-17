@@ -8,10 +8,12 @@ import { Document } from '../../api/document';
 import { get } from '../../api/documents';
 import LinkButton from '../../shared/linkbutton/LinkButton';
 import { deleteFilterFromParams } from '../../api/query';
+import { ProjectView } from '../project/Project';
 
 
-export default function RelationFilter({ relationName, resourceId, params, projectId }
-        : { relationName: string, resourceId: string, params: URLSearchParams, projectId?: string }): ReactElement {
+export default function RelationFilter({ relationName, resourceId, params, projectId, projectView }
+        : { relationName: string, resourceId: string, params: URLSearchParams, projectId?: string,
+            projectView?: ProjectView }): ReactElement {
 
     const [document, setDocument] = useState<Document>(null);
 
@@ -26,7 +28,7 @@ export default function RelationFilter({ relationName, resourceId, params, proje
     return document
         ? <ButtonGroup size="sm" style={ buttonGroupStyle }>
             <LinkButton variant="primary" style={ buttonStyle }
-                        to={ (projectId ? `/project/${projectId}?` : '/?')
+                        to={ ((projectId && projectView) ? `/project/${projectId}/${projectView}?` : '/?')
                             + deleteFilterFromParams(params,
                             `resource.relations.${relationName}.resource.id`,
                             resourceId) }>

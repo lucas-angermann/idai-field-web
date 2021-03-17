@@ -66,7 +66,7 @@ const getQuery = (typeId: string, from: number): Query => ({
 
 
 const getFieldLink = (document: Document): string =>
-    `${CONFIGURATION.fieldUrl}/project/${document.project}/${document.resource.id}`;
+    `${CONFIGURATION.fieldUrl}/project/${document.project}/hierarchy/${document.resource.id}`;
 
 
 const getFieldOverviewLink = (type: Document): string =>

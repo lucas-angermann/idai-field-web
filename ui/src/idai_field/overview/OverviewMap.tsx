@@ -76,7 +76,7 @@ export default function OverviewMap({ documents, filter }
 
                     // so instead reload the application when selecting a project
                     let href = `/project/${feature.getProperties().identifier}`;
-                    href += (searchParams.toString() ? `?${searchParams}` : '/entry');
+                    if (searchParams.toString()) href += `/search/?${searchParams}`;
                     window.location.href = href;
                 }
             });

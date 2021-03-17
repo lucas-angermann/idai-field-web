@@ -1,12 +1,13 @@
 import React, { ReactElement } from 'react';
+import { ProjectView } from '../project/Project';
 import RelationFilter from './RelationFilter';
 
 
 const FILTER_RELATIONS = ['isInstanceOf'];
 
 
-export default function RelationFilters({ searchParams, projectId }
-        : { searchParams: URLSearchParams, projectId: string }): ReactElement {
+export default function RelationFilters({ searchParams, projectId, projectView }
+        : { searchParams: URLSearchParams, projectId: string, projectView: ProjectView }): ReactElement {
 
     return <>
         {
@@ -16,7 +17,8 @@ export default function RelationFilters({ searchParams, projectId }
                                                      relationName={ relationName }
                                                      resourceId={ getResourceId(searchParams, relationName) }
                                                      params={ searchParams }
-                                                     projectId={ projectId } />)
+                                                     projectId={ projectId }
+                                                     projectView={ projectView } />)
         }
     </>;
 }

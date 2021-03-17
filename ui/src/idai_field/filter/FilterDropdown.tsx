@@ -7,14 +7,16 @@ import { deleteFilterFromParams } from '../../api/query';
 import { FilterBucket, FilterBucketTreeNode, ResultFilter } from '../../api/result';
 import { getLabel } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
+import { ProjectView } from '../project/Project';
 
 
-export default function FilterDropdown({ filter, params, children, projectId }
-        : { filter: ResultFilter, params: URLSearchParams, children: ReactNode, projectId?: string }): ReactElement {
+export default function FilterDropdown({ filter, params, children, projectId, projectView }
+        : { filter: ResultFilter, params: URLSearchParams, children: ReactNode, projectId?: string,
+            projectView?: ProjectView }): ReactElement {
 
     return <>
         <Dropdown as={ ButtonGroup } key={ filter.name } size="sm pl-2" style={ { flexGrow: 1 } }>
-            { renderFilterDropdownToggle(filter, params, projectId) }
+            { renderFilterDropdownToggle(filter, params, projectId, projectView) }
             <Dropdown.Menu style={ dropdownMenuStyles }>
                 <Dropdown.Header><h3>{ getLabel(filter) }</h3></Dropdown.Header>
                 { children }
@@ -24,11 +26,12 @@ export default function FilterDropdown({ filter, params, children, projectId }
 }
 
 
-const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams, projectId?: string): ReactNode =>
+const renderFilterDropdownToggle = (filter: ResultFilter, params: URLSearchParams, projectId?: string,
+        projectView?: ProjectView): ReactNode =>
     params.has(filter.name)
         ? <>
             <LinkButton style={ { flexGrow: 1 } }
-                        to={ (projectId ? `/project/${projectId}?` : '/?')
+                        to={ ((projectId && projectView) ? `/project/${projectId}/${projectView}?` : '/?')
                             + deleteFilterFromParams(params, filter.name) }>
                 { getLabel(filter) }: <em>{ getLabelForFilterParam(filter, params) }</em>
                 &nbsp; <Icon path={ mdiCloseCircle } style={ { verticalAlign: 'sub' } } size={ 0.7 } />

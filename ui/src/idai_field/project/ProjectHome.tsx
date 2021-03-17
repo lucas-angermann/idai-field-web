@@ -87,7 +87,7 @@ const renderSidebar = (projectId: string, projectDoc: Document, categoryFilter: 
         setHighlightedCategories: (categories: string[]) => void, t: TFunction) =>
     <div className="mx-2 d-flex flex-column" style={ sidebarStyles }>
         <Card className="mb-2 mt-0">
-            <SearchBar basepath={ `/project/${projectId}` } />
+            <SearchBar basepath={ `/project/${projectId}/search` } />
         </Card>
         <Card className="mb-2 mt-0 p-2">
             <ProjectHierarchyButton projectDocument={ projectDoc }
@@ -98,7 +98,7 @@ const renderSidebar = (projectId: string, projectDoc: Document, categoryFilter: 
                 <h5>{ t('projectHome.categories') }</h5>
             </div>
             <div className="flex-fill py-2" style={ filterColStyle }>
-                <CategoryFilter filter={ categoryFilter } projectId={ projectId }
+                <CategoryFilter filter={ categoryFilter } projectId={ projectId } projectView="search"
                     onMouseEnter={ setHighlightedCategories }
                     onMouseLeave={ setHighlightedCategories } />
             </div>
