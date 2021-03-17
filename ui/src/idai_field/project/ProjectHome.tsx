@@ -17,7 +17,7 @@ import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import SearchBar from '../../shared/search/SearchBar';
-import { EXCLUDED_TYPES_FIELD } from '../constants';
+import { EXCLUDED_CATEGORIES } from '../constants';
 import CategoryFilter from '../filter/CategoryFilter';
 import { getProjectLabel } from '../projects';
 import ProjectHierarchyButton from './ProjectHierarchyButton';
@@ -188,7 +188,7 @@ const renderProjectDetails = (projectDoc: Document, t: TFunction) =>
 
 const initFilters = async (id: string, searchParams: URLSearchParams, token: string): Promise<Result> => {
 
-    let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_TYPES_FIELD);
+    let query = buildProjectQueryTemplate(id, 0, 0, EXCLUDED_CATEGORIES);
     query = parseFrontendGetParams(searchParams, query);
     return search(query, token);
 };

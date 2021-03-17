@@ -27,7 +27,7 @@ import { NAVBAR_HEIGHT } from '../../constants';
 import { getColor, hexToRgb } from '../../shared/categoryColors';
 import { useSearchParams } from '../../shared/location';
 import { LoginContext, LoginData } from '../../shared/login';
-import { EXCLUDED_TYPES_FIELD } from '../constants';
+import { EXCLUDED_CATEGORIES } from '../constants';
 import LayerControls from './LayerControls';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
@@ -185,7 +185,7 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
 
 const fetchAllDocuments = async (projectId: string, token: string): Promise<Result> => {
 
-    const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_TYPES_FIELD);
+    const query = buildProjectQueryTemplate(projectId, 0, MAX_SIZE, EXCLUDED_CATEGORIES);
     return searchMap(query, token);
 };
 

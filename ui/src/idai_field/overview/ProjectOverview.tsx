@@ -11,7 +11,7 @@ import { useSearchParams } from '../../shared/location';
 import { LoginContext } from '../../shared/login';
 import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
-import { EXCLUDED_TYPES_FIELD } from '../constants';
+import { EXCLUDED_CATEGORIES } from '../constants';
 import Filters from '../filter/Filters';
 import { CHUNK_SIZE } from '../project/Project';
 import OverviewMap from './OverviewMap';
@@ -104,7 +104,7 @@ const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
 const searchDocuments = async (searchParams: URLSearchParams, from: number, token: string): Promise<Result> => {
 
     const query = parseFrontendGetParams(searchParams,
-        buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD));
+        buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_CATEGORIES));
     return search(query, token);
 };
 

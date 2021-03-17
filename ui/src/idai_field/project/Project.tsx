@@ -23,7 +23,7 @@ import { LoginContext } from '../../shared/login';
 import NotFound from '../../shared/NotFound';
 import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
-import { EXCLUDED_TYPES_FIELD } from '../constants';
+import { EXCLUDED_CATEGORIES } from '../constants';
 import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
@@ -222,7 +222,7 @@ const renderTotal = (total: number, searchParams: URLSearchParams, asLink: boole
 
 const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Query => {
 
-    const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_TYPES_FIELD);
+    const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_CATEGORIES);
     return parseFrontendGetParams(searchParams, query);
 };
 
