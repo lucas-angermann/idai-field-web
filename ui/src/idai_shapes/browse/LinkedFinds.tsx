@@ -70,4 +70,4 @@ const getFieldLink = (document: Document): string =>
 
 
 const getFieldOverviewLink = (type: Document): string =>
-    `${CONFIGURATION.fieldUrl}?resource.relations.isInstanceOf.resource.id=${type.resource.id}`;
+    `${CONFIGURATION.fieldUrl}?q=&resource.relations.isInstanceOf.resource.id=${type.resource.id}`;
