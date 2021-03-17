@@ -10,8 +10,8 @@ import { Document, FieldValue, getDocumentDescription, getDocumentImages, getFie
 import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
-import CONFIGURATION from '../../configuration.json';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
+import { getDocumentPermalink } from '../../shared/document/document-utils';
 import DocumentPermalinkButton from '../../shared/document/DocumentPermalinkButton';
 import { ImageCarousel } from '../../shared/image/ImageCarousel';
 import { useSearchParams } from '../../shared/location';
@@ -23,7 +23,9 @@ import { getProjectLabel } from '../projects';
 import ProjectHierarchyButton from './ProjectHierarchyButton';
 import ProjectMap from './ProjectMap';
 
+
 const MAP_FIT_OPTIONS = { padding : [ 10, 10, 10, 10 ], duration: 500 };
+
 
 export default function ProjectHome ():ReactElement {
 
@@ -52,7 +54,7 @@ export default function ProjectHome ():ReactElement {
 
     useEffect(() => {
 
-        if(projectDoc) {
+        if (projectDoc) {
             setImages(getDocumentImages(projectDoc));
             setTitle(getProjectLabel(projectDoc));
         }
@@ -62,7 +64,7 @@ export default function ProjectHome ():ReactElement {
     
     return (
         <div className="d-flex flex-column p-2" style={ containerStyle }>
-            { renderTitle(title, projectId) }
+            { renderTitle(title, projectDoc) }
             <div className="d-flex flex-fill pt-2" style={ { height: 0 } }>
                 { renderSidebar(projectId, projectDoc, categoryFilter, setHighlightedCategories, t) }
                 { renderContent(projectId, projectDoc, images, location, highlightedCategories, predecessors, t) }
@@ -72,13 +74,13 @@ export default function ProjectHome ():ReactElement {
 }
 
 
-const renderTitle = (title: string, projectId: string) =>
+const renderTitle = (title: string, projectDoc: Document) =>
     <div className="d-flex p-2 m-2" style={ headerStyle }>
         <div className="flex-fill">
             <h2><img src="/marker-icon.svg" alt="Home" style={ homeIconStyle } /> {title}</h2>
         </div>
         <div className="flex-fill text-right">
-            <DocumentPermalinkButton id={ projectId } baseUrl={ CONFIGURATION.fieldUrl } type="project" />
+            <DocumentPermalinkButton url={ getDocumentPermalink(projectDoc) } />
         </div>
     </div>;
 

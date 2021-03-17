@@ -6,20 +6,14 @@ import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 
-interface DocumentPermalinkButtonProps {
-    id: string;
-    baseUrl: string;
-    type?: string;
-}
-
-export default function DocumentPermalinkButton({ id, baseUrl, type = 'document' }: DocumentPermalinkButtonProps)
+export default function DocumentPermalinkButton({ url }: { url: string })
         : ReactElement {
 
     const inputElementRef: MutableRefObject<HTMLInputElement> = useRef();
     const { t } = useTranslation();
 
     return <OverlayTrigger trigger="click" placement="auto"
-                           overlay={ getPopover(id, baseUrl, type, inputElementRef, t) }>
+                           overlay={ getPopover(url, inputElementRef, t) }>
         <Button variant="link" style={ buttonStyle }
                 onClick={ () => selectPermalink(inputElementRef) }>
             <div style={ iconStyle }>
@@ -30,13 +24,12 @@ export default function DocumentPermalinkButton({ id, baseUrl, type = 'document'
 }
 
 
-const getPopover = (id: string, baseUrl: string, type: string, inputElementRef: MutableRefObject<HTMLInputElement>,
-        t: TFunction): ReactElement =>
+const getPopover = (url: string, inputElementRef: MutableRefObject<HTMLInputElement>, t: TFunction): ReactElement =>
     <Popover id="document-link-popover" style={ popoverStyle }>
         <Popover.Title as="h3">{ t('permalinkButton.title') }</Popover.Title>
         <Popover.Content>
             <input ref={ inputElementRef } readOnly
-                value={ `${baseUrl}/${type}/${id}` }
+                value={ url }
                 style={ inputStyle } />
         </Popover.Content>
     </Popover>;
