@@ -70,5 +70,5 @@ const popoverStyle: CSSProperties = {
 
 
 const inputStyle: CSSProperties = {
-    
+    width: '100%'
 };
