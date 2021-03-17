@@ -116,18 +116,21 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
         return renderMultiLanguageText(object as LabeledValue, t);
     } else if ((object as LabeledValue).label) {
       return (object as LabeledValue).label;
-    } else if (Dating.isValid(object as Dating, { permissive: true })) {
-        return Dating.generateLabel(object as Dating, t);
-    } else if (Dimension.isValid(object as Dimension)) {
-        const labeledPosition = (object as DimensionWithLabeledMeasurementPosition).measurementPosition;
+    } else if // TODO review, here I replaced isValid(object, {permissive: true}),
+              // but this is currently available only for Dimension, but not Dating, do we need that for Dimension?
+        (Dating.isDating(object)) {
+        return Dating.generateLabel(object, t);
+    } else if (Dimension.isDimension(object)) {
+        const labeledPosition = // TODO review if Omit<Dimension,...> makes sense
+            (object as unknown as DimensionWithLabeledMeasurementPosition).measurementPosition;
         return Dimension.generateLabel(
-            object as Dimension, getDecimalValue, t,
+            object, getDecimalValue, t,
             labeledPosition ? getLabel(labeledPosition) : undefined
         );
-    } else if (Literature.isValid(object as Literature)) {
-        return renderLiterature(object as Literature, t);
-    } else if (OptionalRange.isValid(object as OptionalRange)) {
-        return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
+    } else if (Literature.isLiterature(object)) {
+        return renderLiterature(object, t);
+    } else if (OptionalRange.isOptionalRange(object)) {
+        return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t); // TODO review Omit
     } else {
         console.warn('Failed to render field value:', object);
         return undefined;
