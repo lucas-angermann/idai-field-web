@@ -162,7 +162,7 @@ const renderProjectDetails = (projectDoc: Document, t: TFunction) =>
             </a>
         </dd>
         <dt>{ t('projectHome.staff') }</dt>
-        <dd>{ (getFieldValue(projectDoc, 'parent', 'staff') as FieldValue[]).join(', ') }</dd>
+        <dd>{ (getFieldValue(projectDoc, 'parent', 'staff') as FieldValue[])?.join(', ') }</dd>
         <dt>{ t('projectHome.links') }</dt>
         <dd>
             <ul className="list-unstyled">
