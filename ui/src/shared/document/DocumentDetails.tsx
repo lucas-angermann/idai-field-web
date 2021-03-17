@@ -7,7 +7,8 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue, getDocumentImages, LabeledValue,
+    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue,
+    getDocumentImages, isLabeled, isLabeledValue, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
 import { ResultDocument } from '../../api/result';
@@ -112,10 +113,10 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
 
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
-    if ((object as LabeledValue).label && (object as LabeledValue).name) {
-        return renderMultiLanguageText(object as LabeledValue, t);
-    } else if ((object as LabeledValue).label) {
-      return (object as LabeledValue).label;
+    if (isLabeledValue(object)) {
+        return renderMultiLanguageText(object, t);
+    } else if (isLabeled(object)) {
+      return object.label; // TODO a simple string is correct here, then?
     } else if // TODO review, here I replaced isValid(object, {permissive: true}),
               // but this is currently available only for Dimension, but not Dating, do we need that for Dimension?
         (Dating.isDating(object)) {
