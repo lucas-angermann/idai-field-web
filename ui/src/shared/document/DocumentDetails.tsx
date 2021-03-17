@@ -110,7 +110,7 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value, t) }</li>) }</ul>
         : renderFieldValue(values[0], t);
 
-
+// TODO parametrize with a render(object, 'determined-type') callback, factor out code for reuse in idai-field-client
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
     if (isLabeledValue(object)) {
