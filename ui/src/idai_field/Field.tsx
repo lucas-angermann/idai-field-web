@@ -5,7 +5,6 @@ import { doLogout, getLoginData, LoginContext } from '../shared/login';
 import LoginForm from '../shared/loginform/LoginForm';
 import Contact from './contact/Contact';
 import Dashboard from './dashboard/Dashboard';
-import DocumentRedirect from './DocumentRedirect';
 import Download from './download/Download';
 import Manual from './manual/Manual';
 import FieldNav from './navbar/FieldNav';
@@ -35,8 +34,7 @@ export default function Field(): ReactElement {
                     <Route path="/project/:projectId" exact component={ ProjectHome } />
                     <Route path="/project/:projectId/:view/:documentId?" component={ Project } />
 
-                    <Route path="/document/:id" component={ DocumentRedirect } />
-                    <Redirect from="/documents/:id" to="/document/:id" />
+                    <Redirect from="/document/:projectId/:documentId" to="/project/:projectId/hierarchy/:documentId" />
 
                     <Route path="/download" component={ Download } />
 
