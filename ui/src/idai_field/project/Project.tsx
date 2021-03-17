@@ -152,7 +152,7 @@ const deselectFeature = (document: Document, searchParams: URLSearchParams, hist
 
 
 const renderDocumentDetails = (document: Document): React.ReactNode =>
-    <DocumentCard document={ document }
+    <DocumentCard key="documentCard" document={ document }
         baseUrl={ CONFIGURATION.fieldUrl }
         cardStyle={ mainSidebarCardStyle } />;
 
@@ -178,14 +178,12 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
         onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
         setHoverDocument: (document: ResultDocument) => void, t: TFunction) =>
     documents?.length
-        ? <>
-            <Card onScroll={ onScroll } style={ mainSidebarCardStyle }>
-                <DocumentList documents={ documents } searchParams={ searchParams }
-                    onMouseEnter={ document => setHoverDocument(document) }
-                    onMouseLeave={ () => setHoverDocument(null) } />
-            </Card>
-        </>
-        : <Card style={ mainSidebarCardStyle } className="text-center p-5">
+        ? <Card key="documentList" onScroll={ onScroll } style={ mainSidebarCardStyle }>
+            <DocumentList documents={ documents } searchParams={ searchParams }
+                onMouseEnter={ document => setHoverDocument(document) }
+                onMouseLeave={ () => setHoverDocument(null) } />
+        </Card>
+        : <Card key="noResults" style={ mainSidebarCardStyle } className="text-center p-5">
             <em>{ t('project.noResults') }</em>
         </Card>;
 
