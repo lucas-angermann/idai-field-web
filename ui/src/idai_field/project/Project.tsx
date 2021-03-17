@@ -65,13 +65,14 @@ export default function Project(): ReactElement {
 
         const searchParams = new URLSearchParams(location.search);
         const parent: string = searchParams.get('parent');
-        const query: Query = (searchParams.toString() !== previousSearchParams.current.toString())
+        const query: Query = (searchParams.toString() !== previousSearchParams.current.toString()
+                || (view === 'hierarchy' && !parent))
             ? buildQuery(projectId, searchParams, 0)
             : null;
         previousSearchParams.current = searchParams;
         const predecessorsId: string = isResource(parent) ? parent : documentId;
 
-        fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
+        fetchProjectData(loginData.token, view, query, documentId, predecessorsId).then(data => {
             const newPredecessors = getPredecessors(data, parent, documentId);
             
             unstable_batchedUpdates(() => {
@@ -93,7 +94,7 @@ export default function Project(): ReactElement {
             });
             if (documentId && !data.selected) setNotFound(true);
         });
-    }, [projectId, documentId, location.search, loginData]);
+    }, [projectId, documentId, view, location.search, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
         search(buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
