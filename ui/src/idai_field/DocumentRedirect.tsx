@@ -24,7 +24,7 @@ export default function DocumentRedirect(): ReactElement {
     return error
         ? <NotFound />
         : project
-            ? <Redirect to={ `/project/hierarchy/${project}/${id}` } />
+            ? <Redirect to={ `/project/${project}/hierarchy/${id}` } />
             : <div>{ t('redirect.waitForRedirection')}</div>;
 }
 
