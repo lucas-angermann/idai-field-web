@@ -110,16 +110,14 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value, t) }</li>) }</ul>
         : renderFieldValue(values[0], t);
 
-        
+
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
     if (isLabeledValue(object)) {
         return renderMultiLanguageText(object, t);
     } else if (isLabeled(object)) {
       return object.label;
-    } else if // TODO review, here I replaced isValid(object, {permissive: true}),
-              // but this is currently available only for Dimension, but not Dating, do we need that for Dimension?
-        (Dating.isDating(object)) {
+    } else if (Dating.isDating(object)) {
         return Dating.generateLabel(object, t);
     } else if (Dimension.isDimension(object)) {
         const labeledPosition =
