@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { to } from 'tsfun';
 import { Document } from '../../api/document';
-import { search } from '../../api/documents';
+import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams, Query } from '../../api/query';
 import { ResultDocument, ResultFilter } from '../../api/result';
 import CONFIGURATION from '../../configuration.json';
@@ -65,14 +65,19 @@ export default function Project(): ReactElement {
 
         const searchParams = new URLSearchParams(location.search);
         const parent: string = searchParams.get('parent');
-        const query: Query = (searchParams.toString() !== previousSearchParams.current.toString()
-                || (view === 'hierarchy' && !parent))
-            ? buildQuery(projectId, searchParams, 0, documentId)
+
+        if (view === 'hierarchy' && !parent) {
+            reloadWithParent(projectId, searchParams, documentId, loginData.token, history);
+            return () => null;
+        }
+
+        const query: Query = (searchParams.toString() !== previousSearchParams.current.toString())
+            ? buildQuery(projectId, searchParams, 0)
             : null;
         previousSearchParams.current = searchParams;
         const predecessorsId: string = isResource(parent) ? parent : documentId;
 
-        fetchProjectData(loginData.token, view, query, documentId, predecessorsId).then(data => {
+        fetchProjectData(loginData.token, query, documentId, predecessorsId).then(data => {
             const newPredecessors = getPredecessors(data, parent, documentId);
             
             unstable_batchedUpdates(() => {
@@ -94,10 +99,10 @@ export default function Project(): ReactElement {
             });
             if (documentId && !data.selected) setNotFound(true);
         });
-    }, [projectId, documentId, view, location.search, loginData]);
+    }, [projectId, documentId, view, location.search, history, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset, documentId), loginData.token)
+        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
@@ -224,10 +229,17 @@ const renderTotal = (total: number, searchParams: URLSearchParams, view: Project
 };
 
 
-const buildQuery = (projectId: string, searchParams: URLSearchParams, from: number,
-        documentId?: string): Query => {
+const reloadWithParent = async (projectId: string, searchParams: URLSearchParams, documentId: string,
+        token: string, history: History) => {
 
-    if (!searchParams.get('parent') && !documentId) searchParams.set('parent', 'root');
+    const document: Document|undefined = documentId ? await get(documentId, token) : undefined;
+    searchParams.set('parent', document?.resource?.parentId || 'root');
+
+    history.push(`/project/${projectId}/hierarchy${documentId ? `/${documentId}` : ''}?${searchParams.toString()}`);
+};
+
+
+const buildQuery = (projectId: string, searchParams: URLSearchParams, from: number): Query => {
 
     const query = buildProjectQueryTemplate(projectId, from, CHUNK_SIZE, EXCLUDED_CATEGORIES);
     return parseFrontendGetParams(searchParams, query);
