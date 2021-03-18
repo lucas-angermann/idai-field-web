@@ -67,7 +67,7 @@ export default function Project(): ReactElement {
         const parent: string = searchParams.get('parent');
         const query: Query = (searchParams.toString() !== previousSearchParams.current.toString()
                 || (view === 'hierarchy' && !parent))
-            ? buildQuery(projectId, searchParams, 0)
+            ? buildQuery(projectId, searchParams, 0, documentId)
             : null;
         previousSearchParams.current = searchParams;
         const predecessorsId: string = isResource(parent) ? parent : documentId;
@@ -97,7 +97,7 @@ export default function Project(): ReactElement {
     }, [projectId, documentId, view, location.search, loginData]);
 
     const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
+        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset, documentId), loginData.token)
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
@@ -224,9 +224,12 @@ const renderTotal = (total: number, searchParams: URLSearchParams, view: Project
 };
 
 
-const buildQuery = (id: string, searchParams: URLSearchParams, from: number): Query => {
+const buildQuery = (projectId: string, searchParams: URLSearchParams, from: number,
+        documentId?: string): Query => {
 
-    const query = buildProjectQueryTemplate(id, from, CHUNK_SIZE, EXCLUDED_CATEGORIES);
+    if (!searchParams.get('parent') && !documentId) searchParams.set('parent', 'root');
+
+    const query = buildProjectQueryTemplate(projectId, from, CHUNK_SIZE, EXCLUDED_CATEGORIES);
     return parseFrontendGetParams(searchParams, query);
 };
 

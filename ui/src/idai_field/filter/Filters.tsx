@@ -57,8 +57,8 @@ const popperConfig = {
             name: 'preventOverflow',
             options: {
                 padding: NAVBAR_HEIGHT + 10,
-            },
-        },
+            }
+        }
     ]
 };
 
