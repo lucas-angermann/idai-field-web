@@ -26,8 +26,6 @@
     "search": "Suche"
   },
   "project": {
-    "total": "Insgesamt",
-    "resources": "Ressourcen",
     "backToSearchResults": "Zurück zu den Suchergebnissen",
     "viewInContext": "Im Kontext anzeigen",
     "noResults": "Keine Ergebnisse",
@@ -61,6 +59,12 @@
   },
   "permalinkButton": {
     "title": "Permalink"
+  },
+  "widgets": {
+    "total": {
+      "total": "Insgesamt",
+      "resources": "Ressourcen"
+    }
   },
   "filters": {
     "relations": {
