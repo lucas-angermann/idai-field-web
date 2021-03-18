@@ -113,33 +113,21 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
 
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
-    const translations = {
-        'asMeasuredBy': t('asMeasuredBy'),
-        'before': t('before'),
-        'after': t('after'),
-        'bce': t('bce'),
-        'ce': t('ce'),
-        'bp': t('bp'),
-        'zenonId': t('zenonId'),
-        'page': t('page'),
-        'figure': t('figure')
-    };
-
     if (isLabeledValue(object)) {
         return renderMultiLanguageText(object, t);
     } else if (isLabeled(object)) {
       return object.label;
     } else if (Dating.isDating(object)) {
-        return Dating.generateLabel(object, translations);
+        return Dating.generateLabel(object, t);
     } else if (Dimension.isDimension(object)) {
         const labeledPosition =
             (object as unknown as DimensionWithLabeledMeasurementPosition).measurementPosition;
         return Dimension.generateLabel(
-            object, getDecimalValue, translations,
+            object, getDecimalValue, t,
             labeledPosition ? getLabel(labeledPosition) : undefined
         );
     } else if (Literature.isLiterature(object)) {
-        return renderLiterature(object, translations);
+        return renderLiterature(object, t);
     } else if (OptionalRange.isOptionalRange(object)) {
         return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t);
     } else {
@@ -161,9 +149,9 @@ const renderMultiLanguageText = (object: LabeledValue, t: TFunction): ReactNode 
 };
 
 
-const renderLiterature = (literature: Literature, translations: Literature.Translations): ReactNode => {
+const renderLiterature = (literature: Literature, t: TFunction): ReactNode => {
 
-    const label: string = Literature.generateLabel(literature as Literature, translations, false);
+    const label: string = Literature.generateLabel(literature as Literature, t, false);
 
     return <>
         { label }
