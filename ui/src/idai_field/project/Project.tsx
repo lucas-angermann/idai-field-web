@@ -1,12 +1,10 @@
-import { mdiMenuLeft } from '@mdi/js';
-import Icon from '@mdi/react';
 import { History } from 'history';
 import { TFunction } from 'i18next';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { get, search } from '../../api/documents';
@@ -17,19 +15,18 @@ import { SIDEBAR_WIDTH } from '../../constants';
 import DocumentCard from '../../shared/document/DocumentCard';
 import DocumentHierarchy from '../../shared/documents/DocumentHierarchy';
 import DocumentList from '../../shared/documents/DocumentList';
-import { getUserInterfaceLanguage } from '../../shared/languages';
 import LinkButton from '../../shared/linkbutton/LinkButton';
 import { LoginContext } from '../../shared/login';
 import NotFound from '../../shared/NotFound';
 import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_CATEGORIES } from '../constants';
-import Filters from '../filter/Filters';
 import { getMapDeselectionUrl } from './navigation';
 import ProjectBreadcrumb from './ProjectBreadcrumb';
 import ProjectMap from './ProjectMap';
 import { fetchProjectData, ProjectData } from './projectData';
 import ProjectSidebar from './ProjectSidebar';
+import Total from '../widgets/Total';
 
 
 export const CHUNK_SIZE = 50;
@@ -200,32 +197,8 @@ const renderTotal = (total: number, searchParams: URLSearchParams, view: Project
         filters: ResultFilter[], projectId: string,
         setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
 
-    if (!total) return null;
-
-    const children = <>
-        { t('project.total') }
-        <b key="project-total"> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
-        { t('project.resources') }
-    </>;
-
-    return <Card key="total" className="d-flex flex-row">
-        { asLink
-            ? <div style={ totalTextStyle } className="py-2 px-3">
-                <Link to={ `/project/${projectId}/${view}?${searchParams}` }>
-                    <Icon path={ mdiMenuLeft } size={ 0.8 }></Icon>
-                    { children }
-                </Link>
-            </div>
-            : <>
-                <div style={ totalTextStyle } className="py-2 px-3">
-                    { children }
-                </div>
-                    <Filters filters={ filters.filter(filter => filter.name !== 'project') }
-                            searchParams={ searchParams } projectId={ projectId } projectView={ view }
-                            onMouseOverCategories={ setMapHighlightedCategories } />
-            </>
-        }
-    </Card>;
+    return <Total total={ total } searchParams={ searchParams } projectView={ view } asLink={ asLink }
+        filters={ filters } projectId={ projectId } setMapHighlightedCategories={ setMapHighlightedCategories } />;
 };
 
 
@@ -296,8 +269,4 @@ const homeIconStyle: CSSProperties = {
     width: '20px',
     fill: 'black',
     verticalAlign: 'sub'
-};
-
-const totalTextStyle: CSSProperties = {
-    flexGrow: 1
 };

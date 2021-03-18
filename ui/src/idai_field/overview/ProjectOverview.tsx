@@ -12,8 +12,8 @@ import { LoginContext } from '../../shared/login';
 import { useGetChunkOnScroll } from '../../shared/scroll';
 import SearchBar from '../../shared/search/SearchBar';
 import { EXCLUDED_CATEGORIES } from '../constants';
-import Filters from '../filter/Filters';
 import { CHUNK_SIZE } from '../project/Project';
+import Total from '../widgets/Total';
 import OverviewMap from './OverviewMap';
 import './project-overview.css';
 
@@ -26,6 +26,7 @@ export default function ProjectOverview(): ReactElement {
 
     const [projectDocuments, setProjectDocuments] = useState<ResultDocument[]>([]);
     const [documents, setDocuments] = useState<ResultDocument[]>(null);
+    const [total, setTotal] = useState<number>(0);
     const [projectFilter, setProjectFilter] = useState<ResultFilter>(undefined);
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
@@ -44,11 +45,13 @@ export default function ProjectOverview(): ReactElement {
                 setProjectFilter(result.filters.find(filter => filter.name === 'project'));
                 setFilters(result.filters.filter(filter => filter.name !== 'project'));
                 setDocuments(result.documents);
+                setTotal(result.size);
             });
         } else {
             setProjectFilter(undefined);
             setFilters([]);
             setDocuments(null);
+            setTotal(0);
         }
     }, [searchParams, loginData]);
 
@@ -62,7 +65,7 @@ export default function ProjectOverview(): ReactElement {
             <Card>
                 <SearchBar basepath="/" />
             </Card>
-            { searchParams.has('q') && documents && renderSidebar(filters, searchParams, documents, onScroll) }
+            { searchParams.has('q') && documents && renderSidebar(total, filters, searchParams, documents, onScroll) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
@@ -71,14 +74,14 @@ export default function ProjectOverview(): ReactElement {
 }
 
 
-const renderSidebar = (filters: ResultFilter[], searchParams: URLSearchParams, documents: ResultDocument[],
-                       onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
+const renderSidebar = (total: number, filters: ResultFilter[], searchParams: URLSearchParams,
+        documents: ResultDocument[], onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('r', 'overview');
 
     return <div className="project-overview-sidebar">
-        <Filters filters={ filters } searchParams={ searchParams } />
+        <Total total={ total } filters={ filters } searchParams={ searchParams } />
         <Card style={ documentListContainerStyle } onScroll={ onScroll }>
             <DocumentList searchParams={ newSearchParams } documents={ documents } />
         </Card>
