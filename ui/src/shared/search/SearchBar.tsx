@@ -1,6 +1,6 @@
 import { mdiCloseCircle, mdiMagnify } from '@mdi/js';
 import Icon from '@mdi/react';
-import React, { FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, FormEvent, ReactElement, useEffect, useRef, useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -49,10 +49,11 @@ export default function SearchBar({ onSubmit, basepath }
                     placeholder={ t('searchBar.search') }
                     value={ queryString ?? '' }
                     onChange={ e => setQueryString(e.target.value) }
-                    ref={ input } />
+                    ref={ input }
+                    style={ getInputStyle(isResetQueryButtonVisible(searchParams)) } />
                 <InputGroup.Append>
                     { isResetQueryButtonVisible(searchParams) &&
-                        <Button variant="link" onClick={ resetQueryString } style={ { backgroundColor: 'white' } }>
+                        <Button variant="link" onClick={ resetQueryString } style={ resetButtonStyle }>
                             <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
                     }
@@ -77,4 +78,19 @@ const isResetQueryButtonVisible = (searchParams: URLSearchParams): boolean => {
 
     const q = searchParams.get('q');
     return q && q.length > 0 && q !== '*';
+};
+
+
+const getInputStyle = (resetButtonVisible: boolean): CSSProperties => ({
+    border: 'none',
+    paddingRight: resetButtonVisible ? 0 : '12px'
+});
+
+
+const resetButtonStyle: CSSProperties = {
+    paddingTop: '4px',
+    paddingLeft: '12px',
+    paddingRight: '12px',
+    backgroundColor: 'white',
+    border: 'none'
 };
