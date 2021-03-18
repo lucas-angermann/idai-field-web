@@ -33,7 +33,7 @@ export default function Total({ total, filters, searchParams, projectId, project
         { t('widgets.total.resources') }
     </>;
 
-    return <Card key="total" className="d-flex flex-row">
+    return <Card className="d-flex flex-row">
         { asLink && projectId && projectView
             ? <div style={ totalTextStyle } className="py-2 px-3">
                 <Link to={ `/project/${projectId}/${projectView}?${searchParams}` }>

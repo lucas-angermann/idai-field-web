@@ -197,7 +197,7 @@ const renderTotal = (total: number, searchParams: URLSearchParams, view: Project
         filters: ResultFilter[], projectId: string,
         setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
 
-    return <Total total={ total } searchParams={ searchParams } projectView={ view } asLink={ asLink }
+    return <Total key="total" total={ total } searchParams={ searchParams } projectView={ view } asLink={ asLink }
         filters={ filters } projectId={ projectId } setMapHighlightedCategories={ setMapHighlightedCategories } />;
 };
 
