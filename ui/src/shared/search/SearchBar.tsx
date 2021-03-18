@@ -57,7 +57,7 @@ export default function SearchBar({ onSubmit, basepath }
                             <Icon path={ mdiCloseCircle } size={ 0.8 } />
                         </Button>
                     }
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" style={ searchButtonStyle }>
                         <Icon path={ mdiMagnify } size={ 0.8 } />
                     </Button>
                 </InputGroup.Append>
@@ -93,4 +93,9 @@ const resetButtonStyle: CSSProperties = {
     paddingRight: '12px',
     backgroundColor: 'white',
     border: 'none'
+};
+
+
+const searchButtonStyle: CSSProperties = {
+    zIndex: 3
 };
