@@ -110,19 +110,19 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value, t) }</li>) }</ul>
         : renderFieldValue(values[0], t);
 
-// TODO parametrize with a render(object, 'determined-type') callback, factor out code for reuse in idai-field-client
+        
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
     if (isLabeledValue(object)) {
         return renderMultiLanguageText(object, t);
     } else if (isLabeled(object)) {
-      return object.label; // TODO a simple string is correct here, then?
+      return object.label;
     } else if // TODO review, here I replaced isValid(object, {permissive: true}),
               // but this is currently available only for Dimension, but not Dating, do we need that for Dimension?
         (Dating.isDating(object)) {
         return Dating.generateLabel(object, t);
     } else if (Dimension.isDimension(object)) {
-        const labeledPosition = // TODO review if Omit<Dimension,...> makes sense
+        const labeledPosition =
             (object as unknown as DimensionWithLabeledMeasurementPosition).measurementPosition;
         return Dimension.generateLabel(
             object, getDecimalValue, t,
@@ -131,7 +131,7 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
     } else if (Literature.isLiterature(object)) {
         return renderLiterature(object, t);
     } else if (OptionalRange.isOptionalRange(object)) {
-        return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t); // TODO review Omit
+        return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t);
     } else {
         console.warn('Failed to render field value:', object);
         return undefined;
