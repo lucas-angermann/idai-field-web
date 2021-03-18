@@ -1,5 +1,6 @@
 import { Geometry } from 'geojson';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
+import { isObject } from 'tsfun';
 import { ResultDocument } from './result';
 
 
@@ -68,9 +69,26 @@ export interface Field {
 }
 
 
+export interface Labeled { // TODO review duplication with idai-field (Labelled)
+    label: string;
+}
+
+
+export function isLabeled(labeled: unknown): labeled is Labeled {
+
+    return isObject(labeled) && labeled['label'];
+}
+
+
 export interface LabeledValue {
     name: string;
     label: I18nString;
+}
+
+
+export function isLabeledValue(labeledValue: unknown): labeledValue is LabeledValue {
+
+    return isObject(labeledValue) && labeledValue['label'] && labeledValue['name'];
 }
 
 
