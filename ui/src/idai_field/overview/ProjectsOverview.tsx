@@ -3,7 +3,7 @@ import React, { CSSProperties, ReactElement, useContext, useEffect, useState } f
 import { Alert, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { search } from '../../api/documents';
-import { buildProjectOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
+import { buildProjectsOverviewQueryTemplate, parseFrontendGetParams } from '../../api/query';
 import { Result, ResultDocument, ResultFilter } from '../../api/result';
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH } from '../../constants';
 import DocumentList from '../../shared/documents/DocumentList';
@@ -15,10 +15,10 @@ import { EXCLUDED_CATEGORIES } from '../constants';
 import { CHUNK_SIZE } from '../project/Project';
 import Total from '../widgets/Total';
 import OverviewMap from './OverviewMap';
-import './project-overview.css';
+import './projects-overview.css';
 
 
-export default function ProjectOverview(): ReactElement {
+export default function ProjectsOverview(): ReactElement {
     
     const searchParams = useSearchParams();
     const loginData = useContext(LoginContext);
@@ -80,7 +80,7 @@ const renderSidebar = (total: number, filters: ResultFilter[], searchParams: URL
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('r', 'overview');
 
-    return <div className="project-overview-sidebar">
+    return <div className="projects-overview-sidebar">
         <Total total={ total } filters={ filters } searchParams={ searchParams } />
         <Card style={ documentListContainerStyle } onScroll={ onScroll }>
             <DocumentList searchParams={ newSearchParams } documents={ documents } />
@@ -91,7 +91,7 @@ const renderSidebar = (total: number, filters: ResultFilter[], searchParams: URL
 
 const renderError = (t: TFunction): ReactElement => (
     <Alert variant="danger">
-        { t('projectOverview.backendNotAvailable') }
+        { t('projectsOverview.backendNotAvailable') }
     </Alert>
 );
 
@@ -107,7 +107,7 @@ const getProjectDocuments = async (token: string): Promise<ResultDocument[]> =>
 const searchDocuments = async (searchParams: URLSearchParams, from: number, token: string): Promise<Result> => {
 
     const query = parseFrontendGetParams(searchParams,
-        buildProjectOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_CATEGORIES));
+        buildProjectsOverviewQueryTemplate(from, CHUNK_SIZE, EXCLUDED_CATEGORIES));
     return search(query, token);
 };
 

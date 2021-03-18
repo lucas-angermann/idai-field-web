@@ -83,7 +83,7 @@ export const buildBackendPostParams = async (query: Query): Promise<BackendParam
 };
 
 
-export const buildProjectOverviewQueryTemplate = (from: number, size: number, excludedTypes: string[]): Query => ({
+export const buildProjectsOverviewQueryTemplate = (from: number, size: number, excludedTypes: string[]): Query => ({
     size,
     from,
     not: excludedTypes.map(type => ({ field: 'resource.category.name', value: type }))

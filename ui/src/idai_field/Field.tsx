@@ -8,7 +8,7 @@ import Dashboard from './dashboard/Dashboard';
 import Download from './download/Download';
 import Manual from './manual/Manual';
 import FieldNav from './navbar/FieldNav';
-import ProjectOverview from './overview/ProjectOverview';
+import ProjectsOverview from './overview/ProjectsOverview';
 import Project from './project/Project';
 import ProjectHome from './project/ProjectHome';
 import ResourceRedirect from './ResourceRedirect';
@@ -50,7 +50,7 @@ export default function Field(): ReactElement {
 
                     <Route path="/image/:project/:id" component={ ImageView } />
 
-                    <Route path="/" component={ ProjectOverview } />
+                    <Route path="/" component={ ProjectsOverview } />
                 </Switch>
             </LoginContext.Provider>
         </BrowserRouter>

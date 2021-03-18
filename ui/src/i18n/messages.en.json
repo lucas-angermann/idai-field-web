@@ -51,8 +51,8 @@
     "externalReference": "Project website",
     "gazId": "iDAI.gazetteer"
   },
-  "projectOverview": {
-    "projectOverview.backendNotAvailable": "Backend nicht erreichbar!"
+  "projectsOverview": {
+    "backendNotAvailable": "Backend nicht erreichbar!"
   },
   "documentTeaser": {
     "noTargetResource": "Target resource not found"
