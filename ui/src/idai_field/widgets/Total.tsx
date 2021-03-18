@@ -28,9 +28,9 @@ export default function Total({ total, filters, searchParams, projectId, project
     if (!total) return <></>;
 
     const children = <>
-        { t('project.total') }
+        { t('widgets.total.total') }
         <b key="project-total"> { total.toLocaleString(getUserInterfaceLanguage()) } </b>
-        { t('project.resources') }
+        { t('widgets.total.resources') }
     </>;
 
     return <Card key="total" className="d-flex flex-row">
