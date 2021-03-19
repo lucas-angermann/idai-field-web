@@ -1,6 +1,6 @@
 import { Geometry } from 'geojson';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { isObject, isString } from 'tsfun';
+import { isObject } from 'tsfun';
 import { clone } from 'tsfun/struct';
 import { getLabel } from '../shared/languages';
 import { ResultDocument } from './result';
