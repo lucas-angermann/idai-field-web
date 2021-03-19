@@ -93,6 +93,7 @@ export default function Project(): ReactElement {
                 setDocument(data.selected);
                 setPredecessors(newPredecessors);
                 setMapDocument(getMapDocument(data, parent, newPredecessors));
+                setHoverDocument(null);
             });
             if (documentId && !data.selected) setNotFound(true);
         });
