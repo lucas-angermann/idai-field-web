@@ -24,7 +24,11 @@ export default function FieldNav({ onLogout }: BaseNavProps): ReactElement {
     useEffect(() => {
 
         const projectId: string | undefined = getProjectId(location);
-        if (projectId) get(projectId, loginData.token).then(setProjectDocument);
+        if (projectId) {
+            get(projectId, loginData.token).then(setProjectDocument);
+        } else {
+            setProjectDocument(null);
+        }
     }, [location, loginData]);
 
     const NavItemClass = (route: string) => getNavItemClass(route, getCurrentRoute(location, projectDocument));
