@@ -1,6 +1,8 @@
 import { Geometry } from 'geojson';
 import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
-import { isObject } from 'tsfun';
+import { isObject, isString } from 'tsfun';
+import { clone } from 'tsfun/struct';
+import { getLabel } from '../shared/languages';
 import { ResultDocument } from './result';
 
 
@@ -40,6 +42,18 @@ export interface FieldGroup {
 
 export interface DimensionWithLabeledMeasurementPosition extends Omit<Dimension, 'measurementPosition'> {
     measurementPosition?: LabeledValue;
+}
+
+
+export function convertLabeledMeasurementPosition(element: FieldValue): FieldValue {
+
+    if (!isObject(element)) return element;
+    const labeledPosition = element[Dimension.MEASUREMENTPOSITION];
+    if (isString(labeledPosition)) return element;
+
+    const klone: FieldValue = clone(element);
+    klone[Dimension.MEASUREMENTPOSITION] = isLabeledValue(labeledPosition) ? getLabel(labeledPosition) : undefined;
+    return klone;
 }
 
 

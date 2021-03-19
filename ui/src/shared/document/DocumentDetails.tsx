@@ -7,7 +7,8 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue,
+    convertLabeledMeasurementPosition,
+    Document, Field, FieldGroup, FieldValue,
     getDocumentImages, isLabeled, isLabeledValue, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
@@ -113,25 +114,17 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
 
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
-    if (isLabeledValue(object)) {
-        return renderMultiLanguageText(object, t);
-    } else if (isLabeled(object)) {
-      return object.label;
-    } else if (Dating.isDating(object)) {
-        return Dating.generateLabel(object, t);
-    } else if (Dimension.isDimension(object)) {
-        const labeledPosition =
-            (object as unknown as DimensionWithLabeledMeasurementPosition).measurementPosition;
-        return Dimension.generateLabel(
-            object, getDecimalValue, t,
-            labeledPosition ? getLabel(labeledPosition) : undefined
-        );
-    } else if (Literature.isLiterature(object)) {
-        return renderLiterature(object, t);
-    } else if (OptionalRange.isOptionalRange(object)) {
-        return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t);
+    if (isLabeledValue(object)) return renderMultiLanguageText(object, t);
+    if (isLabeled(object)) return object.label;
+
+    const object1 = convertLabeledMeasurementPosition(object);
+    if (Dating.isDating(object1)) return Dating.generateLabel(object1, t);
+    if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
+    if (Literature.isLiterature(object1)) return renderLiterature(object1, t);
+    if (OptionalRange.isOptionalRange(object1)) {
+        return renderOptionalRange(object1 as unknown as OptionalRangeWithLabeledValues, t);
     } else {
-        console.warn('Failed to render field value:', object);
+        console.warn('Failed to render field value:', object1);
         return undefined;
     }
 };
