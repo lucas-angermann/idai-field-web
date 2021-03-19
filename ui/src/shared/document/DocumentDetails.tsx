@@ -10,7 +10,7 @@ import {
     convertMeasurementPosition,
     Document, Field, FieldGroup, FieldValue,
     getDocumentImages, isLabeled, isLabeledValue, LabeledValue,
-    OptionalRangeWithLabeledValues, Relation
+    Relation
 } from '../../api/document';
 import { ResultDocument } from '../../api/result';
 import { ImageCarousel } from '../image/ImageCarousel';
@@ -119,8 +119,9 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
     if (Dating.isDating(object)) return Dating.generateLabel(object, t);
     if (Literature.isLiterature(object)) return renderLiterature(object, t);
 
-    if (OptionalRange.isValid(object as unknown as OptionalRange)) {
-        return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
+    const isOptionalRange = OptionalRange.buildIsOptionalRange(isLabeledValue);
+    if (isOptionalRange(object) && OptionalRange.isValid(object)) {
+        return renderOptionalRange(object as OptionalRange<LabeledValue>, t);
     }
     const object1 = convertMeasurementPosition(object);
     if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
@@ -162,7 +163,7 @@ const renderLiterature = (literature: Literature, t: TFunction): ReactNode => {
 };
 
 
-const renderOptionalRange = (optionalRange: OptionalRangeWithLabeledValues, t: TFunction): ReactNode => {
+const renderOptionalRange = (optionalRange: OptionalRange<LabeledValue>, t: TFunction): ReactNode => {
 
     return optionalRange.endValue
         ? <div>
