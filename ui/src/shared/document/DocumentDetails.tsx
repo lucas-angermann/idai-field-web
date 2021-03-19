@@ -116,11 +116,11 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
 
     if (isLabeledValue(object)) return renderMultiLanguageText(object, t);
     if (isLabeled(object)) return object.label;
+    if (Dating.isDating(object)) return Dating.generateLabel(object, t);
+    if (Literature.isLiterature(object)) return renderLiterature(object, t);
 
     const object1 = convertLabeledMeasurementPosition(object);
-    if (Dating.isDating(object1)) return Dating.generateLabel(object1, t);
     if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
-    if (Literature.isLiterature(object1)) return renderLiterature(object1, t);
     if (OptionalRange.isOptionalRange(object1)) {
         return renderOptionalRange(object1 as unknown as OptionalRangeWithLabeledValues, t);
     } else {
