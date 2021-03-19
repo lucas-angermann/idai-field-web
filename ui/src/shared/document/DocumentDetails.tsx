@@ -7,7 +7,7 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import {
-    convertLabeledMeasurementPosition,
+    convertMeasurementPosition,
     Document, Field, FieldGroup, FieldValue,
     getDocumentImages, isLabeled, isLabeledValue, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
@@ -119,14 +119,14 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
     if (Dating.isDating(object)) return Dating.generateLabel(object, t);
     if (Literature.isLiterature(object)) return renderLiterature(object, t);
 
-    const object1 = convertLabeledMeasurementPosition(object);
-    if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
-    if (OptionalRange.isOptionalRange(object1)) {
-        return renderOptionalRange(object1 as unknown as OptionalRangeWithLabeledValues, t);
-    } else {
-        console.warn('Failed to render field value:', object1);
-        return undefined;
+    if (OptionalRange.isValid(object as unknown as OptionalRange)) {
+        return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
     }
+    const object1 = convertMeasurementPosition(object);
+    if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
+    
+    console.warn('Failed to render field value:', object);
+    return undefined;
 };
 
 

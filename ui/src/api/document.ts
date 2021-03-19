@@ -45,14 +45,11 @@ export interface DimensionWithLabeledMeasurementPosition extends Omit<Dimension,
 }
 
 
-export function convertLabeledMeasurementPosition(element: FieldValue): FieldValue {
-
+export function convertMeasurementPosition(element: FieldValue): FieldValue {
+    
     if (!isObject(element)) return element;
-    const labeledPosition = element[Dimension.MEASUREMENTPOSITION];
-    if (isString(labeledPosition)) return element;
-
     const klone: FieldValue = clone(element);
-    klone[Dimension.MEASUREMENTPOSITION] = isLabeledValue(labeledPosition) ? getLabel(labeledPosition) : undefined;
+    klone[Dimension.MEASUREMENTPOSITION] = isLabeledValue(element) ? getLabel(element) : undefined;
     return klone;
 }
 
