@@ -120,9 +120,7 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
     if (Literature.isLiterature(object)) return renderLiterature(object, t);
 
     const isOptionalRange = OptionalRange.buildIsOptionalRange(isLabeledValue);
-    if (isOptionalRange(object) && OptionalRange.isValid(object)) {
-        return renderOptionalRange(object as OptionalRange<LabeledValue>, t);
-    }
+    if (isOptionalRange(object) && OptionalRange.isValid(object)) return renderOptionalRange(object, t);
     const object1 = convertMeasurementPosition(object);
     if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
     
