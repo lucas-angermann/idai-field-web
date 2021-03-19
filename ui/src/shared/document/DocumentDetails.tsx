@@ -7,7 +7,8 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import {
-    DimensionWithLabeledMeasurementPosition, Document, Field, FieldGroup, FieldValue,
+    convertMeasurementPosition,
+    Document, Field, FieldGroup, FieldValue,
     getDocumentImages, isLabeled, isLabeledValue, LabeledValue,
     OptionalRangeWithLabeledValues, Relation
 } from '../../api/document';
@@ -110,32 +111,22 @@ const renderFieldValueArray = (values: FieldValue[], t: TFunction): ReactNode =>
         ? <ul>{ values.map((value, i) => <li key={ `${value}_${i}` }>{ renderFieldValue(value, t) }</li>) }</ul>
         : renderFieldValue(values[0], t);
 
-// TODO parametrize with a render(object, 'determined-type') callback, factor out code for reuse in idai-field-client
+
 const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | undefined => {
 
-    if (isLabeledValue(object)) {
-        return renderMultiLanguageText(object, t);
-    } else if (isLabeled(object)) {
-      return object.label; // TODO a simple string is correct here, then?
-    } else if // TODO review, here I replaced isValid(object, {permissive: true}),
-              // but this is currently available only for Dimension, but not Dating, do we need that for Dimension?
-        (Dating.isDating(object)) {
-        return Dating.generateLabel(object, t);
-    } else if (Dimension.isDimension(object)) {
-        const labeledPosition = // TODO review if Omit<Dimension,...> makes sense
-            (object as unknown as DimensionWithLabeledMeasurementPosition).measurementPosition;
-        return Dimension.generateLabel(
-            object, getDecimalValue, t,
-            labeledPosition ? getLabel(labeledPosition) : undefined
-        );
-    } else if (Literature.isLiterature(object)) {
-        return renderLiterature(object, t);
-    } else if (OptionalRange.isOptionalRange(object)) {
-        return renderOptionalRange(object as unknown as OptionalRangeWithLabeledValues, t); // TODO review Omit
-    } else {
-        console.warn('Failed to render field value:', object);
-        return undefined;
+    if (isLabeledValue(object)) return renderMultiLanguageText(object, t);
+    if (isLabeled(object)) return object.label;
+    if (Dating.isDating(object)) return Dating.generateLabel(object, t);
+    if (Literature.isLiterature(object)) return renderLiterature(object, t);
+
+    if (OptionalRange.isValid(object as unknown as OptionalRange)) {
+        return renderOptionalRange(object as OptionalRangeWithLabeledValues, t);
     }
+    const object1 = convertMeasurementPosition(object);
+    if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
+    
+    console.warn('Failed to render field value:', object);
+    return undefined;
 };
 
 
