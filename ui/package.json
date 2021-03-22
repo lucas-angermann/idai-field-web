@@ -60,6 +60,12 @@
       "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "varsIgnorePattern": "_"
+        }
+      ],
       "@typescript-eslint/array-type": [
         "warn",
         {
