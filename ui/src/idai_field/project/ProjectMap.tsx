@@ -357,19 +357,41 @@ const getStyle = (feature: OlFeature): Style => {
     const transparentColor = getColorForCategory(category, 0.3);
     const color = getColorForCategory(category, 1);
 
-    const style = new Style({
-        image: new CircleStyle({
-            radius: 4,
-            fill: new Fill({ color: highlighted ? 'white' : 'transparent' }),
-            stroke: new Stroke({ color: highlighted ? color : 'transparent', width: 5 }),
-        }),
-        stroke: new Stroke({ color: highlighted ? color : transparentColor }),
-        fill: new Fill({ color: highlighted ? transparentColor : 'transparent' })
-    });
+    const style = highlighted
+        ? getHighlightedStyle(color, transparentColor)
+        : getDefaultStyle(transparentColor);
 
     STYLE_CACHE[styleId] = style;
 
     return style;
+};
+
+
+const getDefaultStyle = (transparentColor: string) => {
+    
+    return new Style({
+        image: new CircleStyle({
+            radius: 4,
+            fill: new Fill({ color: 'transparent' }),
+            stroke: new Stroke({ color: 'transparent', width: 5 }),
+        }),
+        stroke: new Stroke({ color: transparentColor }),
+        fill: new Fill({ color: 'transparent' })
+    });
+};
+
+
+const getHighlightedStyle = (color: string, transparentColor: string) => {
+    
+    return new Style({
+        image: new CircleStyle({
+            radius: 4,
+            fill: new Fill({ color: 'white' }),
+            stroke: new Stroke({ color: color, width: 5 }),
+        }),
+        stroke: new Stroke({ color: color }),
+        fill: new Fill({ color: transparentColor })
+    });
 };
 
 
