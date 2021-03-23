@@ -1,5 +1,6 @@
 .document-list-transition .enter {
     transform: translateX(100%);
+    pointer-events: none;
 }
 
 .document-list-transition.backward .enter {
@@ -18,6 +19,7 @@
 
 .document-list-transition .exit {
     transform: translateX(0);
+    pointer-events: none;
 }
 
 .document-list-transition.backward .exit {
