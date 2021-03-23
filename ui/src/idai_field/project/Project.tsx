@@ -47,7 +47,6 @@ export default function Project(): ReactElement {
 
     const [document, setDocument] = useState<Document>(null);
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
-    const [mapDocument, setMapDocument] = useState<Document>(null);
     const [hoverDocument, setHoverDocument] = useState<ResultDocument>(null);
     const [mapHighlightedIds, setMapHighlightedIds] = useState<string[]>([]);
     const [mapHighlightedCategories, setMapHighlightedCategories] = useState<string[]>(null);
@@ -92,7 +91,6 @@ export default function Project(): ReactElement {
                 }
                 setDocument(data.selected);
                 setPredecessors(newPredecessors);
-                setMapDocument(getMapDocument(data, parent, newPredecessors));
                 setHoverDocument(null);
             });
             if (documentId && !data.selected) setNotFound(true);
@@ -139,7 +137,7 @@ export default function Project(): ReactElement {
             </Card>
             { renderSidebarContent() }
         </ProjectSidebar>
-        <ProjectMap selectedDocument={ mapDocument }
+        <ProjectMap selectedDocument={ document }
             hoverDocument={ hoverDocument }
             highlightedIds={ mapHighlightedIds }
             highlightedCategories={ mapHighlightedCategories }
@@ -227,16 +225,6 @@ const getPredecessors = (data: ProjectData, parent: string, documentId: string):
         predecessors.pop();
     }
     return predecessors;
-};
-
-
-const getMapDocument = (data: ProjectData, parent: string, predecessors: ResultDocument[]): Document => {
-
-    return data.selected
-        ? data.selected
-        : (isResource(parent) && predecessors.length > 0)
-            ? (predecessors[predecessors.length - 1] as Document)
-            : null;
 };
 
 
