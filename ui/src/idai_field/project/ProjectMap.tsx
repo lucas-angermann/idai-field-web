@@ -33,9 +33,12 @@ import { ProjectView } from './Project';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
 
+
 const MAX_SIZE = 10000;
 
 const STYLE_CACHE: { [ category: string ] : Style } = { };
+
+type StyleType = 'default' | 'highlighted' | 'parent';
 
 interface ProjectMapProps {
     selectedDocument: Document;
@@ -135,9 +138,7 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
 
         vectorLayer.getSource().getFeatures().forEach(feature => {
             const properties = feature.getProperties();
-            properties.highlighted =
-                (!highlightedIds || highlightedIds.includes(feature.getProperties()['id']))
-                && (!highlightedCategories || highlightedCategories.includes(properties.category));
+            properties.styleType = getStyleType(feature, highlightedIds, highlightedCategories, predecessors);
             feature.setProperties(properties);
         });
     }, [selectedDocument, highlightedIds, highlightedCategories, predecessors, vectorLayer, select]);
@@ -235,7 +236,7 @@ const handleMapClick = (history: History, searchParams: URLSearchParams, project
     return async (e: MapBrowserEvent) => {
 
         const features = e.map.getFeaturesAtPixel(e.pixel)
-            .filter(feature => feature.getProperties().highlighted);
+            .filter(feature => feature.getProperties().styleType === 'highlighted');
 
         if (features.length) {
             let smallestFeature = features[0];
@@ -272,7 +273,7 @@ const configureCursor = (map: Map) => {
 
     map.on('pointermove', event => {
         map.getTargetElement().style.cursor = map.getFeaturesAtPixel(event.pixel)
-            .filter(feature => feature.getProperties().highlighted)
+            .filter(feature => feature.getProperties().styleType === 'highlighted')
             .length > 0
                 ? 'pointer'
                 : '';
@@ -349,17 +350,26 @@ const getTileLayer = (document: ResultDocument, loginData: LoginData): TileLayer
 const getStyle = (feature: OlFeature): Style => {
 
     const category: string = feature.getProperties().category;
-    const highlighted: boolean = feature.getProperties().highlighted;
-    const styleId: string = category + '_' + (highlighted ? 'highlighted' : 'default');
+    const styleType: StyleType = feature.getProperties().styleType;
+    const styleId: string = `${category}_${styleType}`;
 
     if (STYLE_CACHE[styleId]) return STYLE_CACHE[styleId];
 
     const transparentColor = getColorForCategory(category, 0.3);
     const color = getColorForCategory(category, 1);
 
-    const style = highlighted
-        ? getHighlightedStyle(color, transparentColor)
-        : getDefaultStyle(transparentColor);
+    let style;
+    switch (styleType) {
+        case 'default':
+            style = getDefaultStyle(transparentColor);
+            break;
+        case 'highlighted':
+            style = getHighlightedStyle(color, transparentColor);
+            break;
+        case 'parent':
+            style = getParentStyle(color);
+            break;
+    }
 
     STYLE_CACHE[styleId] = style;
 
@@ -373,7 +383,7 @@ const getDefaultStyle = (transparentColor: string) => {
         image: new CircleStyle({
             radius: 4,
             fill: new Fill({ color: 'transparent' }),
-            stroke: new Stroke({ color: 'transparent', width: 5 }),
+            stroke: new Stroke({ color: 'transparent', width: 1 }),
         }),
         stroke: new Stroke({ color: transparentColor }),
         fill: new Fill({ color: 'transparent' })
@@ -391,6 +401,20 @@ const getHighlightedStyle = (color: string, transparentColor: string) => {
         }),
         stroke: new Stroke({ color: color }),
         fill: new Fill({ color: transparentColor })
+    });
+};
+
+
+const getParentStyle = (color: string) => {
+    
+    return new Style({
+        image: new CircleStyle({
+            radius: 4,
+            fill: new Fill({ color: 'transparent' }),
+            stroke: new Stroke({ color: 'transparent', width: 1 }),
+        }),
+        stroke: new Stroke({ color: color, width: 2, lineDash: [4, 7] }),
+        fill: new Fill({ color: 'transparent' })
     });
 };
 
@@ -480,9 +504,26 @@ const getExtentOfHighlightedGeometries = (layer: VectorLayer): Extent => {
 };
 
 
-const mapStyle = (isMiniMap: boolean): CSSProperties =>
-{
+const getStyleType = (feature: OlFeature, highlightedIds: string[], highlightedCategories: string[],
+        predecessors: ResultDocument[]): StyleType => {
+
+    const properties = feature.getProperties();
+    if ((!highlightedIds || highlightedIds.includes(properties.id))
+           && (!highlightedCategories || highlightedCategories.includes(properties.category))) {
+        return 'highlighted';
+    } else if (predecessors && predecessors.length > 0
+            && predecessors[predecessors.length - 1].resource.id === properties.id) {
+        return 'parent';
+    } else {
+        return 'default';
+    }
+};
+
+
+const mapStyle = (isMiniMap: boolean): CSSProperties => {
+
     const height = isMiniMap ? '100%' : `calc(100vh - ${NAVBAR_HEIGHT}px)`;
+
     return {
         height,
         backgroundColor: '#d3d3cf'
