@@ -23,7 +23,7 @@ export type Filter = {
 
 
 export type ImageQuery = {
-    model: string
+    model: 'resnet' | 'phaseFourier',
     segment_image: boolean,
     image: tf.Tensor3D,
 };

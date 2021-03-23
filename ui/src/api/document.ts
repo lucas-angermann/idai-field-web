@@ -54,12 +54,6 @@ export function convertMeasurementPosition(element: FieldValue): FieldValue {
 }
 
 
-export interface OptionalRangeWithLabeledValues extends Omit<Dimension, 'value' | 'endValue'> {
-    value: LabeledValue;
-    endValue?: LabeledValue;
-}
-
-
 export type FieldValue =
     string
     | LabeledValue
@@ -67,8 +61,7 @@ export type FieldValue =
     | DimensionWithLabeledMeasurementPosition
     | Dating
     | Literature
-    | OptionalRange
-    | OptionalRangeWithLabeledValues
+    | OptionalRange<LabeledValue>
     | FieldValue[];
 
 
