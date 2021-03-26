@@ -122,7 +122,13 @@ const renderFieldValueObject = (object: FieldValue, t: TFunction): ReactNode | u
     const isOptionalRange = OptionalRange.buildIsOptionalRange(isLabeledValue);
     if (isOptionalRange(object) && OptionalRange.isValid(object)) return renderOptionalRange(object, t);
     const object1 = convertMeasurementPosition(object);
-    if (Dimension.isDimension(object1)) return Dimension.generateLabel(object1, getDecimalValue, t);
+    if (Dimension.isDimension(object1)) {
+        const labeledPosition =
+            (object as Dimension).measurementPosition;
+        return Dimension.generateLabel(
+            object1, getDecimalValue, t, labeledPosition ? getLabel(labeledPosition as any) : undefined
+        );
+    }
     
     console.warn('Failed to render field value:', object);
     return undefined;
