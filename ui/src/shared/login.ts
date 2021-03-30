@@ -1,5 +1,5 @@
 import React from 'react';
-import { clone } from 'tsfun/struct';
+
 
 const LOGIN_DATA = 'loginData';
 
@@ -81,7 +81,7 @@ export const refreshAnonymousUserRights = async (): Promise<LoginData> => {
 
     const json = await response.json();
 
-    const anonymous = clone(ANONYMOUS_USER);
+    const anonymous = JSON.parse(JSON.stringify(ANONYMOUS_USER));
     anonymous.isAdmin = json.is_admin;
     
     persistLogin(anonymous);

@@ -209,7 +209,7 @@ const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileL
     
     return tileLayers.filter(tileLayer => {
         const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
-        return relations && relations.map(to('resource.id')).includes(resourceId);
+        return relations && relations.map((relation: any /*TODO review*/) => relation.resource.id).includes(resourceId);
     });
 };
 

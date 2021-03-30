@@ -1,5 +1,5 @@
 import { Geometry } from 'geojson';
-import { ImageGeoreference } from 'idai-components-2';
+import { ImageGeoreference } from 'idai-field-core';
 import { ChangeEvent, I18nString, LabeledValue } from './document';
 
 export interface Result {

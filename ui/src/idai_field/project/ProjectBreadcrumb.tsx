@@ -2,7 +2,6 @@ import { mdiDotsVertical, mdiSubdirectoryArrowRight } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode, useContext, useEffect, useState } from 'react';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
-import { clone } from 'tsfun/struct';
 import { Document } from '../../api/document';
 import { get } from '../../api/documents';
 import { ResultDocument } from '../../api/result';
@@ -77,7 +76,7 @@ const renderPredecessor = (predecessor: ResultDocument|null, i: number): ReactNo
 
 const limitPredecessors = (predecessors: ResultDocument[]): [ResultDocument[], ResultDocument[]] => {
 
-    const tail = clone(predecessors);
+    const tail = JSON.parse(JSON.stringify(predecessors));
     let head = [];
     
     if (predecessors.length > MAX_BREADCRUMB_ITEMS) {
