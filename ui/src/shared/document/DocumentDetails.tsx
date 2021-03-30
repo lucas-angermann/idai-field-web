@@ -1,7 +1,7 @@
 import { mdiOpenInNew } from '@mdi/js';
 import { Icon } from '@mdi/react';
 import { TFunction } from 'i18next';
-import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
+import { Dating, Dimension, Literature, OptionalRange } from 'idai-field-core';
 import React, { CSSProperties, ReactElement, ReactNode } from 'react';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';

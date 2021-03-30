@@ -1,5 +1,5 @@
 import { Geometry } from 'geojson';
-import { Dating, Dimension, Literature, OptionalRange } from 'idai-components-2';
+import { Dating, Dimension, Literature, OptionalRange } from 'idai-field-core';
 import { isObject } from 'tsfun';
 import { getLabel } from '../shared/languages';
 import { ResultDocument } from './result';
