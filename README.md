@@ -166,7 +166,10 @@ docker-compose.override.yml
 
 ## Deployment
 
-Use `docker-compose publish` to publish the docker images to dockerhub.
+Use `docker-compose push` to publish the docker images to dockerhub.
 
 Afterwards make sure to pull the latest image versions from dockerhub in
 the respective environment (e.g. portainer).
+
+Make sure to update the mapping and reindex all projects if the new version
+contains changes to the elasticsearch mapping or preprocessing.
