@@ -163,3 +163,10 @@ docker-compose.override.yml
             volumes:
                 - "/host/environment/path/to/images/project_a_name:/imageroot/project_a_name"
                 - "/host/environment/path/to/images/project_b_name:/imageroot/project_b_name"
+
+## Deployment
+
+Use `docker-compose publish` to publish the docker images to dockerhub.
+
+Afterwards make sure to pull the latest image versions from dockerhub in
+the respective environment (e.g. portainer).
