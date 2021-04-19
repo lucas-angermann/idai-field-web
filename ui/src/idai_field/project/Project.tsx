@@ -5,7 +5,6 @@ import { Card } from 'react-bootstrap';
 import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
-import { to } from 'tsfun';
 import { Document } from '../../api/document';
 import { get, search } from '../../api/documents';
 import { buildProjectQueryTemplate, parseFrontendGetParams, Query } from '../../api/query';
@@ -85,7 +84,7 @@ export default function Project(): ReactElement {
                 if (data.mapSearchResult) {
                     setMapHighlightedIds(
                         data.mapSearchResult.documents
-                            ? data.mapSearchResult.documents.map(to('resource.id'))
+                            ? data.mapSearchResult.documents.map(document => document.resource.id)
                             : []
                     );
                 }

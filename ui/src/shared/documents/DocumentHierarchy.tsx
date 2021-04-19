@@ -3,7 +3,6 @@ import Icon from '@mdi/react';
 import React, { CSSProperties, ReactElement, ReactNode, useRef } from 'react';
 import { Card } from 'react-bootstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { to } from 'tsfun';
 import { ResultDocument } from '../../api/result';
 import DocumentTeaser from '../document/DocumentTeaser';
 import LinkButton from '../linkbutton/LinkButton';
@@ -99,7 +98,7 @@ const getTransitionClassname = (previousPredecessors: ResultDocument[], parent: 
 
 const isBackwardsTransition = (previousPredecessors: ResultDocument[], parent: string): boolean => {
 
-    return previousPredecessors.map(to('resource.id')).includes(parent) || parent === 'root';
+    return previousPredecessors.map(document => document.resource.id).includes(parent) || parent === 'root';
 };
 
 

@@ -7,7 +7,7 @@ import { mdiEye, mdiEyeOff, mdiImageFilterCenterFocus, mdiLayers } from '@mdi/js
 import Map from 'ol/Map';
 import { FitOptions } from 'ol/View';
 import { Tile as TileLayer } from 'ol/layer';
-import { flatten, to } from 'tsfun';
+import { flatten } from 'tsfun';
 import { NAVBAR_HEIGHT } from '../../constants';
 import { ResultDocument } from '../../api/result';
 import './layer-controls.css';
@@ -142,7 +142,7 @@ const toggleLayer = (tileLayer: TileLayer, project: string, visibleTileLayers: s
 
 const updateTileLayerVisibility = (tileLayers: TileLayer[], layerGroups: LayerGroup[], visibleTileLayers: string[]) => {
 
-    const groupLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers')));
+    const groupLayers: TileLayer[] = flatten(layerGroups.map(group => group.tileLayers));
     if (!visibleTileLayers) visibleTileLayers = [];
 
     tileLayers.forEach(tileLayer => {
@@ -216,7 +216,7 @@ const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileL
 
 const updateZIndices = (layerGroups: LayerGroup[]) => {
 
-    const tileLayers: TileLayer[] = flatten(layerGroups.map(to('tileLayers'))).reverse();
+    const tileLayers: TileLayer[] = flatten(layerGroups.map(group => group.tileLayers)).reverse();
 
     for (let i = 0; i < tileLayers.length; i++) {
         tileLayers[i].setZIndex(i);
