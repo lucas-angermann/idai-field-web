@@ -35,6 +35,14 @@ export default function Browse(): ReactElement {
     const [breadcrumbs, setBreadcrumb] = useState<BreadcrumbItem[]>([]);
     const [tabKey, setTabKey] = useState<string>('children');
 
+    const { onScroll, resetScrollOffset } = useGetChunkOnScroll((newOffset: number) => {
+
+        const promise = documentId
+            ? getChildren(documentId, newOffset, loginData.token)
+            : searchDocuments(searchParams, newOffset, loginData.token);
+        promise.then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
+    });
+
     useEffect(() => {
 
         if (documentId) {
@@ -48,18 +56,12 @@ export default function Browse(): ReactElement {
         } else {
             setDocument(null);
             setBreadcrumb([]);
-            searchDocuments(searchParams, 0, loginData.token)
-                .then(res => setDocuments(res.documents));
+            searchDocuments(searchParams, 0, loginData.token).then(res => {
+                setDocuments(res.documents);
+                resetScrollOffset();
+            });
         }
     }, [documentId, loginData, searchParams]);
-
-    const onScroll = useGetChunkOnScroll((newOffset: number) => {
-
-        const promise = documentId
-            ? getChildren(documentId, newOffset, loginData.token)
-            : searchDocuments(searchParams, newOffset, loginData.token);
-        promise.then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)));
-    });
 
     return (
         <Container fluid className="browse-select">

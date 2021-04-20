@@ -24,15 +24,18 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
 
     const [linkedFinds, setLinkedFinds] = useState<ResultDocument[]>(null);
 
-    useEffect(() => {
-
-        getLinkedFinds(type, 0, loginData.token).then(result => setLinkedFinds(result.documents));
-    }, [type, loginData]);
-
-    const onScroll = useGetChunkOnScroll((newOffset: number) =>
+    const { onScroll, resetScrollOffset } = useGetChunkOnScroll((newOffset: number) =>
         getLinkedFinds(type, newOffset, loginData.token)
             .then(result => setLinkedFinds(oldLinkedFinds => oldLinkedFinds.concat(result.documents)))
     );
+
+    useEffect(() => {
+
+        getLinkedFinds(type, 0, loginData.token).then(result => {
+            setLinkedFinds(result.documents);
+            resetScrollOffset();
+        });
+    }, [type, loginData]);
 
     const mapTooltip = <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip>;
 

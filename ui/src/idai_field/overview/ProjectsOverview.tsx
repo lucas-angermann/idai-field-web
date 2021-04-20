@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState } from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState, useRef, Ref} from 'react';
 import { Alert, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { search } from '../../api/documents';
@@ -31,6 +31,13 @@ export default function ProjectsOverview(): ReactElement {
     const [filters, setFilters] = useState<ResultFilter[]>([]);
     const [error, setError] = useState(false);
 
+    const documentListRef = useRef<HTMLDivElement>();
+
+    const { onScroll, resetScrollOffset } = useGetChunkOnScroll((newOffset: number) =>
+        searchDocuments(searchParams, newOffset, loginData.token)
+            .then(result => setDocuments(oldDocuments => oldDocuments.concat(result.documents)))
+    );
+
     useEffect (() => {
         
         getProjectDocuments(loginData.token)
@@ -46,6 +53,7 @@ export default function ProjectsOverview(): ReactElement {
                 setFilters(result.filters.filter(filter => filter.name !== 'project'));
                 setDocuments(result.documents);
                 setTotal(result.size);
+                resetScroll();
             });
         } else {
             setProjectFilter(undefined);
@@ -55,17 +63,19 @@ export default function ProjectsOverview(): ReactElement {
         }
     }, [searchParams, loginData]);
 
-    const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        searchDocuments(searchParams, newOffset, loginData.token)
-            .then(result => setDocuments(oldDocuments => oldDocuments.concat(result.documents)))
-    );
+    const resetScroll = () => {
+
+        if (documentListRef.current) documentListRef.current.scrollTo(0, 0);
+        resetScrollOffset();
+    }
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
             <Card>
                 <SearchBar basepath="/" />
             </Card>
-            { searchParams.has('q') && documents && renderSidebar(total, filters, searchParams, documents, onScroll) }
+            { searchParams.has('q') && documents
+                && renderSidebar(total, filters, searchParams, documents, documentListRef, onScroll) }
         </div>
         <div>
             { error ? renderError(t) : renderMap(projectDocuments, projectFilter)}
@@ -75,14 +85,15 @@ export default function ProjectsOverview(): ReactElement {
 
 
 const renderSidebar = (total: number, filters: ResultFilter[], searchParams: URLSearchParams,
-        documents: ResultDocument[], onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
+        documents: ResultDocument[], documentListRef: Ref<HTMLDivElement>,
+        onScroll: (e: React.UIEvent<Element, UIEvent>) => void): ReactElement => {
 
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('r', 'overview');
 
     return <div className="projects-overview-sidebar">
         <Total total={ total } filters={ filters } searchParams={ searchParams } />
-        <Card style={ documentListContainerStyle } onScroll={ onScroll }>
+        <Card ref={ documentListRef } style={ documentListContainerStyle } onScroll={ onScroll }>
             <DocumentList searchParams={ newSearchParams } documents={ documents } />
         </Card>
     </div>;

@@ -6,8 +6,10 @@ const DEFAULT_CHUNK_SIZE = 50;
 
 type GetChunk = (offset: number) => void;
 type OnScroll = (e: React.UIEvent<Element, UIEvent>) => void;
+type Reset = () => void;
 
-export function useGetChunkOnScroll(getChunk: GetChunk, size = DEFAULT_CHUNK_SIZE): OnScroll {
+export function useGetChunkOnScroll(getChunk: GetChunk, size = DEFAULT_CHUNK_SIZE)
+        : { onScroll: OnScroll, resetScrollOffset: Reset } {
 
     const [offset, setOffset] = useState<number>(0);
 
@@ -21,5 +23,7 @@ export function useGetChunkOnScroll(getChunk: GetChunk, size = DEFAULT_CHUNK_SIZ
         }
     };
 
-    return onScroll;
+    const resetScrollOffset = () => setOffset(0);
+
+    return { onScroll, resetScrollOffset };
 }

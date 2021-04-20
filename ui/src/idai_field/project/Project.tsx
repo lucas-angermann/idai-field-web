@@ -1,6 +1,6 @@
 import { History } from 'history';
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
+import React, { CSSProperties, ReactElement, Ref, useContext, useEffect, useRef, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { unstable_batchedUpdates } from 'react-dom';
 import { useTranslation } from 'react-i18next';
@@ -55,6 +55,12 @@ export default function Project(): ReactElement {
     const [total, setTotal] = useState<number>();
 
     const previousSearchParams = useRef(new URLSearchParams());
+    const documentListRef = useRef<HTMLDivElement>();
+
+    const { onScroll, resetScrollOffset } = useGetChunkOnScroll((newOffset: number) => search(
+        buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
+            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
+    );
 
     useEffect(() => {
 
@@ -76,10 +82,12 @@ export default function Project(): ReactElement {
             const newPredecessors = getPredecessors(data, parent, documentId);
             
             unstable_batchedUpdates(() => {
+
                 if (data.searchResult) {
                     setDocuments(data.searchResult.documents);
                     setTotal(data.searchResult.size);
                     setFilters(data.searchResult.filters);
+                    resetScroll();
                 }
                 if (data.mapSearchResult) {
                     setMapHighlightedIds(
@@ -95,11 +103,6 @@ export default function Project(): ReactElement {
             if (documentId && !data.selected) setNotFound(true);
         });
     }, [projectId, documentId, view, location.search, history, loginData]);
-
-    const onScroll = useGetChunkOnScroll((newOffset: number) =>
-        search(buildQuery(projectId, new URLSearchParams(location.search), newOffset), loginData.token)
-            .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
-    );
 
     const renderSidebarContent = () => {
 
@@ -118,8 +121,14 @@ export default function Project(): ReactElement {
                 ? [breadcrumbBox, totalBox, renderDocumentHierarchy(
                     documents, predecessors, searchParams, projectId, onScroll, setHoverDocument
                 )]
-                : [view === 'search' && totalBox, renderDocumentList(documents, searchParams, onScroll,
-                    setHoverDocument, t)];
+                : [view === 'search' && totalBox, renderDocumentList(documents, searchParams, documentListRef,
+                    onScroll, setHoverDocument, t)];
+    };
+
+    const resetScroll = () => {
+        
+        if (documentListRef.current) documentListRef.current.scrollTo(0, 0);
+        resetScrollOffset();
     };
 
     if (notFound) return <NotFound />;
@@ -178,10 +187,10 @@ const renderBreadcrumb = (projectId: string, predecessors: ResultDocument[]) =>
 
 
 const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearchParams,
-        onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
+        ref: Ref<HTMLDivElement>, onScroll: (e: React.UIEvent<Element, UIEvent>) => void,
         setHoverDocument: (document: ResultDocument) => void, t: TFunction) =>
     documents?.length
-        ? <Card key="documentList" onScroll={ onScroll } style={ mainSidebarCardStyle }>
+        ? <Card key="documentList" ref={ ref } onScroll={ onScroll } style={ mainSidebarCardStyle }>
             <DocumentList documents={ documents } searchParams={ searchParams }
                 onMouseEnter={ document => setHoverDocument(document) }
                 onMouseLeave={ () => setHoverDocument(null) } />
