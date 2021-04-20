@@ -208,8 +208,8 @@ const createLayerGroups = (tileLayers: TileLayer[], predecessors: ResultDocument
 const getLinkedTileLayers = (resourceId: string, tileLayers: TileLayer[]): TileLayer[] => {
     
     return tileLayers.filter(tileLayer => {
-        const relations: string[] = tileLayer.get('document').resource.relations.isMapLayerOf;
-        return relations && relations.map((relation: any /*TODO review*/) => relation.resource.id).includes(resourceId);
+        const relations: ResultDocument[] = tileLayer.get('document').resource.relations.isMapLayerOf;
+        return relations && relations.map((relation: ResultDocument) => relation.resource.id).includes(resourceId);
     });
 };
 
