@@ -45,27 +45,27 @@ const getCarouselItems = (t: TFunction): ReactNode => {
 
     const slides: Slide[] = [
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-1.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-1.png',
             description: t('download.slides.metadataEditor')
         },
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-2.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-2.png',
             description: t('download.slides.geodataEditor')
         },
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-8.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-8.png',
             description: t('download.slides.matrixView')
         },
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-6.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-6.png',
             description: t('download.slides.synchronization')
         },
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-3.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-3.png',
             description: t('download.slides.tableView')
         },
         {
-            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/img/README-FEATURES-4.png',
+            imageUrl: 'https://raw.githubusercontent.com/dainst/idai-field/master/desktop/img/README-FEATURES-4.png',
             description: t('download.slides.nesting')
         }
     ];
