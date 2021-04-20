@@ -62,6 +62,12 @@ export default function Project(): ReactElement {
             .then(result => setDocuments(oldDocs => oldDocs.concat(result.documents)))
     );
 
+    const resetScroll = () => {
+        
+        if (documentListRef.current) documentListRef.current.scrollTo(0, 0);
+        resetScrollOffset();
+    };
+
     useEffect(() => {
 
         const searchParams = new URLSearchParams(location.search);
@@ -102,6 +108,7 @@ export default function Project(): ReactElement {
             });
             if (documentId && !data.selected) setNotFound(true);
         });
+    // eslint-disable-next-line
     }, [projectId, documentId, view, location.search, history, loginData]);
 
     const renderSidebarContent = () => {
@@ -123,12 +130,6 @@ export default function Project(): ReactElement {
                 )]
                 : [view === 'search' && totalBox, renderDocumentList(documents, searchParams, documentListRef,
                     onScroll, setHoverDocument, t)];
-    };
-
-    const resetScroll = () => {
-        
-        if (documentListRef.current) documentListRef.current.scrollTo(0, 0);
-        resetScrollOffset();
     };
 
     if (notFound) return <NotFound />;

@@ -61,6 +61,7 @@ export default function Browse(): ReactElement {
                 resetScrollOffset();
             });
         }
+    // eslint-disable-next-line
     }, [documentId, loginData, searchParams]);
 
     return (

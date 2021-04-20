@@ -35,6 +35,7 @@ export default function LinkedFinds({ type }: { type: Document }): ReactElement 
             setLinkedFinds(result.documents);
             resetScrollOffset();
         });
+    // eslint-disable-next-line
     }, [type, loginData]);
 
     const mapTooltip = <Tooltip id="map-tooltip">{ t('shapes.browse.linkedFinds.showOnMap') }</Tooltip>;

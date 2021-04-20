@@ -1,5 +1,5 @@
 import { TFunction } from 'i18next';
-import React, { CSSProperties, ReactElement, useContext, useEffect, useState, useRef, Ref} from 'react';
+import React, { CSSProperties, ReactElement, useContext, useEffect, useState, useRef, Ref } from 'react';
 import { Alert, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { search } from '../../api/documents';
@@ -61,13 +61,14 @@ export default function ProjectsOverview(): ReactElement {
             setDocuments(null);
             setTotal(0);
         }
+    // eslint-disable-next-line
     }, [searchParams, loginData]);
 
     const resetScroll = () => {
 
         if (documentListRef.current) documentListRef.current.scrollTo(0, 0);
         resetScrollOffset();
-    }
+    };
 
     return <>
         <div style={ leftSidebarStyle } className="sidebar">
