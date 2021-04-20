@@ -117,7 +117,7 @@ export default function Project(): ReactElement {
 
         const breadcrumbBox = renderBreadcrumb(projectId, predecessors);
         const totalBox = renderTotal(
-            total, searchParams, view, !!document, filters, projectId, setMapHighlightedCategories, t
+            total, searchParams, view, !!document, filters, projectId, setMapHighlightedCategories
         );
 
         return document
@@ -203,7 +203,7 @@ const renderDocumentList = (documents: ResultDocument[], searchParams: URLSearch
 
 const renderTotal = (total: number, searchParams: URLSearchParams, view: ProjectView, asLink: boolean,
         filters: ResultFilter[], projectId: string,
-        setMapHighlightedCategories: (categories: string[]) => void, t: TFunction): ReactElement => {
+        setMapHighlightedCategories: (categories: string[]) => void): ReactElement => {
 
     return <Total key="total" total={ total } searchParams={ searchParams } projectView={ view } asLink={ asLink }
         filters={ filters } projectId={ projectId } setMapHighlightedCategories={ setMapHighlightedCategories } />;
