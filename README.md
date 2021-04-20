@@ -166,6 +166,9 @@ docker-compose.override.yml
 
 ## Deployment
 
+Prerequisites: Make sure that `ui/src/configuration.json` points to the correct URLs to
+the production version. 
+
 Use `docker-compose push` to publish the docker images to dockerhub.
 
 Afterwards make sure to pull the latest image versions from dockerhub in
