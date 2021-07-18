@@ -37,10 +37,14 @@
     border-bottom: none;
     padding-bottom: 1px;
 }
+.project-map .ol-control.toggle-control{
+  bottom: 100px;
+  right: 7px;
+}
 
 .project-map .ol-zoom {
-    bottom: 11px;
-    right: 11px;
+    bottom: 40px;
+    right: 7px;
 }
 
 .project-link {
@@ -48,9 +52,48 @@
     top: 10px;
     left: 20px;
     z-index:  1000;
-    
+
 }
 
 .project-link:hover {
     border: 1px dashed;
+}
+.osm-map{
+  opacity: 0.8;
+}
+
+.toggle-control .toggle-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(85, 126, 187);
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 110%;
+  font-size: 0.7em;
+  font-weight: normal;
+}
+
+.toggle-control .toggle-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgb(85, 126, 187);
+}
+.toggle-control:hover .toggle-tooltip {
+  visibility: visible;
+}
+
+.ol-attribution button {
+    display: inline-block !important;
+    border-radius: 4px;
+    padding: 2px;
 }

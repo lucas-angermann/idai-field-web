@@ -9,17 +9,19 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { Polygon } from 'ol/geom';
 import { Select } from 'ol/interaction';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
+import XYZ from 'ol/source/XYZ';
 import Map from 'ol/Map';
 import { TileImage, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import View, { FitOptions } from 'ol/View';
+import {Control, defaults as defaultControls} from 'ol/control';
 import React, { CSSProperties, ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { isUndefined, not } from 'tsfun';
-import { Document } from '../../api/document';
-import { search, searchMap } from '../../api/documents';
+import { Document, getDocumentEPSG } from '../../api/document';
+import { get, search, searchMap } from '../../api/documents';
 import { getImageUrl } from '../../api/image';
 import { buildProjectQueryTemplate } from '../../api/query';
 import { Result, ResultDocument } from '../../api/result';
@@ -32,9 +34,14 @@ import LayerControls from './LayerControls';
 import { ProjectView } from './Project';
 import './project-map.css';
 import { getResolutions, getTileLayerExtent } from './tileLayer';
+import proj4 from 'proj4';
+import {register} from 'ol/proj/proj4';
+import {get as getProjection, getTransform} from 'ol/proj';
 
 
 const MAX_SIZE = 10000;
+
+let epsgCode;
 
 const STYLE_CACHE: { [ category: string ] : Style } = { };
 
@@ -62,15 +69,29 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
     const history = useHistory();
     const searchParams = useSearchParams();
     const loginData = useContext(LoginContext);
+    const { projectId } = useParams<{ projectId: string }>();
 
+    const [projectDoc, setProjectDoc] = useState<Document>();
     const [documents, setDocuments] = useState<ResultDocument[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [map, setMap] = useState<Map>(null);
     const [vectorLayer, setVectorLayer] = useState<VectorLayer>(null);
     const [select, setSelect] = useState<Select>(null);
     const [tileLayers, setTileLayers] = useState<TileLayer[]>([]);
- 
+
     const mapClickFunction = useRef<(_: MapBrowserEvent) => void>(null);
+
+    useEffect(() => {
+        get(projectId, loginData.token)
+            .then(setProjectDoc);
+    }, [projectId, loginData]);
+
+    useEffect(() => {
+
+        if (projectDoc) {
+          epsgCode = getDocumentEPSG(projectDoc);
+        }
+    }, [projectDoc, projectId]);
 
     useEffect(() => {
 
@@ -146,7 +167,7 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
     useEffect(() => {
 
         if (!map || !vectorLayer) return;
-        
+
         map.getView().fit(
             getExtent(vectorLayer, predecessors, selectedDocument),
             fitOptions
@@ -169,9 +190,9 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
                 <Spinner animation="border" variant="secondary" />
             </div>
         }
-       
+
         <div className="project-map" id="ol-project-map" style={ mapStyle(isMiniMap) } />
-        
+
         { (isMiniMap ?
             <Link to={ `/project/${project}/hierarchy?parent=root` } className="project-link">
                 <Icon path={ mdiRedo } size={ 1.0 } ></Icon>
@@ -184,6 +205,41 @@ export default function ProjectMap({ selectedDocument, hoverDocument, highlighte
         }
     </>;
 }
+//Set the right coordinate system, based on https://openlayers.org/en/latest/examples/reprojection-by-code.html, 17.07.2021
+const defaultEPSG =  3857;
+if(epsgCode === undefined){
+  epsgCode = defaultEPSG;
+}
+
+let epsgProjection;
+if(epsgCode == 4326 || epsgCode == 3857){ //default openlayer crs
+  epsgProjection = getProjection('EPSG:'+epsgCode);
+}else{
+  fetch('https://epsg.io/?format=json&q=' + epsgCode)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      const results = json['results'];
+      if (results && results.length > 0) {
+        for (let i = 0, ii = results.length; i < ii; i++) {
+          const result = results[i];
+          if (result) {
+            /*var code = result['code'];
+            var name = result['name'];
+            var bbox = result['bbox'];*/
+            const proj4def = result['proj4'];
+            proj4.defs('EPSG:'+epsgCode, proj4def);
+            register(proj4);
+            epsgProjection = getProjection('EPSG:'+epsgCode);
+          }
+        }
+      }
+    });
+
+
+}
+
 
 
 const fetchAllDocuments = async (projectId: string, token: string): Promise<Result> => {
@@ -192,20 +248,74 @@ const fetchAllDocuments = async (projectId: string, token: string): Promise<Resu
     return searchMap(query, token);
 };
 
+//Custom toggle control, based on https://openlayers.org/en/latest/examples/custom-controls.html, 17.07.2021
+const ToggleControl = /*@__PURE__*/(function (Control) {
+  function ToggleControl(opt_options) {
+    const options = opt_options || {};
 
+    const button = document.createElement('button');
+    //SVG source: https://www.visualpharm.com/free-icons/, 17.07.2021
+    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 28 4.46875 L 26.59375 5.09375 L 19.96875 7.9375 L 12.34375 5.0625 L 11.96875 4.9375 L 11.59375 5.09375 L 4.59375 8.09375 L 4 8.34375 L 4 9 L 4 26 L 4 27.53125 L 5.40625 26.90625 L 12.03125 24.0625 L 19.65625 26.9375 L 20.03125 27.0625 L 20.40625 26.90625 L 27.40625 23.90625 L 28 23.65625 L 28 23 L 28 6 L 28 4.46875 z M 13 7.4375 L 19 9.6875 L 19 24.5625 L 13 22.3125 L 13 7.4375 z M 11 7.5 L 11 22.34375 L 6 24.5 L 6 9.65625 L 11 7.5 z M 26 7.5 L 26 22.34375 L 21 24.5 L 21 9.65625 L 26 7.5 z" overflow="visible" font-family="Bitstream Vera Sans"/></svg><span class="toggle-tooltip">Toggle background map</span>';
+
+    const element = document.createElement('div');
+    element.className = 'toggle-control ol-unselectable ol-control';
+    element.appendChild(button);
+
+    Control.call(this, {
+      element: element,
+      target: options.target,
+    });
+
+    button.addEventListener('click', this.handleToggleControl.bind(this), false);
+  }
+
+  if ( Control )ToggleControl.__proto__ = Control;
+  ToggleControl.prototype = Object.create( Control && Control.prototype );
+  ToggleControl.prototype.constructor = ToggleControl;
+
+  ToggleControl.prototype.handleToggleControl = function handleToggleControl () {
+    const mapVisibility = this.getMap().getLayers().getArray().find(layer => layer.className_ == 'osm-map').getVisible();
+    if(mapVisibility){
+    this.getMap().getLayers().getArray().find(layer => layer.className_ == 'osm-map').setVisible(false);
+  }else{
+    this.getMap().getLayers().getArray().find(layer => layer.className_ == 'osm-map').setVisible(true);
+  }
+  };
+
+  return ToggleControl;
+}(Control));
+
+//Fetching default base map in humanitarian style from OSM France, based on https://openlayers.org/en/latest/examples/xyz.html, 17.07.2021
 const createMap = (): Map => {
 
-    return new Map({
-        target: 'ol-project-map',
-        view: new View()
-    });
+    const map = new Map({
+      controls: defaultControls().extend([new ToggleControl(0)]),
+      layers: [
+        new TileLayer({
+          className: 'osm-map',
+          source: new XYZ({
+            url:'http://{a-b}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+            attributions:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.',
+
+          }),
+        })
+      ],
+  target: 'ol-project-map',
+  view: new View({
+    projection: epsgProjection,
+    center: [0, 0],
+    zoom: 17,
+    minZoom: 10,
+  }),
+});
+    return map;
 };
 
 
 const setUpView = (map: Map, layer: VectorLayer, fitOptions: FitOptions) => {
 
     map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
-    map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));
+    /*map.setView(new View({ extent: map.getView().calculateExtent(map.getSize()) }));*/
     map.getView().fit(layer.getSource().getExtent(), { padding: fitOptions.padding });
 };
 
@@ -280,13 +390,14 @@ const configureCursor = (map: Map) => {
     });
 };
 
-
 const getGeoJSONLayer = (featureCollection: FeatureCollection): VectorLayer => {
 
     if (!featureCollection) return;
-
     const vectorSource = new VectorSource({
-        features: new GeoJSON().readFeatures(featureCollection),
+        features: new GeoJSON().readFeatures(featureCollection, {
+            dataProjection: epsgProjection,
+            featureProjection: epsgProjection
+        })
     });
 
     return new VectorLayer({
@@ -378,7 +489,7 @@ const getStyle = (feature: OlFeature): Style => {
 
 
 const getDefaultStyle = (transparentColor: string) => {
-    
+
     return new Style({
         image: new CircleStyle({
             radius: 4,
@@ -392,7 +503,7 @@ const getDefaultStyle = (transparentColor: string) => {
 
 
 const getHighlightedStyle = (color: string, transparentColor: string) => {
-    
+
     return new Style({
         image: new CircleStyle({
             radius: 4,
@@ -406,7 +517,7 @@ const getHighlightedStyle = (color: string, transparentColor: string) => {
 
 
 const getParentStyle = (color: string) => {
-    
+
     return new Style({
         image: new CircleStyle({
             radius: 4,

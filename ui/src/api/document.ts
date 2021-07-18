@@ -45,7 +45,7 @@ export interface DimensionWithLabeledMeasurementPosition extends Omit<Dimension,
 
 
 export function convertMeasurementPosition(element: FieldValue): FieldValue {
-    
+
     if (!isObject(element)) return element;
     const klone: FieldValue = JSON.parse(JSON.stringify(element));
     klone[Dimension.MEASUREMENTPOSITION] = isLabeledValue(element) ? getLabel(element) : undefined;
@@ -110,6 +110,8 @@ export const getDocumentImages = (document: Document): ResultDocument[] =>
         .relations.find((rel: Relation) => rel.name === 'isDepictedIn')?.targets;
 
 export const getDocumentDescription = (doc: Document): FieldValue => getFieldValue(doc, 'parent', 'description');
+
+export const getDocumentEPSG = (doc: Document): FieldValue => getFieldValue(doc, 'parent', 'epsgId');
 
 export const getFieldValue = (document: Document, groupName: string, fieldName: string): FieldValue =>
     document.resource.groups.find((group: FieldGroup) => group.name === groupName)
